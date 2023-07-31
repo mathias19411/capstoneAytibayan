@@ -57,4 +57,7 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    public function contact_view(){
+        return view('contacts');
+    }
 }

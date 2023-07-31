@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                    <a href="{{ route('profile.contact_view') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Contacts</a>
                 </div>
             </div>
         </div>
