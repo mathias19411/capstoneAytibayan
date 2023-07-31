@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,5 +29,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/home/contacts', [ProfileController::class, 'contact_view'])->name('profile.contact_view');
 });
+Route::get('/programs', function () {
+    return view('programs');
+});
+
+Route::get('/category_page/{category}', function ($category) {
+    // You can pass the $category variable to the view or use it to fetch category information from the database
+    return view('category_page', compact('category'));
+})->name('category.page');
+
+
 
 require __DIR__.'/auth.php';
