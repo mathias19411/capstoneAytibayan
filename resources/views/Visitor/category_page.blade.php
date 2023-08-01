@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body class="infos">
-   
+        @include ('Visitor.Body.header')
 
     <!-- About Section -->
     <div id="about-section">

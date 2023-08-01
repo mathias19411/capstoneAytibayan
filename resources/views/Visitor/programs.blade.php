@@ -52,7 +52,7 @@
     <script>
     function showCategory(category) {
         // Construct the URL for the category page with the selected category as a query parameter
-        const url = "{{ route('category.page', ['category' => ':category']) }}";
+        const url = "{{ route('Visitor.category.page', ['category' => ':category']) }}";
         const finalUrl = url.replace(':category', category);
 
         // Redirect the current window to the category page URL
