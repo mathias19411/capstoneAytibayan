@@ -32,7 +32,6 @@
     }
 	#location_img {
 		height: 480px;
-		width: 100vw;
 		border-radius: 10px;
 	}
     #marker_style {
