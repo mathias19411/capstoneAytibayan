@@ -219,6 +219,24 @@
   </style>
 </head>
 <body class="container-fluid" style="background-color: #f2f2f2; margin-bottom: 10px;">
+<div class="grid-container">
+	<!-- header -->
+		<!-- partial:partials/_header.html -->
+		@include('ITStaff.Body.header')
+		<!-- header -->
+
+		<!-- Sidebar -->
+		@include('ITStaff.Body.sidebar')
+		<!-- Sidebar -->
+
+		<!-- main content -->
+		@yield('itstaff')
+		<!-- main content -->
+
+		<!-- Footer -->
+		@include('ITStaff.Body.footer')
+		<!-- Footer -->
+</div>
 	<div class="row">
 		<div class="col" id="title">
 			<h4><b>Location</b></h4>
