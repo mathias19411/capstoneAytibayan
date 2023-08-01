@@ -29,14 +29,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/home/contacts', [ProfileController::class, 'contact_view'])->name('profile.contact_view');
 });
-Route::get('/programs', function () {
-    return view('programs');
+Route::get('/Visitor/programs', function () {
+    return view('Visitor.programs');
 });
 
-Route::get('/category_page/{category}', function ($category) {
+Route::get('/Visitor/programs_view', function () {
+    return view('Visitor.programs_view');
+});
+
+Route::get('/Visitor/category_page/{category}', function ($category) {
     // You can pass the $category variable to the view or use it to fetch category information from the database
-    return view('category_page', compact('category'));
-})->name('category.page');
+    return view('Visitor.category_page', compact('category'));
+})->name('Visitor.category.page');
+
+
 
 
 
