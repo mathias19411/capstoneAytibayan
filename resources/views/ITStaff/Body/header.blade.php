@@ -16,6 +16,9 @@
         <a href="#">
             <span class="material-icons-outlined">notifications</span>
         </a>
+        <a href="{{url('programs_view')}}">
+            <span class="material-icons-outlined">Programs</span>
+        </a>
         <a href="#">
             <span class="material-icons-outlined">login</span>
         </a>
