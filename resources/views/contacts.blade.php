@@ -241,7 +241,7 @@
 		<div class="col" id="title">
 			<h4><b>Location</b></h4>
 			<div id="location_">
-				<img src="{{ URL('googlemap/APAO.png') }}" class="img-fluid" id="location_img">
+				<img src="{{ URL('images/APAO.png') }}" class="img-fluid" id="location_img">
 			</div>
 			<div class="col">
 			<div class="row" style="margin: 10px;">
@@ -265,7 +265,7 @@
 					<div class="col-12" id="coordinators">
 						<div class="row">
 							<div>
-								<img src="{{ URL('googlemap/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
+								<img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
 							</div>
 							<div id="c_description">
 								<div id="c_name">Marife S. Azares</div>
@@ -278,7 +278,7 @@
 					<div class="col-12" id="coordinators">
 						<div class="row">
 							<div>
-								<img src="{{ URL('googlemap/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
+								<img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
 							</div>
 							<div id="c_description">
 								<div id="c_name">Marife S. Azares</div>
@@ -291,7 +291,7 @@
 					<div class="col-12" id="coordinators">
 						<div class="row">
 							<div>
-								<img src="{{ URL('googlemap/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
+								<img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
 							</div>
 							<div id="c_description">
 								<div id="c_name">Marife S. Azares</div>
@@ -306,7 +306,7 @@
 					<div class="col-12" id="coordinators">
 						<div class="row">
 							<div>
-								<img src="{{ URL('googlemap/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
+								<img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
 							</div>
 							<div id="c_description">
 								<div id="c_name">Marife S. Azares</div>
@@ -319,7 +319,7 @@
 					<div class="col-12" id="coordinators">
 						<div class="row">
 							<div>
-								<img src="{{ URL('googlemap/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
+								<img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
 							</div>
 							<div id="c_description">
 								<div id="c_name">Marife S. Azares</div>
