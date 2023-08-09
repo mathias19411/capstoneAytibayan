@@ -42,6 +42,10 @@ Route::get('/Visitor/programs_view', function () {
     return view('Visitor.programs_view');
 });
 
+Route::get('/Visitor/about', function () {
+    return view('Visitor.about');
+});
+
 Route::get('/Visitor/category_page/{category}', function ($category) {
     // You can pass the $category variable to the view or use it to fetch category information from the database
     return view('Visitor.category_page', compact('category'));
