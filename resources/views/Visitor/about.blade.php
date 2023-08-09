@@ -9,7 +9,7 @@
 
 	<body style="font-family: 'Poppins', sans-serif">
 
-		<!--First pic ito !-->
+		<!--background slides!-->
 		<div class="slides">
 		<div class="slide slide1">
 			<img id="img" src="images/image1.png">
