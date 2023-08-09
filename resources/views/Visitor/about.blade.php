@@ -12,13 +12,13 @@
 		<!--background slides!-->
 		<div class="slides">
 		<div class="slide slide1">
-			<img id="img" src="images/image1.png">
+			<img id="img" src="\images\image1.png">
 		</div>
 		<div class="slide slide2">
-			<img id="img" src="images/image2.png">
+			<img id="img" src="\images\image2.png">
 		</div>
 		<div class="slide slide3">
-			<img id="img" src="images/image3.png">
+			<img id="img" src="\images\image3.png">
 		</div>
 
 	</div>
@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="box">
 			    <h2>Organizational Chart</h2>
-			    <img src="images/orgchart.png">
+			    <img src="\images\orgchart.png">
 			</div>
 
 		 	<div class="main">
@@ -43,7 +43,7 @@
 
 			<div class="box">
 			    <h2>History</h2>
-			    <img src="images/history.png"> 
+			    <img src="\images\history.png"> 
 			    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
 		  </div>
 		</div>
