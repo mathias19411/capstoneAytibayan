@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function () {
    //Route::get('/home/contacts', [ProfileController::class, 'contact_view'])->name('profile.contact_view');
 });
 
-Route::get('/Contacts/contacts', function () {
-    return view('Contacts.contacts');
+Route::get('/Visitor/contacts', function () {
+    return view('Visitor.contacts');
 });
 
 Route::get('/Visitor/programs', function () {
