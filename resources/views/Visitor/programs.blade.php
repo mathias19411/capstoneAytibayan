@@ -4,6 +4,8 @@
 <head>
     <link rel="stylesheet" href="{{ asset('programs.css') }}">
     <script src="{{ asset('programs.js') }}"></script>
+    <title> Program </title>
+    <link rel="icon" href="\images\APAO logo.png" type="image icon">
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
