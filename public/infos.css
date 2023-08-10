@@ -60,6 +60,7 @@ body.infos {
     object-fit: cover; /* Crop the image to cover the entire container while maintaining aspect ratio */
     margin-top: 20px;
     border-radius: 5px;
+    box-shadow:2px 3px 10px rgba(0,0,0,0.5);
 }
 
 
