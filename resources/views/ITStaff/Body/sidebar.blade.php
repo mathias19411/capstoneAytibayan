@@ -2,7 +2,7 @@
     <div class="sidebar-title">
         <div class="sidebar-brand">
             <a href="#" class="apao-logo">
-                <img src="../images/Index_Images//APAO-R5.jpg" alt="APAO Logo">
+                <img src="{{ asset('images/APAO-R5.jpg') }}">
                 <span class="nav-item">APAO R-V</span>
             </a>
         </div>
