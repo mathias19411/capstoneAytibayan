@@ -58,8 +58,5 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function itstaffdashboard()
-    {
-        return view('ITStaff.itstaff_dashboard');
-    }
+    
 }
