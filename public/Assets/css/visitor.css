@@ -16,8 +16,14 @@
 }
 
 body {
+    margin: 1rem;
     background: var(--colorWhite);
-    overflow: hidden;
+    overflow: auto;
+    scroll-behavior: smooth;
+    /* background-image: url("/images/background.png"); Set the path to your background image */
+    /* background-size: cover; Cover the entire body with the background image */
+    /* background-position: center; Center the background image */
+    /* background-attachment: fixed; Keep the background image fixed while scrolling */
 }
 
 .material-icons-outlined {
@@ -38,51 +44,203 @@ body {
 }
 
 /* -------------------------GRID CONTAINER------------------------------------ */
-.grid-container {
+/* .grid-container {
     display: grid;
-    grid-template-columns: 250px 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 0.2fr 3fr 0.2fr;
     grid-template-areas:
-        "sidebar header header header"
-        "sidebar main main main"
-        "sidebar footer footer footer";
+        "header header header"
+        "main main main"
+        "footer footer footer";
     height: 100vh;
-}
+} */
 
-/* -------------------------HEADER------------------------------------ */
-.header {
+/* -------------------------NavBar------------------------------------ */
+#menu {
+    /* grid-area: header; */
+    background: #ffffff;
+    color: var(--colorBlack);
     position: sticky;
     top: 0;
-    grid-area: header;
-    height: 50px;
-    background-color: var(--colorOrange);
+    height: 5rem;
+    padding-left: 1.125rem;
+    padding-right: 1.125rem;
+    border-radius: 15px;
+    max-width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px 0 30px;
-    box-shadow: 0.5rem 0.3rem 0.2rem rgba(0, 0, 0, 0.2);
+    margin-top: 2rem;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     z-index: 997;
 }
-
-.nav-item {
-    color: var(--colorBlack);
+#menu ul,
+#menu li {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+#menu ul {
+    width: 100%;
+}
+#menu li {
+    float: left;
+    display: inline;
+    position: relative;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+#menu a {
+    display: block;
+    line-height: 80px;
+    padding: 0 14px;
     text-decoration: none;
+    color: #1a1a1a;
+    font-size: 16px;
 }
-
-header .toggle-sidebar {
+#menu a.dropdown-arrow:after {
+    content: "\002B";
+    margin-left: 5px;
+}
+#menu li a:hover {
+    color: var(--colorWhite);
+    background: var(--colorGreen);
+    transition: all 0.5s ease;
+    scale: 105%;
+    border-radius: 15px;
+}
+#menu input {
+    display: none;
+    margin: 0;
+    padding: 0;
+    height: 80px;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+#menu label {
+    display: none;
+    line-height: 80px;
+    text-align: center;
+    position: absolute;
+    left: 35px;
+}
+#menu label:before {
+    font-size: 1.6em;
+    content: "\2261";
+    margin-left: 20px;
+}
+#menu ul.sub-menus {
+    height: auto;
+    overflow: hidden;
+    width: 12.5rem;
+    background: var(--colorBlack);
+    position: absolute;
+    border-radius: 15px;
+    z-index: 99;
     display: none;
 }
-
-.toggle-icon {
-    display: none;
+#menu ul.sub-menus li {
+    display: block;
+    width: 100%;
+}
+#menu ul.sub-menus a {
+    color: #ffffff;
+    font-size: 16px;
+}
+#menu li:hover ul.sub-menus {
+    display: block;
+}
+#menu ul.sub-menus a:hover {
+    background: #f2f2f2;
+    color: #444444;
 }
 
-.menu-icon {
-    display: none;
+#menu .nav-title .nav-brand {
+    height: 100%;
 }
 
-/* -------------------------SIDEBAR------------------------------------ */
-#secondary-sidebar {
+#menu .nav-title .nav-brand a img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1.125rem;
+    margin-bottom: .75rem;
+}
+
+#menu .nav-title .nav-brand a span {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 992px) {
+    #menu {
+        position: relative;
+    }
+    #menu ul {
+        background: #111;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: 998;
+        height: auto;
+        display: none;
+    }
+    #menu ul.sub-menus {
+        width: 100%;
+        position: static;
+    }
+    #menu ul.sub-menus a {
+        padding-left: 30px;
+    }
+    #menu li {
+        display: block;
+        float: none;
+        width: auto;
+    }
+    #menu input,
+    #menu label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+    }
+    #menu input {
+        z-index: 4;
+    }
+    #menu input:checked + label {
+        color: white;
+    }
+    #menu input:checked + label:before {
+        content: "\00d7";
+    }
+    #menu input:checked ~ ul {
+        display: block;
+    }
+}
+
+/* -------------------------Header------------------------------------ */
+#header {
+    background: #ffffff;
+    color: var(--colorBlack);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0 2rem 0;
+    text-align: center;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.3
+    ); /* Semi-transparent white color */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+}
+
+/* #secondary-sidebar {
     display: none;
 }
 
@@ -163,49 +321,449 @@ header .toggle-sidebar {
 .sidebar-responsive {
     display: inline !important;
     position: absolute;
-}
+} */
 
 /* -------------------------MAIN CONTENT------------------------------------ */
-.main-content {
+/* ---------------------------------- */
+.page-content {
     max-height: 100%;
-    grid-area: main;
+    max-width: 100vw;
     overflow: auto;
     padding: 1.1rem 1.1rem;
 }
 
-.main-title {
-    display: flex;
-    justify-content: space-between;
-}
-
-/* .main-title > p {
-  font-size: 20px;
-} */
-
 .main-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1.3rem;
-    margin: 20px 0;
+    grid-template-columns: 1fr 1.7fr 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
 }
 
-.card {
+.image-section {
+    grid-area: 1 / 2 / 6 / 3;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    position: relative; /* Needed for absolute positioning of the image */
+    /* width: 41.063rem;
+    height: 26.25rem; */
+}
+
+.image-section .apao-big-image {
+    width: 100%; /* Set image width to 100% of parent div's width */
+    height: 100%; /* Set image height to 100% of parent div's height */
+    object-fit: cover; /* Preserve aspect ratio while filling the container */
+    position: absolute; /* Position the image within the parent div */
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+}
+
+.horizontal-scroll-image-section {
+    grid-area: 6 / 2 / 8 / 3;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.3
+    ); /* Semi-transparent white color */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    display: flex; /* Display images in a row */
+    white-space: nowrap; /* Prevent images from wrapping to the next line */
+    /* width: 41.063rem;
+    height: 10.125rem; */
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.horizontal-scroll-image-section:hover {
+    overflow: auto; /* Enable scrolling within the content */
+    overflow-x: scroll; /* Always show the scrollbar on the y-axis */
+}
+
+.horizontal-scroll-image-section .apao-horizontal-images {
+    width: 30%;
+    height: 100%;
+    object-fit: cover; /* Preserve aspect ratio while filling the container */
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    margin-right: 10px;
+}
+
+.horizontal-scroll-image-section::-webkit-scrollbar {
+    height: 6px; /* Set the width of the scrollbar */
+    background-color: transparent; /* Set the background color */
+}
+
+.horizontal-scroll-image-section::-webkit-scrollbar-thumb {
+    /* Styling for the scrollbar thumb */
+    background-color: #aaa; /* Set the color of the thumb */
+    border-radius: 3px; /* Round the edges of the thumb */
+}
+
+.horizontal-scroll-image-section::-webkit-scrollbar-thumb:hover {
+    /* Styling for the scrollbar thumb on hover */
+    background-color: #777; /* Change color on hover */
+}
+
+.beneficiay-chart-section {
+    grid-area: 1 / 1 / 5 / 2;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.3
+    ); /* Semi-transparent white color */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    /* width: 24.188rem;
+    height: 20.875rem; */
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding: 1.6rem;
-    background-color: var(--colorGreen);
-    box-sizing: border-box;
-    border: 1px solid var(--colorBlack);
-    border-radius: 5px;
-    box-shadow: 0 6px 7px 3px rgba(0, 0, 0, 0.2);
-    border-left: 7px solid var(--colorOrange);
+    justify-content: space-between; /* Pushes child to the bottom while keeping space between items */
+    align-items: center;
+}
+
+.beneficiay-chart-section .beneficiay-chart-section-charts-card {
+    width: 100%;
+    height: 100%;
+}
+
+.beneficiay-chart-section .beneficiay-chart-section-charts-card .chart-title {
+    margin: 0 0 1rem 0;
+}
+
+.beneficiay-chart-section
+    .beneficiay-chart-section-charts-card
+    .chart-title
+    h4 {
+    background: var(--colorGreen);
+    text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    color: var(--colorWhite);
+    width: 100%;
+}
+
+.top-story-section {
+    grid-area: 5 / 1 / 11 / 2;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.3
+    ); /* Semi-transparent white color */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    /* width: 24.188rem;
+    height: 31.625rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes child to the bottom while keeping space between items */
+    align-items: center;
+}
+
+.top-story-section .top-story-title {
+    background: var(--colorGreen);
+    border-radius: 15px;
+    width: 100%;
+}
+
+.top-story-section .top-story-title h3 {
+    background: var(--colorGreen);
+    text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     color: var(--colorWhite);
 }
 
-.card:hover {
+.top-story-section .stories-main .story-card .story-card-image img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    margin-right: 1.125rem;
+}
+
+.top-story-section .stories-main .story-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1.6rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 6px 7px 3px rgba(0, 0, 0, 0.2);
+    border-left: 7px solid var(--colorOrange);
+    color: var(--colorBlack);
+    margin: 1rem 0 1rem 0;
+    background: var(--colorWhite);
+}
+
+.top-story-section .stories-main .story-card:hover {
     transition: all 0.5s ease;
-    scale: 110%;
+    scale: 105%;
+    cursor: pointer;
+}
+
+.top-story-section .story-read-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide overflowed content */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflowed text */
+    white-space: nowrap; /* Prevent line breaks */
+    background: var(--colorOrange);
+    border-radius: 10px;
+    padding: 0.313rem;
+    box-shadow: 0 6px 7px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    width: 100%;
+}
+
+.top-story-section .story-read-more .read-more-button {
+    text-align: center;
+    max-width: 100%;
+    color: var(--colorWhite);
+    bottom: 0;
+}
+
+.top-story-section .story-read-more .read-more-button:hover {
+    transition: all 0.5s ease;
+    color: var(--colorBlack);
+}
+
+.description-section {
+    grid-area: 8 / 2 / 11 / 3;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.3
+    ); /* Semi-transparent white color */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    /* width: 41.063rem;
+    height: 15.5rem; */
+    padding: 2rem;
+    text-align: center;
+}
+
+.announcements-section {
+    grid-area: 8 / 3 / 11 / 4;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.3
+    ); /* Semi-transparent white color */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    /* width: 24.188rem;
+    height: 15.5rem; */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes child to the bottom while keeping space between items */
+    align-items: center;
+}
+
+.announcements-section .announcements-read-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide overflowed content */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflowed text */
+    white-space: nowrap; /* Prevent line breaks */
+    background: var(--colorOrange);
+    border-radius: 10px;
+    padding: 0.313rem;
+    box-shadow: 0 6px 7px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    width: 100%;
+}
+
+.announcements-section .announcements-read-more .read-more-button {
+    text-align: center;
+    max-width: 100%;
+    color: var(--colorWhite);
+    bottom: 0;
+}
+
+.announcements-section .announcements-read-more .read-more-button:hover {
+    transition: all 0.5s ease;
+    color: var(--colorBlack);
+}
+
+.announcements-section .announcements-title {
+    background: var(--colorGreen);
+    text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    color: var(--colorWhite);
+    width: 100%;
+}
+
+.announcements-section .announcements-card {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin: 1rem 0 1rem 0;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    background: var(--colorWhite);
+    padding: 1rem;
+    z-index: 100;
+}
+
+.announcements-section .announcements-card:hover {
+    cursor: pointer;
+    transition: all 0.5s ease;
+    scale: 105%;
+}
+
+.announcements-section .announcements-card .announcements-card-date-time > p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4; /* Number of lines to display */
+    text-overflow: ellipsis;
+    border-top: 2px solid #dad7cd;
+}
+
+.announcements-section
+    .announcements-card
+    .announcements-card-date-time
+    .announcements-card-date-time-title {
+    display: inline-flex; /* Display the container as inline flex to align items horizontally */
+    align-items: center; /* Align items vertically in the center */
+}
+
+.announcements-section
+    .announcements-card
+    .announcements-card-date-time
+    .announcements-card-date-time-title
+    .material-symbols-outlined {
+    margin-right: 8px; /* Add spacing between the icon and text */
+}
+
+.announcements-section
+    .announcements-card
+    .announcements-card-date-time
+    .announcements-card-date-time-title
+    .announcement-time {
+    display: inline-block; /* Display the text inline with the icon */
+    font-size: 0.875rem;
+}
+
+.events-section {
+    grid-area: 1 / 3 / 8 / 4;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.3
+    ); /* Semi-transparent white color */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    /* width: 24.188rem;
+    height: 37rem; */
+    position: relative; /* Needed for absolutely positioned scrollbar */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Pushes child to the top */
+    align-items: center;
+}
+
+.events-section .events-title {
+    background: var(--colorGreen);
+    text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    color: var(--colorWhite);
+    width: 100%;
+}
+
+.events-section .events-main {
+    width: 100%; /* Ensure the content takes up full width of container */
+    height: 85%; /* Ensure the content takes up full height of container */
+    overflow: hidden;
+    margin: 1rem 0 1rem 0;
+    border-radius: 15px;
+}
+
+.events-section:hover .events-main {
+    overflow: auto; /* Enable scrolling within the content */
+    overflow-y: scroll; /* Always show the scrollbar on the y-axis */
+}
+
+.events-main::-webkit-scrollbar {
+    width: 6px; /* Set the width of the scrollbar */
+    background-color: transparent; /* Set the background color */
+}
+
+.events-main::-webkit-scrollbar-thumb {
+    /* Styling for the scrollbar thumb */
+    background-color: #aaa; /* Set the color of the thumb */
+    border-radius: 3px; /* Round the edges of the thumb */
+}
+
+.events-main::-webkit-scrollbar-thumb:hover {
+    /* Styling for the scrollbar thumb on hover */
+    background-color: #777; /* Change color on hover */
+}
+
+.events-section .events-main .events-card {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin: 1rem 0 1rem 0;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    background: var(--colorWhite);
+}
+
+.events-section .events-main .events-card:hover .events-card-content {
+    cursor: pointer;
+    transition: all 0.5s ease;
+    background: var(--colorGreen);
+    color: var(--colorWhite);
+}
+
+.events-section .events-main .events-card:hover .events-card-title-date {
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.events-section .events-main .events-card > div {
+    flex: 1; /* Distribute available space evenly among children */
+    padding: 0.625rem;
+}
+
+.events-section .events-main .events-card .events-card-title-date {
+    flex: 20;
+    text-align: center;
+    background: var(--colorOrange);
+    border-radius: 15px;
+    color: var(--colorWhite);
+}
+
+.events-section .events-main .events-card .events-card-content {
+    flex: 80;
 }
 
 .card > span {
@@ -250,36 +808,90 @@ header .toggle-sidebar {
     justify-content: center;
     font-size: 1.375rem;
     font-weight: 600;
+    chart-title
 }
 /* -------------------------FOOTER------------------------------------ */
 .footer {
-    position: sticky;
     bottom: 0;
-    grid-area: footer;
-    height: 50px;
-    background-color: var(--colorOrange);
-    box-shadow: 0.5rem 0.3rem 0.2rem rgba(0, 0, 0, 0.2);
+    /* grid-area: footer; */
+    height: 5rem;
+    background: #ffffff;
+    color: var(--colorBlack);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0 0 0;
+    text-align: center;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px 0 30px;
     z-index: 997;
 }
 
 /*------------------- Media Queries -----------------------*/
+/*  Desktops, large screens */
+@media screen and (max-width: 1200px) {
+}
+
+/*  Small screens, laptops */
+@media screen and (max-width: 1024px) {
+}
 
 /* Ipads Tablets */
 @media screen and (max-width: 992px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.2fr 3fr 0.2fr;
-        grid-template-areas:
-            "header"
-            "main"
-            "footer";
+    #menu {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
     }
 
-    #sidebar {
+    .page-content {
+        max-height: 100%;
+        max-width: 100vw;
+        overflow: auto;
+        padding: 1.1rem 1.1rem;
+    }
+
+    .main-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, auto);
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+
+    .image-section {
+        display: none;
+    }
+
+    .horizontal-scroll-image-section {
+        grid-area: 1 / 1 / 2 / 3;
+    }
+
+    .description-section {
+        grid-area: 2 / 1 / 3 / 3;
+        max-height: fit-content;
+    }
+
+    .beneficiay-chart-section {
+        grid-area: 3 / 1 / 4 / 3;
+    }
+
+    .top-story-section {
+        grid-area: 4 / 1 / 5 / 2;
+        max-height: fit-content;
+    }
+
+    .events-section {
+        grid-area: 4 / 2 / 5 / 3;
+        max-height: fit-content;
+    }
+
+    .announcements-section {
+        grid-area: 5 / 1 / 6 / 3;
+        max-height: fit-content;
+    }
+
+    /* #sidebar {
         display: none;
     }
 
@@ -360,36 +972,54 @@ header .toggle-sidebar {
 
     .header-left {
         display: none;
-    }
+    } */
 }
 
 /* Mobile Phones */
 @media screen and (max-width: 768px) {
     .main-cards {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .charts {
+        display: grid;
         grid-template-columns: 1fr;
-        margin-top: 30px;
+        grid-template-rows: repeat(6, auto);
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
     }
-}
 
-/*  Small screens, laptops */
-@media screen and (max-width: 1024px) {
-    /* .grid-container {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.2fr 3fr;
-    grid-template-areas:
-      "header header"
-      "main main";
-  } */
-}
+    .horizontal-scroll-image-section {
+        grid-area: 1 / 1 / 2 / 2;
+        max-height: fit-content;
+    }
 
-/*  Desktops, large screens */
-@media screen and (max-width: 1200px) {
-}
+    .horizontal-scroll-image-section .apao-horizontal-images {
+        width: 60%;
+        height: 20rem;
+    }
 
-/*  Extra large screens, TV */
-@media screen and (min-width: 1201px) {
+    .description-section {
+        grid-area: 2 / 1 / 3 / 2;
+        max-height: fit-content;
+    }
+
+    .beneficiay-chart-section {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    .top-story-section {
+        grid-area: 4 / 1 / 5 / 2;
+        max-height: fit-content;
+    }
+
+    .events-section {
+        grid-area: 5 / 1 / 6 / 2;
+        height: 25rem;
+    }
+
+    .events-section .events-main {
+        height: 100%;
+    }
+
+    .announcements-section {
+        grid-area: 6 / 1 / 7 / 2;
+        max-height: fit-content;
+    }
 }

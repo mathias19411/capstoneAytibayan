@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItStaffController;
+use App\Http\Controllers\ProjectCoordinatorController;
+use App\Http\Controllers\BeneficiaryController;
+use App\Http\Controllers\VisitorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +33,23 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__.'/auth.php';
+
+
+//IT Staff Group Middleware
+Route::get('/itstaff/dashboard', [ItStaffController::class, 'ItStaffDashboard'])->name('itstaff.dashboard');
+
+//Project Coordinator Group Middleware
+Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');
+
+//Beneficiary Group Middleware
+Route::get('/beneficiary/dashboard', [BeneficiaryController::class, 'BeneficiaryDashboard'])->name('beneficiary.dashboard');
+
+
+//Visitor Routes
+Route::get('/visitor/dashboard', [VisitorController::class, 'VisitorDashboard'])->name('visitor.dashboard');
+
+
 Route::get('/Visitor/contacts', function () {
     return view('Visitor.contacts');
 });
@@ -51,7 +72,3 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
 })->name('Visitor.category.page');
 
 
-
-
-
-require __DIR__.'/auth.php';

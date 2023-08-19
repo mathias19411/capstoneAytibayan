@@ -19,7 +19,8 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- google icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
     <!-- css link -->
     <!-- Layout styles -->
@@ -49,13 +50,13 @@
 
         <!-- header -->
         <!-- partial:partials/_header.html -->
-        @include('Visitor.Body.header')
+        @include('Visitor.Body.navbar')
         <!-- header -->
 
 
-        <!-- Sidebar -->
-        @include('Visitor.Body.sidebar')
-        <!-- Sidebar -->
+        <!-- Header -->
+        @include('Visitor.Body.header')
+        <!-- Header -->
 
         <!-- main content -->
         @yield('visitor')
@@ -72,7 +73,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.0/apexcharts.min.js"></script>
 
     <!-- custom JS -->
-    <script src="{{ asset('Assets/js/itstaff.js') }}"></script>
+    <script src="{{ asset('Assets/js/visitor.js') }}"></script>
 
     {{-- toastr js --}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
