@@ -2,13 +2,13 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="{{ asset('about.css') }}">
+		<link rel="stylesheet" href="{{ asset('visitor.css') }}">
 		<title>About</title>
 		<link rel="icon" href="\images\APAO logo.png" type="image icon">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
-	<body style="font-family: 'Poppins', sans-serif">
+	<body class="about">
 
 		<!--background slides!-->
 		<div class="slides">
