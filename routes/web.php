@@ -39,6 +39,10 @@ require __DIR__.'/auth.php';
 //IT Staff Group Middleware
 Route::get('/itstaff/dashboard', [ItStaffController::class, 'ItStaffDashboard'])->name('itstaff.dashboard');
 
+Route::get('/ITStaff/home', function () {
+    return view('ITStaff.home');
+});
+
 //Project Coordinator Group Middleware
 Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');
 

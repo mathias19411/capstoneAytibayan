@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="{{ asset('infos.css') }}">
+<link rel="stylesheet" href="{{ asset('Assets/css/visitor.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
@@ -13,6 +13,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body class="infos">
+
+
+<!-- header -->
+<!-- partial:partials/_header.html -->
+@include('Visitor.Body.navbar')
+<!-- header -->
+
+
+-->
+
+<!-- main content -->
+@yield('visitor')
+<!-- main content -->
+
+
+
 
     <!-- About Section -->
     <div id="about-section">
