@@ -21,7 +21,7 @@ body {
     overflow: auto;
     scroll-behavior: smooth;
     /* background-image: url("/images/background.png"); Set the path to your background image */
-    /* background-size: cover; Cover the entire body with the background image */
+    /* background-size: cover; Cover the entire section with the background image */
     /* background-position: center; Center the background image */
     /* background-attachment: fixed; Keep the background image fixed while scrolling */
 }
@@ -58,7 +58,7 @@ body {
 /* -------------------------NavBar------------------------------------ */
 #menu {
     /* grid-area: header; */
-    background: var(--colorWhite);
+    background: #ffffff;
     color: var(--colorBlack);
     position: sticky;
     top: 0;
@@ -74,37 +74,35 @@ body {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     z-index: 997;
 }
-#menu .nav-right ul,
-#menu .nav-right li {
+#menu ul,
+#menu li {
     margin: 0 auto;
     padding: 0;
     list-style: none;
-    background: var(--colorWhite);
-    color: var(--colorBlack);
 }
-#menu .nav-right ul {
+#menu ul {
     width: 100%;
 }
-#menu .nav-right li {
+#menu li {
     float: left;
     display: inline;
     position: relative;
     font-weight: bold;
     font-size: 1.5rem;
 }
-#menu .nav-right a {
+#menu a {
     display: block;
-    line-height: 45px;
+    line-height: 80px;
     padding: 0 14px;
     text-decoration: none;
-    color: var(--colorBlack);
+    color: #1a1a1a;
     font-size: 16px;
 }
-#menu .nav-right a.dropdown-arrow:after {
+#menu a.dropdown-arrow:after {
     content: "\002B";
     margin-left: 5px;
 }
-#menu .nav-right li a:hover {
+#menu li a:hover {
     color: var(--colorWhite);
     background: var(--colorGreen);
     transition: all 0.5s ease;
@@ -131,48 +129,38 @@ body {
     font-size: 1.6em;
     content: "\2261";
     margin-left: 20px;
-    color: var(--colorBlack);
 }
-#menu .nav-right ul.sub-menus {
+#menu ul.sub-menus {
     height: auto;
     overflow: hidden;
     width: 12.5rem;
+    background: var(--colorBlack);
     position: absolute;
     border-radius: 15px;
-    z-index: 997;
+    z-index: 99;
     display: none;
 }
-#menu .nav-right ul.sub-menus li {
+#menu ul.sub-menus li {
     display: block;
     width: 100%;
-    background: var(--colorOrange);
-    color: var(--colorWhite);
 }
-#menu .nav-right ul.sub-menus a {
-    color: var(--colorBlack);
+#menu ul.sub-menus a {
+    color: #ffffff;
     font-size: 16px;
-    line-height: 65px;
 }
-#menu .nav-right li:hover ul.sub-menus {
+#menu li:hover ul.sub-menus {
     display: block;
 }
-#menu .nav-right ul.sub-menus a:hover {
-    background: var(--colorGreen);
-    color: var(--colorWhite);
+#menu ul.sub-menus a:hover {
+    background: #f2f2f2;
+    color: #444444;
 }
 
-#menu .nav-left .nav-title .nav-brand {
+#menu .nav-title .nav-brand {
     height: 100%;
-    padding-top: .6rem;
 }
 
-#menu .nav-left .nav-title .nav-brand .apao-logo{
-    text-decoration: none;
-    color: var(--colorBlack);
-}
-
-
-#menu .nav-left .nav-title .nav-brand a img {
+#menu .nav-title .nav-brand a img {
     display: inline-block;
     vertical-align: middle;
     width: 50px;
@@ -182,7 +170,7 @@ body {
     margin-bottom: .75rem;
 }
 
-#menu .nav-left .nav-title .nav-brand a span {
+#menu .nav-title .nav-brand a span {
     font-weight: bold;
     font-size: 1.5rem;
 }
@@ -191,43 +179,27 @@ body {
     #menu {
         position: relative;
     }
-    #menu .nav-right ul {
+    #menu ul {
         background: #111;
         position: absolute;
         top: 100%;
         right: 0;
         left: 0;
-        z-index: 997;
+        z-index: 998;
         height: auto;
         display: none;
     }
-    #menu .nav-right ul.sub-menus {
+    #menu ul.sub-menus {
         width: 100%;
         position: static;
-        background: var(--colorGreen);
-        color: var(--colorWhite);
     }
-    #menu .nav-right ul.sub-menus a {
+    #menu ul.sub-menus a {
         padding-left: 30px;
-        color: var(--colorWhite);
     }
-
-    #menu .nav-right ul.sub-menus a:hover {
-    background: var(--colorGreen);
-    color: var(--colorBlack);
-}
-
-    #menu .nav-right ul.sub-menus li {
-        padding-left: 30px;
-        border: none;
-        background: var(--colorOrange);
-    }
-    
-    #menu .nav-right li {
+    #menu li {
         display: block;
         float: none;
         width: auto;
-        border-bottom: 1px solid #6d6875;
     }
     #menu input,
     #menu label {
@@ -237,7 +209,7 @@ body {
         display: block;
     }
     #menu input {
-        z-index: 998;
+        z-index: 4;
     }
     #menu input:checked + label {
         color: white;
@@ -245,13 +217,8 @@ body {
     #menu input:checked + label:before {
         content: "\00d7";
     }
-    #menu input:checked ~ .nav-right ul {
+    #menu input:checked ~ ul {
         display: block;
-    }
-
-    #menu .nav-left .nav-title .nav-brand {
-        height: 100%;
-        padding-top: .9rem;
     }
 }
 
@@ -567,7 +534,6 @@ body {
     max-width: 100%;
     color: var(--colorWhite);
     bottom: 0;
-    line-height: 35px;
 }
 
 .top-story-section .story-read-more .read-more-button:hover {
@@ -632,7 +598,6 @@ body {
     max-width: 100%;
     color: var(--colorWhite);
     bottom: 0;
-    line-height: 35px;
 }
 
 .announcements-section .announcements-read-more .read-more-button:hover {
@@ -1061,20 +1026,31 @@ body {
 
 
 
-/*PROGRAM*/
-body.programs {
+/* ------------------------- PROGRAM ------------------------------------ */
+section.programs {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding-top: 4rem;
+    margin-bottom: 4rem;
   }
-  
-  
-  body.programs .container {
+
+  .title h1 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 15rem;
+    font-weight: bold;
+    color:#FFFFFF;
+    background-color: #7BB701;
+    border-radius: 4rem;
+    width: 15rem;
+    margin: auto;
+}
+  section.programs .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1085,7 +1061,7 @@ body.programs {
     max-width: 100%;
   }
   
-  body.programs .box {
+  section.programs .box {
     width: 225px;
     height: 290px;
     margin: 20px;
@@ -1095,11 +1071,11 @@ body.programs {
     padding: 0 10px;
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
   }
-  body.programs .box:hover {
+  section.programs .box:hover {
     transform: scale(1.1);
   }
   
-  body.programs .content {
+  section.programs .content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1108,7 +1084,7 @@ body.programs {
     height: 100%;
   }
   
-  body.programs img {
+  section.programs img {
     width: 150px;
     height: 150px;
     object-fit: cover;
@@ -1116,7 +1092,7 @@ body.programs {
     margin-bottom: 10px;
   }
   
-  body.programs h3 {
+  section.programs h3 {
     text-transform: uppercase;
     font-size: 1.23rem;
     color: #7bb701;
@@ -1124,7 +1100,7 @@ body.programs {
     line-height: 1;
   }
   
-  body.programs button {
+  section.programs button {
     font-size: .85rem;
     margin-top: 15px;
     padding: 10px 20px;
@@ -1135,57 +1111,54 @@ body.programs {
     border-radius: 20px;
   }
   
-  body.programs button:hover {
+  section.programs button:hover {
     background-color: #7bb701;
   }
   
-  body.programs .logo {
+  section.programs .logo {
     display: flex;
     justify-content: center;
     width: 100%;
     padding: 70px 0;
   }
   
-  body.programs .logo img {
+  section.programs .logo img {
     max-width: 100%;
     max-height: 100%;
   }
   
   @media (max-width: 768px) {
-    body.programs .container {
+    section.programs .container {
       flex-direction: column;
       align-items: center;
       overflow-x: unset;
     }
   
-    body.programs .logo {
+    section.programs .logo {
       margin-bottom: 50px;
     }
   
-    body.programs .box {
+    section.programs .box {
       flex-basis: 100%;
       max-width: 100%;
     }
   
-    body.programs button {
+    section.programs button {
       margin-bottom: 15px;
     }
   }
   
   
-
-
-/*ABOUT*/
+/* ------------------------- ABOUT ------------------------------------ */
 * {
     box-sizing: border-box;
   }
   
-  body.about {
-      background-color: #e5e5e5;
+  section.about {
       font-family: 'Poppins', sans-serif;
   }
   
-  body.about .container {
+  section.about .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -1248,7 +1221,7 @@ body.programs {
       }
   }
   
-  body.about .main {
+  section.about .main {
       width:570px;
       margin: 0.5rem;
       float: left;
@@ -1257,7 +1230,7 @@ body.programs {
        margin-top: 2rem;
   }
   
-  body.about .main h2 {
+  section.about .main h2 {
       font-size: 1.3rem;
       margin-top: 10rem;
       font-weight: bold;
@@ -1269,12 +1242,13 @@ body.programs {
       margin: auto;
   }
   
-  body.about p {
+  section.about p {
       font-size: 1rem;
       padding: 1px;
+      margin-bottom: 1rem;
   }
   
-  body.about .box {
+  section.about .box {
     background-color: #FFFFFF;
     float: left;
     width: 340px;
@@ -1289,12 +1263,12 @@ body.programs {
     box-shadow:2px 3px 10px rgba(0,0,0,0.5);
   }
   
-  body.about .box h2 {
+  section.about .box h2 {
       font-size: 1.3rem;
       font-weight: bold;
   }
   
-  body.about .line {
+  section.about .line {
       height: 3px;
       width: 200px;
       background-color: #7BB701;
@@ -1302,21 +1276,22 @@ body.programs {
       background-position: center;
       margin: auto;
       margin-top: 1rem;
+      margin-bottom: 1rem;
   }
   
-  body.about .box img {
+  section.about .box img {
       border-radius: 1rem;
   }
-  body.about .container .popup-img {
+  section.about .container .popup-img {
       position: fixed;
       top: 0;
   }
   /*Dito nakalagay hover*/
-  body.about  .box:hover img {
+  section.about  .box:hover img {
       scale: 1.1;
   }
   
-  body.about .box:hover {
+  section.about .box:hover {
       box-shadow: 2px 6px 15px #7BB701;
       }
   
@@ -1326,7 +1301,7 @@ body.programs {
     }
   }
   
-  /*CONTACT*/
+/* ------------------------- CONTACT ------------------------------------ */
 /* Add custom styles for responsiveness */
 @media (max-width: 767px) {
     .col-md-5 {
@@ -1334,12 +1309,11 @@ body.programs {
     }
   }
 
-  body.contact {
-    background-color: #f2f2f2; 
+  section.contact {
     margin-bottom: 10px;
   }
 
-  body.contact #title {
+  section.contact #title {
       margin-top: 10px;
       border: transparent;
       background-color: white;
@@ -1347,19 +1321,19 @@ body.programs {
       padding-top: 10px;
       box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
   }
-  body.contact #location_ {
+  section.contact #location_ {
       margin: 10px;
       box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
       border-radius: 10px;
       height: 30rem;
   }
   
-  body.contact #location_img {
+  section.contact #location_img {
       height: 480px;
       border-radius: 10px;
   }
   
-  body.contact #marker_style {
+  section.contact #marker_style {
       font-size: 16px;
       white-space: nowrap;
       overflow: hidden;
@@ -1374,7 +1348,7 @@ body.programs {
       color: white;
   }
   
-  body.contact #marker_icon {
+  section.contact #marker_icon {
       font-size: 24px;
       border: transparent;
       padding: auto;
@@ -1383,7 +1357,7 @@ body.programs {
       color: white;
       margin: auto;
   }
-  body.contact #address {
+  section.contact #address {
       font-size: 16px;
       white-space: nowrap;
       overflow: hidden;
@@ -1391,7 +1365,7 @@ body.programs {
       margin: auto;
   }
   
-  body.contact #fb_icon {
+  section.contact #fb_icon {
       font-size:24px; 
       color: white; 
       margin: auto; 
@@ -1403,7 +1377,7 @@ body.programs {
       border-radius: 50%; 
       background-color: #f0a60f;
   }
-  body.contact #ig_icon {
+  section.contact #ig_icon {
       font-size: 24px; 
       color: white; 
       margin: auto; 
@@ -1413,7 +1387,7 @@ body.programs {
       background-color: #f0a60f;
   }
   
-  body.contact #tw_icon {
+  section.contact #tw_icon {
       font-size:24px; 
       color: white; 
       margin: auto; 
@@ -1423,7 +1397,7 @@ body.programs {
       background-color: #f0a60f;
   }
   
-  body.contact #left_ {
+  section.contact #left_ {
       border: transparent; 
       background-color: #7bb701; 
       border-radius: 10px; 
@@ -1432,7 +1406,7 @@ body.programs {
       padding-top: 10px; 
       padding-bottom: 10px;
   }
-  body.contact #proj_coordinator {
+  section.contact #proj_coordinator {
       text-align: center; 
       color: white; 
       white-space: nowrap; 
@@ -1440,7 +1414,7 @@ body.programs {
       text-overflow: ellipsis;
   }
   
-  body.contact #coordinators {
+  section.contact #coordinators {
       border: transparent; 
       background-color: white; 
       border-radius: 10px; 
@@ -1450,13 +1424,13 @@ body.programs {
       height: fit-content;
   }
   
-  body.contact #profile {
+  section.contact #profile {
       display: flex;
       justify-content: center;
       align-items: center;
   }
   
-  body.contact  #coordinator_img {
+  section.contact  #coordinator_img {
       border: solid; 
       border-radius: 10px; 
       border-color: #7bb701; 
@@ -1466,13 +1440,13 @@ body.programs {
       margin: 10px;
   }
   
-  body.contact  #c_description {
+  section.contact  #c_description {
       margin-top: 10px; 
       margin-bottom: 10px;
       margin-left: 10px;
   }
   
-  body.contact #c_name {
+  section.contact #c_name {
       color: #7bb701; 
       font-size: 12px;
       white-space: nowrap; 
@@ -1480,21 +1454,21 @@ body.programs {
       text-overflow: ellipsis;
   }
   
-  body.contact #c_program {
+  section.contact #c_program {
       font-size: 10px; 
       white-space: nowrap; 
       overflow: hidden;
       text-overflow: ellipsis;
   }
   
-  body.contact #phone {
+  section.contact #phone {
       font-size: 10px; 
       white-space: nowrap; 
       overflow: hidden;
       text-overflow: ellipsis;
   }
   
-  body.contact #phone_icon {
+  section.contact #phone_icon {
       border: transparent; 
       padding: 2px; 
       border-radius: 50%; 
@@ -1503,14 +1477,14 @@ body.programs {
       margin: auto;
   }
    
-  body.contact  #email {
+  section.contact  #email {
       font-size: 10px; 
       white-space: nowrap; 
       overflow: hidden;
       text-overflow: ellipsis;
   }
   
-  body.contact  #email_icon {
+  section.contact  #email_icon {
       border: transparent; 
       padding: 2px; 
       border-radius: 50%; 
@@ -1518,38 +1492,38 @@ body.programs {
       color: white; 
       margin: auto;
   }
-  body.contact #inquiry {
+  section.contact #inquiry {
       border: transparent; 
       border-radius: 10px; 
       background-color: white; 
       box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
   }
     
-  body.contact #inquiry_ {
+  section.contact #inquiry_ {
       padding-top: 10px;
   }
   
-  body.contact  #label_ {
+  section.contact  #label_ {
       white-space: nowrap; 
       overflow: hidden;
       text-overflow: ellipsis;
   }
   
-  body.contact #textbox {
+  section.contact #textbox {
       background-color: #f2f2f2; 
       border-radius: 10px;
   }
-  body.contact #textbox_m {
+  section.contact #textbox_m {
       background-color: #f2f2f2; 
       border-radius: 10px; 
       padding-bottom: 80px
   }
-  body.contact  #button_ {
+  section.contact  #button_ {
       text-align-last: end; 
       padding-top: 10px; 
       padding-bottom: 10px;
   }
-  body.contact #send_ {
+  section.contact #send_ {
       margin: auto; 
       background-color: #f0a60f; 
       color: white; 
