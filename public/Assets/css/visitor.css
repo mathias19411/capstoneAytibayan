@@ -58,7 +58,7 @@ body {
 /* -------------------------NavBar------------------------------------ */
 #menu {
     /* grid-area: header; */
-    background: #ffffff;
+    background: var(--colorWhite);
     color: var(--colorBlack);
     position: sticky;
     top: 0;
@@ -74,35 +74,37 @@ body {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     z-index: 997;
 }
-#menu ul,
-#menu li {
+#menu .nav-right ul,
+#menu .nav-right li {
     margin: 0 auto;
     padding: 0;
     list-style: none;
+    background: var(--colorWhite);
+    color: var(--colorBlack);
 }
-#menu ul {
+#menu .nav-right ul {
     width: 100%;
 }
-#menu li {
+#menu .nav-right li {
     float: left;
     display: inline;
     position: relative;
     font-weight: bold;
     font-size: 1.5rem;
 }
-#menu a {
+#menu .nav-right a {
     display: block;
-    line-height: 80px;
+    line-height: 45px;
     padding: 0 14px;
     text-decoration: none;
-    color: #1a1a1a;
+    color: var(--colorBlack);
     font-size: 16px;
 }
-#menu a.dropdown-arrow:after {
+#menu .nav-right a.dropdown-arrow:after {
     content: "\002B";
     margin-left: 5px;
 }
-#menu li a:hover {
+#menu .nav-right li a:hover {
     color: var(--colorWhite);
     background: var(--colorGreen);
     transition: all 0.5s ease;
@@ -129,38 +131,48 @@ body {
     font-size: 1.6em;
     content: "\2261";
     margin-left: 20px;
+    color: var(--colorBlack);
 }
-#menu ul.sub-menus {
+#menu .nav-right ul.sub-menus {
     height: auto;
     overflow: hidden;
     width: 12.5rem;
-    background: var(--colorBlack);
     position: absolute;
     border-radius: 15px;
-    z-index: 99;
+    z-index: 997;
     display: none;
 }
-#menu ul.sub-menus li {
+#menu .nav-right ul.sub-menus li {
     display: block;
     width: 100%;
+    background: var(--colorOrange);
+    color: var(--colorWhite);
 }
-#menu ul.sub-menus a {
-    color: #ffffff;
+#menu .nav-right ul.sub-menus a {
+    color: var(--colorBlack);
     font-size: 16px;
+    line-height: 65px;
 }
-#menu li:hover ul.sub-menus {
+#menu .nav-right li:hover ul.sub-menus {
     display: block;
 }
-#menu ul.sub-menus a:hover {
-    background: #f2f2f2;
-    color: #444444;
+#menu .nav-right ul.sub-menus a:hover {
+    background: var(--colorGreen);
+    color: var(--colorWhite);
 }
 
-#menu .nav-title .nav-brand {
+#menu .nav-left .nav-title .nav-brand {
     height: 100%;
+    padding-top: .6rem;
 }
 
-#menu .nav-title .nav-brand a img {
+#menu .nav-left .nav-title .nav-brand .apao-logo{
+    text-decoration: none;
+    color: var(--colorBlack);
+}
+
+
+#menu .nav-left .nav-title .nav-brand a img {
     display: inline-block;
     vertical-align: middle;
     width: 50px;
@@ -170,7 +182,7 @@ body {
     margin-bottom: .75rem;
 }
 
-#menu .nav-title .nav-brand a span {
+#menu .nav-left .nav-title .nav-brand a span {
     font-weight: bold;
     font-size: 1.5rem;
 }
@@ -179,27 +191,43 @@ body {
     #menu {
         position: relative;
     }
-    #menu ul {
+    #menu .nav-right ul {
         background: #111;
         position: absolute;
         top: 100%;
         right: 0;
         left: 0;
-        z-index: 998;
+        z-index: 997;
         height: auto;
         display: none;
     }
-    #menu ul.sub-menus {
+    #menu .nav-right ul.sub-menus {
         width: 100%;
         position: static;
+        background: var(--colorGreen);
+        color: var(--colorWhite);
     }
-    #menu ul.sub-menus a {
+    #menu .nav-right ul.sub-menus a {
         padding-left: 30px;
+        color: var(--colorWhite);
     }
-    #menu li {
+
+    #menu .nav-right ul.sub-menus a:hover {
+    background: var(--colorGreen);
+    color: var(--colorBlack);
+}
+
+    #menu .nav-right ul.sub-menus li {
+        padding-left: 30px;
+        border: none;
+        background: var(--colorOrange);
+    }
+    
+    #menu .nav-right li {
         display: block;
         float: none;
         width: auto;
+        border-bottom: 1px solid #6d6875;
     }
     #menu input,
     #menu label {
@@ -209,7 +237,7 @@ body {
         display: block;
     }
     #menu input {
-        z-index: 4;
+        z-index: 998;
     }
     #menu input:checked + label {
         color: white;
@@ -217,8 +245,13 @@ body {
     #menu input:checked + label:before {
         content: "\00d7";
     }
-    #menu input:checked ~ ul {
+    #menu input:checked ~ .nav-right ul {
         display: block;
+    }
+
+    #menu .nav-left .nav-title .nav-brand {
+        height: 100%;
+        padding-top: .9rem;
     }
 }
 
@@ -534,6 +567,7 @@ body {
     max-width: 100%;
     color: var(--colorWhite);
     bottom: 0;
+    line-height: 35px;
 }
 
 .top-story-section .story-read-more .read-more-button:hover {
@@ -598,6 +632,7 @@ body {
     max-width: 100%;
     color: var(--colorWhite);
     bottom: 0;
+    line-height: 35px;
 }
 
 .announcements-section .announcements-read-more .read-more-button:hover {

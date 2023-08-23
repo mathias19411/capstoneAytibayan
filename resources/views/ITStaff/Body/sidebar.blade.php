@@ -1,82 +1,53 @@
-<aside id="sidebar">
-    <div class="sidebar-title">
-        <div class="sidebar-brand">
-            <a href="#" class="apao-logo">
-                <img src="{{ asset('images/APAO-R5.jpg') }}">
-                <span class="nav-item">APAO R-V</span>
-            </a>
+
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+               <img src="images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">APAO</span>
         </div>
-        <span class="material-icons-outlined" onclick="closeSidebar()">cancel</span>
 
-    </div>
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a href="{{ url('home') }}" class="{{ request()->is('home') ? 'active' : '' }}">
+                        <i class="uil uil-home"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                </li>
+                <li>  
+                    <a href="{{ url('') }}" class="{{ request()->is('') ? 'active' : '' }}">
+                        <i class="uil uil-bell"></i>
+                        <span class="link-name">Announcement</span>
+                     </a>
+                </li>
+                <li>
+                    <a href="{{ url('') }}" class="{{ request()->is('') ? 'active' : '' }}">
+                        <i class="uil uil-calendar-alt"></i>
+                        <span class="link-name">Event</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('') }}" class="{{ request()->is('') ? 'active' : '' }}">
+                        <i class="uil uil-user-plus"></i>
+                        <span class="link-name">Registration</span>
+                    </a>
+                </li>
 
-    <ul class="sidebar-list">
-        <li class="sidebar-list-item">
-            <a href="#">
-                <span class="material-icons-outlined">home</span>Home
-            </a>
-
-        </li>
-        <li class="sidebar-list-item">
-            <a href="#">
-                <span class="material-icons-outlined">diversity_3</span>Programs
-
-            </a>
-        </li>
-        <li class="sidebar-list-item">
-            <a href="#">
-                <span class="material-icons-outlined">info</span>About
-            </a>
-
-        </li>
-        <li class="sidebar-list-item">
-            <a href="#">
-                <span class="material-icons-outlined">perm_contact_calendar</span>Contact Us
-
-            </a>
-
-        </li>
-    </ul>
-</aside>
-
-<!-- Sidebar for small screens -->
-<aside id="secondary-sidebar">
-    <div class="sidebar-title">
-        <div class="sidebar-brand">
-            <a href="#" class="apao-logo">
-                <img src="../images/Index_Images//APAO-R5.jpg" alt="APAO Logo">
-                <span class="nav-item">APAO R-V</span>
-            </a>
+                <div class="mode-toggle">
+      
+                </div>
+            </li>
+            </ul>
         </div>
-        <!-- <span class="material-icons-outlined" onclick="closeSidebar()">cancel</span> -->
+    </nav>
+    <div class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+            <div class="heading">
+            <h1>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h1>
+            </div>
+    </div>  
 
-    </div>
-
-    <ul class="sidebar-list">
-        <li class="sidebar-list-item">
-            <a href="#">
-                <span class="material-icons-outlined">home</span>Home
-            </a>
-
-        </li>
-        <li class="sidebar-list-item">
-            <a href="#">
-                <span class="material-icons-outlined">diversity_3</span>Programs
-
-            </a>
-        </li>
-        <li class="sidebar-list-item">
-            <a href="#">
-                <span class="material-icons-outlined">info</span>About
-            </a>
-
-        </li>
-        <li class="sidebar-list-item">
-            <a href="#">
-                <span class="material-icons-outlined">perm_contact_calendar</span>Contact Us
-
-            </a>
-
-        </li>
-    </ul>
-</aside>
+    <script src="{{ asset('Assets/js/itstaff.js') }}"></script>
