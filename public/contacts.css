@@ -117,8 +117,8 @@
     border: solid; 
     border-radius: 10px; 
     border-color: #7bb701; 
-    size: fill; 
-    height: 65px; 
+    size: fill;
+    height: 65px;
     width: 65px;
     margin: 10px;
 }
@@ -150,7 +150,7 @@
     border: transparent; 
     padding: 2px; 
     border-radius: 50%; 
-    background-color: #f0a60f; 
+    background-color: #f0a60f;
     color: white; 
     margin: auto;
 }
