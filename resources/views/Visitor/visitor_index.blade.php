@@ -213,7 +213,7 @@
 <div class="title">
         <h1>PROGRAMS</h1> 
     </div>
-<section class="programs">
+<section class="programs_view">
 <div class="container">    
     <div class="box" id="binhi-ng-pagasa">
 
