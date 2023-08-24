@@ -39,6 +39,10 @@ require __DIR__.'/auth.php';
 //IT Staff Group Middleware
 Route::get('/itstaff/dashboard', [ItStaffController::class, 'ItStaffDashboard'])->name('itstaff.dashboard');
 
+Route::get('/ITStaff/home', function () {
+    return view('ITStaff.home');
+});
+
 //Project Coordinator Group Middleware
 Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');
 
@@ -70,5 +74,4 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
     // You can pass the $category variable to the view or use it to fetch category information from the database
     return view('Visitor.category_page', compact('category'));
 })->name('Visitor.category.page');
-
 
