@@ -25,7 +25,7 @@
 		<!-- main content -->
 		@yield('itstaff')
 		<!-- main content -->
-
+		
 		<!-- Footer -->
 		@include('ITStaff.Body.footer')
 		<!-- Footer -->
