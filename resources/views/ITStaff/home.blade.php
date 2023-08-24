@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous">
@@ -25,7 +26,9 @@
 
             <div class="user-stats">
         <div class="total-users">
+        <div class=name>
             <h1>Beneficiaries</h1>
+            </div>
             <p>Number of beneficiaries in the Sustainable Livelihood Program. </p>
             <div class="number-box1">
                 <div class="label-number">
@@ -36,7 +39,9 @@
             </div>
         </div>
         <div class="inactive-active-users">
+        <div class=name>
         <h1>Accounts</h1><br>
+        </div>
         <p>Number of beneficiaries who have accounts.<br> Active and Inactive Accounts </p>
            
             <div class="active">
@@ -58,94 +63,95 @@
                 </div>
             </div>
         </div>
-    </div>
+   ` </div>
     
 
-            <div class="overview">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
-                </div>
+    <div class="overview">
+     
 
                 <div class="boxes">
                     <div class="box box1">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Total Likes</span>
-                        <span class="number">50,120</span>
+                        <img src="\images\Logo_BinhiNgPagasa.png" alt="Image 1">
+                        <span class="text">binhi ng pag-asa</span>
+                        <span class="label">Total</span>
+                        <span class="totalnumber">700 Beneficiaries</span>
+                        <div class="number-line totalline"></div>
+                        
+                        <span class="label">Active</span>
+                        <span class="activenumber">400 Beneficiaries</span>
+                        <div class="number-line activeline"></div>
+                        
+                        <span class="label">Inactive</span>
+                        <span class="inactivenumber">300 Beneficiaries</span>
+                        <div class="number-line inactiveline"></div>
+
+                        <button>View</button>
                     </div>
-                    <div class="box box2">
-                        <i class="uil uil-comments"></i>
-                        <span class="text">Comments</span>
-                        <span class="number">20,120</span>
+                    <div class="box box1">
+                        <img src="\images\Logo_AgriPinay.png" alt="Image 2">
+                        <span class="text">agripinay</span>
+                        <span class="label">Total</span>
+                        <span class="totalnumber">700 Beneficiaries</span>
+                        <div class="number-line totalline"></div>
+                        
+                        <span class="label">Active</span>
+                        <span class="activenumber">400 Beneficiaries</span>
+                        <div class="number-line activeline"></div>
+                        
+                        <span class="label">Inactive</span>
+                        <span class="inactivenumber">300 Beneficiaries</span>
+                        <div class="number-line inactiveline"></div>
+           
+                        <button>View</button>
                     </div>
-                    <div class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Total Share</span>
-                        <span class="number">10,120</span>
+                    <div class="box box1">
+                        <img src="\images\Logo_Akbay.png" alt="Image 3">
+                        <span class="text">akbay</span>
+                        <span class="label">Total</span>
+                        <span class="totalnumber">700 Beneficiaries</span>
+                        <div class="number-line totalline"></div>
+                        
+                        <span class="label">Active</span>
+                        <span class="activenumber">400 Beneficiaries</span>
+                        <div class="number-line activeline"></div>
+                        
+                        <span class="label">Inactive</span>
+                        <span class="inactivenumber">300 Beneficiaries</span>
+                        <div class="number-line inactiveline"></div>
+
+                        <button>View</button>
                     </div>
+                    <div class="box box1">
+                        <img src="\images\Logo_AbacaMoPisoMo.png" alt="Image 4">
+                        <span class="text">abaka mo, piso mo</span>
+                        <span class="label">Total</span>
+                        <span class="totalnumber">700 Beneficiaries</span>
+                        <div class="number-line totalline"></div>
+                        
+                        <span class="label">Active</span>
+                        <span class="activenumber">400 Beneficiaries</span>
+                        <div class="number-line activeline"></div>
+                        
+                        <span class="label">Inactive</span>
+                        <span class="inactivenumber">300 Beneficiaries</span>
+                        <div class="number-line inactiveline"></div>
+
+                        <button>View</button>
+                    </div>
+
+                    <a href="add-page.html" class="add-button">
+                         <button class="plus-button">+</button>
+                    </a>
                 </div>
             </div>
 
-            <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">Recent Activity</span>
-                </div>
-
-                <div class="activity-data">
-                    <div class="data names">
-                        <span class="data-title">Name</span>
-                        <span class="data-list">Prem Shahi</span>
-                        <span class="data-list">Deepa Chand</span>
-                        <span class="data-list">Manisha Chand</span>
-                        <span class="data-list">Pratima Shahi</span>
-                        <span class="data-list">Man Shahi</span>
-                        <span class="data-list">Ganesh Chand</span>
-                        <span class="data-list">Bikash Chand</span>
-                    </div>
-                    <div class="data email">
-                        <span class="data-title">Email</span>
-                        <span class="data-list">premshahi@gmail.com</span>
-                        <span class="data-list">deepachand@gmail.com</span>
-                        <span class="data-list">prakashhai@gmail.com</span>
-                        <span class="data-list">manishachand@gmail.com</span>
-                        <span class="data-list">pratimashhai@gmail.com</span>
-                        <span class="data-list">manshahi@gmail.com</span>
-                        <span class="data-list">ganeshchand@gmail.com</span>
-                    </div>
-                    <div class="data joined">
-                        <span class="data-title">Joined</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-13</span>
-                        <span class="data-list">2022-02-13</span>
-                        <span class="data-list">2022-02-14</span>
-                        <span class="data-list">2022-02-14</span>
-                        <span class="data-list">2022-02-15</span>
-                    </div>
-                    <div class="data type">
-                        <span class="data-title">Type</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Status</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                    </div>
-                </div>
+            <div class="coord">
+            <div class="box">
+                    <span class="text">Coordinator</span>
+                    <span class="number">5</span>
+                 <button>View</button>
             </div>
-    
+            </div>
 
     </div>
 </body>

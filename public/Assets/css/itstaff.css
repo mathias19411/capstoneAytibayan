@@ -7,9 +7,21 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    margin: 1rem;
+    background: var(--colorWhite);
+    overflow: auto;
+    scroll-behavior: smooth;
+    /* background-image: url("/images/background.png"); Set the path to your background image */
+    /* background-size: cover; Cover the entire body with the background image */
+    /* background-position: center; Center the background image */
+    /* background-attachment: fixed; Keep the background image fixed while scrolling */
+}
+
 :root{
     /* ===== Colors ===== */
     --primary-color: #7bb701;
+    --colorOrange: #f0a60f;
     --panel-color: #FFF;
     --text-color: #000;
     --black-light-color: #707070;
@@ -32,18 +44,7 @@ body{
     margin: 0; 
     padding: 0; 
 }
-body.dark{
-    --primary-color: #7bb701;
-    --panel-color: #242526;
-    --text-color: #CCC;
-    --black-light-color: #CCC;
-    --border-color: #4D4C4C;
-    --toggle-color: #FFF;
-    --box1-color: #3A3B3C;
-    --box2-color: #3A3B3C;
-    --box3-color: #3A3B3C;
-    --title-icon-color: #CCC;
-}
+
 /* === Custom Scroll Bar CSS === */
 ::-webkit-scrollbar {
     width: 8px;
@@ -91,12 +92,13 @@ nav .logo-name{
 nav .logo-image{
     display: flex;
     justify-content: center;
-    min-width: 60px;
+    min-width: 50px;
 }
 nav .logo-image img{
-    width: 40px;
+    width: 50px;
     object-fit: cover;
     border-radius: 50%;
+    padding-left: 0 !important;
 }
 
 nav .logo-name .logo_name{
@@ -289,10 +291,11 @@ nav.close ~ .dashboard .top{
     height: 250px;
     border-radius: 10px;
 }
-/* Styling for the user-stats section */
-.dash-content .user-stats {
-    display: flex;
 
+.dash-content {
+    max-width: 100%;
+    margin: 0 auto;
+   
 }
 
 
@@ -302,6 +305,8 @@ nav.close ~ .dashboard .top{
     gap: 30px;
     margin: 20px;
 }
+
+.dash-content .total-users, 
 .dash-content .inactive-active-users {
     width: 50%;
     flex-wrap: wrap;
@@ -309,34 +314,31 @@ nav.close ~ .dashboard .top{
 
 
 /* Styling for h1 tags above the boxes */
-.dash-content .total-users h1,
-.dash-content .inactive-active-users h1 {
+.dash-content .total-users .name h1,
+.dash-content .inactive-active-users .name h1 {
     margin-top: 20px;
     padding: 5px 10px;
-    font-size: 24px;
-    width: px;
+    font-size: 20px;
     margin-bottom: 10px;
-    background-color:var(--primary-color); 
-    color: white; 
-    display: inline-block; 
-    position: relative; 
-    border-radius: 0 100px 0 0;
+    background-color: var(--primary-color);
+    color: white;
+    display: inline-block;
+    position: relative;
+    border-radius: 0 90px 0 90px;
+
     
 }
 
 
-.dash-content .total-users h1::after,
-.dash-content .inactive-active-users h1::after {
-    content: "";
-    position: absolute;
-    width: 100%; /* Line spans the full width */
-    height: 3px;
-    background-color: var(--primary-color);
-    bottom: -8px;
-    left: 0;
-    margin-bottom: 5px;
-    transition: width 0.3s ease; /* Add a transition for smooth adjustment */
+.dash-content .total-users .name ,
+.dash-content .inactive-active-users .name  {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--primary-color); 
+    
 }
+
+
 .dash-content .total-users p,
 .dash-content .inactive-active-users p {
     font-size: 1rem;
@@ -426,96 +428,221 @@ nav.close ~ .dashboard .top{
     z-index: 1;
 }
 
-.dash-content .title{
-    display: flex;
-    align-items: center;
-    margin: 60px 0 30px 0;
-}
-.dash-content .title i{
-    position: relative;
-    height: 35px;
-    width: 35px;
-    background-color: var(--primary-color);
-    border-radius: 6px;
-    color: var(--title-icon-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-}
-.dash-content .title .text{
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--text-color);
-    margin-left: 10px;
-}
+
 .dash-content .boxes{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    gap: 30px;
+    overflow-x: auto;
+    max-width: 100%;
+    margin-top: 30px;
 }
 .dash-content .boxes .box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 12px;
-    width: calc(100% / 3 - 15px);
-    padding: 15px 20px;
-    background-color: var(--box1-color);
-    transition: var(--tran-05);
+    position: relative;
+    width: 280px;
+    height: auto;
+    border: 1px solid #e8d7d7;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 0 10px;
+    box-shadow:2px 3px 10px rgba(0,0,0,0.5);
+   
 }
-.boxes .box i{
-    font-size: 35px;
-    color: var(--text-color);
+
+.dash-content .boxes .box:hover{
+    transform: scale(1.1);
+   
+}
+
+
+.dash-content .boxes .add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    text-decoration: none;
+    display: block;
+}
+
+.dash-content .boxes .plus-button {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    background-color: var(--colorOrange);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dash-content .boxes .plus-button:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-color);
+}
+
+
+.boxes .box button{
+    font-size: 0.85rem;
+    margin: 15px auto 10px; /* Center horizontally and add margin */
+    padding: 10px 20px;
+    background-color: var(--colorOrange);
+    color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    display: block; 
+
+}
+
+.boxes .box button:hover{
+    background-color:var(--primary-color);
+
+}
+
+.boxes .box img{
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
 }
 .boxes .box .text{
-    white-space: nowrap;
-    font-size: 18px;
-    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1rem;
+    color: #7bb701;
+    margin: 0;
+    line-height: 1.5;
+    padding-bottom: 10px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+/* Styling for label and number in label-number container */
+.boxes .box .label {
+    display: block;
+    text-align: left;
+    margin-left: 5px;
+    text-transform: uppercase;
     color: var(--text-color);
+    font-weight: bold;
+    font-size: 13px;
+    padding-top: 5px;
 }
-.boxes .box .number{
-    font-size: 40px;
-    font-weight: 500;
-    color: var(--text-color);
+
+.boxes .box .totalnumber,
+.boxes .box .activenumber,
+.boxes .box .inactivenumber {
+    font-size: 12px;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-align: left;
+    margin-left: 5px
 }
-.boxes .box.box2{
-    background-color: var(--box2-color);
-}
-.boxes .box.box3{
-    background-color: var(--box3-color);
-}
-.dash-content .activity .activity-data{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.boxes .box .number-line {
     width: 100%;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 10px;
 }
-.activity .activity-data{
+
+/* Conditional styling based on numbers */
+.boxes .box .totalline {
+    background: linear-gradient(to right, green 100%, transparent 0);
+}
+
+.boxes .box .inactiveline {
+    background: linear-gradient(to right, orange 66.6%, transparent 0);
+}
+
+.boxes .box .activeline {
+    background: linear-gradient(to right, green 50%, transparent 0);
+}
+
+.coord{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    gap: 30px;
+    overflow-x: auto;
+    max-width: 100%;
+
 }
-.activity-data .data{
-    display: flex;
-    flex-direction: column;
-    margin: 0 15px;
+.coord .box{
+    margin-top: 30px;
+    position: relative;
+    width: 280px;
+    height: auto;
+    border: 1px solid #e8d7d7;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 0 10px;
+    box-shadow:2px 3px 10px rgba(0,0,0,0.5);
+
 }
-.activity-data .data-title{
-    font-size: 20px;
-    font-weight: 500;
+
+.coord .box:hover{
+    transform: scale(1.1);
+
+}
+
+
+
+.coord .box button{
+    font-size: 0.85rem;
+    margin: 15px auto; /* Center horizontally and add margin */
+    padding: 10px 20px;
+    background-color: var(--colorOrange);
+    color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    display: block; 
+    margin-top: 0;
+
+}
+
+.coord .box button:hover{
+    background-color:var(--primary-color);
+
+}
+
+
+.coord .box .text{
+    padding-top: 5px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
     color: var(--text-color);
+    margin: 0;
+    line-height: 1.5;
+    padding-bottom: 0;
+    display: block;
+    text-align: center;
+    font-weight: bold;
 }
-.activity-data .data .data-list{
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 20px;
-    white-space: nowrap;
-    color: var(--text-color);
+
+.coord .box .number {
+    font-size: 5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-align: left;
+    margin-left: 5px;
+    text-align: center;
+    display: block; 
+    padding-bottom: 0;
 }
 
 @media (max-width: 1000px) {
     nav{
-        width: 70px;
+        width: 73px;
     }
     nav.close{
         width: 250px;
@@ -541,16 +668,16 @@ nav.close ~ .dashboard .top{
         pointer-events: auto;
     }
     nav ~ .dashboard{
-        left: 70px;
-        width: calc(100% - 70px);
+        left: 73px;
+        width: calc(100% - 73px);
     }
     nav.close ~ .dashboard{
         left: 250px;
-        width: calc(100% - 200px);
+        width: calc(100% - 250px);
     }
     nav ~ .dashboard .top{
         left: 73px;
-        width: calc(100% - 70px);
+        width: calc(100% - 73px);
     }
     nav.close ~ .dashboard .top{
         left: 250px;
@@ -569,13 +696,7 @@ nav.close ~ .dashboard .top{
         width: calc(100% / 2 - 15px);
         margin-top: 15px;
     }
-    nav:not(.open) {
-        width: 0;
-        padding: 0;
-        overflow: hidden;
-        z-index: 1;
-    }
-    
+
     .top .heading h1{
         margin-left: 0;
         position: flex;
@@ -583,20 +704,20 @@ nav.close ~ .dashboard .top{
         font-size: 13px;
       
     }
+    
     nav .logo-image,
     nav .logo-image img{
         size: 1px;
+        justify-content: center;
+     
     }
-    .menu-items li a{
-        display: flex;
-        align-items: center;
-        height: 50px;
-        left: 10px;
-    }
+   
     .dash-content .user-stats{
+        gap: 0;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        margin: 0;
+     
     }
     .dash-content .user-stats .total-users h1,
     .dash-content .user-stats .inactive-active-users h1{
@@ -606,7 +727,14 @@ nav.close ~ .dashboard .top{
         box-shadow:1px 0px 4px rgba(0,0,0,0.5);
     }
  
-   
+   .dashboard{
+    z-index: 2;
+   }
+   .dash-content .total-users .name h1,
+   .dash-content .inactive-active-users .name h1 {
+    font-size: 15px;
+    
+}
    
 
 }
@@ -621,7 +749,7 @@ nav.close ~ .dashboard .top{
         width: 0px;
     }
     nav.close{
-        width: 70px;
+        width: 73px;
     }
     nav .logo_name{
         opacity: 0;
@@ -644,8 +772,8 @@ nav.close ~ .dashboard .top{
         width: 100%;
     }
     nav.close ~ .dashboard{
-        left: 70px;
-        width: calc(100% - 70px);
+        left: 73px;
+        width: calc(100% - 73px);
     }
     nav ~ .dashboard .top{
         left: 0;
@@ -654,5 +782,11 @@ nav.close ~ .dashboard .top{
     nav.close ~ .dashboard .top{
         left: 0;
         width: 100%;
+    }
+
+    nav .logo-image,
+    nav .logo-image img{
+        display: none;
+     
     }
 }

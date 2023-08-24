@@ -2,7 +2,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-               <img src="images/logo.png" alt="">
+               <img src="\images\logo.png" alt="">
             </div>
 
             <span class="logo_name">APAO</span>
@@ -11,7 +11,7 @@
         <div class="menu-items">
             <ul class="nav-links">
                 <li>
-                    <a href="{{ url('home') }}" class="{{ request()->is('home') ? 'active' : '' }}">
+                    <a href="{{ url('/ITStaff/home') }}" class="{{ request()->is('ITStaff/home') ? 'active' : '' }}">
                         <i class="uil uil-home"></i>
                         <span class="link-name">Home</span>
                     </a>
@@ -38,7 +38,7 @@
                 <div class="mode-toggle">
       
                 </div>
-            </li>
+                </li>
             </ul>
         </div>
     </nav>
