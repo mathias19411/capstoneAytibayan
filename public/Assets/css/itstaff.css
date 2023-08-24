@@ -295,23 +295,17 @@ nav.close ~ .dashboard .top{
 
 }
 
-/* Styling for total-users and inactive-active-users */
-.dash-content .total-users{
-    width: 50%;
-    padding: 30px;
-    flex-wrap: wrap;
+
+.dash-content .user-stats {
+    display: flex;
     justify-content: space-between;
-
-
+    gap: 30px;
+    margin: 20px;
 }
 .dash-content .inactive-active-users {
     width: 50%;
-    padding: 30px;
     flex-wrap: wrap;
-    justify-content: space-between;
-
 }
-
 
 
 /* Styling for h1 tags above the boxes */
