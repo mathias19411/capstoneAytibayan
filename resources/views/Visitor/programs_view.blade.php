@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="{{ asset('visitor.css') }}">
+    <link rel="stylesheet" href="{{ asset('Assets/css/visitor.css') }}">
     <script src="{{ asset('programs.js') }}"></script>
     <title> Program </title>
     <link rel="icon" href="\images\APAO logo.png" type="image icon">

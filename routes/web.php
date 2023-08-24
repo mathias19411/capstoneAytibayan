@@ -75,4 +75,3 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
     return view('Visitor.category_page', compact('category'));
 })->name('Visitor.category.page');
 
-

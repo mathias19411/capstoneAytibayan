@@ -11,7 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class="contact">
+<body>
 <div class="grid-container">
 	<!-- header -->
 		<!-- partial:partials/_header.html -->
@@ -25,7 +25,7 @@
 		<!-- main content -->
 		@yield('itstaff')
 		<!-- main content -->
-
+		
 		<!-- Footer -->
 		@include('ITStaff.Body.footer')
 		<!-- Footer -->
