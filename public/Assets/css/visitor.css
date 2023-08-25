@@ -1035,14 +1035,18 @@ section.programs_view {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding-top: 4rem;
     margin-bottom: 4rem;
+    flex-wrap: wrap;
   }
 
-  .title h1 {
+  section.programs_view .title {
+    margin: 20px;
+  }
+
+  section.programs_view .title h1 {
     text-align: center;
     font-size: 1.3rem;
-    margin-top: 15rem;
+    margin-top: 20px;
     font-weight: bold;
     color:#FFFFFF;
     background-color: #7BB701;
@@ -1056,7 +1060,7 @@ section.programs_view {
     justify-content: center;
     align-items: center;
     padding: 5px 0px;
-    gap: 20px;
+    gap: 10px;
     overflow-x: auto;
     max-width: 100%;
   }
@@ -1070,10 +1074,15 @@ section.programs_view {
     background-color: #ffffff;
     padding: 0 10px;
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
   }
   section.programs_view .box:hover {
     transform: scale(1.1);
   }
+
+  section.programs_view .box:hover {
+    box-shadow: 1px 3px 9px #7BB701;
+    }
   
   section.programs_view .content {
     display: flex;
@@ -1672,7 +1681,7 @@ section.programs_view {
   section.about .container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+     justify-content: center;
       margin: 1rem;
   }
   
@@ -1684,7 +1693,7 @@ section.programs_view {
       justify-content: center;
       background-position: top;
       align-items: center;
-      box-shadow:2px 3px 10px rgba(0,0,0,0.5);
+      box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
       border-radius: 0.5rem;
       margin: 2rem;
   }
@@ -1771,7 +1780,7 @@ section.programs_view {
     display: flex;
     overflow: hidden;
     flex-direction:column; 
-    box-shadow:2px 3px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
   }
   
   section.about .box h2 {
@@ -1792,18 +1801,19 @@ section.programs_view {
   
   section.about .box img {
       border-radius: 1rem;
+      padding: 10px;
   }
-  section.about .container .popup-img {
+  section.about .container .popup-box {
       position: fixed;
       top: 0;
   }
   /*Dito nakalagay hover*/
-  section.about  .box:hover img {
+  section.about  .box:hover {
       scale: 1.1;
   }
   
   section.about .box:hover {
-      box-shadow: 2px 6px 15px #7BB701;
+      box-shadow: 1px 3px 9px #7BB701;
       }
   
   @media only screen and (max-width: 620px) {
@@ -1822,6 +1832,8 @@ section.programs_view {
 
   section.contact {
     margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   section.contact #title {
