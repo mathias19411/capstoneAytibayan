@@ -271,7 +271,7 @@ function showCategory(category) {
 <div class="grid-container">
 </div>
 	<div class="row">
-		<div class="col" id="title">
+		<div class="col" id="title" style="margin-left: 10px; margin-top: 10px;">
 			<h4><b>Location</b></h4>
 			<div id="location_">
 				<img src="{{ URL('images/APAO.png') }}" class="img-fluid" id="location_img">

@@ -62,6 +62,10 @@ Route::get('/Visitor/contacts', function () {
     return view('Visitor.contacts');
 });
 
+Route::get('/Visitor/visitor_index', function () {
+    return view('Visitor.visitor_index');
+});
+
 Route::get('/Visitor/programs', function () {
     return view('Visitor.programs');
 });
