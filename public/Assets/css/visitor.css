@@ -1034,7 +1034,6 @@ section.programs_view {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     margin-bottom: 4rem;
     flex-wrap: wrap;
   }
@@ -1679,10 +1678,13 @@ section.programs_view {
   }
   
   section.about .container {
-      display: flex;
-      flex-wrap: wrap;
-     justify-content: center;
-      margin: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0px;
+    overflow-x: auto;
+    max-width: 100%;
   }
   
   .slides {
@@ -1742,12 +1744,10 @@ section.programs_view {
   }
   
   section.about .main {
-      width:570px;
-      margin: 0.5rem;
-      float: left;
-       padding: 0 3rem;
+      width:470px;
+      float: center;
        text-align: center;
-       margin-top: 2rem;
+       padding: 30px;
   }
   
   section.about .main h2 {
@@ -1770,12 +1770,9 @@ section.programs_view {
   
   section.about .box {
     background-color: #FFFFFF;
-    float: left;
-    width: 340px;
+    width: 320px;
     height: 400px;
     padding: 0.5rem;
-    margin-top: 2rem;
-    text-align: center;
     border-radius: 0.5rem;
     display: flex;
     overflow: hidden;
