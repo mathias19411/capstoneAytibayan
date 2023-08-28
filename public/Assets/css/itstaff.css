@@ -1056,7 +1056,8 @@ color: #FFFFFF;
 width: 15px;
 height: 15px;
 }
- button:hover {
+
+body.announcement_events .table button:hover {
 	background-color: #8db600;
 	transition: 0.7s;
 }
@@ -1084,6 +1085,10 @@ body.announcement_events .add {
 	font-size: 15px;
 	margin: 30px;
   }
+  body.announcement_events .add:hover {
+	background-color: #8db600;
+	transition: 0.7s;
+}
 
   body.announcement_events .modal-footer .add {
   background-color: #f0a60f; 
