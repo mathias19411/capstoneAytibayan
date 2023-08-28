@@ -15,7 +15,7 @@
 
     <div class="nav-right">
         <ul>
-            <li><a href='http://'>Home</a></li>
+            <li><a href='{{ route('visitor.dashboard') }}' class="scrollToTopButton">Home</a></li>
             {{-- <li><a class='dropdown-arrow' href='http://'>Products</a>
             <ul class='sub-menus'>
                 <li><a href='http://'>Products 1</a></li>
@@ -24,8 +24,8 @@
                 <li><a href='http://'>Products 4</a></li>
             </ul>
         </li> --}}
-            <li><a href='http://'>About</a></li>
-            <li><a class='dropdown-arrow' href='http://'>Programs</a>
+            <li><a href='#aboutSection'>About</a></li>
+            <li><a class='dropdown-arrow' href='#missionHeader'>Programs</a>
                 <ul class='sub-menus'>
                     <li><a href='http://'>BINHI NG PAG-ASA</a></li>
                     <li><a href='http://'>AKBAY</a></li>
@@ -34,8 +34,15 @@
                     <li><a href='http://'>ABAKA MO, PISO MO</a></li>
                 </ul>
             </li>
-            <li><a href='http://'>Contact Us</a></li>
-            <li><a href='http://'>Login</a></li>
+            <li><a href='#binhiButton'>Contact Us</a></li>
+            @if (Route::has('login'))
+                @auth
+                    <li><a href="{{ url('/dashboard') }}">Dashboard</a>
+                    </li>
+                @else
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                @endauth
+            @endif
         </ul>
     </div>
 

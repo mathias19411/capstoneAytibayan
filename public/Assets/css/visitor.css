@@ -222,6 +222,31 @@ body {
     }
 }
 
+/* Scroll to top Button */
+#scrollToTopButton {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background-color: var(--colorGreen);
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#scrollToTopButton:hover {
+    transition: all 0.5s ease;
+    scale: 105%;
+    background-color: var(--colorOrange);
+}
+
+
 /* -------------------------Header------------------------------------ */
 #header {
     background: #ffffff;
@@ -471,8 +496,7 @@ body {
 }
 
 .top-story-section .top-story-title {
-    background: var(--colorGreen);
-    border-radius: 15px;
+    margin: 0 0 1rem 0;
     width: 100%;
 }
 
@@ -483,6 +507,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     color: var(--colorWhite);
+    width: 100%;
 }
 
 .top-story-section .stories-main .story-card .story-card-image img {

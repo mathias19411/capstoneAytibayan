@@ -86,3 +86,25 @@ var barChartOptions = {
 
         var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
         barChart.render();
+
+
+        // Show/hide the button based on the user's scroll position
+window.onscroll = function() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scrollToTopButton").style.display = "block";
+  } else {
+    document.getElementById("scrollToTopButton").style.display = "none";
+  }
+};
+
+// Scroll to the top when the button is clicked
+document.getElementById("scrollToTopButton").addEventListener("click", function() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+});
+
+// Scroll to the top when the button is clicked
+document.getElementsByClassName("scrollToTopButton").addEventListener("click", function() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+});

@@ -20,7 +20,7 @@ use App\Http\Controllers\VisitorController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Visitor.visitor_index');
 });
 
 Route::get('/dashboard', function () {
