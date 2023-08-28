@@ -53,6 +53,10 @@ Route::get('/ITStaff/announcement', function () {
     return view('ITStaff.announcement');
 });
 
+Route::get('/ITStaff/event', function () {
+    return view('ITStaff.event');
+});
+
 
 //Project Coordinator Group Middleware
 Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');

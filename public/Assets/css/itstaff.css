@@ -966,3 +966,238 @@ nav.close ~ .dashboard .top{
      
     }
 }
+
+/*--------------------------ANNOUNCEMENT, EVENTS & REGISTRATION----------------------*/
+/*
+green - #7bb701
+orange - #f0a60f
+gray - #f2f2f2
+black - #1a1a1a*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+	box-sizing: border-box;
+  }
+  
+body.announcement_events {
+	font-family: 'Poppins', sans-serif;
+	background:#f2f2f2;
+}
+body.announcement_events .container {
+	padding-top: 5px;
+	overflow-x: auto;
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	box-shadow:1px 1px 5px rgba(0,0,0,0.5);
+	padding: 20px;
+}
+body.announcement_events .head {
+	background-color: #7BB701;
+	background-position: center;
+	border-radius: 5px;
+	display: block;
+	width: auto;
+	height: 40px;
+	margin: 30px;
+	box-shadow:1px 1px 5px rgba(0,0,0,0.5);
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.announcement_events h2 {
+	font-size: 1.3rem;
+	font-weight: bold;
+	text-align: center;
+	color:#FFFFFF;
+}
+
+body.announcement_events .table button {
+outline: none;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+color: #FFFFFF;
+width: 15px;
+height: 15px;
+}
+ button:hover {
+	background-color: #8db600;
+	transition: 0.7s;
+}
+
+td button:nth-child(1) {
+	background-color: #7bb701;
+}
+td button:nth-child(2) {
+	background-color:  #f0a60f;
+}
+td button:nth-child(3) {
+	background-color: #f80000;
+}
+
+body.announcement_events .add {
+	background-color: #f0a60f; 
+	border: none;
+	color: white;
+	padding: 10px 30px;
+	text-align: center;
+	float: right;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 5px;
+	font-size: 15px;
+	margin: 30px;
+  }
+
+  body.announcement_events .modal-footer .add {
+  background-color: #f0a60f; 
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  float: right;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 15px;
+  margin: 1cqi;
+}
+
+body.announcement_events .modal-footer .close {
+	background-color: #bbbbbb; 
+	border: none;
+	color: white;
+	padding: 10px 30px;
+	text-align: center;
+	float: right;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 5px;
+	font-size: 15px;
+	margin: 10px;
+  }
+  
+body.announcement_events .modal-footer .add:hover {
+	background-color: #7BB701;
+	transition: 0.7s;
+  }
+
+body.announcement_events .modal-footer .close:hover {
+	background-color: #7BB701;
+	transition: 0.7s;
+  }
+
+body.announcement_events td {
+	font-size: 13px;
+}
+
+
+body.announcement_events tr:hover td {
+	color: #7BB701;
+	cursor: pointer;
+	background-color: #f2f2f2;
+}
+
+.modal-header .btn-close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: #7BB701;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 15px;
+	border-radius: 15px;
+	cursor: pointer;
+}
+  
+body.announcement_events h5.Announcement {
+	margin-bottom: 20px;
+}
+
+body.announcement_events .col {
+	margin-bottom: 20px;
+}
+
+hr.line {
+	border-top: 3px solid #7BB701;
+	border-radius: 5px;
+}
+
+body.announcement_events #label_ {
+	white-space: nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+body.announcement_events #Title {
+	background-color: #f2f2f2; 
+	border-radius: 10px;
+}
+
+body.announcement_events #to {
+	background-color: #f2f2f2; 
+	border-radius: 10px;
+}
+
+body.announcement_events #Date {
+	background-color: #f2f2f2; 
+	border-radius: 10px;
+}
+
+body.announcement_events #textbox_m {
+	background-color: #f2f2f2; 
+	border-radius: 10px; 
+	padding-bottom: 60px;
+}
+ 
+body.announcement_events .button {
+	text-align-last: end; 
+	padding-top: 5px; 
+}
+
+body.announcement_events #send_ {
+	margin: auto; 
+	background-color: #f0a60f; 
+	color: white; 
+	border-radius: 20px; 
+	padding: auto; 
+	text-align: center;
+}
+
+body.announcement_events #drop-img {
+	width: 300px;
+	height: 130px;
+	padding: 10px;
+	background: #f2f2f2;
+	text-align: center;
+	border-radius: 5px;
+	margin: auto;
+	background-position: center;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	margin-bottom: 10px;
+}
+
+body.announcement_events #img-view {
+	width: 100%;
+	height: 100%;
+	border: 5px;
+	border: 2px dashed #bbb5ff;
+	background: #f0fff0;
+	font-size: 12px;
+	background-size: cover;
+}
+
+body.announcement_events #img-view img {
+	margin-top: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}
+
+
