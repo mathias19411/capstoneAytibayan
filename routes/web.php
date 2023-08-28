@@ -45,9 +45,14 @@ Route::get('/ITStaff/home', function () {
     return view('ITStaff.home');
 });
 
+Route::get('/ITStaff/addprogram', function () {
+    return view('ITStaff.addprogram');
+});
+
 Route::get('/ITStaff/announcement', function () {
     return view('ITStaff.announcement');
 });
+
 
 //Project Coordinator Group Middleware
 Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');
