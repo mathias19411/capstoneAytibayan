@@ -1015,12 +1015,12 @@ black - #1a1a1a*/
   
 body.announcement_events {
 	font-family: 'Poppins', sans-serif;
-	background:#f2f2f2;
+	background:#ffffff;
 }
 body.announcement_events .container {
 	padding-top: 5px;
 	overflow-x: auto;
-	background-color: #FFFFFF;
+	background-color: ##f2f2f2;
 	border-radius: 5px;
 	box-shadow:1px 1px 5px rgba(0,0,0,0.5);
 	padding: 20px;

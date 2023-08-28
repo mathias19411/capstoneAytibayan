@@ -15,6 +15,7 @@
 </head>
 
     <body class="announcement_events">
+    @include('ITStaff.Body.sidebar')
         <div class="title">
         <h2> EVENTS </h2>
         </div>
