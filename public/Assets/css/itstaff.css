@@ -1024,19 +1024,19 @@ body.announcement_events .container {
 	border-radius: 5px;
 	box-shadow:1px 1px 5px rgba(0,0,0,0.5);
 	padding: 20px;
+    margin-top: 20px;
 }
-body.announcement_events .head {
+body.announcement_events .title {
 	background-color: #7BB701;
 	background-position: center;
 	border-radius: 5px;
-	display: block;
 	width: auto;
 	height: 40px;
-	margin: 30px;
 	box-shadow:1px 1px 5px rgba(0,0,0,0.5);
 	display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 80px;
 }
 
 body.announcement_events h2 {

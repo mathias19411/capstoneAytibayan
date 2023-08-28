@@ -15,11 +15,11 @@
 </head>
 
     <body class="announcement_events">
-        <div class="head">
+        <div class="title">
         <h2> EVENTS </h2>
         </div>
               <div class="container">
-                <table id="example" class="table table-striped" style="width:100%">
+                <table id="table" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>Title</th>
