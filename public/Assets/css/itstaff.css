@@ -9,7 +9,7 @@
 
 body {
     margin: 1rem;
-    background: var(--colorWhite);
+    background-color: #f2f2f2;
     overflow: auto;
     scroll-behavior: smooth;
     /* background-image: url("/images/background.png"); Set the path to your background image */
@@ -40,7 +40,7 @@ body {
 
 body{
     min-height: 100vh;
-    background-color: var(--primary-color);
+    background-color: #f2f2f2;
     margin: 0; 
     padding: 0; 
 }
@@ -598,7 +598,7 @@ nav.close ~ .dashboard .top{
 
 .coord .box button{
     font-size: 0.85rem;
-    margin: 15px auto; /* Center horizontally and add margin */
+    margin: 15px auto; 
     padding: 10px 20px;
     background-color: var(--colorOrange);
     color: #f2f2f2;
@@ -640,6 +640,158 @@ nav.close ~ .dashboard .top{
     padding-bottom: 0;
 }
 
+
+
+/* Program Form Styles */
+.program-form {
+    max-width: 1300px;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 50px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.program-form h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    padding-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.input-group {
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+#name,
+#program_name,
+#loc,
+#email, 
+#contact,
+#table_name,
+#num_columns{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+#info {
+    width: 100%; 
+    height: 33px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+#image{
+    width: 100%; 
+    height: 150px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+
+#apply, 
+#reqs{
+    width: 100%; 
+    height: 150px; 
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 15px; 
+    box-sizing: border-box; 
+}
+
+/* Add a line below all form rows */
+.form-row1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border-bottom: 5px solid var(--primary-color); 
+    padding-bottom: 10px;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.program-form input[type="submit"] {
+    background-color: var(--colorOrange);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: auto; 
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#generate-button {
+    margin-top: 20px;
+}
+
+#generate-columns {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.column-div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.column-input {
+    /* Define styles for column input fields */
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 200px;
+}
 @media (max-width: 1000px) {
     nav{
         width: 73px;
@@ -734,6 +886,30 @@ nav.close ~ .dashboard .top{
    .dash-content .inactive-active-users .name h1 {
     font-size: 15px;
     
+}
+.form-row {
+    flex-direction: column;
+}
+
+.input-group {
+    flex-basis: 100%;
+}
+
+.form-row1 {
+    flex-direction: column;
+}
+
+.column-div {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.column-input {
+    width: 100%;
+}
+
+#generate-button {
+    margin-top: 10px;
 }
    
 
