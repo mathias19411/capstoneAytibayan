@@ -74,35 +74,35 @@ body {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     z-index: 997;
 }
-#menu ul,
-#menu li {
+#menu .nav-right ul,
+#menu .nav-right li {
     margin: 0 auto;
     padding: 0;
     list-style: none;
 }
-#menu ul {
+#menu .nav-right ul {
     width: 100%;
 }
-#menu li {
+#menu .nav-right li {
     float: left;
     display: inline;
     position: relative;
     font-weight: bold;
     font-size: 1.5rem;
 }
-#menu a {
+#menu .nav-right a {
     display: block;
-    line-height: 80px;
+    line-height: 45px;
     padding: 0 14px;
     text-decoration: none;
     color: #1a1a1a;
     font-size: 16px;
 }
-#menu a.dropdown-arrow:after {
+#menu .nav-right a.dropdown-arrow:after {
     content: "\002B";
     margin-left: 5px;
 }
-#menu li a:hover {
+#menu .nav-right li a:hover {
     color: var(--colorWhite);
     background: var(--colorGreen);
     transition: all 0.5s ease;
@@ -130,57 +130,78 @@ body {
     content: "\2261";
     margin-left: 20px;
 }
-#menu ul.sub-menus {
+#menu .nav-right ul.sub-menus {
     height: auto;
     overflow: hidden;
     width: 12.5rem;
-    background: var(--colorBlack);
+    background: var(--colorOrange);
     position: absolute;
     border-radius: 15px;
     z-index: 99;
     display: none;
 }
-#menu ul.sub-menus li {
+#menu .nav-right ul.sub-menus li {
     display: block;
     width: 100%;
 }
-#menu ul.sub-menus a {
-    color: #ffffff;
+#menu .nav-right ul.sub-menus a {
+    color: var(--colorWHite);
     font-size: 16px;
 }
-#menu li:hover ul.sub-menus {
+#menu .nav-right li:hover ul.sub-menus {
     display: block;
 }
-#menu ul.sub-menus a:hover {
-    background: #f2f2f2;
-    color: #444444;
+#menu .nav-right ul.sub-menus a:hover {
+    background: var(--colorWhite);
+    color: var(--colorBlack);
 }
 
-#menu .nav-title .nav-brand {
-    height: 100%;
+#menu .nav-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#menu .nav-title .nav-brand a img {
+#menu .nav-left .nav-title {
+    text-align: center;
+}
+
+#menu .nav-left .nav-title .nav-brand {
+    display: inline-block;
+}
+
+#menu .nav-left .nav-title .nav-brand .apao-logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#menu .nav-left .nav-title .nav-brand a {
+    text-decoration: none;
+}
+
+#menu .nav-left .nav-title .nav-brand a img {
     display: inline-block;
     vertical-align: middle;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-right: 1.125rem;
-    margin-bottom: .75rem;
+    margin-top: .15rem;
 }
 
-#menu .nav-title .nav-brand a span {
+#menu .nav-left .nav-title .nav-brand a span {
     font-weight: bold;
     font-size: 1.5rem;
+    color: var(--colorBlack);
 }
 
 @media screen and (max-width: 992px) {
     #menu {
         position: relative;
     }
-    #menu ul {
-        background: #111;
+    #menu .nav-right ul {
+        background: var(--colorWhite);
         position: absolute;
         top: 100%;
         right: 0;
@@ -189,14 +210,17 @@ body {
         height: auto;
         display: none;
     }
-    #menu ul.sub-menus {
+    #menu .nav-right ul.sub-menus {
         width: 100%;
         position: static;
     }
-    #menu ul.sub-menus a {
+    #menu .nav-right ul.sub-menus a {
         padding-left: 30px;
     }
-    #menu li {
+    #menu .nav-left .nav-title .nav-brand .apao-logo{
+        margin-top: .75rem;
+    }
+    #menu .nav-right li {
         display: block;
         float: none;
         width: auto;
@@ -212,12 +236,12 @@ body {
         z-index: 4;
     }
     #menu input:checked + label {
-        color: white;
+        color: var(--colorBlack);
     }
     #menu input:checked + label:before {
         content: "\00d7";
     }
-    #menu input:checked ~ ul {
+    #menu input:checked ~ .nav-right ul {
         display: block;
     }
 }
