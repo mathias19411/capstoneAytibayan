@@ -53,28 +53,26 @@
 {{-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| --}}
 
 <body>
-    <div class="grid-container">
 
-        <!-- header -->
-        <!-- partial:partials/_header.html -->
-        @include('Visitor.Body.navbar')
-        <!-- header -->
-
-
-        <!-- Header -->
-        @include('Visitor.Body.header')
-        <!-- Header -->
-
-        <!-- main content -->
-        @yield('visitor')
-        <!-- main content -->
+    <!-- header -->
+    <!-- partial:partials/_header.html -->
+    @include('Visitor.Body.navbar')
+    <!-- header -->
 
 
-        <!-- footer -->
-        @include('Visitor.Body.footer')
-        <!-- footer -->
+    <!-- Header -->
+    @include('Visitor.Body.header')
+    <!-- Header -->
 
-    </div>
+    <!-- main content -->
+    @yield('visitor')
+    <!-- main content -->
+
+
+    <!-- footer -->
+    @include('Visitor.Body.footer')
+    <!-- footer -->
+
 
     <!-- Apex Charts Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.0/apexcharts.min.js"></script>
@@ -93,7 +91,7 @@
                 "closeButton": true,
             }
             switch (type) {
-                case 'info':                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                case 'info':
                     toastr.info(" {{ Session::get('message') }} ", 'Info!', {
                         timeOut: 12000
                     });
