@@ -49,6 +49,10 @@ Route::get('/ITStaff/addprogram', function () {
     return view('ITStaff.addprogram');
 });
 
+Route::get('/ITStaff/edit_program', function () {
+    return view('ITStaff.edit_program');
+});
+
 Route::get('/ITStaff/announcement', function () {
     return view('ITStaff.announcement');
 });

@@ -484,8 +484,10 @@ nav.close ~ .dashboard .top{
     background-color: var(--primary-color);
 }
 
-
-.boxes .box button{
+.boxes .box a {
+    text-decoration: none;
+}
+.boxes .box .custom-button {
     font-size: 0.85rem;
     margin: 15px auto 10px; /* Center horizontally and add margin */
     padding: 10px 20px;
@@ -495,13 +497,12 @@ nav.close ~ .dashboard .top{
     cursor: pointer;
     border-radius: 20px;
     display: block; 
-
 }
 
-.boxes .box button:hover{
+.boxes .box  .custom-button:hover {
     background-color:var(--primary-color);
-
 }
+
 
 .boxes .box img{
     display: block;
@@ -742,7 +743,7 @@ nav.close ~ .dashboard .top{
     margin-top: 20px;
 }
 
-.program-form input[type="submit"] {
+.program-form .center input[type="submit"] {
     background-color: var(--colorOrange);
     color: white;
     border: none;
@@ -759,9 +760,42 @@ nav.close ~ .dashboard .top{
     font-weight: bold;
 }
 
+.program-form .center input[type="submit"]:hover {
+    background-color: var(--primary-color);
+}
+
+
+.program-form .center1 .discard-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline from the anchor */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.program-form .center1 .discard-button:hover {
+    background-color: var(--box2-color);
+    color: #4CAF50;
+}
+
+.program-form .center1 input[type="submit"]:hover {
+    background-color: var(--colorOrange);
+    color: white;
+}
+
+
 #generate-button {
     margin-top: 20px;
 }
+
+#generate-columns:hover {
+    background-color: var(--colorOrange);
+}
+
 
 #generate-columns {
     background-color: #4CAF50;
@@ -785,13 +819,14 @@ nav.close ~ .dashboard .top{
 }
 
 .column-input {
-    /* Define styles for column input fields */
     margin: 5px 0;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 200px;
 }
+
+
 @media (max-width: 1000px) {
     nav{
         width: 73px;
@@ -886,34 +921,33 @@ nav.close ~ .dashboard .top{
    .dash-content .inactive-active-users .name h1 {
     font-size: 15px;
     
-}
-.form-row {
-    flex-direction: column;
-}
+    }
+    .form-row {
+        flex-direction: column;
+    }
 
-.input-group {
-    flex-basis: 100%;
-}
+    .input-group {
+        flex-basis: 100%;
+    }
 
-.form-row1 {
-    flex-direction: column;
-}
+    .form-row1 {
+        flex-direction: column;
+    }
 
-.column-div {
-    flex-direction: column;
-    align-items: flex-start;
-}
+    .column-div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-.column-input {
-    width: 100%;
-}
+    .column-input {
+        width: 100%;
+    }
 
-#generate-button {
-    margin-top: 10px;
-}
-   
-
-}
+    #generate-button {
+        margin-top: 10px;
+    }
+    
+    }
 
 @media (max-width: 560px) {
     .dash-content .boxes .box{
