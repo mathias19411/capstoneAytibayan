@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ItStaffController;
-use App\Http\Controllers\ProjectCoordinatorController;
 use App\Http\Controllers\BeneficiaryController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ItStaffController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectCoordinatorController;
 use App\Http\Controllers\VisitorController;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -62,10 +64,6 @@ Route::get('/Visitor/contacts', function () {
     return view('Visitor.contacts');
 });
 
-Route::get('/Visitor/visitor_index', function () {
-    return view('Visitor.visitor_index');
-});
-
 Route::get('/Visitor/programs', function () {
     return view('Visitor.programs');
 });
@@ -83,3 +81,4 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
     return view('Visitor.category_page', compact('category'));
 })->name('Visitor.category.page');
 
+Route::get('/Visitor', [EventController::class, 'index']);
