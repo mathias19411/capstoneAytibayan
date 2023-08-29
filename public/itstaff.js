@@ -1,5 +1,4 @@
 
-
 const dropImg = document.getElementById("drop-img");
 const inputFile = document.getElementById("input-file");
 const imgView = document.getElementById("img-view");
