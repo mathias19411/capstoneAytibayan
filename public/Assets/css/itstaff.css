@@ -827,187 +827,8 @@ nav.close ~ .dashboard .top{
 }
 
 
-@media (max-width: 1000px) {
-    nav{
-        width: 73px;
-    }
-    nav.close{
-        width: 250px;
-    }
-
-    nav.menu-items.close{
-        display: none;
-    }
-    nav .logo_name{
-        opacity: 0;
-        pointer-events: none;
-    }
-    nav.close .logo_name{
-        opacity: 1;
-        pointer-events: auto;
-    }
-    nav li a .link-name{
-        opacity: 0;
-        pointer-events: none;
-    }
-    nav.close li a .link-name{
-        opacity: 1;
-        pointer-events: auto;
-    }
-    nav ~ .dashboard{
-        left: 73px;
-        width: calc(100% - 73px);
-    }
-    nav.close ~ .dashboard{
-        left: 250px;
-        width: calc(100% - 250px);
-    }
-    nav ~ .dashboard .top{
-        left: 73px;
-        width: calc(100% - 73px);
-    }
-    nav.close ~ .dashboard .top{
-        left: 250px;
-        width: calc(100% - 250px);
-    }
-    .activity .activity-data{
-        overflow-X: scroll;
-    }
-    
-
-    
-}
-
-@media (max-width: 780px) {
-    .dash-content .boxes .box{
-        width: calc(100% / 2 - 15px);
-        margin-top: 15px;
-    }
-
-    .top .heading h1{
-        margin-left: 0;
-        position: flex;
-        text-align: center !important;
-        font-size: 13px;
-      
-    }
-    
-    nav .logo-image,
-    nav .logo-image img{
-        size: 1px;
-        justify-content: center;
-     
-    }
-   
-    .dash-content .user-stats{
-        gap: 0;
-        flex-direction: column;
-        align-items: center;
-        margin: 0;
-     
-    }
-    .dash-content .user-stats .total-users h1,
-    .dash-content .user-stats .inactive-active-users h1{
-        font-size: 20px;
-    }
-    .dashboard .top{
-        box-shadow:1px 0px 4px rgba(0,0,0,0.5);
-    }
- 
-   .dashboard{
-    z-index: 2;
-   }
-   .dash-content .total-users .name h1,
-   .dash-content .inactive-active-users .name h1 {
-    font-size: 15px;
-    
-    }
-    .form-row {
-        flex-direction: column;
-    }
-
-    .input-group {
-        flex-basis: 100%;
-    }
-
-    .form-row1 {
-        flex-direction: column;
-    }
-
-    .column-div {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .column-input {
-        width: 100%;
-    }
-
-    #generate-button {
-        margin-top: 10px;
-    }
-    
-    }
-
-@media (max-width: 560px) {
-    .dash-content .boxes .box{
-        width: 100% ;
-    }
-}
-@media (max-width: 400px) {
-    nav{
-        width: 0px;
-    }
-    nav.close{
-        width: 73px;
-    }
-    nav .logo_name{
-        opacity: 0;
-        pointer-events: none;
-    }
-    nav.close .logo_name{
-        opacity: 0;
-        pointer-events: none;
-    }
-    nav li a .link-name{
-        opacity: 0;
-        pointer-events: none;
-    }
-    nav.close li a .link-name{
-        opacity: 0;
-        pointer-events: none;
-    }
-    nav ~ .dashboard{
-        left: 0;
-        width: 100%;
-    }
-    nav.close ~ .dashboard{
-        left: 73px;
-        width: calc(100% - 73px);
-    }
-    nav ~ .dashboard .top{
-        left: 0;
-        width: 100%;
-    }
-    nav.close ~ .dashboard .top{
-        left: 0;
-        width: 100%;
-    }
-
-    nav .logo-image,
-    nav .logo-image img{
-        display: none;
-     
-    }
-}
-
 /*--------------------------ANNOUNCEMENT, EVENTS & REGISTRATION----------------------*/
-/*
-green - #7bb701
-orange - #f0a60f
-gray - #f2f2f2
-black - #1a1a1a*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 
 * {
 	box-sizing: border-box;
@@ -1156,10 +977,10 @@ body.announcement_events .add {
   text-align: center;
   float: right;
   text-decoration: none;
-  display: inline-block;
+
   border-radius: 5px;
   font-size: 15px;
-  margin: 1cqi;
+  margin: 1px;
 }
 
 body.announcement_events .modal-footer .close {
@@ -1290,6 +1111,178 @@ body.announcement_events #img-view {
 
 body.announcement_events #img-view img {
 	margin-top: 15px;
+}
+
+
+
+@media (max-width: 1000px) {
+    nav{
+        width: 73px;
+    }
+    nav.close{
+        width: 250px;
+    }
+
+    nav.menu-items.close{
+        display: none;
+    }
+    nav .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close .logo_name{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close li a .link-name{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav ~ .dashboard{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard{
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+    nav ~ .dashboard .top{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard .top{
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+
+    
+}
+
+@media (max-width: 780px) {
+    .dash-content .boxes .box{
+        width: calc(100% / 2 - 15px);
+        margin-top: 15px;
+    }
+
+    .top .heading h1{
+        margin-left: 0;
+        position: flex;
+        text-align: center !important;
+        font-size: 13px;
+      
+    }
+    
+    nav .logo-image,
+    nav .logo-image img{
+        size: 1px;
+        justify-content: center;
+     
+    }
+   
+    .dash-content .user-stats{
+        gap: 0;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+     
+    }
+    .dash-content .user-stats .total-users h1,
+    .dash-content .user-stats .inactive-active-users h1{
+        font-size: 20px;
+    }
+    .dashboard .top{
+        box-shadow:1px 0px 4px rgba(0,0,0,0.5);
+    }
+ 
+   .dashboard{
+    z-index: 2;
+   }
+   .dash-content .total-users .name h1,
+   .dash-content .inactive-active-users .name h1 {
+    font-size: 15px;
+    
+    }
+    .form-row {
+        flex-direction: column;
+    }
+
+    .input-group {
+        flex-basis: 100%;
+    }
+
+    .form-row1 {
+        flex-direction: column;
+    }
+
+    .column-div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .column-input {
+        width: 100%;
+    }
+
+    #generate-button {
+        margin-top: 10px;
+    }
+    
+    }
+
+@media (max-width: 560px) {
+    .dash-content .boxes .box{
+        width: 100% ;
+    }
+}
+@media (max-width: 400px) {
+    nav{
+        width: 0px;
+    }
+    nav.close{
+        width: 73px;
+    }
+    nav .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav ~ .dashboard{
+        left: 0;
+        width: 100%;
+    }
+    nav.close ~ .dashboard{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav ~ .dashboard .top{
+        left: 0;
+        width: 100%;
+    }
+    nav.close ~ .dashboard .top{
+        left: 0;
+        width: 100%;
+    }
+
+    nav .logo-image,
+    nav .logo-image img{
+        display: none;
+     
+    }
 }
 
 @media screen and (max-width: 768px) {
