@@ -162,6 +162,7 @@ body.dark li a:hover:before{
 }
 .menu-items li a .link-name{
     font-size: 18px;
+    margin-left: 5px;
     font-weight: 400;
     color: var(--black-light-color);    
     transition: var(--tran-05);
@@ -186,6 +187,11 @@ body.dark .nav-links li a:hover .link-name{
     display: flex;
     align-items: center;
     white-space: nowrap;
+}
+
+.menu-items .mode img{
+    width: 40px;
+    border-radius: 50%;
 }
 .menu-items .mode-toggle{
     position: absolute;
@@ -246,6 +252,7 @@ nav.close ~ .dashboard{
     z-index: 1;
 
 }
+
 nav.close ~ .dashboard .top{
     left: 73px;
     width: calc(100% - 73px);
