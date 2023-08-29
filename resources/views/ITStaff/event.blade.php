@@ -16,7 +16,7 @@
 </head>
 
     <body class="announcement_events">
-
+    @include('ITStaff.Body.sidebar')
         <div class="title">
         <h2> EVENTS </h2>
         </div>
@@ -207,7 +207,7 @@
                   <script src="https://code.jquery.com/jquery-3.7.0.js"> </script>
                   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"> </script>
                   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"> </script>
-                  <script src="{{ asset('itstaff.js') }}"></script>
+                  <script src="{{ asset('Assets/js/itstaff.js') }}"></script>
 
     </body>
   </html>
