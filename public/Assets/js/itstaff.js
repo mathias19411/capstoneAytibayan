@@ -51,7 +51,7 @@ numbers.forEach(number => {
 });
 
 /*--------------------------ANNOUNCEMENT, EVENTS & REGISTRATION----------------------*/
-new DataTable ('#example');
+new DataTable ('#table');
 
 const dropImg = document.getElementById("drop-img");
 const inputFile = document.getElementById("input-file");
