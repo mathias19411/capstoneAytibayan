@@ -1,4 +1,4 @@
-new DataTable ('#table');
+
 
 const dropImg = document.getElementById("drop-img");
 const inputFile = document.getElementById("input-file");
@@ -19,4 +19,37 @@ dropImg.addEventListener("drop", function(e){
     e.preventDefault();
     inputFile.files = e.dataTransfer.files;
     uploadImage();
+});
+
+/*-----------seearch bar---------- */
+const searchInput = document.getElementById("searchInput");
+const table = document.querySelectorAll(".table");
+
+searchInput.addEventListener("input", () => {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    table.forEach(table => {
+        const rows = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            const cells = row.getElementsByTagName("td");
+            let found = false;
+
+            for (let j = 0; j < cells.length; j++) {
+                const cell = cells[j];
+
+                if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    });
 });

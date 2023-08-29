@@ -20,8 +20,10 @@
         <div class="title">
         <h2> EVENTS </h2>
         </div>
-              <div class="container">
-                <table id="table" class="table table-striped" style="width:100%">
+             <div class="container">
+             <input type="text" id="searchInput" placeholder="Search...">  
+
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Title</th>
