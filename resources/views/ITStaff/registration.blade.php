@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albay Provincial Agricultural Office - Region V</title>
+    <title>Registration</title>
     <link rel="icon" href="\images\APAO logo.png" type="image icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
@@ -146,15 +146,15 @@
                             <div class="row">
                               <div class="col-4">
                                 <label for="cnumber">Contact Number:</label>
-                                <input class="form-control" type="text" name="cnumber" placeholder="Number" required>
+                                <input class="form-control" type="text" name="cnumber" placeholder="091234564567" required>
                               </div>
                               <div class="col-4">
                                 <label for="email">Email:</label>
-                                  <input class="form-control"  type="email" name="email" placeholder="Middle Name" required>
+                                  <input class="form-control"  type="email" name="email" placeholder="orlybinhi@gmail.com" required>
                               </div>
                               <div class="col-4">
                                 <label for="Lname">Program </label>
-                                  <input class="form-control"  type="text" name="Lname" placeholder="Program" required>
+                                  <input class="form-control"  type="text" name="Lname" placeholder="Binhi ng Pag-asa" required>
                               </div>
                             </div>
                             <form>
