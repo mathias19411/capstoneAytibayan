@@ -162,7 +162,7 @@
                     </label>
                 </div>
             </div> --}}
-            <div class="col-12">
+            <div class="col-12 register-button">
                 <button type="submit" class="btn btn-primary">Register!</button>
             </div>
         </form>

@@ -206,12 +206,11 @@
                     intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
             </div>
 
-<<<<<<< Updated upstream
-            <div class="box">
+            <<<<<<< Updated upstream <div class="box">
                 <h2>History</h2>
                 <img src="\images\history.png">
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-            </div>
+        </div>
         </div>
     </section>
 
@@ -418,5 +417,4 @@
 
         </div>
     </section>
->>>>>>> Stashed changes
 @endsection
