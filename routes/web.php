@@ -6,6 +6,9 @@ use App\Http\Controllers\ItStaffController;
 use App\Http\Controllers\ProjectCoordinatorController;
 use App\Http\Controllers\BeneficiaryController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 
 /*
 |--------------------------------------------------------------------------

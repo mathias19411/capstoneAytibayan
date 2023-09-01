@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -49,4 +49,128 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Albay Provincial Agricultural Office - Region V</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('Assets/css/authentication.css') }}">
+    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
+</head>
+
+<body>
+    <div class="form-container">
+        <form class="row g-3 registration-form" method="POST" action="{{ route('register') }}">
+            @csrf
+            <div class="col-md-6">
+                <label for="inputFirstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="inputFirstName" name="first_name"
+                    placeholder="John Sammi" required>
+                @error('first_name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-3">
+                <label for="inputMiddleName" class="form-label">Middle Name</label>
+                <input type="text" class="form-control" id="inputMiddleName" name="middle_name"
+                    placeholder="Diwally">
+                @error('middle_name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-3">
+                <label for="inputLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Beatosai"
+                    required>
+                @error('last_name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label for="inputNumber" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="inputNumber" name="phone_number"
+                    placeholder="09*********" required>
+                @error('phone_number')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label for="inputRole" class="form-label">Role</label>
+                <select id="inputRole" class="form-select" name="inputRole">
+                    <option value="itstaff" selected>IT Staff</option>
+                    <option value="project_coordinator">Project Coordinator</option>
+                    <option value="beneficiary">Beneficiary</option>
+                </select>
+                @error('inputRole')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+
+            </div>
+            <div class="col-12">
+                <label for="inputPrimaryAddress" class="form-label">Primary Address</label>
+                <input type="text" class="form-control" id="inputPrimaryAddress" name="primaryAddress"
+                    placeholder="Barangay, Purok, or St." required>
+                @error('primaryAddress')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">City</label>
+                <select id="inputCity" class="form-select" name="inputCity">
+                    <option value="Legazpi City"selected>Legazpi City</option>
+                    <option value="Tabaco City">Tabaco City</option>
+                    <option value="Sto.domingo City">Sto.domingo City</option>
+                    <option value="Bacacay City">Bacacay City</option>
+                </select>
+                @error('inputCity')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-4">
+                <label for="inputProvince" class="form-label">Province</label>
+                <select id="inputProvince" class="form-select" name="inputProvince">
+                    <option value="Albay" selected>Albay</option>
+                    <option value="Camarines Sur">Camarines Sur</option>
+                    <option value="Camarines Norte">Camarines Norte</option>
+                    <option value="Catanduanes">Catanduanes</option>
+                    <option value="Masbate">Masbate</option>
+                    <option value="Sorsogon">Sorsogon</option>
+                </select>
+                @error('inputProvince')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="4500"
+                    required>
+                @error('inputZip')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            {{-- <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out
+                    </label>
+                </div>
+            </div> --}}
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Register!</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

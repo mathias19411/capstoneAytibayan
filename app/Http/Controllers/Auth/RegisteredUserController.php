@@ -18,7 +18,7 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
         return view('auth.register');
     }
@@ -30,16 +30,30 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validate form inputs
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'first_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'last_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'phone_number' => ['required', 'string', 'max:11'],
+            'inputRole' => ['required', 'in:itstaff,project_coordinator,beneficiary'],
+            'primaryAddress' => ['required', 'string', 'max:255'],
+            'inputCity' => ['required', 'string', 'max:255'],
+            'inputProvince' => ['required', 'string', 'max:255'],
+            'inputZip' => ['required', 'string', 'max:255'],
+            
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone_number,
+            'primary_address' => $request->primaryAddress,
+            'city' => $request->inputCity,
+            'province' => $request->inputProvince,
+            'zip' => $request->inputZip,
+            'role' => $request->inputRole,
+            // 'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
