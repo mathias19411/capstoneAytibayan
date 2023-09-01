@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Admin Home</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -84,8 +85,12 @@
                         <span class="label">Inactive</span>
                         <span class="inactivenumber">300 Beneficiaries</span>
                         <div class="number-line inactiveline"></div>
+                        
+                        <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
+                            <button class="custom-button">View</button>
+                        </a>
 
-                        <button>View</button>
+                        
                     </div>
                     <div class="box box1">
                         <img src="\images\Logo_AgriPinay.png" alt="Image 2">
@@ -102,7 +107,9 @@
                         <span class="inactivenumber">300 Beneficiaries</span>
                         <div class="number-line inactiveline"></div>
            
-                        <button>View</button>
+                        <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
+                            <button class="custom-button">View</button>
+                        </a>
                     </div>
                     <div class="box box1">
                         <img src="\images\Logo_Akbay.png" alt="Image 3">
@@ -119,7 +126,9 @@
                         <span class="inactivenumber">300 Beneficiaries</span>
                         <div class="number-line inactiveline"></div>
 
-                        <button>View</button>
+                        <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
+                            <button class="custom-button">View</button>
+                        </a>
                     </div>
                     <div class="box box1">
                         <img src="\images\Logo_AbacaMoPisoMo.png" alt="Image 4">
@@ -136,10 +145,31 @@
                         <span class="inactivenumber">300 Beneficiaries</span>
                         <div class="number-line inactiveline"></div>
 
-                        <button>View</button>
+                        <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
+                            <button class="custom-button">View</button>
+                        </a>
+                    </div>
+                    <div class="box box1">
+                        <img src="\images\Logo_LEAD.png" alt="Image 4">
+                        <span class="text">LEAD</span>
+                        <span class="label">Total</span>
+                        <span class="totalnumber">700 Beneficiaries</span>
+                        <div class="number-line totalline"></div>
+                        
+                        <span class="label">Active</span>
+                        <span class="activenumber">400 Beneficiaries</span>
+                        <div class="number-line activeline"></div>
+                        
+                        <span class="label">Inactive</span>
+                        <span class="inactivenumber">300 Beneficiaries</span>
+                        <div class="number-line inactiveline"></div>
+
+                        <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
+                            <button class="custom-button">View</button>
+                        </a>
                     </div>
 
-                    <a href="add-page.html" class="add-button">
+                    <a href="{{ url('/ITStaff/addprogram') }}" class="add-button">
                          <button class="plus-button">+</button>
                     </a>
                 </div>

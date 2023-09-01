@@ -9,7 +9,7 @@
 
 body {
     margin: 1rem;
-    background: var(--colorWhite);
+    background-color: #f2f2f2;
     overflow: auto;
     scroll-behavior: smooth;
     /* background-image: url("/images/background.png"); Set the path to your background image */
@@ -40,14 +40,14 @@ body {
 
 body{
     min-height: 100vh;
-    background-color: var(--primary-color);
+    background-color: #f2f2f2;
     margin: 0; 
     padding: 0; 
 }
 
 /* === Custom Scroll Bar CSS === */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
 }
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
@@ -162,6 +162,7 @@ body.dark li a:hover:before{
 }
 .menu-items li a .link-name{
     font-size: 18px;
+    margin-left: 5px;
     font-weight: 400;
     color: var(--black-light-color);    
     transition: var(--tran-05);
@@ -187,37 +188,11 @@ body.dark .nav-links li a:hover .link-name{
     align-items: center;
     white-space: nowrap;
 }
-.menu-items .mode-toggle{
-    position: absolute;
-    right: 14px;
-    height: 50px;
-    min-width: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-.mode-toggle .switch{
-    position: relative;
-    display: inline-block;
-    height: 22px;
-    width: 40px;
-    border-radius: 25px;
-    background-color: var(--toggle-color);
-}
-.switch:before{
-    content: "";
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 15px;
-    width: 15px;
-    background-color: var(--panel-color);
-    border-radius: 50%;
-    transition: var(--tran-03);
-}
 
+.menu-items .mode img{
+    width: 40px;
+    border-radius: 50%;
+}
 .dashboard{
     position: relative;
     left: 250px;
@@ -246,6 +221,7 @@ nav.close ~ .dashboard{
     z-index: 1;
 
 }
+
 nav.close ~ .dashboard .top{
     left: 73px;
     width: calc(100% - 73px);
@@ -484,8 +460,10 @@ nav.close ~ .dashboard .top{
     background-color: var(--primary-color);
 }
 
-
-.boxes .box button{
+.boxes .box a {
+    text-decoration: none;
+}
+.boxes .box .custom-button {
     font-size: 0.85rem;
     margin: 15px auto 10px; /* Center horizontally and add margin */
     padding: 10px 20px;
@@ -495,13 +473,12 @@ nav.close ~ .dashboard .top{
     cursor: pointer;
     border-radius: 20px;
     display: block; 
-
 }
 
-.boxes .box button:hover{
+.boxes .box  .custom-button:hover {
     background-color:var(--primary-color);
-
 }
+
 
 .boxes .box img{
     display: block;
@@ -598,7 +575,7 @@ nav.close ~ .dashboard .top{
 
 .coord .box button{
     font-size: 0.85rem;
-    margin: 15px auto; /* Center horizontally and add margin */
+    margin: 15px auto; 
     padding: 10px 20px;
     background-color: var(--colorOrange);
     color: #f2f2f2;
@@ -639,6 +616,486 @@ nav.close ~ .dashboard .top{
     display: block; 
     padding-bottom: 0;
 }
+
+
+
+/* Program Form Styles */
+.program-form {
+    max-width: 1300px;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 50px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.program-form h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    padding-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.input-group {
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+#name,
+#program_name,
+#loc,
+#email, 
+#contact,
+#table_name,
+#num_columns{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+#info {
+    width: 100%; 
+    height: 33px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+#image{
+    width: 100%; 
+    height: 150px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+
+#apply, 
+#reqs{
+    width: 100%; 
+    height: 150px; 
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 15px; 
+    box-sizing: border-box; 
+}
+
+/* Add a line below all form rows */
+.form-row1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border-bottom: 5px solid var(--primary-color); 
+    padding-bottom: 10px;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.program-form .center input[type="submit"] {
+    background-color: var(--colorOrange);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: auto; 
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.program-form .center input[type="submit"]:hover {
+    background-color: var(--primary-color);
+}
+
+
+.program-form .center1 .discard-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline from the anchor */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.program-form .center1 .discard-button:hover {
+    background-color: var(--box2-color);
+    color: #4CAF50;
+}
+
+.program-form .center1 input[type="submit"]:hover {
+    background-color: var(--colorOrange);
+    color: white;
+}
+
+
+#generate-button {
+    margin-top: 20px;
+}
+
+#generate-columns:hover {
+    background-color: var(--colorOrange);
+}
+
+
+#generate-columns {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.column-div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.column-input {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 200px;
+}
+
+
+/*--------------------------ANNOUNCEMENT, EVENTS & REGISTRATION----------------------*/
+
+
+* {
+	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+body.announcement_events {
+	font-family: 'Poppins', sans-serif;
+    margin: 1rem;
+    background-color: #f2f2f2;
+    overflow: auto;
+    scroll-behavior: smooth;
+    
+}
+body.announcement_events .container {
+	overflow-x: auto;
+	background-color: #ffffff;
+	border-radius: 5px;
+	box-shadow:1px 1px 5px rgba(0,0,0,0.5);
+	padding: 20px;
+    margin-top: 20px;
+}
+body.announcement_events .title {
+	background-color: #7BB701;
+	background-position: center;
+	border-radius: 5px;
+	width: auto;
+	height: 40px;
+	box-shadow:1px 1px 5px rgba(0,0,0,0.5);
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px 20px 20px 20px;
+
+}
+
+body.announcement_events h2 {
+	font-size: 1.3rem;
+	font-weight: bold;
+	text-align: center;
+	color:#FFFFFF;
+}
+
+/*-----DROPDOWN LISTS-------*/
+.dropbtn {
+    background-color: #f0a60f;
+    color: white;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 60px;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {
+    background-color: #7bb701;
+  }
+
+body.announcement_events #searchInput {
+    float: right;
+    margin-bottom: 10px;
+}
+
+body.announcement_events .table button {
+outline: none;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+color: #FFFFFF;
+width: 15px;
+height: 15px;
+}
+
+body.announcement_events .table button:hover {
+	background-color: #8db600;
+	transition: 0.7s;
+}
+
+td button:nth-child(1) {
+	background-color: #7bb701;
+}
+td button:nth-child(2) {
+	background-color:  #f0a60f;
+}
+td button:nth-child(3) {
+	background-color: #f80000;
+}
+
+body.announcement_events tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+
+body.announcement_events .add {
+	background-color: #f0a60f; 
+	border: none;
+	color: white;
+	padding: 10px 30px;
+	text-align: center;
+	float: right;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 5px;
+	font-size: 15px;
+	margin: 30px;
+  }
+  body.announcement_events .add:hover {
+	background-color: #8db600;
+	transition: 0.7s;
+}
+
+  body.announcement_events .modal-footer .add {
+  background-color: #f0a60f; 
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  float: right;
+  text-decoration: none;
+
+  border-radius: 5px;
+  font-size: 15px;
+  margin: 1px;
+}
+
+body.announcement_events .modal-footer .close {
+	background-color: #bbbbbb; 
+	border: none;
+	color: white;
+	padding: 10px 30px;
+	text-align: center;
+	float: right;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 5px;
+	font-size: 15px;
+	margin: 10px;
+  }
+  
+body.announcement_events .modal-footer .add:hover {
+	background-color: #7BB701;
+	transition: 0.7s;
+  }
+
+body.announcement_events .modal-footer .close:hover {
+	background-color: #7BB701;
+	transition: 0.7s;
+  }
+
+body.announcement_events td {
+	font-size: 13px;
+}
+
+
+body.announcement_events tr:hover td {
+	color: #7BB701;
+	cursor: pointer;
+	background-color: #f2f2f2;
+}
+
+.modal-header .btn-close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: #7BB701;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 15px;
+	border-radius: 15px;
+	cursor: pointer;
+}
+  
+body.announcement_events h5.Announcement {
+	margin-bottom: 20px;
+}
+
+body.announcement_events .col {
+	margin-bottom: 20px;
+}
+
+hr.line {
+	border-top: 3px solid #7BB701;
+	border-radius: 5px;
+}
+
+body.announcement_events #label_ {
+	white-space: nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+body.announcement_events #Title {
+	background-color: #f2f2f2; 
+	border-radius: 10px;
+}
+
+body.announcement_events #to {
+	background-color: #f2f2f2; 
+	border-radius: 10px;
+}
+
+body.announcement_events #Date {
+	background-color: #f2f2f2; 
+	border-radius: 10px;
+}
+
+body.announcement_events #textbox_m {
+	background-color: #f2f2f2; 
+	border-radius: 10px; 
+	padding-bottom: 60px;
+}
+ 
+body.announcement_events .button {
+	text-align-last: end; 
+	padding-top: 5px; 
+}
+
+body.announcement_events #send_ {
+	margin: auto; 
+	background-color: #f0a60f; 
+	color: white; 
+	border-radius: 20px; 
+	padding: auto; 
+	text-align: center;
+}
+
+body.announcement_events #drop-img {
+	width: 300px;
+	height: 130px;
+	padding: 10px;
+	background: #f2f2f2;
+	text-align: center;
+	border-radius: 5px;
+	margin: auto;
+	background-position: center;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	margin-bottom: 10px;
+}
+
+body.announcement_events #img-view {
+	width: 100%;
+	height: 100%;
+	border: 5px;
+	border: 2px dashed #bbb5ff;
+	background: #f0fff0;
+	font-size: 12px;
+	background-size: cover;
+}
+
+body.announcement_events #img-view img {
+	margin-top: 15px;
+}
+
+
 
 @media (max-width: 1000px) {
     nav{
@@ -683,10 +1140,6 @@ nav.close ~ .dashboard .top{
         left: 250px;
         width: calc(100% - 250px);
     }
-    .activity .activity-data{
-        overflow-X: scroll;
-    }
-    
 
     
 }
@@ -734,10 +1187,33 @@ nav.close ~ .dashboard .top{
    .dash-content .inactive-active-users .name h1 {
     font-size: 15px;
     
-}
-   
+    }
+    .form-row {
+        flex-direction: column;
+    }
 
-}
+    .input-group {
+        flex-basis: 100%;
+    }
+
+    .form-row1 {
+        flex-direction: column;
+    }
+
+    .column-div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .column-input {
+        width: 100%;
+    }
+
+    #generate-button {
+        margin-top: 10px;
+    }
+    
+    }
 
 @media (max-width: 560px) {
     .dash-content .boxes .box{
@@ -790,3 +1266,19 @@ nav.close ~ .dashboard .top{
      
     }
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+  .table {
+    width: 100%;
+  }
+  #exampleModal {
+    max-width: auto;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+

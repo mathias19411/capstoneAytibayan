@@ -206,6 +206,7 @@
                     intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
             </div>
 
+<<<<<<< Updated upstream
             <div class="box">
                 <h2>History</h2>
                 <img src="\images\history.png">
@@ -308,7 +309,7 @@
                                 </div>
                                 <div id="c_description">
                                     <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">BINIHI NG PAG-ASA PROGRAM</div>
+                                    <div id="c_program">BINIHI NG PAG-ASA</div>
                                     <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
                                     <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
                                 </div>
@@ -322,7 +323,7 @@
                                 </div>
                                 <div id="c_description">
                                     <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">AKBAY PROGRAM</div>
+                                    <div id="c_program">AKBAY</div>
                                     <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
                                     <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
                                 </div>
@@ -336,7 +337,7 @@
                                 </div>
                                 <div id="c_description">
                                     <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">LEAD PROGRAM</div>
+                                    <div id="c_program">LEAD</div>
                                     <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
                                     <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
                                 </div>
@@ -352,7 +353,7 @@
                                 </div>
                                 <div id="c_description">
                                     <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">AGRIPINAY PROGRAM</div>
+                                    <div id="c_program">AGRIPINAY</div>
                                     <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
                                     <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
                                 </div>
@@ -417,4 +418,5 @@
 
         </div>
     </section>
+>>>>>>> Stashed changes
 @endsection

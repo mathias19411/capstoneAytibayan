@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ItStaffController;
-use App\Http\Controllers\ProjectCoordinatorController;
 use App\Http\Controllers\BeneficiaryController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ItStaffController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectCoordinatorController;
 use App\Http\Controllers\VisitorController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,8 +45,24 @@ Route::get('/ITStaff/home', function () {
     return view('ITStaff.home');
 });
 
+Route::get('/ITStaff/addprogram', function () {
+    return view('ITStaff.addprogram');
+});
+
+Route::get('/ITStaff/edit_program', function () {
+    return view('ITStaff.edit_program');
+});
+
 Route::get('/ITStaff/announcement', function () {
     return view('ITStaff.announcement');
+});
+
+Route::get('/ITStaff/event', function () {
+    return view('ITStaff.event');
+});
+
+Route::get('/ITStaff/registration', function () {
+    return view('ITStaff.registration');
 });
 
 //Project Coordinator Group Middleware
@@ -63,10 +78,6 @@ Route::get('/visitor/dashboard', [VisitorController::class, 'VisitorDashboard'])
 
 Route::get('/Visitor/contacts', function () {
     return view('Visitor.contacts');
-});
-
-Route::get('/Visitor/visitor_index', function () {
-    return view('Visitor.visitor_index');
 });
 
 Route::get('/Visitor/programs', function () {
@@ -86,3 +97,4 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
     return view('Visitor.category_page', compact('category'));
 })->name('Visitor.category.page');
 
+Route::get('/Visitor', [EventController::class, 'index']);
