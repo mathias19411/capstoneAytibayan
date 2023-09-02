@@ -59,11 +59,22 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 }); //End group itstaff middleware
 
 //Project Coordinator Group Middleware
-Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');
+Route::middleware(['auth', 'userroleprotection:project_coordinator'])->group(function(){
+    // middleware named userroleprotection will protect routes to be only accessible by the right user role
+    Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');
+
+    // more routes here for Project Coordinator
+
+}); //End group Project Coordinator middleware
 
 //Beneficiary Group Middleware
-Route::get('/beneficiary/dashboard', [BeneficiaryController::class, 'BeneficiaryDashboard'])->name('beneficiary.dashboard');
+Route::middleware(['auth', 'userroleprotection:beneficiary'])->group(function(){
+    // middleware named userroleprotection will protect routes to be only accessible by the right user role
+    Route::get('/beneficiary/dashboard', [BeneficiaryController::class, 'BeneficiaryDashboard'])->name('beneficiary.dashboard');
 
+    // more routes here for beneficiary
+
+}); //End group beneficiary middleware
 
 //Visitor Routes
 Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
