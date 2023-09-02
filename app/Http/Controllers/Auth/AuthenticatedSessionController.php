@@ -29,7 +29,28 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $url = '';
+        // Condition to check for user roles
+        if($request->user()->role === 'itstaff')
+        {
+            $url = '/ITStaff/home';
+        }
+        else if ($request->user()->role === 'project_coordinator')
+        {
+            $url = '/ProjectCoordinator/home';
+        }
+        else if ($request->user()->role === 'beneficiary')
+        {
+            $url = '/Beneficiary/home';
+        }
+
+        $notification = array(
+            'message' => 'Welcome to the dashboard!',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->intended($url)->with($notification);
+
     }
 
     /**

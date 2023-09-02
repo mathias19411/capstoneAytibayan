@@ -39,31 +39,24 @@ require __DIR__.'/auth.php';
 
 
 //IT Staff Group Middleware
-Route::get('/itstaff/dashboard', [ItStaffController::class, 'ItStaffDashboard'])->name('itstaff.dashboard');
+Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
+    // middleware named userroleprotection will protect routes to be only accessible by the right user role
+    Route::get('/ITStaff/home', [ItStaffController::class, 'ItStaffHome'])->name('itstaff.home');
 
-Route::get('/ITStaff/home', function () {
-    return view('ITStaff.home');
-});
+    //ITStaff Logout
+    Route::get('/ITStaff/logout', [ItStaffController::class, 'ItStaffLogout'])->name('itstaff.logout');
 
-Route::get('/ITStaff/addprogram', function () {
-    return view('ITStaff.addprogram');
-});
+    Route::get('/ITStaff/addprogram', [ItStaffController::class, 'ItStaffAddProgram'])->name('itstaff.addProgram');
 
-Route::get('/ITStaff/edit_program', function () {
-    return view('ITStaff.edit_program');
-});
+    Route::get('/ITStaff/editprogram', [ItStaffController::class, 'ItStaffEditProgram'])->name('itstaff.editProgram');
 
-Route::get('/ITStaff/announcement', function () {
-    return view('ITStaff.announcement');
-});
+    Route::get('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncement'])->name('itstaff.announcement');
 
-Route::get('/ITStaff/event', function () {
-    return view('ITStaff.event');
-});
+    Route::get('/ITStaff/event', [ItStaffController::class, 'ITStaffEvent'])->name('itstaff.event');
 
-Route::get('/ITStaff/registration', function () {
-    return view('ITStaff.registration');
-});
+    Route::get('/ITStaff/registration', [ItStaffController::class, 'ITStaffRegistration'])->name('itstaff.registration');
+
+}); //End group itstaff middleware
 
 //Project Coordinator Group Middleware
 Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');
@@ -73,8 +66,7 @@ Route::get('/beneficiary/dashboard', [BeneficiaryController::class, 'Beneficiary
 
 
 //Visitor Routes
-Route::get('/visitor/dashboard', [VisitorController::class, 'VisitorDashboard'])->name('visitor.dashboard');
-
+Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
 
 Route::get('/Visitor/contacts', function () {
     return view('Visitor.contacts');

@@ -15,7 +15,7 @@
 
     <div class="nav-right">
         <ul>
-            <li><a href='{{ route('visitor.dashboard') }}' class="scrollToTopButton">Home</a></li>
+            <li><a href='{{ route('visitor.home') }}' class="scrollToTopButton">Home</a></li>
             {{-- <li><a class='dropdown-arrow' href='http://'>Products</a>
             <ul class='sub-menus'>
                 <li><a href='http://'>Products 1</a></li>

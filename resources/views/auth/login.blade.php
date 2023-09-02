@@ -58,6 +58,9 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('Assets/css/authentication.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
+
+    {{-- toastr CSS --}}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
 
 <body>
@@ -98,14 +101,23 @@
                 </div>
             </div> --}}
             <div class="login-buttons">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 login-button-item"
-                        href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+                <div class="login-button1">
+                    <a href="{{ route('visitor.home') }}" class="back-to-home-button">Back to Home</a>
+                </div>
+                <div class="login-button2">
+                    <div class="login-button2-centered">
+                        @if (Route::has('password.request'))
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 login-button-item"
+                                href="{{ route('password.request') }}">
+                                {{ __('Forgot your password?') }}
+                            </a>
+                        @endif
 
-                <button type="submit" class="btn btn-primary login-button-item">Login</button>
+                        <button type="submit" class="btn btn-primary login-button-item">Login</button>
+                    </div>
+
+                </div>
+
             </div>
             {{-- <div class="col-12 login-button">
                 <button type="submit" class="btn btn-primary">Login</button>
@@ -115,6 +127,44 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+
+    {{-- toastr js --}}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}";
+            toastr.options = {
+                "progressBar": true,
+                "closeButton": true,
+            }
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ", 'Info!', {
+                        timeOut: 12000
+                    });
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ", 'Success!', {
+                        timeOut: 12000
+                    });
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ", 'Warning!', {
+                        timeOut: 12000
+                    });
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ", 'Error!', {
+                        timeOut: 12000
+                    });
+                    break;
+            }
+        @endif
     </script>
 </body>
 

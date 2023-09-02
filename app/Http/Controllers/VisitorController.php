@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class VisitorController extends Controller
 {
-    public function VisitorDashboard()
+    public function VisitorHome()
     {
         return view('Visitor.visitor_index');
     } // End Method
