@@ -29,7 +29,7 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
 
     {{-- toastr CSS --}}
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"> --}}
 </head>
 
 {{-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| --}}
@@ -75,7 +75,7 @@
     <script src="{{ asset('Assets/js/itstaff.js') }}"></script>
 
     {{-- toastr js --}}
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
         @if (Session::has('message'))
@@ -110,7 +110,7 @@
                     break;
             }
         @endif
-    </script>
+    </script> --}}
 
     {{-- Add Sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

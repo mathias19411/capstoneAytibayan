@@ -7,6 +7,15 @@
         <span class="logo_name">APAO</span>
     </div>
 
+    @php
+        //Access the authenticated user's id
+$id = Illuminate\Support\Facades\AUTH::user()->id;
+
+//Access the specific row data of the user's id
+        //when using a model in blade.php, indicate the direct path of the model
+        $userProfileData = App\Models\User::find($id);
+    @endphp
+
     <div class="menu-items">
         <ul class="nav-links">
             <li>
@@ -46,7 +55,7 @@
             <li class="mode">
                 <a href="#">
                     <i> <img src="\images\logo.png" alt=""> </i>
-                    <span class="link-name">Admin 1</span>
+                    <span class="link-name">{{ $userProfileData->first_name }}</span>
                 </a>
 
             </li>
