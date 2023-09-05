@@ -4,13 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class ItStaffController extends Controller
 {
     public function ItStaffHome()
     {
-        return view('ITStaff.home');
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        $firstName = auth()->user()->first_name;
+        $middleName = auth()->user()->middle_name;
+        $lastName = auth()->user()->last_name;
+        toastr()->timeOut(7500)->addInfo('Welcome back ' . $firstName . ' ' . $middleName . ' ' . $lastName . '!');
+        return view('ITStaff.home', compact('userProfileData'));
     } // End Method
 
     /**
@@ -24,12 +35,12 @@ class ItStaffController extends Controller
 
         $request->session()->regenerateToken();
 
-        $notification = array(
-            'message' => 'Account Logged Out Successfully!',
-            'alert-type' => 'success'
-        );
+        // toastr()->addSuccess('Your Account has been logged out!');
+        toastr()->timeOut(10000)->addInfo('Your Account has been logged out!');
+        // toastr()->addWarning('Your Account has been logged out!');
+        // toastr()->addError('Your Account has been logged out!');
 
-        return redirect('/login')->with($notification);
+        return redirect('/login');
     } // End Method
 
     public function ItStaffAddProgram()

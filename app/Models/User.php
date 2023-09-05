@@ -84,7 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function generateWorkEmail()
     {
         // $workEmail = strtolower($this->first_name  . $this->middle_name . '.' . $this->last_name . '@apaoalbay.gov.ph');
-        $workEmail = strtolower(str_replace(' ', '', $this->last_name . $this->middle_name . $this->first_name) . '@gmail.com');
+        $workEmail = strtolower(str_replace(' ', '', $this->first_name . $this->middle_name . '.' . $this->last_name) . '@apaoalbay.gov.ph');
         $this->attributes['email'] = $workEmail;
     }
 

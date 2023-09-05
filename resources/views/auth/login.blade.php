@@ -60,7 +60,8 @@
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
 
     {{-- toastr CSS --}}
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    {{-- <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css> --}}
 </head>
 
 <body>
@@ -130,9 +131,9 @@
     </script>
 
     {{-- toastr js --}}
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> --}}
 
-    <script>
+    {{-- <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}";
             toastr.options = {
@@ -165,7 +166,7 @@
                     break;
             }
         @endif
-    </script>
+    </script> --}}
 </body>
 
 </html>
