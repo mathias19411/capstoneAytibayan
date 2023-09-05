@@ -159,6 +159,8 @@
                      </tbody>
                 </table>
               </div>
+              <form action="{{ route('store-announcement') }}" method="post">
+                @csrf
                   <button type="button" class="add" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add
                   </button>
@@ -175,11 +177,11 @@
                             <div class="row">
                               <div class="col-4">
                                 <label id="label_">Title</label>
-                                <input class="form-control" type="text" id="Title" placeholder="Title.... ">
+                                <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">
                               </div>
                               <div class="col-4">
                                 <label id="label_">To:</label>
-                                <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title....">
+                                <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="email">
                                 <option value="one"> orly@gmail.com </option>
                                 <option value="two"> joriza@gmail.com</option>
                                 <option value="one"> mathias@gmail.com </option>
@@ -188,7 +190,7 @@
                               </div>
                               <div class="col-4">
                                 <label id="label_">Date</label>
-                                  <input class="form-control"  type="date" id="Date" placeholder="Title....">
+                                  <input class="form-control"  type="date" id="Date" placeholder="Title...." name="date">
                                 </div>
                               </div>
                             </div>
@@ -200,12 +202,12 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="add">Save</button>
+                          <button type="submit" class="add">Save</button>
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+              </form>
                   <script src="https://code.jquery.com/jquery-3.7.0.js"> </script>
                   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"> </script>
                   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"> </script>

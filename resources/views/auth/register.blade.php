@@ -66,7 +66,7 @@
 
 <body>
     <div class="form-container">
-        <form class="row g-3 registration-form" method="POST" action="{{ route('register') }}">
+        <form class="row g-3 registration-form" method="POST" action="{{ route('registration') }}">
             @csrf
             <div class="col-md-6">
                 <label for="inputFirstName" class="form-label">First Name</label>

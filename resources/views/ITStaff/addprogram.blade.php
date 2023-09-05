@@ -71,62 +71,63 @@ document.addEventListener("DOMContentLoaded", function () {
 </head>
 <body >
 <div class="program-form">
-    <form id="myForm">
+    <form id="myForm" action="{{ route('add-program') }}" method="post">
+        @csrf
     <h1>Program Information</h1>
     
     <div class="form-row">
         <div class="input-group">
             <label for="name">Project Coordinator:</label>
-            <input type="text" id="name" placeholder="" >
+            <input type="text" id="name" placeholder="" name="project_coordinator">
         </div>
         <div class="input-group">
             <label for="program_name">Name of the Program:</label>
-            <input type="text" id="program_name" placeholder="" >
+            <input type="text" id="program_name" placeholder="" name="program">
         </div>
         <div class="input-group">
             <label for="loc">Location:</label>
-            <input type="text" id="loc" placeholder="" >
+            <input type="text" id="loc" placeholder="" name="location">
         </div>
     </div>
     
     <div class="form-row">
         <div class="input-group">
             <label for="email">Email Address:</label>
-            <input type="email" id="email" placeholder="juandelacruz@APAO_program.com" >
+            <input type="email" id="email" placeholder="juandelacruz@APAO_program.com" name="email">
         </div>
         <div class="input-group">
             <label for="contact">Contact Number:</label>
-            <input type="tel" id="contact" placeholder="09xxxxxxxxx">
+            <input type="tel" id="contact" placeholder="09xxxxxxxxx" name="contact">
         </div>
         <div class="input-group">
             <label for="info">Program Information</label>
-            <textarea id="info" placeholder="" ></textarea>
+            <textarea id="info" placeholder="" name="description"></textarea>
         </div>
     </div>
     
     <div class="form-row1">
         <div class="input-group">
             <label for="apply">How to Apply:</label>
-            <textarea id="apply" placeholder=""></textarea>
+            <textarea id="apply" placeholder="" name="quiry"></textarea>
         </div>
         <div class="input-group">
             <label for="reqs">Guidelines and Requirements:</label>
-            <textarea id="reqs" placeholder=""></textarea>
+            <textarea id="reqs" placeholder="" name="requirements"></textarea>
         </div>
         <div class="input-group">
             <label for="image">Image:</label>
-            <input type="file" id="image" accept="image/*">
+            <input type="file" id="image" accept="image/*" name="image">
         </div>
     </div>
     
     <div class="form-row">
         <div class="input-group">
             <label for="table_name">Table Name:</label>
-            <input type="text" id="table_name" >
+            <input type="text" id="table_name" name="table">
         </div>
         <div class="input-group">
             <label for="num_columns">Number of Columns:</label>
-            <input type="number" id="num_columns"  min="1" max="10">
+            <input type="number" id="num_columns"  min="1" max="10" name="columns">
         </div>
     </div>
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\events;
+use App\Models\programs;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class ProgramController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,21 +28,13 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $event = new events;
-        $event->title = request('title');
-        $event->date = request('date');
-        $event->message = request('message');
-        $event->image = request('image');
-
-        $event->save();
-
-        return redirect()->back()->with('success', 'Data inserted successfully!');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(events $events)
+    public function show(programs $programs)
     {
         //
     }
@@ -50,7 +42,7 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(events $events)
+    public function edit(programs $programs)
     {
         //
     }
@@ -58,7 +50,7 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, events $events)
+    public function update(Request $request, programs $programs)
     {
         //
     }
@@ -66,7 +58,7 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(events $events)
+    public function destroy(programs $programs)
     {
         //
     }
