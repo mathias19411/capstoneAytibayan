@@ -52,13 +52,31 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
         </ul>
         <ul class="logout-mode">
-            <li class="mode">
-                <a href="#">
-                    <i> <img src="\images\logo.png" alt=""> </i>
-                    <span class="link-name">{{ $userProfileData->first_name }}</span>
+      <li class="mode">
+    <div class="profile-dropdown">
+        <a href="#">
+            <i><img src="\images\logo.png" alt=""></i>
+            <span class="link-name">{{ $userProfileData->first_name }}</span>
+            <i class="uil uil-angle-down"></i>
+        </a>
+        <ul class="submenu">
+            <li>
+                <a href="{{ route('itstaff.editProfile') }}">
+                    <i class="uil uil-edit"></i>
+                    <span class="link-name">Edit Profile</span>
                 </a>
-
             </li>
+            <li>
+                <a href="{{ route('itstaff.changePassword') }}">
+                    <i class="uil uil-lock"></i>
+                    <span class="link-name">Change Password</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+
             <li><a href="{{ route('itstaff.logout') }}">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
