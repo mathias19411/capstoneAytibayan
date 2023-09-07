@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\events;
+use App\Models\announcement;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class AnnouncementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,11 +28,11 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $event = new events;
+        $event = new announcement;
         $event->title = request('title');
+        $event->email = request('email');
         $event->date = request('date');
         $event->message = request('message');
-        $event->image = request('image');
 
         $event->save();
 
@@ -42,7 +42,7 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(events $events)
+    public function show(announcement $announcement)
     {
         //
     }
@@ -50,7 +50,7 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(events $events)
+    public function edit(announcement $announcement)
     {
         //
     }
@@ -58,7 +58,7 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, events $events)
+    public function update(Request $request, announcement $announcement)
     {
         //
     }
@@ -66,7 +66,7 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(events $events)
+    public function destroy(announcement $announcement)
     {
         //
     }

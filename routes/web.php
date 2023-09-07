@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\BeneficiaryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ItStaffController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectCoordinatorController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -48,7 +50,7 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 
     Route::get('/ITStaff/addprogram', [ItStaffController::class, 'ItStaffAddProgram'])->name('itstaff.addProgram');
 
-    Route::get('/ITStaff/edit_program', [ItStaffController::class, 'ItStaffEditProgram'])->name('itstaff.edit_program');
+    Route::get('/ITStaff/editprogram', [ItStaffController::class, 'ItStaffEditProgram'])->name('itstaff.editProgram');
 
     Route::get('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncement'])->name('itstaff.announcement');
 
@@ -110,3 +112,12 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
 })->name('Visitor.category.page');
 
 Route::get('/Visitor', [EventController::class, 'index']);
+
+//store-event
+route::post('/ITStaff/event', [EventController::class, 'store'])->name('store-event');
+
+//store-announcement
+route::post('/ITStaff/announcement', [AnnouncementController::class, 'store'])->name('store-announcement');
+
+//Registration
+route::post('/auth/register', [RegistrationController::class, 'store'])->name('registration');

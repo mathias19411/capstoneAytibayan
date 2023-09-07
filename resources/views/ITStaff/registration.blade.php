@@ -113,6 +113,7 @@
                      </tbody>
                 </table>
               </div>
+              <form action="{{ route('registration') }}" method="post">
                   <button type="button" class="add" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add
                   </button>
@@ -154,7 +155,7 @@
                               </div>
                               <div class="col-4">
                                 <label for="Lname">Program </label>
-                                  <input class="form-control"  type="text" name="Lname" placeholder="Binhi ng Pag-asa" required>
+                                  <input class="form-control"  type="text" name="program" placeholder="Binhi ng Pag-asa" required>
                               </div>
                             </div>
                             <form>
@@ -162,11 +163,12 @@
 
                         <div class="modal-footer">
                           <button type="button" class="close" data-bs-dismiss="modal">Cancel</button>
-                          <button type="button" class="add">Register</button>
+                          <button type="submit" class="add">Register</button>
                         </div>
                       </div>
                     </div>
                   </div>
+                </form>
                   <script src="https://code.jquery.com/jquery-3.7.0.js"> </script>
                   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"> </script>
                   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"> </script>

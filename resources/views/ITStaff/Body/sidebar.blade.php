@@ -25,8 +25,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </a>
             </li>
             <li>
-                <a href="{{ route('itstaff.announcement') }}"
-                    class="{{ request()->is('ITStaff/announcement') ? 'active' : '' }}">
+                <a href="{{ route('itstaff.announcement') }}" class="{{ request()->is('ITStaff/announcement') ? 'active' : '' }}">
                     <i class="uil uil-bell"></i>
                     <span class="link-name">Announcement</span>
                 </a>
