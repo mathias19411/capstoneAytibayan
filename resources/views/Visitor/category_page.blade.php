@@ -21,7 +21,7 @@
 <!-- header -->
 
 
--->
+
 
 <!-- main content -->
 @yield('visitor')
