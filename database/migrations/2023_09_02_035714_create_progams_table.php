@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('image');
             $table->string('table_name');
             $table->integer('number_columns');
-            $table->string('image');
 
             $table->timestamps();
         });

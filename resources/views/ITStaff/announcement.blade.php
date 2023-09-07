@@ -35,17 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Binhi ng Pag-asa Seminar</td>
-                            <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</td>
-                            <td>orlyjrgrona.encabo@bicol-u.edu.ph</td>
-                            <td>2023-09-21</td>
-                            <td>
-                                 <button><i class="fa-solid fa-eye fa-2xs"></i></button>
-                                <button><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                <button><i class="fa-solid fa-trash fa-2xs"></i></button>
-                            </td>
-                        </tr>
+                    
                         <tr>
                             <td>Binhi ng Pag-asa Seminar</td>
                             <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing </td>
