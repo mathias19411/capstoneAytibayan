@@ -241,6 +241,117 @@ nav.close ~ .dashboard .top{
 
 }
 
+
+/* Style the profile dropdown container */
+.profile-dropdown {
+    position: relative; /* Ensure it's a positioned element for absolute positioning */
+    display: inline-block; /* Display it inline with the content */
+    margin-right: 20px; /* Add spacing to the right */
+}
+
+/* Style the image */
+.profile-dropdown img {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    cursor: pointer; /* Change the cursor to a pointer to indicate it's clickable */
+}
+
+/* Style the name */
+.link-name {
+    font-weight: bold; /* Add some styling to the name */
+    margin-left: 10px; /* Add spacing to the left of the name */
+}
+
+/* Style the submenus */
+.sub-menus {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width:200px; /* Set a fixed width for the submenu container */
+    height: 250px; /* Set a fixed height for the submenu container */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(125, 29, 29, 0.2);
+    border-color: var(--primary-color);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    text-align: center; /* Center align the contents */
+}
+
+.sub-menus li{
+    font-size:0.90rem;
+}
+
+.sub-menus li a:hover{
+ color: var(--primary-color);
+}
+/* Style the profile info container */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the content horizontally */
+    margin-bottom: 10px; /* Add spacing between profile info and other items */
+}
+
+/* Style the profile image */
+.profile-image img {
+    margin-top: 5px;
+    width: 110px;
+    height: 110px;
+    cursor: pointer;
+}
+/* Style the submenu items */
+.sub-menus li:not(.profile-info) {
+    text-align: left; /* Left align the other items */
+    margin-left: 10px; /* Add spacing to the left of other items */
+}
+
+/* Style the submenu links */
+.sub-menus a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px 0;
+}
+/* Style the link name */
+.linkname {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Style the line underneath the link name */
+.linkname::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--colorOrange);
+}
+
+/* Style the submenu items */
+.menu-item {
+    text-align: left;
+    margin-left: 10px;
+}
+
+/* Style the submenu links */
+.menu-item a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px 0;
+}
+
+
 .top .heading h1{
     position: flex;
     text-align: center;
@@ -252,6 +363,7 @@ nav.close ~ .dashboard .top{
     transform: translateY(-50%);
     color: var(--primary-color);
 }
+
 
 /** Home Content CSS**/
 
@@ -803,6 +915,8 @@ nav.close ~ .dashboard .top{
 }
 
 
+
+
 /*--------------------------ANNOUNCEMENT, EVENTS & REGISTRATION----------------------*/
 
 
@@ -1281,4 +1395,6 @@ body.announcement_events #img-view img {
   }
 }
 
-
+/** USER RPROFILE**/
+  
+ 

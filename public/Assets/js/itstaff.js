@@ -105,3 +105,27 @@ searchInput.addEventListener("input", () => {
         }
     });
 });
+$(document).ready(function() {
+    $(".profile-icon").click(function(e) {
+        e.stopPropagation(); // Prevent closing the dropdown when clicking on the icon
+        $(".profile-dropdown").toggle();
+    });
+
+    $(document).click(function() {
+        $(".profile-dropdown").hide();
+    });
+
+    $(".profile-dropdown").click(function(e) {
+        e.stopPropagation(); // Prevent closing when clicking inside the dropdown
+    });
+});
+$(document).ready(function() {
+    // Hide the name and submenus initially
+    $(".sub-menus").hide();
+    
+    // Add a click event handler to the image
+    $("i img").click(function() {
+      // Toggle the visibility of the name and submenus
+      $(".sub-menus").toggle();
+    });
+  });

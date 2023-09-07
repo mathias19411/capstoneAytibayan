@@ -48,7 +48,7 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 
     Route::get('/ITStaff/addprogram', [ItStaffController::class, 'ItStaffAddProgram'])->name('itstaff.addProgram');
 
-    Route::get('/ITStaff/editprogram', [ItStaffController::class, 'ItStaffEditProgram'])->name('itstaff.editProgram');
+    Route::get('/ITStaff/edit_program', [ItStaffController::class, 'ItStaffEditProgram'])->name('itstaff.edit_program');
 
     Route::get('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncement'])->name('itstaff.announcement');
 
@@ -56,6 +56,15 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 
     Route::get('/ITStaff/registration', [ItStaffController::class, 'ITStaffRegistration'])->name('itstaff.registration');
 
+    Route::get('/ITStaff/profile', [ItStaffController::class, 'ITStaffProfile'])->name('itstaff.profile');
+    Route::get('/ITStaff/profile', function () {
+        return view('itstaff.profile');
+    });
+
+    Route::get('/ITStaff/pass', [ItStaffController::class, 'ITStaffPass'])->name('itstaff.pass');
+    Route::get('/ITStaff/pass', function () {
+        return view('itstaff.pass');
+    });
 }); //End group itstaff middleware
 
 //Project Coordinator Group Middleware
