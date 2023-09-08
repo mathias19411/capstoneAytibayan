@@ -74,6 +74,9 @@ Route::middleware(['auth', 'userroleprotection:project_coordinator'])->group(fun
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');
 
+
+    Route::get('/Project_Coordinator/inquiry', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('Project_Coordinator.inquiry');
+
     // more routes here for Project Coordinator
 
 }); //End group Project Coordinator middleware
@@ -121,3 +124,9 @@ route::post('/ITStaff/announcement', [AnnouncementController::class, 'store'])->
 
 //Registration
 route::post('/auth/register', [RegistrationController::class, 'store'])->name('registration');
+
+
+
+Route::get('/Project_Coordinator/inquiry', function () {
+    return view('Project_Coordinator.inquiry');
+});

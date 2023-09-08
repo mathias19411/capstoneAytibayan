@@ -268,8 +268,7 @@ nav.close ~ .dashboard .top{
     position: absolute;
     top: 100%;
     right: 0;
-    width:200px; /* Set a fixed width for the submenu container */
-    height: 250px; /* Set a fixed height for the submenu container */
+    width:200px; 
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(125, 29, 29, 0.2);
     border-color: var(--primary-color);
@@ -277,7 +276,7 @@ nav.close ~ .dashboard .top{
     border-radius: 10px;
     z-index: 1;
     list-style: none;
-    padding: 0;
+    padding: 5px;
     text-align: center; /* Center align the contents */
 }
 
@@ -1395,6 +1394,6 @@ body.announcement_events #img-view img {
   }
 }
 
-/** USER RPROFILE**/
+
   
  
