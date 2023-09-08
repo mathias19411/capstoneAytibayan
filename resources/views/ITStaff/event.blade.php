@@ -159,6 +159,8 @@
                      </tbody>
                 </table>
               </div>
+              <form action="" method="post" action="{{ route('store-event') }}">
+                @csrf
                   <button type="button" class="add" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add
                   </button>
@@ -175,11 +177,11 @@
                             <div class="row">
                               <div class="col-6">
                                 <label id="label_">Title</label>
-                                <input class="form-control" type="text" id="Title" placeholder="Title.... ">
+                                <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">
                               </div>
                               <div class="col-6">
                                 <label id="label_">Date</label>
-                                  <input class="form-control"  type="date" id="Date" placeholder="Title....">
+                                  <input class="form-control"  type="date" id="Date" placeholder="Title...." name="date">
                                 </div>
                               </div>
                             </div>
@@ -190,7 +192,7 @@
                           </div>
                           </div>
                           <label for="input-file" id="drop-img">
-                            <input type="file" accept="image/*" id="input-file" hidden>
+                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
                             <div id="img-view">
                                 <img src="/images/img_icon.png">
                                 <p> Drag and drop or click here <br> to upload picture</p>
@@ -198,12 +200,12 @@
                           </label>
                         <div class="modal-footer">
                           <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="add">Save</button>
+                          <button type="submit" class="add">Save</button>
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+              </form>
                   <script src="https://code.jquery.com/jquery-3.7.0.js"> </script>
                   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"> </script>
                   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"> </script>

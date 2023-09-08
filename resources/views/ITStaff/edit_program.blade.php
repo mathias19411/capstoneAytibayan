@@ -13,7 +13,8 @@
 </head>
 <body>
 <div class="program-form">
-    <form id="myForm">
+    <form id="myForm" action="{{ route('edit-program') }}" method="post">
+        @csrf
     <h1>Program Information</h1>
     
     <div class="form-row">

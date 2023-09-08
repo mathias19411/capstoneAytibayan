@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\BeneficiaryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ItStaffController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectCoordinatorController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -56,6 +58,15 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 
     Route::get('/ITStaff/registration', [ItStaffController::class, 'ITStaffRegistration'])->name('itstaff.registration');
 
+    Route::get('/ITStaff/profile', [ItStaffController::class, 'ITStaffProfile'])->name('itstaff.profile');
+    Route::get('/ITStaff/profile', function () {
+        return view('itstaff.profile');
+    });
+
+    Route::get('/ITStaff/pass', [ItStaffController::class, 'ITStaffPass'])->name('itstaff.pass');
+    Route::get('/ITStaff/pass', function () {
+        return view('itstaff.pass');
+    });
 }); //End group itstaff middleware
 
 //Project Coordinator Group Middleware
@@ -101,3 +112,12 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
 })->name('Visitor.category.page');
 
 Route::get('/Visitor', [EventController::class, 'index']);
+
+//store-event
+route::post('/ITStaff/event', [EventController::class, 'store'])->name('store-event');
+
+//store-announcement
+route::post('/ITStaff/announcement', [AnnouncementController::class, 'store'])->name('store-announcement');
+
+//Registration
+route::post('/auth/register', [RegistrationController::class, 'store'])->name('registration');
