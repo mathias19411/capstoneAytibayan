@@ -130,3 +130,8 @@ route::post('/auth/register', [RegistrationController::class, 'store'])->name('r
 Route::get('/Project_Coordinator/inquiry', function () {
     return view('Project_Coordinator.inquiry');
 });
+
+
+Route::get('/Project_Coordinator/progress', function () {
+    return view('Project_Coordinator.progress');
+});

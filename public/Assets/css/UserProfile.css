@@ -732,16 +732,20 @@ textarea.form-control {
 }
 
 .btn-info {
+  font-size: 10px;
+  margin-top: o;
+  text-decoration: none;
+  padding:5px;
   color: #fff;
-  border-color: #11cdef;
-  background-color: #11cdef;
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
   box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
 
 .btn-info:hover {
   color: #fff;
-  border-color: #11cdef;
-  background-color: #11cdef;
+  border-color: green;
+  background-color:green;
 }
 
 .btn-info:focus {
@@ -2080,8 +2084,22 @@ p {
   .btn {
     margin-bottom: 10px;
   }
-}
+  
 
 #navbar .navbar {
   margin-bottom: 20px;
+}
+}
+@media (max-width: 991px) {
+ 
+    .display-2 {
+      font-size: 30px;
+      text-align: left; 
+  
+    }
+  .btn-info{
+    font-size: 8px;
+    align-items: center;
+    text-align: center;
+  }
 }

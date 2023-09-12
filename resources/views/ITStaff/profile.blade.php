@@ -34,6 +34,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
      
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2">Hello {{ $userProfileData->first_name }}!</h1>
+            <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
            
          
         </div>
