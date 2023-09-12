@@ -17,16 +17,9 @@ class ItStaffController extends Controller
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        $firstName = auth()->user()->first_name;
-        $middleName = auth()->user()->middle_name;
-        $lastName = auth()->user()->last_name;
-        toastr()->timeOut(7500)->addInfo('Welcome back ' . $firstName . ' ' . $middleName . ' ' . $lastName . '!');
         return view('ITStaff.home', compact('userProfileData'));
     } // End Method
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function ItStaffLogout(Request $request)
     {
         Auth::guard('web')->logout();
@@ -62,8 +55,49 @@ class ItStaffController extends Controller
     {
         return view('ITStaff.event');
     } // End Method
-    public function ITStaffRegistration()
+
+    public function ITStaffViewProfile()
     {
-        return view('ITStaff.registration');
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        return view('ITStaff.profile', compact('userProfileData'));
+    } // End Method
+
+    public function ITStaffEditProfile(Request $request)
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userData = User::find($id);
+
+        $userData->first_name = $request->first_name;
+        $userData->middle_name = $request->middle_name;
+        $userData->last_name = $request->last_name;
+        $userData->phone = $request->phone;
+        $userData->primary_address = $request->primary_address;
+        $userData->city = $request->city;
+        $userData->province = $request->province;
+        $userData->zip = $request->zip;
+
+        if ($request->file('photo'))
+        {
+            $file = $request->file('photo');
+
+            @unlink(public_path('Uploads/ITStaff_Images/'.$userData->photo));
+
+            $fileName = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('Uploads/ITStaff_Images'),$fileName);
+            $userData['photo'] = $fileName;
+        }
+        $userData->save();
+
+        toastr()->timeOut(10000)->addSuccess('Your Profile has been Updated!');
+
+        return redirect()->back();
     } // End Method
 }
