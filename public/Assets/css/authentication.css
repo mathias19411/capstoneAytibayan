@@ -1,28 +1,101 @@
 /* Import Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
 /* styles.css */
-.form-container {
+*{
+    font-family: 'Poppins', sans-serif;
+}
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background-image: url("/images/background.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    position:relative;
+    min-height: 100vh;
 }
 
-.registration-form {
-    width: 1000px;
-    padding: 20px;
+/*REGISTRATION*/
+body.register .form-container {
+    width: 800px;
+    margin: 30px; 
     background-color: white;
-    border-radius: 8px;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(50px);
 }
 
+body.register .side-image {
+    background-image: url("/images/apao_bg_yellow.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 120px;
+    border-radius: 10px;
+
+}
+
+body.register img {
+    width: 100px;
+    position: absolute; 
+}
+
+/*LOGIN apao_bg_yellow.png*/
+body.login .form-container {
+    width: 700px;
+    margin: 30px; 
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.login .side-image {
+    background-image: url("/images/apao_bg_yellow.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 10px 50% 50% 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+body.login img {
+    width: 170px;
+    position: absolute; 
+}
+
+body.login .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 40px;
+}
+
+body.login .input {
+    margin-top: 15px;
+}
+
+h3 {
+    color: #7BB701;
+    text-align: center;
+    font-weight: bold;
+}
+
+/*
 .login-form {
     width: 500px;
     padding: 20px;
@@ -31,8 +104,10 @@
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(50px);
+    top: 50%;
+    left: 50%;
 }
-
+*/
 .login-buttons {
     display: grid;
     grid-template-columns: 0.4fr 1fr;
@@ -77,4 +152,63 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+.registration-form .button {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 50%;
+    margin: 0 auto;
+}
+
+.login-form .button {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 50%;
+    margin: 0 auto;
+}
+
+.button:hover {
+	background-color: #8db600;
+	transition: 0.7s;
+}
+
+@media (max-width: 768) {
+    body.register .form-container {
+        margin: 70px;
+    }
+    body.register .registration-form {
+        width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    body.login .side-image {
+        display: none; /* Hide the side image on smaller screens */
+    }
+
+    body.login img {
+        width: 100%; /* Make the image width 100% of the container on smaller screens */
+        position: static; /* Remove absolute positioning on smaller screens */
+    }
+
+    body.login .form-container {
+        width: 100%; /* Make the form container width 100% on smaller screens */
+    }
 }

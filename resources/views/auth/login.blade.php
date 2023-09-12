@@ -64,65 +64,73 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css> --}}
 </head>
 
-<body>
+<body class="login">
     <div class="form-container">
+        
         <form class="row g-3 login-form" method="POST" action="{{ route('login') }}">
             @csrf
-            <div class="col-md-12">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" :value="old('email')"
-                    placeholder="example@gmail.com" required>
-                @error('email')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+            <div class="col-md-4 side-image">    
+                    <img id="image" src="/images/APAO logo.png">
             </div>
-            <div class="col-md-12">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password"
-                    autocomplete="current-password">
-                @error('password')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox"
-                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-            {{-- <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Check me out
-                    </label>
-                </div>
-            </div> --}}
-            <div class="login-buttons">
-                <div class="login-button1">
-                    <a href="{{ route('visitor.home') }}" class="back-to-home-button">Back to Home</a>
-                </div>
-                <div class="login-button2">
-                    <div class="login-button2-centered">
-                        @if (Route::has('password.request'))
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 login-button-item"
-                                href="{{ route('password.request') }}">
-                                {{ __('Forgot your password?') }}
-                            </a>
-                        @endif
-
-                        <button type="submit" class="btn btn-primary login-button-item">Login</button>
+            <div class="col-md-8 form">
+                <div class="input-form">
+                    <h3> Albay Provincial Agricultural Office </h3>
+                    <div class="col-md-12 input">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" :value="old('email')"
+                            placeholder="example@gmail.com" required>
+                        @error('email')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-12 input">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            autocomplete="current-password">
+                        @error('password')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
+                        <!-- Remember Me -->
+                        <div class="block mt-4">
+                        <label for="remember_me" class="inline-flex items-center">
+                            <input id="remember_me" type="checkbox"
+                                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                        </label>
+                        </div>
+                        {{-- <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                            <label class="form-check-label" for="gridCheck">
+                                Check me out
+                            </label>
+                        </div>
+                        </div> --}}
+                        <div class="login-buttons">
+                            <div class="login-button1">
+                                <a href="{{ route('visitor.home') }}" class="back-to-home-button">Back to Home</a>
+                            </div>
+                            <div class="login-button2">
+                                <div class="login-button2-centered">
+                                    @if (Route::has('password.request'))
+                                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 login-button-item"
+                                            href="{{ route('password.request') }}">
+                                            {{ __('Forgot your password?') }}
+                                        </a>
+                                    @endif
+                            </div>
+                        </div>
+                    </div>
+                        <button type="submit" class="button login-button-item">Login</button>
+                 
+                    {{-- <div class="col-12 login-button">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div> --}}
+                    
                 </div>
-
             </div>
-            {{-- <div class="col-12 login-button">
-                <button type="submit" class="btn btn-primary">Login</button>
-            </div> --}}
         </form>
     </div>
 
