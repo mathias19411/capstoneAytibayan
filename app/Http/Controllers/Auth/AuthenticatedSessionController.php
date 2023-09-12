@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -30,6 +31,15 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $url = '';
+         //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        $firstName = auth()->user()->first_name;
+        $middleName = auth()->user()->middle_name;
+        $lastName = auth()->user()->last_name;
         // Condition to check for user roles
         if($request->user()->role === 'itstaff')
         {
@@ -44,12 +54,9 @@ class AuthenticatedSessionController extends Controller
             $url = '/Beneficiary/home';
         }
 
-        $notification = array(
-            'message' => 'Welcome to the dashboard!',
-            'alert-type' => 'info'
-        );
+        toastr()->timeOut(7500)->addInfo('Welcome back ' . $firstName . ' ' . $middleName . ' ' . $lastName . '!');
 
-        return redirect()->intended($url)->with($notification);
+        return redirect()->intended($url);
 
     }
 

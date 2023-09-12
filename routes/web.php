@@ -56,12 +56,11 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 
     Route::get('/ITStaff/event', [ItStaffController::class, 'ITStaffEvent'])->name('itstaff.event');
 
-    Route::get('/ITStaff/registration', [ItStaffController::class, 'ITStaffRegistration'])->name('itstaff.registration');
+    //IT Staff View Profile
+    Route::get('/ITStaff/viewprofile', [ItStaffController::class, 'ITStaffViewProfile'])->name('itstaff.viewprofile');
 
-    Route::get('/ITStaff/profile', [ItStaffController::class, 'ITStaffProfile'])->name('itstaff.profile');
-    Route::get('/ITStaff/profile', function () {
-        return view('itstaff.profile');
-    });
+    //IT Staff Edit Profile Data
+    Route::post('/ITStaff/editprofile', [ItStaffController::class, 'ITStaffEditProfile'])->name('itstaff.editprofile');
 
     Route::get('/ITStaff/pass', [ItStaffController::class, 'ITStaffPass'])->name('itstaff.pass');
     Route::get('/ITStaff/pass', function () {
@@ -72,8 +71,10 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 //Project Coordinator Group Middleware
 Route::middleware(['auth', 'userroleprotection:project_coordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
-    Route::get('/projectcoordinator/dashboard', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('projectcoordinator.dashboard');
+    Route::get('/ProjectCoordinator/home', [ProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('projectcoordinator.home');
 
+    //ITStaff Logout
+    Route::get('/ProjectCoordinator/logout', [ProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('projectCoordinator.logout');
 
     Route::get('/Project_Coordinator/inquiry', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('Project_Coordinator.inquiry');
 

@@ -64,11 +64,15 @@
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
 </head>
 
-<body>
+<body class="register">
     <div class="form-container">
         <form class="row g-3 registration-form" method="POST" action="{{ route('registration') }}">
             @csrf
-            <div class="col-md-6">
+            <h3> Albay Provincial Agricultural Office </h3>
+            <div class="side-image">    
+                    <img src="/images/APAO logo.png">
+            </div>
+            <div class="col-md-4">
                 <label for="inputFirstName" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="inputFirstName" name="first_name"
                     placeholder="John Sammi" required>
@@ -76,7 +80,7 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label for="inputMiddleName" class="form-label">Middle Name</label>
                 <input type="text" class="form-control" id="inputMiddleName" name="middle_name"
                     placeholder="Diwally">
@@ -84,7 +88,7 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label for="inputLastName" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Beatosai"
                     required>
@@ -163,7 +167,7 @@
                 </div>
             </div> --}}
             <div class="col-12 register-button">
-                <button type="submit" class="btn btn-primary">Register!</button>
+                <button type="submit" class="button">Register</button>
             </div>
         </form>
     </div>

@@ -25,7 +25,8 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </a>
             </li>
             <li>
-                <a href="{{ route('itstaff.announcement') }}" class="{{ request()->is('ITStaff/announcement') ? 'active' : '' }}">
+                <a href="{{ route('itstaff.announcement') }}"
+                    class="{{ request()->is('ITStaff/announcement') ? 'active' : '' }}">
                     <i class="uil uil-bell"></i>
                     <span class="link-name">Announcement</span>
                 </a>
@@ -37,8 +38,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </a>
             </li>
             <li>
-                <a href="{{ route('itstaff.registration') }}"
-                    class="{{ request()->is('ITStaff/registration') ? 'active' : '' }}">
+                <a href="#" class="{{ request()->is('ITStaff/registration') ? 'active' : '' }}">
                     <i class="uil uil-user-plus"></i>
                     <span class="link-name">Registration</span>
                 </a>
@@ -51,9 +51,9 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
         </ul>
         <ul class="logout-mode">
-       
 
-            <li><a href="">
+
+            <li><a href="{{ route('itstaff.logout') }}">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
@@ -69,44 +69,45 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             <h1>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h1>
         </div>
         <div class="profile-dropdown">
-                <a href="#">
-                    <i><img src="\images\logo.png" alt=""></i>
-                    
-                </a>
-                <ul class="sub-menus">
-                    <li class="profile-info">
-                        <div class="profile-image">
-                            <img src="\images\logo.png" alt="">
-                        </div>
-                        <span class="linkname">{{ $userProfileData->first_name }} {{ $userProfileData->last_name }}</span>
-                    </li>
-                    <li>
-                <a href="">
-                    <i class="uil uil-user"></i> Profile
-                </a>
+            <a href="#">
+                <i><img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                        class="rounded-circle"></i>
+
+            </a>
+            <ul class="sub-menus">
+                <li class="profile-info">
+                    <div class="profile-image">
+                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                            class="rounded-circle">
+                    </div>
+                    <span class="linkname">{{ $userProfileData->first_name }} {{ $userProfileData->last_name }}</span>
                 </li>
-                    <li><a href="#"><i class="uil uil-lock"></i> Change Password</a></li>
-                </ul>
-         </div>
+                <li>
+                    <a href="{{ route('itstaff.viewprofile') }}">
+                        <i class="uil uil-user"></i> Profile
+                    </a>
+                </li>
+                <li><a href="#"><i class="uil uil-lock"></i> Change Password</a></li>
+            </ul>
+        </div>
 
 
 
 
-    
+
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-$(document).ready(function() {
-  // Hide the name and submenus initially
-  $(".sub-menus").hide();
-  
-  // Add a click event handler to the image
-  $("i img").click(function() {
-    // Toggle the visibility of the name and submenus
-    $(".sub-menus").toggle();
-  });
-});
-</script>
+        $(document).ready(function() {
+            // Hide the name and submenus initially
+            $(".sub-menus").hide();
+
+            // Add a click event handler to the image
+            $("i img").click(function() {
+                // Toggle the visibility of the name and submenus
+                $(".sub-menus").toggle();
+            });
+        });
+    </script>
 
     <script src="{{ asset('Assets/js/itstaff.js') }}"></script>
-
