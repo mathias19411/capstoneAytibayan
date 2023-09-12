@@ -200,15 +200,15 @@ h3 {
 
 @media (max-width: 768px) {
     body.login .side-image {
-        display: none; /* Hide the side image on smaller screens */
+        display: none; 
     }
 
     body.login img {
-        width: 100%; /* Make the image width 100% of the container on smaller screens */
-        position: static; /* Remove absolute positioning on smaller screens */
+        width: 100%; 
+        position: static; 
     }
 
     body.login .form-container {
-        width: 100%; /* Make the form container width 100% on smaller screens */
+        width: 100%; 
     }
 }
