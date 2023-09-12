@@ -47,7 +47,7 @@
                                 <div class="card-profile-image">
 
                                     <img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
-                                        class="rounded-circle">
+                                        class="img-fluid ht-180 wd-180 rounded-circle">
 
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                         </div>
                                         <div>
                                             <span class="heading">{{ $userProfileData->middle_name }}</span>
-                                            <span class="description">Midldle Name</span>
+                                            <span class="description">Middle Name</span>
                                         </div>
                                         <div>
                                             <span class="heading"> {{ $userProfileData->last_name }}</span>
@@ -137,8 +137,7 @@
                                                 <!-- Image Preview -->
                                                 <img id="image-preview"
                                                     src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
-                                                    alt="User Profile Image"
-                                                    class="img-fluid ht-100 wd-100 rounded-circle">
+                                                    alt="User Profile Image" class="img-fluid-small  rounded-circle">
                                                 {{-- <button type="button" id="delete-image"
                                                     class="btn btn-danger btn-sm"><i class="fas fa-times"></i>
                                                     Delete</button> --}}

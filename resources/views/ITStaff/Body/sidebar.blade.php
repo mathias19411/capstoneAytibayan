@@ -71,7 +71,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         <div class="profile-dropdown">
             <a href="#">
                 <i><img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
-                        class="ht-100 wd-100 rounded-circle"></i>
+                        class="rounded-circle"></i>
 
             </a>
             <ul class="sub-menus">
