@@ -26,59 +26,60 @@
             style="max-height: 150px; background-image: url('/images/background.png'); background-size: cover; background-position: center top;">
 
 
-      <span class="mask bg-gradient-default opacity-8"></span>
-      <!-- Header container -->
-      <div class="container-fluid d-flex align-items-center">
-     
-          <div class="col-lg-7 col-md-10">
-            <h1 class="display-2">Hello {{ $userProfileData->first_name }}!</h1>
-            <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
-           
-         
+            <span class="mask bg-gradient-default opacity-8"></span>
+            <!-- Header container -->
+            <div class="container-fluid d-flex align-items-center">
+
+                <div class="col-lg-7 col-md-10">
+                    <h1 class="display-2">Hello {{ $userProfileData->first_name }}!</h1>
+                    <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
+
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!-- Page content -->
-    <div class="container-fluid mt--7">
-      <div class="row">
-        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-          <div class="card card-profile shadow">
-            <div class="row justify-content-center">
-              <div class="col-lg-3 order-lg-2">
-                <div class="card-profile-image">
-                  <a href="#">
-                    <img src="\images\logo.png" class="rounded-circle">
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-              
-            </div>
-            <div class="card-body pt-0 pt-md-4">
-              <div class="row">
-                <div class="col">
-                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                    <div>
-                      <span class="heading">{{ $userProfileData->first_name }} </span>
-                      <span class="description">Given Name</span>
-                    </div>
-                    <div>
-                      <span class="heading">{{ $userProfileData->middle_name }}</span>
-                      <span class="description">Midldle Name</span>
-                    </div>
-                    <div>
-                      <span class="heading"> {{ $userProfileData->last_name }}</span>
-                      <span class="description">Last Name</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="text-center">
-                <h3>
-                {{ $userProfileData->email }}<span class="font-weight-light"></span>
-                </h3>
-                <div class="h5 font-weight-300">
+        <!-- Page content -->
+        <div class="container-fluid mt--7">
+            <div class="row">
+                <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+                    <div class="card card-profile shadow">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-3 order-lg-2">
+                                <div class="card-profile-image">
+                                    <a href="#">
+                                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                            class="img-fluid rounded-circle">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+
+                        </div>
+                        <div class="card-body pt-0 pt-md-4">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                                        <div>
+                                            <span class="heading">{{ $userProfileData->first_name }} </span>
+                                            <span class="description">Given Name</span>
+                                        </div>
+                                        <div>
+                                            <span class="heading">{{ $userProfileData->middle_name }}</span>
+                                            <span class="description">Midldle Name</span>
+                                        </div>
+                                        <div>
+                                            <span class="heading"> {{ $userProfileData->last_name }}</span>
+                                            <span class="description">Last Name</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h3>
+                                    {{ $userProfileData->email }}<span class="font-weight-light"></span>
+                                </h3>
+                                <div class="h5 font-weight-300">
 
                                     <i class="ni location_pin mr-2"></i>Email Address<br>
                                 </div>
