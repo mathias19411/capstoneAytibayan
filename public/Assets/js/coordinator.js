@@ -49,3 +49,70 @@ numbers.forEach(number => {
         number.classList.add('low');
     }
 });
+let steps = [];
+
+function updateProgressBar() {
+    const progressBar = document.getElementById("progress-bar");
+    const completedSteps = steps.filter(step => step.completed).length;
+    const percent = (completedSteps / steps.length) * 100;
+    progressBar.style.width = percent + "%";
+}
+
+function completeStep(stepIndex) {
+    if (stepIndex >= 0 && stepIndex < steps.length) {
+        steps[stepIndex].completed = true;
+        updateProgressBar();
+        renderSteps();
+    }
+}
+
+function deleteStep(stepIndex) {
+    if (stepIndex >= 0 && stepIndex < steps.length) {
+        steps.splice(stepIndex, 1);
+        renderSteps();
+        updateProgressBar();
+    }
+}
+
+function addStep() {
+    const newStep = { description: '', completed: false };
+    steps.push(newStep);
+    renderSteps();
+}
+
+function renderSteps() {
+    const stepsContainer = document.getElementById("steps-container");
+    stepsContainer.innerHTML = '';
+
+    steps.forEach((step, index) => {
+        const stepDiv = document.createElement("div");
+        stepDiv.classList.add("step");
+        stepDiv.innerHTML = `
+            <span>Step ${index + 1}:</span>
+            <input type="text" class="step-description" placeholder="Enter description" value="${step.description}">
+            <button class="complete-button">Done</button>
+            <button class="delete-button">Delete</button>
+        `;
+        stepsContainer.appendChild(stepDiv);
+
+        const descriptionInput = stepDiv.querySelector(".step-description");
+        descriptionInput.addEventListener("input", (event) => {
+            steps[index].description = event.target.value;
+        });
+
+        const completeButton = stepDiv.querySelector(".complete-button");
+        completeButton.addEventListener("click", () => completeStep(index));
+
+        const deleteButton = stepDiv.querySelector(".delete-button");
+        deleteButton.addEventListener("click", () => deleteStep(index));
+
+        if (step.completed) {
+            descriptionInput.disabled = true;
+            completeButton.disabled = true;
+        }
+    });
+}
+
+// Initialize the page with an initial step
+addStep();
+
