@@ -123,11 +123,6 @@ route::post('/ITStaff/event', [EventController::class, 'store'])->name('store-ev
 //store-announcement
 route::post('/ITStaff/announcement', [AnnouncementController::class, 'store'])->name('store-announcement');
 
-//Registration
-route::post('/auth/register', [RegistrationController::class, 'store'])->name('registration');
-
-
-
 Route::get('/Project_Coordinator/inquiry', function () {
     return view('Project_Coordinator.inquiry');
 });

@@ -66,11 +66,11 @@
 
 <body class="register">
     <div class="form-container">
-        <form class="row g-3 registration-form" method="POST" action="{{ route('registration') }}">
+        <form class="row g-3 registration-form" method="POST" action="{{ route('register') }}">
             @csrf
             <h3> Albay Provincial Agricultural Office </h3>
-            <div class="side-image">    
-                    <img src="/images/APAO logo.png">
+            <div class="side-image">
+                <img src="/images/APAO logo.png">
             </div>
             <div class="col-md-4">
                 <label for="inputFirstName" class="form-label">First Name</label>
