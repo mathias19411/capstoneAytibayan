@@ -62,10 +62,12 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
     //IT Staff Edit Profile Data
     Route::post('/ITStaff/editprofile', [ItStaffController::class, 'ITStaffEditProfile'])->name('itstaff.editprofile');
 
-    Route::get('/ITStaff/pass', [ItStaffController::class, 'ITStaffPass'])->name('itstaff.pass');
-    Route::get('/ITStaff/pass', function () {
-        return view('itstaff.pass');
-    });
+    //IT Staff View Change Password
+    Route::get('/ITStaff/viewchangepassword', [ItStaffController::class, 'ITStaffViewChangePassword'])->name('itstaff.viewchangepassword');
+
+    //IT Staff Edit Change Password
+    Route::post('/ITStaff/editchangepassword', [ItStaffController::class, 'ITStaffEditChangePassword'])->name('itstaff.editchangepassword');
+    
 }); //End group itstaff middleware
 
 //Project Coordinator Group Middleware

@@ -158,7 +158,7 @@
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-FirstName">First
                                                     Name</label>
-                                                <input type="text" id="nput-FirstName"
+                                                <input type="text" id="Input-FirstName"
                                                     class="form-control form-control-alternative"
                                                     placeholder="FirstName" contenteditable="true"
                                                     value="{{ $userProfileData->first_name }}" name="first_name">
