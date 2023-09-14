@@ -987,6 +987,9 @@ body.announcement_events .table button {
     width: 15px;
     height: 15px;
 }
+body.announcement_events .table button i {
+    font-size: 9px;
+}
 
 body.announcement_events .table button:hover {
     background-color: #8db600;
