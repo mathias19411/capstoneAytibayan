@@ -87,7 +87,8 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                         <i class="uil uil-user"></i> Profile
                     </a>
                 </li>
-                <li><a href="#"><i class="uil uil-lock"></i> Change Password</a></li>
+                <li><a href="{{ route('itstaff.viewchangepassword') }}"><i class="uil uil-lock"></i> Change
+                        Password</a></li>
             </ul>
         </div>
 

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 
 class ItStaffController extends Controller
@@ -97,6 +98,44 @@ class ItStaffController extends Controller
         $userData->save();
 
         toastr()->timeOut(10000)->addSuccess('Your Profile has been Updated!');
+
+        return redirect()->back();
+    } // End Method
+    
+    public function ITStaffViewChangePassword()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        return view('ITStaff.pass', compact('userProfileData'));
+    } // End Method
+
+    public function ITStaffEditChangePassword(Request $request)
+    {
+        //Validation
+        $request->validate([
+            'inputOldPassword' => 'required',
+            'inputNewPassword' => 'required|confirmed' 
+        ]);
+
+        ///Match the old password
+        if (!Hash::check($request->inputOldPassword, auth::user()->password))
+        {
+        //confirmation message
+        toastr()->timeOut(10000)->addError('Old Password does not match!');
+
+        return redirect()->back();
+        }
+
+        //Update the new password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->inputNewPassword) //inputNewPassword field name from name="inputNewPassword" in admin_change_password.blade.php
+        ]);
+
+        toastr()->timeOut(10000)->addSuccess('Your Password has been Updated!');
 
         return redirect()->back();
     } // End Method
