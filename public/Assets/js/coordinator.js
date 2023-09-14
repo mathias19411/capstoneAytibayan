@@ -116,3 +116,5 @@ function renderSteps() {
 // Initialize the page with an initial step
 addStep();
 
+// Table
+

@@ -123,10 +123,26 @@ route::post('/ITStaff/event', [EventController::class, 'store'])->name('store-ev
 //store-announcement
 route::post('/ITStaff/announcement', [AnnouncementController::class, 'store'])->name('store-announcement');
 
+
 Route::get('/Project_Coordinator/inquiry', function () {
     return view('Project_Coordinator.inquiry');
 });
 
+Route::get('/Project_Coordinator/beneficiary', function () {
+    return view('Project_Coordinator.beneficiary');
+});
+
+Route::get('/Project_Coordinator/announcement', function () {
+    return view('Project_Coordinator.announcement');
+});
+
+Route::get('/Project_Coordinator/event', function () {
+    return view('Project_Coordinator.event');
+});
+
+Route::get('/Project_Coordinator/registration', function () {
+    return view('Project_Coordinator.registration');
+});
 
 Route::get('/Project_Coordinator/progress', function () {
     return view('Project_Coordinator.progress');
