@@ -27,6 +27,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         <div class="container-fluid d-flex align-items-center">
             <div class="col-lg-7 col-md-10">
                 <h1 class="display-2"></h1>
+                <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
             </div>
         </div>
     </div>
@@ -39,9 +40,10 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <a href="#">
-                    <img src="\images\logo.png" class="rounded-circle">
-                  </a>
+                <a href="#">
+                                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                            class="img-fluid rounded-circle">
+                                    </a>
                 </div>
               </div>
             </div>
