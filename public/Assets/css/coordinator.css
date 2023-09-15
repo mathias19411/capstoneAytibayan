@@ -955,7 +955,7 @@ body {
  
 }
 
-<<<<<<< HEAD
+
 /*--- BENEFICIARY, EENTS, ANNOUNCEMENT REGISTRATION----*/
 body.projcoordinator {
     font-family: "Poppins", sans-serif;
@@ -1023,10 +1023,59 @@ body.projcoordinator .button_top:hover {
     z-index: 1100 !important;
 }
 
-body.projcoordinator .table .action{
-=======
-/* Styles for the table header */
-.table-header {
+/* PAGE CSS EVENT, VENEF, INQUIRY, ANNOUNCEMENT */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.pagination #prev-page,
+.pagination #next-page {
+    background-color: var(--primary-color);
+}
+
+.pagination #prev-page:hover,
+.pagination #next-page:hover {
+    background-color: green;
+}
+
+.pagination button[disabled] {
+    background-color: #ccc !important;
+    cursor: not-allowed;
+    color: #666; /* Change the color for disabled buttons */
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+}
+
+.page-numbers button {
+    margin: 0;
+}
+
+.current-page {
+    background-color: var(--colorOrange) !important;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+/*INQUIRY*/
+
+body.announcement_events_inquiry .table-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1036,19 +1085,21 @@ body.projcoordinator .table .action{
 }
 
 
-.table-header-left {
+body.announcement_events_inquiry .table-header-left {
     flex: 1;
     display: flex;
     align-items: center;
 }
 
-/* Style for the "Filter" dropdown */
-.table-header-left label {
+
+body.announcement_events_inquiry .table-header-left label {
     font-weight: bold;
     margin-right: 10px;
 }
 
-.table-header-left select {
+
+
+body.announcement_events_inquiry .table-header-left select {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -1056,16 +1107,17 @@ body.projcoordinator .table .action{
     font-size: 14px;
     color: #333;
     cursor: pointer;
+    margin-right: 10px;
 }
 
-/* Apply styles to the select box when it's focused (optional) */
-.table-header-left select:focus {
+
+body.announcement_events_inquiry .table-header-left select:focus {
     outline: none;
     border-color: var(--primary-color);
 }
 
 
-.table-header-right {
+body.announcement_events_inquiry .table-header-right {
     flex: 1; 
     display: flex;
     justify-content: flex-end;
@@ -1073,24 +1125,24 @@ body.projcoordinator .table .action{
 }
 
 
-.table-header-right .search-container input[type="text"] {
+body.announcement_events_inquiry .table-header-right .search-container input[type="text"] {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 10px;
     max-width:300px;
 }
 
-.table-header-right .search-container input[type="text"]:focus {
+body.announcement_events_inquiry .table-header-right .search-container input[type="text"]:focus {
     outline: none;
     border-color: var(--primary-color); 
 }
 
-.search-container {
+body.announcement_events_inquiry .search-container {
     position: relative;
 }
 
 
-.search-icon {
+body.announcement_events_inquiry .search-icon {
     position: absolute;
     top: 50%;
     right: 10px;
@@ -1100,19 +1152,19 @@ body.projcoordinator .table .action{
 }
 
 /* Style the input box */
-#search {
+body.announcement_events_inquiry #search {
     padding-right: 30px; /* Add space for the icon on the right */
 }
 
 
-.table-header select {
+body.announcement_events_inquiry .table-header select {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
 }
 
-.table-header select:focus {
+body.announcement_events_inquiry .table-header select:focus {
     outline: none;
     border-color: var(--primary-color);
 }
@@ -1172,56 +1224,11 @@ body.announcement_events_inquiry h2 {
     color: #ffffff;
 }
 body.announcement_events_inquiry .table button {
->>>>>>> 9f778b4263ff6f0cb8801ab6755b34dbca080bb2
+
     outline: none;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-<<<<<<< HEAD
-    width: 16px;
-    height: 16px;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 1px;
-}
-
-body.projcoordinator .table .active{
-    align-items: center;
-    outline: none;
-    border: none;
-    padding: 2px 10px;
-    color: #FFFFFF;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 12px;
-    background-color: #7bb701;
-    width: 70px;
-}
-
-body.projcoordinator .table .inactive{
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    border: none;
-    padding: 2px 10px;
-    color: #ffffff;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 12px;
-    background-color: #fa0909;
-    width: 70px;
-}
-
-body.projcoordinator .table td {
-    font-size: 13px;
-}
-
-td button:nth-child(1) {
-    background-color: #7bb701;
-}
-td button:nth-child(2) {
-    background-color: #f0a60f;
-=======
     color: #ffffff;
     width: 15px;
     height: 15px;
@@ -1239,269 +1246,17 @@ body.announcement_events_inquiry .table button:hover::after {
     opacity: 1;
 }
 
-.table-header-left {
-    display: flex;
-    align-items: center;
-}
 
-.table-header-left label {
-    margin-right: 5px;
-}
-
-.table-header-right input[type="text"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.table-header-right input[type="text"]:focus {
-    outline: none;
-    border-color: #007bff;
-}
-
-.table-header select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-.table-header select:focus {
-    outline: none;
-    border-color: #007bff;
-}
-
-.table-header-right i.fa-search {
-    margin-right: 5px; /* Add some spacing between the icon and the input */
-    color: #555; /* Set the icon color */
-}
-
-td button:nth-child(1) {
+body.announcement_events_inquiry td button:nth-child(1) {
     background-color: green;
 }
-td button:nth-child(2) {
+body.announcement_events_inquiry td button:nth-child(2) {
     background-color: rgb(86, 177, 207);
->>>>>>> 9f778b4263ff6f0cb8801ab6755b34dbca080bb2
 }
-td button:nth-child(3) {
+body.announcement_events_inquiry td button:nth-child(3) {
     background-color: #f80000;
 }
 
-<<<<<<< HEAD
-body.projcoordinator .add {
-    background-color: #f0a60f;
-    border: none;
-    color: white;
-    padding: 10px 30px;
-    text-align: center;
-    float: right;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-    font-size: 15px;
-    width: 100px;
-    margin: auto;
-    margin-bottom: 10px;
-}
-
-body.projcoordinator .add:hover {
-    background-color: #8db600;
-    transition: 0.5s;
-}
-
-body.projcoordinator .modal-title {
-    color: #7bb701;
-}
-
-body.projcoordinator .modal-footer .add {
-    background-color: #f0a60f;
-    border: none;
-    color: white;
-    padding: 10px 30px;
-    text-align: center;
-    float: right;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 15px;
-    margin: 10px;
-}
-
-body.projcoordinator .modal-footer .close {
-    background-color: #bbbbbb;
-    border: none;
-    color: white;
-    padding: 10px 30px;
-    text-align: center;
-    float: right;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-    font-size: 15px;
-    margin: 10px;
-}
-
-body.projcoordinator .modal-footer .add:hover {
-    background-color: #7bb701;
-    transition: 0.5s;
-}
-
-body.projcoordinator .modal-footer .close:hover {
-    background-color: #7bb701;
-    transition: 0.5s;
-}
-
-body.projcoordinator .modal-body {
-    position: relative;
-    flex: 1 1 auto;
-    padding: 1rem;
-    text-align: left;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-body.projcoordinator .row {
-    align-items: center;
-    align-content: center;
-    margin: auto;
-}
-body.projcoordinator .modal-body .form-control {
-    background-color: #f2f2f2;
-}
-
-body.projcoordinator .modal-body .col-4 {
-    flex: 0 0 auto;
-    width: 150px;
-}
-
-body.projcoordinator .modal-body .col-md-6 {
-    flex: 0 0 auto;
-    width: 230px;
-}
-
-body.projcoordinator .modal-body .msg #label_ {
-    margin-top: 15px;
-}
- 
-body.projcoordinator .modal-body .msg #textbox_m {
-    height: 150px;
-    vertical-align: text-top;
-}
-
-/*-----eent------*/
-body.projcoordinator .modal-body #textbox_m {
-    height: 150px;
-    vertical-align: text-top;
-    padding: 10px;
-}
-
-
-body.projcoordinator .report-btn {
-    background-color: #f0a60f;
-    border: none;
-    color: white;
-    padding: 5px 20px;
-    text-align: center;
-    float: right;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-    font-size: 15px;
-    margin: auto;
-    margin-bottom: 10px;
-}
-
-body.projcoordinator .add {
-    background-color: #f0a60f;
-    border: none;
-    color: white;
-    padding: 5px 20px;
-    text-align: center;
-    float: right;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-    font-size: 15px;
-    margin: auto;
-    margin-bottom: 10px;
-}
-
-/*-----DROP IMAGE------*/
-body.projcoordinator #drop-img {
-    width: 300px;
-    height: 130px;
-    padding: 10px;
-    background: #f2f2f2;
-    text-align: center;
-    border-radius: 5px;
-    margin: auto;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    margin-top: 20px;
-    
-}
-
-body.projcoordinator #img-view {
-    width: 100%;
-    height: 100%;
-    border: 5px;
-    border: 2px dashed #bbb5ff;
-    background: #f0fff0;
-    font-size: 12px;
-    background-size: cover;
-}
-
-body.projcoordinator #img-view img {
-    margin: auto;
-    width: auto;
-    padding-top: 10px;
-}
- 
-
-body.projcoordinator .report-btn:hover {
-    background-color: #7bb701;
-    transition: 0.5s;
-}
-
-.dataTables_wrapper .dataTables_filter {
-    text-align: left;
-    margin-right: 10px; 
-    float: right;
-}
-
-.dataTables_wrapper .dataTables_length {
-    text-align: left;
-    margin-left: 10px;
-    float: left;
-}
-
-.dataTables_wrapper .dataTables_paginate {
-    text-align: left;
-    margin-right: 10px; 
-    float: right;
-}
-
-.dataTables_wrapper .dataTables_info {
-    text-align: left;
-    margin-left: 10px; 
-    float: left;
-}
-
-@media (max-width: 768px) {
-    
-body.projcoordinator .modal-body .col-4 {
-    flex: 0 0 auto;
-    width: 150px;
-}
-
-body.projcoordinator .modal-body .col-6 {
-    flex: 0 0 auto;
-    width: 230px;
-}
-}
-=======
 body.announcement_events_inquiry tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -1542,10 +1297,10 @@ body.announcement_events_inquiry tr:hover td {
     opacity: 1;
 }
 
-/**message vie wpopup**/
+/**message viewpopup**/
 
 /* Popup container */
-.popup {
+body.announcement_events_inquiry .popup {
     display: none;
     position: fixed;
     top: 0;
@@ -1557,7 +1312,7 @@ body.announcement_events_inquiry tr:hover td {
 }
 
 /* Popup content */
-.popup-content {
+body.announcement_events_inquiry .popup-content {
     background-color: #fff;
     width: 80%;
     max-width: 600px;
@@ -1570,7 +1325,7 @@ body.announcement_events_inquiry tr:hover td {
 }
 
 /* Close button */
-.popup-close {
+body.announcement_events_inquiry .popup-close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -1580,7 +1335,7 @@ body.announcement_events_inquiry tr:hover td {
 }
 
 /* Header */
-.popup h2 {
+body.announcement_events_inquiry .popup h2 {
     margin-top: 0;
     font-size: 24px;
 }
@@ -1589,7 +1344,7 @@ body.announcement_events_inquiry tr:hover td {
 
 
 /* Action buttons */
-.popup-actions button:nth-child(1) {
+body.announcement_events_inquiry .popup-actions button:nth-child(1) {
     margin-right: 10px;
     background-color: #007BFF;
     color: #fff;
@@ -1599,7 +1354,7 @@ body.announcement_events_inquiry tr:hover td {
     cursor: pointer;
 }
 
-.popup-actions button:nth-child(2) {
+body.announcement_events_inquiry .popup-actions button:nth-child(2) {
     margin-right: 10px;
     background-color: red;
     color: #fff;
@@ -1609,20 +1364,19 @@ body.announcement_events_inquiry tr:hover td {
     cursor: pointer;
 }
 
-.popup-actions button:hover {
+body.announcement_events_inquiry .popup-actions button:hover {
     background-color: var(--colorOrange);
 }
 
 /* CSS for the border-like design */
-.popup-details p {
+body.announcement_events_inquiry .popup-details p {
     padding: 8px; /* Add padding for spacing */
     margin: 5px 0; /* Add margin for spacing between paragraphs */
 }
 
 
-
 /* Style the close button */
-.popup-close {
+body.announcement_events_inquiry .popup-close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -1632,16 +1386,44 @@ body.announcement_events_inquiry tr:hover td {
 }
 
 /* CSS for the layout of rows and columns */
-.popup-details .row {
+body.announcement_events_inquiry .popup-details .row {
     display: flex;
     justify-content: space-between;
 }
 
-.popup-details .column {
+body.announcement_events_inquiry .popup-details .column {
     flex-basis: calc(50% - 10px);
 }
 
-.message-row {
+
+body.announcement_events_inquiry .message-row {
     text-align: center;
 }
->>>>>>> 9f778b4263ff6f0cb8801ab6755b34dbca080bb2
+@media (max-width: 768px) {
+    body.announcement_events_inquiry .table-header {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+    }
+
+    body.announcement_events_inquiry .table-header-left {
+        margin-bottom: 10px;
+    }
+
+    body.announcement_events_inquiry .table-header-left label {
+        margin-right: 0;
+    }
+
+    body.announcement_events_inquiry .table-header-left select {
+        max-width: 100%;
+    }
+
+    body.announcement_events_inquiry .table-header-right {
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    body.announcement_events_inquiry .table-header-right .search-container input[type="text"] {
+        max-width: none;
+    }
+}

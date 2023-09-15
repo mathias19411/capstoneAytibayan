@@ -117,10 +117,8 @@ function renderSteps() {
 // Initialize the page with an initial step
 addStep();
 
-<<<<<<< HEAD
 // Table
 
-=======
 function openPopup(fullName, message, emailAddress, contactNumber, date) {
     const popup = document.getElementById("message-popup");
     const fullNameElement = document.getElementById("full-name");
@@ -144,4 +142,4 @@ function closePopup() {
     var popup = document.querySelector('.popup');
     popup.style.display = 'none';
 }
->>>>>>> 9f778b4263ff6f0cb8801ab6755b34dbca080bb2
+
