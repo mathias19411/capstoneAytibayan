@@ -303,6 +303,7 @@ nav.close ~ .dashboard .top{
     width: 110px;
     height: 110px;
     cursor: pointer;
+    
 }
 /* Style the submenu items */
 .sub-menus li:not(.profile-info) {
@@ -561,7 +562,6 @@ body {
   .table {
     width: 100%;
   }
-  
 }
 
 
@@ -586,6 +586,7 @@ body {
     font-weight: bold;
     text-align: center;
     color:#FFFFFF;
+    text-transform: uppercase;
 }
 
 .boxes{
@@ -914,7 +915,6 @@ body {
     margin-right: 10px; /* Reduce margin for date input */
     font-size: 12px; /* Reduce font size for date input */
   }
-
  
 }
 @media (max-width: 578px) {
@@ -954,3 +954,694 @@ body {
 
  
 }
+
+<<<<<<< HEAD
+/*--- BENEFICIARY, EENTS, ANNOUNCEMENT REGISTRATION----*/
+body.projcoordinator {
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+    background-color: #ffffff;
+}
+
+body.projcoordinator .table-card {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+body.projcoordinator .table-body {
+    background-color: #fff;
+    padding: 20px;
+
+}
+
+body.projcoordinator .buttons {
+    justify-content: end;
+    display: flex;
+}
+
+body.projcoordinator .location-form {
+    margin-right: 15px;
+}
+
+body.projcoordinator .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+body.projcoordinator .btn-bottom {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+/*printer, import, export buttons*/
+body.projcoordinator .button_top {
+    background-color: #7bb701;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px 0 10px 10px;
+    float: right;
+}
+
+body.projcoordinator .button_top:hover {
+    background-color: #f0a60f;
+    transition: 0.5s;
+}
+
+.modal-backdrop {
+    z-index: -1; 
+}
+.modal-content {
+    margin: 2px auto;
+    z-index: 1100 !important;
+}
+
+body.projcoordinator .table .action{
+=======
+/* Styles for the table header */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: auto;
+    margin: 10px 20px 20px 20px;
+}
+
+
+.table-header-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the "Filter" dropdown */
+.table-header-left label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.table-header-left select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Apply styles to the select box when it's focused (optional) */
+.table-header-left select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+
+.table-header-right {
+    flex: 1; 
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.table-header-right .search-container input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width:300px;
+}
+
+.table-header-right .search-container input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color); 
+}
+
+.search-container {
+    position: relative;
+}
+
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555; /* Icon color */
+}
+
+/* Style the input box */
+#search {
+    padding-right: 30px; /* Add space for the icon on the right */
+}
+
+
+.table-header select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.table-header select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+body.announcement_events_inquiry .container {
+    overflow-x: auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    border-collapse: collapse;
+}
+
+body.announcement_events_inquiry .container .table{
+    width:100%;
+}
+
+body.announcement_events_inquiry .container  table th {
+    position: relative; /* Make the <th> element a positioning context */
+}
+
+body.announcement_events_inquiry .container  table th::after {
+    content: "";
+    display: block;
+    height: 1px; 
+    background-color: var(--primary-color); 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+body.announcement_events_inquiry th,
+td {
+    padding: 10px;
+    text-align: center;
+}
+body.announcement_events_inquiry .title {
+    background-color: #7bb701;
+    background-position: center;
+    border-radius: 5px;
+    width: auto;
+    height: 40px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px 20px 20px 20px;
+}
+
+body.announcement_events_inquiry h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+body.announcement_events_inquiry .table button {
+>>>>>>> 9f778b4263ff6f0cb8801ab6755b34dbca080bb2
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+<<<<<<< HEAD
+    width: 16px;
+    height: 16px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1px;
+}
+
+body.projcoordinator .table .active{
+    align-items: center;
+    outline: none;
+    border: none;
+    padding: 2px 10px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #7bb701;
+    width: 70px;
+}
+
+body.projcoordinator .table .inactive{
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+    padding: 2px 10px;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #fa0909;
+    width: 70px;
+}
+
+body.projcoordinator .table td {
+    font-size: 13px;
+}
+
+td button:nth-child(1) {
+    background-color: #7bb701;
+}
+td button:nth-child(2) {
+    background-color: #f0a60f;
+=======
+    color: #ffffff;
+    width: 15px;
+    height: 15px;
+}
+
+body.announcement_events_inquiry .table button i {
+    font-size: 9px;
+}
+
+body.announcement_events_inquiry .table button:hover {
+    background-color: #8db600;
+    transition: 0.10s;
+}
+body.announcement_events_inquiry .table button:hover::after {
+    opacity: 1;
+}
+
+.table-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.table-header-left label {
+    margin-right: 5px;
+}
+
+.table-header-right input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.table-header-right input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.table-header select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.table-header select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.table-header-right i.fa-search {
+    margin-right: 5px; /* Add some spacing between the icon and the input */
+    color: #555; /* Set the icon color */
+}
+
+td button:nth-child(1) {
+    background-color: green;
+}
+td button:nth-child(2) {
+    background-color: rgb(86, 177, 207);
+>>>>>>> 9f778b4263ff6f0cb8801ab6755b34dbca080bb2
+}
+td button:nth-child(3) {
+    background-color: #f80000;
+}
+
+<<<<<<< HEAD
+body.projcoordinator .add {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+body.projcoordinator .add:hover {
+    background-color: #8db600;
+    transition: 0.5s;
+}
+
+body.projcoordinator .modal-title {
+    color: #7bb701;
+}
+
+body.projcoordinator .modal-footer .add {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+body.projcoordinator .modal-footer .close {
+    background-color: #bbbbbb;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+body.projcoordinator .modal-footer .add:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+body.projcoordinator .modal-footer .close:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+body.projcoordinator .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body.projcoordinator .row {
+    align-items: center;
+    align-content: center;
+    margin: auto;
+}
+body.projcoordinator .modal-body .form-control {
+    background-color: #f2f2f2;
+}
+
+body.projcoordinator .modal-body .col-4 {
+    flex: 0 0 auto;
+    width: 150px;
+}
+
+body.projcoordinator .modal-body .col-md-6 {
+    flex: 0 0 auto;
+    width: 230px;
+}
+
+body.projcoordinator .modal-body .msg #label_ {
+    margin-top: 15px;
+}
+ 
+body.projcoordinator .modal-body .msg #textbox_m {
+    height: 150px;
+    vertical-align: text-top;
+}
+
+/*-----eent------*/
+body.projcoordinator .modal-body #textbox_m {
+    height: 150px;
+    vertical-align: text-top;
+    padding: 10px;
+}
+
+
+body.projcoordinator .report-btn {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+body.projcoordinator .add {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+/*-----DROP IMAGE------*/
+body.projcoordinator #drop-img {
+    width: 300px;
+    height: 130px;
+    padding: 10px;
+    background: #f2f2f2;
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+    
+}
+
+body.projcoordinator #img-view {
+    width: 100%;
+    height: 100%;
+    border: 5px;
+    border: 2px dashed #bbb5ff;
+    background: #f0fff0;
+    font-size: 12px;
+    background-size: cover;
+}
+
+body.projcoordinator #img-view img {
+    margin: auto;
+    width: auto;
+    padding-top: 10px;
+}
+ 
+
+body.projcoordinator .report-btn:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    text-align: left;
+    margin-right: 10px; 
+    float: right;
+}
+
+.dataTables_wrapper .dataTables_length {
+    text-align: left;
+    margin-left: 10px;
+    float: left;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    text-align: left;
+    margin-right: 10px; 
+    float: right;
+}
+
+.dataTables_wrapper .dataTables_info {
+    text-align: left;
+    margin-left: 10px; 
+    float: left;
+}
+
+@media (max-width: 768px) {
+    
+body.projcoordinator .modal-body .col-4 {
+    flex: 0 0 auto;
+    width: 150px;
+}
+
+body.projcoordinator .modal-body .col-6 {
+    flex: 0 0 auto;
+    width: 230px;
+}
+}
+=======
+body.announcement_events_inquiry tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+
+body.announcement_events_inquiry td {
+    font-size: 13px;
+}
+
+body.announcement_events_inquiry tr:hover td {
+    color: #7bb701;
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+/* Common tooltip style for all buttons */
+.tooltip-button {
+    position: relative;
+}
+
+.tooltip-button::after {
+    content: attr(data-tooltip);
+    background-color: #989393;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+
+.tooltip-button:hover::after {
+    opacity: 1;
+}
+
+/**message vie wpopup**/
+
+/* Popup container */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+/* Popup content */
+.popup-content {
+    background-color: #fff;
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: var(--primary-color);
+}
+
+/* Close button */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color:var(--colorOrange);
+}
+
+/* Header */
+.popup h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+
+
+
+/* Action buttons */
+.popup-actions button:nth-child(1) {
+    margin-right: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.popup-actions button:nth-child(2) {
+    margin-right: 10px;
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.popup-actions button:hover {
+    background-color: var(--colorOrange);
+}
+
+/* CSS for the border-like design */
+.popup-details p {
+    padding: 8px; /* Add padding for spacing */
+    margin: 5px 0; /* Add margin for spacing between paragraphs */
+}
+
+
+
+/* Style the close button */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #777;
+}
+
+/* CSS for the layout of rows and columns */
+.popup-details .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-details .column {
+    flex-basis: calc(50% - 10px);
+}
+
+.message-row {
+    text-align: center;
+}
+>>>>>>> 9f778b4263ff6f0cb8801ab6755b34dbca080bb2

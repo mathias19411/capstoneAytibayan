@@ -1,3 +1,4 @@
+
 const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");
@@ -116,3 +117,31 @@ function renderSteps() {
 // Initialize the page with an initial step
 addStep();
 
+<<<<<<< HEAD
+// Table
+
+=======
+function openPopup(fullName, message, emailAddress, contactNumber, date) {
+    const popup = document.getElementById("message-popup");
+    const fullNameElement = document.getElementById("full-name");
+    const messageContent = document.getElementById("message-content");
+    const emailAddressElement = document.getElementById("email-address");
+    const contactNumberElement = document.getElementById("contact-number");
+    const dateElement = document.getElementById("date");
+
+    // Set the details in the popup
+    fullNameElement.textContent = fullName;
+    messageContent.textContent = message;
+    emailAddressElement.textContent = emailAddress;
+    contactNumberElement.textContent = contactNumber;
+    dateElement.textContent = date;
+
+    // Show the popup
+    popup.style.display = "block";
+
+}
+function closePopup() {
+    var popup = document.querySelector('.popup');
+    popup.style.display = 'none';
+}
+>>>>>>> 9f778b4263ff6f0cb8801ab6755b34dbca080bb2

@@ -38,7 +38,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </a>
             </li>
             <li>
-                <a href="#" class="{{ request()->is('ITStaff/registration') ? 'active' : '' }}">
+                <a href="{{ route('itstaff.registration') }}" class="{{ request()->is('ITStaff/registration') ? 'active' : '' }}">
                     <i class="uil uil-user-plus"></i>
                     <span class="link-name">Registration</span>
                 </a>
