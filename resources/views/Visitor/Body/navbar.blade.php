@@ -37,13 +37,18 @@
             <li><a href='#binhiButton'>Contact Us</a></li>
             @if (Route::has('login'))
                 @auth
-                    <li><a href="{{ url('/dashboard') }}">Dashboard</a>
-                    </li>
-                @else
+                    @if (auth()->user()->role === 'itstaff')
+                        <li><a href="{{ url('/ITStaff/home') }}">Back to Dashboard</a></li>
+                    @elseif(auth()->user()->role === 'project_coordinator')
+                        <li><a href="{{ url('/ProjectCoordinator/home') }}">Back to Dashboard</a></li>
+                    @elseif(auth()->user()->role === 'beneficiary')
+                        <li><a href="{{ url('/Beneficiary/home') }}">Back to Dashboard</a></li>
+                    @endif
+                    {{-- @else
                     <li><a href="{{ route('login') }}">Login</a></li>
                     @if (Route::has('register'))
                         <li><a href="{{ route('register') }}">Register</a></li>
-                    @endif
+                    @endif --}}
                 @endauth
             @endif
         </ul>

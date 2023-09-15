@@ -20,8 +20,27 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+            if (Auth::guard($guard)->check())
+            {
+                // Check if the user is trying to access the registration page
+                if ($request->routeIs('register')) {
+                    return $next($request);
+                }
+                
+                if($request->user()->role === 'itstaff')
+                {
+                    $url = '/ITStaff/home';
+                }
+                else if ($request->user()->role === 'project_coordinator')
+                {
+                    $url = '/ProjectCoordinator/home';
+                }
+                else if ($request->user()->role === 'beneficiary')
+                {
+                    $url = '/Beneficiary/home';
+                }
+
+                return redirect()->intended($url);
             }
         }
 

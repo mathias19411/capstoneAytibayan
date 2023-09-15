@@ -37,12 +37,17 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <span class="link-name">Event</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('itstaff.registration') }}" class="{{ request()->is('ITStaff/registration') ? 'active' : '' }}">
-                    <i class="uil uil-user-plus"></i>
-                    <span class="link-name">Registration</span>
-                </a>
-            </li>
+            @auth
+                @if (Route::has('register'))
+                    <li>
+                        <a href="{{ route('register') }}"
+                            class="{{ request()->is('ITStaff/registration') ? 'active' : '' }}">
+                            <i class="uil uil-user-plus"></i>
+                            <span class="link-name">Registration</span>
+                        </a>
+                    </li>
+                @endif
+            @endauth
 
             <div class="mode-toggle">
 

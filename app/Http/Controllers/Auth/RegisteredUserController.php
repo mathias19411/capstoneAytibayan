@@ -58,8 +58,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        toastr()->timeOut(10000)->addSuccess('A new User has been successfully registered!');
+
+        return redirect()->back();
     }
 }
