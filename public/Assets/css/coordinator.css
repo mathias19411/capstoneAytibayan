@@ -1090,7 +1090,7 @@ body.announcement_events_inquiry .buttons {
 
 body.announcement_events_inquiry .btn-bottom {
     align-items: center;
-    margin: 5px;
+    margin: 0 20px 10px;
 }
 
 /*printer, import, export buttons*/
@@ -1201,6 +1201,11 @@ body.announcement_events_inquiry .generate {
 }
 
 body.announcement_events_inquiry .add-modal:hover {
+    background-color: #8db600;
+    transition: 0.5s;
+}
+
+body.announcement_events_inquiry .generate:hover {
     background-color: #8db600;
     transition: 0.5s;
 }

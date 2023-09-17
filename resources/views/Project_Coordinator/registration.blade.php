@@ -115,12 +115,13 @@
                 </div>
             </div>
 
-                     
+            <form action="{{ route('registration') }}" method="post">        
         <div class="btn-bottom">
-            <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#myModal">
+            <button type="button" class="add">
                 Register</button> 
             </div>
     </div>
+</form>
 
 <div class="modal fade" id="myModal" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
     <div class="modal-dialog">
