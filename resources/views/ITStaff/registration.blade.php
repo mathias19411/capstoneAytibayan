@@ -1,4 +1,4 @@
-@extends('ITStaff.ITStaff_home')
+@extends('ITStaff.home')
 @section('ITStaff')
 <body class="announcement_events">
 
