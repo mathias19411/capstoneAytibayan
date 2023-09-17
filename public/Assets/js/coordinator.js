@@ -143,3 +143,16 @@ function closePopup() {
     popup.style.display = 'none';
 }
 
+//DELETE BUTTON
+function viewAnnouncement(id) {
+    const messageContainer = document.querySelector(`.announcement:nth-child(${id}) .message`);
+    messageContainer.style.display = messageContainer.style.display === "none" ? "block" : "none";
+}
+
+function deleteAnnouncement(id) {
+    const row = document.querySelector(`tbody tr:nth-child(${id})`);
+    if (row) {
+        row.remove();
+    }
+}
+

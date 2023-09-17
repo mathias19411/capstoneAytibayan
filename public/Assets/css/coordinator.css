@@ -957,63 +957,190 @@ body {
 
 
 /*--- BENEFICIARY, EENTS, ANNOUNCEMENT REGISTRATION----*/
-body.projcoordinator {
+
+body.announcement_events_inquiry {
     font-family: "Poppins", sans-serif;
     scroll-behavior: smooth;
     background-color: #ffffff;
 }
 
-body.projcoordinator .table-card {
+/*HEADER*/
+
+body.announcement_events_inquiry .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: auto;
+    margin: 10px 20px 20px 20px;
+}
+
+
+body.announcement_events_inquiry .table-header-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+
+body.announcement_events_inquiry .table-header-left label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+
+
+body.announcement_events_inquiry .table-header-left select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+body.announcement_events_inquiry .table-header-left select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+
+body.announcement_events_inquiry .table-header-right {
+    flex: 1; 
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+body.announcement_events_inquiry .table-header-right .search-container input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width:300px;
+}
+
+body.announcement_events_inquiry .table-header-right .search-container input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color); 
+}
+
+body.announcement_events_inquiry .search-container {
+    position: relative;
+}
+
+
+body.announcement_events_inquiry .search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555; /* Icon color */
+}
+
+/* Style the input box */
+body.announcement_events_inquiry #search {
+    padding-right: 30px; /* Add space for the icon on the right */
+}
+
+
+body.announcement_events_inquiry .table-header select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+body.announcement_events_inquiry .table-header select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+body.announcement_events_inquiry .table-card {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
     padding: 10px;
     border-radius: 10px;
 }
 
-body.projcoordinator .table-body {
+body.announcement_events_inquiry .table-body {
     background-color: #fff;
     padding: 20px;
 
 }
 
-body.projcoordinator .buttons {
+body.announcement_events_inquiry .buttons {
     justify-content: end;
     display: flex;
 }
 
-body.projcoordinator .location-form {
+body.announcement_events_inquiry .location-form {
     margin-right: 15px;
 }
 
-body.projcoordinator .buttons {
+body.announcement_events_inquiry .buttons {
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-body.projcoordinator .btn-bottom {
-    display: flex;
+body.announcement_events_inquiry .btn-bottom {
     align-items: center;
-    margin: 20px;
+    margin: 5px;
 }
 
 /*printer, import, export buttons*/
-body.projcoordinator .button_top {
+
+
+.button-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    margin: 20px; 
+
+  }
+
+  .button-container .button_top {
     background-color: #7bb701;
     border: none;
     color: white;
     padding: 5px 15px;
-    text-align: center;
     border-radius: 5px;
     font-size: 15px;
-    margin: 10px 0 10px 10px;
-    float: right;
 }
 
-body.projcoordinator .button_top:hover {
+.button-container button {
+    display: inline-block;
+    margin-top: 10px;
+  }
+body.announcement_events_inquiry  .button-container  .button_top:hover {
     background-color: #f0a60f;
     transition: 0.5s;
 }
+
+  
+  @media (min-width: 768px) {
+    .button-container {
+      flex-direction: row; 
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .button-container button {
+      margin-left: 10px; 
+      margin-top: 10px;
+    }
+  
+    .button-container button:first-child {
+      margin-left: 0; 
+    }
+  }
+  
 
 .modal-backdrop {
     z-index: -1; 
@@ -1022,6 +1149,240 @@ body.projcoordinator .button_top:hover {
     margin: 2px auto;
     z-index: 1100 !important;
 }
+
+body.announcement_events_inquiry .table .action{
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1px;
+}
+
+body.announcement_events_inquiry .table td {
+    font-size: 13px;
+    padding: px 5px;
+    margin: 10px;
+}
+
+body.announcement_events_inquiry .add-modal {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+body.announcement_events_inquiry .generate {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+body.announcement_events_inquiry .add-modal:hover {
+    background-color: #8db600;
+    transition: 0.5s;
+}
+
+body.announcement_events_inquiry .modal-title {
+    color: #7bb701;
+}
+
+body.announcement_events_inquiry .modal-footer .add {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+body.announcement_events_inquiry .modal-footer .close {
+    background-color: #bbbbbb;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+body.announcement_events_inquiry .modal-footer .add:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+body.announcement_events_inquiry .modal-footer .close:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+body.announcement_events_inquiry .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body.announcement_events_inquiry .modal-body .form-control {
+    background-color: #f2f2f2;
+}
+
+body.announcement_events_inquiry .report-btn {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+body.announcement_events_inquiry #drop-img {
+    width: 300px;
+    height: 130px;
+    padding: 10px;
+    background: #f2f2f2;
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+    
+}
+
+body.announcement_events_inquiry #img-view {
+    width: 100%;
+    height: 100%;
+    border: 5px;
+    border: 2px dashed #bbb5ff;
+    background: #f0fff0;
+    font-size: 12px;
+    background-size: cover;
+}
+
+body.announcement_events_inquiry #img-view img {
+    margin: auto;
+    width: auto;
+    padding-top: 10px;
+}
+ 
+
+body.announcement_events_inquiry .report-btn:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    text-align: left;
+    margin-right: 10px; 
+    float: right;
+}
+
+.dataTables_wrapper .dataTables_length {
+    text-align: left;
+    margin-left: 10px;
+    float: left;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    text-align: left;
+    margin-right: 10px; 
+    float: right;
+}
+
+.dataTables_wrapper .dataTables_info {
+    text-align: left;
+    margin-left: 10px; 
+    float: left;
+}
+
+/*STATUS*/
+.status-box {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+body.announcement_events_inquiry .table .active {
+    background-color: green;
+    color: white;
+}
+
+body.announcement_events_inquiry .table .inactive {
+    background-color: red;
+    color: white;
+}
+
+/* Define styles for the popup */
+.popup-status {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+
+@media (max-width: 768px) {
+    
+body.announcement_events_inquiry .modal-body .col-4 {
+    flex: 0 0 auto;
+    width: 150px;
+}
+
+body.announcement_events_inquiry .modal-body .col-6 {
+    flex: 0 0 auto;
+    width: 230px;
+}
+}
+
 
 /* PAGE CSS EVENT, VENEF, INQUIRY, ANNOUNCEMENT */
 .pagination {
@@ -1342,7 +1703,6 @@ body.announcement_events_inquiry .popup h2 {
 
 
 
-
 /* Action buttons */
 body.announcement_events_inquiry .popup-actions button:nth-child(1) {
     margin-right: 10px;
@@ -1427,3 +1787,4 @@ body.announcement_events_inquiry .message-row {
         max-width: none;
     }
 }
+

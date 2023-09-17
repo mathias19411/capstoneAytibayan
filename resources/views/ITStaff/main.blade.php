@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Project Coordinator</title>
+    <title>IT Staff</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Modal -->
@@ -10,7 +10,7 @@
     <!-- Table -->
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <!-- CSS link -->
-    <link rel="stylesheet" href="{{ asset('Assets/css/coordinator.css') }}">
+    <link rel="stylesheet" href="{{ asset('Assets/css/itstaff.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/6297197d39.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <!-- Table -->
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>    
-    <script src="{{ asset('Assets/js/coordinator.js') }}"></script>
+    <script src="{{ asset('Assets/js/itstaff.js') }}"></script>
     
     <script>
     //DROP IMAGE
@@ -272,81 +272,50 @@ function updatePaginationMessage() {
 
         
     </script>
+    <script>
+// EDIT
+function populateEditForm(existingData) {
+    document.getElementById('EditTitle').value = existingData.title;
+    document.getElementById('EditTo').value = existingData.email;
+    document.getElementById('EditMessage').value = existingData.message;
+}
 
-<script>
-    //IEW MODAL
-  $(document).ready(function () {
-    $(".view-btn").on("click", function () {
-      // Get the row index from the clicked button's data attribute
-      var rowIndex = $(this).data("row-index");
+// JavaScript to save the edits
+function saveEdit() {
+    const editedTitle = document.getElementById('EditTitle').value;
+    const editedTo = document.getElementById('EditTo').value;
+    const editedMessage = document.getElementById('EditMessage').value;
 
-      // Find the row in the table and extract its data
-      var $table = $("table");
-      var $row = $table.find("tbody tr:eq(" + rowIndex + ")");
-      var title = $row.find("td:eq(0)").text();
-      var recipient = $row.find("td:eq(1)").text();
-      var message = "The message goes here"; // You can populate the message as needed
-
-      // Populate the modal with the extracted data
-      $("#modal-title").text(title);
-      $("#modal-recipient").text(recipient);
-      $("#modal-message").text(message);
-
-      // Show the modal
-      $("#modal_view").modal("show");
-    });
-  });
+    // Perform your update logic here with the edited data
+    // You may use AJAX to send the updated data to the server
+}
 </script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    //EDIT
-  // Store the initial data from the table row
-  var initialData = {
-    title: "",
-    recipient: "",
-    message: ""
-  };
 
-  $(document).ready(function () {
-    $(".view-btn").on("click", function () {
-      // Get the row index from the clicked button's data attribute
-      var rowIndex = $(this).data("row-index");
+       <script>
+        //IEW
+        function viewAnnouncement(id) {
+            const messageContainer = document.querySelector(`.announcement:nth-child(${id}) .message`);
+            messageContainer.style.display = messageContainer.style.display === "none" ? "block" : "none";
+        }
+    </script>
+    
+    <script>
+        // Function to toggle the display of announcement details
+        function viewAnnouncement(id) {
+            const messageContainer = document.querySelector(`.announcement:nth-child(${id}) .message`);
+            messageContainer.style.display = messageContainer.style.display === "none" ? "block" : "none";
+        }
 
-      // Find the row in the table and extract its data
-      var $table = $("table");
-      var $row = $table.find("tbody tr:eq(" + rowIndex + ")");
-      initialData.title = $row.find("td:eq(0)").text();
-      initialData.recipient = $row.find("td:eq(1)").text();
-      initialData.message = "The message goes here"; // You can populate the message as needed
-
-      // Populate the modal form fields with the extracted data
-      $("#edit-title").val(initialData.title);
-      $("#edit-recipient").val(initialData.recipient);
-      $("#edit-message").val(initialData.message);
-
-      // Show the modal
-      $("#myModal").modal("show");
-    });
-
-    // Handle the "Save Changes" button click
-    $("#saveChanges").on("click", function () {
-      // Get the edited values from the form
-      var editedTitle = $("#edit-title").val();
-      var editedRecipient = $("#edit-recipient").val();
-      var editedMessage = $("#edit-message").val();
-
-      // Update the corresponding elements in the table with the edited values
-      // This step depends on your specific implementation and requirements
-
-      // Optionally, you can update the initialData to reflect the changes
-      initialData.title = editedTitle;
-      initialData.recipient = editedRecipient;
-      initialData.message = editedMessage;
-    });
-  });
-  </script>
-
+        // Function to delete an announcement row
+        function deleteAnnouncement(id) {
+            // Remove the row with the corresponding ID
+            const row = document.querySelector(`tbody tr:nth-child(${id})`);
+            if (row) {
+                row.remove();
+            }
+        }
+    </script>
 
 </body>
 </html>
