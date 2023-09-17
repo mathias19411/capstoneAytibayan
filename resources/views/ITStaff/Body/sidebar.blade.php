@@ -103,17 +103,6 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Hide the name and submenus initially
-            $(".sub-menus").hide();
-
-            // Add a click event handler to the image
-            $("i img").click(function() {
-                // Toggle the visibility of the name and submenus
-                $(".sub-menus").toggle();
-            });
-        });
-    </script>
+   
 
     <script src="{{ asset('Assets/js/itstaff.js') }}"></script>

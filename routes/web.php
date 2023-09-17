@@ -149,3 +149,17 @@ Route::get('/Project_Coordinator/registration', function () {
 Route::get('/Project_Coordinator/progress', function () {
     return view('Project_Coordinator.progress');
 });
+
+Route::get('/Project_Coordinator/profile', function () {
+    return view('Project_Coordinator.profile');
+});
+
+Route::get('/Project_Coordinator/pass', function () {
+    return view('Project_Coordinator.pass');
+});
+
+
+
+Route::get('/Beneficiary/schedule', function () {
+    return view('Beneficiary.schedule');
+});

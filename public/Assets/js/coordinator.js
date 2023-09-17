@@ -36,7 +36,22 @@ function toggleNav() {
     const nav = document.querySelector('nav');
     nav.classList.toggle('open');
 }
+$(document).ready(function() {
+    // Hide the name and submenus initially
+    $(".sub-menus").hide();
 
+    // Add a click event handler to the image
+    $("i img").click(function() {
+        // Toggle the visibility of the name and submenus
+        $(".sub-menus").toggle();
+    });
+    $(document).click(function(e) {
+    if (!$(e.target).closest("i img").length) {
+        // Check if the clicked element is not inside the notification icon
+        $(".sub-menus").hide();
+    }
+});
+});
 const numbers = document.querySelectorAll('.number');
 
 numbers.forEach(number => {

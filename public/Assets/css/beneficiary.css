@@ -1,0 +1,679 @@
+/* ===== Google Font Import - Poppins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 1rem;
+    background-color: #f2f2f2;
+    overflow: auto;
+    scroll-behavior: smooth;
+    /* background-image: url("/images/background.png"); Set the path to your background image */
+    /* background-size: cover; Cover the entire body with the background image */
+    /* background-position: center; Center the background image */
+    /* background-attachment: fixed; Keep the background image fixed while scrolling */
+}
+
+:root{
+    /* ===== Colors ===== */
+    --primary-color: #7bb701;
+    --colorOrange: #f0a60f;
+    --panel-color: #FFF;
+    --text-color: #000;
+    --black-light-color: #707070;
+    --border-color: #e6e5e5;
+    --toggle-color: #DDD;
+    --box1-color: #4DA3FF;
+    --box2-color: #FFE6AC;
+    --box3-color: #E7D1FC;
+    --title-icon-color: #fff;
+    
+    /* ====== Transition ====== */
+    --tran-05: all 0.5s ease;
+    --tran-03: all 0.3s ease;
+    --tran-03: all 0.2s ease;
+}
+
+body{
+    min-height: 100vh;
+    background-color: #f2f2f2;
+    margin: 0; 
+    padding: 0; 
+}
+
+/* === Custom Scroll Bar CSS === */
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+body.dark::-webkit-scrollbar-thumb:hover,
+body.dark .activity-data::-webkit-scrollbar-thumb:hover{
+    background:var(--primary-color);
+}
+
+/** sidebar and heading css**/
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background-color: var(--panel-color);
+    border-right: 1px solid var(--border-color);
+    transition: var(--tran-05);
+    box-shadow:1px 0px 4px rgba(0,0,0,0.5);
+    z-index: 2;
+ 
+}
+nav.close{
+    width: 73px;
+}
+nav .logo-name{
+    display: flex;
+    align-items: center;
+}
+nav .logo-image{
+    display: flex;
+    justify-content: center;
+    min-width: 50px;
+}
+nav .logo-image img{
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    padding-left: 0 !important;
+}
+
+nav .logo-name .logo_name{
+    margin-top: 10px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-left: 14px;
+    transition: var(--tran-05);
+     white-space: nowrap; /* Prevent text from wrapping to the next line */
+    text-size-adjust: auto; /* Let the browser automatically adjust the text size */
+    
+}
+nav.close .logo_name{
+    opacity: 0;
+    pointer-events: none;
+}
+nav .menu-items{
+    margin-top: 40px;
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.menu-items li{
+    list-style: none;
+}
+.menu-items li a{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-links,
+.logout-mode
+{
+    padding-left: 0;
+}
+.nav-links li a:hover:before{
+    content: "";
+    position: absolute;
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+
+.nav-links li a.active i {
+    color: var(--primary-color); 
+}
+.nav-links li a.active span {
+    color: var(--primary-color); 
+}
+
+body.dark li a:hover:before{
+    background-color: var(--text-color);
+}
+.menu-items li a i{
+    font-size: 28px;
+    min-width: 45px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black-light-color);
+}
+.menu-items li a .link-name{
+    font-size: 19px;
+    margin-left: 5px;
+    font-weight: 400;
+    color: var(--black-light-color);    
+    transition: var(--tran-05);
+}
+nav.close li a .link-name{
+    opacity: 0;
+    pointer-events: none;
+}
+.nav-links li a:hover i,
+.nav-links li a:hover .link-name{
+    color: var(--primary-color);
+}
+body.dark .nav-links li a:hover i,
+body.dark .nav-links li a:hover .link-name{
+    color: var(--text-color);
+}
+.menu-items .logout-mode{
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+.menu-items .mode{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.menu-items .mode img{
+    width: 40px;
+    border-radius: 50%;
+}
+.dashboard{
+    position: relative;
+    left: 250px;
+    background-color: var(--panel-color);
+    min-height: 100vh;
+    width: calc(100% - 250px);
+    padding: 10px 14px;
+    transition: var(--tran-05);
+   
+}
+nav.close ~ .dashboard{
+    left: 73px;
+    width: calc(100% - 73px);
+}
+.dashboard .top{
+    position: fixed;
+    top: 0;
+    left: 250px;
+    display: flex;
+    width: calc(100% - 250px);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: var(--panel-color);
+    transition: var(--tran-05);
+    z-index: 1;
+
+}
+
+nav.close ~ .dashboard .top{
+    left: 73px;
+    width: calc(100% - 73px);
+}
+.dashboard .top .sidebar-toggle{
+    font-size: 26px;
+    color: var(--text-color);
+    cursor: pointer;
+    
+}
+.dashboard .top .heading{
+    position: relative;
+    height: 45px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 30px;
+
+}
+.icons {
+    font-size: 24px;
+    min-width: 45px;
+    height: 100%;
+
+    display: flex;
+    align-items: center; 
+    margin-left: auto; 
+    margin-right: 20px; 
+}
+
+.notification-icon,
+.message-icon {
+    margin-right: 10px; 
+    color: var(--black-light-color);
+}
+.notification-icon a i,
+.message-icon a i{
+    color: var(--black-light-color);
+}
+
+.notification-icon a i:hover,
+.message-icon a i:hover{
+    color: var(--primary-color);
+}
+
+
+/* Style for the notification button */
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Style for the notification dropdown */
+#notification-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px; /* Adjust the width as needed */
+    background-color: #fff;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+#notification-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#notification-dropdown h2 {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+
+
+#notification-dropdown ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px; 
+ 
+
+}
+#notification-dropdown ul li a{
+
+    color: var(--text-color);
+    text-decoration: none;
+
+}
+
+#notification-dropdown ul li:first-child {
+    border-top: 1px solid #ddd;
+}
+#notification-dropdown ul li:last-child {
+    border-bottom: none;
+}
+
+/* Show the dropdown when hovering over the notification button */
+.notification-icon:hover #notification-dropdown {
+    display: block;
+}
+
+/* Style the profile dropdown container */
+.profile-dropdown {
+    position: relative; /* Ensure it's a positioned element for absolute positioning */
+    display: inline-block; /* Display it inline with the content */
+    margin-right: 20px; /* Add spacing to the right */
+}
+
+/* Style the image */
+.profile-dropdown img {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    cursor: pointer; /* Change the cursor to a pointer to indicate it's clickable */
+}
+
+/* Style the name */
+.link-name {
+    font-weight: bold; /* Add some styling to the name */
+    margin-left: 10px; /* Add spacing to the left of the name */
+}
+
+/* Style the submenus */
+.sub-menus {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width:200px; 
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(125, 29, 29, 0.2);
+    border-color: var(--primary-color);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1;
+    list-style: none;
+    padding: 5px;
+    text-align: center; /* Center align the contents */
+}
+
+.sub-menus li{
+    font-size:0.90rem;
+}
+
+.sub-menus li a:hover{
+ color: var(--primary-color);
+}
+/* Style the profile info container */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the content horizontally */
+    margin-bottom: 10px; /* Add spacing between profile info and other items */
+}
+.profile-image{
+    border-radius: 50%;
+    border: 1px solid var(--primary-color);
+}
+    
+/* Style the profile image */
+.profile-image img {
+    margin-top: 5px;
+    width: 110px;
+    height: 110px;
+    cursor: pointer;
+    
+}
+/* Style the submenu items */
+.sub-menus li:not(.profile-info) {
+    text-align: left; /* Left align the other items */
+    margin-left: 10px; /* Add spacing to the left of other items */
+}
+
+/* Style the submenu links */
+.sub-menus a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px 0;
+}
+/* Style the link name */
+.linkname {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Style the line underneath the link name */
+.linkname::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--colorOrange);
+}
+
+/* Style the submenu items */
+.menu-item {
+    text-align: left;
+    margin-left: 10px;
+}
+
+/* Style the submenu links */
+.menu-item a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px 0;
+}
+
+
+.top .heading h1{
+    position: flex;
+    text-align: center;
+    margin-left: 8rem;
+    padding-top: 40px;
+    font-size: 22px;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+}
+
+/**PROGRESS**/
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.progress-container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #ccc;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+}
+
+.step {
+    margin-top: 20px;
+}
+
+.complete-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#add-step-button {
+    margin-top: 20px;
+}
+
+
+
+@media (max-width: 1000px) {
+    nav{
+        width: 73px;
+    }
+    nav.close{
+        width: 250px;
+    }
+
+    nav.menu-items.close{
+        display: none;
+    }
+    nav .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close .logo_name{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close li a .link-name{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav ~ .dashboard{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard{
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+    nav ~ .dashboard .top{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard .top{
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+
+    
+}
+
+@media (max-width: 780px) {
+    .dash-content .boxes .box{
+        width: calc(100% / 2 - 15px);
+        margin-top: 15px;
+    }
+
+    .top .heading h1{
+        margin-left: 0;
+        position: flex;
+        text-align: center !important;
+        font-size: 13px;
+      
+    }
+    
+    nav .logo-image,
+    nav .logo-image img{
+        size: 1px;
+        justify-content: center;
+     
+    }
+   
+    .dash-content .user-stats{
+        gap: 0;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+     
+    }
+    .dash-content .user-stats .total-users h1,
+    .dash-content .user-stats .inactive-active-users h1{
+        font-size: 20px;
+    }
+    .dashboard .top{
+        box-shadow:1px 0px 4px rgba(0,0,0,0.5);
+    }
+ 
+   .dashboard{
+    z-index: 2;
+   }
+   .dash-content .total-users .name h1,
+   .dash-content .inactive-active-users .name h1 {
+    font-size: 15px;
+    
+    }
+  
+   
+    .heading h1 {
+        text-align: left; /* Align heading text to the left */
+    }
+    
+    .icons {
+        margin-top: 10px; /* Add spacing between icons and other content */
+    }
+    
+    .profile-dropdown {
+        margin-top: 10px; /* Add spacing between profile dropdown and other content */
+    }
+    #notification-dropdown {
+        width: 100px; /* Full width for smaller screens */
+    }
+
+    #notification-dropdown h2 {
+        font-size: 10px; /* Reduce font size for smaller screens */
+    }
+
+    #notification-dropdown ul li {
+        font-size: 8px; /* Reduce font size for smaller screens */
+    }
+    }
+
+@media (max-width: 560px) {
+    .dash-content .boxes .box{
+        width: 100% ;
+    }
+}
+@media (max-width: 400px) {
+    nav{
+        width: 0px;
+    }
+    nav.close{
+        width: 73px;
+    }
+    nav .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav ~ .dashboard{
+        left: 0;
+        width: 100%;
+    }
+    nav.close ~ .dashboard{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav ~ .dashboard .top{
+        left: 0;
+        width: 100%;
+    }
+    nav.close ~ .dashboard .top{
+        left: 0;
+        width: 100%;
+    }
+
+    nav .logo-image,
+    nav .logo-image img{
+        display: none;
+     
+    }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}

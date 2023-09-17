@@ -11,41 +11,30 @@
         <ul class="nav-links">
             <li>
                 <a href="" class="">
-                    <i class="uil uil-users-alt"></i>
-                    <span class="link-name">Beneficiaries</span>
+                    <i class="uil uil-home"></i>
+                    <span class="link-name">Home</span>
                 </a>
             </li>
             <li>
                 <a href="" class="">
-                    <i class="uil uil-bell"></i>
-                    <span class="link-name">Announcement</span>
+                    <i class="uil uil-schedule"></i>
+                    <span class="link-name">Schedule</span>
                 </a>
             </li>
             <li>
                 <a href="" class="">
-                    <i class="uil uil-calendar-alt"></i>
-                    <span class="link-name">Event</span>
+                    <i class="uil uil-process"></i>
+                    <span class="link-name">Update</span>
                 </a>
             </li>
             <li>
                 <a href="">
-                    <i class="uil uil-question-circle"></i>
-                    <span class="link-name">Inquiry</span>
+                    <i class="uil uil-user-circle"></i>
+                    <span class="link-name">Profile</span>
                 </a>
             </li>
 
-            <li>
-                <a href="" class="">
-                    <i class="uil uil-check-circle"></i>
-                    <span class="link-name">Progress</span>
-                </a>
-            </li>
-            <li>
-                <a href="" class="">
-                    <i class="uil uil-user-plus"></i>
-                    <span class="link-name">Registration</span>
-                </a>
-            </li>
+           
 
             <div class="mode-toggle">
 
@@ -70,6 +59,26 @@
         <i class="uil uil-bars sidebar-toggle"></i>
         <div class="heading">
             <h1>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h1>
+        </div>
+        <div class="icons">
+        <div class="notification-icon" id="notification-button">
+                <i class="uil uil-bell"></i>
+                <!-- Notification Dropdown -->
+                <div class="notification-dropdown" id="notification-dropdown">
+                <h2>Notifications</h2>
+                <ul>
+                        <li><a href="#">An announcement was posted!</a></li>
+                        <li><a href="#">An event was added!</a></li>
+                        <li><a href="#">A Progress was Updated!</a></li>
+                        <li><a href="#">Your schedule has been set </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="message-icon">
+                <a href="#">
+                    <i class="uil uil-comment-dots"></i>
+                </a>
+            </div>
         </div>
         <div class="profile-dropdown">
             <a href="#">
@@ -98,6 +107,8 @@
 
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
 
 
-    <script src="{{ asset('Assets/js/coordinator.js') }}"></script>
+
+    <script src="{{ asset('Assets/js/beneficiary.js') }}"></script>
