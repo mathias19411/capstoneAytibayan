@@ -146,8 +146,7 @@
                 </div>
 
                 <div id="pagination-message"></div>
-             
-              </div>
+                </div>
     
                         <!-- Popup for displaying message content and details -->
                         <div id="message-popup" class="popup">

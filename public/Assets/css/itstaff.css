@@ -1365,6 +1365,17 @@ body.announcement_events_inquiry .modal-footer .close {
     margin: 10px;
 }
 
+body.announcement_events_inquiry #view_image img {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 10px 50% 50% 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 body.announcement_events_inquiry .modal-footer .add:hover {
     background-color: #7bb701;
     transition: 0.5s;
