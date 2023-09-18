@@ -137,6 +137,19 @@
                             <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" onclick="deleteAnnouncement(1)"><i class="fa-solid fa-trash fa-2xs"></i></button>
                             </td>
                         </tr>
+                        <tr>
+                            <td>Binhi ng Pag-asa Seminar</td>
+                            <td>jorizabinhi@gmail.com</td>
+                            <td> Lorem ipsum is a placeholder text commonly used to demonstrapte</td>
+                            <td>2023-09-21</td>
+                            <td>
+                            <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view">
+                                <i class="fa-solid fa-eye fa-2xs"></i>
+                            </button>
+                            <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                            <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" onclick="deleteAnnouncement(1)"><i class="fa-solid fa-trash fa-2xs"></i></button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                     <div class="pagination">
@@ -235,10 +248,10 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
         <!--MODAL VIEW-->
-        <div class="modal fade" id="modal_view" tabindex="-1" data-backdrop="false" aria-labelledby="modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+        <div class="modal fade" id="modal_view" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -268,12 +281,12 @@
                         <div class="modal-footer">
                         <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                         </div>
-                </div>`
+                </div>
             </div>
         </div>
 
         <!--MODAL EDIT-->
-        <div class="modal fade" id="modal_edit" tabindex="-1" data-backdrop="false" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+        <div class="modal fade" id="modal_edit" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
