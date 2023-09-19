@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="program-form">
-    <form id="myForm" action="{{ route('edit-program') }}" method="post">
+    <form id="myForm" action="{{ route('edit_program') }}" method="post">
         @csrf
     <h1>Program Information</h1>
     
@@ -27,9 +27,14 @@
             <input type="text" id="program_name" placeholder="Program Name" value="Lorem Ipsum Program" contenteditable="true">
         </div>
         <div class="input-group">
+            <label for="program_key">Program Key:</label>
+            <input type="text" id="program_key" placeholder="" name="program_key"value="binhi">
+        </div>
+        <div class="input-group">
             <label for="loc">Location:</label>
             <input type="text" id="loc" placeholder="Location" value="City, Country" contenteditable="true">
         </div>
+
     </div>
     
     <div class="form-row">
@@ -45,6 +50,7 @@
             <label for="info">Program Information:</label>
             <textarea id="info" placeholder="Program Information" contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec aliquam nisi.</textarea>
         </div>
+       
     </div>
     
     <div class="form-row1">
