@@ -163,3 +163,7 @@ Route::get('/Project_Coordinator/pass', function () {
 Route::get('/Beneficiary/schedule', function () {
     return view('Beneficiary.schedule');
 });
+
+Route::get('/Beneficiary/inquiry', function () {
+    return view('Beneficiary.inquiry');
+});
