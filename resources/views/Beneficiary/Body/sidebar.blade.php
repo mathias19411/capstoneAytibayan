@@ -90,11 +90,11 @@
                     <div class="profile-image">
                         <img src="\images\logo.png" alt="">
                     </div>
-                    <span class="linkname">Project Coordinator 1</span>
+                    <span class="linkname">Beneficiary</span>
                 </li>
                 <li>
                     <a href="">
-                        <i class="uil uil-user"></i> Profile
+                        <i class="uil uil-user"></i> Account
                     </a>
                 </li>
                 <li><a href="#"><i class="uil uil-lock"></i> Change Password</a></li>

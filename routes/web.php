@@ -167,3 +167,11 @@ Route::get('/Beneficiary/schedule', function () {
 Route::get('/Beneficiary/inquiry', function () {
     return view('Beneficiary.inquiry');
 });
+
+Route::get('/Beneficiary/benefprofile', function () {
+    return view('Beneficiary.benefprofile');
+});
+
+Route::get('/Beneficiary/benefpass', function () {
+    return view('Beneficiary.benefpass');
+});

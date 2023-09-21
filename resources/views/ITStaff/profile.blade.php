@@ -135,20 +135,17 @@
 
                                         <div class="header1">
                                             <div class="mt-2">
-                                                <!-- Image Preview -->
+                                            <div class="custom-file">
+                                                <label class="custom-file-label" id="custom-file-label" for="input-ProfileImage">Choose a file</label>
+                                                <input type="file" class="custom-file-input form-control form-control-alternative" id="input-ProfileImage" name="photo">
+                                            </div>
+                                            <div class="image-container">
                                                 <img id="image-preview"
                                                     src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                                     alt="User Profile Image" class="img-fluid-small  rounded-circle">
-                                                {{-- <button type="button" id="delete-image"
-                                                    class="btn btn-danger btn-sm"><i class="fas fa-times"></i>
-                                                    Delete</button> --}}
+                                               <span class="delete-icon" id="delete-image-btn">×</span>
                                             </div>
-                                            <div class="custom-file">
-                                                <input type="file"
-                                                    class="custom-file-input form-control form-control-alternative"
-                                                    id="input-ProfileImage" name="photo">
-                                                <label class="custom-file-label" for="photo"></label>
-                                            </div>
+                                            
                                         </div>
                                     </div>
 
@@ -285,42 +282,63 @@
     </div>
     </div>
     </div>
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const imageInput = document.getElementById('input-ProfileImage');
-            const imagePreview = document.getElementById('image-preview');
-            const deleteImageBtn = document.getElementById('delete-image');
+    <script>
+    $(document).ready(function() {
+        const imageInput = $('#input-ProfileImage');
+        const imagePreview = $('#image-preview');
+        const deleteImageBtn = $('#delete-image-btn');
 
-            // Listen for file input change
-            imageInput.addEventListener('change', function() {
-                if (this.files && this.files[0]) {
-                    const reader = new FileReader();
+        // Function to hide the delete button
+        function hideDeleteButton() {
+            deleteImageBtn.hide();
+        }
 
-                    reader.onload = function(e) {
-                        imagePreview.src = e.target.result;
-                    };
+        // Function to show the delete button
+        function showDeleteButton() {
+            deleteImageBtn.show();
+        }
 
-                    reader.readAsDataURL(this.files[0]);
-                }
-            });
+        // Function to update the image preview
+        function updateImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
 
-            // Listen for delete image button click
-            deleteImageBtn.addEventListener('click', function() {
-                imageInput.value = ''; // Clear the file input
-                imagePreview.src =
-                    '{{ asset('Uploads/user-icon-png-person-user-profile-icon-20.png') }}'; // Replace with the default image path
-            });
+        // Hide the delete button initially if the default picture is viewed
+        if (imagePreview.attr('src') === '{{ asset('Uploads/user-icon-png-person-user-profile-icon-20.png') }}') {
+            hideDeleteButton();
+        }
+
+        // Listen for file input change
+        imageInput.change(function(e) {
+            const selectedFile = e.target.files[0];
+            if (selectedFile) {
+                updateImagePreview(selectedFile);
+                showDeleteButton();
+            } else {
+                hideDeleteButton();
+            }
         });
-    </script> --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#input-ProfileImage').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#image-preview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            })
-        })
-    </script>
+
+        // Listen for delete image button click
+        deleteImageBtn.click(function() {
+            imageInput.val(''); // Clear the file input
+            imagePreview.attr('src', '{{ asset('Uploads/user-icon-png-person-user-profile-icon-20.png') }}'); // Restore the default image
+            hideDeleteButton();
+        });
+
+        // Additional script for image input change (if needed)
+        $('#input-ProfileImage').change(function(e) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#image-preview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+    });
+</script>
+ 
 </body>
