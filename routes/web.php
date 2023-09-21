@@ -175,3 +175,7 @@ Route::get('/Beneficiary/benefprofile', function () {
 Route::get('/Beneficiary/benefpass', function () {
     return view('Beneficiary.benefpass');
 });
+
+Route::get('/Beneficiary/programprofile', function () {
+    return view('Beneficiary.programprofile');
+});

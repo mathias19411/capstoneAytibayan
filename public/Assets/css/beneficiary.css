@@ -13,14 +13,9 @@ body {
     overflow: auto;
     scroll-behavior: smooth; 
 
-    /* background-image: url("/images/background.png"); Set the path to your background image */
-    /* background-size: cover; Cover the entire body with the background image */
-    /* background-position: center; Center the background image */
-    /* background-attachment: fixed; Keep the background image fixed while scrolling */
 }
 
 :root{
-    /* ===== Colors ===== */
     --primary-color: #7bb701;
     --colorOrange: #f0a60f;
     --panel-color: #FFF;
@@ -1479,3 +1474,172 @@ body.inquiry{
   
   }
 }
+
+
+
+/*PROGRAM PROFILE*/
+body.programprofile{
+    overflow:auto;
+  }
+  img{
+    max-width:100%;
+  }
+  .profile-card{
+    position:relative;
+    max-width:95%;
+    margin: 100px auto;
+    padding:40px 30px 30px;
+    background:#fff;
+    border: 5px solid rgba(255,255,255,.7);
+    text-align:center;
+    border-radius:4px;
+    transition: all 200ms ease;
+    box-shadow: 0 5px 10px rgba(0.2, 0.2, 0.2, 0.2);
+  }
+  .mask-shadow{
+    z-index:-1 !important;
+    width:95%;
+    height:12px;
+    background:var(--primary-color);
+    bottom:0;
+    left:0;
+    right:0;
+    margin:0 auto;
+    position:absolute;
+    border-radius:4px;
+    opacity:0;
+    transition: all 400ms ease-in;
+  }
+  .profile-card:hover{
+    box-shadow: 0px 30px 60px -5px rgba(55,55,71,0.3);
+    transform: translate3d(0,-5px,0);
+    .mask-shadow{
+      opacity:1;
+      box-shadow: 0px 30px 60px -5px rgba(55,55,71,0.3);
+      position:absolute;
+    }
+  }
+  .profile-card header{
+    display:block;
+    margin-bottom:10px;
+  }
+  .profile-card header a{
+    width:150px;
+    height:150px;
+    display:block;
+    border-radius:100%;
+    margin:-120px auto 0;
+    box-shadow: 0 0 0 5px #82b541;
+  }
+  .profile-card header a img{
+    border-radius: 50%;
+    width:150px;
+    height:150px;
+  }
+  
+  .profile-card:hover header a, .profile-card header a:hover{
+    animation: bounceOut .4s linear; 
+    -webkit-animation: bounceOut .4s linear;
+  }
+  .profile-card header h1{
+    margin-top: 10px;
+    font-size:20px;
+    color:var(--primary-color);
+    text-transform:uppercase;
+    margin-bottom:5px;
+  }
+  .profile-card header h2{
+    font-size:20px;
+    color:#acacac;
+    text-transform:uppercase;
+    margin:0;
+  }
+
+  .profile-bio {
+    display: flex; 
+    align-items: center; 
+    color: #a5a5a5;
+    line-height: 1;
+    margin-bottom: 30px;
+   
+}
+
+.profile-bio h1,
+.profile-bio p {
+    font-size: 15px;
+    margin: 0;
+    flex: 1; 
+}
+.profile-bio h1 {
+    margin-left: 10px;
+    text-transform: uppercase;
+    color: #3c3b3b;
+}
+
+.profile-bio p {
+    margin-left: 10px;
+    font-style: italic;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+  
+  /*animation hover effect*/
+  @-webkit-keyframes bounceOut {
+    0% {
+      box-shadow: 0 0 0 4px #82b541;
+      opacity: 1;
+    }
+    25% {
+      box-shadow: 0 0 0 1px #82b541;
+      opacity: 1;
+    }
+    50% {
+      box-shadow: 0 0 0 7px #82b541;
+      opacity: 1;
+    }
+    75% {
+      box-shadow: 0 0 0 4px #82b541;
+      opacity: 1;
+    }
+    100% {
+      box-shadow: 0 0 0 5px #82b541;
+      opacity: 1;
+    }
+  }
+  @keyframes bounceOut {
+    0% {
+      box-shadow: 0 0 0 6px #82b541;
+      opacity: 1;
+    }
+    25% {
+      box-shadow: 0 0 0 2px #82b541;
+      opacity: 1;
+    }
+    50% {
+      box-shadow: 0 0 0 9px #82b541;
+      opacity: 1;
+    }
+    75% {
+      box-shadow: 0 0 0 3px #82b541;
+      opacity: 1;
+    }
+    100% {
+      box-shadow: 0 0 0 5px #82b541;
+      opacity: 1;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+ 
+    .profile-bio {
+        flex-direction: column;
+      
+    }
+    .profile-bio p{
+        padding-top: 5px;
+    }
+}
+
+
+
