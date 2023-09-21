@@ -10,7 +10,7 @@
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="{{ asset('Assets/css/UserProfile.css') }}">
 
-    {{-- Jquery CDN --}}
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 
