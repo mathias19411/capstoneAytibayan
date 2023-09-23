@@ -290,6 +290,10 @@ nav.close ~ .dashboard .top {
     margin-bottom: 10px; /* Add spacing between profile info and other items */
 }
 
+.profile-image{
+    border-radius: 50%;
+    border: 1px solid var(--primary-color);
+}
 /* Style the profile image */
 .profile-image img {
     margin-top: 5px;
@@ -748,14 +752,24 @@ ol, ul {
     margin-bottom: 5px;
 }
 
-#name,
-#program_name,
-#loc,
+
 #email,
 #contact,
 #table_name,
 #num_columns {
     width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+#name,
+#program_name,
+#program_key,
+#loc{
+    width: 98%;
+    padding-left: 10px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 15px;
@@ -1359,6 +1373,17 @@ body.announcement_events_inquiry .modal-footer .close {
     border-radius: 5px;
     font-size: 15px;
     margin: 10px;
+}
+
+body.announcement_events_inquiry #view_image img {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 10px 50% 50% 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 body.announcement_events_inquiry .modal-footer .add:hover {

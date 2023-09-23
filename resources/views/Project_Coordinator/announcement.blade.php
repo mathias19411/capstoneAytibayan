@@ -12,8 +12,8 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Read</option>
-                <option value="read">Unread</option>
+                <option value="unread">Public</option>
+                <option value="read">Beneficiary</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -146,8 +146,7 @@
                 </div>
 
                 <div id="pagination-message"></div>
-             
-              </div>
+                </div>
     
                         <!-- Popup for displaying message content and details -->
                         <div id="message-popup" class="popup">

@@ -149,3 +149,33 @@ Route::get('/Project_Coordinator/registration', function () {
 Route::get('/Project_Coordinator/progress', function () {
     return view('Project_Coordinator.progress');
 });
+
+Route::get('/Project_Coordinator/profile', function () {
+    return view('Project_Coordinator.profile');
+});
+
+Route::get('/Project_Coordinator/pass', function () {
+    return view('Project_Coordinator.pass');
+});
+
+
+
+Route::get('/Beneficiary/schedule', function () {
+    return view('Beneficiary.schedule');
+});
+
+Route::get('/Beneficiary/inquiry', function () {
+    return view('Beneficiary.inquiry');
+});
+
+Route::get('/Beneficiary/benefprofile', function () {
+    return view('Beneficiary.benefprofile');
+});
+
+Route::get('/Beneficiary/benefpass', function () {
+    return view('Beneficiary.benefpass');
+});
+
+Route::get('/Beneficiary/programprofile', function () {
+    return view('Beneficiary.programprofile');
+});

@@ -296,7 +296,11 @@ nav.close ~ .dashboard .top{
     align-items: center; /* Center align the content horizontally */
     margin-bottom: 10px; /* Add spacing between profile info and other items */
 }
-
+.profile-image{
+    border-radius: 50%;
+    border: 1px solid var(--primary-color);
+}
+    
 /* Style the profile image */
 .profile-image img {
     margin-top: 5px;

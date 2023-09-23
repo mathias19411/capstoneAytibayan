@@ -31,7 +31,7 @@
             <div class="container-fluid d-flex align-items-center">
 
                 <div class="col-lg-7 col-md-10">
-                    <h1 class="display-2">Hello {{ $userProfileData->first_name }}!</h1>
+                    <h1 class="display-2">Hello </h1>
                     <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
 
 
@@ -61,15 +61,15 @@
                                 <div class="col">
                                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                         <div>
-                                            <span class="heading">{{ $userProfileData->first_name }} </span>
+                                            <span class="heading"> </span>
                                             <span class="description">Given Name</span>
                                         </div>
                                         <div>
-                                            <span class="heading">{{ $userProfileData->middle_name }}</span>
+                                            <span class="heading"></span>
                                             <span class="description">Midldle Name</span>
                                         </div>
                                         <div>
-                                            <span class="heading"> {{ $userProfileData->last_name }}</span>
+                                            <span class="heading"></span>
                                             <span class="description">Last Name</span>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                             </div>
                             <div class="text-center">
                                 <h3>
-                                    {{ $userProfileData->email }}<span class="font-weight-light"></span>
+                                   <span class="font-weight-light"></span>
                                 </h3>
                                 <div class="h5 font-weight-300">
 
@@ -85,7 +85,7 @@
                                 </div>
 
                                 <h3>
-                                    {{ $userProfileData->phone }}<span class="font-weight-light"></span>
+                                    <span class="font-weight-light"></span>
                                 </h3>
                                 <div class="h5 font-weight-300">
 
@@ -94,8 +94,7 @@
 
 
                                 <h3>
-                                    {{ $userProfileData->primary_address }}, {{ $userProfileData->city }},
-                                    {{ $userProfileData->province }}, {{ $userProfileData->zip }}<span
+                                  <span
                                         class="font-weight-light"></span>
                                 </h3>
                                 <div class="h5 font-weight-300">
@@ -121,11 +120,7 @@
                         <div class="card-body">
                             <form method="POST" action="{{ route('itstaff.editprofile') }}"
                                 enctype="multipart/form-data">
-                                {{-- by using enctype="multipart/form-data", you are specifying that the form data should be encoded in a way that supports file uploads, enabling the submission of files from the client to the server. --}}
-
-                                @csrf{{-- By including the @csrf directive in your forms, you add an additional layer of protection against CSRF attacks, safeguarding the integrity and security of your application. --}}
-
-                                {{-- name="" is important for updating data --}}
+                                
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4">
                                     <div class="form-group">
@@ -139,14 +134,15 @@
                                                 <label class="custom-file-label" id="custom-file-label" for="input-ProfileImage">Choose a file</label>
                                                 <input type="file" class="custom-file-input form-control form-control-alternative" id="input-ProfileImage" name="photo">
                                             </div>
-                                            <div class="image-container">
+
+                                        <div class="image-container">
                                                 <img id="image-preview"
                                                     src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                                     alt="User Profile Image" class="img-fluid-small  rounded-circle">
-                                               <span class="delete-icon" id="delete-image-btn">×</span>
+                                                    <span class="delete-icon" id="delete-image-btn">×</span>
                                             </div>
-                                            
                                         </div>
+
                                     </div>
 
 
@@ -158,7 +154,7 @@
                                                 <input type="text" id="Input-FirstName"
                                                     class="form-control form-control-alternative"
                                                     placeholder="FirstName" contenteditable="true"
-                                                    value="{{ $userProfileData->first_name }}" name="first_name">
+                                                    value="" name="first_name">
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -168,7 +164,7 @@
                                                 <input type="text" id="input-MiddleName"
                                                     class="form-control form-control-alternative"
                                                     placeholder="MiddleName" contenteditable="true"
-                                                    value="{{ $userProfileData->middle_name }}" name="middle_name">
+                                                    value="" name="middle_name">
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -178,29 +174,37 @@
                                                 <input type="text" id="input-LastName"
                                                     class="form-control form-control-alternative"
                                                     placeholder="LastName" contenteditable="true"
-                                                    value="{{ $userProfileData->last_name }}" name="last_name">
+                                                    value="" name="last_name">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
 
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-email">Email
                                                     address</label>
                                                 <input type="email" id="input-email"
                                                     class="form-control form-control-alternative"
-                                                    placeholder="Email Address" value="{{ $userProfileData->email }}"
+                                                    placeholder="Email Address" value=""
                                                     readonly>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-Role">Role</label>
                                                 <input type="text" id="input-Role"
                                                     class="form-control form-control-alternative" placeholder="Role"
-                                                    value="{{ $userProfileData->role->role_name }}" readonly>
+                                                    value="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-program">Program</label>
+                                                <input type="text" id="input-program"
+                                                    class="form-control form-control-alternative" placeholder="program"
+                                                    value="" readonly>
                                             </div>
                                         </div>
 
@@ -218,7 +222,7 @@
                                                     Number</label>
                                                 <input type="number" class="form-control form-control-alternative"
                                                     placeholder="Phone" contenteditable="true"
-                                                    value="{{ $userProfileData->phone }}" name="phone">
+                                                    value="" name="phone">
                                             </div>
                                         </div>
                                     </div>
@@ -229,7 +233,7 @@
                                                 <input id="input-address"
                                                     class="form-control form-control-alternative"
                                                     placeholder="Address" type="text" contenteditable="true"
-                                                    value="{{ $userProfileData->primary_address }}"
+                                                    value=""
                                                     name="primary_address">
                                             </div>
                                         </div>
@@ -240,7 +244,7 @@
                                                 <label class="form-control-label" for="input-city">City</label>
                                                 <input type="text" id="input-city"
                                                     class="form-control form-control-alternative" placeholder="City"
-                                                    contenteditable="true" value="{{ $userProfileData->city }}"
+                                                    contenteditable="true" value=""
                                                     name="city">
                                             </div>
                                         </div>
@@ -250,7 +254,7 @@
                                                 <input type="text" id="input-province"
                                                     class="form-control form-control-alternative"
                                                     placeholder="Province" contenteditable="true"
-                                                    value="{{ $userProfileData->province }}" name="province">
+                                                    value="" name="province">
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -260,7 +264,7 @@
                                                 <input type="number" id="input-postal-code"
                                                     class="form-control form-control-alternative"
                                                     placeholder="Postal code" contenteditable="true"
-                                                    value="{{ $userProfileData->zip }}" name="zip">
+                                                    value="" name="zip">
                                             </div>
                                         </div>
                                     </div>
@@ -340,5 +344,4 @@
         });
     });
 </script>
- 
 </body>

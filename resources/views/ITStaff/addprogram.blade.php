@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </head>
 <body >
 <div class="program-form">
-    <form id="myForm" action="{{ route('add-program') }}" method="post">
+    <form id="myForm" action="{{ route('addprogram') }}" method="post">
         @csrf
     <h1>Program Information</h1>
     
@@ -83,6 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="input-group">
             <label for="program_name">Name of the Program:</label>
             <input type="text" id="program_name" placeholder="" name="program">
+        </div>
+        <div class="input-group">
+            <label for="program_key">Program Key:</label>
+            <input type="text" id="program_key" placeholder="" name="program_key">
         </div>
         <div class="input-group">
             <label for="loc">Location:</label>
@@ -100,9 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <input type="tel" id="contact" placeholder="09xxxxxxxxx" name="contact">
         </div>
         <div class="input-group">
-            <label for="info">Program Information</label>
+            <label for="info">Program Information:</label>
             <textarea id="info" placeholder="" name="description"></textarea>
         </div>
+        
     </div>
     
     <div class="form-row1">
