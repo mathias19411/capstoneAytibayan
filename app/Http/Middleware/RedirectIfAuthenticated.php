@@ -18,24 +18,31 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
         $guards = empty($guards) ? [null] : $guards;
+ 
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check())
             {
+                // Access the authenticated user
+                $user = Auth::user();
+
+                // Access the role name using the defined relationship
+                $roleName = $user->role->role_name;
                 // Check if the user is trying to access the registration page
+                $url = '';
                 if ($request->routeIs('register')) {
                     return $next($request);
                 }
                 
-                if($request->user()->role === 'itstaff')
+                if($roleName === 'itstaff')
                 {
                     $url = '/ITStaff/home';
                 }
-                else if ($request->user()->role === 'project_coordinator')
+                else if ($roleName === 'projectcoordinator')
                 {
                     $url = '/ProjectCoordinator/home';
                 }
-                else if ($request->user()->role === 'beneficiary')
+                else if ($roleName === 'beneficiary')
                 {
                     $url = '/Beneficiary/home';
                 }

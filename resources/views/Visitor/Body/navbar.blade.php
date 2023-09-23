@@ -37,11 +37,18 @@
             <li><a href='#binhiButton'>Contact Us</a></li>
             @if (Route::has('login'))
                 @auth
-                    @if (auth()->user()->role === 'itstaff')
+                    @php
+                        // Access the authenticated user
+                        $user = auth()->user();
+                        
+                        // Access the role_name using the defined relationship
+                        $roleName = $user->role->role_name;
+                    @endphp
+                    @if ($roleName === 'itstaff')
                         <li><a href="{{ url('/ITStaff/home') }}">Back to Dashboard</a></li>
-                    @elseif(auth()->user()->role === 'project_coordinator')
+                    @elseif($roleName === 'projectcoordinator')
                         <li><a href="{{ url('/ProjectCoordinator/home') }}">Back to Dashboard</a></li>
-                    @elseif(auth()->user()->role === 'beneficiary')
+                    @elseif($roleName === 'beneficiary')
                         <li><a href="{{ url('/Beneficiary/home') }}">Back to Dashboard</a></li>
                     @endif
                 @else

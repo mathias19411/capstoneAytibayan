@@ -3,11 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Program;
+use App\Models\Role;
+use App\Models\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\HasApiTokens;
 
 // class User extends Authenticatable implements MustVerifyEmail
 class User extends Authenticatable
@@ -20,26 +23,28 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $guarded = []; //protected $guarded = []; makes every field be fillable
-//     protected $fillable = [
-//     'first_name',
-//     'middle_name',
-//     'last_name',
-//     'email',
-//     'email_verified_at',
-//     'password',
-//     'photo',
-//     'phone',
-//     'primary_address',
-//     'city',
-//     'province',
-//     'zip',
-//     'role',
-//     'status',
-//     'remember_token',
-//     'created_at',
-//     'updated_at',
-// ];
+    // protected $guarded = []; //protected $guarded = []; makes every field be fillable
+    protected $fillable = [
+        'id',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'email',
+        'email_verified_at',
+        'password',
+        'photo',
+        'phone',
+        'primary_address',
+        'city',
+        'province',
+        'zip',
+        'role_id',
+        'program_id',
+        'status_id',
+        'remember_token',
+        'created_at',
+        'updated_at',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -93,6 +98,21 @@ class User extends Authenticatable
     {
         $defaultPassword = Hash::make('ApaoAlbay2023');
         $this->attributes['password'] = $defaultPassword;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 
 }

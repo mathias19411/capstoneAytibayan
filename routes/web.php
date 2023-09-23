@@ -23,9 +23,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 */
 
 
-Route::get('/', function () {
-    return view('Visitor.visitor_index');
-});
+// Route::get('/', function () {
+//     return view('Visitor.visitor_index');
+// });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -71,7 +71,7 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 }); //End group itstaff middleware
 
 //Project Coordinator Group Middleware
-Route::middleware(['auth', 'userroleprotection:project_coordinator'])->group(function(){
+Route::middleware(['auth', 'userroleprotection:projectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/ProjectCoordinator/home', [ProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('projectcoordinator.home');
 

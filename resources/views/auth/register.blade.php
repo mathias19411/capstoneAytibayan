@@ -107,16 +107,16 @@
             <div class="col-md-6">
                 <label for="inputRole" class="form-label">Role</label>
                 <select id="inputRole" class="form-select" name="inputRole">
-                    <option value="itstaff" selected>IT Staff</option>
-                    <option value="project_coordinator">Project Coordinator</option>
-                    <option value="beneficiary">Beneficiary</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ ucwords($role->role_name) }}</option>
+                    @endforeach
                 </select>
                 @error('inputRole')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
 
             </div>
-            <div class="col-12">
+            <div class="col-md-6">
                 <label for="inputPrimaryAddress" class="form-label">Primary Address</label>
                 <input type="text" class="form-control" id="inputPrimaryAddress" name="primaryAddress"
                     placeholder="Barangay, Purok, or St." required>
@@ -124,7 +124,21 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="col-md-6">
+                <label for="inputProgram" class="form-label">Program</label>
+                <select id="inputProgram" class="form-select" name="inputProgram">
+                    @foreach ($programs as $program)
+                        <option value="{{ $program->id }}">{{ ucwords($program->program_name) }}</option>
+                    @endforeach
+                </select>
+                @error('inputProgram')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+
+            </div>
+
+            <div class="col-md-4">
                 <label for="inputCity" class="form-label">City</label>
                 <select id="inputCity" class="form-select" name="inputCity">
                     <option value="Legazpi City"selected>Legazpi City</option>
@@ -158,14 +172,19 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-            {{-- <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Check me out
-                    </label>
-                </div>
-            </div> --}}
+
+            <div class="col-md-2">
+                <label for="inputStatus" class="form-label">Status</label>
+                <select id="inputStatus" class="form-select" name="inputStatus">
+                    @foreach ($statuses as $status)
+                        <option value="{{ $status->id }}">{{ $status->status_name }}</option>
+                    @endforeach
+                </select>
+                @error('inputStatus')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
             <div class="col-12 register-button">
                 <button type="submit" class="button">Register</button>
             </div>

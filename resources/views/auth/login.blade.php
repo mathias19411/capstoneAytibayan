@@ -66,11 +66,11 @@
 
 <body class="login">
     <div class="form-container">
-        
+
         <form class="row g-3 login-form" method="POST" action="{{ route('login') }}">
             @csrf
-            <div class="col-md-4 side-image">    
-                    <img id="image" src="/images/APAO logo.png">
+            <div class="col-md-4 side-image">
+                <img id="image" src="/images/APAO logo.png">
             </div>
             <div class="col-md-8 form">
                 <div class="input-form">
@@ -85,22 +85,29 @@
                     </div>
                     <div class="col-md-12 input">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"
-                            autocomplete="current-password">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password"
+                                autocomplete="current-password">
+                            <button type="button" id="showPasswordBtn" class="btn btn-secondary"
+                                onclick="togglePasswordVisibility()">
+                                Show Password
+                            </button>
+                        </div>
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
-                        <!-- Remember Me -->
-                        <div class="block mt-4">
+                    <!-- Remember Me -->
+                    <div class="block mt-4">
                         <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox"
-                                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                name="remember">
                             <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                         </label>
-                        </div>
-                        {{-- <div class="col-12">
+                    </div>
+                    {{-- <div class="col-12">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="gridCheck">
                             <label class="form-check-label" for="gridCheck">
@@ -108,27 +115,27 @@
                             </label>
                         </div>
                         </div> --}}
-                        <div class="login-buttons">
-                            <div class="login-button1">
-                                <a href="{{ route('visitor.home') }}" class="back-to-home-button">Back to Home</a>
-                            </div>
-                            <div class="login-button2">
-                                <div class="login-button2-centered">
-                                    @if (Route::has('password.request'))
-                                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 login-button-item"
-                                            href="{{ route('password.request') }}">
-                                            {{ __('Forgot your password?') }}
-                                        </a>
-                                    @endif
+                    <div class="login-buttons">
+                        <div class="login-button1">
+                            <a href="{{ route('visitor.home') }}" class="back-to-home-button">Back to Home</a>
+                        </div>
+                        <div class="login-button2">
+                            <div class="login-button2-centered">
+                                @if (Route::has('password.request'))
+                                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 login-button-item"
+                                        href="{{ route('password.request') }}">
+                                        {{ __('Forgot your password?') }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
-                        <button type="submit" class="button login-button-item">Login</button>
-                 
+                    <button type="submit" class="button login-button-item">Login</button>
+
                     {{-- <div class="col-12 login-button">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div> --}}
-                    
+
                 </div>
             </div>
         </form>
@@ -137,6 +144,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var showPasswordBtn = document.getElementById("showPasswordBtn");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPasswordBtn.textContent = "Hide Password";
+            } else {
+                passwordInput.type = "password";
+                showPasswordBtn.textContent = "Show Password";
+            }
+        }
+    </script>
+
 
     {{-- toastr js --}}
     {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> --}}
