@@ -1,8 +1,7 @@
-@extends('ITStaff.main')
-@section('ITStaff')
+@extends('Project_Coordinator.projectcoordinator_main')
 
 @section('content')
-@include('ITStaff.Body.sidebar')
+@include('Project_Coordinator.Body.sidebarproj')
 
 <div class="title">
         <h1>Registration</h1>
@@ -113,12 +112,11 @@
             </div>
 
             <form>        
-        <div class="btn-bottom">
-            <button type="button" class="add-modal">
-                Register</button> 
-            </div>
-    </div>
-</form>
+                <div class="btn-bottom">
+                <button type="button" class="add-modal">
+                    Register</button> 
+                </div>
+            </form>
 
 <div class="modal fade" id="itStaffRegister" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
     <div class="modal-dialog">
@@ -129,27 +127,9 @@
             </div>
                 <div class="modal-body">
                     mathias ikaw na lang maglagay ng ibang info dito
-                    <div class="row">
-                        <div class="col">
-                        <div class="col-md-12">
-                            <h5>Name:</h5>
-                            <p id="modal-name">Orly Grona Encabo</p>
-                        </div>
-                            </div>
-                            <div class="col-md-12">
-                                <h5>Program:</h5>
-                                <p id="modal-recipient">Binhi ng Pag-asa</p>
-                            </div>
-                            <div class="col-md-12">
-                                <h5>Role:</h5>
-                                <p id="modal-message">Beneficiary</p>
-                        </div>
-                        </div>
-                    </div>
-            <div class="modal-footer">
-                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-         </div>
-    </div>
+
+                   
+    </di >
 </div>
 
 @endsection
