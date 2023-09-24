@@ -31,25 +31,31 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $url = '';
-         //Access the authenticated user's id
-        $id = AUTH::user()->id;
+        //  //Access the authenticated user's id
+        // $id = AUTH::user()->id;
 
-        //Access the specific row data of the user's id
-        $userProfileData = User::find($id);
+        // //Access the specific row data of the user's id
+        // $userProfileData = User::find($id);
+
+        // Access the authenticated user
+        $user = $request->user();
+
+        // Access the role name using the defined relationship
+        $roleName = $user->role->role_name; 
 
         $firstName = auth()->user()->first_name;
         $middleName = auth()->user()->middle_name;
         $lastName = auth()->user()->last_name;
         // Condition to check for user roles
-        if($request->user()->role === 'itstaff')
+        if($user->role->role_name === 'itstaff')
         {
             $url = '/ITStaff/home';
         }
-        else if ($request->user()->role === 'project_coordinator')
+        else if ($user->role->role_name === 'projectcoordinator')
         {
             $url = '/ProjectCoordinator/home';
         }
-        else if ($request->user()->role === 'beneficiary')
+        else if ($user->role->role_name === 'beneficiary')
         {
             $url = '/Beneficiary/home';
         }

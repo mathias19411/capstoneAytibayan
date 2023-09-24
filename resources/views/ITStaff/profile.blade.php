@@ -200,7 +200,7 @@
                                                 <label class="form-control-label" for="input-Role">Role</label>
                                                 <input type="text" id="input-Role"
                                                     class="form-control form-control-alternative" placeholder="Role"
-                                                    value="{{ $userProfileData->role }}" readonly>
+                                                    value="{{ $userProfileData->role->role_name }}" readonly>
                                             </div>
                                         </div>
 

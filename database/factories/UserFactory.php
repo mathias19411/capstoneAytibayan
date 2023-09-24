@@ -30,8 +30,9 @@ class UserFactory extends Factory
             'city' => fake()->city(),
             'province' => fake()->country(),
             'zip' => fake()->postcode(),
-            'role' => fake()->randomElement(['itstaff', 'project_coordinator', 'beneficiary ']),
-            'status' => fake()->randomElement(['active', 'inactive']),
+            'role_id' => fake()->randomElement(['1', '2', '3']),
+            'program_id' => fake()->randomElement(['1', '2', '3', '4', '5']),
+            'status_id' => fake()->randomElement(['1', '2']),
             'remember_token' => Str::random(10),
         ];
     }

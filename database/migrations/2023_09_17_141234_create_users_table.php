@@ -17,17 +17,24 @@ return new class extends Migration
             // $table->string('username')->unique()->nullable();
             $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->string('email')->unique()->nullable();;
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();;
+            $table->string('password')->nullable();
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
             $table->string('primary_address')->nullable();
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->string('zip')->nullable();
-            $table->enum('role',['itstaff', 'project_coordinator', 'beneficiary'])->default('beneficiary');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            // $table->enum('role',['itstaff', 'project_coordinator', 'beneficiary'])->default('beneficiary');
+            // $table->enum('program',['Binhi_ng_Pag_asa', 'Akbay', 'Lead', 'AgriPinay', 'Abaka_mo_Piso_mo'])->default('Binhi_ng_Pag_asa');
+            // $table->enum('status', ['active', 'inactive'])->default('active');
+
+            //foreign keys
+            $table->foreignId('role_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('program_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('status_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+
             $table->rememberToken();
             $table->timestamps();
         });

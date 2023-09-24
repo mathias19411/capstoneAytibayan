@@ -21,14 +21,15 @@ class UsersTableSeeder extends Seeder
                 'middle_name' => 'of',
                 'last_name' => 'Apao',
                 'email' => 'itstaff@gmail.com',
-                'password' => Hash::make('admin123'),
+                'password' => Hash::make('itstaff123'),
                 'phone' => '09998887777',
                 'primary_address' => 'Purok 3 Tamaoyan',
                 'city' => 'Legazpi City',
                 'province' => 'Albay',
                 'zip' => '4500',
-                'role' => 'itstaff',
-                'status' => 'active',
+                'role_id' => '1',
+                'program_id' => '2',
+                'status_id' => '1',
             ],
             //Project Coordinator
             [
@@ -42,8 +43,9 @@ class UsersTableSeeder extends Seeder
                 'city' => 'Legazpi City',
                 'province' => 'Albay',
                 'zip' => '4500',
-                'role' => 'project_coordinator',
-                'status' => 'active',
+                'role_id' => '2',
+                'program_id' => '1',
+                'status_id' => '1',
             ],
             //Beneficiary
             [
@@ -57,20 +59,26 @@ class UsersTableSeeder extends Seeder
                 'city' => 'Legazpi City',
                 'province' => 'Albay',
                 'zip' => '4500',
-                'role' => 'beneficiary',
-                'status' => 'inactive',
-            ]
+                'role_id' => '3',
+                'program_id' => '1',
+                'status_id' => '1',
+            ],
             //Personal Sample Account
-            // [
-            //     'name' => 'Mathias John Oliver B. Bermejo',
-            //     'username' => 'mathias1941',
-            //     'email' => 'bermejomathiasjohnoliver@gmail.com',
-            //     'password' => Hash::make('mathias1941'),
-            //     'phone' => '09923034018',
-            //     'address' => 'Legazpi City',
-            //     'role' => 'beneficiary',
-            //     'status' => 'active',
-            // ]
+            [
+                'first_name' => 'Mathias John Oliver',
+                'middle_name' => 'Bagato',
+                'last_name' => 'Bermejo',
+                'email' => 'bermejomathiasjohnoliver1@gmail.com',
+                'password' => Hash::make('mathias1999'),
+                'phone' => '09998887777',
+                'primary_address' => 'Purok 3 Tamaoyan',
+                'city' => 'Legazpi City',
+                'province' => 'Albay',
+                'zip' => '4500',
+                'role_id' => '1',
+                'program_id' => '1',
+                'status_id' => '1',
+            ]
 
         ]);
     }

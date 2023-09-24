@@ -40,8 +40,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             @auth
                 @if (Route::has('register'))
                     <li>
-                        <a href="{{ route('register') }}"
-                            class="{{ request()->is('ITStaff/registration') ? 'active' : '' }}">
+                        <a href="{{ route('register') }}" class="{{ request()->is('ITStaff/register') ? 'active' : '' }}">
                             <i class="uil uil-user-plus"></i>
                             <span class="link-name">Registration</span>
                         </a>

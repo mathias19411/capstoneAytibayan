@@ -12,6 +12,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Seed roles table first
+        $this->call([
+            RolesTableSeeder::class,
+        ]);
+
+        // Seed programs table
+        $this->call([
+            ProgramsTableSeeder::class,
+        ]);
+
+        // Seed sstuses table
+        $this->call([
+            StatusesTableSeeder::class,
+        ]);
+
         $this->call(UsersTableSeeder::class);
         \App\Models\User::factory(20)->create();
 
