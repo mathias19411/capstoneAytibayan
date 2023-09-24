@@ -125,6 +125,8 @@ route::post('/ITStaff/event', [EventController::class, 'store'])->name('store-ev
 //store-announcement
 route::post('/ITStaff/announcement', [AnnouncementController::class, 'store'])->name('store-announcement');
 
+//registerView
+route::post('/ITStaff/registerView', [RegisterViewController::class, 'store'])->name('store-registerView');
 
 Route::get('/Project_Coordinator/inquiry', function () {
     return view('Project_Coordinator.inquiry');

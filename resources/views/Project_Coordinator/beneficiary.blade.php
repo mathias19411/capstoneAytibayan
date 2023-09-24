@@ -233,7 +233,7 @@
                 </div>
             </div>
 
-                <div class="popup-status" id="statusPopup"></div>
+        <div class="popup-status" id="statusPopup"></div>
 
 <!--view_beneficiaries-->
 <div class="modal fade" id="view_beneficiary_updates" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
