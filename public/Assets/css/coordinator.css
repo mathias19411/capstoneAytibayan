@@ -1364,6 +1364,14 @@ body.announcement_events_inquiry .table .inactive {
     color: white;
 }
 
+.modal-body { 
+    margin: 0 auto;
+}
+
+.modal-backdrop {
+    display: none;
+}
+
 /* Define styles for the popup */
 .popup-status {
     display: none;
@@ -1378,6 +1386,21 @@ body.announcement_events_inquiry .table .inactive {
     transform: translate(-50%, -50%);
 }
 
+body.announcement_events_inquiry  .mb-3 {
+    margin: 10px;
+}
+
+
+ .card {
+    width: 250px;
+    height: 330px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
 
 @media (max-width: 768px) {
     
@@ -1391,6 +1414,7 @@ body.announcement_events_inquiry .modal-body .col-6 {
     width: 230px;
 }
 }
+
 
 
 /* PAGE CSS EVENT, VENEF, INQUIRY, ANNOUNCEMENT */
@@ -1621,7 +1645,7 @@ body.announcement_events_inquiry td button:nth-child(1) {
     background-color: green;
 }
 body.announcement_events_inquiry td button:nth-child(2) {
-    background-color: rgb(86, 177, 207);
+    background-color: #58c0e2;
 }
 body.announcement_events_inquiry td button:nth-child(3) {
     background-color: #f80000;

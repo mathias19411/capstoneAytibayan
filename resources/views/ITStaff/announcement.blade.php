@@ -52,8 +52,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Binhi ng Pag-asa Seminar</td>
-                            <td>jorizabinhi@gmail.com</td>
+                            <td>Akbay</td>
+                            <td>Public</td>
                             <td> Lorem ipsum is a placeholder text commonly used to demonstrapte</td>
                             <td>2023-09-21</td>
                             <td>
@@ -66,7 +66,7 @@
                         </tr>
                         <tr>
                             <td>Binhi ng Pag-asa Seminar</td>
-                            <td>jorizabinhi@gmail.com</td>
+                            <td>Public</td>
                             <td> Lorem ipsum is a placeholder text commonly used to demonstrapte</td>
                             <td>2023-09-21</td>
                             <td>
@@ -79,7 +79,7 @@
                         </tr>
                         <tr>
                             <td>Binhi ng Pag-asa Seminar</td>
-                            <td>jorizabinhi@gmail.com</td>
+                            <td>Public</td>
                             <td> Lorem ipsum is a placeholder text commonly used to demonstrapte</td>
                             <td>2023-09-21</td>
                             <td>
@@ -92,7 +92,7 @@
                         </tr>
                         <tr>
                             <td>Binhi ng Pag-asa Seminar</td>
-                            <td>jorizabinhi@gmail.com</td>
+                            <td>Public</td>
                             <td> Lorem ipsum is a placeholder text commonly used to demonstrapte</td>
                             <td>2023-09-21</td>
                             <td>
@@ -105,7 +105,7 @@
                         </tr>
                         <tr>
                             <td>Binhi ng Pag-asa Seminar</td>
-                            <td>jorizabinhi@gmail.com</td>
+                            <td>Public</td>
                             <td> Lorem ipsum is a placeholder text commonly used to demonstrapte</td>
                             <td>2023-09-21</td>
                             <td>
@@ -118,7 +118,7 @@
                         </tr>
                         <tr>
                             <td>Binhi ng Pag-asa Seminar</td>
-                            <td>jorizabinhi@gmail.com</td>
+                            <td>Public</td>
                             <td> Lorem ipsum is a placeholder text commonly used to demonstrapte</td>
                             <td>2023-09-21</td>
                             <td>
@@ -131,7 +131,7 @@
                         </tr>
                         <tr>
                             <td>Binhi ng Pag-asa Seminar</td>
-                            <td>jorizabinhi@gmail.com</td>
+                            <td>Public</td>
                             <td> Lorem ipsum is a placeholder text commonly used to demonstrapte</td>
                             <td>2023-09-21</td>
                             <td>
@@ -144,7 +144,7 @@
                         </tr>
                         <tr>
                             <td>Binhi ng Pag-asa Seminar</td>
-                            <td>jorizabinhi@gmail.com</td>
+                            <td>Public</td>
                             <td> Lorem ipsum is a placeholder text commonly used to demonstrapte</td>
                             <td>2023-09-21</td>
                             <td>
@@ -232,10 +232,11 @@
                                     <div class="form-outline">
                                     <label id="label_">To:</label>
                                         <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title....">
-                                        <option value="one"> orly@gmail.com </option>
-                                        <option value="two"> joriza@gmail.com</option>
-                                        <option value="one"> mathias@gmail.com </option>
-                                        <option value="one"> jayferson@gmail.com </option>
+                                        <option value="public"> Public </option>
+                                        <option value="benef"> Beneficiaries</option>
+                                        <option value="akbay"> Akbay Coordinator </option>
+                                        <option value="lead"> LEAD Coordinator</option>
+                                        <option value="lead"> LEAD Coordinator</option>
                                         </select>
                                     </div>
                                 </div>
@@ -274,7 +275,7 @@
                             <div class="row">
                             <div class="col-md-12">
                                 <h5>To:</h5>
-                                <p id="modal-recipient">orlybinhi@gmail.com</p>
+                                <p id="modal-recipient">Public</p>
                             </div>
                             </div>
                             </div>

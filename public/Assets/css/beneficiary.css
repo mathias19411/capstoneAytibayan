@@ -1641,5 +1641,305 @@ body.programprofile{
     }
 }
 
+/*-----------------UPDATE--------------------*/
+
+body.beneficiary .container_benef {
+    padding: 10px;
+    margin: 40px;
+}
+
+body.beneficiary #update-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+body.beneficiary h1 {
+    text-align: center;
+}
+
+body.beneficiary form {
+    text-align: center;
+}
+
+body.beneficiary label {
+    font-weight: bold;
+}
+
+body.beneficiary textarea {
+    width: 100%;
+}
+
+body.beneficiary #update-details {
+    margin-top: 20px;
+    height: auto;
+    margin: 10px;
+}
+
+body.beneficiary .update-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+
+}
+
+body.beneficiary .update-item button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+/* Custom CSS for the update cards */
+body.beneficiary .update-card {
+    width: 150px;
+    max-height: 180px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden; /* Ensure the card size is fixed */
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
+
+body.beneficiary .update-card img {
+    max-width: 150px;
+    max-height: 130px; /* Set a maximum height for the images */
+    object-fit: cover; /* Maintain aspect ratio and crop if necessary */
+}
+
+body.beneficiary .img-thumbnail {
+
+    border-radius: 5px;
+    width: 260px;
+    height: 130px;
+    object-fit: cover;
+}
+
+body.beneficiary .update-card p {
+    margin: 0;
+}
+
+body.beneficiary .update-card .btn {
+    margin-top: 10px;
+}
+
+body.beneficiary .mb-3 {
+    margin: 10px;
+}
+
+body.beneficiary .card {
+    width: 250px;
+    height: 330px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
+
+body.beneficiary .information {
+    overflow: scroll;
+}
+
+body.beneficiary .update-card .update-info-section {
+    max-height: 150px; /* Set a maximum height for the information section */
+    overflow-y: auto; /* Enable vertical scroll if content exceeds the height */
+}
+
+body.beneficiary .update-card p {
+    margin: 0;
+}
+
+body.beneficiary .form-update {
+    width: 500px; /* Set a fixed width of 500px */
+    background-color: #f2f2f2;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    min-width: 0;
+    margin: 0 auto;
+}
+.btn-delete {
+    background-color: #f80000;
+    border: none;
+    color: #ffffff;
+}
+
+.btn-edit {
+    background-color: rgb(86, 177, 207);
+    border: none;
+    color: #ffffff;
+}
 
 
+body.beneficiary .card-footer {
+
+}
+
+body.beneficiary .img-thumbnail {
+    background-color: #7bb701;
+}
+/* Custom CSS for pink button */
+.btn-pink {
+    background-color: #FF1493; /* Pink color */
+    color: #fff; /* White text color */
+    border: none; /* Remove the border */
+}
+
+body.beneficiary .modal-footer #edit {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+body.beneficiary .modal-footer #delete {
+    background-color: #bbbbbb;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+body.beneficiary .modal-footer #edit:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+body.beneficiary .modal-footer #delete:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+body.beneficiary .modal-footer .add {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+body.beneficiary .modal-footer .close {
+    background-color: #bbbbbb;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+body.beneficiary .modal-footer .add:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+body.beneficiary .modal-footer .close:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+body.beneficiary #drop-img {
+    width: 300px;
+    height: 130px;
+    padding: 10px;
+    background: #f2f2f2;
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    
+}
+
+body.beneficiary #img-view {
+    width: 100%;
+    height: 100%;
+    border: 5px;
+    border: 2px dashed #bbb5ff;
+    background: #f0fff0;
+    font-size: 12px;
+    background-size: cover;
+}
+
+body.beneficiary #img-view img {
+    margin: auto;
+    width: auto;
+    padding-top: 10px;
+}
+
+.modal-backdrop {
+    z-index: -1; 
+    display: none;
+}
+.modal-content {
+    margin: 2px auto;
+    z-index: 1100 !important;
+}
+
+.modal {
+    z-index: 1050;
+}
+
+body.beneficiary .modal-header h5 {
+    color: #7bb701;
+}
+
+body.beneficiary .form-update h3 {
+    color: #7bb701;
+}
+#btn-delete {
+    color: #FFFFFF;
+}
+
+.add-modal {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 0 auto;
+}
+body.beneficiary .add-modal:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+.btn-pink {
+    background-color: #7BB701;
+    width: 50px;
+}
+
+@media (max-width: 768px) {
+    body.beneficiary .form-update {
+        width: 100%;
+    }
+}

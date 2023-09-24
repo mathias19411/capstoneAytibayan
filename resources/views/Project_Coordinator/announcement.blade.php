@@ -149,7 +149,7 @@
                 </div>
     
                         <!-- Popup for displaying message content and details -->
-                        <div id="message-popup" class="popup">
+            <div id="message-popup" class="popup">
                 <div class="popup-content">
                     <span class="popup-close" onclick="closePopup()">&times;</span>
                     <h2>Message Details</h2>
@@ -305,7 +305,7 @@
                     <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="add" id="saveChanges">Save Changes</button>
                     </div>
-        </div>`
+        </div>
     </div>
 </div>
 

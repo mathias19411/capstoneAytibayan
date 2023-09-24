@@ -142,11 +142,9 @@
                              <button type="button" class="add">Add</button>
                           </div>
                        </div>
-              
                     </div>
                 </div>
              </div>
           </div>
        </section>
     </body>
-  </html>

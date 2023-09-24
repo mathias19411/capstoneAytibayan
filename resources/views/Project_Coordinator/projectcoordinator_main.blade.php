@@ -538,6 +538,175 @@ function updatePaginationMessage() {
         
     </script>
 
+<script>
+// Function to update the beneficiary name in the "Beneficiary Updates" modal
+function setBeneficiaryName(name) {
+    const beneficiaryNameElement = document.getElementById("actual-beneficiary-name");
+    beneficiaryNameElement.textContent = name;
+}
+
+// Example code to open the modal and set the beneficiary name
+const beneficiaryName = "Orly Encabo"; // Replace with the actual beneficiary name
+setBeneficiaryName(beneficiaryName);
+
+// Show the modal
+const viewBeneficiaryUpdatesModal = new bootstrap.Modal(document.getElementById("view_beneficiary_updates"));
+viewBeneficiaryUpdatesModal.show();
+
+
+// Existing updates data
+const updates = [
+    {
+        id: 1,
+        date: '2023-09-22',
+        picture: '/images/agri1.png',
+        title: 'Update 1 title here.',
+    },
+    {
+        id: 2,
+        date: '2023-09-23',
+        picture: '/images/agri2.png',
+        title: 'Update 2 title here.',
+    },
+    {
+        id: 3,
+        date: '2023-09-23',
+        picture: '/images/agri3.png',
+        title: 'Update 3 title here.',
+    },
+    {
+        id: 4,
+        date: '2023-09-23',
+        picture: '/images/agri4.png',
+        title: 'Update 4 title here.',
+    },
+];
+
+// Array to store schedule items
+const scheduleItems = [];
+
+// Function to create a schedule item
+function createScheduleItem(description, date, time) {
+    return {
+        description,
+        date,
+        time,
+    };
+}
+
+// Function to display schedule items
+function displayScheduleItems() {
+    const scheduleList = document.getElementById("schedule-list");
+    scheduleList.innerHTML = "";
+
+    scheduleItems.forEach((item, index) => {
+        const listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        listItem.innerHTML = `<strong>${item.description}</strong><br>Date: ${item.date}<br>Time: ${item.time}`;
+        scheduleList.appendChild(listItem);
+    });
+}
+
+/// Handle Add Schedule button click event
+// ...
+
+// Handle Add Schedule button click event
+const addScheduleButton = document.getElementById("add-schedule-button");
+addScheduleButton.addEventListener("click", function () {
+    // Clear the form fields in the Add Schedule Modal
+    document.getElementById("schedule-description").value = "";
+    document.getElementById("schedule-date").value = "";
+    document.getElementById("schedule-time").value = "";
+
+    // Show the Add Schedule Modal
+    const addScheduleModal = new bootstrap.Modal(document.getElementById("add-schedule-modal"));
+    addScheduleModal.show();
+});
+
+// Handle Save Schedule button click event
+const saveScheduleButton = document.getElementById("save-schedule-button");
+saveScheduleButton.addEventListener("click", function () {
+    const beneficiaryName = document.getElementById("actual-beneficiary-name").textContent;
+    const description = document.getElementById("schedule-description").value;
+    const date = document.getElementById("schedule-date").value;
+    const time = document.getElementById("schedule-time").value;
+
+    if (!description || !date || !time) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    // Create a schedule item and add it to the array
+    const scheduleItem = createScheduleItem(description, date, time);
+    scheduleItems.push(scheduleItem);
+
+    // Display schedule items
+    displayScheduleItems();
+
+    // Close the Add Schedule Modal
+    const addScheduleModal = new bootstrap.Modal(document.getElementById("add-schedule-modal"));
+    addScheduleModal.hide();
+});
+
+// ...
+
+
+// Function to create an update card
+function createUpdateCard(update) {
+    const card = document.createElement("div");
+    card.classList.add("card", "mb-3", "col-md-3"); // Apply Bootstrap grid classes
+
+    // Create card body
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+
+    // Display date
+    const dateElement = document.createElement("p");
+    dateElement.classList.add("update-date");
+    dateElement.innerText = `Date: ${update.date}`;
+    cardBody.appendChild(dateElement);
+
+    // Display picture (if provided)
+    if (update.picture) {
+        const pictureElement = document.createElement("img");
+        pictureElement.src = update.picture;
+        pictureElement.alt = "Beneficiary's Picture";
+        pictureElement.classList.add("img-thumbnail"); // Add Bootstrap class for a smaller image
+        cardBody.appendChild(pictureElement);
+    }
+
+    // Display title (limited to 50 words)
+    const titleElement = document.createElement("p");
+    titleElement.classList.add("update-title");
+    titleElement.innerText = `Title: ${update.title}`;
+    cardBody.appendChild(titleElement);
+
+    // Append card body to the card
+    card.appendChild(cardBody);
+
+    return card;
+}
+
+// Function to display updates as cards
+function displayUpdates() {
+    const updateDetails = document.getElementById("update-details");
+
+    // Clear existing update cards
+    updateDetails.innerHTML = "";
+
+    // Loop through updates and create cards
+    updates.forEach((update) => {
+        const updateCard = createUpdateCard(update);
+        updateDetails.appendChild(updateCard);
+    });
+}
+
+// Call the displayUpdates function initially to populate the update cards
+displayUpdates();
+
+//SCHEDULE 
+
+</script>
 
 </body>
 </html>

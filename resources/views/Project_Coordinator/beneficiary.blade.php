@@ -18,8 +18,8 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Read</option>
-                <option value="read">Unread</option>
+                <option value="unread">Sagpon, Daraga</option>
+                <option value="read">Rawis</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -64,7 +64,7 @@
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
                             <td>
-                                <button class="tooltip-button" data-tooltip="Message">
+                                <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                                 </button>
                                 <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
@@ -82,7 +82,7 @@
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
                             <td>
-                                <button class="tooltip-button" data-tooltip="View">
+                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                                 </button>
                                 <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
@@ -100,7 +100,7 @@
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
                             <td>
-                                <button class="tooltip-button" data-tooltip="Message">
+                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                                 </button>
                                 <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
@@ -118,7 +118,7 @@
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
                             <td>
-                                <button class="tooltip-button" data-tooltip="Message">
+                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                                 </button>
                                 <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
@@ -136,7 +136,7 @@
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
                             <td>
-                                <button class="tooltip-button" data-tooltip="Message">
+                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                                 </button>
                                 <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
@@ -154,7 +154,7 @@
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
                             <td>
-                                <button class="tooltip-button" data-tooltip="View">
+                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                                 </button>
                                 <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
@@ -172,7 +172,7 @@
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
                             <td>
-                                <button class="tooltip-button" data-tooltip="Message">
+                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                                 </button>
                                 <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
@@ -190,9 +190,8 @@
                 </div>
 
                 <div id="pagination-message"></div>
-             
               </div>
-
+                
               <!--status popup-->
              
     
@@ -233,18 +232,63 @@
                     </div>
                 </div>
             </div>
-            
-
-                <div class="btn-bottom">
-                    <button type="button" class="add-modal">
-                    Add
-                    </button>
-                  
-                    <button type="button" class="generate">
-                    Generate Report
-                    </button>
-                </div>
 
                 <div class="popup-status" id="statusPopup"></div>
+
+<!--view_beneficiaries-->
+<div class="modal fade" id="view_beneficiary_updates" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Beneficiary Updates</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body justify-content-center">
+                <h4 class="text-center">Beneficiary: <span id="actual-beneficiary-name"></span></h4>
+                <div id="update-details" class="row justify-content-center">
+                    <!-- Update cards will be dynamically generated here -->
+                </div>
+                <button type="button" class="btn add" id="add-schedule-button">Add Schedule</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add Schedule Modal -->
+<div class="modal fade" id="add-schedule-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Schedule</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="add-schedule-form">
+                    <div class="mb-3">
+                        <label for="schedule-description" class="form-label">Description:</label>
+                        <input type="text" class="form-control" id="schedule-description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="schedule-date" class="form-label">Date:</label>
+                        <input type="date" class="form-control" id="schedule-date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="schedule-time" class="form-label">Time:</label>
+                        <input type="time" class="form-control" id="schedule-time" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="add" id="save-schedule-button">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 

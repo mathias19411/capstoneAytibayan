@@ -56,48 +56,9 @@
                             <td>image.png</td>
                             <td>2023-09-21</td>
                             <td>
-                            <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                            </button>
-                            <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" onclick="deleteAnnouncement(1)"><i class="fa-solid fa-trash fa-2xs"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Binhi ng Pag-asa Seminar</td>
-                            <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</td>
-                            <td>image.png</td>
-                            <td>2023-09-21</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                            </button>
-                            <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" onclick="deleteAnnouncement(1)"><i class="fa-solid fa-trash fa-2xs"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Binhi ng Pag-asa Seminar</td>
-                            <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</td>
-                            <td>image.png</td>
-                            <td>2023-09-21</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                            </button>
-                            <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" onclick="deleteAnnouncement(1)"><i class="fa-solid fa-trash fa-2xs"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Binhi ng Pag-asa Seminar</td>
-                            <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</td>
-                            <td>image.png</td>
-                            <td>2023-09-21</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                            </button>
+                            <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff">
+                            <i class="fa-solid fa-eye fa-2xs"></i>
+                            9ff</button>
                             <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                             <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" onclick="deleteAnnouncement(1)"><i class="fa-solid fa-trash fa-2xs"></i></button>
                             </td>
@@ -155,13 +116,13 @@
             <form action="" method="post" action="{{ route('store-event') }}">
                 @csrf
         <div class="btn-bottom">
-            <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#myModal">
+            <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#event_modal">
                 Add</button> 
             </div>
     </div>
    <!--Buttons-->
 
-<div class="modal fade" id="myModal" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+<div class="modal fade" id="event_modal" tabindex="-1" data-backdrop="false" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -206,6 +167,29 @@
     </div>
 </div>
 </div>
+
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="view_itstaff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Event Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2>Event Title</h2>
+                <p>Description: Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</p>
+                <p>Date: 2023-09-21</p>
+                <!-- You can display other event details here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
         
 @endsection      
