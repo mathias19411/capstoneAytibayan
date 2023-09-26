@@ -160,7 +160,13 @@ Route::get('/Project_Coordinator/pass', function () {
     return view('Project_Coordinator.pass');
 });
 
+Route::get('/Beneficiary/home', function () {
+    return view('Beneficiary.home');
+});
 
+Route::get('/Beneficiary/update', function () {
+    return view('Beneficiary.update');
+});
 
 Route::get('/Beneficiary/schedule', function () {
     return view('Beneficiary.schedule');

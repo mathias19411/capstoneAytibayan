@@ -171,3 +171,10 @@ function deleteAnnouncement(id) {
     }
 }
 
+
+    // Add an event listener to the "Add" button
+    document.querySelector('#add-modal-button').addEventListener('click', function() {
+        // Show the modal when the button is clicked
+        var eventviewModal = new bootstrap.Modal(document.querySelector('#eventview'));
+        eventviewModal.show();
+    });
