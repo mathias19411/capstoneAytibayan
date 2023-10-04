@@ -37,12 +37,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <span class="link-name">Event</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('itstaff.registerView') }}" class="{{ request()->is('ITStaff/registerView') ? 'active' : '' }}">
-                    <i class="uil uil-calendar-alt"></i>
-                    <span class="link-name">Register View</span>
-                </a>
-            </li>
+
             @auth
                 @if (Route::has('register'))
                     <li>

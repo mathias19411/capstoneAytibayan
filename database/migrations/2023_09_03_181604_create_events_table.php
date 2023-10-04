@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('date');
             $table->text('message');
             $table->string('image');
-            $table->string('project_coordinator');
+            $table->string('project_coordinator')->default('anonymous');
 
             $table->timestamps();
         });

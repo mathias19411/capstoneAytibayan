@@ -50,19 +50,158 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($event->reverse() as $events)
+                        <!-- Modal View-->
+                        <div class="modal fade" id="view_itstaff{{ $events->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Event Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <div class="row">
+                                    <div class="col">
+                                    <div class="col-md-12">
+                                        <h5>Title:</h5>
+                                        <p id="modal-title">{{ $events->title }}</p>
+                                    </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                            <h5>Description:</h5>
+                                            <p id="modal-recipient">{{ $events->message }}</p>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h5>Date:</h5>
+                                            <p id="modal-message">{{ $events->date }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Update Event-->
+                        <div class="modal fade" id="modal_edit{{ $events->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Edit</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                        <div class="modal-body">
+                                                <form action="{{ route('update.event') }}" enctype="multipart/form-data" method="post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                <div class="row">
+                                                    <input type="hidden" name="event_id" value="{{ $events->id }}">
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-outline">
+                                                    <label id="label_">Title</label>
+                                                    <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title" value="{{ $events->title }}">                            </div>
+                                                </div>
+
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-outline">
+                                                    <label id="label_">Date</label>
+                                                        <input class="form-control"  type="date" id="Date" placeholder="Title...." name="date" value="{{ $events->date }}">
+                                                </div>
+                                                </div>
+                            
+                                                <div class="col-md-12 mb-4">
+                                                    <div class="form-outline">
+                                                        <label id="label_">Message:</label>
+                                                            <textarea class="form-control" rows="3" placeholder="Write something..." name="message">{{ $events->message }}</textarea>
+                                                            </div>
+                                                            <div class="form-outline">
+                                                        <label id="drop-img">
+                                                            <input name="image" type="file" id="input-file" value="{{ $events->image }}" hidden>
+                                                            <div id="img-view">
+                                                            <img src="/images/image_icon.png">
+                                                            <p> Drag and drop or click here <br> to upload picture</p>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="add">Save Changes</button>
+                                                </div>
+                                                </div>
+                                                </form>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                            <!--DELETE Announcement-->
+                            <div class="modal fade" id="modal_delete{{ $events->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Delete</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                        <div class="modal-body">
+                                        <form method="POST" action="{{ route('delete.announcement') }}">
+                                            @csrf
+                                            @method('DELETE')
+                                        <div class="row">
+                                        <input type="hidden" name="delete_id" value="{{ $events->id }}">
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                        <h5>Title:</h5>
+                                        <p id="modal-title">{{ $events->title }}</p>
+                                        </div>
+                                            </div>
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                                <h5>Description:</h5>
+                                                <p id="modal-recipient">{{ $events->message }}</p>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Date:</h5>
+                                                <p id="modal-message">{{ $events->date }}</p>
+                                        </div>
+                                            @if(session('error'))
+                                                <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                </div>
+                                            @endif
+                                            <p style="color:red">Are you sure you want to delete this Event?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="add" id="saveChanges">Delete</button>
+                                        </div>
+                                        </form>
+                                        </div>
+                            </div>
+                        </div>
+
                         <tr>
-                            <td>Binhi ng Pag-asa Seminar</td>
-                            <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</td>
-                            <td>image.png</td>
-                            <td>2023-09-21</td>
+                            <td>{{ $events->title }}</td>
+                            <td>{{ $events->message }}</td>
+                            <td>{{ $events->image }}</td>
+                            <td>{{ $events->date }}</td>
                             <td>
-                            <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff">
+                            <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">
                             <i class="fa-solid fa-eye fa-2xs"></i>
                             9ff</button>
-                            <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" onclick="deleteAnnouncement(1)"><i class="fa-solid fa-trash fa-2xs"></i></button>
+                            <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_edit{{ $events->id }}"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                            <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" data-bs-toggle="modal" data-bs-target="#modal_delete{{ $events->id }}">
+                                <i class="fa-solid fa-trash fa-2xs"></i></button>
                             </td>
                         </tr>
+                        @endforeach
                      </tbody>
                 </table>
                 <div class="pagination">
@@ -113,8 +252,6 @@
                 </div>
             </div>
 
-            <form action="" method="post" action="{{ route('store-event') }}">
-                @csrf
         <div class="btn-bottom">
             <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#event_modal">
                 Add</button> 
@@ -122,6 +259,7 @@
     </div>
    <!--Buttons-->
 
+<!--Store Event-->
 <div class="modal fade" id="event_modal" tabindex="-1" data-backdrop="false" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -130,7 +268,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
                 <div class="modal-body">
-                        
+                        <form action="{{ route('store.event') }}" enctype="multipart/form-data" method="post">
+                            @csrf
                         <div class="row">
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
@@ -140,18 +279,18 @@
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                             <label id="label_">Date</label>
-                                      <input class="form-control"  type="date" id="Date" placeholder="Title...." name="date">
+                                <input class="form-control"  type="date" id="Date" placeholder="Title...." name="date">
                         </div>
                         </div>
     
                         <div class="col-md-12 mb-4">
                             <div class="form-outline">
                                 <label id="label_">Message:</label>
-                                    <textarea class="form-control" rows="3" placeholder="Write something..."></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Write something..." name="message"></textarea>
                                     </div>
                                     <div class="form-outline">
-                                    <label for="input-file" id="drop-img">
-                                    <input name="image" type="file" accept="image/*" id="input-file" hidden>
+                                <label id="drop-img">
+                                    <input name="image" type="file" id="input-file" hidden>
                                     <div id="img-view">
                                     <img src="/images/image_icon.png">
                                     <p> Drag and drop or click here <br> to upload picture</p>
@@ -160,36 +299,15 @@
                             </div>
                         </div>
 
-            <div class="modal-footer">
-                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="add">Save</button>
-         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="add">Save</button>
+                        </div>
+                        </div>
+                        </form>
+                </div>
+            </div>
     </div>
 </div>
-</div>
-
-</form>
-
-<!-- Modal -->
-<div class="modal fade" id="view_itstaff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Event Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h2>Event Title</h2>
-                <p>Description: Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</p>
-                <p>Date: 2023-09-21</p>
-                <!-- You can display other event details here -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
         
 @endsection      
