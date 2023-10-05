@@ -48,7 +48,11 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
     //ITStaff Logout
     Route::get('/ITStaff/logout', [ItStaffController::class, 'ItStaffLogout'])->name('itstaff.logout');
 
-    Route::get('/ITStaff/addprogram', [ItStaffController::class, 'ItStaffAddProgram'])->name('itstaff.addProgram');
+    //add program view
+    Route::get('/ITStaff/addprogramview', [ItStaffController::class, 'ItStaffAddProgramView'])->name('itstaff.addProgramView');
+
+    //add new program
+    Route::post('/ITStaff/addnewprogram', [ItStaffController::class, 'ItStaffAddNewProgram'])->name('itstaff.addNewProgram');
 
     Route::get('/ITStaff/editprogram', [ItStaffController::class, 'ItStaffEditProgram'])->name('itstaff.editProgram');
 
@@ -67,6 +71,9 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 
     //IT Staff Edit Change Password
     Route::post('/ITStaff/editchangepassword', [ItStaffController::class, 'ITStaffEditChangePassword'])->name('itstaff.editchangepassword');
+
+    //IT Staff Register View
+    Route::get('/ITStaff/registerview', [ItStaffController::class, 'ITStaffRegisterView'])->name('itstaff.registerView');
     
 }); //End group itstaff middleware
 

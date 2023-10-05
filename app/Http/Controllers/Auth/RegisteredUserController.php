@@ -74,6 +74,6 @@ class RegisteredUserController extends Controller
 
         toastr()->timeOut(10000)->addSuccess('A new User has been successfully registered!');
 
-        return redirect()->route('itstaff.home');
+        return redirect()->route('itstaff.registerView');
     }
 }

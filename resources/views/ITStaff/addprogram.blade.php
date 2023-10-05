@@ -71,18 +71,18 @@ document.addEventListener("DOMContentLoaded", function () {
 </head>
 <body >
 <div class="program-form">
-    <form id="myForm" action="{{ route('addprogram') }}" method="post">
+    <form id="myForm" action="{{ route('itstaff.addNewProgram') }}" method="post">
         @csrf
     <h1>Program Information</h1>
     
     <div class="form-row">
         <div class="input-group">
             <label for="name">Project Coordinator:</label>
-            <input type="text" id="name" placeholder="" name="project_coordinator">
+            <input type="text" id="name" placeholder="Juan D. La Cruz" name="project_coordinator">
         </div>
         <div class="input-group">
             <label for="program_name">Name of the Program:</label>
-            <input type="text" id="program_name" placeholder="" name="program">
+            <input type="text" id="program_name" placeholder="Example Program" name="program">
         </div>
         <div class="input-group">
             <label for="program_key">Program Key:</label>

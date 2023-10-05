@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 
 class ItStaffController extends Controller
@@ -18,7 +19,45 @@ class ItStaffController extends Controller
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        return view('ITStaff.home', compact('userProfileData'));
+        // Get the total number of users
+        $totalUsers = User::count();
+
+        // Get the number of users with the role "project_coordinator"
+        $totalcoordinators = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['projectcoordinator']);
+        })->count();
+
+        // Get the number of users with the role "beneficiary"
+        $totalbeneficiaries = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['beneficiary']);
+        })->count();
+
+        // Get the number of users that are active
+        $activeBeneficiaries = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['beneficiary']);
+        })->whereHas('status', function ($query) {
+            $query->whereIn('status_name', ['Active']);
+        })->count();
+
+        // Get the number of users that are inactive
+        $inactiveBeneficiaries = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['beneficiary']);
+        })->whereHas('status', function ($query) {
+            $query->whereIn('status_name', ['Inactive']);
+        })->count();
+
+        $coordinators = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'projectcoordinator');
+        })
+        ->with('program')
+        ->get();
+        
+        $userCountsByProgram = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->with(['program', 'status'])->get()->groupBy('program.program_name');
+
+
+        return view('ITStaff.home', compact('userProfileData', 'totalUsers', 'totalcoordinators', 'totalbeneficiaries', 'activeBeneficiaries', 'inactiveBeneficiaries', 'coordinators', 'userCountsByProgram'));
     } // End Method
 
     public function ItStaffLogout(Request $request)
@@ -37,9 +76,51 @@ class ItStaffController extends Controller
         return redirect('/login');
     } // End Method
 
-    public function ItStaffAddProgram()
+    public function ItStaffAddProgramView()
     {
         return view('ITStaff.addprogram');
+    } // End Method
+
+    public function ItStaffAddNewProgram(Request $request)
+    {
+        // Validate form inputs
+        $request->validate([
+            'first_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'last_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'phone_number' => ['required', 'string', 'max:11'],
+            // 'inputRole' => ['required', Rule::in(Role::pluck('id')->all())],
+            // 'inputProgram' => ['required', Rule::in(Program::pluck('id')->all())],
+            'primaryAddress' => ['required', 'string', 'max:255'],
+            'inputCity' => ['required', 'string', 'max:255'],
+            'inputProvince' => ['required', 'string', 'max:255'],
+            'inputZip' => ['required', 'string', 'max:255'],
+            // 'inputStatus' => ['required', Rule::in(Status::pluck('id')->all())],
+            
+        ]);
+
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone_number,
+            'primary_address' => $request->primaryAddress,
+            'city' => $request->inputCity,
+            'province' => $request->inputProvince,
+            'zip' => $request->inputZip,
+            'role_id' => $request->inputRole,
+            'program_id' => $request->inputProgram,
+            'status_id' => $request->inputStatus
+            // 'password' => Hash::make($request->password),
+        ]);
+
+        $user->save();
+        // event(new Registered($user));
+
+        // Auth::login($user);
+
+        toastr()->timeOut(10000)->addSuccess('A new Program has been successfully added!');
+
+        return redirect()->route('itstaff.home');
     } // End Method
 
     public function ItStaffEditProgram()
@@ -55,6 +136,13 @@ class ItStaffController extends Controller
     public function ITStaffEvent()
     {
         return view('ITStaff.event');
+    } // End Method
+
+    public function ITStaffRegisterView()
+    {
+        $users = User::orderBy('id', 'asc')->get();
+
+        return view('ITStaff.registerView', compact("users"));
     } // End Method
 
     public function ITStaffViewProfile()

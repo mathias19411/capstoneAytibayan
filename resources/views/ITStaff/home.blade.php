@@ -36,7 +36,21 @@
                 <div class="number-box1">
                     <div class="label-number">
                         <span class="label">Total Users</span>
-                        <span class="number">1500 Beneficiaries</span>
+                        <span class="number">{{ $totalUsers }} Users</span>
+                    </div>
+                    <div class="number-line total-line"></div>
+                </div>
+                <div class="number-box1">
+                    <div class="label-number">
+                        <span class="label">Total Project Coordinators</span>
+                        <span class="number">{{ $totalcoordinators }} Project Coordinators</span>
+                    </div>
+                    <div class="number-line total-line"></div>
+                </div>
+                <div class="number-box1">
+                    <div class="label-number">
+                        <span class="label">Total Beneficiaries</span>
+                        <span class="number">{{ $totalbeneficiaries }} Beneficiaries</span>
                     </div>
                     <div class="number-line total-line"></div>
                 </div>
@@ -51,7 +65,7 @@
                     <div class="number-box2">
                         <div class="label-number">
                             <span class="label">Active</span>
-                            <span class="number">700 Beneficiaries</span>
+                            <span class="number">{{ $activeBeneficiaries }} Beneficiaries</span>
                         </div>
                         <div class="number-line active-line"></div>
                     </div>
@@ -60,7 +74,7 @@
                     <div class="number-box2">
                         <div class="label-number">
                             <span class="label">Inactive</span>
-                            <span class="number">800 Beneficiaries</span>
+                            <span class="number">{{ $inactiveBeneficiaries }} Beneficiaries</span>
                         </div>
                         <div class="number-line inactive-line"></div>
                     </div>
@@ -74,19 +88,20 @@
 
 
             <div class="boxes">
+                @foreach ( $userCountsByProgram as $programName => $users ) 
                 <div class="box box1">
                     <img src="\images\Logo_BinhiNgPagasa.png" alt="Image 1">
-                    <span class="text">binhi ng pag-asa</span>
+                    <span class="text">{{ $programName }}</span>
                     <span class="label">Total</span>
-                    <span class="totalnumber">700 Beneficiaries</span>
+                    <span class="totalnumber">{{ $users->count() }} Beneficiaries</span>
                     <div class="number-line totalline"></div>
 
                     <span class="label">Active</span>
-                    <span class="activenumber">400 Beneficiaries</span>
+                    <span class="activenumber">{{ $users->whereIn('status_id', ['1'])->count() }} Beneficiaries</span>
                     <div class="number-line activeline"></div>
 
                     <span class="label">Inactive</span>
-                    <span class="inactivenumber">300 Beneficiaries</span>
+                    <span class="inactivenumber">{{ $users->whereIn('status_id', ['2'])->count() }} Beneficiaries</span>
                     <div class="number-line inactiveline"></div>
 
                     <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
@@ -95,7 +110,9 @@
 
 
                 </div>
-                <div class="box box1">
+                @endforeach
+                    
+                {{-- <div class="box box1">
                     <img src="\images\Logo_AgriPinay.png" alt="Image 2">
                     <span class="text">agripinay</span>
                     <span class="label">Total</span>
@@ -170,9 +187,9 @@
                     <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
                         <button class="custom-button">View</button>
                     </a>
-                </div>
+                </div> --}}
 
-                <a href="{{ url('/ITStaff/addprogram') }}" class="add-button">
+                <a href="{{ route('itstaff.addProgramView') }}" class="add-button">
                     <button class="plus-button">+</button>
                 </a>
             </div>
@@ -180,8 +197,8 @@
 
         <div class="coord">
             <div class="box">
-                <span class="text">Coordinator</span>
-                <span class="number">5</span>
+                <span class="text">Project Coordinators</span>
+                <span class="number">{{ $totalcoordinators }}</span>
                 <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_announcement" >View</button>
             </div>
         </div>
@@ -194,57 +211,68 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">COORDINATORS</h5>
+                <h5 class="modal-title" id="modal-title">PROJECT COORDINATORS</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
                 <div class="modal-body">
                     <div class="accordion" id="coordinator_info">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="coordinator1">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <div class="coordinator_img">
-                                            <img src="\images\orly.png">
+                        @foreach ($coordinators as $key => $coordinator)
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="coordinator{{ $key + 1 }}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $key + 1 }}" aria-expanded="false" aria-controls="collapse{{ $key + 1 }}">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <div class="coordinator_img">
+                                                <img src={{ !empty($coordinator->photo) ? url('Uploads/ITStaff_Images/' . $coordinator->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col">
-                                        <h5> Orly Encabo </h5>
-                                        <h6> Binhi ng Pag-asa </h6>
-                                    </div>
-                                </div>
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="coordinator1" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <div class="row">
                                         <div class="col">
-                                            <div class="card_coordinator_img">
+                                            <h5>{{ $coordinator->first_name }} {{ $coordinator->middle_name }} {{ $coordinator->last_name }}</h5>
+                                            @if ($coordinator->program)
+                                                <p>Program Name: {{ $coordinator->program->program_name }}</p>
+                                            @else
+                                                <p>No Program Assigned</p>
+                                            @endif
+                                                                                    
+                                        </div>
+                                    </div>
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ $key + 1 }}" class="accordion-collapse collapse" aria-labelledby="coordinator{{ $key + 1 }}" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card_coordinator_img">
+                                                    <img src="\images\Logo_BinhiNgPagasa.png" alt="Binhi ng Pag-asa Logo">
+                                                </div>
+                                                <div class="col" style="padding-top:5px">
+                                                @if ($coordinator->program)
+                                                    <p>Program Name: {{ $coordinator->program->program_name }}</p>
+                                                @else
+                                                    <p>No Program Assigned</p>
+                                                @endif
+                                                <p>Project Coordinator</p>
+                                                </div>
+                                            </div>
+                                            <!--
+                                            <div class="logo col-auto ml-auto">
                                                 <img src="\images\Logo_BinhiNgPagasa.png" alt="Binhi ng Pag-asa Logo">
-                                            </div>
-                                            <div class="col" style="padding-top:5px">
-                                            <h6>Binhi ng Pag-asa</h6>
-                                            <p>Project Coordinator</p>
+                                            </div> -->
+                                        
+                                        </div>
+                                        <div class="row">
+                                            <div class="col" style="padding-top:10px">
+                                                <p>
+                                                    Di ko pa alam ano pa ilalagay dito.
+                                                    Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
+                                                </p>
                                             </div>
                                         </div>
-                                        <!--
-                                        <div class="logo col-auto ml-auto">
-                                            <img src="\images\Logo_BinhiNgPagasa.png" alt="Binhi ng Pag-asa Logo">
-                                        </div> -->
-                                    
                                     </div>
-                                    <div class="row">
-                                        <div class="col" style="padding-top:10px">
-                                            <p>
-                                                Di ko pa alam ano pa ilalagay dito.
-                                                Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>   
-                    </div>
-                        <div class="accordion-item">
+                                </div>   
+                            </div>
+                        @endforeach
+                        {{-- <div class="accordion-item">
                             <h2 class="accordion-header" id="coordinator2">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <div class="row align-items-center">
@@ -399,7 +427,7 @@
                                     </div>
                                 </div>                         
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

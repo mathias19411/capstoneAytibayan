@@ -44,25 +44,29 @@
                             <th>Last Name</th>
                             <th>Program</th>
                             <th>Role</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>001</td>
-                            <td>Orly</td>
-                            <td>Grona</td>
-                            <td>Encabo</td>
-                            <td>Binhi ng Pag-asa</td>
-                            <td>Beneficiary</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="View"  class="add-modal" data-bs-toggle="modal" data-bs-target="#itStaffRegister">
-                            <i class="fa-solid fa-eye fa-2xs"></i>
-                            </button>
-                            <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>
-                        </tr>
-                     </tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->first_name }}</td>
+                                <td>{{ $user->middle_name }}</td>
+                                <td>{{ $user->last_name }}</td>
+                                <td>{{ $user->program->program_name }}</td>
+                                <td>{{ $user->role->role_name }}</td>
+                                <td>{{ $user->status->status_name }}</td>
+                                <td>
+                                <button class="tooltip-button" data-tooltip="View"  class="add-modal" data-bs-toggle="modal" data-bs-target="#itStaffRegister">
+                                <i class="fa-solid fa-eye fa-2xs"></i>
+                                </button>
+                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
                 <div class="pagination">
                     <button id="prev-page">Previous</button>
@@ -112,11 +116,19 @@
                 </div>
             </div>
 
-            <form>        
+            <form>       
+                
         <div class="btn-bottom">
-            <button type="button" class="add-modal">
-                Register</button> 
-            </div>
+            @auth
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="add-modal">
+                        
+                        Register
+                        
+                    </a>
+                @endif
+            @endauth 
+        </div>
     </div>
 </form>
 

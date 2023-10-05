@@ -40,10 +40,10 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             <li>
                 <a href="{{ route('itstaff.registerView') }}" class="{{ request()->is('ITStaff/registerView') ? 'active' : '' }}">
                     <i class="uil uil-calendar-alt"></i>
-                    <span class="link-name">Register View</span>
+                    <span class="link-name">Register New User</span>
                 </a>
             </li>
-            @auth
+            {{-- @auth
                 @if (Route::has('register'))
                     <li>
                         <a href="{{ route('register') }}" class="{{ request()->is('ITStaff/register') ? 'active' : '' }}">
@@ -52,7 +52,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                         </a>
                     </li>
                 @endif
-            @endauth
+            @endauth --}}
 
             <div class="mode-toggle">
 
