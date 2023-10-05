@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\announcement;
+use App\Models\events;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -130,13 +132,152 @@ class ItStaffController extends Controller
 
     public function ITStaffAnnouncement()
     {
-        return view('ITStaff.announcement');
+        $announcement = announcement::all();
+
+        return view('ITStaff.announcement', ['announcement'=>$announcement]);
     } // End Method
+
+    public function ITStaffAnnouncementEdit($id)
+    {
+        $announcement = announcement::findOrFail($id);
+
+        return view('ITStaff.announcement', compact('announcement'));
+    } // End Method
+
+    public function ITStaffAnnouncementStore(Request $request)
+    {
+        // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            announcement::insert([
+                'title' => $validatedData['title'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+            ]);
+
+            return redirect()->back()->with('success', 'New Announcement Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+    } // End Method
+
+    public function ITStaffAnnouncementUpdate(Request $request)
+    {
+        $aid = $request->announcement_id;
+        
+        announcement::findOrFail($aid)->update([
+            'title'=>$request->title,
+            'to'=>$request->to,
+            'message'=>$request->message,
+        ]);
+
+        return redirect()->back()->with('success', 'Announcement is Updated!');
+    } // End Method
+
+    public function ITStaffAnnouncementDelete(Request $request)
+    {
+        $id = $request->delete_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = announcement::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Announcement is Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
+    }
     
     public function ITStaffEvent()
     {
-        return view('ITStaff.event');
+        $event = events::all();
+
+        return view('ITStaff.event', ['event'=>$event]);
     } // End Method
+
+    public function ITStaffEventEdit($id)
+    {
+        $events = events::findOrFail($id);
+
+        return view('ITStaff.event', compact('events'));
+    } // End Method
+
+    
+    public function ITStaffEventStore(Request $request)
+    {
+        // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'message' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Example: Allow JPEG, PNG, and GIF images, max 2MB
+            'date' => 'required|date',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            events::insert([
+                'title' => $validatedData['title'],
+                'message' => $validatedData['message'],
+                'image' => $validatedData['image'],
+                'date' => $validatedData['date'],
+            ]);
+
+            return redirect()->back()->with('success', 'New Event Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+
+    } // End Method
+
+    public function ITStaffEventUpdate(Request $request)
+    {
+        $aid = $request->event_id;
+        
+        events::findOrFail($aid)->update([
+            'title' => $request->title,
+            'date' =>$request->date,
+            'message' => $request->message,
+            'image' => $request->image,
+        ]);
+
+        return redirect()->back()->with('success', 'Event is Updated!');
+    } // End Method
+
+    public function ITStaffEventDelete(Request $request)
+    {
+        $id = $request->delete_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = events::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Event is Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
+    }
 
     public function ITStaffRegisterView()
     {

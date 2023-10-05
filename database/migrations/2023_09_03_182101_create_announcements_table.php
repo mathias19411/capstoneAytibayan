@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('email');
-            $table->date('date');
-            $table->text('message');
+            $table->string('title')->nullable();
+            $table->string('to')->nullable();
+            $table->date('date')->default(now());
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }

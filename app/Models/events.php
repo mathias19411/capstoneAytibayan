@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class events extends Model
 {
+    protected $fillable = [
+        'title',
+        'date',
+        'message',
+        'image'
+    ];
     use HasFactory;
 }

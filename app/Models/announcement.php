@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class announcement extends Model
 {
+    protected $fillable = [
+        'title',
+        'to',
+        'message',
+        'date'
+    ];
+    
     use HasFactory;
 }
