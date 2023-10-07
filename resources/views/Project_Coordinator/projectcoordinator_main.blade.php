@@ -704,9 +704,47 @@ function displayUpdates() {
 // Call the displayUpdates function initially to populate the update cards
 displayUpdates();
 
-//SCHEDULE 
-
 </script>
+
+<script>
+    // VIEW EVENT
+  
+    const tableRows = document.querySelectorAll('table tbody tr');
+    tableRows.forEach((row, index) => {
+        row.addEventListener('click', () => {
+            // Get data from the clicked row
+            const rowData = Array.from(row.children).map((cell) => cell.textContent.trim());
+
+            // Populate the view elements with data from the row
+            document.getElementById('ViewTitle').textContent = rowData[0];
+            document.getElementById('ViewDate').textContent = rowData[3];
+            document.getElementById('ViewDescription').textContent = rowData[1];
+
+            // You may need to handle the image separately based on how your data is structured
+            // For example, if your image data is a filename like 'image.png':
+            // document.getElementById('ViewImage').src = '/images/' + rowData[2];
+        });
+    });
+</script>
+
+<script>
+    // VIEW ANNOUNCEMENT
+    const tableRows = document.querySelectorAll('#dataTable tbody tr');
+    tableRows.forEach((row, index) => {
+        row.addEventListener('click', () => {
+            // Get data from the clicked row
+            const rowData = Array.from(row.children).map((cell) => cell.textContent.trim());
+
+            // Populate the view elements with data from the row
+            document.getElementById('ViewTitle').textContent = rowData[0];
+            document.getElementById('ViewTo').textContent = rowData[1];
+            document.getElementById('ViewMessage').textContent = rowData[2];
+            document.getElementById('ViewDate').textContent = rowData[3];
+        });
+    });
+</script>
+
+
 
 </body>
 </html>
