@@ -10,6 +10,8 @@ class Program extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = [
         'id',
         'project_coordinator_id',
@@ -30,6 +32,7 @@ class Program extends Model
 
     public function user()
     {
-        return $this->hasMany(User::class, 'program_id', 'id');
+        return $this->hasMany(User::class, 'program_id');
     }
+
 }

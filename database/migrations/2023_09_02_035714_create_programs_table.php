@@ -13,18 +13,17 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string('project_coordinator_id')->nullable();
             $table->string('program_name')->nullable();
             $table->string('location')->nullable();
             $table->string('email')->nullable();
-            $table->integer('contact')->nullable();
+            $table->string('contact')->nullable();
             $table->text('description')->nullable();
             $table->text('quiry')->nullable();
             $table->text('requirements')->nullable();
             $table->string('image')->nullable();
-            $table->string('table_name')->nullable();
-            $table->integer('number_columns')->nullable();
-
+            $table->string('program_password')->nullable();
+            $table->integer('total_active_beneficiaries')->nullable();
+            $table->integer('total_inactive_beneficiaries')->nullable();
             $table->timestamps();
         });
     }

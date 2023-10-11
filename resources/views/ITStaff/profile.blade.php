@@ -135,140 +135,152 @@
 
                                         <div class="header1">
                                             <div class="mt-2">
-                                            <div class="custom-file">
-                                                <label class="custom-file-label" id="custom-file-label" for="input-ProfileImage">Choose a file</label>
-                                                <input type="file" class="custom-file-input form-control form-control-alternative" id="input-ProfileImage" name="photo">
-                                            </div>
-                                            <div class="image-container">
-                                                <img id="image-preview"
-                                                    src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
-                                                    alt="User Profile Image" class="img-fluid-small  rounded-circle">
-                                               <span class="delete-icon" id="delete-image-btn">×</span>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
+                                                <div class="custom-file">
+                                                    <label class="custom-file-label" id="custom-file-label"
+                                                        for="input-ProfileImage">Choose a file</label>
+                                                    <input type="file"
+                                                        class="custom-file-input form-control form-control-alternative"
+                                                        id="input-ProfileImage" name="photo">
+                                                </div>
+                                                <div class="image-container">
+                                                    <img id="image-preview"
+                                                        src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                                        alt="User Profile Image"
+                                                        class="img-fluid-small  rounded-circle">
+                                                    {{-- <span class="delete-icon" id="delete-image-btn">×</span> --}}
+                                                </div>
 
-
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-FirstName">First
-                                                    Name</label>
-                                                <input type="text" id="Input-FirstName"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="FirstName" contenteditable="true"
-                                                    value="{{ $userProfileData->first_name }}" name="first_name">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-MiddleName">Middle
-                                                    Name</label>
-                                                <input type="text" id="input-MiddleName"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="MiddleName" contenteditable="true"
-                                                    value="{{ $userProfileData->middle_name }}" name="middle_name">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-LastName">Last
-                                                    Name</label>
-                                                <input type="text" id="input-LastName"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="LastName" contenteditable="true"
-                                                    value="{{ $userProfileData->last_name }}" name="last_name">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-email">Email
-                                                    address</label>
-                                                <input type="email" id="input-email"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="Email Address" value="{{ $userProfileData->email }}"
-                                                    readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-Role">Role</label>
-                                                <input type="text" id="input-Role"
-                                                    class="form-control form-control-alternative" placeholder="Role"
-                                                    value="{{ $userProfileData->role->role_name }}" readonly>
                                             </div>
                                         </div>
 
-                                    </div>
-                                </div>
-                                <hr class="my-4">
-                                <!-- Address -->
-                                <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
 
-                                        <div class="col-lg-6">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-Phone">Phone
-                                                    Number</label>
-                                                <input type="number" class="form-control form-control-alternative"
-                                                    placeholder="Phone" contenteditable="true"
-                                                    value="{{ $userProfileData->phone }}" name="phone">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label" for="input-FirstName">First
+                                                        Name</label>
+                                                    <input type="text" id="Input-FirstName"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="FirstName" contenteditable="true"
+                                                        value="{{ $userProfileData->first_name }}" name="first_name">
+                                                    @error('first_name')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label" for="input-MiddleName">Middle
+                                                        Name</label>
+                                                    <input type="text" id="input-MiddleName"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="MiddleName" contenteditable="true"
+                                                        value="{{ $userProfileData->middle_name }}"
+                                                        name="middle_name">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-LastName">Last
+                                                        Name</label>
+                                                    <input type="text" id="input-LastName"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="LastName" contenteditable="true"
+                                                        value="{{ $userProfileData->last_name }}" name="last_name">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-email">Email
+                                                        address</label>
+                                                    <input type="email" id="input-email"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="Email Address"
+                                                        value="{{ $userProfileData->email }}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label" for="input-Role">Role</label>
+                                                    <input type="text" id="input-Role"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="Role"
+                                                        value="{{ $userProfileData->role->role_name }}" readonly>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <hr class="my-4">
+                                    <!-- Address -->
+                                    <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                                    <div class="pl-lg-4">
+                                        <div class="row">
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label" for="input-Phone">Phone
+                                                        Number</label>
+                                                    <input type="number"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="Phone" contenteditable="true"
+                                                        value="{{ $userProfileData->phone }}" name="phone">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label"
+                                                        for="input-address">Address</label>
+                                                    <input id="input-address"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="Address" type="text" contenteditable="true"
+                                                        value="{{ $userProfileData->primary_address }}"
+                                                        name="primary_address">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label" for="input-city">City</label>
+                                                    <input type="text" id="input-city"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="City" contenteditable="true"
+                                                        value="{{ $userProfileData->city }}" name="city">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group focused">
+                                                    <label class="form-control-label"
+                                                        for="input-province">Country</label>
+                                                    <input type="text" id="input-province"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="Province" contenteditable="true"
+                                                        value="{{ $userProfileData->province }}" name="province">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-postal-code">Postal
+                                                        code</label>
+                                                    <input type="number" id="input-postal-code"
+                                                        class="form-control form-control-alternative"
+                                                        placeholder="Postal code" contenteditable="true"
+                                                        value="{{ $userProfileData->zip }}" name="zip">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-address">Address</label>
-                                                <input id="input-address"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="Address" type="text" contenteditable="true"
-                                                    value="{{ $userProfileData->primary_address }}"
-                                                    name="primary_address">
-                                            </div>
-                                        </div>
+                                    <hr class="my-4">
+                                    <div class="button-container">
+                                        <button>Save Changes</button>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-city">City</label>
-                                                <input type="text" id="input-city"
-                                                    class="form-control form-control-alternative" placeholder="City"
-                                                    contenteditable="true" value="{{ $userProfileData->city }}"
-                                                    name="city">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-province">Country</label>
-                                                <input type="text" id="input-province"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="Province" contenteditable="true"
-                                                    value="{{ $userProfileData->province }}" name="province">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-postal-code">Postal
-                                                    code</label>
-                                                <input type="number" id="input-postal-code"
-                                                    class="form-control form-control-alternative"
-                                                    placeholder="Postal code" contenteditable="true"
-                                                    value="{{ $userProfileData->zip }}" name="zip">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-4">
-                                <div class="button-container">
-                                    <button>Save Changes</button>
-                                </div>
 
                             </form>
                         </div>
@@ -283,62 +295,65 @@
     </div>
     </div>
     <script>
-    $(document).ready(function() {
-        const imageInput = $('#input-ProfileImage');
-        const imagePreview = $('#image-preview');
-        const deleteImageBtn = $('#delete-image-btn');
+        $(document).ready(function() {
+            const imageInput = $('#input-ProfileImage');
+            const imagePreview = $('#image-preview');
+            const deleteImageBtn = $('#delete-image-btn');
 
-        // Function to hide the delete button
-        function hideDeleteButton() {
-            deleteImageBtn.hide();
-        }
+            // Function to hide the delete button
+            function hideDeleteButton() {
+                deleteImageBtn.hide();
+            }
 
-        // Function to show the delete button
-        function showDeleteButton() {
-            deleteImageBtn.show();
-        }
+            // Function to show the delete button
+            function showDeleteButton() {
+                deleteImageBtn.show();
+            }
 
-        // Function to update the image preview
-        function updateImagePreview(file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                imagePreview.attr('src', e.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
+            // Function to update the image preview
+            function updateImagePreview(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.attr('src', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
 
-        // Hide the delete button initially if the default picture is viewed
-        if (imagePreview.attr('src') === '{{ asset('Uploads/user-icon-png-person-user-profile-icon-20.png') }}') {
-            hideDeleteButton();
-        }
-
-        // Listen for file input change
-        imageInput.change(function(e) {
-            const selectedFile = e.target.files[0];
-            if (selectedFile) {
-                updateImagePreview(selectedFile);
-                showDeleteButton();
-            } else {
+            // Hide the delete button initially if the default picture is viewed
+            if (imagePreview.attr('src') ===
+                '{{ asset('Uploads/user-icon-png-person-user-profile-icon-20.png') }}') {
                 hideDeleteButton();
             }
-        });
 
-        // Listen for delete image button click
-        deleteImageBtn.click(function() {
-            imageInput.val(''); // Clear the file input
-            imagePreview.attr('src', '{{ asset('Uploads/user-icon-png-person-user-profile-icon-20.png') }}'); // Restore the default image
-            hideDeleteButton();
-        });
+            // Listen for file input change
+            imageInput.change(function(e) {
+                const selectedFile = e.target.files[0];
+                if (selectedFile) {
+                    updateImagePreview(selectedFile);
+                    showDeleteButton();
+                } else {
+                    hideDeleteButton();
+                }
+            });
 
-        // Additional script for image input change (if needed)
-        $('#input-ProfileImage').change(function(e) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#image-preview').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
+            // Listen for delete image button click
+            deleteImageBtn.click(function() {
+                imageInput.val(''); // Clear the file input
+                imagePreview.attr('src',
+                    '{{ asset('Uploads/user-icon-png-person-user-profile-icon-20.png') }}'
+                ); // Restore the default image
+                hideDeleteButton();
+            });
+
+            // Additional script for image input change (if needed)
+            $('#input-ProfileImage').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#image-preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
         });
-    });
-</script>
- 
+    </script>
+
 </body>

@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\Status;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use App\Events\UserEvent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +70,9 @@ class RegisteredUserController extends Controller
 
         $user->save();
         // event(new Registered($user));
+        
+        // event(new UserEvent($user));
+
 
         // Auth::login($user);
 

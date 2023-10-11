@@ -54,17 +54,28 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
     //add new program
     Route::post('/ITStaff/addnewprogram', [ItStaffController::class, 'ItStaffAddNewProgram'])->name('itstaff.addNewProgram');
 
-    Route::get('/ITStaff/editprogram', [ItStaffController::class, 'ItStaffEditProgram'])->name('itstaff.editProgram');
+    //edit program view
+    Route::get('/ITStaff/editprogramview', [ItStaffController::class, 'ItStaffEditProgramView'])->name('itstaff.editProgramView');
+
+    //edit existing program 
+    Route::post('/ITStaff/editprogram', [ItStaffController::class, 'ItStaffEditProgram'])->name('itstaff.editProgram');
 
     Route::get('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncement'])->name('itstaff.announcement');
+
     Route::post('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncementStore'])->name('store.announcement');
+
     Route::get('/ITStaff/announcement/{id}', [ItStaffController::class, 'ITStaffAnnouncementEdit'])->name('edit.announcement');
+
     Route::patch('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncementUpdate'])->name('update.announcement');
+
     Route::delete('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncementDelete'])->name('delete.announcement');
     
     Route::get('/ITStaff/event', [ItStaffController::class, 'ITStaffEvent'])->name('itstaff.event');
+
     Route::post('/ITStaff/event', [ItStaffController::class, 'ITStaffEventStore'])->name('store.event');
+
     Route::get('/ITStaff/event/{id}', [ItStaffController::class, 'ITStaffEventEdit'])->name('edit.event');
+    
     Route::patch('/ITStaff/event', [ItStaffController::class, 'ITStaffEventUpdate'])->name('update.event');
 
     //IT Staff View Profile

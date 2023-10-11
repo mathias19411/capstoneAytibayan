@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\announcement;
 use App\Models\events;
+use App\Models\Program;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
 
 
 class ItStaffController extends Controller
@@ -80,49 +82,78 @@ class ItStaffController extends Controller
 
     public function ItStaffAddProgramView()
     {
-        return view('ITStaff.addprogram');
+        // Get the number of project coordiantors
+        $coordinators = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['projectcoordinator']);
+        })->get();
+
+        return view('ITStaff.addprogram', compact('coordinators'));
     } // End Method
 
     public function ItStaffAddNewProgram(Request $request)
     {
         // Validate form inputs
-        $request->validate([
-            'first_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'last_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'phone_number' => ['required', 'string', 'max:11'],
-            // 'inputRole' => ['required', Rule::in(Role::pluck('id')->all())],
-            // 'inputProgram' => ['required', Rule::in(Program::pluck('id')->all())],
-            'primaryAddress' => ['required', 'string', 'max:255'],
-            'inputCity' => ['required', 'string', 'max:255'],
-            'inputProvince' => ['required', 'string', 'max:255'],
-            'inputZip' => ['required', 'string', 'max:255'],
-            // 'inputStatus' => ['required', Rule::in(Status::pluck('id')->all())],
+        $validatedData = $request->validate([
+            'programnameInput' => ['required', 'string', 'max:30', 'unique:programs,program_name'],
+            'programkey' => ['required', 'required', Rules\Password::defaults()],
+            'inputLocation' => ['required', 'string', 'max:50'],
+            'inputEmail' => ['required', 'string', 'email', 'max:255', 'unique:programs,email'],
+            'inputContact' => ['required', 'string', 'max:12'],
+            'inputInfo' => ['required', 'string', 'max:500'],
+            'inputApply' => ['required', 'string', 'max:500'],
+            'inputReqs' => ['required', 'string', 'max:500'],
+            'programPhoto' => ['required' , 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+        ]);
+
+        if ($request->file('programPhoto'))
+        {
+            // $imagePath = $request->file('programPhoto')->store('public/Uploads/Program_images');
             
-        ]);
+            // // Remove the 'public/' prefix from the path to store in the database
+            // $validatedData['programPhoto'] = str_replace('public/', '', $imagePath);
 
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'middle_name' => $request->middle_name,
-            'last_name' => $request->last_name,
-            'phone' => $request->phone_number,
-            'primary_address' => $request->primaryAddress,
-            'city' => $request->inputCity,
-            'province' => $request->inputProvince,
-            'zip' => $request->inputZip,
-            'role_id' => $request->inputRole,
-            'program_id' => $request->inputProgram,
-            'status_id' => $request->inputStatus
-            // 'password' => Hash::make($request->password),
-        ]);
+            $file = $request->file('programPhoto');
 
-        $user->save();
+            @unlink(public_path('Uploads/Program_images/'.$validatedData['programPhoto']));
+
+            $fileName = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('Uploads/Program_images'),$fileName);
+            $validatedData['programPhoto'] = $fileName;
+        }
+
+        if ($validatedData)
+        {
+
+            Program::create([
+                'program_name' => $validatedData['programnameInput'],
+                'location' => $validatedData['inputLocation'],
+                'email' => $validatedData['inputEmail'],
+                'contact' => $validatedData['inputContact'],
+                'description' => $validatedData['inputInfo'],
+                'quiry' => $validatedData['inputApply'],
+                'requirements' => $validatedData['inputReqs'],
+                'image' => $validatedData['programPhoto'],
+                'program_password' => Hash::make($validatedData['programkey']),
+            ]);
+
+            toastr()->timeOut(10000)->addSuccess('A new Program has been successfully added!');
+
+            return redirect()->route('itstaff.home');
+        }
+        else
+        {
+            toastr()->timeOut(10000)->addError('Validation failed. Please check your inputs!');
+
+            return redirect()->back();
+        }
         // event(new Registered($user));
 
         // Auth::login($user);
+    } // End Method
 
-        toastr()->timeOut(10000)->addSuccess('A new Program has been successfully added!');
-
-        return redirect()->route('itstaff.home');
+    public function ItStaffEditProgramView()
+    {
+        return view('ITStaff.edit_program');
     } // End Method
 
     public function ItStaffEditProgram()

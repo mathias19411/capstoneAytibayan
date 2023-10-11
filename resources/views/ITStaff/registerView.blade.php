@@ -2,13 +2,13 @@
 @section('ITStaff')
 
 @section('content')
-@include('ITStaff.Body.sidebar')
+    @include('ITStaff.Body.sidebar')
 
-<div class="title">
+    <div class="title">
         <h1>Registration</h1>
-</div>
+    </div>
 
-<div class="table-header">
+    <div class="table-header">
         <div class="table-header-left">
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
@@ -34,134 +34,136 @@
     </div>
 
 
-        <div class="container">
-                <table class="table">
-                    <thead>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Program</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($users as $user)
                     <tr>
-                            <th>ID</th>
-                            <th>First Name</th>
-                            <th>Middle Name</th>
-                            <th>Last Name</th>
-                            <th>Program</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->first_name }}</td>
-                                <td>{{ $user->middle_name }}</td>
-                                <td>{{ $user->last_name }}</td>
-                                <td>{{ $user->program->program_name }}</td>
-                                <td>{{ $user->role->role_name }}</td>
-                                <td>{{ $user->status->status_name }}</td>
-                                <td>
-                                <button class="tooltip-button" data-tooltip="View"  class="add-modal" data-bs-toggle="modal" data-bs-target="#itStaffRegister">
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->first_name }}</td>
+                        <td>{{ $user->middle_name }}</td>
+                        <td>{{ $user->last_name }}</td>
+                        <td>{{ $user->program->program_name }}</td>
+                        <td>{{ $user->role->role_name }}</td>
+                        <td>{{ $user->status->status_name }}</td>
+                        <td>
+                            <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal"
+                                data-bs-target="#itStaffRegister">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="pagination">
-                    <button id="prev-page">Previous</button>
-                    <div id="page-numbers"></div>
-                    <button id="next-page">Next</button>
-                </div>
+                            </button>
+                            <button class="tooltip-button" data-tooltip="Edit"><i
+                                    class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button id="prev-page">Previous</button>
+            <div id="page-numbers"></div>
+            <button id="next-page">Next</button>
+        </div>
 
-                <div id="pagination-message"></div>
-             
-              </div>
-    
-                        <!-- Popup for displaying message content and details -->
-                        <div id="message-popup" class="popup">
-                <div class="popup-content">
-                    <span class="popup-close" onclick="closePopup()">&times;</span>
-                    <h2>Message Details</h2>
-                    <div class="popup-details">
-                        <div class="row">
-                            <div class="column">
-                                <p><strong>Full Name:</strong></p>
-                                <p><strong>Email Address:</strong></p>
-                            </div>
-                            <div class="column">
-                                <p><span id="full-name"></span></p>
-                                <p><span id="email-address"></span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <p><strong>Contact Number:</strong></p>
-                                <p><strong>Date:</strong></p>
-                            </div>
-                            <div class="column">
-                                <p><span id="contact-number"></span></p>
-                                <p><span id="date"></span></p>
-                            </div>
-                        </div>
-                        <div class="message-row">
-                            <p><strong>Message:</strong></p>
-                            <p><span id="message-content"></span></p>
-                        </div>
+        <div id="pagination-message"></div>
+    </div>
+
+    <!-- Popup for displaying message content and details -->
+    <div id="message-popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <h2>Message Details</h2>
+            <div class="popup-details">
+                <div class="row">
+                    <div class="column">
+                        <p><strong>Full Name:</strong></p>
+                        <p><strong>Email Address:</strong></p>
                     </div>
-                    <div class="popup-actions">
-                        <button class="button">Reply</button>
-                        <button class="button">Delete</button>
+                    <div class="column">
+                        <p><span id="full-name"></span></p>
+                        <p><span id="email-address"></span></p>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <p><strong>Contact Number:</strong></p>
+                        <p><strong>Date:</strong></p>
+                    </div>
+                    <div class="column">
+                        <p><span id="contact-number"></span></p>
+                        <p><span id="date"></span></p>
+                    </div>
+                </div>
+                <div class="message-row">
+                    <p><strong>Message:</strong></p>
+                    <p><span id="message-content"></span></p>
                 </div>
             </div>
+            <div class="popup-actions">
+                <button class="button">Reply</button>
+                <button class="button">Delete</button>
+            </div>
+        </div>
+    </div>
 
-            <form>       
-                
+    <form>
+
         <div class="btn-bottom">
             @auth
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}" class="add-modal">
-                        
+
                         Register
-                        
+
                     </a>
                 @endif
-            @endauth 
+            @endauth
         </div>
-    </div>
-</form>
+        </div>
+    </form>
 
-<div class="modal fade" id="itStaffRegister" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Beneficiary</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+    <div class="modal fade" id="itStaffRegister" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Beneficiary</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
                     mathias ikaw na lang maglagay ng ibang info dito
                     <div class="row">
                         <div class="col">
+                            <div class="col-md-12">
+                                <h5>Name:</h5>
+                                <p id="modal-name">Orly Grona Encabo</p>
+                            </div>
+                        </div>
                         <div class="col-md-12">
-                            <h5>Name:</h5>
-                            <p id="modal-name">Orly Grona Encabo</p>
+                            <h5>Program:</h5>
+                            <p id="modal-recipient">Binhi ng Pag-asa</p>
                         </div>
-                            </div>
-                            <div class="col-md-12">
-                                <h5>Program:</h5>
-                                <p id="modal-recipient">Binhi ng Pag-asa</p>
-                            </div>
-                            <div class="col-md-12">
-                                <h5>Role:</h5>
-                                <p id="modal-message">Beneficiary</p>
-                        </div>
+                        <div class="col-md-12">
+                            <h5>Role:</h5>
+                            <p id="modal-message">Beneficiary</p>
                         </div>
                     </div>
-            <div class="modal-footer">
-                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-         </div>
-    </div>
-</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
 
-@endsection
+    @endsection
