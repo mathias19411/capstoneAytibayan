@@ -13,7 +13,8 @@
             <select id="unread-filter">
                 <option value="all">All</option>
                 <option value="unread">Public</option>
-                <option value="read">Beneficiary</option>
+                <option value="read">Beneficiaries</option>
+                <option value="read">Project Coordinator</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -148,43 +149,6 @@
                 <div id="pagination-message"></div>
                 </div>
     
-                        <!-- Popup for displaying message content and details -->
-            <div id="message-popup" class="popup">
-                <div class="popup-content">
-                    <span class="popup-close" onclick="closePopup()">&times;</span>
-                    <h2>Message Details</h2>
-                    <div class="popup-details">
-                        <div class="row">
-                            <div class="column">
-                                <p><strong>Full Name:</strong></p>
-                                <p><strong>Email Address:</strong></p>
-                            </div>
-                            <div class="column">
-                                <p><span id="full-name"></span></p>
-                                <p><span id="email-address"></span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <p><strong>Contact Number:</strong></p>
-                                <p><strong>Date:</strong></p>
-                            </div>
-                            <div class="column">
-                                <p><span id="contact-number"></span></p>
-                                <p><span id="date"></span></p>
-                            </div>
-                        </div>
-                        <div class="message-row">
-                            <p><strong>Message:</strong></p>
-                            <p><span id="message-content"></span></p>
-                        </div>
-                    </div>
-                    <div class="popup-actions">
-                        <button class="button">Reply</button>
-                        <button class="button">Delete</button>
-                    </div>
-                </div>
-            </div>
 
             <div class="btn-bottom">
             <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_announcement">
@@ -211,10 +175,12 @@
                             <div class="form-outline">
                             <label id="label_">To:</label>
                                 <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title....">
-                                <option value="one"> orly@gmail.com </option>
-                                <option value="two"> joriza@gmail.com</option>
-                                <option value="one"> mathias@gmail.com </option>
-                                 <option value="one"> jayferson@gmail.com </option>
+                                    <option value="public"> Public </option>
+                                    <option value="benef"> Beneficiaries</option>
+                                    <option value="akbay"> Akbay (Project Coordinator) </option>
+                                    <option value="agripinay"> AgriPinay (Project Coordinator)  </option>
+                                    <option value="abaka"> Abaka (Project Coordinator)  </option>
+                                    <option value="lead"> LEAD (Project Coordinator)  </option>
                                  </select>
                             </div>
                         </div>
@@ -244,24 +210,30 @@
             </div>
                 <div class="modal-body">
                 <div class="row">
-                <div class="col">
-                <div class="col-md-12">
-                    <h5>Title:</h5>
-                    <p id="modal-title">Binhi ng Pag-asa Seminar</p>
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <label for="ViewTitle">Title:</label>
+                            <p id="ViewTitle"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <label for="ViewTo">To:</label>
+                            <p id="ViewTo"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <div class="form-outline">
+                            <label for="ViewMessage">Message:</label>
+                            <p id="ViewMessage"></p>
+                        </div>
+                        <div class="form-outline">
+                            <label for="ViewDate">Date:</label>
+                            <p id="ViewDate"></p>
+                        </div>
+                    </div>
                 </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-12">
-                        <h5>To:</h5>
-                        <p id="modal-recipient">orlybinhi@gmail.com</p>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h5>Message:</h5>
-                        <p id="modal-message">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</p>
-                    </div>
-                    </div>
+            </div>
                     <div class="modal-footer">
                     <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                 </div>

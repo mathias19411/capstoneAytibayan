@@ -77,6 +77,7 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
     Route::get('/ITStaff/event/{id}', [ItStaffController::class, 'ITStaffEventEdit'])->name('edit.event');
     
     Route::patch('/ITStaff/event', [ItStaffController::class, 'ITStaffEventUpdate'])->name('update.event');
+    Route::delete('/ITStaff/event', [ItStaffController::class, 'ITStaffEventDelete'])->name('delete.event');
 
     //IT Staff View Profile
     Route::get('/ITStaff/viewprofile', [ItStaffController::class, 'ITStaffViewProfile'])->name('itstaff.viewprofile');
@@ -98,12 +99,20 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 //Project Coordinator Group Middleware
 Route::middleware(['auth', 'userroleprotection:projectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
-    Route::get('/ProjectCoordinator/home', [ProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('projectcoordinator.home');
+    Route::get('/ProjectCoordinator/home', [ProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('projectcoordinator.beneficiaries');
 
     //ITStaff Logout
     Route::get('/ProjectCoordinator/logout', [ProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('projectCoordinator.logout');
 
     Route::get('/Project_Coordinator/inquiry', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('Project_Coordinator.inquiry');
+
+    Route::get('/ProjectCoordinator/Announcements', [ProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('projectcoordinator.announcement');
+
+    Route::get('/ProjectCoordinator/Events', [ProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('projectcoordinator.event');
+
+    Route::get('/ProjectCoordinator/Inquriy', [ProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('projectcoordinator.inquiry');
+
+    Route::get('/ProjectCoordinator/Progress', [ProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('projectcoordinator.progress');
 
     // more routes here for Project Coordinator
 

@@ -10,32 +10,32 @@
     <div class="menu-items">
         <ul class="nav-links">
             <li>
-                <a href="" class="">
+                <a href="{{ route('projectcoordinator.beneficiaries') }}" class="{{ request()->is('Project_Coordinator/beneficiary') ? 'active' : '' }}">
                     <i class="uil uil-users-alt"></i>
                     <span class="link-name">Beneficiaries</span>
                 </a>
             </li>
             <li>
-                <a href="" class="">
+                <a href="{{ route('projectcoordinator.announcement') }}" class="{{ request()->is('Project_Coordinator/announcement') ? 'active' : '' }}">
                     <i class="uil uil-bell"></i>
                     <span class="link-name">Announcement</span>
                 </a>
             </li>
             <li>
-                <a href="" class="">
+                <a href="{{ route('projectcoordinator.event') }}" class="{{ request()->is('Project_Coordinator/event') ? 'active' : '' }}">
                     <i class="uil uil-calendar-alt"></i>
                     <span class="link-name">Event</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('projectcoordinator.inquiry') }}" class="{{ request()->is('Project_Coordinator/inquiry') ? 'active' : '' }}">
                     <i class="uil uil-question-circle"></i>
                     <span class="link-name">Inquiry</span>
                 </a>
             </li>
 
             <li>
-                <a href="" class="">
+                <a href="{{ route('projectcoordinator.progress') }}" class="{{ request()->is('Project_Coordinator/progress') ? 'active' : '' }}">
                     <i class="uil uil-check-circle"></i>
                     <span class="link-name">Progress</span>
                 </a>

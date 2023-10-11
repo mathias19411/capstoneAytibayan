@@ -124,7 +124,7 @@
                                 <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                             </td>    
                             <td>
-                            <span onclick="togphp gleStatus(this)" class="status-box active">Active</span>
+                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
                             </td>
                         </tr>
                         <tr>
