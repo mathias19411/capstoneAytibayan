@@ -21,9 +21,7 @@ return new class extends Migration
             $table->text('quiry')->nullable();
             $table->text('requirements')->nullable();
             $table->string('image')->nullable();
-            $table->string('program_password')->nullable();
-            $table->integer('total_active_beneficiaries')->nullable();
-            $table->integer('total_inactive_beneficiaries')->nullable();
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }

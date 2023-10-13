@@ -14,7 +14,6 @@ class Program extends Model
 
     protected $fillable = [
         'id',
-        'project_coordinator_id',
         'program_name',
         'location',
         'email',
@@ -23,9 +22,7 @@ class Program extends Model
         'quiry',
         'requirements',
         'image',
-        'table_name',
-        'number_columns',
-        'remember_token',
+        'password',
         'created_at',
         'updated_at',
     ];
@@ -33,6 +30,11 @@ class Program extends Model
     public function user()
     {
         return $this->hasMany(User::class, 'program_id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 
 }

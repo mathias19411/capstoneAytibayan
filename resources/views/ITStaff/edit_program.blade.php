@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="program-form">
-    <form id="myForm" action="{{ route('edit_program') }}" method="post">
+    <form method="POST" id="myForm" action="{{ route('itstaff.updateProgram') }}" >
         @csrf
     <h1>Program Information</h1>
     
@@ -24,7 +24,7 @@
         </div>
         <div class="input-group">
             <label for="program_name">Name of the Program:</label>
-            <input type="text" id="program_name" placeholder="Program Name" value="Lorem Ipsum Program" contenteditable="true">
+            <input type="text" id="programName" value="{{ $program->program_name }}" contenteditable="true" name="programName">
         </div>
         <div class="input-group">
             <label for="program_key">Program Key:</label>

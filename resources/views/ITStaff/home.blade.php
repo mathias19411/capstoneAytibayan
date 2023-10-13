@@ -89,31 +89,52 @@
 
 
             <div class="boxes">
-                @foreach ($userCountsByProgram as $programName => $users)
+                @foreach ($programs as $program)
                     <div class="box box1">
-                        <img src="\images\Logo_BinhiNgPagasa.png" alt="Image 1">
-                        <span class="text">{{ $programName }}</span>
+                        <img src="{{ !empty($program->image) ? url('Uploads/Program_images/' . $program->image) : url('Uploads/no-image.jpg') }}" alt="Image 1">
+                        <span class="text">{{ $program->program_name }}</span>
                         <span class="label">Total</span>
-                        <span class="totalnumber">{{ $users->count() }} Beneficiaries</span>
+                        <span class="totalnumber">{{$program->user()->whereHas('role', function($query) {
+                            $query->where('role_name', 'beneficiary');
+                        })->count()}} Beneficiaries</span>
                         <div class="number-line totalline"></div>
 
-                        <span class="label">Active</span>
-                        <span class="activenumber">{{ $users->whereIn('status_id', ['1'])->count() }}
+                        <span class="label">Active:</span>
+                        <span class="activenumber">{{$program->user()->whereHas('status', function($query) {
+                            $query->where('status_name', 'Active');
+                        })->count()}}
                             Beneficiaries</span>
                         <div class="number-line activeline"></div>
 
                         <span class="label">Inactive</span>
-                        <span class="inactivenumber">{{ $users->whereIn('status_id', ['2'])->count() }}
+                        <span class="inactivenumber">{{$program->user()->whereHas('status', function($query) {
+                            $query->where('status_name', 'Inactive');
+                        })->count()}}
                             Beneficiaries</span>
                         <div class="number-line inactiveline"></div>
 
-                        <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
+                        <a href="{{ route('itstaff.editProgramView', $program->id) }}" class="custom-link">
                             <button class="custom-button">View</button>
                         </a>
 
 
                     </div>
                 @endforeach
+
+                {{-- @foreach ($programs as $program)
+                <div class="box box1">
+                    <img src="\images\Logo_BinhiNgPagasa.png" alt="Image 1">
+                    <span class="text">{{ $program->program_name }}</span>
+                    <ul>
+                        @foreach ($program->user as $user)
+                            <li>{{ $user->first_name }}</li>
+                        @endforeach
+                    </ul>
+
+
+                </div>
+                    
+                @endforeach --}}
 
                 {{-- <div class="box box1">
                     <img src="\images\Logo_AgriPinay.png" alt="Image 2">

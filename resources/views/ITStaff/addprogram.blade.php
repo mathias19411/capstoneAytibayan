@@ -102,12 +102,22 @@
                     @enderror
                 </div>
                 <div class="input-group">
-                    <label for="programkey">Program Key:</label>
-                    <input type="password" id="programkey" placeholder="########" name="programkey">
-                    @error('programkey')
+                    <label for="password">Program Password:</label>
+                    <input type="password" id="password" placeholder="########" name="password">
+                    @error('password')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="input-group">
+                    <label for="password_confirmation">Confirm Password:</label>
+                    <input type="password" id="password_confirmation" placeholder="########" name="password_confirmation">
+                    @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-row">
                 <div class="input-group">
                     <label for="inputLocation">Location:</label>
                     <input type="text" id="inputLocation" placeholder="Enter Location" name="inputLocation">
@@ -115,9 +125,6 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
-
-            <div class="form-row">
                 <div class="input-group">
                     <label for="inputEmail">Email Address:</label>
                     <input type="email" id="inputEmail" placeholder="juandelacruz@gmail.com" name="inputEmail">

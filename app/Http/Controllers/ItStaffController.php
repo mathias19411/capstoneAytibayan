@@ -56,12 +56,18 @@ class ItStaffController extends Controller
         ->with('program')
         ->get();
         
-        $userCountsByProgram = User::whereHas('role', function ($query) {
-            $query->where('role_name', 'beneficiary');
-        })->with(['program', 'status'])->get()->groupBy('program.program_name');
+        // $userCountsByProgram = User::whereHas('role', function ($query) {
+        //     $query->where('role_name', 'beneficiary');
+        // })->with(['program', 'status'])->get();
+
+        $programs = Program::with(['user' => function ($query) {
+            $query->whereHas('role', function ($subQuery) {
+                $subQuery->where('role_name', 'beneficiary');
+            });
+        }])->get();
 
 
-        return view('ITStaff.home', compact('userProfileData', 'totalUsers', 'totalcoordinators', 'totalbeneficiaries', 'activeBeneficiaries', 'inactiveBeneficiaries', 'coordinators', 'userCountsByProgram'));
+        return view('ITStaff.home', compact('userProfileData', 'totalUsers', 'totalcoordinators', 'totalbeneficiaries', 'activeBeneficiaries', 'inactiveBeneficiaries', 'coordinators', 'programs'));
     } // End Method
 
     public function ItStaffLogout(Request $request)
@@ -95,7 +101,7 @@ class ItStaffController extends Controller
         // Validate form inputs
         $validatedData = $request->validate([
             'programnameInput' => ['required', 'string', 'max:30', 'unique:programs,program_name'],
-            'programkey' => ['required', 'required', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'inputLocation' => ['required', 'string', 'max:50'],
             'inputEmail' => ['required', 'string', 'email', 'max:255', 'unique:programs,email'],
             'inputContact' => ['required', 'string', 'max:12'],
@@ -123,6 +129,9 @@ class ItStaffController extends Controller
 
         if ($validatedData)
         {
+            $hashed = Hash::make($validatedData['password']);
+            
+            // dd($hashed);
 
             Program::create([
                 'program_name' => $validatedData['programnameInput'],
@@ -133,7 +142,7 @@ class ItStaffController extends Controller
                 'quiry' => $validatedData['inputApply'],
                 'requirements' => $validatedData['inputReqs'],
                 'image' => $validatedData['programPhoto'],
-                'program_password' => Hash::make($validatedData['programkey']),
+                'password' => $hashed,
             ]);
 
             toastr()->timeOut(10000)->addSuccess('A new Program has been successfully added!');
@@ -151,14 +160,18 @@ class ItStaffController extends Controller
         // Auth::login($user);
     } // End Method
 
-    public function ItStaffEditProgramView()
+    public function ItStaffEditProgramView($id)
     {
-        return view('ITStaff.edit_program');
+        $program = Program::findOrFail($id);
+
+        return view('ITStaff.edit_program', compact('program'));
     } // End Method
 
-    public function ItStaffEditProgram()
+    public function ItStaffUpdateProgram()
     {
-        return view('ITStaff.edit_program');
+        toastr()->timeOut(10000)->addSuccess('Program has been updated successfully!');
+
+        return redirect()->back();
     } // End Method
 
     public function ITStaffAnnouncement()

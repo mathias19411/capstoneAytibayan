@@ -55,10 +55,10 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
     Route::post('/ITStaff/addnewprogram', [ItStaffController::class, 'ItStaffAddNewProgram'])->name('itstaff.addNewProgram');
 
     //edit program view
-    Route::get('/ITStaff/editprogramview', [ItStaffController::class, 'ItStaffEditProgramView'])->name('itstaff.editProgramView');
+    Route::get('/ITStaff/editprogramview/{id}', [ItStaffController::class, 'ItStaffEditProgramView'])->name('itstaff.editProgramView');
 
     //edit existing program 
-    Route::post('/ITStaff/editprogram', [ItStaffController::class, 'ItStaffEditProgram'])->name('itstaff.editProgram');
+    Route::post('/ITStaff/updateProgram', [ItStaffController::class, 'ItStaffUpdateProgram'])->name('itstaff.updateProgram');
 
     Route::get('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncement'])->name('itstaff.announcement');
 
