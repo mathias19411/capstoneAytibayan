@@ -98,22 +98,20 @@
                     <label for="programnameInput">Name of the Program:</label>
                     <input type="text" id="programnameInput" placeholder="Example Program" name="programnameInput">
                     @error('programnameInput')
-                        <div class="text-danger">{{ $message }}</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="input-group">
-                    <label for="password">Program Password:</label>
+                    <label for="password">Add Program Key:</label>
                     <input type="password" id="password" placeholder="########" name="password">
                     @error('password')
-                        <div class="text-danger">{{ $message }}</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="input-group">
-                    <label for="password_confirmation">Confirm Password:</label>
-                    <input type="password" id="password_confirmation" placeholder="########" name="password_confirmation">
-                    @error('password')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                    <label for="password_confirmation">Confirm Program Key:</label>
+                    <input type="password" id="password_confirmation" placeholder="########"
+                        name="password_confirmation">
                 </div>
             </div>
 
@@ -122,28 +120,28 @@
                     <label for="inputLocation">Location:</label>
                     <input type="text" id="inputLocation" placeholder="Enter Location" name="inputLocation">
                     @error('inputLocation')
-                        <div class="text-danger">{{ $message }}</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="input-group">
                     <label for="inputEmail">Email Address:</label>
                     <input type="email" id="inputEmail" placeholder="juandelacruz@gmail.com" name="inputEmail">
                     @error('inputEmail')
-                        <div class="text-danger">{{ $message }}</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="input-group">
                     <label for="inputContact">Contact Number:</label>
                     <input type="tel" id="inputContact" placeholder="09xxxxxxxxx" name="inputContact">
                     @error('inputContact')
-                        <div class="text-danger">{{ $message }}</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="input-group">
                     <label for="inputInfo">Program Information:</label>
                     <textarea id="inputInfo" placeholder="Program Info Here" name="inputInfo"></textarea>
                     @error('inputInfo')
-                        <div class="text-danger">{{ $message }}</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
@@ -154,14 +152,14 @@
                     <label for="inputApply">How to Apply:</label>
                     <textarea id="inputApply" placeholder="Application Guidelines" name="inputApply"></textarea>
                     @error('inputApply')
-                        <div class="text-danger">{{ $message }}</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="input-group">
                     <label for="inputReqs">Guidelines and Requirements:</label>
                     <textarea id="inputReqs" placeholder="Program Requirements" name="inputReqs"></textarea>
                     @error('inputReqs')
-                        <div class="text-danger">{{ $message }}</div>
+                        <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="input-group">
@@ -195,7 +193,7 @@
             {{-- <div id="column-inputs">
                 <!-- Column name and datatype inputs will be generated here -->
             </div> --}}
-            <button type="submit" class="btn btn-primary me-2">Save Your Changes</button>
+            <button type="submit" class="btn btn-primary me-2">Add New Program!</button>
 
 
         </form>

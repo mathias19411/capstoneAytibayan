@@ -37,4 +37,8 @@ class Program extends Model
         return $this->belongsTo(Role::class);
     }
 
+    public function coordinators()
+{
+    return $this->hasMany(User::class)->where('role_id', Role::where('role_name', 'projectcoordinator')->first()->id);
+}
 }

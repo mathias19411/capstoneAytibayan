@@ -151,7 +151,7 @@ class ItStaffController extends Controller
         }
         else
         {
-            toastr()->timeOut(10000)->addError('Validation failed. Please check your inputs!');
+            toastr()->timeOut(10000)->addError('Validation failed. Please check your inputs and try again!');
 
             return redirect()->back();
         }
@@ -162,16 +162,74 @@ class ItStaffController extends Controller
 
     public function ItStaffEditProgramView($id)
     {
-        $program = Program::findOrFail($id);
+        //get all coordinators associated with a specific program
+        $program = Program::with('coordinators')->findOrFail($id);
+
+        // dd($program->coordinators);
 
         return view('ITStaff.edit_program', compact('program'));
     } // End Method
 
-    public function ItStaffUpdateProgram()
+    public function ItStaffUpdateProgram(Request $request)
     {
-        toastr()->timeOut(10000)->addSuccess('Program has been updated successfully!');
+        $programId = $request->id;
 
-        return redirect()->back();
+        $validatedData = $request->validate([
+            'programnameInput' => ['required', 'string', 'max:30', 'unique:programs,program_name'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'inputLocation' => ['required', 'string', 'max:50'],
+            'inputEmail' => ['required', 'string', 'email', 'max:255', 'unique:programs,email'],
+            'inputContact' => ['required', 'string', 'max:12'],
+            'inputInfo' => ['required', 'string', 'max:500'],
+            'inputApply' => ['required', 'string', 'max:500'],
+            'inputReqs' => ['required', 'string', 'max:500'],
+            'programPhoto' => ['required' , 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+        ]);
+
+        if ($request->file('programPhoto'))
+        {
+            // $imagePath = $request->file('programPhoto')->store('public/Uploads/Program_images');
+            
+            // // Remove the 'public/' prefix from the path to store in the database
+            // $validatedData['programPhoto'] = str_replace('public/', '', $imagePath);
+
+            $file = $request->file('programPhoto');
+
+            @unlink(public_path('Uploads/Program_images/'.$validatedData['programPhoto']));
+
+            $fileName = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('Uploads/Program_images'),$fileName);
+            $validatedData['programPhoto'] = $fileName;
+        }
+
+        if ($validatedData)
+        {
+            $hashed = Hash::make($validatedData['password']);
+            
+            // dd($hashed);
+
+            Program::findOrFail($programId)->update([
+                'program_name' => $validatedData['programnameInput'],
+                'location' => $validatedData['inputLocation'],
+                'email' => $validatedData['inputEmail'],
+                'contact' => $validatedData['inputContact'],
+                'description' => $validatedData['inputInfo'],
+                'quiry' => $validatedData['inputApply'],
+                'requirements' => $validatedData['inputReqs'],
+                'image' => $validatedData['programPhoto'],
+                'password' => $hashed,
+            ]);
+
+            toastr()->timeOut(10000)->addSuccess('Program has been updated successfully!');
+            
+            return redirect()->route('itstaff.home');
+        }
+        else
+        {
+            toastr()->timeOut(10000)->addError('Validation failed. Please check your inputs and try again!');
+
+            return redirect()->back();
+        }
     } // End Method
 
     public function ITStaffAnnouncement()
