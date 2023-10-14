@@ -157,7 +157,7 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
 Route::get('/Visitor', [EventController::class, 'index']);
 
 //registerView
-route::post('/ITStaff/registerView', [RegisterViewController::class, 'store'])->name('store-registerView');
+// route::post('/ITStaff/registerView', [RegisterViewController::class, 'store'])->name('store-registerView');
 
 Route::get('/Project_Coordinator/inquiry', function () {
     return view('Project_Coordinator.inquiry');
