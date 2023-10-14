@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\announcement;
 use App\Models\events;
 use App\Models\Program;
+use App\Models\Role;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -174,33 +176,19 @@ class ItStaffController extends Controller
     {
         $programId = $request->id;
 
+        $programData = Program::findOrFail($programId);
+
         $validatedData = $request->validate([
-            'programnameInput' => ['required', 'string', 'max:30', 'unique:programs,program_name'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'inputLocation' => ['required', 'string', 'max:50'],
-            'inputEmail' => ['required', 'string', 'email', 'max:255', 'unique:programs,email'],
-            'inputContact' => ['required', 'string', 'max:12'],
-            'inputInfo' => ['required', 'string', 'max:500'],
-            'inputApply' => ['required', 'string', 'max:500'],
-            'inputReqs' => ['required', 'string', 'max:500'],
-            'programPhoto' => ['required' , 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'programnameInput' => ['string', 'max:30'],
+            'password' => ['confirmed', Rules\Password::defaults()],
+            'inputLocation' => ['string', 'max:50'],
+            'inputEmail' => ['string', 'email', 'max:255'],
+            'inputContact' => ['string', 'max:12'],
+            'inputInfo' => ['string', 'max:500'],
+            'inputApply' => ['string', 'max:500'],
+            'inputReqs' => ['string', 'max:500'],
+            // 'programPhoto' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
-
-        if ($request->file('programPhoto'))
-        {
-            // $imagePath = $request->file('programPhoto')->store('public/Uploads/Program_images');
-            
-            // // Remove the 'public/' prefix from the path to store in the database
-            // $validatedData['programPhoto'] = str_replace('public/', '', $imagePath);
-
-            $file = $request->file('programPhoto');
-
-            @unlink(public_path('Uploads/Program_images/'.$validatedData['programPhoto']));
-
-            $fileName = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('Uploads/Program_images'),$fileName);
-            $validatedData['programPhoto'] = $fileName;
-        }
 
         if ($validatedData)
         {
@@ -208,7 +196,7 @@ class ItStaffController extends Controller
             
             // dd($hashed);
 
-            Program::findOrFail($programId)->update([
+            $programData->update([
                 'program_name' => $validatedData['programnameInput'],
                 'location' => $validatedData['inputLocation'],
                 'email' => $validatedData['inputEmail'],
@@ -216,9 +204,20 @@ class ItStaffController extends Controller
                 'description' => $validatedData['inputInfo'],
                 'quiry' => $validatedData['inputApply'],
                 'requirements' => $validatedData['inputReqs'],
-                'image' => $validatedData['programPhoto'],
                 'password' => $hashed,
             ]);
+
+            if ($request->file('programPhoto'))
+            {
+                $file = $request->file('programPhoto');
+
+                @unlink(public_path('Uploads/Program_images/'.$programData->image));
+
+                $fileName = date('YmdHi').$file->getClientOriginalName();
+                $file->move(public_path('Uploads/Program_images'),$fileName);
+                $programData['image'] = $fileName;
+            }
+            $programData->save();
 
             toastr()->timeOut(10000)->addSuccess('Program has been updated successfully!');
             
@@ -384,8 +383,28 @@ class ItStaffController extends Controller
     public function ITStaffRegisterView()
     {
         $users = User::orderBy('id', 'asc')->get();
+        $roles = Role::all();
+        $statuses = Status::all();
 
-        return view('ITStaff.registerView', compact("users"));
+        return view('ITStaff.registerView', compact('users', 'roles', 'statuses'));
+    } // End Method
+
+    public function ITStaffRegisterEditUser(Request $request)
+    {
+        $userId = $request->id;
+
+        $userData = User::findOrFail($userId);
+
+        $userData->update([
+            'role_id' => $request->inputRole,
+            'status_id' =>$request->inputStatus,
+        ]);
+
+        $userData->save();
+
+        toastr()->timeOut(10000)->addSuccess('User data has been updated successfully!');
+        
+        return redirect()->back();
     } // End Method
 
     public function ITStaffViewProfile()

@@ -93,6 +93,9 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 
     //IT Staff Register View
     Route::get('/ITStaff/registerview', [ItStaffController::class, 'ITStaffRegisterView'])->name('itstaff.registerView');
+
+    //IT Staff Edit user status and role
+    Route::post('/ITStaff/registeredituser', [ItStaffController::class, 'ITStaffRegisterEditUser'])->name('itstaff.registerEditUser');
     
 }); //End group itstaff middleware
 

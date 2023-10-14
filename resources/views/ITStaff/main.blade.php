@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/6297197d39.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    
 </head>
 
 <body class="announcement_events_inquiry">

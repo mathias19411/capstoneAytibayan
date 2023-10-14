@@ -52,7 +52,7 @@
                     <tbody>
                         @foreach($event->reverse() as $events)
                         <!-- Modal View-->
-                        <div class="modal fade" id="view_itstaff{{ $events->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="view_itstaff{{ $events->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">

@@ -275,8 +275,8 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="card_coordinator_img">
-                                                    <img src="\images\Logo_BinhiNgPagasa.png"
-                                                        alt="Binhi ng Pag-asa Logo">
+                                                    <img src="{{ !empty($coordinator->program->image) ? url('Uploads/Program_images/' . $coordinator->program->image) : url('Uploads/no-image.jpg') }}"
+                                                        alt="Program logo">
                                                 </div>
                                                 <div class="col" style="padding-top:5px">
                                                     @if ($coordinator->program)
@@ -296,10 +296,7 @@
                                         <div class="row">
                                             <div class="col" style="padding-top:10px">
                                                 <p>
-                                                    Di ko pa alam ano pa ilalagay dito.
-                                                    Lorem ipsum is a placeholder text commonly used to demonstrate the
-                                                    visual form of a document or a typeface without relying on
-                                                    meaningful content.
+                                                    {{ $coordinator->program->description }}
                                                 </p>
                                             </div>
                                         </div>
