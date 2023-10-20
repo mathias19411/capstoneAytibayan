@@ -99,8 +99,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'bermejomathiasjohnoliver1@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Hello Albay Provincial Agricultural Office'),
+        'address' => env('MAIL_FROM_ADDRESS', '1@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Albay Provincial Agricultural Office'),
     ],
 
     /*

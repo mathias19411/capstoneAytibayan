@@ -10,6 +10,8 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Requests\Auth\LoginRequest;
+
 
 Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
     Route::get('register', [RegisteredUserController::class, 'create'])

@@ -68,7 +68,7 @@ class UsersTableSeeder extends Seeder
                 'first_name' => 'Mathias John Oliver',
                 'middle_name' => 'Bagato',
                 'last_name' => 'Bermejo',
-                'email' => 'bermejomathiasjohnoliver1@gmail.com',
+                'email' => 'bermejomathiasjohnoliver@gmail.com',
                 'password' => Hash::make('mathias1999'),
                 'phone' => '09998887777',
                 'primary_address' => 'Purok 3 Tamaoyan',

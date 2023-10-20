@@ -1,29 +1,3 @@
-{{-- <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
-
 <!doctype html>
 <html lang="en">
 
@@ -44,30 +18,39 @@
 <body class="login">
     <div class="form-container">
 
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+        @if(session()->has('message'))
+            <p class="alert alert-info">
+                {{ session()->get('message') }}
+            </p>
+        @endif
 
-        <form class="row g-3 login-form" method="POST" action="{{ route('password.email') }}">
+        <form class="row g-3 login-form" method="POST" action="{{ route('verify.store') }}">
             @csrf
             <div class="col-md-4 side-image">
                 <img id="image" src="/images/APAO logo.png">
             </div>
             <div class="col-md-8 form">
                 <div class="input-form">
-                    <p> Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one. </p>
+                    <h3> Two Factor Verification </h3>
                     <div class="col-md-12 input">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" :value="old('email')"
-                            placeholder="example@gmail.com" required autofocus>
-                        @error('email')
+                        <p class="text-muted">
+                            You have received an email which contains two factor login code.
+                            If you haven't received it, press <a href="{{ route('verify.resend') }}">here</a>.
+                        </p>
+                        <label for="two_factor_code" class="form-label">Two Factor Code:</label>
+                        <input type="text" class="form-control{{ $errors->has('two_factor_code') ? ' is-invalid' : '' }}" id="two_factor_code" name="two_factor_code"
+                            placeholder="Two Factor Code" required autofocus placeholder="Two Factor Code">
+                        @error('two_factor_code')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     
-                    <button type="submit" class="button login-button-item" style="margin-top: 1.5rem;">Email Reset Link</button>
-
-                    {{-- <div class="col-12 login-button">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div> --}}
+                    <div class="login-buttons">
+                        <div class="login-button1">
+                            <a href="{{ route('itstaff.logout') }}" class="back-to-home-button">Back to Home</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="button login-button-item">Verify</button>
 
                 </div>
             </div>
@@ -92,7 +75,6 @@
             }
         }
     </script>
-
 
 </body>
 

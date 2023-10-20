@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectCoordinatorController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\Auth\TwoFactorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -41,7 +42,7 @@ require __DIR__.'/auth.php';
 
 
 //IT Staff Group Middleware
-Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
+Route::middleware(['auth', 'userroleprotection:itstaff', 'twofactor'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/ITStaff/home', [ItStaffController::class, 'ItStaffHome'])->name('itstaff.home');
 
@@ -100,7 +101,7 @@ Route::middleware(['auth', 'userroleprotection:itstaff'])->group(function(){
 }); //End group itstaff middleware
 
 //Project Coordinator Group Middleware
-Route::middleware(['auth', 'userroleprotection:projectcoordinator'])->group(function(){
+Route::middleware(['auth', 'userroleprotection:projectcoordinator', 'twofactor'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/ProjectCoordinator/home', [ProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('projectcoordinator.beneficiaries');
 
@@ -122,7 +123,7 @@ Route::middleware(['auth', 'userroleprotection:projectcoordinator'])->group(func
 }); //End group Project Coordinator middleware
 
 //Beneficiary Group Middleware
-Route::middleware(['auth', 'userroleprotection:beneficiary'])->group(function(){
+Route::middleware(['auth', 'userroleprotection:beneficiary', 'twofactor'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/beneficiary/dashboard', [BeneficiaryController::class, 'BeneficiaryDashboard'])->name('beneficiary.dashboard');
 
@@ -132,6 +133,14 @@ Route::middleware(['auth', 'userroleprotection:beneficiary'])->group(function(){
 
 //Visitor Routes
 Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
+
+//resend two factor code route
+Route::get('verify/resend', [TwoFactorController::class, 'resend'])->name('verify.resend');
+
+Route::get('verify/index', [TwoFactorController::class, 'index'])->name('verify.index');
+
+Route::post('verify/store', [TwoFactorController::class, 'store'])->name('verify.store');
+
 
 Route::get('/Visitor/contacts', function () {
     return view('Visitor.contacts');
