@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->string('to')->nullable();
-            $table->date('date')->default(now());
+            $table->date('date');
             $table->text('message')->nullable();
             $table->timestamps();
         });

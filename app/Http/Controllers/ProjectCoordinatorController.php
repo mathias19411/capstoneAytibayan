@@ -21,7 +21,7 @@ class ProjectCoordinatorController extends Controller
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        return view('Project_Coordinator.beneficiary', compact('userProfileData'));
+        return view('BINHI_Project_Coordinator.beneficiary', compact('userProfileData'));
     } // End Method
 
     public function ProjectCoordinatorLogout(Request $request)
@@ -42,27 +42,171 @@ class ProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorAnnouncement()
     {
-        $announcement = announcement::all();
+        $binhi = "BINHI";
+        $public = "PUBLIC";
+        $announcement = announcement::where(function ($query) use ($binhi, $public) {
+            $query->where('to', $binhi)->orWhere('to', $public);})->get();
 
-        return view('Project_Coordinator.announcement', ['announcement'=>$announcement]);
+        return view('BINHI_Project_Coordinator.announcement', ['announcement'=>$announcement]);
+    } // End Method
+
+    public function ProjectCoordinatorAnnouncementEdit($id)
+    {
+        $announcement = announcement::findOrFail($id);
+
+        return view('BINHI_Project_Coordinator.announcement', compact('announcement'));
+    } // End Method
+
+    public function ProjCoordinatorAnnouncementStore(Request $request)
+    {
+        // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'date' => 'required|date',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            announcement::insert([
+                'title' => $validatedData['title'],
+                'date' => $validatedData['date'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+            ]);
+
+            return redirect()->back()->with('success', 'New Announcement Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+    } // End Method
+
+    public function ProjCoordinatorAnnouncementUpdate(Request $request)
+    {
+        $aid = $request->announcement_id;
+        
+        announcement::findOrFail($aid)->update([
+            'title'=>$request->title,
+            'to'=>$request->to,
+            'message'=>$request->message,
+        ]);
+
+        return redirect()->back()->with('success', 'Announcement is Updated!');
+    } // End Method
+
+    public function ProjCoordinatorAnnouncementDelete(Request $request)
+    {
+        $id = $request->delete_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = announcement::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Announcement is Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
     } // End Method
 
     public function ProjCoordinatorEvent()
     {
-        $event = events::all();
+        $binhi = "BINHI";
+        $public = "PUBLIC";
+        $event = events::where(function ($query) use ($binhi, $public) {
+            $query->where('to', $binhi)->orWhere('to', $public);})->get();
 
-        return view('Project_Coordinator.event', ['event'=>$event]);
+        return view('BINHI_Project_Coordinator.event', ['event'=>$event]);
     } // End Method
+
+    public function ProjectCoordinatorEventEdit($id)
+    {
+        $event = events::findOrFail($id);
+
+        return view('BINHI_Project_Coordinator.event', compact('event'));
+    } // End Method
+
+    public function ProjCoordinatorEventStore(Request $request)
+    {
+        // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'date' => 'required|date',
+            'to' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'message' => 'required|string',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            events::insert([
+                'title' => $validatedData['title'],
+                'date' => $validatedData['date'],
+                'image' => $validatedData['image'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+            ]);
+
+            return redirect()->back()->with('success', 'New Event Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+    } // End Method
+
+    public function ProjCoordinatorEventUpdate(Request $request)
+    {
+        $aid = $request->event_id;
+        
+        events::findOrFail($aid)->update([
+            'title'=>$request->title,
+            'to'=>$request->to,
+            'image'=>$request->image,
+            'message'=>$request->message,
+        ]);
+
+        return redirect()->back()->with('success', 'Event is Updated!');
+    } // End Method
+
+    public function ProjCoordinatorEventDelete(Request $request)
+    {
+        $id = $request->event_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = events::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Event is Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
+    } // End Method
+
     public function ProjCoordinatorInquiry()
     {
         $inquiry = inquiries::all();
 
-        return view('Project_Coordinator.inquiry', ['progress'=>$inquiry]);
+        return view('BINHI_Project_Coordinator.inquiry', ['progress'=>$inquiry]);
     } // End Method
     public function ProjCoordinatorProgress()
     {
         $progress = progress::all();
 
-        return view('Project_Coordinator.progress', ['progress'=>$progress]);
+        return view('BINHI_Project_Coordinator.progress', ['progress'=>$progress]);
     } // End Method
 }

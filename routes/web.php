@@ -6,6 +6,10 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ItStaffController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectCoordinatorController;
+use App\Http\Controllers\ABAKAProjectCoordinatorController;
+use App\Http\Controllers\AGRIPINAYProjectCoordinatorController;
+use App\Http\Controllers\AKBAYProjectCoordinatorController;
+use App\Http\Controllers\LEADProjectCoordinatorController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\Auth\TwoFactorController;
@@ -71,6 +75,7 @@ Route::middleware(['auth', 'userroleprotection:itstaff', 'twofactor'])->group(fu
 
     Route::delete('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncementDelete'])->name('delete.announcement');
     
+    
     Route::get('/ITStaff/event', [ItStaffController::class, 'ITStaffEvent'])->name('itstaff.event');
 
     Route::post('/ITStaff/event', [ItStaffController::class, 'ITStaffEventStore'])->name('store.event');
@@ -100,23 +105,151 @@ Route::middleware(['auth', 'userroleprotection:itstaff', 'twofactor'])->group(fu
     
 }); //End group itstaff middleware
 
-//Project Coordinator Group Middleware
-Route::middleware(['auth', 'userroleprotection:projectcoordinator', 'twofactor'])->group(function(){
+//Project Coordinator BINHI Group Middleware
+Route::middleware(['auth', 'userroleprotection:projectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/ProjectCoordinator/home', [ProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('projectcoordinator.beneficiaries');
 
     //ITStaff Logout
     Route::get('/ProjectCoordinator/logout', [ProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('projectCoordinator.logout');
 
-    Route::get('/Project_Coordinator/inquiry', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('Project_Coordinator.inquiry');
+    Route::get('ProjectCoordinator/inquiry', [ProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('Project_Coordinator.inquiry');
 
     Route::get('/ProjectCoordinator/Announcements', [ProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('projectcoordinator.announcement');
+    Route::post('/ProjectCoordinator/Announcements', [ProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinator');
+    Route::get('/ProjectCoordinator/Announcements/{id}', [ProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinator');
+    Route::patch('/ProjectCoordinator/Announcements', [ProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinator');
+    Route::delete('/ProjectCoordinator/Announcements', [ProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinator');
 
     Route::get('/ProjectCoordinator/Events', [ProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('projectcoordinator.event');
+    Route::post('/ProjectCoordinator/Events', [ProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinator');
+    Route::get('/ProjectCoordinator/Events/{id}', [ProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinator');
+    Route::patch('/ProjectCoordinator/Events', [ProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinator');
+    Route::delete('/ProjectCoordinator/Events', [ProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinator');
 
     Route::get('/ProjectCoordinator/Inquriy', [ProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('projectcoordinator.inquiry');
 
-    Route::get('/ProjectCoordinator/Progress', [ProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('projectcoordinator.progress');
+    Route::get('ProjectCoordinator/Progress', [ProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('projectcoordinator.progress');
+
+    // more routes here for Project Coordinator
+
+}); //End group Project Coordinator middleware
+
+//Project Coordinator AGRIPINAY Group Middleware
+Route::middleware(['auth', 'userroleprotection:agripinayprojectcoordinator'])->group(function(){
+    // middleware named userroleprotection will protect routes to be only accessible by the right user role
+    Route::get('/AGRIPINAY_ProjectCoordinator/home', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('agripinayprojectcoordinator.beneficiaries');
+
+    //ITStaff Logout
+    Route::get('/AGRIPINAY_ProjectCoordinator/logout', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('agripinayprojectCoordinator.logout');
+
+    Route::get('/AGRIPINAY_ProjectCoordinator/inquiry', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('AGRIPINAY_Project_Coordinator.inquiry');
+
+    Route::get('/AGRIPINAY_ProjectCoordinator/Announcements', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('agripinayprojectcoordinator.announcement');
+    Route::post('/AGRIPINAY_ProjectCoordinator/Announcements', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatoragripinay');
+    Route::get('/AGRIPINAY_ProjectCoordinator/Announcements/{id}', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatoragripinay');
+    Route::patch('/AGRIPINAY_ProjectCoordinator/Announcements', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatoragripinay');
+    Route::delete('/AGRIPINAY_ProjectCoordinator/Announcements', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatoragripinay');
+
+    Route::get('/AGRIPINAY_ProjectCoordinator/Events', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('agripinayprojectcoordinator.event');
+    Route::post('/AGRIPINAY_ProjectCoordinator/Events', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatoragripinay');
+    Route::get('/AGRIPINAY_ProjectCoordinator/Events/{id}', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatoragripinay');
+    Route::patch('/AGRIPINAY_ProjectCoordinator/Events', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatoragripinay');
+    Route::delete('/AGRIPINAY_ProjectCoordinator/Events', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatoragripinay');
+
+    Route::get('/AGRIPINAY_ProjectCoordinator/Inquriy', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('agripinayprojectcoordinator.inquiry');
+
+    Route::get('/AGRIPINAY_ProjectCoordinator/Progress', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('agripinayprojectcoordinator.progress');
+
+    // more routes here for Project Coordinator
+
+}); //End group Project Coordinator middleware
+
+//Project Coordinator AKBAY Group Middleware
+Route::middleware(['auth', 'userroleprotection:akbayprojectcoordinator'])->group(function(){
+    // middleware named userroleprotection will protect routes to be only accessible by the right user role
+    Route::get('/AKBAY_ProjectCoordinator/home', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('akbayprojectcoordinator.beneficiaries');
+
+    //ITStaff Logout
+    Route::get('/AKBAY_ProjectCoordinator/logout', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('akbayprojectCoordinator.logout');
+
+    Route::get('/AKBAY_ProjectCoordinator/inquiry', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('AKBAY_Project_Coordinator.inquiry');
+
+    Route::get('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('akbayprojectcoordinator.announcement');
+    Route::post('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorakbay');
+    Route::get('/AKBAY_ProjectCoordinator/Announcements/{id}', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorakbay');
+    Route::patch('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorakbay');
+    Route::delete('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorakbay');
+
+    Route::get('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('akbayprojectcoordinator.event');
+    Route::post('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorakbay');
+    Route::get('/AKBAY_ProjectCoordinator/Events/{id}', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorakbay');
+    Route::patch('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorakbay');
+    Route::delete('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorakbay');
+
+    Route::get('/AKBAY_ProjectCoordinator/Inquriy', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('akbayprojectcoordinator.inquiry');
+
+    Route::get('/AKBAY_ProjectCoordinator/Progress', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('akbayprojectcoordinator.progress');
+
+    // more routes here for Project Coordinator
+
+}); //End group Project Coordinator middleware
+
+//Project Coordinator LEAD Group Middleware
+Route::middleware(['auth', 'userroleprotection:leadprojectcoordinator'])->group(function(){
+    // middleware named userroleprotection will protect routes to be only accessible by the right user role
+    Route::get('/LEAD_ProjectCoordinator/home', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('leadprojectcoordinator.beneficiaries');
+
+    //ITStaff Logout
+    Route::get('/LEAD_ProjectCoordinator/logout', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('leadprojectCoordinator.logout');
+
+    Route::get('/LEAD_ProjectCoordinator/inquiry', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('LEAD_Project_Coordinator.inquiry');
+
+    Route::get('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('leadprojectcoordinator.announcement');
+    Route::post('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorlead');
+    Route::get('/LEAD_ProjectCoordinator/Announcements/{id}', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorlead');
+    Route::patch('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorlead');
+    Route::delete('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorlead');
+
+    Route::get('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('leadprojectcoordinator.event');
+    Route::post('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorlead');
+    Route::get('/LEAD_ProjectCoordinator/Events/{id}', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorlead');
+    Route::patch('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorlead');
+    Route::delete('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorlead');
+
+    Route::get('/LEAD_ProjectCoordinator/Inquriy', [LEADProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('leadprojectcoordinator.inquiry');
+
+    Route::get('/LEAD_ProjectCoordinator/Progress', [LEADProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('leadprojectcoordinator.progress');
+
+    // more routes here for Project Coordinator
+
+}); //End group Project Coordinator middleware
+
+//Project Coordinator ABAKA Group Middleware
+Route::middleware(['auth', 'userroleprotection:abakaprojectcoordinator'])->group(function(){
+    // middleware named userroleprotection will protect routes to be only accessible by the right user role
+    Route::get('/ABAKA_ProjectCoordinator/home', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('abakaprojectcoordinator.beneficiaries');
+
+    //ITStaff Logout
+    Route::get('/ABAKA_ProjectCoordinator/logout', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('abakaprojectCoordinator.logout');
+
+    Route::get('/ABAKA_ProjectCoordinator/inquiry', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('ABAKA_Project_Coordinator.inquiry');
+
+    Route::get('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('abakaprojectcoordinator.announcement');
+    Route::post('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorabaka');
+    Route::get('/ABAKA_ProjectCoordinator/Announcements/{id}', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorabaka');
+    Route::patch('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorabaka');
+    Route::delete('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorabaka');
+
+    Route::get('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('abakaprojectcoordinator.event');
+    Route::post('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorabaka');
+    Route::get('/ABAKA_ProjectCoordinator/Events/{id}', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorabaka');
+    Route::patch('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorabaka');
+    Route::delete('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorabaka');
+
+    Route::get('/ABAKA_ProjectCoordinator/Inquriy', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('abakaprojectcoordinator.inquiry');
+
+    Route::get('/ABAKA_ProjectCoordinator/Progress', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('abakaprojectcoordinator.progress');
 
     // more routes here for Project Coordinator
 
@@ -163,7 +296,6 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
     return view('Visitor.category_page', compact('category'));
 })->name('Visitor.category.page');
 
-Route::get('/Visitor', [EventController::class, 'index']);
 
 //registerView
 // route::post('/ITStaff/registerView', [RegisterViewController::class, 'store'])->name('store-registerView');

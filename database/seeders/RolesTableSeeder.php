@@ -23,6 +23,18 @@ class RolesTableSeeder extends Seeder
             [
                 'role_name' => 'projectcoordinator'
             ],
+            [
+                'role_name' => 'abakaprojectcoordinator'
+            ],
+            [
+                'role_name' => 'agripinayprojectcoordinator'
+            ],
+            [
+                'role_name' => 'akbayprojectcoordinator'
+            ],
+            [
+                'role_name' => 'leadprojectcoordinator'
+            ],
             //Beneficiary
             [
                 'role_name' => 'beneficiary',

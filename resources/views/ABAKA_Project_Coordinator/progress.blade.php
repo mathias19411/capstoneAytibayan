@@ -19,7 +19,7 @@
    
 </head>
 <body>
-@include('Project_coordinator.Body.sidebarproj')
+@include('ABAKA_Project_coordinator.Body.sidebarproj')
 
     <div class="title">
         <h1>Progress</h1>
