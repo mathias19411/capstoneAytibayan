@@ -42,6 +42,22 @@ class RedirectIfAuthenticated
                 {
                     $url = '/ProjectCoordinator/home';
                 }
+                else if ($roleName === 'abakaprojectcoordinator')
+                {
+                    $url = '/ABAKA_ProjectCoordinator/home';
+                }
+                else if ($roleName === 'agripinayprojectcoordinator')
+                {
+                    $url = '/AGRIPINAY_ProjectCoordinator/home';
+                }
+                else if ($roleName === 'akbayprojectcoordinator')
+                {
+                    $url = '/AKBAY_ProjectCoordinator/home';
+                }
+                else if ($roleName === 'leadprojectcoordinator')
+                {
+                    $url = '/LEAD_ProjectCoordinator/home';
+                }
                 else if ($roleName === 'beneficiary')
                 {
                     $url = '/Beneficiary/home';

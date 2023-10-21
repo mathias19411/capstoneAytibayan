@@ -47,7 +47,17 @@ class User extends Authenticatable
         'remember_token',
         'created_at',
         'updated_at',
+        'two_factor_code',
+        'two_factor_expires_at',
     ];
+
+    protected $dates = [
+        'updated_at',
+        'created_at',
+        'email_verified_at',
+        'two_factor_expires_at',
+    ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -69,39 +79,39 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($user) {
-            $user->generateWorkEmail();
-        });
+    //     static::creating(function ($user) {
+    //         $user->generateWorkEmail();
+    //     });
 
-        static::updating(function ($user) {
-            $user->generateWorkEmail();
-        });
+    //     static::updating(function ($user) {
+    //         $user->generateWorkEmail();
+    //     });
 
-        static::creating(function ($user) {
-            $user->generateDefaultPassword();
-        });
+    //     static::creating(function ($user) {
+    //         $user->generateDefaultPassword();
+    //     });
 
-        static::updating(function ($user) {
-            $user->generateDefaultPassword();
-        });
-    }
+    //     static::updating(function ($user) {
+    //         $user->generateDefaultPassword();
+    //     });
+    // }
 
-    public function generateWorkEmail()
-    {
-        // $workEmail = strtolower($this->first_name  . $this->middle_name . '.' . $this->last_name . '@apaoalbay.gov.ph');
-        $workEmail = strtolower(str_replace(' ', '', $this->first_name . $this->middle_name . '.' . $this->last_name) . '@apaoalbay.gov.ph');
-        $this->attributes['email'] = $workEmail;
-    }
+    // public function generateWorkEmail()
+    // {
+    //     // $workEmail = strtolower($this->first_name  . $this->middle_name . '.' . $this->last_name . '@apaoalbay.gov.ph');
+    //     $workEmail = strtolower(str_replace(' ', '', $this->first_name . $this->middle_name . '.' . $this->last_name) . '@apaoalbay.gov.ph');
+    //     $this->attributes['email'] = $workEmail;
+    // }
 
-    public function generateDefaultPassword()
-    {
-        $defaultPassword = Hash::make('ApaoAlbay2023');
-        $this->attributes['password'] = $defaultPassword;
-    }
+    // public function generateDefaultPassword()
+    // {
+    //     $defaultPassword = Hash::make('ApaoAlbay2023');
+    //     $this->attributes['password'] = $defaultPassword;
+    // }
 
     public function role()
     {
@@ -118,4 +128,24 @@ class User extends Authenticatable
         return $this->belongsTo(Status::class, 'status_id');
     }
 
+    public function generateTwoFactorCode()
+    {
+        $this->timestamps = false; //Dont update the 'updated_at' field yet
+        
+        $this->two_factor_code = rand(100000, 999999);
+        $this->two_factor_expires_at = now()->addMinutes(10);
+        $this->save();
+    }
+
+    /**
+     * Reset the MFA code generated earlier
+     */
+    public function resetTwoFactorCode()
+    {
+        $this->timestamps = false; //Dont update the 'updated_at' field yet
+        
+        $this->two_factor_code = null;
+        $this->two_factor_expires_at = null;
+        $this->save();
+    }
 }

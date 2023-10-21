@@ -20,17 +20,29 @@
 
 <body>
     <div class="program-form">
-        <form method="POST" id="myForm" action="{{ route('itstaff.updateProgram') }}">
+        <form method="POST" id="myForm" action="{{ route('itstaff.updateProgram') }}" enctype="multipart/form-data">
             @csrf
             <h1>Program Information</h1>
 
+            <input type="hidden" name="id" value="{{ $program->id }}">
+
             <div class="form-row">
-                <div class="input-group">
-                    <label for="name">Project Coordinator:</label>
-                    <input type="text" id="name" placeholder="Project Coordinator"
-                        value="{{ $program->coordinators->first()->first_name }} {{ $program->coordinators->first()->middle_name }} {{ $program->coordinators->first()->last_name }}"
-                        readonly>
-                </div>
+                @if ($program->coordinators)
+                    <div class="input-group">
+                        <label for="name">Project Coordinator:</label>
+                        <input type="text" id="name" placeholder="Project Coordinator"
+                        value="{{ $program->coordinators->first() ? $program->coordinators->first()->first_name . ' ' . $program->coordinators->first()->middle_name . ' ' . $program->coordinators->first()->last_name : 'No Project Coordinator Assigned' }}"
+                            readonly>
+                    </div>
+                @else
+                    <div class="input-group">
+                        <label for="name">Project Coordinator:</label>
+                        <input type="text" id="name" placeholder="Project Coordinator"
+                            value="No Project Coordinator Assigned"
+                            readonly>
+                    </div>
+                @endif
+                
                 <div class="input-group">
                     <label for="programnameInput">Name of the Program:</label>
                     <input type="text" id="programnameInput" value="{{ $program->program_name }}"
@@ -105,9 +117,9 @@
                     @enderror
                 </div>
                 <div class="input-group">
-                    <label for="input-ProfileImage">Program Image:</label>
+                    <label for="programPhoto">Program Image:</label>
                     <input type="file" class="custom-file-input form-control form-control-alternative"
-                        id="input-ProfileImage" name="programPhoto">
+                        id="programPhoto" name="programPhoto">
                 </div>
                 <div class="image-container">
                     <img id="image-preview"

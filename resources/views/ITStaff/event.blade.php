@@ -42,6 +42,7 @@
                     <thead>
                     <tr>
                             <th>Title</th>
+                            <th>To</th>
                             <th>Description</th>
                             <th>Image</th>
                             <th>Date</th>
@@ -52,7 +53,7 @@
                     <tbody>
                         @foreach($event->reverse() as $events)
                         <!-- Modal View-->
-                        <div class="modal fade" id="view_itstaff{{ $events->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="view_itstaff{{ $events->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -65,6 +66,12 @@
                                     <div class="col-md-12">
                                         <h5>Title:</h5>
                                         <p id="modal-title">{{ $events->title }}</p>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-12">
+                                                <h5>To:</h5>
+                                                <p id="modal-recipient">{{ $events->to }}</p>
+                                            </div>
                                     </div>
                                         </div>
                                         <div class="row">
@@ -105,6 +112,18 @@
                                                     <label id="label_">Title</label>
                                                     <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title" value="{{ $events->title }}">                            </div>
                                                 </div>
+
+                                                <div class="col-md-6 mb-4">
+                                                        <div class="form-group">
+                                                            <label for="edit-recipient">To:</label>
+                                                            <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
+                                                            <option>PUBLIC</option>
+                                                            <option>BINHI</option>
+                                                            <option>AKBAY</option>
+                                                            <option>LEAD</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
 
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
@@ -159,6 +178,12 @@
                                         <h5>Title:</h5>
                                         <p id="modal-title">{{ $events->title }}</p>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5>To:</h5>
+                                                <p id="modal-recipient">{{ $events->to }}</p>
+                                            </div>
+                                            </div>
                                             </div>
                                             <div class="row">
                                             <div class="col-md-12">
@@ -189,13 +214,14 @@
 
                         <tr>
                             <td>{{ $events->title }}</td>
+                            <td>{{ $events->to }}</td>
                             <td>{{ $events->message }}</td>
                             <td>{{ $events->image }}</td>
                             <td>{{ $events->date }}</td>
                             <td>
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">
                             <i class="fa-solid fa-eye fa-2xs"></i>
-                            9ff</button>
+                            </button>
                             <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_edit{{ $events->id }}"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                             <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" data-bs-toggle="modal" data-bs-target="#modal_delete{{ $events->id }}">
                                 <i class="fa-solid fa-trash fa-2xs"></i></button>
@@ -276,6 +302,18 @@
                             <label id="label_">Title</label>
                             <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">                            </div>
                         </div>
+                        <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                    <label id="label_">To:</label>
+                                        <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
+                                        <option>PUBLIC</option>
+                                        <option>ABAKA</option>
+                                        <option>AKBAY</option>
+                                        <option>BINHI</option>
+                                        <option>LEAD</option>
+                                        </select>
+                                    </div>
+                                </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                             <label id="label_">Date</label>
