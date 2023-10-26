@@ -1,7 +1,7 @@
-@extends('Project_Coordinator.projectcoordinator_main')
+@extends('BINHI_Project_Coordinator.projectcoordinator_main')
 
 @section('content')
-@include('Project_Coordinator.Body.sidebarproj')
+@include('BINHI_Project_Coordinator.Body.sidebarproj')
     
 
   

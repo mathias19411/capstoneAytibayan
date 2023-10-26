@@ -277,6 +277,7 @@ class ItStaffController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
+            'date' => 'required|date',
             'to' => 'required|string',
             'message' => 'required|string',
         ]);
@@ -287,6 +288,7 @@ class ItStaffController extends Controller
             // Insert data into the database
             announcement::insert([
                 'title' => $validatedData['title'],
+                'date' => $validatedData['date'],
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
@@ -350,6 +352,7 @@ class ItStaffController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
+            'to' => 'required|string',
             'message' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Example: Allow JPEG, PNG, and GIF images, max 2MB
             'date' => 'required|date',
@@ -361,6 +364,7 @@ class ItStaffController extends Controller
             // Insert data into the database
             events::insert([
                 'title' => $validatedData['title'],
+                'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
                 'image' => $validatedData['image'],
                 'date' => $validatedData['date'],

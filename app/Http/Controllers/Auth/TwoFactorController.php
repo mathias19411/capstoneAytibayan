@@ -64,6 +64,22 @@ class TwoFactorController extends Controller
             {
                 $url = '/ProjectCoordinator/home';
             }
+            else if ($user->role->role_name === 'abakaprojectcoordinator')
+            {
+                $url = '/ABAKA_ProjectCoordinator/home';
+            }
+            else if ($user->role->role_name === 'agripinayprojectcoordinator')
+            {
+                $url = '/AGRIPINAY_ProjectCoordinator/home';
+            }
+            else if ($user->role->role_name === 'akbayprojectcoordinator')
+            {
+                $url = '/AKBAY_ProjectCoordinator/home';
+            }
+            else if ($user->role->role_name === 'leadprojectcoordinator')
+            {
+                $url = '/LEAD_ProjectCoordinator/home';
+            }
             else if ($user->role->role_name === 'beneficiary')
             {
                 $url = '/Beneficiary/home';

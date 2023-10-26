@@ -40,7 +40,15 @@
                     @if ($roleName === 'itstaff')
                         <li><a href="{{ url('/ITStaff/home') }}">Back to Dashboard</a></li>
                     @elseif($roleName === 'projectcoordinator')
-                        <li><a href="{{ url('/ProjectCoordinator/home') }}">Back to Dashboard</a></li>
+                        <li><a href="{{ url('/BINHI_ProjectCoordinator/home') }}">Back to Dashboard</a></li>
+                    @elseif($roleName === 'abakaprojectcoordinator')
+                        <li><a href="{{ url('/ABAKA_ProjectCoordinator/home') }}">Back to Dashboard</a></li>
+                    @elseif($roleName === 'agripinayprojectcoordinator')
+                        <li><a href="{{ url('/AGRIPINAY_ProjectCoordinator/home') }}">Back to Dashboard</a></li>
+                    @elseif($roleName === 'akbayprojectcoordinator')
+                        <li><a href="{{ url('/AKBAY_ProjectCoordinator/home') }}">Back to Dashboard</a></li>
+                    @elseif($roleName === 'leadprojectcoordinator')
+                        <li><a href="{{ url('/LEAD_ProjectCoordinator/home') }}">Back to Dashboard</a></li>
                     @elseif($roleName === 'beneficiary')
                         <li><a href="{{ url('/Beneficiary/home') }}">Back to Dashboard</a></li>
                     @endif

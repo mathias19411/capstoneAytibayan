@@ -111,11 +111,11 @@
                                                         <div class="form-group">
                                                             <label for="edit-recipient">To:</label>
                                                             <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                            <option> Public </option>
-                                                            <option> Beneficiaries</option>
-                                                            <option> Akbay Coordinator </option>
-                                                            <option> LEAD Coordinator</option>
-                                                            <option> LEAD Coordinator</option>
+                                                            <option>PUBLIC</option>
+                                                            <option>ABAKA</option>
+                                                            <option>AKBAY</option>
+                                                            <option>BINHI</option>
+                                                            <option>LEAD</option>
                                                             </select>
                                                         </div>
                                                         </div>
@@ -268,6 +268,7 @@
                             <form action="{{ route('store.announcement') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
+                            <input type="date" name="date" id="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" hidden>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                     <label id="label_">Title</label>
@@ -278,11 +279,11 @@
                                     <div class="form-outline">
                                     <label id="label_">To:</label>
                                         <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                        <option> Public </option>
-                                        <option> Beneficiaries</option>
-                                        <option> Akbay Coordinator </option>
-                                        <option> LEAD Coordinator</option>
-                                        <option> LEAD Coordinator</option>
+                                        <option>PUBLIC</option>
+                                        <option>ABAKA</option>
+                                        <option>AKBAY</option>
+                                        <option>BINHI</option>
+                                        <option>LEAD</option>
                                         </select>
                                     </div>
                                 </div>

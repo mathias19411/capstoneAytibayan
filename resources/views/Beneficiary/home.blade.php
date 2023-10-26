@@ -11,22 +11,31 @@
 
         <!-- Card 1 -->
       <div class="row">
-        <div class="col-md-4">
-          <!--
-          <div class="card-chart">
-            <h2 class="card-title">CHART</h2>
-            <div class="card-content">
-                <p>There are important updates for Card 2 and Card 3 below.</p>
+      <div class="col-md-4">
+    <div class="card-progress">
+        <h2 class="card-title">PROGRESS</h2>
+        <div class="card-content">
+        <div class="boxes">
+    <div class="box box-1">
+        <h1>Progress Chart</h1>
+        <div class="progress-chart" id="chart-fill"></div>
+    </div>
+    <div class="box box-2">
+        <h1>Progress %</h1>
+        <div class="progress-bar" id="progress-bar">
+            <div id="progress-num">
+                <div class="progress-number" data-percent="20">1</div>
+                <div class="progress-number" data-percent="40">2</div>
+                <div class="progress-number" data-percent="60">3</div>
+                <div class="progress-number" data-percent="80">4</div>
+                <div class="progress-number" data-percent="100">5</div>
             </div>
-          </div>
-          -->
-          <div class="card-progress">
-            <h2 class="card-title">PROGRESS</h2>
-            <div class="card-content">
-                <p>This is some sample text for Card 1. You can add more content here.</p>
-            </div>
-          </div>
         </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
 
     <!-- Special Announcement -->
         <div class="col-md-8">
@@ -63,7 +72,7 @@
               </div>
           </div>
 
-    <!-- Cards 2 and 3 in a row -->
+
         <div class="row">
             <div class="col-md-6">
                 <div class="card-announcement">
