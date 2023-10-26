@@ -75,10 +75,11 @@
 
 
     <!-- Apex Charts Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.0/apexcharts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <!-- custom JS -->
     <script src="{{ asset('Assets/js/visitor.js') }}"></script>
+    
 
     {{-- toastr js --}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

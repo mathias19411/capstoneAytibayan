@@ -52,6 +52,8 @@ class ItStaffController extends Controller
             $query->whereIn('status_name', ['Inactive']);
         })->count();
 
+        $totalActiveandInactiveBeneficiaries = [$activeBeneficiaries, $inactiveBeneficiaries];
+
         $coordinators = User::whereHas('role', function ($query) {
             $query->where('role_name', 'projectcoordinator');
         })
@@ -68,8 +70,33 @@ class ItStaffController extends Controller
             });
         }])->get();
 
+        $programCharts = Program::with(['user' => function ($query) {
+            $query->whereHas('role', function ($query) {
+                $query->where('role_name', 'beneficiary');
+            });
+        }])->get();
 
-        return view('ITStaff.home', compact('userProfileData', 'totalUsers', 'totalcoordinators', 'totalbeneficiaries', 'activeBeneficiaries', 'inactiveBeneficiaries', 'coordinators', 'programs'));
+        $programNames = $programCharts->pluck('program_name')->toArray();
+        $beneficiaryCounts = $programCharts->map(function ($program) {
+            return (int)count($program->user);
+        })->toArray();
+
+        $dataLineChart = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->selectRaw('DATE_FORMAT(created_at, "%M") as month, COUNT(*) as count')
+        ->groupBy('month')
+        ->get();
+
+        $months = [];
+        $monthCount = [];
+
+        foreach ($dataLineChart as $entry) {
+            $months[] = $entry->month;
+            $monthCount[] = $entry->count;
+        }
+        
+
+        return view('ITStaff.home', compact('userProfileData', 'totalUsers', 'totalcoordinators', 'totalbeneficiaries', 'totalActiveandInactiveBeneficiaries', 'coordinators', 'programs', 'programNames', 'beneficiaryCounts', 'dataLineChart', 'months', 'monthCount'));
     } // End Method
 
     public function ItStaffLogout(Request $request)

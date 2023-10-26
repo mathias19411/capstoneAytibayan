@@ -34,19 +34,19 @@
     <div id="about-section">
         <div id="logo">
             <img src="\images\logo.png" alt="Logo">
-            <img src="\images\Logo_BinhiNgPagasa.png" alt="Logo">
+            <img src="{{ !empty($program->image) ? url('Uploads/Program_images/' . $program->image) : url('Uploads/no-image.jpg') }}" alt="Logo">
         </div>
         <h2 id="about-heading"></h2>
-        <div id="program-name"> Binhi ng Pag-Asa</div>
-        <div id="program-location">Cabangan, Camalig, Albay</div>
-        <div id="program-email">albayagri@gmail.com</div>
+        <div id="program-name"> {{ $program->program_name }} </div>
+        <div id="program-location"> {{ $program->location }} </div>
+        <div id="program-email"> {{ $program->email }} </div>
         <img id="about-image" src="\images\binhi.jpg" alt="Category Image">
 
         
 
         <div id="about-program" class="about-content">
             <h3>About</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+            <p>{{ $program->description }}</p>
              
         </div>
     </div>
@@ -59,32 +59,39 @@
         <div id="left-container">
             <div class="box">
                 <h1>Number of Beneficiaries</h1>
-                <p>360</pathinfo>
+                <p>{{$program->user()->whereHas('role', function($query) {
+                    $query->where('role_name', 'beneficiary');
+                })->count()}}</p>
             </div>
             <div class="box">
-                 <img src="\images\graph.png" alt="graph">
+                <div class="line-chart">
+                    <div class="chart-title">
+                        <h4></h4>
+                    </div>
+                    <div id="line-chart"></div>
+                </div>
             </div>
             <div class="box1">
                 <h1>How To Apply</h1>
                 <h2>1</h2>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                <h2>2</h2>
+                <p>{{ $program->quiry }}</p>
+                {{-- <h2>2</h2>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                 <h2>3</h2>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                 <h2>4</h2>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> --}}
             </div>
             <div class="box1">
             <h1>Guidelines & Requirements</h1>
                 <h2>1</h2>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                <h2>2</h2>
+                <p>{{ $program->requirements }}</p>
+                {{-- <h2>2</h2>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                 <h2>3</h2>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                 <h2>4</h2>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> --}}
             </div>
         </div>
         <div id="right-container">
@@ -135,8 +142,8 @@
 							</div>
 							<div class="col-6">
 								<label id="label_">To:</label>
-								<select class="form-control" type="text" name="to" id="textbox">
-								</select>
+								<input class="form-control" type="text" name="to" id="textbox" value="{{ $program->coordinators->first() ? $program->coordinators->first()->email : 'No Project Coordinator Assigned' }}"
+                                readonly>
 							</div>
 						</div>
 					</div>
@@ -153,7 +160,63 @@
 			</div>
         </div>
 
-  </div>
+    </div>
+    {{-- apex charts cdn --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+        var beneficiaries = @json($beneficiaries);
+        var cities = beneficiaries.map(function(beneficiary) {
+            return beneficiary.city;
+        });
+        var beneficiaryCount = beneficiaries.map(function(beneficiary) {
+            return beneficiary.count;
+        });
+
+        // Your JavaScript code for the chart, using the data above
+        var options = {
+            series: [{
+                name: "Beneficiaries",
+                data: beneficiaryCount
+            }],
+            chart: {
+                height: 250,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                },
+                toolbar: {
+                    show: true
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight',
+                colors: '#f0a60f',
+            },
+            markers: {
+                size: 5,
+            },
+            title: {
+                text: 'Beneficiaries Per Barangay',
+                align: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'],
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: cities,
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#line-chart"), options);
+        chart.render();
+    </script>
 
     <script>
         function showInfo(category) {
