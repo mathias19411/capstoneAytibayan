@@ -1899,10 +1899,14 @@ body.announcement_events_inquiry .message-row {
 
     body.announcement_events_inquiry .table-header-left {
         margin-bottom: 10px;
+        flex-direction: column;
+        font-size: 10px;
+      
     }
 
     body.announcement_events_inquiry .table-header-left label {
         margin-right: 0;
+        padding: 10px;
     }
 
     body.announcement_events_inquiry .table-header-left select {
