@@ -46,7 +46,7 @@ require __DIR__.'/auth.php';
 
 
 //IT Staff Group Middleware
-Route::middleware(['auth', 'userroleprotection:itstaff', 'twofactor'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/ITStaff/home', [ItStaffController::class, 'ItStaffHome'])->name('itstaff.home');
 
@@ -256,7 +256,7 @@ Route::middleware(['auth', 'userroleprotection:abakaprojectcoordinator'])->group
 }); //End group Project Coordinator middleware
 
 //Beneficiary Group Middleware
-Route::middleware(['auth', 'userroleprotection:beneficiary', 'twofactor'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/beneficiary/dashboard', [BeneficiaryController::class, 'BeneficiaryDashboard'])->name('beneficiary.dashboard');
 
@@ -265,37 +265,37 @@ Route::middleware(['auth', 'userroleprotection:beneficiary', 'twofactor'])->grou
 }); //End group beneficiary middleware
 
 //Visitor Routes
-Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
+    Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
 
-//resend two factor code route
-Route::get('verify/resend', [TwoFactorController::class, 'resend'])->name('verify.resend');
+    //resend two factor code route
+    Route::get('verify/resend', [TwoFactorController::class, 'resend'])->name('verify.resend');
 
-Route::get('verify/index', [TwoFactorController::class, 'index'])->name('verify.index');
+    Route::get('verify/index', [TwoFactorController::class, 'index'])->name('verify.index');
 
-Route::post('verify/store', [TwoFactorController::class, 'store'])->name('verify.store');
+    Route::post('verify/store', [TwoFactorController::class, 'store'])->name('verify.store');
 
 
-Route::get('/Visitor/contacts', function () {
-    return view('Visitor.contacts');
-});
+    Route::get('/Visitor/contacts', function () {
+        return view('Visitor.contacts');
+    });
 
-Route::get('/Visitor/programs', function () {
-    return view('Visitor.programs');
-});
+    Route::get('/Visitor/programs', function () {
+        return view('Visitor.programs');
+    });
 
-Route::get('/Visitor/programs_view', function () {
-    return view('Visitor.programs_view');
-});
+    Route::get('/Visitor/programs_view/{id}', [VisitorController::class, 'visitorProgramsView'])->name('visitor.programsView');
 
-Route::get('/Visitor/about', function () {
-    return view('Visitor.about');
-});
 
-Route::get('/Visitor/category_page/{category}', function ($category) {
-    // You can pass the $category variable to the view or use it to fetch category information from the database
-    return view('Visitor.category_page', compact('category'));
-})->name('Visitor.category.page');
+    Route::get('/Visitor/about', function () {
+        return view('Visitor.about');
+    });
 
+    Route::get('/Visitor/category_page/{category}', function ($category) {
+        // You can pass the $category variable to the view or use it to fetch category information from the database
+        return view('Visitor.category_page', compact('category'));
+    })->name('Visitor.category.page');
+
+Route::get('/Visitor', [EventController::class, 'index']);
 
 //registerView
 // route::post('/ITStaff/registerView', [RegisterViewController::class, 'store'])->name('store-registerView');
@@ -359,3 +359,4 @@ Route::get('/Beneficiary/benefpass', function () {
 Route::get('/Beneficiary/programprofile', function () {
     return view('Beneficiary.programprofile');
 });
+

@@ -25,16 +25,9 @@
             </ul>
         </li> --}}
             <li><a href='#aboutSection'>About</a></li>
-            <li><a class='dropdown-arrow' href='#missionHeader'>Programs</a>
-                <ul class='sub-menus'>
-                    <li><a href='http://'>BINHI NG PAG-ASA</a></li>
-                    <li><a href='http://'>AKBAY</a></li>
-                    <li><a href='http://'>LEAD</a></li>
-                    <li><a href='http://'>AGRIPINAY</a></li>
-                    <li><a href='http://'>ABAKA MO, PISO MO</a></li>
-                </ul>
+            <li><a class='dropdown-arrow' href='#programsView'>Programs</a>
             </li>
-            <li><a href='#binhiButton'>Contact Us</a></li>
+            <li><a href='#contact'>Contact Us</a></li>
             @if (Route::has('login'))
                 @auth
                     @php

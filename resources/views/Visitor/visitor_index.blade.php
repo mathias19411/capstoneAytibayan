@@ -22,6 +22,10 @@
                         <h4>Number of Beneficiaries</h4>
                     </div>
                     <div id="bar-chart"></div>
+                    <div class="chart-title">
+                        <h4>Monthly Beneficiaries</h4>
+                    </div>
+                    <div id="line-chart"></div>
                 </div>
             </div>
             <div class="top-story-section">
@@ -57,7 +61,7 @@
                     </div>
                 </div>
                 <div class="story-read-more">
-                    <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.facebook.com/apao.albay2023" target="_blank" rel="noopener noreferrer"
                         class="read-more-button">Read More ></a>
                 </div>
             </div>
@@ -216,12 +220,24 @@
 
     <!------------------ PROGRAM ---------------------->
 
-    <section class="programs_view">
+    <section class="programs_view" id="programsView">
         <div class="title">
             <h1>PROGRAMS</h1>
         </div>
         <div class="container">
-            <div class="box" id="binhi-ng-pagasa">
+            @foreach($programs as $program)
+                <div class="box" id="agripinay">
+                    <div class="content">
+                        <img src="{{ !empty($program->image) ? url('Uploads/Program_images/' . $program->image) : url('Uploads/no-image.jpg') }}" alt="{{ $program->program_name }} logo">
+                        <h3>{{ $program->program_name }}</h3>
+                        <a href="{{ route('visitor.programsView', $program->id) }}" class="custom-link">
+                            <button class="custom-button">View</button>
+                        </a>
+                    </div>
+                </div>
+                <!-- Replace 'column_name' with the actual column name you want to display -->
+            @endforeach
+            {{-- <div class="box" id="binhi-ng-pagasa">
 
                 <div class="content">
                     <img src="\images\Logo_BinhiNgPagasa.png" alt="Image 1">
@@ -256,7 +272,7 @@
                     <h3>LEAD</h3>
                     <button onclick="showCategory('lead')">View</button>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <script>
@@ -272,7 +288,7 @@
     </section>
 
     <!------------------ CONTACT ---------------------->
-    <section class="contact">
+    <section class="contact" id="contact">
         <div class="grid-container">
         </div>
         <div class="row">
@@ -417,4 +433,10 @@
 
         </div>
     </section>
+    <script>
+        var programNames = {!! json_encode($programNames) !!};
+        var beneficiaryCounts = {!! json_encode($beneficiaryCounts) !!};
+        var months = {!! json_encode($months) !!};
+        var monthCount = {!! json_encode($monthCount) !!};
+    </script>
 @endsection

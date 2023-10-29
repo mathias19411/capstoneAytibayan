@@ -62,7 +62,7 @@
                 </div>
                 <p>Number of beneficiaries who have accounts.<br> Active and Inactive Accounts </p>
 
-                <div class="active">
+                {{-- <div class="active">
                     <div class="number-box2">
                         <div class="label-number">
                             <span class="label">Active</span>
@@ -79,11 +79,29 @@
                         </div>
                         <div class="number-line inactive-line"></div>
                     </div>
+                </div> --}}
+                <div class="pie-chart">
+                    <div class="chart-title">
+                        <h4>Beneficiary Status</h4>
+                    </div>
+                    <div id="pie-chart"></div>
                 </div>
             </div>
-            `
+            
         </div>
-
+        <div class="bar-chart">
+            <div class="chart-title">
+                <h4>Number of Beneficiaries Per Program</h4>
+            </div>
+            <div id="bar-chart"></div>
+        </div>
+        <div class="line-chart">
+            <div class="chart-title">
+                <h4>Monthly Beneficiaries</h4>
+            </div>
+            <div id="line-chart"></div>
+        </div>
+        
 
         <div class="overview">
 
@@ -121,97 +139,7 @@
                     </div>
                 @endforeach
 
-                {{-- @foreach ($programs as $program)
-                <div class="box box1">
-                    <img src="\images\Logo_BinhiNgPagasa.png" alt="Image 1">
-                    <span class="text">{{ $program->program_name }}</span>
-                    <ul>
-                        @foreach ($program->user as $user)
-                            <li>{{ $user->first_name }}</li>
-                        @endforeach
-                    </ul>
-
-
-                </div>
-                    
-                @endforeach --}}
-
-                {{-- <div class="box box1">
-                    <img src="\images\Logo_AgriPinay.png" alt="Image 2">
-                    <span class="text">agripinay</span>
-                    <span class="label">Total</span>
-                    <span class="totalnumber">700 Beneficiaries</span>
-                    <div class="number-line totalline"></div>
-
-                    <span class="label">Active</span>
-                    <span class="activenumber">400 Beneficiaries</span>
-                    <div class="number-line activeline"></div>
-
-                    <span class="label">Inactive</span>
-                    <span class="inactivenumber">300 Beneficiaries</span>
-                    <div class="number-line inactiveline"></div>
-
-                    <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
-                        <button class="custom-button">View</button>
-                    </a>
-                </div>
-                <div class="box box1">
-                    <img src="\images\Logo_Akbay.png" alt="Image 3">
-                    <span class="text">akbay</span>
-                    <span class="label">Total</span>
-                    <span class="totalnumber">700 Beneficiaries</span>
-                    <div class="number-line totalline"></div>
-
-                    <span class="label">Active</span>
-                    <span class="activenumber">400 Beneficiaries</span>
-                    <div class="number-line activeline"></div>
-
-                    <span class="label">Inactive</span>
-                    <span class="inactivenumber">300 Beneficiaries</span>
-                    <div class="number-line inactiveline"></div>
-
-                    <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
-                        <button class="custom-button">View</button>
-                    </a>
-                </div>
-                <div class="box box1">
-                    <img src="\images\Logo_AbacaMoPisoMo.png" alt="Image 4">
-                    <span class="text">abaka mo, piso mo</span>
-                    <span class="label">Total</span>
-                    <span class="totalnumber">700 Beneficiaries</span>
-                    <div class="number-line totalline"></div>
-
-                    <span class="label">Active</span>
-                    <span class="activenumber">400 Beneficiaries</span>
-                    <div class="number-line activeline"></div>
-
-                    <span class="label">Inactive</span>
-                    <span class="inactivenumber">300 Beneficiaries</span>
-                    <div class="number-line inactiveline"></div>
-
-                    <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
-                        <button class="custom-button">View</button>
-                    </a>
-                </div>
-                <div class="box box1">
-                    <img src="\images\Logo_LEAD.png" alt="Image 4">
-                    <span class="text">LEAD</span>
-                    <span class="label">Total</span>
-                    <span class="totalnumber">700 Beneficiaries</span>
-                    <div class="number-line totalline"></div>
-
-                    <span class="label">Active</span>
-                    <span class="activenumber">400 Beneficiaries</span>
-                    <div class="number-line activeline"></div>
-
-                    <span class="label">Inactive</span>
-                    <span class="inactivenumber">300 Beneficiaries</span>
-                    <div class="number-line inactiveline"></div>
-
-                    <a href="{{ url('/ITStaff/edit_program') }}" class="custom-link">
-                        <button class="custom-button">View</button>
-                    </a>
-                </div> --}}
+                
 
                 <a href="{{ route('itstaff.addProgramView') }}" class="add-button">
                     <button class="plus-button">+</button>
@@ -287,10 +215,7 @@
                                                     <p>Project Coordinator</p>
                                                 </div>
                                             </div>
-                                            <!--
-                                            <div class="logo col-auto ml-auto">
-                                                <img src="\images\Logo_BinhiNgPagasa.png" alt="Binhi ng Pag-asa Logo">
-                                            </div> -->
+                                        
 
                                         </div>
                                         <div class="row">
@@ -304,162 +229,6 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{-- <div class="accordion-item">
-                            <h2 class="accordion-header" id="coordinator2">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <div class="coordinator_img">
-                                            <img src="\images\orly.png">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h5> Orly Encabo </h5>
-                                        <h6> Binhi ng Pag-asa </h6>
-                                    </div>
-                                </div>
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="coordinator2" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="card_coordinator_img">
-                                                <img src="\images\Logo_BinhiNgPagasa.png" alt="Binhi ng Pag-asa Logo">
-                                            </div>
-                                            <div class="col" style="padding-top:5px">
-                                            <h6>Binhi ng Pag-asa</h6>
-                                            <p>Project Coordinator</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col" style="padding-top:10px">
-                                            <p>
-                                                Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="coordinator3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <div class="coordinator_img">
-                                            <img src="\images\orly.png">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h5> Orly Encabo </h5>
-                                        <h6> Binhi ng Pag-asa </h6>
-                                    </div>
-                                </div>
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="coordinator3" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="card_coordinator_img">
-                                                <img src="\images\Logo_BinhiNgPagasa.png" alt="Binhi ng Pag-asa Logo">
-                                            </div>
-                                            <div class="col" style="padding-top:5px">
-                                            <h6>Binhi ng Pag-asa</h6>
-                                            <p>Project Coordinator</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col" style="padding-top:10px">
-                                            <p>
-                                                Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>                           
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="coordinator4">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapseTrue">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <div class="coordinator_img">
-                                            <img src="\images\orly.png">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h5> Orly Encabo </h5>
-                                        <h6> Binhi ng Pag-asa </h6>
-                                    </div>
-                                </div>
-                                </button>
-                            </h2>
-                            <div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="coordinator4" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="card_coordinator_img">
-                                                <img src="\images\Logo_BinhiNgPagasa.png" alt="Binhi ng Pag-asa Logo">
-                                            </div>
-                                            <div class="col" style="padding-top:5px">
-                                            <h6>Binhi ng Pag-asa</h6>
-                                            <p>Project Coordinator</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col" style="padding-top:10px">
-                                            <p>
-                                                Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>                            
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="coordinator5">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <div class="coordinator_img">
-                                            <img src="\images\orly.png">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h5> Orly Encabo </h5>
-                                        <h6> Binhi ng Pag-asa </h6>
-                                    </div>
-                                </div>
-                                </button>
-                            </h2>
-                            <div id="collapsefive" class="accordion-collapse collapse" aria-labelledby="coordinator5" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="card_coordinator_img">
-                                                <img src="\images\Logo_BinhiNgPagasa.png" alt="Binhi ng Pag-asa Logo">
-                                            </div>
-                                            <div class="col" style="padding-top:5px">
-                                            <h6>Binhi ng Pag-asa</h6>
-                                            <p>Project Coordinator</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col" style="padding-top:10px">
-                                            <p>
-                                                Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>                         
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
 
@@ -468,7 +237,148 @@
             </div>
         </div>
     </div>
+    
+    
+    {{-- apex charts cdn --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
+    <script>
+        var programNames = {!! json_encode($programNames) !!};
+        var beneficiaryCounts = {!! json_encode($beneficiaryCounts) !!};
+        var months = {!! json_encode($months) !!};
+        var monthCount = {!! json_encode($monthCount) !!};
+        var totalActiveandInactiveBeneficiaries = {!! json_encode($totalActiveandInactiveBeneficiaries) !!};
+
+        // ---------------------------Charts-----------------------------
+
+//-------------------------------------Bar Chart----------------------------
+
+        var barChartOptions = {
+            series: [{
+            data: beneficiaryCounts
+        }],
+            chart: {
+            type: 'bar',
+            height: 300,
+            toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
+                show: true
+            },
+        },
+        colors: [
+            "#7bb701",
+            "#f0a60f",
+            "#7bb701",
+            "#f0a60f",
+            "#7bb701",
+            "#f0a60f",
+            "#7bb701",
+            "#f0a60f",
+            "#7bb701",
+            "#f0a60f",
+            "#7bb701",
+            "#f0a60f"
+        ],
+        plotOptions: {
+            bar: {
+            distributed: true, //distributes the custom colors defined
+            borderRadius: 4,
+            horizontal: false,
+            columnWidth: '40%',
+            }
+        },
+        dataLabels: {
+            enabled: true
+        },
+        legend: {
+            show: false
+        },
+        xaxis: {
+            categories: programNames,
+        },
+        yaxis: {
+            title: {
+                text: "Beneficiaries"
+            }
+        }
+        };
+
+            var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
+        barChart.render();
+
+        // -----------------------------------Line chart-----------------------------
+        var options = {
+        series: [{
+        name: "Beneficiaries",
+        data: monthCount
+        }],
+        chart: {
+        height: 350,
+        type: 'line',
+        zoom: {
+        enabled: false
+        },
+        toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
+            show: true
+        },
+        },
+        dataLabels: {
+        enabled: false
+        },
+        stroke: {
+        curve: 'straight',
+        colors: '#f0a60f',
+        },
+        markers: {
+        size: 5,
+        },
+        title: {
+        text: 'Beneficiary Trends by Month',
+        align: 'left'
+        },
+        grid: {
+        row: {
+        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+        opacity: 0.5
+        },
+        },
+        xaxis: {
+        categories: months,
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#line-chart"), options);
+        chart.render();
+
+        // -------------------------------- Pie chart----------------------
+        var options = {
+          series: totalActiveandInactiveBeneficiaries,
+          chart: {
+          width: 380,
+          type: 'pie',
+          toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
+                show: true
+            },
+        },
+        labels: ['Active', 'Inactive'],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#pie-chart"), options);
+        chart.render();
+    </script>
+
+    <!-- custom JS -->
+    <script src="{{ asset('Assets/js/itstaff.js') }}"></script>
 
     <!--SA MODAL/POPUP TO AH -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

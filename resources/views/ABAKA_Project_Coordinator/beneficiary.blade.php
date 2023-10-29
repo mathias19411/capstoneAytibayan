@@ -15,12 +15,19 @@
 
   <div class="table-header">
         <div class="table-header-left">
-            <label for="unread-filter">Filter: </label>
+            <label for="unread-filter">Location: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
                 <option value="unread">Sagpon, Daraga</option>
                 <option value="read">Rawis</option>
             </select>
+            <label for="unread-filter">Status: </label>
+            <select id="unread-filter">
+                <option value="all">All</option>
+                <option value="unread">Active</option>
+                <option value="read">Inactive</option>
+            </select>
+
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
                 <option value="10">10</option>

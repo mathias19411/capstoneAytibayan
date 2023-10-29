@@ -30,10 +30,10 @@ content.addEventListener('scroll', () => {
 
 // ---------------------------Charts-----------------------------
 
-//Bar Chart
+//-------------------------------------Bar Chart----------------------------
 var barChartOptions = {
           series: [{
-          data: [50, 45, 30, 43, 39]
+          data: beneficiaryCounts
         }],
           chart: {
           type: 'bar',
@@ -65,17 +65,13 @@ var barChartOptions = {
           }
         },
         dataLabels: {
-          enabled: false
+          enabled: true
         },
         legend: {
             show: false
         },
         xaxis: {
-          categories: ['Lead', 'AgriPinay', 'Binhi', 'Akbay', 'Abaka'
-          ],
-          title: {
-            text: "Programs"
-          }
+          categories: programNames,
         },
         yaxis: {
             title: {
@@ -84,8 +80,50 @@ var barChartOptions = {
         }
         };
 
-        var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
+          var barChart = new ApexCharts(document.querySelector("#bar-chart"), barChartOptions);
         barChart.render();
+      
+        
+    // -----------------------------------Line chart-----------------------------
+    var options = {
+      series: [{
+        name: "Beneficiaries",
+        data: monthCount
+    }],
+      chart: {
+      height: 350,
+      type: 'line',
+      zoom: {
+        enabled: false
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      curve: 'straight',
+      colors: '#f0a60f',
+    },
+    markers: {
+      size: 5,
+    },
+    title: {
+      text: 'Beneficiary Trends by Month',
+      align: 'left'
+    },
+    grid: {
+      row: {
+        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+        opacity: 0.5
+      },
+    },
+    xaxis: {
+      categories: months,
+    }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#line-chart"), options);
+    chart.render();
 
 
         // Show/hide the button based on the user's scroll position
