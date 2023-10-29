@@ -902,6 +902,98 @@ body {
   top: -37px; 
   font-weight: bold;
 }
+/* Styles for the Update Status popup */
+#update-status-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+}
+
+.update-status-popup-content {
+    background-color: #fff;
+    width: 80%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: var(--primary-color);
+}
+
+.update-status-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color:var(--colorOrange);
+}
+.update-status-popup-close:hover {
+    transform: translateY(-5px);
+}
+
+#update-status-popup h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+#update-status-popup p {
+    margin: 5px 0;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+#update-status-popup label {
+    margin-top: 10px;
+    display: block;
+}
+
+#update-status-dropdown {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid green;
+    border-radius: 4px;
+    text-align: center;
+}
+
+
+
+#update-status-save {
+    background-color: var(--colorOrange);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#update-status-discard {
+    background-color: red;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#update-status-save:hover, #update-status-discard:hover {
+    background-color: var(--primary-color);
+}
+
+
 
 @media (max-width: 768px) {
   .progress-section {
@@ -1353,6 +1445,12 @@ body.announcement_events_inquiry .report-btn:hover {
     border-radius: 5px;
     font-weight: bold;
 }
+#status-dropdown {
+    border: 1px solid green;
+    border-radius: 4px;
+    padding: 5px;
+  }
+
 
 body.announcement_events_inquiry .table .active {
     background-color: green;

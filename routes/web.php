@@ -359,3 +359,4 @@ Route::get('/Beneficiary/benefpass', function () {
 Route::get('/Beneficiary/programprofile', function () {
     return view('Beneficiary.programprofile');
 });
+

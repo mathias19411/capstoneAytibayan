@@ -1,25 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Progress Page</title>
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous">
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="{{ asset('Assets/css/coordinator.css') }}">
-     
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+@extends('ABAKA_Project_Coordinator.projectcoordinator_main')
 
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-   
-</head>
-<body>
-@include('ABAKA_Project_coordinator.Body.sidebarproj')
+@section('content')
+@include('ABAKA_Project_Coordinator.Body.sidebarproj')
+    
 
     <div class="title">
         <h1>Progress</h1>
@@ -44,8 +27,222 @@
                 <p></pathinfo>
             </div>
          </div>
-         <div class="progress-container">
+         
+
+
+  <div class="table-header">
+        <div class="table-header-left">
+            <label for="unread-filter">Filter: </label>
+            <select id="unread-filter">
+                <option value="all">All</option>
+                <option value="unread">Sagpon, Daraga</option>
+                <option value="read">Rawis</option>
+            </select>
+            <label for="items-per-page">Items per page: </label>
+            <select id="items-per-page">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="all">All</option>
+            </select>
+        </div>
+        <div class="table-header-right">
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+    </div>
+    
+
+
+        <div class="container">
+                <table class="table">
+                    <thead>
+                    <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Benficiary</th>
+                            <th scope="col">Baranggay</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Project</th>
+                            <th scope="col">Organization</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Financial Status</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Orly Encabo</td>
+                            <td>Sagpon</td>
+                            <td>Daraga</td>
+                            <td>10000</td>
+                            <td>Free Range Chicken</td>
+                            <td>BUCS-CSC</td>
+                            <td>
+                                
+                                <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                           
+                            </td>    
+                           
+                            <td>
+                            Released
+                             </td>
+
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Orly Encabo</td>
+                            <td>Sagpon</td>
+                            <td>Daraga</td>
+                            <td>10000</td>
+                            <td>Free Range Chicken</td>
+                            <td>BUCS-CSC</td>
+                            <td>
+                                
+                                <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                            </td>    
+                          
+                            <td>
+                            Pending
+                             </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Orly Encabo</td>
+                            <td>Sagpon</td>
+                            <td>Daraga</td>
+                            <td>10000</td>
+                            <td>Free Range Chicken</td>
+                            <td>BUCS-CSC</td>
+                            <td>
+                               
+                                <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                            </td>    
+                            
+                            <td>
+                            Dispersed
+                             </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Orly Encabo</td>
+                            <td>Sagpon</td>
+                            <td>Daraga</td>
+                            <td>10000</td>
+                            <td>Free Range Chicken</td>
+                            <td>BUCS-CSC</td>
+                            <td>
+                                
+                                <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                            </td>    
+                           
+                            <td>
+                            Released
+                             </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Orly Encabo</td>
+                            <td>Sagpon</td>
+                            <td>Daraga</td>
+                            <td>10000</td>
+                            <td>Free Range Chicken</td>
+                            <td>BUCS-CSC</td>
+                            <td>
+                                
+                                <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                            </td>    
+                           
+                            <td>
+                            Released
+                             </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Orly Encabo</td>
+                            <td>Sagpon</td>
+                            <td>Daraga</td>
+                            <td>10000</td>
+                            <td>Free Range Chicken</td>
+                            <td>BUCS-CSC</td>
+                            <td>
+                               
+                                <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()" ><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                            </td>    
+                           
+                            <td>
+                          
+                            On Hold
+                             </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Orly Encabo</td>
+                            <td>Sagpon</td>
+                            <td>Daraga</td>
+                            <td>10000</td>
+                            <td>Free Range Chicken</td>
+                            <td>BUCS-CSC</td>
+                            <td>
+                            <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+
+                            </td>    
+                          
+                            <td>
+                           Pending
+                             </td>
+                        </tr>
+                     </tbody>
+                </table>
+                
+      
+                <div class="pagination">
+                    <button id="prev-page">Previous</button>
+                    <div id="page-numbers"></div>
+                    <button id="next-page">Next</button>
+                </div>
+
+                <div id="pagination-message"></div>
+                <div class="button-container">
+  <button class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
+ 
+</div>
+              </div>
+
+              
+              <div id="update-status-popup" class="update-status-popup">
+    <div class="update-status-popup-content">
+        <span class="update-status-popup-close" id="update-status-popup-close">&times;</span>
+        <h2>Beneficiary Progress Details</h2>
+        <p><strong>Beneficiary Name:</strong> <span id="update-status-beneficiary-name"></span></p>
+        <p><strong>Organization:</strong> <span id="update-status-organization"></span></p>
+        <p><strong>Amount:</strong> <span id="update-status-amount"></span></p>
+        <p><strong>Last Updated:</strong> <span id="update-status-last-updated"></span></p>
+        <label for="update-status-dropdown">Update Status:</label>
+        <select id="update-status-dropdown">
+            <option value=""></option>
+            <option value="Pending">Pending</option>
+            <option value="On Hold">On Hold</option>
+            <option value="Dispersed">Dispersed</option>
+            <option value="Released">Released</option>
+        </select>
+        <button id="update-status-save">Save</button>
+        <button id="update-status-discard">Discard</button>
+    </div>
+</div>
+
+
+           
+              
+
+<div class="progress-container">
         <div class="progress-line">
+
+
         
             <!-- Steps with numbers will be added dynamically here -->
         </div>
@@ -64,13 +261,10 @@
         </div>
 
         
-       
-</div>
-
       
 
 
        
 <script src="{{ asset('Assets/js/progress.js') }}"></script>
-</body>
-</html>
+
+@endsection
