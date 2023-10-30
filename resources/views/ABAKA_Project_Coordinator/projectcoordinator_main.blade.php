@@ -795,8 +795,8 @@ displayUpdates();
     }
 </script>
 
-<script type="text/javascript">
-        // SEARCH BAR
+<script>
+        //PROGRESS SEARCH BAR
         const searchInput = document.getElementById("search");
         const table = document.getElementById("beneficiaries-table");
         const rows = table.getElementsByTagName("tr");
@@ -814,6 +814,37 @@ displayUpdates();
             }
         });
     </script>
+<script>
+    //BENEFICIARY SEARCH BAR
+    $(document).ready(function () {
+        $('#search').on('input', function () {
+            let value = $(this).val().toLowerCase();
+            $('table tbody tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+<script>
+    //FILTER BENEFICIARY
+    $(document).ready(function () {
+        $('#location-filter').on('change', function () {
+            let selectedLocation = $(this).val();
+
+            // Loop through each row and check the data-location attribute
+            $('table tbody tr').each(function() {
+                let location = $(this).data('location');
+                if (selectedLocation === 'all' || location === selectedLocation) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
 
 </body>
 </html>

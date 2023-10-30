@@ -104,8 +104,8 @@
                         <tr>
                             <td>2</td>
                             <td>Orly Encabo</td>
-                            <td>Sagpon</td>
-                            <td>Daraga</td>
+                            <td>Rawis</td>
+                            <td>Legazpi</td>
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
@@ -121,8 +121,8 @@
                         <tr>
                             <td>3</td>
                             <td>Orly Encabo</td>
-                            <td>Sagpon</td>
-                            <td>Daraga</td>
+                            <td>Rawis</td>
+                            <td>Legazpi</td>
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
@@ -172,8 +172,8 @@
                         <tr>
                             <td>6</td>
                             <td>Orly Encabo</td>
-                            <td>Sagpon</td>
-                            <td>Daraga</td>
+                            <td>Rawis</td>
+                            <td>Legazpi</td>
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
