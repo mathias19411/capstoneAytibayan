@@ -54,11 +54,19 @@
             </div>
         </div>
     </div>
-    
 
+         <!--LOGO -->
+     <div class="header">
+        <h1>Republic of the Philippines</h1>
+        <h2>Province of Albay</h2>
+        <h3>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h3>
+    </div>
 
         <div class="container">
-                <table class="table">
+    
+                <table class="table" id="beneficiaries-table">
+              
+
                     <thead>
                     <tr>
                             <th scope="col">No.</th>
@@ -68,7 +76,7 @@
                             <th scope="col">Amount</th>
                             <th scope="col">Project</th>
                             <th scope="col">Organization</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" class="no-print" >Action</th>
                             <th scope="col">Financial Status</th>
                             
                         </tr>
@@ -82,7 +90,7 @@
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
-                            <td>
+                            <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                            
@@ -101,7 +109,7 @@
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
-                            <td>
+                            <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                             </td>    
@@ -118,7 +126,7 @@
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
-                            <td>
+                            <td class="no-print">
                                
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                             </td>    
@@ -135,7 +143,7 @@
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
-                            <td>
+                            <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                             </td>    
@@ -152,7 +160,7 @@
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
-                            <td>
+                            <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                             </td>    
@@ -169,7 +177,7 @@
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
-                            <td>
+                            <td class="no-print">
                                
                                 <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()" ><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                             </td>    
@@ -187,7 +195,7 @@
                             <td>10000</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
-                            <td>
+                            <td class="no-print">
                             <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
 
                             </td>    
@@ -208,7 +216,7 @@
 
                 <div id="pagination-message"></div>
                 <div class="button-container">
-  <button class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
+  <button class="button_top buttons-print" onclick="printTable()"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
  
 </div>
               </div>

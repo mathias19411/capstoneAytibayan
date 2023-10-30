@@ -1923,3 +1923,14 @@ body.announcement_events_inquiry .message-row {
     }
 }
 
+/*----------PRINT LOG0---------*/
+@page {
+    size: auto;
+    margin: 10mm; /* Adjust the margin as needed */
+}
+
+.header {
+    display: none;
+}
+
+

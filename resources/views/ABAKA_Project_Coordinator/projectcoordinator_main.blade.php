@@ -11,6 +11,7 @@
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <!-- CSS link -->
     <link rel="stylesheet" href="{{ asset('Assets/css/coordinator.css') }}">
+    <link rel="stylesheet" href="{{ asset('Assets/css/print.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/6297197d39.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -787,6 +788,32 @@ displayUpdates();
         document.getElementById('update-status-popup').style.display = 'none';
     });
 </script>
+
+<script>
+    function printTable() {
+        window.print();
+    }
+</script>
+
+<script type="text/javascript">
+        // SEARCH BAR
+        const searchInput = document.getElementById("search");
+        const table = document.getElementById("beneficiaries-table");
+        const rows = table.getElementsByTagName("tr");
+
+        searchInput.addEventListener("keyup", function() {
+            const searchValue = searchInput.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) {
+                const beneficiaryName = rows[i].getElementsByTagName("td")[1].textContent.toLowerCase();
+                if (beneficiaryName.includes(searchValue)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>
