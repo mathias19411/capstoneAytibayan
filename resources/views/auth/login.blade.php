@@ -58,6 +58,8 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('Assets/css/authentication.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
     {{-- toastr CSS --}}
     {{-- <link rel="stylesheet" type="text/css"
@@ -83,6 +85,27 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="col-md-12 input">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" autocomplete="current-password">
+                            <div class="input-group-append">
+                                <button id="showPasswordBtn" type="button" class="btn btn-secondary" onclick="togglePasswordVisibility()">
+                                    <i id="eyeIcon" class="fa-solid fa-eye" style="color: black; border: none;"></i>
+                                </button>
+                            </div>
+                        </div>
+                        @error('password')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+
+
+                        <!-- kinomment ko muna old code sa password baka kasi masira code delete mo na lang mathias pag goods na
+
                     <div class="col-md-12 input">
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
@@ -97,7 +120,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
+                    -->
                     <!-- Remember Me -->
                     <div class="block mt-4">
                         <label for="remember_me" class="inline-flex items-center">
@@ -147,6 +170,24 @@
 
     <script>
         function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var eyeIcon = document.getElementById("eyeIcon");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text"; // Show the password
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash"); // Change the icon to an eye with a slash
+                eyeIcon.style.color = "#53d30d"; // Change the icon color to green
+            } else {
+                passwordField.type = "password"; // Hide the password
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye"); // Change the icon back to an eye
+                eyeIcon.style.color = "black"; // Change the icon color to black
+            }
+        }
+
+        /* pati to mathias
+        function togglePasswordVisibility() {
             var passwordInput = document.getElementById("password");
             var showPasswordBtn = document.getElementById("showPasswordBtn");
 
@@ -158,6 +199,7 @@
                 showPasswordBtn.textContent = "Show Password";
             }
         }
+        */
     </script>
 
 
