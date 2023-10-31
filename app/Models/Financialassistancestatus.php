@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Financialassistance;
 
-class Financial_Assistance_Status extends Model
+class Financialassistancestatus extends Model
 {
     use HasFactory;
 
@@ -19,6 +20,6 @@ class Financial_Assistance_Status extends Model
 
     public function financialAssistances()
     {
-        return $this->hasMany(Financial_Assistance::class);
+        return $this->hasMany(Financialassistance::class);
     }
 }

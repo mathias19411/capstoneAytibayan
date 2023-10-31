@@ -11,20 +11,20 @@
          <div class="boxes">
             <div class="box box-1">
                 <h1>Beneficiaries</h1>
-                <p>360</pathinfo>
+                <p>{{ $abakaBeneficiariesCount }}</p>
             </div>
             <div class="box box-1 ">
                 <h1>Active</h1>
-                <p>298</pathinfo>
+                <p>{{ $abakaActiveCount }}</p>
             </div>
             <div class="box box-2">
                 <h1>Inactive</h1>
-                <p>62</pathinfo>
+                <p>{{ $abakaInactiveCount }}</p>
             </div>
             <div class="box box-3">
                 <h1>Progress %</h1>
                 <div class="progress-bar"></div>
-                <p></pathinfo>
+                <p></p>
             </div>
          </div>
          
@@ -69,38 +69,43 @@
 
                     <thead>
                     <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Benficiary</th>
-                            <th scope="col">Baranggay</th>
+                            <th scope="col">User ID</th>
+                            <th scope="col">Beneficiary</th>
+                            <th scope="col">Barangay</th>
                             <th scope="col">City</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Project</th>
-                            <th scope="col">Organization</th>
                             <th scope="col" class="no-print" >Action</th>
-                            <th scope="col">Financial Status</th>
+                            <th scope="col">Assistance Status</th>
                             
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon</td>
-                            <td>Daraga</td>
-                            <td>10000</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td class="no-print">
+                        @foreach ($abakaBeneficiaries as $abakaBeneficiary)
+                            <tr>
+                                <td>{{ $abakaBeneficiary->id }}</td>
+                                <td>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</td>
+                                <td>{{ $abakaBeneficiary->barangay }}</td>
+                                <td>{{ $abakaBeneficiary->city }}</td>
+                                <td>{{ $abakaBeneficiary->status->status_name }}</td>
+                                @if ($abakaBeneficiary->assistance)
+                                    <td>{{ $abakaBeneficiary->assistance->amount }}</td>
+                                    <td>{{ $abakaBeneficiary->assistance->project }}</td>
+                                @else
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                @endif
                                 
-                                <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
-                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
-                                </button>
-                            </td>    
-                           
-                            <td>
-                            Released
-                             </td>
+                                <td class="no-print">
+                                    
+                                    <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                            
+                                </td>    
+                            
+                                <td>
+                                Released
+                                </td>
 
                         </tr>
                         <tr>
@@ -114,10 +119,7 @@
                             <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
-                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
-                                </button>
-                        </td>    
+                            </td>    
                           
                             <td>
                             Pending
@@ -134,9 +136,6 @@
                             <td class="no-print">
                                
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
-                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
-                                </button>
                             </td>    
                             
                             <td>
@@ -154,9 +153,6 @@
                             <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
-                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
-                                </button>
                             </td>    
                            
                             <td>
@@ -174,9 +170,6 @@
                             <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
-                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
-                                </button>
                             </td>    
                            
                             <td>
@@ -194,9 +187,6 @@
                             <td class="no-print">
                                
                                 <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()" ><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
-                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
-                                </button>
                             </td>    
                            
                             <td>
@@ -214,9 +204,7 @@
                             <td>BUCS-CSC</td>
                             <td class="no-print">
                             <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
-                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
-                                </button>
+
                             </td>    
                           
                             <td>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
-            $table->string('primary_address')->nullable();
+            $table->string('barangay')->nullable();
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->string('zip')->nullable();

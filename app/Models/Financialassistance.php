@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Financial_Assistance extends Model
+class Financialassistance extends Model
 {
     use HasFactory;
 
@@ -20,11 +20,11 @@ class Financial_Assistance extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function financial_assistance_status()
     {
-        return $this->belongsTo(Financial_Assistance_Status::class);
+        return $this->belongsTo(Financialassistancestatus::class);
     }
 }

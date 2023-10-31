@@ -14,8 +14,12 @@ class FinancialAssistanceStatusSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('financial_assistance_statuses')->insert([
-            //rending
+        DB::table('financialassistancestatuses')->insert([
+            //pending
+            [
+                'financial_assistance_status_name' => 'unsettled', 'description' => 'You may a financial assistance request to the office'
+            ],
+            //pending
             [
                 'financial_assistance_status_name' => 'pending', 'description' => 'Your financial assistance request is up for approval'
             ],

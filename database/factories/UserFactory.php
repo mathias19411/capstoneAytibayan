@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'password' => fake()->password(), // password
             'photo' => fake()->imageUrl('100', '100'),
             'phone' => fake()->unique()->phoneNumber(),
-            'primary_address' => fake()->streetAddress(),
+            'barangay' => fake()->streetAddress(),
             'city' => fake()->city(),
             'province' => fake()->country(),
             'zip' => fake()->postcode(),
