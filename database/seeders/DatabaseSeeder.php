@@ -27,6 +27,12 @@ class DatabaseSeeder extends Seeder
             StatusesTableSeeder::class,
         ]);
 
+        // Seed sstuses table
+        $this->call([
+            FinancialAssistanceStatusSeeder::class,
+        ]);
+
+        // seed users table 
         $this->call(UsersTableSeeder::class);
         \App\Models\User::factory(50)->create();
 

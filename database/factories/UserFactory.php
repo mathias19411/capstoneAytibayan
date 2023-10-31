@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'city' => fake()->city(),
             'province' => fake()->country(),
             'zip' => fake()->postcode(),
-            'role_id' => fake()->randomElement(['2', '3']),
+            'role_id' => fake()->randomElement(['7']),
             'program_id' => fake()->randomElement(['1', '2', '3', '4', '5']),
             'status_id' => fake()->randomElement(['1', '2']),
             'remember_token' => Str::random(10),

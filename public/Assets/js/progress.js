@@ -9,8 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
       { description: "Description", done: false },
       { description: "Description", done: false },
       { description: "Description", done: false },
-      { description: "Description", done: false },
-      { description: "Description", done: false },
     ];
   
     // Function to update the progress percentage and progress line

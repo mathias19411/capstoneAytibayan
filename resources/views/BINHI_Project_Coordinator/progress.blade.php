@@ -28,20 +28,20 @@
          <div class="boxes">
             <div class="box box-1">
                 <h1>Beneficiaries</h1>
-                <p>360</pathinfo>
+                <p>360</p>
             </div>
             <div class="box box-1 ">
                 <h1>Active</h1>
-                <p>298</pathinfo>
+                <p>298</p>
             </div>
             <div class="box box-2">
                 <h1>Inactive</h1>
-                <p>62</pathinfo>
+                <p>62</p>
             </div>
             <div class="box box-3">
                 <h1>Progress %</h1>
                 <div class="progress-bar"></div>
-                <p></pathinfo>
+                <p></p>
             </div>
          </div>
          <div class="progress-container">

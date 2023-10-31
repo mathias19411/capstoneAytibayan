@@ -207,6 +207,6 @@ class ProjectCoordinatorController extends Controller
     {
         $progress = progress::all();
 
-        return view('BINHI_Project_Coordinator.progress', ['progress'=>$progress]);
+        return view('BINHI_Project_Coordinator.progress', compact('progress'));
     } // End Method
 }

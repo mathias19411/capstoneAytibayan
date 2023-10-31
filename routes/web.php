@@ -106,7 +106,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff'])->group(fu
 }); //End group itstaff middleware
 
 //Project Coordinator BINHI Group Middleware
-Route::middleware(['auth', 'userroleprotection:projectcoordinator'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:projectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/ProjectCoordinator/home', [ProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('projectcoordinator.beneficiaries');
 

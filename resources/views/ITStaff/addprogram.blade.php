@@ -147,7 +147,7 @@
 
             </div>
 
-            <div class="form-row1">
+            <div class="form-row">
                 <div class="input-group">
                     <label for="inputApply">How to Apply:</label>
                     <textarea id="inputApply" placeholder="Application Guidelines" name="inputApply"></textarea>
@@ -170,7 +170,20 @@
                 <div class="image-container">
                     <img id="image-preview"
                         src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/no-image.jpg') }}"
-                        alt="User Profile Image" class="img-fluid-small  rounded-circle">
+                        alt="Program Icon Image" class="img-fluid-small  rounded-circle">
+                    {{-- <span class="delete-icon" id="delete-image-btn">×</span> --}}
+                </div>
+            </div>
+            <div class="form-row1">
+                <div class="input-group">
+                    <label for="input-BackgroundImage">Program Background Image:</label>
+                    <input type="file" class="custom-file-input form-control form-control-alternative"
+                        id="input-BackgroundImage" name="programBackgroundPhoto">
+                </div>
+                <div class="image-container">
+                    <img id="image-preview1"
+                        src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/no-image.jpg') }}"
+                        alt="Program Background Image" class="img-fluid-small  rounded-circle">
                     {{-- <span class="delete-icon" id="delete-image-btn">×</span> --}}
                 </div>
             </div>
@@ -197,9 +210,7 @@
 
 
         </form>
-        {{-- <div class="center">
-            <input type="submit" value="Save">
-        </div> --}}
+        
     </div>
 
 
@@ -261,6 +272,18 @@
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     $('#image-preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#input-BackgroundImage').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#image-preview1').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(e.target.files['0']);
             });

@@ -22,6 +22,7 @@ class Program extends Model
         'quiry',
         'requirements',
         'image',
+        'background_image',
         'password',
         'created_at',
         'updated_at',

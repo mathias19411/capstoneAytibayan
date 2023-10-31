@@ -138,6 +138,7 @@ class ItStaffController extends Controller
             'inputApply' => ['required', 'string', 'max:500'],
             'inputReqs' => ['required', 'string', 'max:500'],
             'programPhoto' => ['required' , 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'programBackgroundPhoto' => ['required' , 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
 
         if ($request->file('programPhoto'))
@@ -156,6 +157,23 @@ class ItStaffController extends Controller
             $validatedData['programPhoto'] = $fileName;
         }
 
+        if ($request->file('programBackgroundPhoto'))
+        {
+            // $imagePath = $request->file('programPhoto')->store('public/Uploads/Program_images');
+            
+            // // Remove the 'public/' prefix from the path to store in the database
+            // $validatedData['programPhoto'] = str_replace('public/', '', $imagePath);
+
+            $file = $request->file('programBackgroundPhoto');
+
+            @unlink(public_path('Uploads/Program_images/'.$validatedData['programBackgroundPhoto']));
+
+            $fileName = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('Uploads/Program_images'),$fileName);
+            $validatedData['programBackgroundPhoto'] = $fileName;
+        }
+
+
         if ($validatedData)
         {
             $hashed = Hash::make($validatedData['password']);
@@ -171,6 +189,7 @@ class ItStaffController extends Controller
                 'quiry' => $validatedData['inputApply'],
                 'requirements' => $validatedData['inputReqs'],
                 'image' => $validatedData['programPhoto'],
+                'background_image' => $validatedData['programBackgroundPhoto'],
                 'password' => $hashed,
             ]);
 
@@ -243,6 +262,17 @@ class ItStaffController extends Controller
                 $fileName = date('YmdHi').$file->getClientOriginalName();
                 $file->move(public_path('Uploads/Program_images'),$fileName);
                 $programData['image'] = $fileName;
+            }
+
+            if ($request->file('programBackgroundPhoto'))
+            {
+                $file = $request->file('programBackgroundPhoto');
+
+                @unlink(public_path('Uploads/Program_images/'.$programData->background_image));
+
+                $fileName = date('YmdHi').$file->getClientOriginalName();
+                $file->move(public_path('Uploads/Program_images'),$fileName);
+                $programData['background_image'] = $fileName;
             }
             $programData->save();
 

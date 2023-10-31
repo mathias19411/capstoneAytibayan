@@ -40,7 +40,7 @@
         <div id="program-name"> {{ $program->program_name }} </div>
         <div id="program-location"> {{ $program->location }} </div>
         <div id="program-email"> {{ $program->email }} </div>
-        <img id="about-image" src="\images\binhi.jpg" alt="Category Image">
+        <img id="about-image" src="{{ !empty($program->background_image) ? url('Uploads/Program_images/' . $program->background_image) : url('Uploads/no-image.jpg') }}" alt="Category Image">
 
         
 
