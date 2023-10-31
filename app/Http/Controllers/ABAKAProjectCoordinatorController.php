@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Program;
+use App\Models\Status;
 use App\Models\announcement;
 use App\Models\inquiries;
 use App\Models\progress;
@@ -207,6 +210,37 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         $progress = progress::all();
 
-        return view('ABAKA_Project_Coordinator.progress', ['progress'=>$progress]);
+        //total benef count
+        $abakaBeneficiariesCount = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) {
+            $query->where('program_name', 'abakamopisomo');
+        })->count();
+
+        //total active benef
+        $abakaActiveCount = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) {
+            $query->where('program_name', 'abakamopisomo');
+        })->whereHas('status', function ($query) {
+            $query->where('status_name', 'Active');
+        })->count();
+
+        //total inactive benef
+        $abakaInactiveCount = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) {
+            $query->where('program_name', 'abakamopisomo');
+        })->whereHas('status', function ($query) {
+            $query->where('status_name', 'Inactive');
+        })->count();
+
+        $abakaBeneficiaries = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) {
+            $query->where('program_name', 'abakamopisomo');
+        })->get();
+
+        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries'));
     } // End Method
 }

@@ -117,9 +117,9 @@
 
             </div>
             <div class="col-md-6">
-                <label for="inputPrimaryAddress" class="form-label">Primary Address</label>
+                <label for="inputPrimaryAddress" class="form-label">Barangay</label>
                 <input type="text" class="form-control" id="inputPrimaryAddress" name="primaryAddress"
-                    placeholder="Barangay, Purok, or St." required>
+                    placeholder="Barangay" required>
                 @error('primaryAddress')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

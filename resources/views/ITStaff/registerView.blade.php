@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <h5>Address:</h5>
-                                            <p id="modal-message">{{ $user->primary_address }}, {{ $user->city }}, {{ $user->province }} {{ $user->zip }}</p>
+                                            <p id="modal-message">{{ $user->barangay }}, {{ $user->city }}, {{ $user->province }} {{ $user->zip }}</p>
                                         </div>
                                     </div>
                                 </div>

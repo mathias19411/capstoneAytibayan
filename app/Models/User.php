@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Models\Program;
 use App\Models\Role;
 use App\Models\Status;
+use App\Models\Financialassistance;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -126,6 +127,11 @@ class User extends Authenticatable
     public function status()
     {
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    public function assistance()
+    {
+        return $this->hasOne(Financialassistance::class, 'user_id');
     }
 
     public function generateTwoFactorCode()

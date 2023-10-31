@@ -58,7 +58,7 @@ class RegisteredUserController extends Controller
             'middle_name' => $request->middle_name,
             'last_name' => $request->last_name,
             'phone' => $request->phone_number,
-            'primary_address' => $request->primaryAddress,
+            'barangay' => $request->primaryAddress,
             'city' => $request->inputCity,
             'province' => $request->inputProvince,
             'zip' => $request->inputZip,
