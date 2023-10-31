@@ -1,0 +1,64 @@
+/*----------------------print media -------------------*/
+@media print {
+  body * {
+      visibility: hidden;
+  }
+  .header {
+    display: block;
+    text-align: center; /* Center-align the text */
+    padding: 10px;
+}
+  #beneficiaries-table,
+  #beneficiaries-table * {
+      visibility: visible;
+  }
+
+  #beneficiaries-table {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: 0 auto; /* Center the table horizontally */
+      width: 100%;
+  }
+  table {
+    margin: 0 auto;
+}
+  #beneficiaries-table th {
+    font-size: 10px; /* Adjust the font size as needed */
+    padding: 3px;
+    margin: 3px;
+}
+  #beneficiaries-table td {
+    font-size: 9px; /* Adjust the font size as needed */
+    padding: 3px;
+    margin: 3px;
+
+}
+#print-logo {
+  display: block;
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  left: 10px; /* Adjust the left position as needed */
+  width: 100px; /* Adjust the logo width as needed */
+  height: auto; /* Maintain the aspect ratio */
+}
+.no-print {
+  display: none;
+}
+.nav {
+  display: none;
+}
+.close {
+  display: none;
+}
+tr {
+  padding: 0; /* Adjust the padding as needed */
+  margin: 0;  /* Adjust the margin as needed */
+}
+
+.logo {
+  display: inline;
+}
+
+}
+

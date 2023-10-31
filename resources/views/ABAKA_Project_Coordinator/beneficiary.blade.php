@@ -15,12 +15,19 @@
 
   <div class="table-header">
         <div class="table-header-left">
-            <label for="unread-filter">Filter: </label>
+            <label for="unread-filter">Location: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Sagpon, Daraga</option>
-                <option value="read">Rawis</option>
+                <option value="Sagpon">Sagpon, Daraga</option>
+                <option value="Rawis">Rawis</option>
             </select>
+            <label for="unread-filter">Status: </label>
+            <select id="unread-filter">
+                <option value="all">All</option>
+                <option value="unread">Active</option>
+                <option value="read">Inactive</option>
+            </select>
+
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
                 <option value="10">10</option>
@@ -55,7 +62,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-location="Sagpon">
                             <td>1</td>
                             <td>Orly Encabo</td>
                             <td>Sagpon, Daraga</td>
@@ -73,7 +80,7 @@
                             <span onclick="toggleStatus(this)" class="status-box active">Active</span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr data-location="Sagpon">
                             <td>2</td>
                             <td>Joriza Oliva</td>
                             <td>Sagpon, Daraga</td>
@@ -91,7 +98,7 @@
                             <span onclick="toggleStatus(this)" class="status-box inactive">Inactive</span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr data-location="Sagpon">
                             <td>3</td>
                             <td>Mathias Bermejo</td>
                             <td>Sagpon, Daraga</td>
@@ -109,10 +116,10 @@
                             <span onclick="toggleStatus(this)" class="status-box active">Active</span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr data-location="Rawis">
                             <td>4</td>
                             <td>Jayferson Begino</td>
-                            <td>Sagpon, Daraga</td>
+                            <td>Rawis, Legazpi</td>
                             <td>09123456789</td>
                             <td>orlybinhi@gmail.com</td>
                             <td>Free Range Chicken</td>
@@ -127,7 +134,7 @@
                             <span onclick="toggleStatus(this)" class="status-box active">Active</span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr data-location="Sagpon">
                             <td>5</td>
                             <td>Orly Encabo</td>
                             <td>Sagpon, Daraga</td>
@@ -145,10 +152,10 @@
                             <span onclick="toggleStatus(this)" class="status-box active">Active</span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr data-location="Rawis">
                             <td>6</td>
                             <td>Joriza Oliva</td>
-                            <td>Sagpon, Daraga</td>
+                            <td>Rawis, Legazpi</td>
                             <td>09123456789</td>
                             <td>orlybinhi@gmail.com</td>
                             <td>Free Range Chicken</td>
@@ -163,7 +170,7 @@
                             <span onclick="toggleStatus(this)" class="status-box inactive">Inactive</span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr data-location="Sagpon">
                             <td>7</td>
                             <td>Orly Encabo</td>
                             <td>Sagpon, Daraga</td>

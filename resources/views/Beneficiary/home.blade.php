@@ -9,33 +9,57 @@
 
     <div class="card-container">
 
-        <!-- Card 1 -->
-      <div class="row">
-      <div class="col-md-4">
-    <div class="card-progress">
-        <h2 class="card-title">PROGRESS</h2>
-        <div class="card-content">
-        <div class="boxes">
-    <div class="box box-1">
-        <h1>Progress Chart</h1>
-        <div class="progress-chart" id="chart-fill"></div>
-    </div>
-    <div class="box box-2">
-        <h1>Progress %</h1>
-        <div class="progress-bar" id="progress-bar">
-            <div id="progress-num">
-                <div class="progress-number" data-percent="20">1</div>
-                <div class="progress-number" data-percent="40">2</div>
-                <div class="progress-number" data-percent="60">3</div>
-                <div class="progress-number" data-percent="80">4</div>
-                <div class="progress-number" data-percent="100">5</div>
+                    <!-- Card 1 -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card-progress">
+                    <h2 class="card-title">PROGRESS</h2>
+                    <div class="card-content">
+                    <div class="chart">
+                    </div>
+
+                    <div class="progressbar">
+                        <ul>
+                            <li>
+                                <div class="progress one">
+                                    <p>1</p>
+                                    <i class="uil uil-check"></i>
+                                </div>
+                                <p class="text">Lorem Ipsum</p>
+                            </li>
+                            <li>
+                                <div class="progress two">
+                                    <p>2</p>
+                                    <i class="uil uil-check"></i>
+                                </div>
+                                <p class="text">Fill Details</p>
+                            </li>
+                            <li>
+                                <div class="progress three">
+                                    <p>3</p>
+                                    <i class="uil uil-check"></i>
+                                </div>
+                                <p class="text">Make Payment</p>
+                            </li>
+                            <li>
+                                <div class="progress four">
+                                    <p>4</p>
+                                    <i class="uil uil-check"></i>
+                                </div>
+                                <p class="text">Order in Progress</p>
+                            </li>
+                            <li>
+                                <div class="progress five">
+                                    <p>5</p>
+                                    <i class="uil uil-check"></i>
+                                </div>
+                                <p class="text">Order Arrived</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-        </div>
-    </div>
-</div>
 
     <!-- Special Announcement -->
         <div class="col-md-8">

@@ -11,6 +11,7 @@
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <!-- CSS link -->
     <link rel="stylesheet" href="{{ asset('Assets/css/coordinator.css') }}">
+    <link rel="stylesheet" href="{{ asset('Assets/css/print.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/6297197d39.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -744,6 +745,105 @@ displayUpdates();
     });
 </script>
 
+
+<script>
+    // Function to show the update status popup
+    function showUpdateStatusPopup() {
+    const popup = document.getElementById('update-status-popup');
+    popup.style.display = 'block';
+
+    // Replace with actual beneficiary information
+    const beneficiaryName = 'Orly Encabo';
+    const organization = 'BUCS-CSC';
+    const amount = '10000';
+    const lastUpdated = '2023-10-29 14:30:00'; // Replace with the actual date and time
+
+    // Split the date and time
+    const [date, time] = lastUpdated.split(' ');
+
+    document.getElementById('update-status-beneficiary-name').textContent = beneficiaryName;
+    document.getElementById('update-status-organization').textContent = organization;
+    document.getElementById('update-status-amount').textContent = amount;
+    document.getElementById('update-status-last-updated').textContent = `${date} ${time}`;
+}
+
+    // Function to close the update status popup
+    document.getElementById('update-status-popup-close').addEventListener('click', function () {
+        document.getElementById('update-status-popup').style.display = 'none';
+    });
+
+    // Function to save the updated status in the update status popup
+    document.getElementById('update-status-save').addEventListener('click', function () {
+        const selectedStatus = document.getElementById('update-status-dropdown').value;
+        if (selectedStatus) {
+            // Handle the status update here, e.g., send it to the server.
+            // You may need to use AJAX or a form submission.
+            console.log('Updated status:', selectedStatus);
+        }
+        document.getElementById('update-status-popup').style.display = 'none';
+    });
+
+    // Function to discard changes and close the update status popup
+    document.getElementById('update-status-discard').addEventListener('click', function () {
+        document.getElementById('update-status-popup').style.display = 'none';
+    });
+</script>
+
+<script>
+    function printTable() {
+        window.print();
+    }
+</script>
+
+<script>
+        //PROGRESS SEARCH BAR
+        const searchInput = document.getElementById("search");
+        const table = document.getElementById("beneficiaries-table");
+        const rows = table.getElementsByTagName("tr");
+
+        searchInput.addEventListener("keyup", function() {
+            const searchValue = searchInput.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) {
+                const beneficiaryName = rows[i].getElementsByTagName("td")[1].textContent.toLowerCase();
+                if (beneficiaryName.includes(searchValue)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        });
+    </script>
+<script>
+    //BENEFICIARY SEARCH BAR
+    $(document).ready(function () {
+        $('#search').on('input', function () {
+            let value = $(this).val().toLowerCase();
+            $('table tbody tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+<script>
+    //FILTER BENEFICIARY
+    $(document).ready(function () {
+        $('#location-filter').on('change', function () {
+            let selectedLocation = $(this).val();
+
+            // Loop through each row and check the data-location attribute
+            $('table tbody tr').each(function() {
+                let location = $(this).data('location');
+                if (selectedLocation === 'all' || location === selectedLocation) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 
 
 </body>

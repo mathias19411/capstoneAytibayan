@@ -2018,6 +2018,201 @@ body.beneficiary .add-modal:hover {
     overflow: hidden;
 }
 
+/* -----------------------------PROGRESS BAR ----------------------*/
+
+
+.card-progress .progressbar{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: pop;
+    flex-direction: column;
+}
+
+.card-progress .head{
+    text-align: center;
+
+}
+
+.card-progress .head_1{
+
+    font-size: 30px;
+
+    font-weight: 600;
+
+    color: #333;
+
+}
+
+.card-progress .head_1 span{
+
+    color: #ff4732;
+
+}
+
+.card-progress .head_2{
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #333;
+
+    margin-top: 3px;
+
+}
+
+.card-progress ul{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+}
+
+.card-progress ul li{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+
+}
+
+.card-progress ul li .icon{
+
+    font-size: 35px;
+
+
+    color: #ff4732;
+
+    margin: 15px 0;
+
+}
+
+.card-progress ul li .text{
+
+    font-size: 13px;
+    font-weight: 300;
+    text-align: left;
+
+}
+
+ .chart {
+  width: 230px;
+  height: 200px;
+  padding: 10px;
+  margin: auto;
+  align-items:center;
+  background-color: #f2f2f2;  
+  border-radius: 5px;
+}
+
+/*CIRCLE CHART */
+/* Progress Div Css  */
+
+
+.card-progress ul li .progress{
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #7bb701;
+    margin: 0 20px;
+    display: grid;
+    place-items: center;
+    color: #000;
+    position: relative;
+    cursor: pointer;
+}
+.card-progress ul li .progress::after {
+    content: ""; /* Set content for the pseudo-element */
+    position: absolute;
+    background-color: rgba(68, 68, 68, 0.781);
+    right: 30px;
+    width: 3px;
+    height: 55px;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.card-progress .one::after{
+
+    width: 0;
+
+    height: 0;
+
+}
+
+.card-progress ul li .progress .uil{
+
+    display: none;
+    color: #f2f2f2;
+
+}
+
+.card-progress ul li .progress p{
+
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.progressbar ol ul {
+    padding-left: 0rem;
+}
+
+/* Active Css  */
+
+.card-progress ul li .active{
+
+    background-color: #7bb701;
+
+    display: grid;
+
+    place-items: center;
+
+}
+
+.card-progress li .active::after{
+
+    background-color: #7bb701;
+
+}
+
+.card-progress ul li .active p{
+
+    display: none;
+
+}
+
+.card-progress ul li .active .uil{
+
+    font-size: 20px;
+
+    display: flex;
+
+}
+
+@media (max-width:600px) {
+
+    .head .head_1{
+
+        font-size: 24px;
+
+    }
+
+    .head .head_2{
+
+        font-size: 16px;
+
+    }
+
+}
+
+
 
 .card-project {
     width: auto; 
@@ -2285,3 +2480,4 @@ body.beneficiary .add-modal:hover {
         font-size: 3rem;
     }
 }
+
