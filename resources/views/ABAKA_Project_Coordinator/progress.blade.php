@@ -93,7 +93,9 @@
                             <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                           
+                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
+                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
+                                </button>
                             </td>    
                            
                             <td>
@@ -112,7 +114,10 @@
                             <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
+                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
+                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
+                                </button>
+                        </td>    
                           
                             <td>
                             Pending
@@ -129,6 +134,9 @@
                             <td class="no-print">
                                
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
+                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
+                                </button>
                             </td>    
                             
                             <td>
@@ -146,6 +154,9 @@
                             <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
+                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
+                                </button>
                             </td>    
                            
                             <td>
@@ -163,6 +174,9 @@
                             <td class="no-print">
                                 
                                 <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
+                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
+                                </button>
                             </td>    
                            
                             <td>
@@ -180,6 +194,9 @@
                             <td class="no-print">
                                
                                 <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()" ><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
+                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
+                                </button>
                             </td>    
                            
                             <td>
@@ -197,7 +214,9 @@
                             <td>BUCS-CSC</td>
                             <td class="no-print">
                             <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-
+                            <button class="tooltip-button" data-tooltip="Add Value" onclick="showAddValuePopup()" style="background-color: orange; color: white;">
+                                <i class="fa-solid fa-plus-circle fa-2xs"></i>
+                                </button>
                             </td>    
                           
                             <td>
@@ -221,32 +240,45 @@
 </div>
               </div>
 
-              
-              <div id="update-status-popup" class="update-status-popup">
-    <div class="update-status-popup-content">
-        <span class="update-status-popup-close" id="update-status-popup-close">&times;</span>
-        <h2>Beneficiary Progress Details</h2>
-        <p><strong>Beneficiary Name:</strong> <span id="update-status-beneficiary-name"></span></p>
-        <p><strong>Organization:</strong> <span id="update-status-organization"></span></p>
-        <p><strong>Amount:</strong> <span id="update-status-amount"></span></p>
-        <p><strong>Last Updated:</strong> <span id="update-status-last-updated"></span></p>
-        <label for="update-status-dropdown">Update Status:</label>
-        <select id="update-status-dropdown">
-            <option value=""></option>
-            <option value="Pending">Pending</option>
-            <option value="On Hold">On Hold</option>
-            <option value="Dispersed">Dispersed</option>
-            <option value="Released">Released</option>
-        </select>
-        <button id="update-status-save">Save</button>
-        <button id="update-status-discard">Discard</button>
-    </div>
-</div>
+                    
+        <div id="update-status-popup" class="update-status-popup">
+            <div class="update-status-popup-content">
+                <span class="update-status-popup-close" id="update-status-popup-close">&times;</span>
+                <h2>Beneficiary Progress Details</h2>
+                <p><strong>Beneficiary Name:</strong> <span id="update-status-beneficiary-name"></span></p>
+                <p><strong>Organization:</strong> <span id="update-status-organization"></span></p>
+                <p><strong>Amount:</strong> <span id="update-status-amount"></span></p>
+                <p><strong>Last Updated:</strong> <span id="update-status-last-updated"></span></p>
+                <label for="update-status-dropdown">Update Status:</label>
+                <select id="update-status-dropdown">
+                    <option value=""></option>
+                    <option value="Pending">Pending</option>
+                    <option value="On Hold">On Hold</option>
+                    <option value="Dispersed">Dispersed</option>
+                    <option value="Released">Released</option>
+                </select>
+                <button id="update-status-save">Save</button>
+                <button id="update-status-discard">Discard</button>
+            </div>
+        </div>
 
+        <div class="add-value-popup">
+            <div class="add-value-popup-content">
+                <span class="add-value-popup-close" onclick="hideAddValuePopup()">&times;</span>
+                <h2>Add Beneficiary</h2>
+                <form>
+                <label for="name">Beneficiary Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="organization">Organization:</label>
+                <input type="text" id="organization" name="organization" required>
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required>
+                <button type="submit" id="add-beneficiary-button">Save</button>
+                </form>
+            </div>
+            </div>
 
            
-              
-
 <div class="progress-container">
         <div class="progress-line">
 

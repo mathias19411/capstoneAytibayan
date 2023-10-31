@@ -814,6 +814,35 @@ displayUpdates();
             }
         });
     </script>
+
+   
+<script>
+    // Function to show the "Add Value" popup
+function showAddValuePopup() {
+  var addValuePopup = document.querySelector(".add-value-popup");
+  addValuePopup.style.display = "block";
+}
+
+// Function to hide the "Add Value" popup
+function hideAddValuePopup() {
+  var addValuePopup = document.querySelector(".add-value-popup");
+  addValuePopup.style.display = "none";
+}
+
+// Function to handle the form submission
+document.getElementById("add-beneficiary-button").addEventListener("click", function (event) {
+  event.preventDefault();
+  var name = document.getElementById("name").value;
+  var organization = document.getElementById("organization").value;
+  var amount = document.getElementById("amount").value;
+
+  // You can perform further actions with the form data here (e.g., send it to a server or update the UI).
+
+  // Close the "Add Value" popup
+  hideAddValuePopup();
+});
+</script>           
+
 <script>
     //BENEFICIARY SEARCH BAR
     $(document).ready(function () {
