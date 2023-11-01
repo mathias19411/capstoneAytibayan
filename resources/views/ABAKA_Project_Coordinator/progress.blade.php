@@ -83,6 +83,47 @@
                     </thead>
                     <tbody>
                         @foreach ($abakaBeneficiaries as $abakaBeneficiary)
+                        {{-- Modal View for Add --}}
+                            <div id="add-value-popup-{{ $abakaBeneficiary->id }}" class="add-value-popup">
+                                <div class="add-value-popup-content">
+                                    <span class="add-value-popup-close" onclick="hideAddValuePopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                    <h2>Add Beneficiary</h2>
+                                    <form action="{{ route('abakaprojectcoordinator.progressUpdate') }}" enctype="multipart/form-data" method="post">
+                                        <label for="name">Beneficiary Name:</label>
+                                        <input type="text" id="name" name="name" value="{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}" readonly>
+                                        <label for="project">Project:</label>
+                                        <input type="text" id="project" name="project" required>
+                                        <label for="amount">Amount:</label>
+                                        <input type="number" id="amount" name="amount" required>
+                                        <button type="submit" id="add-beneficiary-button">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            {{-- Modal View for Update --}}
+                            <div id="update-status-popup-{{ $abakaBeneficiary->id }}" class="update-status-popup">
+                                <div class="update-status-popup-content">
+                                    <span class="update-status-popup-close" onclick="hideUpdateStatusPopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                    <h2>Beneficiary Progress Details</h2>
+                                    <p><strong>Beneficiary Name:</strong> <span>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</span></p>
+                                    <p><strong>Project:</strong> <span id="update-status-organization"></span></p>
+                                    <p><strong>Amount:</strong> <span id="update-status-amount"></span></p>
+                                    <p><strong>Last Updated:</strong> <span id="update-status-last-updated"></span></p>
+                                    <label for="update-status-dropdown">Update Status:</label>
+                                    <form action="">
+                                        <select id="update-status-dropdown">
+                                            <option value=""></option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="On Hold">On Hold</option>
+                                            <option value="Dispersed">Dispersed</option>
+                                            <option value="Released">Released</option>
+                                        </select>
+
+                                        <button type="submit" id="add-beneficiary-button">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+
                             <tr>
                                 <td>{{ $abakaBeneficiary->id }}</td>
                                 <td>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</td>
@@ -92,125 +133,28 @@
                                 @if ($abakaBeneficiary->assistance)
                                     <td>{{ $abakaBeneficiary->assistance->amount }}</td>
                                     <td>{{ $abakaBeneficiary->assistance->project }}</td>
+                                    <td class="no-print">
+                                        <button class="tooltip-button" data-tooltip="Add" onclick="showAddValuePopup({{ $abakaBeneficiary->id }})"><i class="fa-solid fa-plus fa-2xs"></i></button>
+                                        <button class="tooltip-button" data-tooltip="Update" onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                
+                                    </td>
+                                    <td>
+                                        {{ $abakaBeneficiary->assistance->financial_assistance_status->financial_assistance_status_name }}
+                                    </td>  
                                 @else
                                 <td>N/A</td>
                                 <td>N/A</td>
-                                @endif
-                                
                                 <td class="no-print">
-                                    
-                                    <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                    <button class="tooltip-button" data-tooltip="Add" onclick="showAddValuePopup({{ $abakaBeneficiary->id }})"><i class="fa-solid fa-plus fa-2xs"></i></button>
+                                    <button class="tooltip-button" data-tooltip="Update" onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                             
-                                </td>    
-                            
-                                <td>
-                                Released
                                 </td>
-
+                                <td>
+                                    Unsettled
+                                </td> 
+                                @endif
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Orly Encabo</td>
-                            <td>Rawis</td>
-                            <td>Legazpi</td>
-                            <td>10000</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td class="no-print">
-                                
-                                <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                          
-                            <td>
-                            Pending
-                             </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Orly Encabo</td>
-                            <td>Rawis</td>
-                            <td>Legazpi</td>
-                            <td>10000</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td class="no-print">
-                               
-                                <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            
-                            <td>
-                            Dispersed
-                             </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon</td>
-                            <td>Daraga</td>
-                            <td>10000</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td class="no-print">
-                                
-                                <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                           
-                            <td>
-                            Released
-                             </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon</td>
-                            <td>Daraga</td>
-                            <td>10000</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td class="no-print">
-                                
-                                <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                           
-                            <td>
-                            Released
-                             </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Orly Encabo</td>
-                            <td>Rawis</td>
-                            <td>Legazpi</td>
-                            <td>10000</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td class="no-print">
-                               
-                                <button class="tooltip-button" data-tooltip="Update Status"onclick="showUpdateStatusPopup()" ><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                           
-                            <td>
-                          
-                            On Hold
-                             </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon</td>
-                            <td>Daraga</td>
-                            <td>10000</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td class="no-print">
-                            <button class="tooltip-button" data-tooltip="Update Status" onclick="showUpdateStatusPopup()"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-
-                            </td>    
-                          
-                            <td>
-                           Pending
-                             </td>
-                        </tr>
+                        @endforeach
                      </tbody>
                 </table>
                 
@@ -223,48 +167,15 @@
 
                 <div id="pagination-message"></div>
                 <div class="button-container">
-  <button class="button_top buttons-print" onclick="printTable()"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
- 
-</div>
-              </div>
-
-                    
-        <div id="update-status-popup" class="update-status-popup">
-            <div class="update-status-popup-content">
-                <span class="update-status-popup-close" id="update-status-popup-close">&times;</span>
-                <h2>Beneficiary Progress Details</h2>
-                <p><strong>Beneficiary Name:</strong> <span id="update-status-beneficiary-name"></span></p>
-                <p><strong>Organization:</strong> <span id="update-status-organization"></span></p>
-                <p><strong>Amount:</strong> <span id="update-status-amount"></span></p>
-                <p><strong>Last Updated:</strong> <span id="update-status-last-updated"></span></p>
-                <label for="update-status-dropdown">Update Status:</label>
-                <select id="update-status-dropdown">
-                    <option value=""></option>
-                    <option value="Pending">Pending</option>
-                    <option value="On Hold">On Hold</option>
-                    <option value="Dispersed">Dispersed</option>
-                    <option value="Released">Released</option>
-                </select>
-                <button id="update-status-save">Save</button>
-                <button id="update-status-discard">Discard</button>
-            </div>
+                    <button class="button_top buttons-print" onclick="printTable()"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
+                
+                </div>
         </div>
 
-        <div class="add-value-popup">
-            <div class="add-value-popup-content">
-                <span class="add-value-popup-close" onclick="hideAddValuePopup()">&times;</span>
-                <h2>Add Beneficiary</h2>
-                <form>
-                <label for="name">Beneficiary Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="organization">Organization:</label>
-                <input type="text" id="organization" name="organization" required>
-                <label for="amount">Amount:</label>
-                <input type="number" id="amount" name="amount" required>
-                <button type="submit" id="add-beneficiary-button">Save</button>
-                </form>
-            </div>
-            </div>
+                    
+        
+
+        
 
            
 <div class="progress-container">

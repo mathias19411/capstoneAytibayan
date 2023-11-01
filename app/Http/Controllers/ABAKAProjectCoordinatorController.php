@@ -243,4 +243,11 @@ class ABAKAProjectCoordinatorController extends Controller
 
         return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries'));
     } // End Method
+
+    public function ProjCoordinatorProgressUpdate(Request $request)
+    {
+        
+
+        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries'));
+    } // End Method
 }

@@ -226,7 +226,7 @@ Route::middleware(['auth', 'userroleprotection:leadprojectcoordinator'])->group(
 }); //End group Project Coordinator middleware
 
 //Project Coordinator ABAKA Group Middleware
-Route::middleware(['auth', 'userroleprotection:abakaprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/ABAKA_ProjectCoordinator/home', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('abakaprojectcoordinator.beneficiaries');
 
@@ -250,6 +250,8 @@ Route::middleware(['auth', 'userroleprotection:abakaprojectcoordinator'])->group
     Route::get('/ABAKA_ProjectCoordinator/Inquriy', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('abakaprojectcoordinator.inquiry');
 
     Route::get('/ABAKA_ProjectCoordinator/Progress', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('abakaprojectcoordinator.progress');
+
+    Route::post('/ABAKA_ProjectCoordinator/ProgressUpdate', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgressUpdate'])->name('abakaprojectcoordinator.progressUpdate');
 
     // more routes here for Project Coordinator
 

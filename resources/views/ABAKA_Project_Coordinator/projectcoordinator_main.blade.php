@@ -745,50 +745,6 @@ displayUpdates();
     });
 </script>
 
-
-<script>
-    // Function to show the update status popup
-    function showUpdateStatusPopup() {
-    const popup = document.getElementById('update-status-popup');
-    popup.style.display = 'block';
-
-    // Replace with actual beneficiary information
-    const beneficiaryName = 'Orly Encabo';
-    const organization = 'BUCS-CSC';
-    const amount = '10000';
-    const lastUpdated = '2023-10-29 14:30:00'; // Replace with the actual date and time
-
-    // Split the date and time
-    const [date, time] = lastUpdated.split(' ');
-
-    document.getElementById('update-status-beneficiary-name').textContent = beneficiaryName;
-    document.getElementById('update-status-organization').textContent = organization;
-    document.getElementById('update-status-amount').textContent = amount;
-    document.getElementById('update-status-last-updated').textContent = `${date} ${time}`;
-}
-
-    // Function to close the update status popup
-    document.getElementById('update-status-popup-close').addEventListener('click', function () {
-        document.getElementById('update-status-popup').style.display = 'none';
-    });
-
-    // Function to save the updated status in the update status popup
-    document.getElementById('update-status-save').addEventListener('click', function () {
-        const selectedStatus = document.getElementById('update-status-dropdown').value;
-        if (selectedStatus) {
-            // Handle the status update here, e.g., send it to the server.
-            // You may need to use AJAX or a form submission.
-            console.log('Updated status:', selectedStatus);
-        }
-        document.getElementById('update-status-popup').style.display = 'none';
-    });
-
-    // Function to discard changes and close the update status popup
-    document.getElementById('update-status-discard').addEventListener('click', function () {
-        document.getElementById('update-status-popup').style.display = 'none';
-    });
-</script>
-
 <script>
     function printTable() {
         window.print();
@@ -802,7 +758,7 @@ displayUpdates();
         const rows = table.getElementsByTagName("tr");
 
         searchInput.addEventListener("keyup", function() {
-            const searchValue = searchInput.value.toLowerCase();
+            coshowAddValuePopupnst searchValue = searchInput.value.toLowerCase();
 
             for (let i = 1; i < rows.length; i++) {
                 const beneficiaryName = rows[i].getElementsByTagName("td")[1].textContent.toLowerCase();
@@ -818,14 +774,14 @@ displayUpdates();
    
 <script>
     // Function to show the "Add Value" popup
-function showAddValuePopup() {
-  var addValuePopup = document.querySelector(".add-value-popup");
+function showAddValuePopup(beneficiaryId) {
+  const addValuePopup = document.getElementById('add-value-popup-' + beneficiaryId);
   addValuePopup.style.display = "block";
 }
 
 // Function to hide the "Add Value" popup
-function hideAddValuePopup() {
-  var addValuePopup = document.querySelector(".add-value-popup");
+function hideAddValuePopup(beneficiaryId) {
+  var addValuePopup = document.getElementById('add-value-popup-' + beneficiaryId);
   addValuePopup.style.display = "none";
 }
 
@@ -841,6 +797,53 @@ document.getElementById("add-beneficiary-button").addEventListener("click", func
   // Close the "Add Value" popup
   hideAddValuePopup();
 });
+
+// Function to show the update status popup
+function showUpdateStatusPopup(beneficiaryId) {
+    const popup = document.getElementById('update-status-popup-' + beneficiaryId);
+    popup.style.display = "block";
+
+    // // Replace with actual beneficiary information
+    // const beneficiaryName = 'Orly Encabo';
+    // const organization = 'BUCS-CSC';
+    // const amount = '10000';
+    // const lastUpdated = '2023-10-29 14:30:00'; // Replace with the actual date and time
+
+    // // Split the date and time
+    // const [date, time] = lastUpdated.split(' ');
+
+    // document.getElementById('update-status-beneficiary-name').textContent = beneficiaryName;
+    // document.getElementById('update-status-organization').textContent = organization;
+    // document.getElementById('update-status-amount').textContent = amount;
+    // document.getElementById('update-status-last-updated').textContent = `${date} ${time}`;
+}
+
+// Function to hide the update status popup
+    function hideUpdateStatusPopup(beneficiaryId) {
+    var updateStatusPopup = document.getElementById('update-status-popup-' + beneficiaryId);
+    updateStatusPopup.style.display = "none";
+    }
+
+    // // Function to close the update status popup
+    // document.getElementById('update-status-popup-close').addEventListener('click', function () {
+    //     document.getElementById('update-status-popup').style.display = 'none';
+    // });
+
+    // // Function to save the updated status in the update status popup
+    // document.getElementById('update-status-save').addEventListener('click', function () {
+    //     const selectedStatus = document.getElementById('update-status-dropdown').value;
+    //     if (selectedStatus) {
+    //         // Handle the status update here, e.g., send it to the server.
+    //         // You may need to use AJAX or a form submission.
+    //         console.log('Updated status:', selectedStatus);
+    //     }
+    //     document.getElementById('update-status-popup').style.display = 'none';
+    // });
+
+    // // Function to discard changes and close the update status popup
+    // document.getElementById('update-status-discard').addEventListener('click', function () {
+    //     document.getElementById('update-status-popup').style.display = 'none';
+    // });
 </script>           
 
 <script>
