@@ -166,68 +166,30 @@
                                     onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
 
-                                <button type="submit" id="update-beneficiary-button">Save</button>
-                                </form>
-    </div>
-    </div>
-    <tr>
-        <td>{{ $abakaBeneficiary->id }}</td>
-        <td>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}
-        </td>
-        <td>{{ $abakaBeneficiary->barangay }}</td>
-        <td>{{ $abakaBeneficiary->city }}</td>
-        <td>{{ $abakaBeneficiary->status->status_name }}</td>
-        @if ($abakaBeneficiary->assistance)
-            <td>{{ $abakaBeneficiary->assistance->amount }}</td>
-            <td>{{ $abakaBeneficiary->assistance->project }}</td>
-            <td class="no-print">
-                <button class="tooltip-button" data-tooltip="Add"
-                    onclick="showAddValuePopup({{ $abakaBeneficiary->id }})"><i
-                        class="fa-solid fa-plus fa-2xs"></i></button>
-                <button class="tooltip-button" data-tooltip="Update"
-                    onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
-                        class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-
-            </td>
-            <td>
-                {{ $abakaBeneficiary->assistance->financial_assistance_status->financial_assistance_status_name }}
-            </td>
-        @else
-            <td>N/A</td>
-            <td>N/A</td>
-            <td class="no-print">
-                <button class="tooltip-button" data-tooltip="Add"
-                    onclick="showAddValuePopup({{ $abakaBeneficiary->id }})"><i
-                        class="fa-solid fa-plus fa-2xs"></i></button>
-                <button class="tooltip-button" data-tooltip="Update"
-                    onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
-                        class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-
-            </td>
-            <td>
-                Unsettled
-            </td>
-        @endif
-    </tr>
-    @endforeach
-    </tbody>
-    </table>
-
-
-    <div class="pagination">
-        <button id="prev-page">Previous</button>
-        <div id="page-numbers"></div>
-        <button id="next-page">Next</button>
-    </div>
+                            <td>Unsettled</td>
+                        @endif
+                @endforeach
+            </tbody>
+        </table>
 
 
 
-    <div id="pagination-message"></div>
-    <div class="button-container">
-        <button class="button_top buttons-print" onclick="printTable()"> <i class="fa-solid fa-print"
-                style="color: #ffffff;"></i> Print</button>
 
-    </div>
+
+        <div class="pagination">
+            <button id="prev-page">Previous</button>
+            <div id="page-numbers"></div>
+            <button id="next-page">Next</button>
+        </div>
+
+
+
+        <div id="pagination-message"></div>
+        <div class="button-container">
+            <button class="button_top buttons-print" onclick="printTable()"> <i class="fa-solid fa-print"
+                    style="color: #ffffff;"></i> Print</button>
+
+        </div>
     </div>
 
 
