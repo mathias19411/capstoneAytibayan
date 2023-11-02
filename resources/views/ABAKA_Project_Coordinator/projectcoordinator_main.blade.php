@@ -798,52 +798,25 @@ document.getElementById("add-beneficiary-button").addEventListener("click", func
   hideAddValuePopup();
 });
 
-// Function to show the update status popup
 function showUpdateStatusPopup(beneficiaryId) {
     const popup = document.getElementById('update-status-popup-' + beneficiaryId);
     popup.style.display = "block";
-
-    // // Replace with actual beneficiary information
-    // const beneficiaryName = 'Orly Encabo';
-    // const organization = 'BUCS-CSC';
-    // const amount = '10000';
-    // const lastUpdated = '2023-10-29 14:30:00'; // Replace with the actual date and time
-
-    // // Split the date and time
-    // const [date, time] = lastUpdated.split(' ');
-
-    // document.getElementById('update-status-beneficiary-name').textContent = beneficiaryName;
-    // document.getElementById('update-status-organization').textContent = organization;
-    // document.getElementById('update-status-amount').textContent = amount;
-    // document.getElementById('update-status-last-updated').textContent = `${date} ${time}`;
 }
 
 // Function to hide the update status popup
-    function hideUpdateStatusPopup(beneficiaryId) {
-    var updateStatusPopup = document.getElementById('update-status-popup-' + beneficiaryId);
-    updateStatusPopup.style.display = "none";
-    }
+function hideUpdateStatusPopup(beneficiaryId) {
+    const popup = document.getElementById('update-status-popup-' + beneficiaryId);
+    popup.style.display = "none";
+}
 
-    // // Function to close the update status popup
-    // document.getElementById('update-status-popup-close').addEventListener('click', function () {
-    //     document.getElementById('update-status-popup').style.display = 'none';
-    // });
+// Add event listener to close the popup when the "Save" button is clicked
+document.getElementById('update-beneficiary-button').addEventListener('click', function () {
+    // Perform actions when the Save button is clicked
+    // You can handle form submission or other actions here
 
-    // // Function to save the updated status in the update status popup
-    // document.getElementById('update-status-save').addEventListener('click', function () {
-    //     const selectedStatus = document.getElementById('update-status-dropdown').value;
-    //     if (selectedStatus) {
-    //         // Handle the status update here, e.g., send it to the server.
-    //         // You may need to use AJAX or a form submission.
-    //         console.log('Updated status:', selectedStatus);
-    //     }
-    //     document.getElementById('update-status-popup').style.display = 'none';
-    // });
-
-    // // Function to discard changes and close the update status popup
-    // document.getElementById('update-status-discard').addEventListener('click', function () {
-    //     document.getElementById('update-status-popup').style.display = 'none';
-    // });
+    // Close the popup
+    hideUpdateStatusPopup();
+});
 </script>           
 
 <script>

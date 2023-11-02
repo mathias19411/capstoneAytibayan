@@ -116,43 +116,47 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="input-group">
-                    <label for="programPhoto">Program Image:</label>
-                    <input type="file" class="custom-file-input form-control form-control-alternative"
-                        id="programPhoto" name="programPhoto">
-                </div>
+              
+            <div class="input-group">
+                <label for="programPhoto">Program Image:</label>
+                <input type="file" class="custom-file-label" id="programPhoto" name="programPhoto">
+               
                 <div class="image-container">
-                    <img id="image-preview"
-                        src="{{ !empty($program->image) ? url('Uploads/Program_images/' . $program->image) : url('Uploads/no-image.jpg') }}"
-                        alt="User Profile Image" class="img-fluid-small  rounded-circle">
-                    {{-- <span class="delete-icon" id="delete-image-btn">×</span> --}}
-                </div>
+                <img id="image-preview"
+                    src="{{ !empty($program->image) ? url('Uploads/Program_images/' . $program->image) : url('Uploads/no-image.jpg') }}"
+                    alt="User Profile Image" class="img-fluid-small  rounded-circle">
+                 <span class="delete-icon" id="delete-image-btn">×</span>
+                 </div>
+            
             </div>
 
+            </div>
+            
             <div class="form-row1">
                 <div class="input-group">
                     <label for="input-BackgroundImage">Program Background Image:</label>
-                    <input type="file" class="custom-file-input form-control form-control-alternative"
+                    <input type="file" class="custom-file-label"
                         id="input-BackgroundImage" name="programBackgroundPhoto">
-                </div>
+               
                 <div class="image-container">
                     <img id="image-preview1"
                         src="{{ !empty($program->background_image) ? url('Uploads/Program_images/' . $program->background_image) : url('Uploads/no-image.jpg') }}"
                         alt="Program Background Image" class="img-fluid-small  rounded-circle">
-                    {{-- <span class="delete-icon" id="delete-image-btn">×</span> --}}
+                   <span class="delete-icon" id="delete-image-btn">×</span> 
+                </div>
                 </div>
             </div>
 
-
+           
             <button type="submit" class="btn btn-primary me-2">Save Your Changes</button>
-
+           
 
         </form>
 
 
-        <div class="center1">
+        
             <a href="{{ route('itstaff.home') }}" class="button discard-button">Discard</a>
-        </div>
+        
     </div>
 
     <script>

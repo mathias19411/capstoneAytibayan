@@ -6,7 +6,20 @@
 <div class="title">
         <h1>Beneficiaries</h1>
 </div>
-
+<div class="boxes">
+            <div class="box box-1">
+                <h1>Beneficiaries</h1>
+                <p>eme</p>
+            </div>
+            <div class="box box-1 ">
+                <h1>Active</h1>
+                <p>eme</p>
+            </div>
+            <div class="box box-2">
+                <h1>Inactive</h1>
+                <p>eme</p>
+            </div>
+         </div>
 <div class="button-container">
   <button class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
   <button class="button_top"> <i class="fa-solid fa-file-arrow-up" style="color: #ffffff;"></i> Import</button>
