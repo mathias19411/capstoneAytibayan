@@ -903,7 +903,7 @@ body {
   font-weight: bold;
 }
 /* Styles for the Update Status popup */
-#update-status-popup {
+.update-status-popup {
     display: none;
     position: fixed;
     top: 0;
@@ -978,19 +978,19 @@ body {
     border-radius: 4px;
 }
 
-#update-status-discard {
-    background-color: red;
-    color: #fff;
+#update-beneficiary-button {
+    background-color: var(--colorOrange); /* Change this to your desired background color */
+    color: #fff; /* Text color */
     border: none;
-    padding: 5px 10px;
-    font-size: 15px;
-    margin-top: 10px;
+    padding: 5px 20px; /* Adjust padding as needed */
+    font-size: 15px; /* Adjust font size as needed */
+    border-radius: 10px; /* Rounded corners */
     cursor: pointer;
-    border-radius: 4px;
+    margin-top: 10px; /* Adjust margin as needed */
 }
 
-#update-status-save:hover, #update-status-discard:hover {
-    background-color: var(--primary-color);
+#update-beneficiary-button:hover {
+    background-color: var(--primary-color); /* Change to a different color on hover if desired */
 }
 
 /* Style for the popup container */
@@ -1044,16 +1044,19 @@ body {
   
   /* Style for the submit button */
   .add-value-popup button[type="submit"] {
-    background-color: green;
-    color: white;
-    padding: 10px 20px;
+    background-color: var(--colorOrange); /* Change this to your desired background color */
+    color: #fff; /* Text color */
     border: none;
-    border-radius: 3px;
+    padding: 5px 20px; /* Adjust padding as needed */
+    font-size: 15px; /* Adjust font size as needed */
+    border-radius: 10px; /* Rounded corners */
     cursor: pointer;
-  }
+    margin-top: 10px; /* Adjust margin as needed */
+}
+  
   
   .add-value-popup button[type="submit"]:hover {
-    background-color: darkgreen;
+    background-color: var(--primary-color);
   }
   
 

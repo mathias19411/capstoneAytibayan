@@ -10,16 +10,16 @@
     
          <div class="boxes">
             <div class="box box-1">
-                <h1>Beneficiaries</h1>
-                <p>{{ $abakaBeneficiariesCount }}</p>
+                <h1>Graph 1</h1>
+                <p>g1</p>
             </div>
             <div class="box box-1 ">
-                <h1>Active</h1>
-                <p>{{ $abakaActiveCount }}</p>
+                <h1>Graph 2</h1>
+                <p>g2</p>
             </div>
             <div class="box box-2">
-                <h1>Inactive</h1>
-                <p>{{ $abakaInactiveCount }}</p>
+                <h1>Graph 3</h1>
+                <p>g3</p>
             </div>
             <div class="box box-3">
                 <h1>Progress %</h1>
@@ -119,11 +119,10 @@
                                             <option value="Released">Released</option>
                                         </select>
 
-                                        <button type="submit" id="add-beneficiary-button">Save</button>
+                                        <button type="submit" id="update-beneficiary-button">Save</button>
                                     </form>
                                 </div>
                             </div>
-
                             <tr>
                                 <td>{{ $abakaBeneficiary->id }}</td>
                                 <td>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</td>
