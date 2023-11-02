@@ -753,21 +753,14 @@ ol, ul {
 }
 
 
-#email,
-#contact,
-#table_name,
-#num_columns {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    box-sizing: border-box;
-}
+#inputEmail,
+#inputContact,
 
 #name,
-#program_name,
-#program_key,
-#loc{
+#programnameInput,
+#password,
+#password_confirmation,
+#inputLocation{
     width: 98%;
     padding-left: 10px;
     padding: 5px;
@@ -776,16 +769,18 @@ ol, ul {
     box-sizing: border-box;
 }
 
-#info {
-    width: 100%;
+#inputInfo {
+    width: 98%;
     height: 33px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
     box-sizing: border-box;
 }
 
-#image {
+
+#inputApply,
+#inputReqs {
     width: 100%;
     height: 150px;
     padding: 10px;
@@ -794,10 +789,43 @@ ol, ul {
     box-sizing: border-box;
 }
 
-#apply,
-#reqs {
+/* Custom file label styles */
+.input-group .custom-file-label {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.input-group .custom-file-label:hover {
+    text-decoration: underline;
+}
+
+/* Style the image container */
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+
+#input-BackgroundImage,
+#programPhoto{
     width: 100%;
-    height: 150px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
@@ -811,19 +839,15 @@ ol, ul {
     margin-bottom: 15px;
     border-bottom: 5px solid var(--primary-color);
     padding-bottom: 10px;
-}
-.center {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    width: 100%; 
+   
 }
 
-.program-form .center input[type="submit"] {
+.program-form  .btn-primary {
     background-color: var(--colorOrange);
     color: white;
     border: none;
     padding: 10px 20px;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
@@ -831,7 +855,7 @@ ol, ul {
     cursor: pointer;
     margin-left: auto;
     border-radius: 20px;
-    text-transform: uppercase;
+    margin-bottom: 30px; /* Add margin-bottom to separate the buttons */
     font-weight: bold;
 }
 
@@ -839,24 +863,25 @@ ol, ul {
     background-color: var(--primary-color);
 }
 
-.program-form .center1 .discard-button {
+.program-form  .discard-button {
     background-color: #e74c3c;
     color: white;
+    margin-top: 100px; /* Adjust the margin-top to separate the buttons */
     border: none;
     padding: 10px 20px;
     font-size: 14px;
     border-radius: 20px;
     cursor: pointer;
-    text-decoration: none; /* Remove underline from the anchor */
+    text-decoration: none; 
     transition: background-color 0.3s ease-in-out;
 }
 
-.program-form .center1 .discard-button:hover {
+.program-form  .discard-button:hover {
     background-color: var(--box2-color);
     color: #4caf50;
 }
 
-.program-form .center1 input[type="submit"]:hover {
+.program-form input[type="submit"]:hover {
     background-color: var(--colorOrange);
     color: white;
 }
