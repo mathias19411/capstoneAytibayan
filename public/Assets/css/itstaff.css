@@ -391,20 +391,29 @@ ol, ul {
 
 .dash-content .user-stats {
     display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    margin: 20px;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap;
+ 
+ 
+
 }
 
 .dash-content .total-users,
 .dash-content .inactive-active-users {
-    width: 50%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 95%;
     flex-wrap: wrap;
 }
 
+
 /* Styling for h1 tags above the boxes */
 .dash-content .total-users .name h1,
-.dash-content .inactive-active-users .name h1 {
+.dash-content .inactive-active-users .name h1,
+.dash-content .bar-chart .name h1,
+.dash-content .line-chart .name h1  {
     margin-top: 20px;
     padding: 5px 10px;
     font-size: 20px;
@@ -417,7 +426,9 @@ ol, ul {
 }
 
 .dash-content .total-users .name,
-.dash-content .inactive-active-users .name {
+.dash-content .inactive-active-users .name,
+.dash-content .bar-chart .name ,
+.dash-content .line-chart .name  {
     width: 100%;
     border: none;
     border-bottom: 2px solid var(--primary-color);
@@ -450,6 +461,99 @@ ol, ul {
     font-weight: bold;
 }
 
+.bar-chart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+ 
+ 
+}
+
+
+/**
+.chartcontainer {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  
+}
+
+.pie-chart, .graphs, .line-chart {
+    flex: 1; 
+    max-width: 33.33%; 
+    text-align: center;
+     height: 300px;
+     margin: 0;
+     gap:30px;
+}
+
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.chart-title {
+    text-align: center;
+    margin: 10px 0; /* Add margin for vertical spacing */
+
+
+
+.dash-content .user-stats .boxes1 {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.dash-content .boxes1 .box {
+    position: relative;
+    width: 33.33%;
+    height: 280px;
+    border: 1px solid #e8d7d7;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 0 10px;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
+    margin-top: 60px;
+}
+
+.dash-content  .boxes1 .box h1 {
+    position: absolute; 
+    top: -60px; 
+    left: 0;
+    right: 0;
+    margin: 10px;
+    font-size: 1.25rem; 
+    color: #000; 
+}
+.pie-chart {
+    width: 100%; /* Ensure the pie chart takes full width */
+    max-height: 300px; /* Set a maximum height to prevent overlapping */
+}
+.pie-chart,
+.bar-chart,
+.line-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.chart-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; 
+    height: 100%; 
+}
 /* Number box styling */
 .dash-content .number-box1 {
     display: inline-block;
@@ -496,13 +600,6 @@ ol, ul {
     background: linear-gradient(to right, green 100%, transparent 0);
 }
 
-.dash-content .inactive-line {
-    background: linear-gradient(to right, orange 66.6%, transparent 0);
-}
-
-.dash-content .active-line {
-    background: linear-gradient(to right, green 50%, transparent 0);
-}
 
 .dashboard .dash-content {
     padding-top: 50px;
@@ -1958,6 +2055,25 @@ body.announcement_events_inquiry .message-row {
     text-align: center;
 }
 @media (max-width: 768px) {
+   
+    .dash-content .user-stats .total-users .boxes1 {
+        flex-direction: column !important;
+        align-items: center;
+        gap: 0;
+        }
+        .dash-content .user-stats .boxes1 .box h1{
+            font-size: 15px;
+        }
+        .dash-content .boxes1 .box {
+            align-content: center;
+            position: relative;
+            width: 100%;
+  
+      
+          
+        }
+    
+    
     body.announcement_events_inquiry .table-header {
         flex-direction: column;
         align-items: center;
@@ -1983,5 +2099,10 @@ body.announcement_events_inquiry .message-row {
 
     body.announcement_events_inquiry .table-header-right .search-container input[type="text"] {
         max-width: none;
+    }
+}
+@media (max-width: 768px) and (min-width: 483px) {
+    .pie-chart {
+        max-height: none; /* Remove the maximum height for pie chart */
     }
 }

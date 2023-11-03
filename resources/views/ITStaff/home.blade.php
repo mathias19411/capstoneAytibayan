@@ -22,12 +22,12 @@
 <body class="home">
 
     @include('ITStaff.Body.sidebar')
-
+   
     <div class="dash-content">
         <div class="picture">
             <img src="\images\background.png" alt="Logo">
         </div>
-
+        
         <div class="user-stats">
             <div class="total-users">
                 <div class=name>
@@ -36,74 +36,71 @@
                 <p>Number of beneficiaries in the Sustainable Livelihood Program. </p>
                 <div class="number-box1">
                     <div class="label-number">
-                        <span class="label">Total Users</span>
-                        <span class="number">{{ $totalUsers }} Users</span>
-                    </div>
-                    <div class="number-line total-line"></div>
-                </div>
-                <div class="number-box1">
-                    <div class="label-number">
-                        <span class="label">Total Project Coordinators</span>
-                        <span class="number">{{ $totalcoordinators }} Project Coordinators</span>
-                    </div>
-                    <div class="number-line total-line"></div>
-                </div>
-                <div class="number-box1">
-                    <div class="label-number">
-                        <span class="label">Total Beneficiaries</span>
+                        <span class="label"></span>
                         <span class="number">{{ $totalbeneficiaries }} Beneficiaries</span>
                     </div>
                     <div class="number-line total-line"></div>
                 </div>
+                <div class="boxes1">
+                    <div class="box box-1">
+                        <h1>Beneficiary Status</h1>
+                        <div class="chart-inner" id="pie-chart"></div>
+                    </div>
+                    <div class="box box-1 ">
+                        <h1>Active Beneficiaries per Program</h1>
+                        <div id="bar-chart"></div>
+                    </div>
+                    <div class="box box-1">
+                        <h1>Monthly Beneficiaries</h1>
+                        <div id="line-chart"></div>
+                    </div>
+                </div>
+                
+
+
             </div>
             <div class="inactive-active-users">
                 <div class=name>
                     <h1>Accounts</h1><br>
                 </div>
-                <p>Number of beneficiaries who have accounts.<br> Active and Inactive Accounts </p>
+                <p>Total Number of Users </p>
+                <div class="number-box1">
+                    <div class="label-number">
+                        <span class="label"></span>
+                        <span class="number">59</span>
+                    </div>
+                    <div class="number-line total-line"></div>
+                </div>
+                <div class="boxes1">
+                    <div class="box box-1">
+                        <h1>eme pie charts</h1>
+                        <div class="chart-inner" id="pie-chart"></div>
+                    </div>
+                    
+                </div>
 
-                {{-- <div class="active">
-                    <div class="number-box2">
-                        <div class="label-number">
-                            <span class="label">Active</span>
-                            <span class="number">{{ $activeBeneficiaries }} Beneficiaries</span>
-                        </div>
-                        <div class="number-line active-line"></div>
-                    </div>
-                </div>
-                <div class="inactive">
-                    <div class="number-box2">
-                        <div class="label-number">
-                            <span class="label">Inactive</span>
-                            <span class="number">{{ $inactiveBeneficiaries }} Beneficiaries</span>
-                        </div>
-                        <div class="number-line inactive-line"></div>
-                    </div>
-                </div> --}}
-                <div class="pie-chart">
-                    <div class="chart-title">
-                        <h4>Beneficiary Status</h4>
-                    </div>
-                    <div id="pie-chart"></div>
-                </div>
+                
+                
             </div>
             
+         
         </div>
-        <div class="bar-chart">
-            <div class="chart-title">
-                <h4>Number of Beneficiaries Per Program</h4>
+             
+       
+        <div class="title">
+            <h1>programs</h1>
+        </div>
+        <div class="coord">
+                <div class="box">
+                    <span class="text">Project Coordinators</span>
+                    <span class="number">{{ $totalcoordinators }}</span>
+                    <button type="button" class="add-modal" data-bs-toggle="modal"
+                        data-bs-target="#modal_announcement">View</button>
+                </div>
             </div>
-            <div id="bar-chart"></div>
-        </div>
-        <div class="line-chart">
-            <div class="chart-title">
-                <h4>Monthly Beneficiaries</h4>
-            </div>
-            <div id="line-chart"></div>
-        </div>
+    
         
-
-        <div class="overview">
+     <div class="overview">
 
 
             <div class="boxes">
@@ -147,14 +144,7 @@
             </div>
         </div>
 
-        <div class="coord">
-            <div class="box">
-                <span class="text">Project Coordinators</span>
-                <span class="number">{{ $totalcoordinators }}</span>
-                <button type="button" class="add-modal" data-bs-toggle="modal"
-                    data-bs-target="#modal_announcement">View</button>
-            </div>
-        </div>
+        
 
     </div>
 
@@ -238,7 +228,9 @@
         </div>
     </div>
     
-    
+    <script>
+       
+    </script>
     {{-- apex charts cdn --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
@@ -259,7 +251,8 @@
         }],
             chart: {
             type: 'bar',
-            height: 300,
+            height: '100%',
+            width:'100%',
             toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
                 show: true
             },
@@ -284,6 +277,7 @@
             borderRadius: 4,
             horizontal: false,
             columnWidth: '40%',
+           
             }
         },
         dataLabels: {
@@ -312,7 +306,9 @@
         data: monthCount
         }],
         chart: {
-        height: 350,
+        height: '100%',
+        width:'100%',
+  
         type: 'line',
         zoom: {
         enabled: false
@@ -353,26 +349,60 @@
         var options = {
           series: totalActiveandInactiveBeneficiaries,
           chart: {
-          width: 380,
+  
           type: 'pie',
           toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
                 show: true
             },
+            width:'100%', // Set the width of the chart
+        height: 450,
         },
+        colors: [
+            "#7bb701",
+            "#f0a60f",
+          
+        ],
         labels: ['Active', 'Inactive'],
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
+    responsive: [
+        {
+            breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
+            options: {
+                chart: {
+                    width: '90%', // Adjust the width for smaller screens
+                },
+                legend: {
+                    position: 'bottom'
+                }
             }
-          }
-        }]
-        };
-
+        },
+        {
+            breakpoint: 769, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+            options: {
+                chart: {
+                    width: '40%',
+                   
+                    height: 450,
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
+        {
+            breakpoint: 694, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+            options: {
+                chart: {
+                    width: '50%',
+                  
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    ]
+};
+       
         var chart = new ApexCharts(document.querySelector("#pie-chart"), options);
         chart.render();
     </script>
