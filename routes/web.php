@@ -251,6 +251,8 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
 
     Route::get('/ABAKA_ProjectCoordinator/Progress', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('abakaprojectcoordinator.progress');
 
+    Route::post('/ABAKA_ProjectCoordinator/ProgressAdd', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgressAdd'])->name('abakaprojectcoordinator.progressAdd');
+
     Route::post('/ABAKA_ProjectCoordinator/ProgressUpdate', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgressUpdate'])->name('abakaprojectcoordinator.progressUpdate');
 
     // more routes here for Project Coordinator

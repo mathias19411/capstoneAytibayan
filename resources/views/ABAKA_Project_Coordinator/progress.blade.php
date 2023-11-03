@@ -75,8 +75,8 @@
                     <th scope="col">Barangay</th>
                     <th scope="col">City</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Amount</th>
                     <th scope="col">Project</th>
+                    <th scope="col">Amount</th>
                     <th scope="col" class="no-print">Action</th>
                     <th scope="col">Assistance Status</th>
 
@@ -90,8 +90,10 @@
                             <span class="add-value-popup-close"
                                 onclick="hideAddValuePopup({{ $abakaBeneficiary->id }})">&times;</span>
                             <h2>Add Beneficiary</h2>
-                            <form action="{{ route('abakaprojectcoordinator.progressUpdate') }}"
-                                enctype="multipart/form-data" method="post">
+                            <form action="{{ route('abakaprojectcoordinator.progressAdd') }}" enctype="multipart/form-data"
+                                method="post">
+                                @csrf
+
                                 <input type="hidden" name="userId" value="{{ $abakaBeneficiary->id }}">
 
                                 <label for="name">Beneficiary Name:</label>
@@ -100,9 +102,17 @@
                                     readonly>
                                 <label for="project">Project:</label>
                                 <input type="text" id="project" name="project" required>
+                                @error('project')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="amount">Amount:</label>
                                 <input type="number" id="amount" name="amount" required>
-                                <button type="submit" id="add-beneficiary-button">Save</button>
+                                @error('amount')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <input type="hidden" name="financialassistancestatus_id" value="2">
+
+                                <button type="submit" class="add">Save Changes</button>
                             </form>
                         </div>
                     </div>
@@ -115,20 +125,34 @@
                             <h2>Beneficiary Progress Details</h2>
                             <p><strong>Beneficiary Name:</strong> <span>{{ $abakaBeneficiary->first_name }}
                                     {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</span></p>
-                            <p><strong>Project:</strong> <span id="update-status-organization"></span></p>
-                            <p><strong>Amount:</strong> <span id="update-status-amount"></span></p>
-                            <p><strong>Last Updated:</strong> <span id="update-status-last-updated"></span></p>
-                            <label for="update-status-dropdown">Update Status:</label>
-                            <form action="">
-                                <select id="update-status-dropdown">
-                                    <option value=""></option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="On Hold">On Hold</option>
-                                    <option value="Dispersed">Dispersed</option>
-                                    <option value="Released">Released</option>
-                                </select>
+                            @if ($abakaBeneficiary->assistance)
+                                <p><strong>Project:</strong> <span>{{ $abakaBeneficiary->assistance->project }}</span></p>
+                                <p><strong>Amount:</strong> <span>{{ $abakaBeneficiary->assistance->amount }}</span></p>
+                                <p><strong>Last Updated:</strong>
+                                    <span>{{ $abakaBeneficiary->assistance->updated_at }}</span>
+                                </p>
+                            @endif
 
-                                <button type="submit" id="add-beneficiary-button">Save</button>
+                            <label for="update-status-dropdown">Update Status:</label>
+                            <form action="{{ route('abakaprojectcoordinator.progressUpdate') }}"
+                                enctype="multipart/form-data" method="post">
+                                @csrf
+
+                                @if ($abakaBeneficiary->assistance)
+                                    <input type="hidden" name="assistanceId"
+                                        value="{{ $abakaBeneficiary->assistance->id }}">
+
+
+                                    <select id="update-status-dropdown" name="inputAssistanceUpdate">
+                                        @foreach ($assistanceStatuses as $assistanceStatus)
+                                            <option value="{{ $assistanceStatus->id }}"
+                                                @if ($assistanceStatus->id == $abakaBeneficiary->assistance->financialassistancestatus_id) selected @endif>
+                                                {{ $assistanceStatus->financial_assistance_status_name }}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
+
+                                <button type="submit" class="add">Save Changes</button>
                             </form>
                         </div>
                     </div>
@@ -141,20 +165,19 @@
                         <td>{{ $abakaBeneficiary->city }}</td>
                         <td>{{ $abakaBeneficiary->status->status_name }}</td>
                         @if ($abakaBeneficiary->assistance)
-                            <td>{{ $abakaBeneficiary->assistance->amount }}</td>
                             <td>{{ $abakaBeneficiary->assistance->project }}</td>
+                            <td>{{ $abakaBeneficiary->assistance->amount }}</td>
                             <td class="no-print">
                                 <button class="tooltip-button" data-tooltip="Add"
-                                    onclick="showAddValuePopup({{ $abakaBeneficiary->id }})"><i
+                                    onclick="showAddValuePopup({{ $abakaBeneficiary->id }})" disabled
+                                    style="opacity: 0.5; cursor: not-allowed;"><i
                                         class="fa-solid fa-plus fa-2xs"></i></button>
                                 <button class="tooltip-button" data-tooltip="Update"
                                     onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
 
                             </td>
-                            <td>
-                                {{ $abakaBeneficiary->assistance->financial_assistance_status->financial_assistance_status_name }}
-                            </td>
+                            <td>{{ $abakaBeneficiary->financialAssistanceStatus->financial_assistance_status_name }}</td>
                         @else
                             <td>N/A</td>
                             <td>N/A</td>
@@ -163,7 +186,8 @@
                                     onclick="showAddValuePopup({{ $abakaBeneficiary->id }})"><i
                                         class="fa-solid fa-plus fa-2xs"></i></button>
                                 <button class="tooltip-button" data-tooltip="Update"
-                                    onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
+                                    onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})" disabled
+                                    style="opacity: 0.5; cursor: not-allowed;"><i
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
 
                             <td>Unsettled</td>

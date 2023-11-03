@@ -13,6 +13,8 @@ use App\Models\announcement;
 use App\Models\inquiries;
 use App\Models\progress;
 use App\Models\events;
+use App\Models\Financialassistance;
+use App\Models\Financialassistancestatus;
 
 class ABAKAProjectCoordinatorController extends Controller
 {
@@ -206,6 +208,7 @@ class ABAKAProjectCoordinatorController extends Controller
 
         return view('ABAKA_Project_Coordinator.inquiry', ['progress'=>$inquiry]);
     } // End Method
+    
     public function ProjCoordinatorProgress()
     {
         $progress = progress::all();
@@ -241,13 +244,55 @@ class ABAKAProjectCoordinatorController extends Controller
             $query->where('program_name', 'abakamopisomo');
         })->get();
 
-        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries'));
+        $assistanceStatuses = Financialassistancestatus::all();
+
+        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries', 'assistanceStatuses'));
+    } // End Method
+
+    public function ProjCoordinatorProgressAdd(Request $request)
+    {
+        $userId = $request->userId;
+
+        // Validate form inputs
+        $validatedData = $request->validate([
+            'project' => ['required', 'string', 'max:70'],
+            'amount' => ['required', 'numeric'],
+        ]);
+
+        if ($validatedData)
+        {
+            Financialassistance::create([
+                'user_id' => $userId,
+                'project' => $validatedData['project'],
+                'amount' => $validatedData['amount'],
+                'financialassistancestatus_id' => 2,
+            ]);
+        }
+
+        toastr()->timeOut(10000)->addSuccess('A new Beneficiary Project has been added!');
+
+        return redirect()->route('abakaprojectcoordinator.progress');
     } // End Method
 
     public function ProjCoordinatorProgressUpdate(Request $request)
     {
-        
+        $assistanceId = $request->assistanceId;
 
-        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries'));
+        $financialAssistanceId = Financialassistance::findOrFail($assistanceId);
+
+        if ($request->inputAssistanceUpdate == 5) {
+            // Status is "rejected," delete the associated row
+            $financialAssistanceId->delete();
+        }
+        else
+        {
+            $financialAssistanceId->update([
+                'financialassistancestatus_id' => $request->inputAssistanceUpdate,
+            ]);
+        }
+
+        toastr()->timeOut(10000)->addSuccess('Beneficiary Financial Assistance Status has been updated!');
+
+        return redirect()->route('abakaprojectcoordinator.progress');
     } // End Method
 }

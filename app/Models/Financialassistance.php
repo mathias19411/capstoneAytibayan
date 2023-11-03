@@ -12,8 +12,9 @@ class Financialassistance extends Model
     protected $fillable = [
         'id',
         'user_id',
+        'project',
         'amount',
-        'financial_assistance_status_id',
+        'financialassistancestatus_id',
         'created_at',
         'updated_at',
     ];

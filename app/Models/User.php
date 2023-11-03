@@ -134,6 +134,10 @@ class User extends Authenticatable
         return $this->hasOne(Financialassistance::class, 'user_id');
     }
 
+    public function financialAssistanceStatus() {
+        return $this->assistance->belongsTo(Financialassistancestatus::class, 'financialassistancestatus_id');
+    }
+
     public function generateTwoFactorCode()
     {
         $this->timestamps = false; //Dont update the 'updated_at' field yet
