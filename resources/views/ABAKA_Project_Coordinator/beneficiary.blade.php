@@ -271,7 +271,7 @@
                 <button type="button" class="btn add" id="add-schedule-button">Add Schedule</button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -303,7 +303,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="add" id="save-schedule-button">Save</button>
             </div>
         </div>
