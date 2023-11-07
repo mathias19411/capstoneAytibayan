@@ -550,9 +550,6 @@ function setBeneficiaryName(name) {
 const beneficiaryName = "Orly Encabo"; // Replace with the actual beneficiary name
 setBeneficiaryName(beneficiaryName);
 
-// Show the modal
-const viewBeneficiaryUpdatesModal = new bootstrap.Modal(document.getElementById("view_beneficiary_updates"));
-viewBeneficiaryUpdatesModal.show();
 
 
 // Existing updates data

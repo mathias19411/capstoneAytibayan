@@ -10,11 +10,15 @@
 
     <div class="table-header">
         <div class="table-header-left">
-            <label for="unread-filter">Filter: </label>
+        <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Read</option>
-                <option value="read">Unread</option>
+                <option value="read">itstaff</option>
+                <option value="binhi">binhingpagasa</option>
+                <option value="abaka">abakamopisomo</option>
+                <option value="lead">lead</option>
+                <option value="agripinay">agripinay</option>
+                <option value="akbay">akbay</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
