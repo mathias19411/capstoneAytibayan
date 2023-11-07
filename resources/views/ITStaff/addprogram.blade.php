@@ -170,7 +170,7 @@
                 <img id="image-preview"
                     src="{{ !empty($program->image) ? url('Uploads/Program_images/' . $program->image) : url('Uploads/no-image.jpg') }}"
                     alt="User Profile Image" class="img-fluid-small  rounded-circle">
-                 <span class="delete-icon" id="delete-image-btn">×</span>
+                 {{-- <span class="delete-icon" id="delete-image-btn">×</span> --}}
                  </div>
             
             </div>
@@ -185,7 +185,7 @@
                     <img id="image-preview1"
                         src="{{ !empty($program->background_image) ? url('Uploads/Program_images/' . $program->background_image) : url('Uploads/no-image.jpg') }}"
                         alt="Program Background Image" class="img-fluid-small  rounded-circle">
-                   <span class="delete-icon" id="delete-image-btn">×</span> 
+                   {{-- <span class="delete-icon" id="delete-image-btn">×</span>  --}}
                 </div>
                 </div>
             </div>
@@ -270,7 +270,7 @@
             });
 
             // Additional script for image input change (if needed)
-            $('#input-ProfileImage').change(function(e) {
+            $('#programPhoto').change(function(e) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     $('#image-preview').attr('src', e.target.result);

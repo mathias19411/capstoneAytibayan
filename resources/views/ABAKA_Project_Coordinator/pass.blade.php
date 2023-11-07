@@ -28,8 +28,8 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="col-lg-7 col-md-10">
-                    <h1 class="display-2"></h1>
-                    <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
+                    <h1 class="display-2">Hello {{ $userProfileData->first_name }}!</h1>
+                    <a href="{{ route('abakaprojectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/Coordinator_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                             class="img-fluid rounded-circle">
                                     </a>
                                 </div>
@@ -62,7 +62,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         </div>
                                         <div>
                                             <span class="heading">{{ $userProfileData->middle_name }}</span>
-                                            <span class="description">Midldle Name</span>
+                                            <span class="description">Middle Name</span>
                                         </div>
                                         <div>
                                             <span class="heading"> {{ $userProfileData->last_name }}</span>
@@ -90,7 +90,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
 
                                 <h3>
-                                    {{ $userProfileData->primary_address }}, {{ $userProfileData->city }},
+                                    {{ $userProfileData->barangay }}, {{ $userProfileData->city }},
                                     {{ $userProfileData->province }}, {{ $userProfileData->zip }}<span
                                         class="font-weight-light"></span>
                                 </h3>
@@ -114,7 +114,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('itstaff.editchangepassword') }}">
+                            <form method="POST" action="{{ route('abakaprojectcoordinator.editchangepassword') }}">
                                 @csrf
                                 <h6 class="heading-small text-muted mb-4">Change Password</h6>
                                 <div class="pl-lg-4">

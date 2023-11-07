@@ -66,129 +66,272 @@
 
 <body class="register">
     <div class="form-container">
-        <form class="row g-3 registration-form" method="POST" action="{{ route('register') }}">
-            @csrf
-            <h3> Albay Provincial Agricultural Office </h3>
-            <div class="side-image">
-                <img src="/images/APAO logo.png">
-            </div>
-            <div class="col-md-4">
-                <label for="inputFirstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="inputFirstName" name="first_name"
-                    placeholder="John Sammi" required>
-                @error('first_name')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="col-md-4">
-                <label for="inputMiddleName" class="form-label">Middle Name</label>
-                <input type="text" class="form-control" id="inputMiddleName" name="middle_name"
-                    placeholder="Diwally">
-                @error('middle_name')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="col-md-4">
-                <label for="inputLastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Beatosai"
-                    required>
-                @error('last_name')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="col-md-6">
-                <label for="inputNumber" class="form-label">Phone Number</label>
-                <input type="text" class="form-control" id="inputNumber" name="phone_number"
-                    placeholder="09*********" required>
-                @error('phone_number')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="col-md-6">
-                <label for="inputRole" class="form-label">Role</label>
-                <select id="inputRole" class="form-select" name="inputRole">
-                    @foreach ($roles as $role)
-                        <option value="{{ $role->id }}">{{ ucwords($role->role_name) }}</option>
-                    @endforeach
-                </select>
-                @error('inputRole')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+        @php
+        //Access the authenticated user's id
+$userRole = Illuminate\Support\Facades\AUTH::user()->role->role_name;
 
-            </div>
-            <div class="col-md-6">
-                <label for="inputPrimaryAddress" class="form-label">Barangay</label>
-                <input type="text" class="form-control" id="inputPrimaryAddress" name="primaryAddress"
-                    placeholder="Barangay" required>
-                @error('primaryAddress')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+$userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
 
-            <div class="col-md-6">
-                <label for="inputProgram" class="form-label">Program</label>
-                <select id="inputProgram" class="form-select" name="inputProgram">
-                    @foreach ($programs as $program)
-                        <option value="{{ $program->id }}">{{ ucwords($program->program_name) }}</option>
-                    @endforeach
-                </select>
-                @error('inputProgram')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
 
-            </div>
+//Access the specific row data of the user's id
+        //when using a model in blade.php, indicate the direct path of the model
+        // $userProfileData = App\Models\User::find($id);
+    @endphp
 
-            <div class="col-md-4">
-                <label for="inputCity" class="form-label">City</label>
-                <select id="inputCity" class="form-select" name="inputCity">
-                    <option value="Legazpi City"selected>Legazpi City</option>
-                    <option value="Tabaco City">Tabaco City</option>
-                    <option value="Sto.domingo City">Sto.domingo City</option>
-                    <option value="Bacacay City">Bacacay City</option>
-                </select>
-                @error('inputCity')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="col-md-4">
-                <label for="inputProvince" class="form-label">Province</label>
-                <select id="inputProvince" class="form-select" name="inputProvince">
-                    <option value="Albay" selected>Albay</option>
-                    <option value="Camarines Sur">Camarines Sur</option>
-                    <option value="Camarines Norte">Camarines Norte</option>
-                    <option value="Catanduanes">Catanduanes</option>
-                    <option value="Masbate">Masbate</option>
-                    <option value="Sorsogon">Sorsogon</option>
-                </select>
-                @error('inputProvince')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="col-md-2">
-                <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="4500"
-                    required>
-                @error('inputZip')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+        @if ($userRole === 'itstaff')
+            <form class="row g-3 registration-form" method="POST" action="{{ route('register') }}">
+                @csrf
+                <h3> Albay Provincial Agricultural Office </h3>
+                <div class="side-image">
+                    <img src="/images/APAO logo.png">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="inputFirstName" name="first_name"
+                        placeholder="John Sammi" required>
+                    @error('first_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <label for="inputMiddleName" class="form-label">Middle Name</label>
+                    <input type="text" class="form-control" id="inputMiddleName" name="middle_name"
+                        placeholder="Diwally">
+                    @error('middle_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <label for="inputLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Beatosai"
+                        required>
+                    @error('last_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="inputNumber" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="inputNumber" name="phone_number"
+                        placeholder="09*********" required>
+                    @error('phone_number')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="inputRole" class="form-label">Role</label>
+                    <select id="inputRole" class="form-select" name="inputRole">
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ ucwords($role->role_name) }}</option>
+                        @endforeach
+                    </select>
+                    @error('inputRole')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
 
-            <div class="col-md-2">
-                <label for="inputStatus" class="form-label">Status</label>
-                <select id="inputStatus" class="form-select" name="inputStatus">
-                    @foreach ($statuses as $status)
-                        <option value="{{ $status->id }}">{{ $status->status_name }}</option>
-                    @endforeach
-                </select>
-                @error('inputStatus')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPrimaryAddress" class="form-label">Barangay</label>
+                    <input type="text" class="form-control" id="inputPrimaryAddress" name="primaryAddress"
+                        placeholder="Barangay" required>
+                    @error('primaryAddress')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <div class="col-12 register-button">
-                <button type="submit" class="button">Register</button>
-            </div>
-        </form>
+                <div class="col-md-6">
+                    <label for="inputProgram" class="form-label">Program</label>
+                    <select id="inputProgram" class="form-select" name="inputProgram">
+                        @foreach ($programs as $program)
+                            <option value="{{ $program->id }}">{{ ucwords($program->program_name) }}</option>
+                        @endforeach
+                    </select>
+                    @error('inputProgram')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                </div>
+
+                <div class="col-md-4">
+                    <label for="inputCity" class="form-label">City</label>
+                    <select id="inputCity" class="form-select" name="inputCity">
+                        <option value="Legazpi City"selected>Legazpi City</option>
+                        <option value="Tabaco City">Tabaco City</option>
+                        <option value="Sto.domingo City">Sto.domingo City</option>
+                        <option value="Bacacay City">Bacacay City</option>
+                    </select>
+                    @error('inputCity')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <label for="inputProvince" class="form-label">Province</label>
+                    <select id="inputProvince" class="form-select" name="inputProvince">
+                        <option value="Albay" selected>Albay</option>
+                        <option value="Camarines Sur">Camarines Sur</option>
+                        <option value="Camarines Norte">Camarines Norte</option>
+                        <option value="Catanduanes">Catanduanes</option>
+                        <option value="Masbate">Masbate</option>
+                        <option value="Sorsogon">Sorsogon</option>
+                    </select>
+                    @error('inputProvince')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-2">
+                    <label for="inputZip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="4500"
+                        required>
+                    @error('inputZip')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-2">
+                    <label for="inputStatus" class="form-label">Status</label>
+                    <select id="inputStatus" class="form-select" name="inputStatus">
+                        @foreach ($statuses as $status)
+                            <option value="{{ $status->id }}">{{ $status->status_name }}</option>
+                        @endforeach
+                    </select>
+                    @error('inputStatus')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-12 register-button">
+                    <button type="submit" class="button">Register</button>
+                </div>
+            </form>
+        @else
+            <form class="row g-3 registration-form" method="POST" action="{{ route('register') }}">
+                @csrf
+                <h3> Albay Provincial Agricultural Office </h3>
+                <div class="side-image">
+                    <img src="/images/APAO logo.png">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="inputFirstName" name="first_name"
+                        placeholder="John Sammi" required>
+                    @error('first_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <label for="inputMiddleName" class="form-label">Middle Name</label>
+                    <input type="text" class="form-control" id="inputMiddleName" name="middle_name"
+                        placeholder="Diwally">
+                    @error('middle_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <label for="inputLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Beatosai"
+                        required>
+                    @error('last_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="inputNumber" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="inputNumber" name="phone_number"
+                        placeholder="09*********" required>
+                    @error('phone_number')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="inputRole" class="form-label">Role</label>
+                    <select id="inputRole" class="form-select" name="inputRole" disabled>
+                        @foreach ($roles as $role)
+                            @if ($role->role_name === 'beneficiary')
+                                <option value="{{ $role->id }}">{{ ucwords($role->role_name) }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('inputRole')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPrimaryAddress" class="form-label">Barangay</label>
+                    <input type="text" class="form-control" id="inputPrimaryAddress" name="primaryAddress"
+                        placeholder="Barangay" required>
+                    @error('primaryAddress')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label for="inputProgram" class="form-label">Program</label>
+                    <select id="inputProgram" class="form-select" name="inputProgram" disabled>
+                        @foreach ($programs as $program)
+                            @if ($program->id === $userProgram)
+                                <option value="{{ $program->id }}">{{ ucwords($program->program_name) }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('inputProgram')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                </div>
+
+                <div class="col-md-4">
+                    <label for="inputCity" class="form-label">City</label>
+                    <select id="inputCity" class="form-select" name="inputCity">
+                        <option value="Legazpi City"selected>Legazpi City</option>
+                        <option value="Tabaco City">Tabaco City</option>
+                        <option value="Sto.domingo City">Sto.domingo City</option>
+                        <option value="Bacacay City">Bacacay City</option>
+                    </select>
+                    @error('inputCity')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4">
+                    <label for="inputProvince" class="form-label">Province</label>
+                    <select id="inputProvince" class="form-select" name="inputProvince">
+                        <option value="Albay" selected>Albay</option>
+                        <option value="Camarines Sur">Camarines Sur</option>
+                        <option value="Camarines Norte">Camarines Norte</option>
+                        <option value="Catanduanes">Catanduanes</option>
+                        <option value="Masbate">Masbate</option>
+                        <option value="Sorsogon">Sorsogon</option>
+                    </select>
+                    @error('inputProvince')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-2">
+                    <label for="inputZip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="4500"
+                        required>
+                    @error('inputZip')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-2">
+                    <label for="inputStatus" class="form-label">Status</label>
+                    <select id="inputStatus" class="form-select" name="inputStatus">
+                        @foreach ($statuses as $status)
+                            <option value="{{ $status->id }}">{{ $status->status_name }}</option>
+                        @endforeach
+                    </select>
+                    @error('inputStatus')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-12 register-button">
+                    <button type="submit" class="button">Register</button>
+                </div>
+            </form>
+        @endif
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

@@ -132,7 +132,7 @@ class UsersTableSeeder extends Seeder
                 'first_name' => 'Beneficiary',
                 'middle_name' => 'of',
                 'last_name' => 'Apao',
-                'email' => 'beneficiary@gmail.com',
+                'email' => 'bermejomathiasjohnoliver3@gmail.com',
                 'password' => Hash::make('beneficiary123'),
                 'phone' => '09998887777',
                 'barangay' => 'Tamaoyan',
@@ -140,7 +140,7 @@ class UsersTableSeeder extends Seeder
                 'province' => 'Albay',
                 'zip' => '4500',
                 'role_id' => '7',
-                'program_id' => '1',
+                'program_id' => '5',
                 'status_id' => '1',
             ],
             //Personal Sample Account

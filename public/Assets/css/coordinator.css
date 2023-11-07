@@ -628,6 +628,10 @@ body {
     color: #000; 
 }
 
+.boxes .box .chart-inner {
+    max-height: 100%;
+}
+
  .box-1 p {
     margin: 0;
     padding: 40px;
@@ -1998,5 +2002,7 @@ body.announcement_events_inquiry .message-row {
 .header {
     display: none;
 }
+
+
 
 

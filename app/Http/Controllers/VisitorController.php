@@ -53,17 +53,19 @@ class VisitorController extends Controller
         $cities = [];
 
         foreach ($programs as $program) {
-            $city = $program->user->first()->city; // Assuming each program has at least one user
-            
-            if (!in_array($city, $cities)) {
-                $cities[] = $city;
-            }
+            if ($program->user->isNotEmpty()) {
+                $city = $program->user->first()->city; // Assuming each program has at least one user
+                
+                if (!in_array($city, $cities)) {
+                    $cities[] = $city;
+                }
 
-            if (!isset($beneficiaryCount[$program->program_name])) {
-                $beneficiaryCount[$program->program_name] = [];
-            }
+                if (!isset($beneficiaryCount[$program->program_name])) {
+                    $beneficiaryCount[$program->program_name] = [];
+                }
 
-            $beneficiaryCount[$program->program_name][$city] = $program->user->where('role.role_name', 'beneficiary')->count();
+                $beneficiaryCount[$program->program_name][$city] = $program->user->where('role.role_name', 'beneficiary')->count();
+            }
         }
 
 

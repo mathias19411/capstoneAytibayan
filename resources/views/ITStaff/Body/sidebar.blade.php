@@ -4,7 +4,7 @@
             <img src="\images\logo.png" alt="">
         </div>
 
-        <span class="logo_name">APAO</span>
+        <span class="logo_name">IT Staff</span>
     </div>
 
     @php
@@ -81,14 +81,14 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         <div class="profile-dropdown">
             <a href="#">
                 <i><img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
-                        class="rounded-circle"></i>
+                        class="rounded-circle" alt="User Profile Image"></i>
 
             </a>
             <ul class="sub-menus">
                 <li class="profile-info">
                     <div class="profile-image">
                         <img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
-                            class="rounded-circle">
+                            class="rounded-circle" alt="User Profile Image">
                     </div>
                     <span class="linkname">{{ $userProfileData->first_name }} {{ $userProfileData->last_name }}</span>
                 </li>

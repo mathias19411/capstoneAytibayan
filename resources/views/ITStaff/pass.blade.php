@@ -62,7 +62,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         </div>
                                         <div>
                                             <span class="heading">{{ $userProfileData->middle_name }}</span>
-                                            <span class="description">Midldle Name</span>
+                                            <span class="description">Middle Name</span>
                                         </div>
                                         <div>
                                             <span class="heading"> {{ $userProfileData->last_name }}</span>
@@ -90,7 +90,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
 
                                 <h3>
-                                    {{ $userProfileData->primary_address }}, {{ $userProfileData->city }},
+                                    {{ $userProfileData->barangay }}, {{ $userProfileData->city }},
                                     {{ $userProfileData->province }}, {{ $userProfileData->zip }}<span
                                         class="font-weight-light"></span>
                                 </h3>

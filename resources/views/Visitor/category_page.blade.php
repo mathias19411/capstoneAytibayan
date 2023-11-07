@@ -200,7 +200,7 @@
                 size: 5,
             },
             title: {
-                text: 'Beneficiaries Per Barangay',
+                text: 'Beneficiaries Per City',
                 align: 'left'
             },
             grid: {

@@ -61,7 +61,7 @@
                                 <div class="col">
                                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                         <div>
-                                            <span class="heading">{{ $userProfileData->first_name }} </span>
+                                            <span class="heading">{{ $userProfileData->first_name }}</span>
                                             <span class="description">Given Name</span>
                                         </div>
                                         <div>
@@ -69,7 +69,7 @@
                                             <span class="description">Midldle Name</span>
                                         </div>
                                         <div>
-                                            <span class="heading"> {{ $userProfileData->last_name }}</span>
+                                            <span class="heading">{{ $userProfileData->last_name }}</span>
                                             <span class="description">Last Name</span>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@
 
 
                                 <h3>
-                                    {{ $userProfileData->primary_address }}, {{ $userProfileData->city }},
+                                    {{ $userProfileData->barangay }}, {{ $userProfileData->city }},
                                     {{ $userProfileData->province }}, {{ $userProfileData->zip }}<span
                                         class="font-weight-light"></span>
                                 </h3>
@@ -240,7 +240,7 @@
                                                     <input id="input-address"
                                                         class="form-control form-control-alternative"
                                                         placeholder="Address" type="text" contenteditable="true"
-                                                        value="{{ $userProfileData->primary_address }}"
+                                                        value="{{ $userProfileData->barangay }}"
                                                         name="primary_address">
                                                 </div>
                                             </div>
@@ -258,7 +258,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group focused">
                                                     <label class="form-control-label"
-                                                        for="input-province">Country</label>
+                                                        for="input-province">Province</label>
                                                     <input type="text" id="input-province"
                                                         class="form-control form-control-alternative"
                                                         placeholder="Province" contenteditable="true"

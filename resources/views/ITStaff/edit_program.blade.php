@@ -124,8 +124,8 @@
                 <div class="image-container">
                 <img id="image-preview"
                     src="{{ !empty($program->image) ? url('Uploads/Program_images/' . $program->image) : url('Uploads/no-image.jpg') }}"
-                    alt="User Profile Image" class="img-fluid-small  rounded-circle">
-                 <span class="delete-icon" id="delete-image-btn">×</span>
+                    alt="Program Image Icon" class="img-fluid-small  rounded-circle">
+                 {{-- <span class="delete-icon" id="delete-image-btn">×</span> --}}
                  </div>
             
             </div>
@@ -142,7 +142,7 @@
                     <img id="image-preview1"
                         src="{{ !empty($program->background_image) ? url('Uploads/Program_images/' . $program->background_image) : url('Uploads/no-image.jpg') }}"
                         alt="Program Background Image" class="img-fluid-small  rounded-circle">
-                   <span class="delete-icon" id="delete-image-btn">×</span> 
+                   {{-- <span class="delete-icon" id="delete-image-btn">×</span>  --}}
                 </div>
                 </div>
             </div>
@@ -161,12 +161,12 @@
 
     <script>
         $(document).ready(function() {
-            const imageInput = $('#input-ProfileImage');
+            const imageInput = $('#programPhoto');
             const imagePreview = $('#image-preview');
             const deleteImageBtn = $('#delete-image-btn');
 
             // Additional script for image input change (if needed)
-            $('#input-ProfileImage').change(function(e) {
+            $('#programPhoto').change(function(e) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     $('#image-preview').attr('src', e.target.result);

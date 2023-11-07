@@ -15,6 +15,10 @@ use App\Models\progress;
 use App\Models\events;
 use App\Models\Financialassistance;
 use App\Models\Financialassistancestatus;
+use App\Notifications\FinancialAssistanceStatusUpdated;
+use App\Notifications\FinancialAssistanceStatusRejected;
+use Mail;
+use App\Mail\FinancialAssistanceStatusUpdate;
 
 class ABAKAProjectCoordinatorController extends Controller
 {
@@ -213,18 +217,22 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         $progress = progress::all();
 
+        $userRole = AUTH::user()->role->role_name;
+
+        $userProgramId = AUTH::user()->program->id;
+
         //total benef count
         $abakaBeneficiariesCount = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
-        })->whereHas('program', function ($query) {
-            $query->where('program_name', 'abakamopisomo');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
         })->count();
 
         //total active benef
         $abakaActiveCount = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
-        })->whereHas('program', function ($query) {
-            $query->where('program_name', 'abakamopisomo');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
         })->whereHas('status', function ($query) {
             $query->where('status_name', 'Active');
         })->count();
@@ -232,21 +240,32 @@ class ABAKAProjectCoordinatorController extends Controller
         //total inactive benef
         $abakaInactiveCount = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
-        })->whereHas('program', function ($query) {
-            $query->where('program_name', 'abakamopisomo');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
         })->whereHas('status', function ($query) {
             $query->where('status_name', 'Inactive');
         })->count();
 
+        $totalActiveAndInactiveCount = [$abakaActiveCount, $abakaInactiveCount];
+
         $abakaBeneficiaries = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
-        })->whereHas('program', function ($query) {
-            $query->where('program_name', 'abakamopisomo');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
         })->get();
+
+
+        // $users = User::whereHas('role', function ($query) {
+        //     $query->where('role_name', 'beneficiary');
+        // })->whereHas('program', function ($query) use ($programId) {
+        //     $query->where('id', $programId);
+        // })->get();
 
         $assistanceStatuses = Financialassistancestatus::all();
 
-        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries', 'assistanceStatuses'));
+        $assistanceUnsettledStatus = Financialassistancestatus::where('financial_assistance_status_name', 'unsettled')->first();
+
+        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries', 'assistanceStatuses', 'totalActiveAndInactiveCount', 'assistanceUnsettledStatus'));
     } // End Method
 
     public function ProjCoordinatorProgressAdd(Request $request)
@@ -267,7 +286,14 @@ class ABAKAProjectCoordinatorController extends Controller
                 'amount' => $validatedData['amount'],
                 'financialassistancestatus_id' => 2,
             ]);
+
+            /** @var \App\Models\User $user **/
+            //Access the authenticated user's id
+            $user = User::findOrFail($userId);
+
+            $user->notify(new FinancialAssistanceStatusUpdated());
         }
+
 
         toastr()->timeOut(10000)->addSuccess('A new Beneficiary Project has been added!');
 
@@ -278,21 +304,154 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         $assistanceId = $request->assistanceId;
 
+        $userId = $request->userId;
+
         $financialAssistanceId = Financialassistance::findOrFail($assistanceId);
 
         if ($request->inputAssistanceUpdate == 5) {
-            // Status is "rejected," delete the associated row
+
             $financialAssistanceId->delete();
+
+            /** @var \App\Models\User $user **/
+            //Access the authenticated user's id
+            $user = User::findOrFail($userId);
+
+            $user->notify(new FinancialAssistanceStatusRejected());
+            // Status is "rejected," delete the associated row
+
         }
         else
         {
             $financialAssistanceId->update([
                 'financialassistancestatus_id' => $request->inputAssistanceUpdate,
             ]);
+
+            // Send an email notification to the user
+            if (in_array($request->inputAssistanceUpdate, [2, 3, 4])) {
+                // Use the IDs that correspond to "pending," "approved," and "disbursed" status
+                $financialAssistanceId->user->notify(new FinancialAssistanceStatusUpdated());
+        }
         }
 
         toastr()->timeOut(10000)->addSuccess('Beneficiary Financial Assistance Status has been updated!');
 
         return redirect()->route('abakaprojectcoordinator.progress');
+    } // End Method
+
+    public function ProjCoordinatorViewProfile()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        return view('ABAKA_Project_Coordinator.profile', compact('userProfileData'));
+    } // End Method
+
+    public function ProjCoordinatorEditProfile(Request $request)
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userData = User::find($id);
+
+        $userData->first_name = $request->first_name;
+        $userData->middle_name = $request->middle_name;
+        $userData->last_name = $request->last_name;
+        $userData->phone = $request->phone;
+        $userData->barangay = $request->primary_address;
+        $userData->city = $request->city;
+        $userData->province = $request->province;
+        $userData->zip = $request->zip;
+
+        if ($request->file('photo'))
+        {
+            $file = $request->file('photo');
+
+            @unlink(public_path('Uploads/Coordinator_Images/'.$userData->photo));
+
+            $fileName = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('Uploads/Coordinator_Images'),$fileName);
+            $userData['photo'] = $fileName;
+        }
+        $userData->save();
+
+        toastr()->timeOut(10000)->addSuccess('Your Profile has been Updated!');
+
+        return redirect()->back();
+    } // End Method
+    
+    public function ProjCoordinatorViewChangePassword()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        return view('ABAKA_Project_Coordinator.pass', compact('userProfileData'));
+    } // End Method
+
+    public function ProjCoordinatorEditChangePassword(Request $request)
+    {
+        //Validation
+        $request->validate([
+            'inputOldPassword' => 'required',
+            'inputNewPassword' => 'required|confirmed' 
+        ]);
+
+        ///Match the old password
+        if (!Hash::check($request->inputOldPassword, auth::user()->password))
+        {
+        //confirmation message
+        toastr()->timeOut(10000)->addError('Old Password does not match!');
+
+        return redirect()->back();
+        }
+
+        //Update the new password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->inputNewPassword) //inputNewPassword field name from name="inputNewPassword" in admin_change_password.blade.php
+        ]);
+
+        toastr()->timeOut(10000)->addSuccess('Your Password has been Updated!');
+
+        return redirect()->back();
+    } // End Method
+
+    public function ProjCoordinatorRegisterView()
+    {
+        //Access the authenticated user's id
+        $programId = AUTH::user()->program_id;
+        // $users = User::orderBy('id', 'asc')->get();
+        $roles = Role::all();
+        $statuses = Status::all();
+
+        $users = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($programId) {
+            $query->where('id', $programId);
+        })->get();
+
+        return view('ABAKA_Project_Coordinator.registerView', compact('users', 'roles', 'statuses'));
+    } // End Method
+
+    public function ProjCoordinatorRegisterEditUser(Request $request)
+    {
+        $userId = $request->id;
+
+        $userData = User::findOrFail($userId);
+
+        $userData->update([
+            'status_id' =>$request->inputStatus,
+        ]);
+
+        $userData->save();
+
+        toastr()->timeOut(10000)->addSuccess('User data has been updated successfully!');
+        
+        return redirect()->back();
     } // End Method
 }

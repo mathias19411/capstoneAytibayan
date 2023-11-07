@@ -8,24 +8,85 @@
         <h1>Progress</h1>
     </div>
 
+    @php
+        //Access the authenticated user's id
+$userRole = Illuminate\Support\Facades\AUTH::user()->role->role_name;
+
+$userProgramId = Illuminate\Support\Facades\AUTH::user()->program->id;
+
+$benefAssistanceStatuses = [];
+//Access the specific row data of the user's id
+        //when using a model in blade.php, indicate the direct path of the model
+        // $userProfileData = App\Models\User::find($id);
+    @endphp
+
     <div class="boxes">
+
         <div class="box box-1">
-            <h1>Graph 1</h1>
-            <p>g1</p>
+            <h1>Active and Inactive Beneficiaries</h1>
+            <div class="chart-inner" id="pie-chart1"></div>
         </div>
-        <div class="box box-1 ">
-            <h1>Graph 2</h1>
-            <p>g2</p>
-        </div>
-        <div class="box box-2">
-            <h1>Graph 3</h1>
-            <p>g3</p>
-        </div>
-        <div class="box box-3">
-            <h1>Progress %</h1>
-            <div class="progress-bar"></div>
-            <p></p>
-        </div>
+
+        @if (App\Models\Financialassistance::count() > 0)
+        @php
+        //total pending benef 
+$abakaPendingCount = App\Models\User::whereHas('role', function ($query) {
+         $query->where('role_name', 'beneficiary');
+     })->whereHas('program', function ($query) use ($userProgramId) {
+         $query->where('id', $userProgramId);
+     })->whereHas('assistance', function ($query) {
+         $query->where('financialassistancestatus_id', 2);
+     })->count();
+     //total approved benef 
+$abakaApprovedCount = App\Models\User::whereHas('role', function ($query) {
+         $query->where('role_name', 'beneficiary');
+     })->whereHas('program', function ($query) use ($userProgramId) {
+         $query->where('id', $userProgramId);
+     })->whereHas('assistance', function ($query) {
+         $query->where('financialassistancestatus_id', 3);
+     })->count();
+     //total disbursed benef 
+$abakaDisbursedCount = App\Models\User::whereHas('role', function ($query) {
+         $query->where('role_name', 'beneficiary');
+     })->whereHas('program', function ($query) use ($userProgramId) {
+         $query->where('id', $userProgramId);
+     })->whereHas('assistance', function ($query) {
+         $query->where('financialassistancestatus_id', 4);
+     })->count();
+
+$benefExistingProjectCount = App\Models\Financialassistance::count();
+     
+     $benefAssistanceStatuses = [$abakaPendingCount, $abakaApprovedCount, $abakaDisbursedCount];
+     @endphp
+            <div class="box box-1 ">
+                <h1>Existing Beneficiry Projects</h1>
+                <p>{{ $benefExistingProjectCount }}</p>
+            </div>
+            <div class="box box-2">
+                <h1>Overall Financial Assistance Statuses</h1>
+                <div class="chart-inner" id="pie-chart2"></div>
+            </div>
+            <div class="box box-3">
+                <h1>Progress %</h1>
+                <div class="progress-bar"></div>
+                <p></p>
+            </div>
+        @else
+            <div class="box box-1 ">
+                <h1>Beneficiry Projects</h1>
+                <p>No Projects Yet</p>
+            </div>
+            <div class="box box-2">
+                <h1>Overall Financial Assistance Statuses</h1>
+                <p>No Projects Yet</p>
+            </div>
+            <div class="box box-3">
+                <h1>Progress %</h1>
+                <div class="progress-bar"></div>
+                <p></p>
+            </div>
+        @endif
+        
     </div>
 
 
@@ -138,6 +199,8 @@
                                 enctype="multipart/form-data" method="post">
                                 @csrf
 
+                                <input type="hidden" name="userId" value="{{ $abakaBeneficiary->id }}">
+
                                 @if ($abakaBeneficiary->assistance)
                                     <input type="hidden" name="assistanceId"
                                         value="{{ $abakaBeneficiary->assistance->id }}">
@@ -190,7 +253,7 @@
                                     style="opacity: 0.5; cursor: not-allowed;"><i
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
 
-                            <td>Unsettled</td>
+                            <td>{{ $assistanceUnsettledStatus->financial_assistance_status_name }}</td>
                         @endif
                 @endforeach
             </tbody>
@@ -249,4 +312,136 @@
 
 
     <script src="{{ asset('Assets/js/progress.js') }}"></script>
+
+    {{-- apex charts cdn --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+        var totalActiveAndInactiveCount = {!! json_encode($totalActiveAndInactiveCount) !!};
+
+        var benefAssistanceStatuses = {!! json_encode($benefAssistanceStatuses) !!};
+
+        // -------------------------------- Pie chart----------------------
+        var options = {
+          series: totalActiveAndInactiveCount,
+          chart: {
+  
+          type: 'pie',
+          toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
+                show: true
+            },
+            width:'100%', // Set the width of the chart
+        height: 600,
+        },
+        colors: [
+            "#7bb701",
+            "#f0a60f",
+          
+        ],
+        labels: ['Active', 'Inactive'],
+    responsive: [
+        {
+            breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
+            options: {
+                chart: {
+                    width: '90%', // Adjust the width for smaller screens
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
+        {
+            breakpoint: 769, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+            options: {
+                chart: {
+                    width: '40%',
+                   
+                    height: 450,
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
+        {
+            breakpoint: 694, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+            options: {
+                chart: {
+                    width: '50%',
+                  
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    ]
+};
+       
+        var chart = new ApexCharts(document.querySelector("#pie-chart1"), options);
+        chart.render();
+
+        // -------------------------------- Pie chart----------------------
+        var options = {
+          series: benefAssistanceStatuses,
+          chart: {
+  
+          type: 'pie',
+          toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
+                show: true
+            },
+            width:'100%', // Set the width of the chart
+        height: 600,
+        },
+        colors: [
+            "#7bb701",
+            "#f0a60f",
+            "#58c0e2"
+          
+        ],
+        labels: ['Pending', 'Approved', 'Disbursed'],
+    responsive: [
+        {
+            breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
+            options: {
+                chart: {
+                    width: '90%', // Adjust the width for smaller screens
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
+        {
+            breakpoint: 769, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+            options: {
+                chart: {
+                    width: '40%',
+                   
+                    height: 450,
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
+        {
+            breakpoint: 694, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+            options: {
+                chart: {
+                    width: '50%',
+                  
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    ]
+};
+       
+        var chart = new ApexCharts(document.querySelector("#pie-chart2"), options);
+        chart.render();
+    </script>
 @endsection

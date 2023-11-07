@@ -136,7 +136,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:projectcoordinator']
 }); //End group Project Coordinator middleware
 
 //Project Coordinator AGRIPINAY Group Middleware
-Route::middleware(['auth', 'userroleprotection:agripinayprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:agripinayprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/AGRIPINAY_ProjectCoordinator/home', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('agripinayprojectcoordinator.beneficiaries');
 
@@ -166,7 +166,7 @@ Route::middleware(['auth', 'userroleprotection:agripinayprojectcoordinator'])->g
 }); //End group Project Coordinator middleware
 
 //Project Coordinator AKBAY Group Middleware
-Route::middleware(['auth', 'userroleprotection:akbayprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:akbayprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/AKBAY_ProjectCoordinator/home', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('akbayprojectcoordinator.beneficiaries');
 
@@ -196,7 +196,7 @@ Route::middleware(['auth', 'userroleprotection:akbayprojectcoordinator'])->group
 }); //End group Project Coordinator middleware
 
 //Project Coordinator LEAD Group Middleware
-Route::middleware(['auth', 'userroleprotection:leadprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:leadprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/LEAD_ProjectCoordinator/home', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('leadprojectcoordinator.beneficiaries');
 
@@ -228,19 +228,24 @@ Route::middleware(['auth', 'userroleprotection:leadprojectcoordinator'])->group(
 //Project Coordinator ABAKA Group Middleware
 Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
+
+    //Coordinator Home Page
     Route::get('/ABAKA_ProjectCoordinator/home', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('abakaprojectcoordinator.beneficiaries');
 
-    //ITStaff Logout
+    //Coordinator Logout
     Route::get('/ABAKA_ProjectCoordinator/logout', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('abakaprojectCoordinator.logout');
 
+    //Coordinator Inquiry
     Route::get('/ABAKA_ProjectCoordinator/inquiry', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('ABAKA_Project_Coordinator.inquiry');
 
+    //Coordinator Announcements
     Route::get('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('abakaprojectcoordinator.announcement');
     Route::post('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorabaka');
     Route::get('/ABAKA_ProjectCoordinator/Announcements/{id}', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorabaka');
     Route::patch('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorabaka');
     Route::delete('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorabaka');
 
+    //Coordinator Events
     Route::get('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('abakaprojectcoordinator.event');
     Route::post('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorabaka');
     Route::get('/ABAKA_ProjectCoordinator/Events/{id}', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorabaka');
@@ -249,11 +254,30 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
 
     Route::get('/ABAKA_ProjectCoordinator/Inquriy', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('abakaprojectcoordinator.inquiry');
 
+    //Coordinator Progress
     Route::get('/ABAKA_ProjectCoordinator/Progress', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('abakaprojectcoordinator.progress');
 
     Route::post('/ABAKA_ProjectCoordinator/ProgressAdd', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgressAdd'])->name('abakaprojectcoordinator.progressAdd');
 
     Route::post('/ABAKA_ProjectCoordinator/ProgressUpdate', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgressUpdate'])->name('abakaprojectcoordinator.progressUpdate');
+
+    //Abaka Coordinator View Profile
+    Route::get('/ABAKA_ProjectCoordinator/viewprofile', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorViewProfile'])->name('abakaprojectcoordinator.viewprofile');
+
+    //Abaka Coordinator Edit Profile Data
+    Route::post('/ABAKA_ProjectCoordinator/editprofile', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEditProfile'])->name('abakaprojectcoordinator.editprofile');
+
+    //Abaka Coordinator View Change Password
+    Route::get('/ABAKA_ProjectCoordinator/viewchangepassword', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorViewChangePassword'])->name('abakaprojectcoordinator.viewchangepassword');
+
+    //Abaka Coordinator Edit Change Password
+    Route::post('/ABAKA_ProjectCoordinator/editchangepassword', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEditChangePassword'])->name('abakaprojectcoordinator.editchangepassword');
+
+    //Abaka Coordinator Register View
+    Route::get('/ABAKA_ProjectCoordinator/registerview', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorRegisterView'])->name('abakaprojectcoordinator.registerView');
+
+    //Abaka Coordinator Edit user status and role
+    Route::post('/ABAKA_ProjectCoordinator/registeredituser', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorRegisterEditUser'])->name('abakaprojectcoordinator.registerEditUser');
 
     // more routes here for Project Coordinator
 
@@ -262,7 +286,21 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
 //Beneficiary Group Middleware
 Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
-    Route::get('/beneficiary/dashboard', [BeneficiaryController::class, 'BeneficiaryDashboard'])->name('beneficiary.dashboard');
+
+    //Benef Logout
+    Route::get('/Beneficiary/logout', [BeneficiaryController::class, 'BeneficiaryLogout'])->name('beneficiary.logout');
+
+    //Benef Home Page
+    Route::get('/Beneficiary/home', [BeneficiaryController::class, 'BeneficiaryHome'])->name('beneficiary.home');
+    
+    //Benef Updates
+    Route::get('/Beneficiary/updates', [BeneficiaryController::class, 'BeneficiaryUpdates'])->name('beneficiary.updates');
+
+    //Benef Schedule
+    Route::get('/Beneficiary/schedule', [BeneficiaryController::class, 'BeneficiarySchedule'])->name('beneficiary.schedule');
+
+    //Benef Inquiry
+    Route::get('/Beneficiary/inquiry', [BeneficiaryController::class, 'BeneficiaryInquiry'])->name('beneficiary.inquiry');
 
     // more routes here for beneficiary
 
@@ -336,21 +374,7 @@ Route::get('/Project_Coordinator/pass', function () {
     return view('Project_Coordinator.pass');
 });
 
-Route::get('/Beneficiary/home', function () {
-    return view('Beneficiary.home');
-});
 
-Route::get('/Beneficiary/update', function () {
-    return view('Beneficiary.update');
-});
-
-Route::get('/Beneficiary/schedule', function () {
-    return view('Beneficiary.schedule');
-});
-
-Route::get('/Beneficiary/inquiry', function () {
-    return view('Beneficiary.inquiry');
-});
 
 Route::get('/Beneficiary/benefprofile', function () {
     return view('Beneficiary.benefprofile');

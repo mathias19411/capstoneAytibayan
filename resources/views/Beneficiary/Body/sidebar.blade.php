@@ -45,7 +45,7 @@
         <ul class="logout-mode">
 
 
-            <li><a href="{{ route('projectCoordinator.logout') }}">
+            <li><a href="{{ route('beneficiary.logout') }}">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
