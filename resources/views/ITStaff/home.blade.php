@@ -29,7 +29,7 @@
         </div>
         
         <div class="user-stats">
-            <div class="total-users">
+                <div class="total-users">
                     <div class=name>
                         <h1>Beneficiaries</h1>
                     </div>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="number-line total-line"></div>
                     </div>
-                    </div>
+                </div>
                     <div class="inactive-active-users">
                         <div class=name>
                             <h1>Accounts</h1><br>
@@ -63,11 +63,11 @@
                         </div>
                         <div class="box box-1 ">
                             <h1>Active Beneficiaries per Program</h1>
-                            <div id="bar-chart"></div>
+                            <div class="chart-inner" id="bar-chart"></div>
                         </div>
                         <div class="box box-1">
                             <h1>Monthly Beneficiaries</h1>
-                            <div id="line-chart"></div>
+                            <div class="chart-inner" id="line-chart"></div>
                         </div>
                     
                         <div class="box box-1">
@@ -86,7 +86,7 @@
         </div>
              
        
-        <div class="title">
+        <div class="title1">
             <h1>programs</h1>
         </div>
         <div class="coord">
@@ -420,7 +420,7 @@
                 show: true
             },
             width:'100%', // Set the width of the chart
-        height: 450,
+        height: 900,
         },
         colors: [
             "#7bb701",
