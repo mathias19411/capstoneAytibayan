@@ -87,19 +87,20 @@
                     </div>
 
                     <div class="col-md-12 input">
-                        <label for="password" class="form-label">Password</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="password" name="password" autocomplete="current-password">
-                            <div class="input-group-append">
-                                <button id="showPasswordBtn" type="button" class="btn btn-secondary" onclick="togglePasswordVisibility()">
-                                    <i id="eyeIcon" class="fa-solid fa-eye" style="color: black; border: none;"></i>
-                                </button>
-                            </div>
-                        </div>
-                        @error('password')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+    <label for="password" class="form-label">Password</label>
+    <div class="input-group">
+        <input type="password" class="form-control" id="password" name="password" autocomplete="current-password">
+        <div class="input-group-append">
+            <button type="button" class="btn btn-warning" onclick="togglePasswordVisibility()">
+                <i id="eyeIcon" class="fa-solid fa-eye" style="color: black; border: none;"></i>
+            </button>
+        </div>
+    </div>
+    @error('password')
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
+</div>
+
 
 
 
