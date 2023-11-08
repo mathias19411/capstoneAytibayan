@@ -64,7 +64,7 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
             </div>
             <div class="box box-2">
                 <h1>Overall Financial Assistance Statuses</h1>
-                <div class="chart-inner" id="pie-chart2"></div>
+                <div class="chart-inner" id="pie-chart"></div>
             </div>
             <div class="box box-3">
                 <h1>Progress %</h1>
@@ -73,12 +73,12 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
             </div>
         @else
             <div class="box box-1 ">
-                <h1>Beneficiry Projects</h1>
-                <p>No Projects Yet</p>
+                <h1>Beneficiary Projects</h1>
+                <p>No Projects</p>
             </div>
             <div class="box box-2">
                 <h1>Overall Financial Assistance Statuses</h1>
-                <p>No Projects Yet</p>
+                <p>No Projects</p>
             </div>
             <div class="box box-3">
                 <h1>Progress %</h1>

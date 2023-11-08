@@ -100,6 +100,11 @@ h3 {
     position: relative;
 }
 
+.eyeicon {
+    background-color: white;
+    border: none;
+}
+
 #showPasswordBtn {
     position: absolute;
     top: 50%;

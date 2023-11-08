@@ -12,9 +12,8 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Public</option>
-                <option value="read">Beneficiaries</option>
-                <option value="read">Project Coordinator</option>
+                <option value="Public">Public</option>
+                <option value="Beneficiary">Beneficiaries</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -118,6 +117,7 @@
                                                     <textarea class="form-control" id="edit-message" name="message">{{ $announcements->message }}</textarea>
                                                 </div>
                                                 </div>
+                                            </div>
                                             </div>
                                             <div class="modal-footer">
                                                     <button type="button" class="close" data-bs-dismiss="modal">Close</button>

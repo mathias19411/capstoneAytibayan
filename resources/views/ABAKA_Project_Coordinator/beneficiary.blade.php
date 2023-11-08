@@ -28,29 +28,30 @@
 </div>
 
   <div class="table-header">
-        <div class="table-header-left">
-            <label for="unread-filter">Location: </label>
-            <select id="unread-filter">
-                <option value="all">All</option>
-                <option value="Sagpon">Sagpon, Daraga</option>
-                <option value="Rawis">Rawis</option>
-            </select>
-            <label for="unread-filter">Status: </label>
-            <select id="unread-filter">
-                <option value="all">All</option>
-                <option value="unread">Active</option>
-                <option value="read">Inactive</option>
-            </select>
+  <div class="table-header-left">
+    <label for="location-filter">Location: </label>
+    <select id="location-filter">
+        <option value="all">All</option>
+        <option value="Sagpon">Sagpon, Daraga</option>
+        <option value="Rawis">Rawis</option>
+    </select>
+    <label for="status-filter">Status: </label>
+    <select id="status-filter">
+        <option value="all">All</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+    </select>
 
-            <label for="items-per-page">Items per page: </label>
-            <select id="items-per-page">
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="all">All</option>
-            </select>
-        </div>
+    <label for="items-per-page">Items per page: </label>
+    <select id="items-per-page">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="all">All</option>
+    </select>
+</div>
+
         <div class="table-header-right">
             <div class="search-container">
                 <input type="text" id="search" placeholder="Search">
@@ -349,7 +350,7 @@
                     </div>
                 </div>
              </div>
-             <button type="button" class="btn add" id="add-project-button">Add Project</button>
+             <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_addproject">Add Project</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
@@ -357,5 +358,68 @@
         </div>
     </div>
 </div>
+
+ <!--ADD PROJECT-->
+ <div class="modal fade" id="modal_addproject" tabindex="-1" data-backdrop="false" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Add Project</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                        <div class="modal-body">
+                                                <div class="row">
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-outline">
+                                                    <label id="label_">Title</label>
+                                                    <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">                            
+                                                </div>
+                                                </div>
+
+                                                <div class="col-md-6 mb-4">
+                                                        <div class="form-group">
+                                                            <label for="edit-recipient">To:</label>
+                                                            <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
+                                                            <option>PUBLIC</option>
+                                                            <option>BINHI</option>
+                                                            <option>AKBAY</option>
+                                                            <option>LEAD</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-outline">
+                                                    <label id="label_">Date</label>
+                                                        <input class="form-control"  type="date" id="Date" placeholder="Title...." name="date">
+                                                </div>
+                                                </div>
+                            
+                                                <div class="col-md-12 mb-4">
+                                                    <div class="form-outline">
+                                                        <label id="label_">Message:</label>
+                                                            <textarea class="form-control" rows="3" placeholder="Write something..." name="message"></textarea>
+                                                            </div>
+                                                            <div class="form-outline">
+                                                        <label id="drop-img">
+                                                            <input name="image" type="file" id="input-file">
+                                                            <div id="img-view">
+                                                            <img src="/images/image_icon.png">
+                                                            <p> Drag and drop or click here <br> to upload picture</p>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="add">Save Changes</button>
+                                                </div>
+                                                </div>
+                                                </form>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
 @endsection
 
