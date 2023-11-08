@@ -73,8 +73,8 @@
                 </div>
                 <div class="boxes1">
                     <div class="box box-1">
-                        <h1>eme pie charts</h1>
-                        <div class="chart-inner" id="pie-chart"></div>
+                        <h1>Overall System Users</h1>
+                        <div class="chart-inner" id="pie-chart1"></div>
                     </div>
                     
                 </div>
@@ -240,6 +240,7 @@
         var months = {!! json_encode($months) !!};
         var monthCount = {!! json_encode($monthCount) !!};
         var totalActiveandInactiveBeneficiaries = {!! json_encode($totalActiveandInactiveBeneficiaries) !!};
+        var totalUserAccountsCount = {!! json_encode($totalUserAccountsCount) !!};
 
         // ---------------------------Charts-----------------------------
 
@@ -404,6 +405,68 @@
 };
        
         var chart = new ApexCharts(document.querySelector("#pie-chart"), options);
+        chart.render();
+
+        // -------------------------------- Pie chart2----------------------
+        var options = {
+          series: totalUserAccountsCount,
+          chart: {
+  
+          type: 'pie',
+          toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
+                show: true
+            },
+            width:'100%', // Set the width of the chart
+        height: 450,
+        },
+        colors: [
+            "#7bb701",
+            "#f0a60f",
+            "#56b1cf",
+          
+        ],
+        labels: ['ITstaffs', 'Project Coordinators', 'Beneficiaries'],
+    responsive: [
+        {
+            breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
+            options: {
+                chart: {
+                    width: '90%', // Adjust the width for smaller screens
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
+        {
+            breakpoint: 769, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+            options: {
+                chart: {
+                    width: '40%',
+                   
+                    height: 450,
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
+        {
+            breakpoint: 694, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+            options: {
+                chart: {
+                    width: '50%',
+                  
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    ]
+};
+       
+        var chart = new ApexCharts(document.querySelector("#pie-chart1"), options);
         chart.render();
     </script>
 

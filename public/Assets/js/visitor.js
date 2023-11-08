@@ -86,41 +86,73 @@ var barChartOptions = {
         
     // -----------------------------------Line chart-----------------------------
     var options = {
-      series: [{
-        name: "Beneficiaries",
-        data: monthCount
-    }],
-      chart: {
-      height: 350,
-      type: 'line',
-      zoom: {
-        enabled: false
-      }
-    },
-    dataLabels: {
-      enabled: false
-    },
-    stroke: {
-      curve: 'straight',
-      colors: '#f0a60f',
-    },
-    markers: {
-      size: 5,
-    },
-    title: {
-      text: 'Beneficiary Trends by Month',
-      align: 'left'
-    },
-    grid: {
-      row: {
-        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-        opacity: 0.5
-      },
-    },
-    xaxis: {
-      categories: months,
-    }
-    };
+          series: [
+          {
+            name: "Beneficiaries",
+            data: monthCount
+          },
+          // {
+          //   name: "Low - 2013",
+          //   data: [12, 11, 14, 18, 17, 13, 13]
+          // }
+        ],
+          chart: {
+          height: 350,
+          type: 'line',
+          dropShadow: {
+            enabled: true,
+            color: '#000',
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2
+          },
+          toolbar: {
+            show: false
+          }
+        },
+        colors: ["#7bb701"],
+        dataLabels: {
+          enabled: true,
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        // title: {
+        //   text: 'Average High & Low Temperature',
+        //   align: 'left'
+        // },
+        grid: {
+          borderColor: '#e7e7e7',
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        markers: {
+          size: 1
+        },
+        xaxis: {
+          categories: months,
+          title: {
+            text: 'Month'
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Beneficiaries'
+          },
+          min: 5,
+          max: 40
+        },
+        legend: {
+          position: 'top',
+          horizontalAlign: 'right',
+          floating: true,
+          offsetY: -25,
+          offsetX: -5
+        }
+        };
 
     var chart = new ApexCharts(document.querySelector("#line-chart"), options);
     chart.render();

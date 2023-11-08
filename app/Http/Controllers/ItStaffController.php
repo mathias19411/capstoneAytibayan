@@ -94,9 +94,26 @@ class ItStaffController extends Controller
             $months[] = $entry->month;
             $monthCount[] = $entry->count;
         }
-        
 
-        return view('ITStaff.home', compact('userProfileData', 'totalUsers', 'totalcoordinators', 'totalbeneficiaries', 'totalActiveandInactiveBeneficiaries', 'coordinators', 'programs', 'programNames', 'beneficiaryCounts', 'dataLineChart', 'months', 'monthCount'));
+        //itstaff users count
+        $itstaffs = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['itstaff']);
+        })->count();
+
+        //coordinators user count
+        $coordinaorsCount = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['projectcoordinator', 'abakaprojectcoordinator', 'agripinayprojectcoordinator', 'akbayprojectcoordinator', 'leadprojectcoordinator']);
+        })->count();
+
+        //beneficiaries user count
+        $beneficiariesCount = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['beneficiary']);
+        })->count();
+
+        $totalUserAccountsCount = [$itstaffs, $coordinaorsCount, $beneficiariesCount];
+
+
+        return view('ITStaff.home', compact('userProfileData', 'totalUsers', 'totalcoordinators', 'totalbeneficiaries', 'totalActiveandInactiveBeneficiaries', 'coordinators', 'programs', 'programNames', 'beneficiaryCounts', 'dataLineChart', 'months', 'monthCount', 'totalUserAccountsCount'));
     } // End Method
 
     public function ItStaffLogout(Request $request)
