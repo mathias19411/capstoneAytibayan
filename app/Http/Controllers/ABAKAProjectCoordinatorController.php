@@ -17,8 +17,8 @@ use App\Models\Financialassistance;
 use App\Models\Financialassistancestatus;
 use App\Notifications\FinancialAssistanceStatusUpdated;
 use App\Notifications\FinancialAssistanceStatusRejected;
-use Mail;
-use App\Mail\FinancialAssistanceStatusUpdate;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReplyMailable;
 
 class ABAKAProjectCoordinatorController extends Controller
 {
@@ -208,9 +208,106 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorInquiry()
     {
-        $inquiry = inquiries::all();
+        $binhi = "ABAKA";
+        $public = "PUBLIC";
+        $inquiry = inquiries::where(function ($query) use ($binhi, $public) {
+            $query->where('to', $binhi)->orWhere('to', $public);})->get();
 
-        return view('ABAKA_Project_Coordinator.inquiry', ['progress'=>$inquiry]);
+
+        return view('ABAKA_Project_Coordinator.inquiry', ['inquiry'=>$inquiry]);
+    } // End Method
+
+    public function ProjCoordinatorInquiryStore(Request $request)
+    {
+        // 
+        // Validate the request
+        $validatedData = $request->validate([
+            'fullname' => 'required|string|max:255',
+            'to' => 'required|string',
+            'email' => 'required|string',
+            'message' => 'required|string',
+            'attachments' => 'string',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            inquiries::insert([
+                'fullname' => $validatedData['fullname'],
+                'to' => $validatedData['to'],
+                'email' => $validatedData['email'],
+                'message' => $validatedData['message'],
+                'attachment' => $validatedData['attachments'],
+            ]);
+
+            return redirect()->back()->with('success', 'New Inquiry Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+    } // End Method
+
+    public function ProjectCoordinatorInquiryEdit($id)
+    {
+        $event = inquiries::findOrFail($id);
+
+        return view('ABAKA_Project_Coordinator.event', compact('event'));
+    } // End Method
+
+    public function ProjectCoordinatorInquiryReply(Request $request)
+    {
+        // Get the email address of the recipient
+        $recipientEmail = $request->get('recipient_email');
+
+        // Get the subject of the email
+        $subject = $request->get('subject');
+
+        // Get the body of the email
+        $body = $request->get('body');
+
+        // Get the attachment
+        $attachment = $request->file('attachment');
+
+        if ($attachment !== null) {
+            // The file was uploaded, proceed with sending the email.
+
+            // Ensure the attachment is not null
+            if ($attachment->isValid()) {
+                // If the attachment is valid, you can proceed with sending the email.
+
+                // Reply to the email message with a body and an attachment
+                Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $attachment));
+
+                // Redirect back to the previous page
+                return redirect()->back()->with('success', 'Message Sent!');
+            } else {
+                // Handle the case when the uploaded file is not valid.
+                return redirect()->back()->with('error', 'Invalid file uploaded');
+            }
+        } else {
+            // Handle the case when no file was uploaded.
+            return redirect()->back()->with('error', 'No file uploaded');
+        }
+    }// End of Method
+
+    public function ProjCoordinatorInquiryDelete(Request $request)
+    {
+        $id = $request->event_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = inquiries::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Event is Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
     } // End Method
     
     public function ProjCoordinatorProgress()
