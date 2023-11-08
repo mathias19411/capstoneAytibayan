@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class inquiries extends Model
 {
+    protected $fillable = [
+        'fullname',
+        'to',
+        'email',
+        'message',
+        'attachment'
+    ];
     use HasFactory;
 }
