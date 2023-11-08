@@ -1720,34 +1720,35 @@ section.programs_view {
 /* ------------------------- ABOUT ------------------------------------ */
 * {
     box-sizing: border-box;
-  }
-  
-  section.about {
-      font-family: 'Poppins', sans-serif;
-  }
-  
-  section.about .container {
+}
+
+section.about {
+    font-family: 'Poppins', sans-serif;
+}
+
+section.about .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    padding: 0px 0px;
+    padding: 20px;
     overflow-x: auto;
     max-width: 100%;
-  }
-  
-  .slides {
-      height: 50vh;
-      width: auto;
-      overflow: hidden;
-      position: relative;
-      justify-content: center;
-      background-position: top;
-      align-items: center;
-      box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
-      border-radius: 0.5rem;
-      margin: 2rem;
-  }
+}
+
+.slides {
+    height: 50vh;
+    width: auto;
+    overflow: hidden;
+    position: relative;
+    justify-content: center;
+    background-position: top;
+    align-items: center;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    margin: 2rem;
+}
+
   
   .slide {
       position: absolute;
@@ -1793,11 +1794,10 @@ section.programs_view {
   }
   
   section.about .main {
-      width:470px;
-      float: center;
-       text-align: center;
-       padding: 30px;
-  }
+    width: 60%; /* Adjusted width for the main content */
+    text-align: center;
+    padding: 20px;
+}
   
   section.about .main h2 {
       font-size: 1.3rem;
@@ -1812,22 +1812,22 @@ section.programs_view {
   }
   
   section.about p {
-      font-size: 1rem;
-      padding: 1px;
-      margin-bottom: 1rem;
-  }
-  
-  section.about .box {
+    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 1rem;
+}
+
+section.about .box {
     background-color: #FFFFFF;
-    width: 320px;
+    width: 30%; /* Adjusted width for the side boxes */
     height: 400px;
-    padding: 0.5rem;
+    padding: 20px;
     border-radius: 0.5rem;
     display: flex;
-    overflow: hidden;
-    flex-direction:column; 
+    flex-direction: column;
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
-  }
+    margin: 20px;
+}
   
   section.about .box h2 {
       font-size: 1.3rem;
@@ -1850,10 +1850,10 @@ section.programs_view {
       padding: 10px;
   }
   section.about .container .popup-box {
-      position: fixed;
+      position: fixed;s
       top: 0;
   }
-  /*Dito nakalagay hover*/
+  /*Dito nakalagay hover
   section.about  .box:hover {
       scale: 1.1;
   }
@@ -1861,13 +1861,26 @@ section.programs_view {
   section.about .box:hover {
       box-shadow: 1px 3px 9px #7BB701;
       }
-  
-  @media only screen and (max-width: 620px) {
-    .menu, .main, .right {
-      width: 100%;
+*/
+
+.lightbox {
+    cursor: pointer;
     }
-  }
-  
+    
+.lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    } 
+
+    @media (max-width: 768px) {
+        section.about .main {
+            width: 60%;
+        }
+    
+        section.about .box {
+            width: 40%;
+        }
+    }
 /* ------------------------- CONTACT ------------------------------------ */
 /* Add custom styles for responsiveness */
 @media (max-width: 767px) {

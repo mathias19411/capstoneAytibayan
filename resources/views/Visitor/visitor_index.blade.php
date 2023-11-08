@@ -210,11 +210,12 @@
                     intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
             </div>
 
-         <div class="box">
+            <div class="box lightbox">
                 <h2>History</h2>
-                <img src="\images\history.png">
+                <img src="\images\history.png" alt="History Image">
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-        </div>
+            </div>
+
         </div>
     </section>
 

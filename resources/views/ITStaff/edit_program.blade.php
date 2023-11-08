@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -149,19 +150,24 @@
             </div>
 
            
-            <button type="submit" class="btn btn-primary me-2">Save Your Changes</button>
+            <button type="submit" class="button_edit btn btn-primary me-2">Save Your Changes</button>
            
 
         </form>
 
 
         
-            <a href="{{ route('itstaff.home') }}" class="button discard-button">Discard</a>
+            <a href="{{ route('itstaff.home') }}" class="button_edit discard-button">Discard</a>
         
-    </div>
+</div>
+
+
+</body>
+
+</html>
 
 <!-----------TABLE----------->
-    <div class="title">
+<div class="title">
         <h1>Program Beneficiaries</h1>
     </div>
 
@@ -288,9 +294,3 @@
 
         <div id="pagination-message"></div>
     </div>
-
-    
-
-</body>
-
-</html>

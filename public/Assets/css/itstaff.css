@@ -2156,3 +2156,133 @@ body.announcement_events_inquiry .message-row {
         max-height: none; /* Remove the maximum height for pie chart */
     }
 }
+
+/*-------TABLE REGISTER IEW -----------*/
+
+.register_container {
+    overflow-x: auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    border-collapse: collapse;
+}
+
+.register_container .table{
+    width:100%;
+}
+
+.register_container  table th {
+    position: relative; /* Make the <th> element a positioning context */
+}
+
+.register_container table th::after {
+    content: "";
+    display: block;
+    height: 1px; 
+    background-color: var(--primary-color); 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+body.announcement_events_inquiry th,
+td {
+    padding: 10px;
+    text-align: center;
+}
+body.announcement_events_inquiry .title {
+    background-color: #7bb701;
+    background-position: center;
+    border-radius: 5px;
+    width: auto;
+    height: 40px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px 20px 20px 20px;
+}
+
+body.announcement_events_inquiry h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+body.announcement_events_inquiry .table button {
+
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+    width: 15px;
+    height: 15px;
+}
+
+body.announcement_events_inquiry .table button i {
+    font-size: 9px;
+}
+
+body.announcement_events_inquiry .table button:hover {
+    background-color: #8db600;
+    transition: 0.10s;
+}
+body.announcement_events_inquiry .table button:hover::after {
+    opacity: 1;
+}
+
+
+body.announcement_events_inquiry td button:nth-child(1) {
+    background-color: green;
+}
+body.announcement_events_inquiry td button:nth-child(2) {
+    background-color: rgb(86, 177, 207);
+}
+body.announcement_events_inquiry td button:nth-child(3) {
+    background-color: #f80000;
+}
+
+body.announcement_events_inquiry tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+
+body.announcement_events_inquiry td {
+    font-size: 13px;
+}
+
+body.announcement_events_inquiry tr:hover td {
+    color: #7bb701;
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+/* Common tooltip style for all buttons */
+.tooltip-button {
+    position: relative;
+}
+
+.tooltip-button::after {
+    content: attr(data-tooltip);
+    background-color: #989393;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+
+.tooltip-button:hover::after {
+    opacity: 1;
+}
