@@ -115,14 +115,18 @@
                         <div class="number-line totalline"></div>
 
                         <span class="label">Active:</span>
-                        <span class="activenumber">{{$program->user()->whereHas('status', function($query) {
+                        <span class="activenumber">{{$program->user()->whereHas('role', function($query) {
+                            $query->where('role_name', 'beneficiary');
+                        })->whereHas('status', function($query) {
                             $query->where('status_name', 'Active');
                         })->count()}}
                             Beneficiaries</span>
                         <div class="number-line activeline"></div>
 
                         <span class="label">Inactive</span>
-                        <span class="inactivenumber">{{$program->user()->whereHas('status', function($query) {
+                        <span class="inactivenumber">{{$program->user()->whereHas('role', function($query) {
+                            $query->where('role_name', 'beneficiary');
+                        })->whereHas('status', function($query) {
                             $query->where('status_name', 'Inactive');
                         })->count()}}
                             Beneficiaries</span>
