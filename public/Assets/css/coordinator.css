@@ -1289,6 +1289,13 @@ body.announcement_events_inquiry  .button-container  .button_top:hover {
     transition: 0.5s;
 }
 
+body.announcement_events_inquiry  .modal-backdrop {
+    z-index: -1; 
+}
+body.announcement_events_inquiry .popup{
+    margin: 2px auto;
+    z-index: 1100 !important;
+}
   
   @media (min-width: 768px) {
     .button-container {

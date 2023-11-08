@@ -217,10 +217,12 @@
               </div>
     
                         <!-- Popup for displaying message content and details -->
-                        <div id="message-popup" class="popup">
+                        <div id="message-popup" class="popup" data-backdrop="false" aria-labelledby="#modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)" >
                 <div class="popup-content">
                     <span class="popup-close" onclick="closePopup()">&times;</span>
-                    <h2>Message Details</h2>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Inquiry Details</h5>
+                    </div>
                     <div class="popup-details">
                         <div class="row">
                             <div class="column">
@@ -254,3 +256,4 @@
                 </div>
             </div>
 
+@endsection

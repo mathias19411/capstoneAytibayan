@@ -730,10 +730,9 @@ displayUpdates();
     const tableRows = document.querySelectorAll('#dataTable tbody tr');
     tableRows.forEach((row, index) => {
         row.addEventListener('click', () => {
-            // Get data from the clicked row
+            
             const rowData = Array.from(row.children).map((cell) => cell.textContent.trim());
 
-            // Populate the view elements with data from the row
             document.getElementById('ViewTitle').textContent = rowData[0];
             document.getElementById('ViewTo').textContent = rowData[1];
             document.getElementById('ViewMessage').textContent = rowData[2];
@@ -830,21 +829,39 @@ document.getElementById('update-beneficiary-button').addEventListener('click', f
 
 <script>
     //FILTER BENEFICIARY
-    $(document).ready(function () {
-        $('#location-filter').on('change', function () {
-            let selectedLocation = $(this).val();
 
-            // Loop through each row and check the data-location attribute
-            $('table tbody tr').each(function() {
-                let location = $(this).data('location');
-                if (selectedLocation === 'all' || location === selectedLocation) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
+    // Function to filter and paginate the table
+    function filterAndPaginate() {
+        const locationFilter = document.getElementById("location-filter").value;
+        const statusFilter = document.getElementById("status-filter").value;
+        const itemsPerPage = parseInt(document.getElementById("items-per-page").value);
+
+        const tableRows = document.querySelectorAll("tbody tr");
+
+        tableRows.forEach(function (row) {
+            const location = row.getAttribute("data-location");
+            const status = row.querySelector(".status-box").classList.contains("active") ? "active" : "inactive";
+
+            const matchesLocation = locationFilter === "all" || location === locationFilter;
+            const matchesStatus = statusFilter === "all" || status === statusFilter;
+
+            if (matchesLocation && matchesStatus) {
+                row.style.display = "table-row";
+            } else {
+                row.style.display = "none";
+            }
         });
-    });
+
+        // You can add pagination logic here to show/hide rows based on itemsPerPage
+    }
+
+    // Attach the filterAndPaginate function to filter and pagination events
+    document.getElementById("location-filter").addEventListener("change", filterAndPaginate);
+    document.getElementById("status-filter").addEventListener("change", filterAndPaginate);
+    document.getElementById("items-per-page").addEventListener("change", filterAndPaginate);
+
+    // Initial call to filter and paginate when the page loads
+    filterAndPaginate();
 </script>
 
 
