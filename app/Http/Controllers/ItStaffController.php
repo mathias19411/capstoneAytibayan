@@ -213,9 +213,17 @@ class ItStaffController extends Controller
         //get all coordinators associated with a specific program
         $program = Program::with('coordinators')->findOrFail($id);
 
+        $userProgramId = $id;
+
+        $users = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->get();
+
         // dd($program->coordinators);
 
-        return view('ITStaff.edit_program', compact('program'));
+        return view('ITStaff.edit_program', compact('program', 'users'));
     } // End Method
 
     public function ItStaffUpdateProgram(Request $request)
