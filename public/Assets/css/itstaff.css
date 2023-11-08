@@ -2068,8 +2068,6 @@ body.announcement_events_inquiry .message-row {
             align-content: center;
             position: relative;
             width: 100%;
-  
-      
           
         }
     
@@ -2105,4 +2103,20 @@ body.announcement_events_inquiry .message-row {
     .pie-chart {
         max-height: none; /* Remove the maximum height for pie chart */
     }
+}
+
+.modal-body .profile {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 5px solid #7bb701;
+    display: block;
+    margin: 0 auto; /* Center horizontally */
+    margin-top: 10px; /* Add top margin for vertical centering */
+}
+
+.modal-body .name {
+    margin: 0 auto; /* Center horizontally */
+    margin-top: 10px; /* Add top margin for vertical centering */
+    text-align: center;
 }

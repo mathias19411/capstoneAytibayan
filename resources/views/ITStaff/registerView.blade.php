@@ -68,12 +68,12 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="col-md-12">
-                                                <img class="ht-50 wd-50 rounded-circle"
+                                                <img class="profile ht-50 wd-50 rounded-circle"
                                                     src="{{ !empty($user->photo) ? url('Uploads/ITStaff_Images/' . $user->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                                     alt="profile">
                                             </div>
                                             <br>
-                                            <span class="h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</span>
+                                            <span class="name h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</span>
                                             <br><br>
                                         </div>
                                         <div class="col-md-12">
@@ -115,7 +115,7 @@
                                 </div>
                                     <div class="modal-body">
                                         <div class="col-md-12">
-                                            <img class="ht-50 wd-50 rounded-circle"
+                                            <img class="profile ht-50 wd-50 rounded-circle"
                                                 src="{{ !empty($user->photo) ? url('Uploads/ITStaff_Images/' . $user->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                                 alt="profile">
                                         </div>
