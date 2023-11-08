@@ -105,31 +105,40 @@
             <div class="boxes">
                 @foreach ($programs as $program)
                     <div class="box box1">
-                        <img src="{{ !empty($program->image) ? url('Uploads/Program_images/' . $program->image) : url('Uploads/no-image.jpg') }}" alt="Image 1">
+                    <img src="{{ !empty($program->image) ? url('Uploads/Program_images/' . $program->image) : url('Uploads/no-image.jpg') }}" alt="Image 1">
                         <span class="text">{{ $program->program_name }}</span>
                         <span class="label">Total</span>
-                        <span class="totalnumber">{{$program->user()->whereHas('role', function($query) {
+                        <span class="totalnumber">{{ $total = $program->user()->whereHas('role', function($query) {
                             $query->where('role_name', 'beneficiary');
-                        })->count()}} Beneficiaries</span>
-                        <div class="number-line totalline"></div>
+                        })->count() }} Beneficiaries</span>
+                        <div class="number-line totalline">
+                            @if ($total > 0)
+                                <div class="colored-line total" style="width: 100%;"></div>
+                            @else
+                                <div class="colored-line total" style="width: 0;"></div>
+                            @endif
+                        </div>
 
                         <span class="label">Active:</span>
-                        <span class="activenumber">{{$program->user()->whereHas('role', function($query) {
+                        <span class="activenumber">{{ $active = $program->user()->whereHas('role', function($query) {
                             $query->where('role_name', 'beneficiary');
                         })->whereHas('status', function($query) {
                             $query->where('status_name', 'Active');
-                        })->count()}}
-                            Beneficiaries</span>
-                        <div class="number-line activeline"></div>
+                        })->count() }} Beneficiaries</span>
+                        <div class="number-line activeline">
+                            <div class="colored-line active" style="width: {{ $total ? ($active / $total) * 100 : 0 }}%;"></div>
+                        </div>
 
                         <span class="label">Inactive</span>
-                        <span class="inactivenumber">{{$program->user()->whereHas('role', function($query) {
+                        <span class="inactivenumber">{{ $inactive = $program->user()->whereHas('role', function($query) {
                             $query->where('role_name', 'beneficiary');
                         })->whereHas('status', function($query) {
                             $query->where('status_name', 'Inactive');
-                        })->count()}}
-                            Beneficiaries</span>
-                        <div class="number-line inactiveline"></div>
+                        })->count() }} Beneficiaries</span>
+                        <div class="number-line inactiveline">
+                            <div class="colored-line inactive" style="width: {{ $total ? ($inactive / $total) * 100 : 0 }}%;"></div>
+                        </div>
+
 
                         <a href="{{ route('itstaff.editProgramView', $program->id) }}" class="custom-link">
                             <button class="custom-button">View</button>
