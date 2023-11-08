@@ -374,6 +374,7 @@ nav.close ~ .dashboard .top {
     max-height: 250px;
     height: 250px;
     border-radius: 10px;
+    object-fit: cover;
   
 }
 
@@ -730,6 +731,8 @@ ol, ul {
     font-weight: bold;
     font-size: 13px;
     padding-top: 5px;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
 
 .boxes .box .totalnumber,
@@ -740,6 +743,8 @@ ol, ul {
     font-weight: bold;
     text-align: left;
     margin-left: 5px;
+    margin-top: 0 !important; /* Adjust the margin-top to reduce space */
+    padding-top: 0 !important;
 }
 
 .boxes .box .number-line {
@@ -749,18 +754,32 @@ ol, ul {
     border-radius: 10px;
 }
 
-/* Conditional styling based on numbers */
-.boxes .box .totalline {
-    background: linear-gradient(to right, green 100%, transparent 0);
+
+
+/* Styling for the colored lines */
+.colored-line.total {
+    height: 100%; /* Set the height to 100% to fill the number line */
+    background-color: var(--box1-color); /* Set the color for the total line */
+    border-radius: 10px;
 }
 
-.boxes .box .inactiveline {
-    background: linear-gradient(to right, orange 66.6%, transparent 0);
+.colored-line.active {
+    height: 100%; /* Set the height to 100% to fill the number line */
+    background-color: var(--primary-color); /* Set the color for the active line */
+    border-radius: 10px;
 }
 
-.boxes .box .activeline {
-    background: linear-gradient(to right, green 50%, transparent 0);
+.colored-line.inactive {
+    height: 100%; /* Set the height to 100% to fill the number line */
+    background-color: var(--colorOrange); /* Set the color for the inactive line */
+    border-radius: 10px;
 }
+
+/* Styling for empty total line */
+.colored-line.empty {
+    background-color: transparent; /* Make the total line transparent when it's 0 */
+}
+
 
 .coord {
     display: flex;
