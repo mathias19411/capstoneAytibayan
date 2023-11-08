@@ -122,7 +122,28 @@
     {{-- Add Sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('backend/assets/js/code/code.js') }}"></script>
+    <script>
+    function openImage(element) {
+        var imageUrl = element.querySelector('img').src;
 
+        // Create a modal container
+        var modal = document.createElement('div');
+        modal.classList.add('image-modal');
+
+        // Create an image element in the modal
+        var modalImage = document.createElement('img');
+        modalImage.src = imageUrl;
+        modal.appendChild(modalImage);
+
+        // Add the modal to the body
+        document.body.appendChild(modal);
+
+        // Close the modal when clicking outside the image
+        modal.addEventListener('click', function () {
+            document.body.removeChild(modal);
+        });
+    }
+</script>
 </body>
 
 <!-- <script>

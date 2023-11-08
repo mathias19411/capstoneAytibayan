@@ -190,7 +190,7 @@
         </div>
 
         <div class="container">
-            <div class="box">
+            <div class="box lightbox" onclick="openImage(this)">
                 <h2>Organizational Chart</h2>
                 <img src="\images\orgchart.png">
             </div>
@@ -210,7 +210,7 @@
                     intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
             </div>
 
-            <div class="box lightbox">
+            <div class="box lightbox" onclick="openImage(this)">
                 <h2>History</h2>
                 <img src="\images\history.png" alt="History Image">
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
