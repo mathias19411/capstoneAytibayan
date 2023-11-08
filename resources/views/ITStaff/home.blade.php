@@ -428,7 +428,7 @@
             "#56b1cf",
           
         ],
-        labels: ['ITstaffs', 'Coordinators', 'Beneficiaries'],
+        labels: ['IT Staffs', 'Coordinators', 'Beneficiaries'],
     responsive: [
         {
             breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
