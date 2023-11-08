@@ -75,15 +75,9 @@
                     <div class="box box-1">
                         <h1>eme pie charts</h1>
                         <div class="chart-inner" id="pie-chart"></div>
-                    </div>
-                    
-                </div>
-
-                
-                
-            </div>
-            
-         
+                    </div>  
+                </div>   
+            </div> 
         </div>
              
        
