@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('inquiries', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('to');
             $table->string('fullname');
             $table->string('email');
             $table->text('message');
+            $table->string('attachment');
             $table->integer('contacts');
             $table->timestamps();
         });
