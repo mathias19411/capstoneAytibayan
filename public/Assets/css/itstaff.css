@@ -107,8 +107,8 @@ nav .logo-name .logo_name {
     color: var(--text-color);
     margin-left: 14px;
     transition: var(--tran-05);
-    white-space: nowrap; /* Prevent text from wrapping to the next line */
-    text-size-adjust: auto; /* Let the browser automatically adjust the text size */
+    white-space: nowrap;
+    text-size-adjust: auto; 
 }
 nav.close .logo_name {
     opacity: 0;

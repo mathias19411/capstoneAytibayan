@@ -142,15 +142,15 @@ nav .menu-items{
     background-color: var(--primary-color);
 }
 
-
 .nav-links li a.active i {
-    color: var(--primary-color); 
+    color: var(--primary-color);
 }
 .nav-links li a.active span {
-    color: var(--primary-color); 
+    color: var(--primary-color);
 }
 
-body.dark li a:hover:before{
+
+body.dark li a:hover:before {
     background-color: var(--text-color);
 }
 .menu-items li a i{
@@ -177,6 +177,7 @@ nav.close li a .link-name{
 .nav-links li a:hover .link-name{
     color: var(--primary-color);
 }
+
 body.dark .nav-links li a:hover i,
 body.dark .nav-links li a:hover .link-name{
     color: var(--text-color);
