@@ -63,7 +63,7 @@
                         </div>
                         <div class="box box-1 ">
                             <h1>Active Beneficiaries per Program</h1>
-                            <div class="chart-inner" id="bar-chart"></div>
+                            <div id="bar-chart"></div>
                         </div>
                         <div class="box box-1">
                             <h1>Monthly Beneficiaries</h1>
@@ -415,7 +415,7 @@
           series: totalUserAccountsCount,
           chart: {
   
-          type: 'pie',
+          type: 'donut',
           toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
                 show: true
             },
@@ -428,6 +428,7 @@
             "#56b1cf",
           
         ],
+   
         labels: ['IT Staffs', 'Coordinators', 'Beneficiaries'],
     responsive: [
         {
