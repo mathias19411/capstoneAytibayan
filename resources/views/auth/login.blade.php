@@ -178,7 +178,7 @@
                 passwordField.type = "text"; // Show the password
                 eyeIcon.classList.remove("fa-eye");
                 eyeIcon.classList.add("fa-eye-slash"); // Change the icon to an eye with a slash
-                eyeIcon.style.color = "#53d30d"; // Change the icon color to green
+                eyeIcon.style.color = "#white"; // Change the icon color to green
             } else {
                 passwordField.type = "password"; // Hide the password
                 eyeIcon.classList.remove("fa-eye-slash");

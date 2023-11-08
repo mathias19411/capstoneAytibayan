@@ -30,58 +30,57 @@
         
         <div class="user-stats">
             <div class="total-users">
-                <div class=name>
-                    <h1>Beneficiaries</h1>
-                </div>
-                <p>Number of beneficiaries in the Sustainable Livelihood Program. </p>
-                <div class="number-box1">
-                    <div class="label-number">
-                        <span class="label"></span>
-                        <span class="number">{{ $totalbeneficiaries }} Beneficiaries</span>
+                    <div class=name>
+                        <h1>Beneficiaries</h1>
                     </div>
-                    <div class="number-line total-line"></div>
-                </div>
-                <div class="boxes1">
-                    <div class="box box-1">
-                        <h1>Beneficiary Status</h1>
-                        <div class="chart-inner" id="pie-chart"></div>
+                    <p>Number of beneficiaries in the Sustainable Livelihood Program. </p>
+                    <div class="number-box1">
+                        <div class="label-number">
+                            <span class="label"></span>
+                            <span class="number">{{ $totalbeneficiaries }} Beneficiaries</span>
+                        </div>
+                        <div class="number-line total-line"></div>
                     </div>
-                    <div class="box box-1 ">
-                        <h1>Active Beneficiaries per Program</h1>
-                        <div id="bar-chart"></div>
                     </div>
-                    <div class="box box-1">
-                        <h1>Monthly Beneficiaries</h1>
-                        <div id="line-chart"></div>
+                    <div class="inactive-active-users">
+                        <div class=name>
+                            <h1>Accounts</h1><br>
+                        </div>
+                        <p>Total Number of Users </p>
+                        <div class="number-box1">
+                            <div class="label-number">
+                                <span class="label"></span>
+                                <span class="number">59</span>
+                            </div>
+                            <div class="number-line total-line"></div>
+                        </div>
                     </div>
-                </div>
                 
-
-
-            </div>
-            <div class="inactive-active-users">
-                <div class=name>
-                    <h1>Accounts</h1><br>
-                </div>
-                <p>Total Number of Users </p>
-                <div class="number-box1">
-                    <div class="label-number">
-                        <span class="label"></span>
-                        <span class="number">59</span>
-                    </div>
-                    <div class="number-line total-line"></div>
-                </div>
-                <div class="boxes1">
-                    <div class="box box-1">
-                        <h1>Overall System Users</h1>
-                        <div class="chart-inner" id="pie-chart1"></div>
-                    </div>
+                    <div class="boxes1">
+                        <div class="box box-1">
+                            <h1>Beneficiary Status</h1>
+                            <div class="chart-inner" id="pie-chart"></div>
+                        </div>
+                        <div class="box box-1 ">
+                            <h1>Active Beneficiaries per Program</h1>
+                            <div id="bar-chart"></div>
+                        </div>
+                        <div class="box box-1">
+                            <h1>Monthly Beneficiaries</h1>
+                            <div id="line-chart"></div>
+                        </div>
                     
-                </div>
+                        <div class="box box-1">
+                            <h1>Overall System Users</h1>
+                            <div class="chart-inner" id="pie-chart1"></div>
+                        </div>
+                    </div>
 
                 
-                
-            </div>
+
+
+         
+            
             
          
         </div>
@@ -425,7 +424,7 @@
             "#56b1cf",
           
         ],
-        labels: ['ITstaffs', 'Project Coordinators', 'Beneficiaries'],
+        labels: ['ITstaffs', 'Coordinators', 'Beneficiaries'],
     responsive: [
         {
             breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
