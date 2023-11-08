@@ -391,6 +391,7 @@ body {
     background-color: #4CAF50;
     border-radius: 10px;
     transition: width 0.3s ease-in-out;
+    
 }
 
 .step {
@@ -594,20 +595,20 @@ body {
 }
 
 .boxes{
-    display: flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 5px 0px;
-  gap: 50px;
+  gap:13px;
   overflow-x: auto;
   max-width: 100%;
   margin-bottom: 30px;
 }
 
 .boxes .box{
-    width: 250px;
-    height: 180px;
+    width: 300px;
+    height: 250px;
     background-color: #f2f2f2;
     text-align: center;
     position: relative;
@@ -628,6 +629,7 @@ body {
     color: #000; 
 }
 
+
 .boxes .box .chart-inner {
     max-height: 100%;
 }
@@ -637,7 +639,7 @@ body {
     padding: 40px;
     justify-content: center;
     text-align: center;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: bold;
     color: var(--primary-color);
 }
@@ -647,19 +649,18 @@ body {
   padding: 40px;
   justify-content: center;
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: bold;
   color: var(--colorOrange);
 }
 
 .box .progress-bar {
   position: absolute;
-  top: 0;
-  left: 40px;
-  width: 180px;
-  height: 180px;
+  top: 20px;
+  left: 50px;
+  width: 200px;
+  height: 200px;
   border-radius: 80%;
- 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -672,8 +673,7 @@ body {
 
 .box-3 p {
   position: relative; 
-
-  margin-top: 50px;
+  margin-top: 80px;
   margin-left:10px;
   text-align: center;
   font-size: 3.5rem;
@@ -2060,3 +2060,12 @@ body.announcement_events_inquiry .message-row {
     border-radius: 5px;
     font-size: 15px;
 }
+
+.chart-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; 
+    height: 100%; 
+}
+
