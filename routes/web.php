@@ -307,6 +307,18 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
     //Benef Inquiry
     Route::get('/Beneficiary/inquiry', [BeneficiaryController::class, 'BeneficiaryInquiry'])->name('beneficiary.inquiry');
 
+    //Benef View Profile
+    Route::get('/Beneficiary/viewprofile', [BeneficiaryController::class, 'BeneficiaryViewProfile'])->name('beneficiary.viewprofile');
+
+    //Benef Edit Profile Data
+    Route::post('/Beneficiary/editprofile', [BeneficiaryController::class, 'BeneficiaryEditProfile'])->name('beneficiary.editprofile');
+
+    //Benef View Change Password
+    Route::get('/Beneficiary/viewchangepassword', [BeneficiaryController::class, 'BeneficiaryViewChangePassword'])->name('beneficiary.viewchangepassword');
+
+    //Benef Edit Change Password
+    Route::post('/Beneficiary/editchangepassword', [BeneficiaryController::class, 'BeneficiaryEditChangePassword'])->name('beneficiary.editchangepassword');
+
     // more routes here for beneficiary
 
 }); //End group beneficiary middleware

@@ -29,7 +29,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             <div class="container-fluid d-flex align-items-center">
                 <div class="col-lg-7 col-md-10">
                     <h1 class="display-2"></h1>
-                    <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
+                    <a href="{{ route('beneficiary.home') }}" class="btn btn-info ">Back to Home</a>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/Beneficiary_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                             class="img-fluid rounded-circle">
                                     </a>
                                 </div>
@@ -114,7 +114,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('itstaff.editchangepassword') }}">
+                            <form method="POST" action="{{ route('beneficiary.editchangepassword') }}">
                                 @csrf
                                 <h6 class="heading-small text-muted mb-4">Change Password</h6>
                                 <div class="pl-lg-4">
