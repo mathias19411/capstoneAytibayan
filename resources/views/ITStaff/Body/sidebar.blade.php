@@ -4,7 +4,7 @@
             <img src="\images\logo.png" alt="">
         </div>
 
-        <span class="logo_name">APAO</span>
+        <span class="logo_name">IT Staff</span>
     </div>
 
     @php

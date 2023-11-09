@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Initialize progress array with default steps
     let progressData = [
-      { description: "Description", done: false },
+      { description: "Your Financial Assitance Request is being verified", done: false },
       { description: "Description", done: false },
       { description: "Description", done: false },
     ];
