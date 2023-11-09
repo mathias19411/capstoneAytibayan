@@ -9,15 +9,15 @@
 <div class="boxes">
             <div class="box box-1">
                 <h1>Beneficiaries</h1>
-                <p>eme</p>
+                <p>{{ $abakaBeneficiariesCount }}</p>
             </div>
             <div class="box box-1 ">
                 <h1>Active</h1>
-                <p>eme</p>
+                <p>{{ $abakaActiveCount }}</p>
             </div>
             <div class="box box-2">
                 <h1>Inactive</h1>
-                <p>eme</p>
+                <p>{{ $abakaInactiveCount }}</p>
             </div>
          </div>
 <div class="button-container">
@@ -65,145 +65,103 @@
                 <table class="table">
                     <thead>
                     <tr>
-                            <th scope="col">No.</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Address</th>
-                            <th scope="col">Contact #</th>
+                            <th scope="col">Province</th>
                             <th scope="col">Email</th>
                             <th scope="col">Project</th>
-                            <th scope="col">Organization</th>
                             <th scope="col">Action</th>
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-location="Sagpon">
-                            <td>1</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                                <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
-                        </tr>
-                        <tr data-location="Sagpon">
-                            <td>2</td>
-                            <td>Joriza Oliva</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box inactive">Inactive</span>
-                            </td>
-                        </tr>
-                        <tr data-location="Sagpon">
-                            <td>3</td>
-                            <td>Mathias Bermejo</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
-                        </tr>
-                        <tr data-location="Rawis">
-                            <td>4</td>
-                            <td>Jayferson Begino</td>
-                            <td>Rawis, Legazpi</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
-                        </tr>
-                        <tr data-location="Sagpon">
-                            <td>5</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
-                        </tr>
-                        <tr data-location="Rawis">
-                            <td>6</td>
-                            <td>Joriza Oliva</td>
-                            <td>Rawis, Legazpi</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box inactive">Inactive</span>
-                            </td>
-                        </tr>
-                        <tr data-location="Sagpon">
-                            <td>7</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
-                        </tr>
-                     </tbody>
+                        @foreach ($abakaBeneficiaries as $abakaBeneficiary)
+                            {{-- Modal View for Add --}}
+                            <div id="add-value-popup-{{ $abakaBeneficiary->id }}" class="add-value-popup">
+                                <div class="add-value-popup-content">
+                                    <span class="add-value-popup-close"
+                                        onclick="hideAddValuePopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                    <h2>Add Beneficiary</h2>
+                                    <form action="{{ route('abakaprojectcoordinator.progressAdd') }}" enctype="multipart/form-data"
+                                        method="post">
+                                        @csrf
+
+                                        <input type="hidden" name="userId" value="{{ $abakaBeneficiary->id }}">
+
+                                        <label for="name">Beneficiary Name:</label>
+                                        <input type="text" id="name" name="name"
+                                            value="{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}"
+                                            readonly>
+                                        <label for="project">Project:</label>
+                                        <input type="text" id="project" name="project" required>
+                                        @error('project')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        <label for="amount">Amount:</label>
+                                        <input type="number" id="amount" name="amount" required>
+                                        @error('amount')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        <input type="hidden" name="financialassistancestatus_id" value="2">
+
+                                        <button type="submit" class="add">Save Changes</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            {{-- Modal View for Update --}}
+                            <div id="update-status-popup-{{ $abakaBeneficiary->id }}" class="update-status-popup">
+                                <div class="update-status-popup-content">
+                                    <span class="update-status-popup-close"
+                                        onclick="hideUpdateStatusPopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                    <h2>Beneficiary Progress Details</h2>
+                                    <p><strong>Beneficiary Name:</strong> <span>{{ $abakaBeneficiary->first_name }}
+                                            {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</span></p>
+                                    @if ($abakaBeneficiary->assistance)
+                                        <p><strong>Project:</strong> <span>{{ $abakaBeneficiary->assistance->project }}</span></p>
+                                        <p><strong>Amount:</strong> <span>{{ $abakaBeneficiary->assistance->amount }}</span></p>
+                                        <p><strong>Last Updated:</strong>
+                                            <span>{{ $abakaBeneficiary->assistance->updated_at }}</span>
+                                        </p>
+                                    @endif
+
+                                    <label for="update-status-dropdown">Update Status:</label>
+                                    <form action="{{ route('abakaprojectcoordinator.progressUpdate') }}"
+                                        enctype="multipart/form-data" method="post">
+                                        @csrf
+
+                                        <input type="hidden" name="userId" value="{{ $abakaBeneficiary->id }}">
+
+                                        
+
+                                        <button type="submit" class="add">Save Changes</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <tr>
+                                <td>{{ $abakaBeneficiary->id }}</td>
+                                <td>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }}
+                                    {{ $abakaBeneficiary->last_name }}</td>
+                                <td>{{ $abakaBeneficiary->barangay }} {{ $abakaBeneficiary->city }}</td>
+                                <td>{{ $abakaBeneficiary->province }}</td>
+                                
+                                <td>{{ $abakaBeneficiary->email }}</td>
+
+                                <td>N/A</td>
+                                <td class="no-print">
+                                    <button class="tooltip-button" data-tooltip="View"
+                                        onclick="showAddValuePopup({{ $abakaBeneficiary->id }})"><i
+                                            class="fa-solid fa-eye fa-2xs"></i></button>
+                                    <button class="tooltip-button" data-tooltip="Update"
+                                        onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
+                                            class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+
+                                <td>{{ $abakaBeneficiary->status->status_name }}</td>
+                            
+                        @endforeach
+                    </tbody>
                 </table>
                 <div class="pagination">
                     <button id="prev-page">Previous</button>

@@ -64,7 +64,7 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
             </div>
             <div class="box box-2">
                 <h1>Overall Financial Assistance Statuses</h1>
-                <div class="chart-inner" id="pie-chart"></div>
+                <div class="chart-inner" id="pie-chart2"></div>
             </div>
             <div class="box box-3">
                 <h1>Progress %</h1>

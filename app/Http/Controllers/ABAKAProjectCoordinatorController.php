@@ -30,7 +30,42 @@ class ABAKAProjectCoordinatorController extends Controller
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        return view('ABAKA_Project_Coordinator.beneficiary', compact('userProfileData'));
+        $userRole = AUTH::user()->role->role_name;
+
+        $userProgramId = AUTH::user()->program->id;
+
+        $abakaBeneficiaries = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->get();
+
+        //total benef count
+        $abakaBeneficiariesCount = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->count();
+
+        //total active benef
+        $abakaActiveCount = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->whereHas('status', function ($query) {
+            $query->where('status_name', 'Active');
+        })->count();
+
+        //total inactive benef
+        $abakaInactiveCount = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->whereHas('status', function ($query) {
+            $query->where('status_name', 'Inactive');
+        })->count();
+
+        return view('ABAKA_Project_Coordinator.beneficiary', compact('userProfileData', 'abakaBeneficiaries', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount'));
     } // End Method
 
     public function ProjectCoordinatorLogout(Request $request)
