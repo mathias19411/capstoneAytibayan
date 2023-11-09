@@ -225,29 +225,8 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="row" style="text-align: center;">
-                                          <h1>Contact Information </h1>
-                                        </div>
-                                        <div class="row" style="text-align: center;">
-                                            <div class="col" style="padding-top:5px">
-                                                <p>
-                                                   09772863816
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="row" style="text-align: center;" >
-                                            <div class="col" style="padding-top:5px">
-                                                <p>
-                                                    abaka@gmail.com
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div style="text-align: center;">
-                                            <button type="button" class="btn edit" id="edit-button">Edit</button>
-                                    </div>
-
-                                        </div>
+                                      
+                                     
              
 
                                         
@@ -258,9 +237,7 @@
                         @endforeach
                        
                     </div>
-                    <div style="text-align: center;">
-                            <button type="button" class="btn add" id="add-coordinator-button">Add Project Coordinator</button>
-                    </div>
+                   
                 </div>
 
                 <div class="modal-footer"> </div>
@@ -270,115 +247,6 @@
     </div>
 
 
-<!-- Add Project Coordinator Popup -->
-<div class="modal fade" id="add-coordinator-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Project Coordinator</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="add-coordinator-form">
-                    <div class="mb-3">
-                        <label for="coordinator-name" class="form-label">Name:</label>
-                        <input type="text" class="form-control" id="coordinator-name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="coordinator-program" class="form-label">Program Name:</label>
-                        <input type="text" class="form-control" id="coordinator-program" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="coordinator-contact" class="form-label">Contact Number:</label>
-                        <input type="text" class="form-control" id="coordinator-contact" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="coordinator-email" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="coordinator-email" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="close-coordinator-button" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="save-coordinator-button">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Edit Coordinator Modal -->
-<div class="modal fade" id="edit-coordinator-modal" tabindex="-1" aria-labelledby="editCoordinatorLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editCoordinatorLabel">Edit Coordinator</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="edit-coordinator-form">
-                    <!-- Editable fields go here -->
-                    <div class="mb-3">
-                        <label for="edit-coordinator-name" class="form-label">Name:</label>
-                        <input type="text" class="form-control" id="edit-coordinator-name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit-coordinator-program" class="form-label">Program Name:</label>
-                        <input type="text" class="form-control" id="edit-coordinator-program" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit-coordinator-contact" class="form-label">Contact Number:</label>
-                        <input type="text" class="form-control" id="edit-coordinator-contact" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit-coordinator-email" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="edit-coordinator-email" required>
-                    </div>
-                    <!-- End of editable fields -->
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="save-edit-button">Save Changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    // Function to open the "Edit Coordinator" modal
-    function openEditCoordinatorModal() {
-        $('#edit-coordinator-modal').modal('show');
-    }
-
-    // Event listener for opening the modal when the "Edit" button is clicked
-    $(document).ready(function () {
-        $('#edit-button').click(function () {
-            openEditCoordinatorModal();
-        });
-    });
-</script>
-
-<script>
-    // Function to open the modal
-    function openCoordinatorModal() {
-        $('#add-coordinator-modal').modal('show');
-    }
-
-    // Function to close the modal
-    function closeCoordinatorModal() {
-        $('#add-coordinator-modal').modal('hide');
-    }
-
-    // Event listener for opening the modal
-    $(document).ready(function () {
-        $('#add-coordinator-button').click(function () {
-            openCoordinatorModal();
-        });
-
-        // Event listener for closing the modal using the close (x) button
-        $('#add-coordinator-modal .modal-header .btn-close').click(function () {
-            closeCoordinatorModal();
-        });
-    });
-</script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <!-- Add jQuery library -->
