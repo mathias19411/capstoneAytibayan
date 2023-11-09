@@ -176,13 +176,13 @@
 
             if (passwordField.type === "password") {
                 passwordField.type = "text"; // Show the password
-                eyeIcon.classList.remove("fa-eye");
-                eyeIcon.classList.add("fa-eye-slash"); // Change the icon to an eye with a slash
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye"); // Change the icon back to an eye
                 eyeIcon.style.color = "#white"; // Change the icon color to green
             } else {
                 passwordField.type = "password"; // Hide the password
-                eyeIcon.classList.remove("fa-eye-slash");
-                eyeIcon.classList.add("fa-eye"); // Change the icon back to an eye
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash"); // Change the icon to an eye with a slash
                 eyeIcon.style.color = "black"; // Change the icon color to black
             }
         }
