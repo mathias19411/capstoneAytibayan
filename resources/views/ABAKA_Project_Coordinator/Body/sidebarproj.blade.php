@@ -18,14 +18,15 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
     <div class="menu-items">
         <ul class="nav-links">
+            
+        <li>
+            <a href="{{ route('abakaprojectcoordinator.beneficiaries') }}" class="{{ request()->is('/ABAKA_ProjectCoordinator/beneficiary') ? 'active' : '' }}">
+                <i class="uil uil-users-alt"></i>
+                <span class="link-name">Beneficiaries</span>
+            </a>
+        </li>
             <li>
-                <a href="{{ route('abakaprojectcoordinator.beneficiaries') }}" class="{{ request()->is('/ABAKA_Project_Coordinator/beneficiary') ? 'active' : '' }}">
-                    <i class="uil uil-users-alt"></i>
-                    <span class="link-name">Beneficiaries</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('abakaprojectcoordinator.announcement') }}" class="{{ request()->is('/ABAKA_Project_Coordinator/announcement') ? 'active' : '' }}">
+                <a href="{{ route('abakaprojectcoordinator.announcement') }}" class="{{ request()->is('/ABAKA_ProjectCoordinator/Announcements') ? 'active' : '' }}">
                     <i class="uil uil-bell"></i>
                     <span class="link-name">Announcement</span>
                 </a>
@@ -44,7 +45,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             </li>
 
             <li>
-                <a href="{{ route('abakaprojectcoordinator.progress') }}" class="{{ request()->is('/ABAKA_Project_Coordinator/progress') ? 'active' : '' }}">
+                <a href="{{ route('abakaprojectcoordinator.progress') }}" class="{{ request()->is('/ABAKA_Project_Coordinator/Progress') ? 'active' : '' }}">
                     <i class="uil uil-check-circle"></i>
                     <span class="link-name">Progress</span>
                 </a>

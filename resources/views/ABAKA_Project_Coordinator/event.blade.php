@@ -91,6 +91,7 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                                </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                                 </div>
@@ -149,6 +150,7 @@
                                                             </div>
                                                         </label>
                                                     </div>
+                                                </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>

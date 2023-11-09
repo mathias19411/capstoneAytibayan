@@ -140,7 +140,7 @@ label {
     margin-bottom: 0.5rem;
 }
 
-button {
+button_edit {
     padding: 10px;
     margin-top: 10px;
     border-radius: 0;
@@ -208,7 +208,7 @@ progress {
     vertical-align: baseline;
 }
 .container {
-    height: 300px;
+    /*height: 300px;*/
     width: 300px;
     border-radius: 10px;
     box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.2);

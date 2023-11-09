@@ -350,7 +350,7 @@
                     </div>
                 </div>
              </div>
-             <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_addproject">Add Project</button>
+             <button type="button" class="add-project_modal" data-bs-toggle="modal" data-bs-target="#modal_addproject">Add Project</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
@@ -381,31 +381,29 @@
                                                             <label for="edit-recipient">To:</label>
                                                             <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
                                                             <option>PUBLIC</option>
-                                                            <option>BINHI</option>
                                                             <option>AKBAY</option>
-                                                            <option>LEAD</option>
                                                             </select>
                                                         </div>
                                                         </div>
-
+                                            <!--
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                     <label id="label_">Date</label>
                                                         <input class="form-control"  type="date" id="Date" placeholder="Title...." name="date">
                                                 </div>
                                                 </div>
-                            
+                                            -->
                                                 <div class="col-md-12 mb-4">
                                                     <div class="form-outline">
                                                         <label id="label_">Message:</label>
                                                             <textarea class="form-control" rows="3" placeholder="Write something..." name="message"></textarea>
                                                             </div>
-                                                            <div class="form-outline">
+                                                    <div class="form-outline">
                                                         <label id="drop-img">
-                                                            <input name="image" type="file" id="input-file">
+                                                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
                                                             <div id="img-view">
-                                                            <img src="/images/image_icon.png">
-                                                            <p> Drag and drop or click here <br> to upload picture</p>
+                                                                <img src="" alt="Image Icon">
+                                                                <p>Drag and drop or click here<br>to upload a picture</p>
                                                             </div>
                                                         </label>
                                                     </div>

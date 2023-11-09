@@ -107,8 +107,8 @@ nav .logo-name .logo_name {
     color: var(--text-color);
     margin-left: 14px;
     transition: var(--tran-05);
-    white-space: nowrap; /* Prevent text from wrapping to the next line */
-    text-size-adjust: auto; /* Let the browser automatically adjust the text size */
+    white-space: nowrap;
+    text-size-adjust: auto; 
 }
 nav.close .logo_name {
     opacity: 0;
@@ -368,11 +368,14 @@ nav.close ~ .dashboard .top {
 }
 
 .dash-content .picture img {
+    background-size: cover;
     margin-top: 40px;
     width: 100%;
     max-height: 250px;
     height: 250px;
     border-radius: 10px;
+    object-fit: cover;
+  
 }
 
 body {
@@ -401,11 +404,13 @@ ol, ul {
 
 .dash-content .total-users,
 .dash-content .inactive-active-users {
-    display: flex; 
+    display: inline-block; 
+    margin: 0 10px;
     justify-content: center; 
     align-items: center; 
-    width: 95%;
+    width: 48%;
     flex-wrap: wrap;
+    
 }
 
 
@@ -657,6 +662,25 @@ ol, ul {
     transform: scale(1.1);
     background-color: var(--primary-color);
 }
+.dash-content .title1 {
+    background-color: #7bb701;
+    background-position: center;
+    border-radius: 5px;
+    width: auto;
+    height: 40px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px 20px 20px;
+}
+.dash-content .title1 h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+}
 
 .boxes .box a {
     text-decoration: none;
@@ -707,6 +731,8 @@ ol, ul {
     font-weight: bold;
     font-size: 13px;
     padding-top: 5px;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
 
 .boxes .box .totalnumber,
@@ -717,6 +743,8 @@ ol, ul {
     font-weight: bold;
     text-align: left;
     margin-left: 5px;
+    margin-top: 0 !important; /* Adjust the margin-top to reduce space */
+    padding-top: 0 !important;
 }
 
 .boxes .box .number-line {
@@ -726,18 +754,32 @@ ol, ul {
     border-radius: 10px;
 }
 
-/* Conditional styling based on numbers */
-.boxes .box .totalline {
-    background: linear-gradient(to right, green 100%, transparent 0);
+
+
+/* Styling for the colored lines */
+.colored-line.total {
+    height: 100%; /* Set the height to 100% to fill the number line */
+    background-color: var(--box1-color); /* Set the color for the total line */
+    border-radius: 10px;
 }
 
-.boxes .box .inactiveline {
-    background: linear-gradient(to right, orange 66.6%, transparent 0);
+.colored-line.active {
+    height: 100%; /* Set the height to 100% to fill the number line */
+    background-color: var(--primary-color); /* Set the color for the active line */
+    border-radius: 10px;
 }
 
-.boxes .box .activeline {
-    background: linear-gradient(to right, green 50%, transparent 0);
+.colored-line.inactive {
+    height: 100%; /* Set the height to 100% to fill the number line */
+    background-color: var(--colorOrange); /* Set the color for the inactive line */
+    border-radius: 10px;
 }
+
+/* Styling for empty total line */
+.colored-line.empty {
+    background-color: transparent; /* Make the total line transparent when it's 0 */
+}
+
 
 .coord {
     display: flex;
@@ -1084,6 +1126,14 @@ ol, ul {
         align-items: center;
         justify-content: space-between;
     }
+    .dash-content .user-stats  {
+        width: 100%;
+    
+    }
+.dash-content .user-stats .boxes1 {
+    flex-direction: column;
+
+}
 }
 
 @media (max-width: 780px) {
@@ -2105,4 +2155,134 @@ body.announcement_events_inquiry .message-row {
     .pie-chart {
         max-height: none; /* Remove the maximum height for pie chart */
     }
+}
+
+/*-------TABLE REGISTER IEW -----------*/
+
+.register_container {
+    overflow-x: auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    border-collapse: collapse;
+}
+
+.register_container .table{
+    width:100%;
+}
+
+.register_container  table th {
+    position: relative; /* Make the <th> element a positioning context */
+}
+
+.register_container table th::after {
+    content: "";
+    display: block;
+    height: 1px; 
+    background-color: var(--primary-color); 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+body.announcement_events_inquiry th,
+td {
+    padding: 10px;
+    text-align: center;
+}
+body.announcement_events_inquiry .title {
+    background-color: #7bb701;
+    background-position: center;
+    border-radius: 5px;
+    width: auto;
+    height: 40px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px 20px 20px 20px;
+}
+
+body.announcement_events_inquiry h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+body.announcement_events_inquiry .table button {
+
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+    width: 15px;
+    height: 15px;
+}
+
+body.announcement_events_inquiry .table button i {
+    font-size: 9px;
+}
+
+body.announcement_events_inquiry .table button:hover {
+    background-color: #8db600;
+    transition: 0.10s;
+}
+body.announcement_events_inquiry .table button:hover::after {
+    opacity: 1;
+}
+
+
+body.announcement_events_inquiry td button:nth-child(1) {
+    background-color: green;
+}
+body.announcement_events_inquiry td button:nth-child(2) {
+    background-color: rgb(86, 177, 207);
+}
+body.announcement_events_inquiry td button:nth-child(3) {
+    background-color: #f80000;
+}
+
+body.announcement_events_inquiry tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+
+body.announcement_events_inquiry td {
+    font-size: 13px;
+}
+
+body.announcement_events_inquiry tr:hover td {
+    color: #7bb701;
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+/* Common tooltip style for all buttons */
+.tooltip-button {
+    position: relative;
+}
+
+.tooltip-button::after {
+    content: attr(data-tooltip);
+    background-color: #989393;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+
+.tooltip-button:hover::after {
+    opacity: 1;
 }
