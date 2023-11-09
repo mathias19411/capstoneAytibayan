@@ -126,9 +126,9 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         <input type="password" name="inputOldPassword"
                                             class="form-control form-control-alternative @error('inputOldPassword') is-invalid @enderror"
                                             id="inputOldPassword" placeholder="Old Password" autocomplete="off">
-                                            <span class="eyeicon" id="eyeIcon" onclick="togglePasswordVisibility()">
-                                                <i class="fa-solid fa-eye" style="color:  #808080;"></i>
-                                            </span>
+                                        <span class="eyeicon" id="eyeIconOld" style="display: none;" onclick="togglePasswordVisibility('inputOldPassword', 'eyeIconOld')">
+                                            <i class="fas fa-eye-slash" style="color: #808080;"></i>
+                                        </span>
                                     </div>
                                     @error('inputOldPassword')
                                     <span class="text-danger">{{ $message }}</span>
@@ -150,12 +150,12 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                     <div class="form-group focused">
                                         <label class="form-control-label" for="inputNewPassword">New Password</label>
                                         <div class="input-group">
-                                        <input type="password" name="inputNewPassword"
-                                            class="form-control form-control-alternative @error('inputNewPassword') is-invalid
-                                            @enderror"
-                                            id="inputNewPassword" placeholder="New Password" autocomplete="off">
-                                            <span class="eyeicon" id="eyeIcon" onclick="togglePasswordVisibility()">
-                                                <i class="fa-solid fa-eye" style="color:  #808080;"></i>
+                                        <div class="input-group">
+                                            <input type="password" name="inputNewPassword"
+                                                class="form-control form-control-alternative @error('inputNewPassword') is-invalid @enderror"
+                                                id="inputNewPassword" placeholder="New Password" autocomplete="off">
+                                            <span class="eyeicon" id="eyeIconNew" style="display: none;" onclick="togglePasswordVisibility('inputNewPassword', 'eyeIconNew')">
+                                                <i class="fas fa-eye-slash" style="color: #808080;"></i>
                                             </span>
                                         </div>
                                         @error('inputNewPassword')
@@ -166,13 +166,13 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         <label class="form-control-label" for="inputConfirmNewPassword">Confirm New
                                             Password</label>
                                             <div class="input-group">
-                                        <input type="password" name="inputNewPassword_confirmation"
-                                            class="form-control form-control-alternative" id="inputConfirmNewPassword"
-                                            placeholder="Confirm New Password" autocomplete="off">
-                                            <span class="eyeicon" id="eyeIcon" onclick="togglePasswordVisibility()">
-                                                <i class="fa-solid fa-eye" style="color:  #808080;"></i>
-                                            </span>
-                                    </div>
+                                                <input type="password" name="inputNewPassword_confirmation"
+                                                    class="form-control form-control-alternative" id="inputConfirmNewPassword"
+                                                    placeholder="Confirm New Password" autocomplete="off">
+                                                <span class="eyeicon" id="eyeIconConfirmNew" style="display: none;" onclick="togglePasswordVisibility('inputConfirmNewPassword', 'eyeIconConfirmNew')">
+                                                    <i class="fas fa-eye-slash" style="color: #808080;"></i>
+                                                </span>
+                                            </div>
                                 </div>
                                 <hr class="my-4">
                                 <div class="button-container">
@@ -185,7 +185,42 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             </div>
         </div>
     </div>
+
     
+    <script>
+    function togglePasswordVisibility(inputId, eyeIconId) {
+        var passwordInput = document.getElementById(inputId);
+        var eyeIcon = document.getElementById(eyeIconId);
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.innerHTML = '<i class="fas fa-eye" style="color: #808080;"></i>';
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.innerHTML = '<i class="fas fa-eye-slash" style="color: #808080;"></i>';
+        }
+    }
+
+    // Attach input event listeners for each password field
+    var oldPasswordInput = document.getElementById('inputOldPassword');
+    var eyeIconOld = document.getElementById('eyeIconOld');
+    oldPasswordInput.addEventListener('input', function () {
+        eyeIconOld.style.display = oldPasswordInput.value.length > 0 ? 'inline-block' : 'none';
+    });
+
+    var newPasswordInput = document.getElementById('inputNewPassword');
+    var eyeIconNew = document.getElementById('eyeIconNew');
+    newPasswordInput.addEventListener('input', function () {
+        eyeIconNew.style.display = newPasswordInput.value.length > 0 ? 'inline-block' : 'none';
+    });
+
+    var confirmNewPasswordInput = document.getElementById('inputConfirmNewPassword');
+    var eyeIconConfirmNew = document.getElementById('eyeIconConfirmNew');
+    confirmNewPasswordInput.addEventListener('input', function () {
+        eyeIconConfirmNew.style.display = confirmNewPasswordInput.value.length > 0 ? 'inline-block' : 'none';
+    });
+</script>
+
 </body>
 
 </html>
