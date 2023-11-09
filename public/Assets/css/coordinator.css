@@ -690,7 +690,7 @@ body {
     align-items: center;
     padding: 5px 0px;
     gap:13px;
-    overflow-x: auto;
+    overflow: none;
     max-width: 100%;
     margin-bottom: 30px;
   }
