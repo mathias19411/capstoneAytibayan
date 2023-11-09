@@ -1,36 +1,47 @@
 <nav>
     <div class="logo-name">
+
+        @php
+        //Access the authenticated user's id
+$id = Illuminate\Support\Facades\AUTH::user()->id;
+
+//Access the specific row data of the user's id
+        //when using a model in blade.php, indicate the direct path of the model
+        $userProfileData = App\Models\User::find($id);
+    @endphp
+
         <div class="logo-image">
             <img src="\images\Logo_BinhiNgPagasa.png" alt="">
         </div>
+        
 
-        <span class="logo_name">BINHI NG PAG-ASA</span>
+        <span class="logo_name">{{ $userProfileData->program->program_name }}</span>
     </div>
 
     <div class="menu-items">
         <ul class="nav-links">
             <li>
-                <a href="" class="">
+                <a href="{{ route('beneficiary.home') }}" class="">
                     <i class="uil uil-home"></i>
                     <span class="link-name">Home</span>
                 </a>
             </li>
             <li>
-                <a href="" class="">
+                <a href="{{ route('beneficiary.schedule') }}" class="">
                     <i class="uil uil-schedule"></i>
                     <span class="link-name">Schedule</span>
                 </a>
             </li>
             <li>
-                <a href="" class="">
+                <a href="{{ route('beneficiary.updates') }}" class="">
                     <i class="uil uil-process"></i>
                     <span class="link-name">Update</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('beneficiary.inquiry') }}">
                     <i class="uil uil-user-circle"></i>
-                    <span class="link-name">Profile</span>
+                    <span class="link-name">Inquiry</span>
                 </a>
             </li>
 
@@ -82,22 +93,24 @@
         </div>
         <div class="profile-dropdown">
             <a href="#">
-                <i><img src="\images\logo.png" alt=""></i>
+                <i><img src="{{ !empty($userProfileData->photo) ? url('Uploads/Beneficiary_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                    class="rounded-circle" alt="User Profile Image"></i>
 
             </a>
             <ul class="sub-menus">
                 <li class="profile-info">
                     <div class="profile-image">
-                        <img src="\images\logo.png" alt="">
+                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/Beneficiary_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                            class="rounded-circle" alt="User Profile Image">
                     </div>
-                    <span class="linkname">Beneficiary</span>
+                    <span class="linkname">{{ $userProfileData->first_name }} {{ $userProfileData->middle_name }}{{ $userProfileData->last_name }}</span>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('beneficiary.viewprofile') }}">
                         <i class="uil uil-user"></i> Account
                     </a>
                 </li>
-                <li><a href="#"><i class="uil uil-lock"></i> Change Password</a></li>
+                <li><a href="{{ route('beneficiary.viewchangepassword') }}"><i class="uil uil-lock"></i> Change Password</a></li>
             </ul>
         </div>
 

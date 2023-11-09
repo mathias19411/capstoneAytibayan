@@ -22,6 +22,10 @@
                         <h4>Number of Beneficiaries</h4>
                     </div>
                     <div id="bar-chart"></div>
+                </div>
+            </div>
+            <div class="beneficiay-chart-section1">
+                <div class="beneficiay-chart-section-charts-card">
                     <div class="chart-title">
                         <h4>Monthly Beneficiaries</h4>
                     </div>
