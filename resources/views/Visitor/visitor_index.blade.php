@@ -294,8 +294,7 @@
 
     <!------------------ CONTACT ---------------------->
     <section class="contact" id="contact">
-        <div class="grid-container">
-        </div>
+    
         <div class="row">
             <div class="col" id="title" style="margin-left: 10px; margin-top: 10px;">
                 <h4><b>Location</b></h4>

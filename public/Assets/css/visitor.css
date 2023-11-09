@@ -909,8 +909,6 @@ body {
 /* -------------------------FOOTER------------------------------------ */
 .footer {
     bottom: 0;
-    /* grid-area: footer; */
-    height: 5rem;
     background: #ffffff;
     color: var(--colorBlack);
     border-radius: 15px;
@@ -1010,6 +1008,9 @@ body {
     .announcements-section {
         grid-area: 6 / 1 / 7 / 3;
         max-height: fit-content;
+    }
+    footer{
+        width: 100%;
     }
 
     /* #sidebar {
@@ -1971,11 +1972,11 @@ section.about .box {
 }
     @media (max-width: 768px) {
         section.about .main {
-            width: 60%;
+            width: 100%;
         }
     
         section.about .box {
-            width: 40%;
+            width: 100%;
         }
     }
 /* ------------------------- CONTACT ------------------------------------ */
@@ -1988,7 +1989,10 @@ section.about .box {
 
   section.contact {
     margin-bottom: 10px;
+    width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
   }
 
@@ -2211,3 +2215,44 @@ section.about .box {
       text-align: center;
   }
   
+  @media (max-width: 767px) {
+    
+     
+    .contact .row {
+        
+         width: 100%;
+    }
+     
+    section.contact #c_description {
+         margin-left: 0;
+    }
+    section.contact .col{
+ 
+        align-items:center;
+        padding-left: 30px; 
+    }
+
+    section.contact #coordinators{
+        padding-left: 50px;
+        text-align: center;
+   }
+   #coordinator_img{
+    padding-left: 70px;
+}
+.col #inquiry {
+    text-align: center;
+    flex-direction: column;
+}
+
+
+#textbox, #textbox_m {
+    font-size: 14px;
+}
+
+#textbox, #textbox_m {
+    width: 100%;
+    flex-direction: column;
+}
+
+
+} 
