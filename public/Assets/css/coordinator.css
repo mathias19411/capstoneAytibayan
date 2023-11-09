@@ -2070,3 +2070,15 @@ body.announcement_events_inquiry .message-row {
     height: 100%; 
 }
 
+.add-project_modal {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin:0 auto;
+}

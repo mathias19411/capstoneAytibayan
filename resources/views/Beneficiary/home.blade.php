@@ -15,6 +15,18 @@
                 <div class="card-progress">
                     <h2 class="card-title">PROGRESS</h2>
                     <div class="card-content">
+                        <!--
+                            <nav class="navmenu">
+
+                                <ul>
+                                <li><a href="#" class="active">Services</a></li>
+                                <li><a href="#">Works</a></li>
+                                <li><a href="#">Team</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Contact</a></li>
+                                </ul>
+                                </nav>
+                         -->
                     <div class="chart">
                     </div>
 
