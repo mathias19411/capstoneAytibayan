@@ -1474,7 +1474,7 @@ section.programs_view {
     
 
     .box {
-        width: 48%;
+        width: 30%;
         height: 300px;
         background-color: white; 
         margin-bottom: 10px;
@@ -1794,7 +1794,7 @@ section.about .container {
   }
   
   section.about .main {
-    width: 60%; /* Adjusted width for the main content */
+    width: 50%; 
     text-align: center;
     padding: 20px;
 }
@@ -1819,7 +1819,7 @@ section.about .container {
 
 section.about .box {
     background-color: #FFFFFF;
-    width: 30%; /* Adjusted width for the side boxes */
+    width: 20%;
     height: 400px;
     padding: 20px;
     border-radius: 0.5rem;
