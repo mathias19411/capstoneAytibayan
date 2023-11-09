@@ -6,16 +6,16 @@
 <div class="title">
         <h1>Beneficiaries</h1>
 </div>
-<div class="boxes">
-            <div class="box box-1">
+<div class="boxes1">
+            <div class="box box-5">
                 <h1>Beneficiaries</h1>
                 <p>{{ $abakaBeneficiariesCount }}</p>
             </div>
-            <div class="box box-1 ">
+            <div class="box box-5 ">
                 <h1>Active</h1>
                 <p>{{ $abakaActiveCount }}</p>
             </div>
-            <div class="box box-2">
+            <div class="box box-6">
                 <h1>Inactive</h1>
                 <p>{{ $abakaInactiveCount }}</p>
             </div>

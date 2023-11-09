@@ -683,6 +683,68 @@ body {
 }
 
 
+.boxes1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px;
+    gap:13px;
+    overflow-x: auto;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+.boxes1 .box{
+    width: 250px;
+    height: 200px;
+    background-color: #f2f2f2;
+    text-align: center;
+    position: relative;
+    margin-top: 60px;
+    border: 1px solid #e8d7d7;
+    border-radius: 10px;
+    padding: 0 10px;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+.boxes1 .box h1 {
+    position: absolute; 
+    top: -60px; 
+    left: 0;
+    right: 0;
+    margin: 10px;
+    font-size: 1.25rem; 
+    color: #000; 
+}
+
+
+.boxes1 .box .chart-inner {
+    max-height: 100%;
+}
+
+ .box-5 p {
+    margin: 0;
+    padding: 30px;
+    justify-content: center;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.box-6 p {
+  margin: 0;
+  padding: 40px;
+  justify-content: center;
+  text-align: center;
+  font-size: 6rem;
+  font-weight: bold;
+  color: var(--colorOrange);
+}
+
+
+
 /* Progress */
 
 .progress-section {

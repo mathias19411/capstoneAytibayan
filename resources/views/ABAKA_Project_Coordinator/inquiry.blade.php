@@ -17,6 +17,12 @@
                 <option value="unread">Read</option>
                 <option value="read">Unread</option>
             </select>
+            <label for="unread-filter">From: </label>
+            <select id="unread-filter">
+                <option value="all">All</option>
+                <option value="unread">Public</option>
+                <option value="read">Program Beneficiary</option>
+            </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
                 <option value="10">10</option>
