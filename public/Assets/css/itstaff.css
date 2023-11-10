@@ -79,10 +79,11 @@ nav {
     border-right: 1px solid var(--border-color);
     transition: var(--tran-05);
     box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.5);
-    z-index: 2;
+    z-index: 200;
 }
 nav.close {
     width: 73px;
+    
 }
 nav .logo-name {
     display: flex;
@@ -471,9 +472,7 @@ ol, ul {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
- 
- 
+    width: 100
 }
 
 
@@ -2287,8 +2286,7 @@ body.announcement_events_inquiry tr:hover td {
     opacity: 1;
 }
 
-
 #modal_announcement .modal-body {
-    overflow-y: auto; /* Add vertical scrollbar if content overflows */
-    max-height: 80vh; /* Adjust the maximum height as needed */
+    overflow-y: auto; 
+    max-height: 80vh; 
 }
