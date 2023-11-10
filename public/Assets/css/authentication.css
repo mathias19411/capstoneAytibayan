@@ -94,6 +94,21 @@ h3 {
     font-weight: bold;
 }
 
+.form-con {
+    font-size: 1rem;
+    line-height: 1.5;
+    display: block;
+    width: 100%;
+    height: calc(2.75rem + 2px);
+    padding: 0.625rem 0.75rem;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    color: #8898aa;
+    border: 1px solid #cad1d7;
+    border-radius: 0.375rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    box-shadow: none;
+}
 /*EYE ICON SHOW/HIDE PASSWORD*/
 
 .input-group {
@@ -101,8 +116,10 @@ h3 {
 }
 
 .eyeicon {
-    background-color: white;
+    background-color: #e8f0fe;
     border: none;
+    height: 50px;
+    border-radius: 0 5px 5px 0;
 }
 
 #showPasswordBtn {

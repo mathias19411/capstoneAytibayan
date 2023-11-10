@@ -150,7 +150,6 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                     <div class="form-group focused">
                                         <label class="form-control-label" for="inputNewPassword">New Password</label>
                                         <div class="input-group">
-                                        <div class="input-group">
                                             <input type="password" name="inputNewPassword"
                                                 class="form-control form-control-alternative @error('inputNewPassword') is-invalid @enderror"
                                                 id="inputNewPassword" placeholder="New Password" autocomplete="off">
