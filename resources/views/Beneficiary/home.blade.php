@@ -29,46 +29,17 @@
                          -->
                     <div class="chart">
                     </div>
-
-                    <div class="progressbar">
-                        <ul>
-                            <li>
-                                <div class="progress one">
-                                    <p>1</p>
-                                    <i class="uil uil-check"></i>
-                                </div>
-                                <p class="text">Lorem Ipsum</p>
-                            </li>
-                            <li>
-                                <div class="progress two">
-                                    <p>2</p>
-                                    <i class="uil uil-check"></i>
-                                </div>
-                                <p class="text">Fill Details</p>
-                            </li>
-                            <li>
-                                <div class="progress three">
-                                    <p>3</p>
-                                    <i class="uil uil-check"></i>
-                                </div>
-                                <p class="text">Make Payment</p>
-                            </li>
-                            <li>
-                                <div class="progress four">
-                                    <p>4</p>
-                                    <i class="uil uil-check"></i>
-                                </div>
-                                <p class="text">Order in Progress</p>
-                            </li>
-                            <li>
-                                <div class="progress five">
-                                    <p>5</p>
-                                    <i class="uil uil-check"></i>
-                                </div>
-                                <p class="text">Order Arrived</p>
-                            </li>
-                        </ul>
-                    </div>
+                    <div class="process">
+            <nav class="navmenu">
+                <ul>
+                    <li><a href="#" class="active">Services</a></li>
+                    <li><a href="#">Works</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
                 </div>
             </div>
         </div>

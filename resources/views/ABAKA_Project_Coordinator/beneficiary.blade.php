@@ -80,8 +80,12 @@
                             {{-- Modal View for Add --}}
                             <div id="add-value-popup-{{ $abakaBeneficiary->id }}" class="add-value-popup">
                                 <div class="add-value-popup-content">
-                                    <span class="add-value-popup-close"
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">View Beneficiary</h5>
+                                        <span class="add-value-popup-close"
                                         onclick="hideAddValuePopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                </div>  
+                               
                                     <h2>Add Beneficiary</h2>
                                     <form action="{{ route('abakaprojectcoordinator.progressAdd') }}" enctype="multipart/form-data"
                                         method="post">
@@ -113,8 +117,12 @@
                             {{-- Modal View for Update --}}
                             <div id="update-status-popup-{{ $abakaBeneficiary->id }}" class="update-status-popup">
                                 <div class="update-status-popup-content">
-                                    <span class="update-status-popup-close"
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">View Beneficiary</h5>
+                                        <span class="update-status-popup-close"
                                         onclick="hideUpdateStatusPopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                </div>  
+                                    
                                     <h2>Beneficiary Progress Details</h2>
                                     <p><strong>Beneficiary Name:</strong> <span>{{ $abakaBeneficiary->first_name }}
                                             {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</span></p>
