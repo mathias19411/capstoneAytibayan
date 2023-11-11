@@ -118,7 +118,7 @@
                             <div id="update-status-popup-{{ $abakaBeneficiary->id }}" class="update-status-popup">
                                 <div class="update-status-popup-content">
                                 <div class="modal-header">
-                                        <h5 class="modal-title" id="modal-title">View Beneficiary</h5>
+                                        <h5 class="modal-title" id="modal-title">Update Beneficiary</h5>
                                         <span class="update-status-popup-close"
                                         onclick="hideUpdateStatusPopup({{ $abakaBeneficiary->id }})">&times;</span>
                                 </div>  
