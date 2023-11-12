@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<p>Dear [recipient name],</p>
+<p>Dear {{ $recipientName }},</p>
 
 <h4>Subject:</h4>
 <p>This is a reply to your email about {{ $subject }}.</p>
@@ -14,7 +14,7 @@
 <p>{{ $body }}</p>
 
 <p>Sincerely,</p>
-[Your name]
+<p>Apao Coordinator</p>
 
 </body>
 </html>

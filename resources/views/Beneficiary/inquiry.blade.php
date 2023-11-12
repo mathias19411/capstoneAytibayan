@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Admin Home</title>
@@ -9,13 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="{{ asset('Assets/css/beneficiary.css') }}">
-
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
 </head>
 <body class="inquiry">
 @include('beneficiary.Body.sidebar')
@@ -45,32 +41,35 @@
         </div>
       </div>
       <div class="right-side">
-
         <p></p>
-      <form action="#">
+      <form action="{{ route('beneficiary.inquiries') }}" method="post" enctype="multipart/form-data"> 
+        @csrf
       <div class="input-box">
-      <label for="full-name" class="label">Full Name:</label>
-      <input type="text" id="full-name" placeholder="" required>
+      <label class="label">Full Name:</label>
+      <input type="text" placeholder="" name="fullname" required>
     </div>
     <div class="input-box">
-      <label for="email" class="label" >Personal Email:</label>
-      <input type="email" id="email" placeholder="juandelacruz@gmail.com" required>
+      <label class="label" >Personal Email:</label>
+      <input type="email" value="{{ $userProfileData->email }}" name="email" required>
     </div>
     <div class="input-box">
-      <label for="contact-number" class="label">Contact Number:</label>
-      <input type="number" id="contact-number" placeholder="09xxxxxxxxx" required>
+      <label class="label">Contact Number:</label>
+      <input type="text" value="{{ $userProfileData->phone }}" name="contact" required>
     </div>
     <div class="input-box">
-      <label for="to" class="label">To:</label>
-      <input type="text" id="to" placeholder="To" value="Binhi ng Pag-Asa Program" readonly>
+      <label class="label">To:</label>
+      <input type="text" placeholder="To" value="ABAKA" name="recipient" readonly>
     </div>
     <div class="input-box message-box">
-      <label for="message" class="label">Message:</label>
-      <textarea id="message" placeholder="" required></textarea>
+      <label class="label">Message:</label>
+      <textarea type="text" placeholder="" name="message" required></textarea>
     </div>
-
+    <div class="input-box">
+      <label class="label">Attach File:</label>
+      <input type="file" name="attachment" required>
+    </div>
         <div class="button">
-          <input type="button" value="Send" >
+          <input type="submit" value="Send" >
         </div>
       </form>
     </div>

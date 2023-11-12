@@ -21,7 +21,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
     <div class="menu-items">
         <ul class="nav-links">
             <li>
-                <a href="{{ route('beneficiary.home') }}" class="">
+                <a href="{{ route('beneficiary.home') }}" class="{{ request()->is('/Beneficiary/home') ? 'active' : '' }}">
                     <i class="uil uil-home"></i>
                     <span class="link-name">Home</span>
                 </a>
@@ -39,7 +39,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </a>
             </li>
             <li>
-                <a href="{{ route('beneficiary.inquiry') }}">
+                <a href="{{ route('beneficiary.inquiry') }}" class="{{ request()->is('/Beneficiary/inquiry') ? 'active' : '' }}">
                     <i class="uil uil-user-circle"></i>
                     <span class="link-name">Inquiry</span>
                 </a>
@@ -86,7 +86,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </div>
             </div>
             <div class="message-icon">
-                <a href="#">
+                <a href="" class="">
                     <i class="uil uil-comment-dots"></i>
                 </a>
             </div>

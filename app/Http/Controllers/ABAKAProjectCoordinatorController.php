@@ -252,35 +252,6 @@ class ABAKAProjectCoordinatorController extends Controller
         return view('ABAKA_Project_Coordinator.inquiry', ['inquiry'=>$inquiry]);
     } // End Method
 
-    public function ProjCoordinatorInquiryStore(Request $request)
-    {
-        // 
-        // Validate the request
-        $validatedData = $request->validate([
-            'fullname' => 'required|string|max:255',
-            'to' => 'required|string',
-            'email' => 'required|string',
-            'message' => 'required|string',
-            'attachments' => 'string',
-        ]);
-
-        // Check if validation passes
-        if ($validatedData) 
-        {
-            // Insert data into the database
-            inquiries::insert([
-                'fullname' => $validatedData['fullname'],
-                'to' => $validatedData['to'],
-                'email' => $validatedData['email'],
-                'message' => $validatedData['message'],
-                'attachment' => $validatedData['attachments'],
-            ]);
-
-            return redirect()->back()->with('success', 'New Inquiry Added!');
-        } else {
-            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
-    }
-    } // End Method
 
     public function ProjectCoordinatorInquiryEdit($id)
     {
@@ -293,6 +264,9 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         // Get the email address of the recipient
         $recipientEmail = $request->get('recipient_email');
+
+        // Get the name of the recipient
+        $recipientName = $request->get('fullname');
 
         // Get the subject of the email
         $subject = $request->get('subject');
@@ -311,7 +285,7 @@ class ABAKAProjectCoordinatorController extends Controller
                 // If the attachment is valid, you can proceed with sending the email.
 
                 // Reply to the email message with a body and an attachment
-                Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $attachment));
+                Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $attachment, $recipientName));
 
                 // Redirect back to the previous page
                 return redirect()->back()->with('success', 'Message Sent!');
@@ -319,11 +293,20 @@ class ABAKAProjectCoordinatorController extends Controller
                 // Handle the case when the uploaded file is not valid.
                 return redirect()->back()->with('error', 'Invalid file uploaded');
             }
-        } else {
+        } 
+        else if ($attachment === null) {    
+
+            Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, null, $recipientName));
+
+            // Redirect back to the previous page
+            return redirect()->back()->with('success', 'Message Sent!');
+        }
+        else {
             // Handle the case when no file was uploaded.
             return redirect()->back()->with('error', 'No file uploaded');
         }
     }// End of Method
+
 
     public function ProjCoordinatorInquiryDelete(Request $request)
     {

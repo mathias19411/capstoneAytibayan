@@ -156,6 +156,8 @@ return [
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
+        
+        Cmgmyr\Messenger\MessengerServiceProvider::class,
         /*
          * Package Service Providers...
          */
