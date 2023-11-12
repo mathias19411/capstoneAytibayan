@@ -106,7 +106,7 @@ class VisitorController extends Controller
             'to' => 'required|string',
             'email' => 'required|email',
             'message' => 'required|string',
-            'contacts' => 'required|integer',
+            'contacts' => 'required|string',
             'attachments' => 'nullable|file',
         ]);
 
