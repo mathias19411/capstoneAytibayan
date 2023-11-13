@@ -20,8 +20,8 @@ class UserRoleProtection
         $user = $request->user();
         // dd($user->role->role_name);
         // Access the role name using the defined relationship
-        if ($user->role->role_name !== $userrole)
-        {
+        // Check if the user's role name matches the specified roles
+        if ($user->role->role_name !== $userrole && !in_array($user->role->role_name, explode('|', $userrole))) {
             return redirect()->route('visitor.home');
         }
         return $next($request);

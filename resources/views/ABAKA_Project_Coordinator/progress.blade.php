@@ -28,36 +28,45 @@ $benefAssistanceStatuses = [];
         </div>
 
         @if (App\Models\Financialassistance::count() > 0)
-        @php
-        //total pending benef 
-$abakaPendingCount = App\Models\User::whereHas('role', function ($query) {
-         $query->where('role_name', 'beneficiary');
-     })->whereHas('program', function ($query) use ($userProgramId) {
-         $query->where('id', $userProgramId);
-     })->whereHas('assistance', function ($query) {
-         $query->where('financialassistancestatus_id', 2);
-     })->count();
-     //total approved benef 
-$abakaApprovedCount = App\Models\User::whereHas('role', function ($query) {
-         $query->where('role_name', 'beneficiary');
-     })->whereHas('program', function ($query) use ($userProgramId) {
-         $query->where('id', $userProgramId);
-     })->whereHas('assistance', function ($query) {
-         $query->where('financialassistancestatus_id', 3);
-     })->count();
-     //total disbursed benef 
-$abakaDisbursedCount = App\Models\User::whereHas('role', function ($query) {
-         $query->where('role_name', 'beneficiary');
-     })->whereHas('program', function ($query) use ($userProgramId) {
-         $query->where('id', $userProgramId);
-     })->whereHas('assistance', function ($query) {
-         $query->where('financialassistancestatus_id', 4);
-     })->count();
+            @php
+                //total pending benef
+                $abakaPendingCount = App\Models\User::whereHas('role', function ($query) {
+                    $query->where('role_name', 'beneficiary');
+                })
+                    ->whereHas('program', function ($query) use ($userProgramId) {
+                        $query->where('id', $userProgramId);
+                    })
+                    ->whereHas('assistance', function ($query) {
+                        $query->where('financialassistancestatus_id', 2);
+                    })
+                    ->count();
+                //total approved benef
+                $abakaApprovedCount = App\Models\User::whereHas('role', function ($query) {
+                    $query->where('role_name', 'beneficiary');
+                })
+                    ->whereHas('program', function ($query) use ($userProgramId) {
+                        $query->where('id', $userProgramId);
+                    })
+                    ->whereHas('assistance', function ($query) {
+                        $query->where('financialassistancestatus_id', 3);
+                    })
+                    ->count();
+                //total disbursed benef
+                $abakaDisbursedCount = App\Models\User::whereHas('role', function ($query) {
+                    $query->where('role_name', 'beneficiary');
+                })
+                    ->whereHas('program', function ($query) use ($userProgramId) {
+                        $query->where('id', $userProgramId);
+                    })
+                    ->whereHas('assistance', function ($query) {
+                        $query->where('financialassistancestatus_id', 4);
+                    })
+                    ->count();
 
-$benefExistingProjectCount = App\Models\Financialassistance::count();
-     
-     $benefAssistanceStatuses = [$abakaPendingCount, $abakaApprovedCount, $abakaDisbursedCount];
-     @endphp
+                $benefExistingProjectCount = App\Models\Financialassistance::count();
+
+                $benefAssistanceStatuses = [$abakaPendingCount, $abakaApprovedCount, $abakaDisbursedCount];
+            @endphp
             <div class="box box-1 ">
                 <h1>Existing Beneficiry Projects</h1>
                 <p>{{ $benefExistingProjectCount }}</p>
@@ -86,7 +95,7 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
                 <p></p>
             </div>
         @endif
-        
+
     </div>
 
 
@@ -138,6 +147,7 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
                     <th scope="col">Status</th>
                     <th scope="col">Project</th>
                     <th scope="col">Amount</th>
+                    <th scope="col">Hectares</th>
                     <th scope="col" class="no-print">Action</th>
                     <th scope="col">Assistance Status</th>
 
@@ -169,6 +179,11 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
                                 <label for="amount">Amount:</label>
                                 <input type="number" id="amount" name="amount" required>
                                 @error('amount')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <label for="hectares">Number of Hectares:</label>
+                                <input type="number" id="hectares" name="hectares" required min="1" max="5">
+                                @error('hectares')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                                 <input type="hidden" name="financialassistancestatus_id" value="2">
@@ -230,6 +245,7 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
                         @if ($abakaBeneficiary->assistance)
                             <td>{{ $abakaBeneficiary->assistance->project }}</td>
                             <td>{{ $abakaBeneficiary->assistance->amount }}</td>
+                            <td>{{ $abakaBeneficiary->assistance->number_of_hectares }}</td>
                             <td class="no-print">
                                 <button class="tooltip-button" data-tooltip="Add"
                                     onclick="showAddValuePopup({{ $abakaBeneficiary->id }})" disabled
@@ -242,6 +258,7 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
                             </td>
                             <td>{{ $abakaBeneficiary->financialAssistanceStatus->financial_assistance_status_name }}</td>
                         @else
+                            <td>N/A</td>
                             <td>N/A</td>
                             <td>N/A</td>
                             <td class="no-print">
@@ -304,6 +321,7 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
 
         <div id="progress-percent"></div>
         <button id="add-step">Add Step</button>
+        <button id="reset-steps">Reset Steps</button>
     </div>
 
 
@@ -323,124 +341,122 @@ $benefExistingProjectCount = App\Models\Financialassistance::count();
 
         // -------------------------------- Pie chart----------------------
         var options = {
-          series: totalActiveAndInactiveCount,
-          chart: {
-  
-          type: 'pie',
-          toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
-                show: true
+            series: totalActiveAndInactiveCount,
+            chart: {
+
+                type: 'pie',
+                toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
+                    show: true
+                },
+                width: '100%', // Set the width of the chart
+                height: 600,
             },
-            width:'100%', // Set the width of the chart
-        height: 600,
-        },
-        colors: [
-            "#7bb701",
-            "#f0a60f",
-          
-        ],
-        labels: ['Active', 'Inactive'],
-    responsive: [
-        {
-            breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
-            options: {
-                chart: {
-                    width: '90%', // Adjust the width for smaller screens
+            colors: [
+                "#7bb701",
+                "#f0a60f",
+
+            ],
+            labels: ['Active', 'Inactive'],
+            responsive: [{
+                    breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
+                    options: {
+                        chart: {
+                            width: '90%', // Adjust the width for smaller screens
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
                 },
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        },
-        {
-            breakpoint: 769, // Set a breakpoint for even smaller screens (e.g., mobile devices)
-            options: {
-                chart: {
-                    width: '40%',
-                   
-                    height: 450,
+                {
+                    breakpoint: 769, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+                    options: {
+                        chart: {
+                            width: '40%',
+
+                            height: 450,
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
                 },
-                legend: {
-                    position: 'bottom'
+                {
+                    breakpoint: 694, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+                    options: {
+                        chart: {
+                            width: '50%',
+
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
                 }
-            }
-        },
-        {
-            breakpoint: 694, // Set a breakpoint for even smaller screens (e.g., mobile devices)
-            options: {
-                chart: {
-                    width: '50%',
-                  
-                },
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }
-    ]
-};
-       
+            ]
+        };
+
         var chart = new ApexCharts(document.querySelector("#pie-chart1"), options);
         chart.render();
 
         // -------------------------------- Pie chart----------------------
         var options = {
-          series: benefAssistanceStatuses,
-          chart: {
-  
-          type: 'pie',
-          toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
-                show: true
+            series: benefAssistanceStatuses,
+            chart: {
+
+                type: 'pie',
+                toolbar: { //toolbar enabled, users can DL the chart into svg, csv, and png
+                    show: true
+                },
+                width: '100%', // Set the width of the chart
+                height: 600,
             },
-            width:'100%', // Set the width of the chart
-        height: 600,
-        },
-        colors: [
-            "#7bb701",
-            "#f0a60f",
-            "#58c0e2"
-          
-        ],
-        labels: ['Pending', 'Approved', 'Disbursed'],
-    responsive: [
-        {
-            breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
-            options: {
-                chart: {
-                    width: '90%', // Adjust the width for smaller screens
+            colors: [
+                "#7bb701",
+                "#f0a60f",
+                "#58c0e2"
+
+            ],
+            labels: ['Pending', 'Approved', 'Disbursed'],
+            responsive: [{
+                    breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
+                    options: {
+                        chart: {
+                            width: '90%', // Adjust the width for smaller screens
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
                 },
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        },
-        {
-            breakpoint: 769, // Set a breakpoint for even smaller screens (e.g., mobile devices)
-            options: {
-                chart: {
-                    width: '40%',
-                   
-                    height: 450,
+                {
+                    breakpoint: 769, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+                    options: {
+                        chart: {
+                            width: '40%',
+
+                            height: 450,
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
                 },
-                legend: {
-                    position: 'bottom'
+                {
+                    breakpoint: 694, // Set a breakpoint for even smaller screens (e.g., mobile devices)
+                    options: {
+                        chart: {
+                            width: '50%',
+
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
                 }
-            }
-        },
-        {
-            breakpoint: 694, // Set a breakpoint for even smaller screens (e.g., mobile devices)
-            options: {
-                chart: {
-                    width: '50%',
-                  
-                },
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }
-    ]
-};
-       
+            ]
+        };
+
         var chart = new ApexCharts(document.querySelector("#pie-chart2"), options);
         chart.render();
     </script>

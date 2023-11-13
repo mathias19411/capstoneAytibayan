@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('financialassistances', function (Blueprint $table) {
+        Schema::create('assistance_steps', function (Blueprint $table) {
             $table->id();
-            $table->string('project')->nullable();
-            $table->float('amount')->nullable();
-            $table->integer('number_of_hectares')->nullable();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('financialassistancestatus_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('step_one')->nullable();
+            $table->string('step_two')->nullable();
+            $table->string('step_three')->nullable();
+            $table->string('step_four')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('financialassistances');
+        Schema::dropIfExists('assistance_steps');
     }
 };

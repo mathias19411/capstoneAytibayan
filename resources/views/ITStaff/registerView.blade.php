@@ -10,7 +10,7 @@
 
     <div class="table-header">
         <div class="table-header-left">
-        <label for="unread-filter">Filter: </label>
+            <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
                 <option value="read">itstaff</option>
@@ -55,25 +55,39 @@
             <tbody>
                 @foreach ($users as $user)
                     {{-- Modal View --}}
-                    <div class="modal fade" id="itStaffRegister{{ $user->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                    <div class="modal fade" id="itStaffRegister{{ $user->id }}" tabindex="-1" data-backdrop="false"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="modal-title">User Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
-                                
+
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col">
                                             <div class="col-md-12">
                                                 <img class="profile ht-50 wd-50 rounded-circle"
-                                                    src="{{ !empty($user->photo) ? url('Uploads/ITStaff_Images/' . $user->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                                    src="{{ !empty($user->photo)
+                                                        ? ($user->role->role_name === 'itstaff'
+                                                            ? url('Uploads/ITStaff_Images/' . $user->photo)
+                                                            : (in_array($user->role->role_name, [
+                                                                'projectcoordinator',
+                                                                'abakaprojectcoordinator',
+                                                                'agripinayprojectcoordinator',
+                                                                'akbayprojectcoordinator',
+                                                                'leadprojectcoordinator',
+                                                            ])
+                                                                ? url('Uploads/Coordinator_Images/' . $user->photo)
+                                                                : url('Uploads/Beneficiary_Images/' . $user->photo)))
+                                                        : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                                     alt="profile">
                                             </div>
                                             <br>
-                                            <span class="name h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</span>
+                                            <span class="name h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }}
+                                                {{ $user->last_name }}</span>
                                             <br><br>
                                         </div>
                                         <div class="col-md-12">
@@ -94,7 +108,8 @@
                                         </div>
                                         <div class="col-md-12">
                                             <h5>Address:</h5>
-                                            <p id="modal-message">{{ $user->barangay }}, {{ $user->city }}, {{ $user->province }} {{ $user->zip }}</p>
+                                            <p id="modal-message">{{ $user->barangay }}, {{ $user->city }},
+                                                {{ $user->province }} {{ $user->zip }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -106,88 +121,106 @@
                     </div>
 
                     <!--Update User Status-->
-                    <div class="modal fade" id="modal_edit{{ $user->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                    <div class="modal fade" id="modal_edit{{ $user->id }}" tabindex="-1" data-backdrop="false"
+                        aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="modal-title">Edit User:</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
-                                    <div class="modal-body">
-                                        <div class="col-md-12">
-                                            <img class="profile ht-50 wd-50 rounded-circle"
-                                                src="{{ !empty($user->photo) ? url('Uploads/ITStaff_Images/' . $user->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
-                                                alt="profile">
+                                <div class="modal-body">
+                                    <div class="col-md-12">
+                                        <img class="profile ht-50 wd-50 rounded-circle"
+                                            src="{{ !empty($user->photo)
+                                                ? ($user->role->role_name === 'itstaff'
+                                                    ? url('Uploads/ITStaff_Images/' . $user->photo)
+                                                    : (in_array($user->role->role_name, [
+                                                        'projectcoordinator',
+                                                        'abakaprojectcoordinator',
+                                                        'agripinayprojectcoordinator',
+                                                        'akbayprojectcoordinator',
+                                                        'leadprojectcoordinator',
+                                                    ])
+                                                        ? url('Uploads/Coordinator_Images/' . $user->photo)
+                                                        : url('Uploads/Beneficiary_Images/' . $user->photo)))
+                                                : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                            alt="profile">
+                                    </div>
+                                    <br>
+                                    <span class="h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }}
+                                        {{ $user->last_name }}</span>
+                                    <br><br>
+                                    <form action="{{ route('itstaff.registerEditUser') }}" enctype="multipart/form-data"
+                                        method="post">
+                                        @csrf
+                                        <div class="row">
+                                            <input type="hidden" name="id" value="{{ $user->id }}">
                                         </div>
-                                        <br>
-                                        <span class="h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</span>
-                                        <br><br>
-                                            <form action="{{ route('itstaff.registerEditUser') }}" enctype="multipart/form-data" method="post">
-                                                @csrf
-                                            <div class="row">
-                                                <input type="hidden" name="id" value="{{ $user->id }}">
-                                            </div>
-                                            <div class="col-md-12 mb-4">
-                                                <div class="form-outline">
+                                        <div class="col-md-12 mb-4">
+                                            <div class="form-outline">
                                                 <label id="inputRole">User Role:</label>
                                                 <select id="inputRole" class="form-select" name="inputRole">
                                                     @foreach ($roles as $role)
-                                                        <option value="{{ $role->id }}">{{ ucwords($role->role_name) }}</option>
+                                                        <option value="{{ $role->id }}">
+                                                            {{ ucwords($role->role_name) }}</option>
                                                     @endforeach
                                                 </select>
-                                                </div>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-12 mb-4">
-                                                <div class="form-outline">
-                                                    <label id="inputStatus">User Status:</label>
-                                                    <select id="inputStatus" class="form-select" name="inputStatus">
-                                                        @foreach ($statuses as $status)
-                                                            <option value="{{ $status->id }}" @if ($user->status_id == $status->id) selected @endif>{{ $status->status_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                        <div class="col-md-12 mb-4">
+                                            <div class="form-outline">
+                                                <label id="inputStatus">User Status:</label>
+                                                <select id="inputStatus" class="form-select" name="inputStatus">
+                                                    @foreach ($statuses as $status)
+                                                        <option value="{{ $status->id }}"
+                                                            @if ($user->status_id == $status->id) selected @endif>
+                                                            {{ $status->status_name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
-                        
-                                            <div class="modal-footer">
-                                                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="add">Save Changes</button>
-                                            </div>
-                                            </div>
-                                            </form>
-                                    </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="add">Save Changes</button>
+                                        </div>
                                 </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
+    </div>
 
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->first_name }}</td>
-                        <td>{{ $user->middle_name }}</td>
-                        <td>{{ $user->last_name }}</td>
-                        <td>{{ $user->program->program_name }}</td>
-                        <td>{{ $user->role->role_name }}</td>
-                        <td>{{ $user->status->status_name }}</td>
-                        <td>
-                            <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal"
-                            data-bs-target="#itStaffRegister{{ $user->id }}">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                            </button>
-                            <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal"
-                            data-bs-target="#modal_edit{{ $user->id }}"><i
-                                    class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <div class="pagination">
-            <button id="prev-page">Previous</button>
-            <div id="page-numbers"></div>
-            <button id="next-page">Next</button>
-        </div>
+    <tr>
+        <td>{{ $user->id }}</td>
+        <td>{{ $user->first_name }}</td>
+        <td>{{ $user->middle_name }}</td>
+        <td>{{ $user->last_name }}</td>
+        <td>{{ $user->program->program_name }}</td>
+        <td>{{ $user->role->role_name }}</td>
+        <td>{{ $user->status->status_name }}</td>
+        <td>
+            <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal"
+                data-bs-target="#itStaffRegister{{ $user->id }}">
+                <i class="fa-solid fa-eye fa-2xs"></i>
+            </button>
+            <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal"
+                data-bs-target="#modal_edit{{ $user->id }}"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+        </td>
+    </tr>
+    @endforeach
+    </tbody>
+    </table>
+    <div class="pagination">
+        <button id="prev-page">Previous</button>
+        <div id="page-numbers"></div>
+        <button id="next-page">Next</button>
+    </div>
 
-        <div id="pagination-message"></div>
+    <div id="pagination-message"></div>
     </div>
 
     <!-- Popup for displaying message content and details -->
@@ -243,5 +276,5 @@
         </div>
         </div>
     </form>
-    
-    @endsection
+
+@endsection

@@ -284,6 +284,9 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
     //Abaka Coordinator Edit user status and role
     Route::post('/ABAKA_ProjectCoordinator/registeredituser', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorRegisterEditUser'])->name('abakaprojectcoordinator.registerEditUser');
 
+    //Notify all beneficiaries with status
+    Route::post('/ABAKA_ProjectCoordinator/notify-beneficiaries', [ABAKAProjectCoordinatorController::class, 'notifyBeneficiaries']);
+
     // more routes here for Project Coordinator
 
 }); //End group Project Coordinator middleware

@@ -3,12 +3,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const addStepButton = document.getElementById("add-step");
     const progressPercent = document.getElementById("progress-percent");
     const progressNum = document.getElementById("progress-num"); // Get the progress number list
+
+    // Reset button
+    const resetStepsButton = document.getElementById("reset-steps");
+    resetStepsButton.addEventListener("click", () => {
+        // Reset progressData to default values
+        progressData = [
+            { description: "Description", done: false, date: getCurrentDate() },
+            { description: "Description", done: false, date: getCurrentDate() },
+            { description: "Description", done: false, date: getCurrentDate() },
+        ];
+
+        // Save progressData to localStorage
+        localStorage.setItem('progressData', JSON.stringify(progressData));
+
+        // Reset input values and re-render progress
+        renderProgress();
+        updateProgress();
+    });
+
+    function getCurrentDate() {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
   
     // Initialize progress array with default steps
-    let progressData = [
-      { description: "Your Financial Assitance Request is being verified", done: false },
-      { description: "Description", done: false },
-      { description: "Description", done: false },
+    let progressData = JSON.parse(localStorage.getItem('progressData')) || [
+        { description: "Description", done: false, date: getCurrentDate() },
+        { description: "Description", done: false, date: getCurrentDate() },
+        { description: "Description", done: false, date: getCurrentDate() },
     ];
   
     // Function to update the progress percentage and progress line
@@ -48,6 +74,36 @@ document.addEventListener("DOMContentLoaded", function () {
         const stepNum = document.querySelectorAll(".progress-number")[index];
         stepNum.style.backgroundColor = step.done ? color : 'lightgray';
       });
+
+      // Save progressData to localStorage
+        localStorage.setItem('progressData', JSON.stringify(progressData));
+    }
+
+    //function for email notification
+    function notifyBeneficiaries(description) {
+      // Make an AJAX request to notify beneficiaries
+      fetch('/ABAKA_ProjectCoordinator/notify-beneficiaries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+        body: JSON.stringify({ description }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Notification sent:', data);
+        })
+        .catch(error => {
+            console.error('Error sending notification:', error);
+
+            // Check if the error is a JSON parsing error
+            if (error instanceof SyntaxError && error.message.includes('Unexpected token')) {
+                console.error('Invalid JSON response. Server returned:', error.message);
+            } else {
+                console.error('Unexpected error:', error);
+            }
+        });
     }
   
     // Function to calculate color based on percentage
@@ -62,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return 'green';
       }
     }
+    
   
     // Function to render the progress list
     function renderProgress() {
@@ -80,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
           <div class="step-progress">
           </div>
-          <button class="done-button">Save</button>
+          <button class="done-button" ${step.disabled ? 'disabled' : ''}>Save</button>
           <button class="edit-button"><i class="fas fa-edit"></i></button>
           <button class="delete-button"><i class="fas fa-trash-alt"></i></button>
         `;
@@ -88,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const checkbox = li.querySelector(".checkbox");
         const description = li.querySelector(".step-description");
         const dateInput = li.querySelector(".step-date");
+            dateInput.value = step.date; // Set the date from progressData
         const icon = li.querySelector(".step-icon");
         const doneButton = li.querySelector(".done-button");
         const editButton = li.querySelector(".edit-button");
@@ -107,12 +165,22 @@ document.addEventListener("DOMContentLoaded", function () {
   
         // Done button click event handler
         doneButton.addEventListener("click", () => {
-          description.setAttribute("readonly", "readonly");
+          // Disable input elements
+          checkbox.disabled = true;
+          description.disabled = true;
+          dateInput.disabled = true;
           progressData[index].description = description.value;
+          
+          // Disable the button
+          doneButton.disabled = true;
+          progressData[index].disabled = true;
+
+          // Notify beneficiaries
+          notifyBeneficiaries(description.value);
   
           // Toggle the 'save-button' class to make the button green
           doneButton.classList.toggle("save-button");
-  
+
           // Update the progress line and percentage
           updateProgress();
         });
@@ -121,9 +189,14 @@ document.addEventListener("DOMContentLoaded", function () {
         editButton.addEventListener("click", () => {
           description.removeAttribute("readonly");
           description.focus();
-  
+
           // Remove the 'save-button' class to return the button to its original color
           doneButton.classList.remove("save-button");
+
+          // Re-enable input elements
+          checkbox.disabled = false;
+          description.disabled = false;
+          dateInput.disabled = false;
         });
   
         // Delete button click event handler
@@ -143,6 +216,8 @@ document.addEventListener("DOMContentLoaded", function () {
         progressNum.appendChild(stepNum);
       });
     }
+
+    
   
     // Initial rendering
     renderProgress();
@@ -151,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add Step button click event handler
     addStepButton.addEventListener("click", () => {
       const description = "Description";
-      progressData.push({ description, done: false });
+      progressData.push({ description, done: false, date: getCurrentDate() });
       renderProgress();
       updateProgress();
     });

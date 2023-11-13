@@ -13,19 +13,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Requests\Auth\LoginRequest;
 
 
-Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff|abakaprojectcoordinator'])->group(function(){
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 });
 
-Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordinator'])->group(function(){
-    Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
+// Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordinator'])->group(function(){
+//     Route::get('register', [RegisteredUserController::class, 'create'])
+//                 ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
-});
+//     Route::post('register', [RegisteredUserController::class, 'store']);
+// });
 
 Route::middleware('guest')->group(function () {
 

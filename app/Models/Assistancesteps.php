@@ -2,20 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Financialassistance extends Model
+class Assistancesteps extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
         'user_id',
-        'project',
-        'amount',
-        'number_of_hectares',
-        'financialassistancestatus_id',
+        'step_one',
+        'step_two',
+        'step_three',
+        'step_four',
         'created_at',
         'updated_at',
     ];
@@ -23,10 +24,5 @@ class Financialassistance extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function financial_assistance_status()
-    {
-        return $this->belongsTo(Financialassistancestatus::class);
     }
 }

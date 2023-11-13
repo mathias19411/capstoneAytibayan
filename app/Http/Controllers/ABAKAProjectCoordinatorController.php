@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use App\Models\Role;
-use App\Models\Program;
-use App\Models\Status;
+use App\Mail\FinancialAssistanceStatusUpdate;
+use App\Mail\ReplyMailable;
 use App\Models\announcement;
-use App\Models\inquiries;
-use App\Models\progress;
 use App\Models\events;
 use App\Models\Financialassistance;
 use App\Models\Financialassistancestatus;
-use App\Notifications\FinancialAssistanceStatusUpdated;
+use App\Models\inquiries;
+use App\Models\Program;
+use App\Models\progress;
+use App\Models\Role;
+use App\Models\Status;
+use App\Models\User;
+use App\Models\Assistancesteps;
 use App\Notifications\FinancialAssistanceStatusRejected;
+use App\Notifications\FinancialAssistanceStatusUpdated;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ReplyMailable;
 
 class ABAKAProjectCoordinatorController extends Controller
 {
@@ -408,6 +410,7 @@ class ABAKAProjectCoordinatorController extends Controller
         $validatedData = $request->validate([
             'project' => ['required', 'string', 'max:70'],
             'amount' => ['required', 'numeric'],
+            'hectares' => ['required', 'numeric'],
         ]);
 
         if ($validatedData)
@@ -416,6 +419,7 @@ class ABAKAProjectCoordinatorController extends Controller
                 'user_id' => $userId,
                 'project' => $validatedData['project'],
                 'amount' => $validatedData['amount'],
+                'number_of_hectares' => $validatedData['hectares'],
                 'financialassistancestatus_id' => 2,
             ]);
 
@@ -440,7 +444,7 @@ class ABAKAProjectCoordinatorController extends Controller
 
         $financialAssistanceId = Financialassistance::findOrFail($assistanceId);
 
-        if ($request->inputAssistanceUpdate == 5) {
+        if ($request->inputAssistanceUpdate == 6) {
 
             $financialAssistanceId->delete();
 
@@ -459,7 +463,7 @@ class ABAKAProjectCoordinatorController extends Controller
             ]);
 
             // Send an email notification to the user
-            if (in_array($request->inputAssistanceUpdate, [2, 3, 4])) {
+            if (in_array($request->inputAssistanceUpdate, [2, 3, 4, 5])) {
                 // Use the IDs that correspond to "pending," "approved," and "disbursed" status
                 $financialAssistanceId->user->notify(new FinancialAssistanceStatusUpdated());
         }
@@ -586,4 +590,29 @@ class ABAKAProjectCoordinatorController extends Controller
         
         return redirect()->back();
     } // End Method
+
+    public function notifyBeneficiaries(Request $request)
+    {
+        try {
+            $description = $request->input('description');
+
+            // Get authenticated user with the role "coordinator"
+            $coordinator = auth()->user();
+
+            // Find beneficiaries with the same "program_id"
+            $beneficiaries = User::where('role_id', 7)
+                ->where('program_id', $coordinator->program_id)
+                ->get();
+
+            // Send emails to beneficiaries
+            foreach ($beneficiaries as $beneficiary) {
+                // Send email using the FinancialAssistanceStatusUpdate Mailable
+                Mail::to($beneficiary->email)->send(new FinancialAssistanceStatusUpdate($description));
+            }
+
+            return response()->json(['message' => 'Notification sent successfully']);
+        } catch (\Exception $e) {
+        return response()->json(['error' => 'Error sending notification: ' . $e->getMessage()], 500);
+    }
+    }
 }
