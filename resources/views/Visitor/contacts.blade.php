@@ -126,10 +126,11 @@
 			</div>
 			<div class="col" id="inquiry">
 				<h5 id="inquiry_">Inquiry</h5>
-				<form method="post">
+				<form method="post" action="" enctype="multipart/form-data">
 					<div class="col">
 						<div class="row">
 							<div class="col-6">
+								<input type="text" name="Visitor" hidden>
 								<label id="label_">Full Name:</label>
 								<input class="form-control" type="text" id="textbox">
 							</div>
@@ -147,8 +148,7 @@
 							</div>
 							<div class="col-6">
 								<label id="label_">To:</label>
-								<select class="form-control" type="text" name="to" id="textbox">
-								</select>
+								<input class="form-control" type="text" name="to" id="textbox">
 							</div>
 						</div>
 					</div>

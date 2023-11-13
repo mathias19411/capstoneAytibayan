@@ -396,12 +396,13 @@
                 </div>
                 <div class="col" id="inquiry">
                     <h5 id="inquiry_">Inquiry</h5>
-                    <form method="post">
+                    <form method="post" action="{{ route('visitor.inquiry') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="col">
                             <div class="row">
                                 <div class="col-6">
                                     <label id="label_">Full Name:</label>
-                                    <input class="form-control" type="text" id="textbox">
+                                    <input class="form-control" type="text" id="textbox" name="fullname">
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">Email:</label>
@@ -413,11 +414,16 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label id="label_">Contact Number:</label>
-                                    <input class="form-control" type="text" name="contact" id="textbox">
+                                    <input class="form-control" type="text" name="contacts" id="textbox">
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">To:</label>
                                     <select class="form-control" type="text" name="to" id="textbox">
+                                        <option value="ABAKA">ABAKA</option>
+                                        <option value="AGRIPINAY">AGRIPINAY</option>
+                                        <option value="AKBAY">AKBAY</option>
+                                        <option value="BINHI">BINHI</option>
+                                        <option value="LEAD">LEAD</option>
                                     </select>
                                 </div>
                             </div>
@@ -427,6 +433,10 @@
                                 <label id="label_">Message:</label>
                                 <input class="form-control" type="text" name="message" id="textbox_m">
                             </div>
+                            <div class="col-6">
+                                    <label id="label_">Attach File(Optional)</label>
+                                    <input class="form-control" type="file" name="attachments" id="textbox">
+                                </div>
                             <div class="col" id="button_">
                                 <input type="submit" class="btn" value="Send" id="send_">
                             </div>

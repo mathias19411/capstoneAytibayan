@@ -17,6 +17,12 @@
                 <option value="unread">Read</option>
                 <option value="read">Unread</option>
             </select>
+            <label for="unread-filter">From: </label>
+            <select id="unread-filter">
+                <option value="all">All</option>
+                <option value="unread">Public</option>
+                <option value="read">Program Beneficiary</option>
+            </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
                 <option value="10">10</option>
@@ -118,7 +124,7 @@
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Title">Recipient Name:</label>
-                                                        <p class="form-control" type="text" id="Title" placeholder="Title...." name="fullname">{{ $inquiry->fullname }}</p>
+                                                        <input class="form-control" type="text" id="Title" placeholder="Title...." name="fullname" value="{{ $inquiry->fullname }}">
                                                     </div>
                                                 </div>
                                                     <div class="col-md-6 mb-4">
@@ -140,7 +146,7 @@
                                                         <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="body"></textarea>
                                                     </div>
                                                     <div class="form-outline">
-                                                    <label for="attachment">Attachment</label>
+                                                    <label for="attachment">Attach a file(Optional)</label>
                                                         <input type="file" class="form-control" id="attachment" name="attachment">
                                                     </div>
                                                 </div>
@@ -253,61 +259,4 @@
                     </div>
                 </div>
             </div>
-            <div>
-                 <!--Button-->
-                <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_event" id="add-modal-button">
-                    Add
-                </button>
-            </div>
-
-<<<<<<< Updated upstream
-=======
-<!--MODAL Inquiry Store-->
- <div class="modal fade" id="modal_event" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Event</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-                <div class="modal-body">
-                <form action="{{ route('store.inquirycoordinatorabaka') }}" enctype="multipart/form-data" method="post">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <label for="Date">Full Name: </label>
-                                <input class="form-control" type="text" name="fullname">
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <input type="text" name="to" value="ABAKA" hidden>
-                                <label for="Date">Email: </label>
-                                <input class="form-control" type="text" name="email">
-                            </div>
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <div class="form-outline">
-                                <label for="Message">Message:</label>
-                                <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="message"></textarea>
-                            </div>
-                            <div class="form-outline">
-                                <label id="drop-img">
-                                    <input name="attachments" type="text" id="input-file" value="agsdvgasdfgaf" hidden>
-                                    
-                                </label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="add">Save</button>
-                        </div>
-                        </form>
-                    </div>
-            </div>
-    </div>
-</div>
-</div>
->>>>>>> Stashed changes
 @endsection

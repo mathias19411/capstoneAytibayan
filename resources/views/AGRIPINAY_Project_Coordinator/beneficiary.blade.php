@@ -45,11 +45,18 @@
                     <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Contact #</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Project</th>
-                            <th scope="col">Organization</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Loan Amount</th>
+                            <th scope="col">Savings Amount</th>
+                            <th scope="col">Date of Payment</th>
+                            <th scope="col">Shared Capital Amount/th>
+                            <th scope="col">Repayment Schedule</th>
+                            <th scope="col">Date of Release</th>
+                            <th scope="col">Date of Maturity</th>
+                            <th scope="col">Amount Paid</th>
+                            <th scope="col">Balance</th>
+                            <th scope="col">Repayment (%)</th>
+                            <th scope="col">Remarks</th>
                             <th scope="col">Action</th>
                             <th scope="col">Status</th>
                         </tr>
@@ -63,6 +70,13 @@
                             <td>orlybinhi@gmail.com</td>
                             <td>Free Range Chicken</td>
                             <td>BUCS-CSC</td>
+                            <td>BUCS-CSC</td>
+                            <td>BUCS-CSC</td>
+                            <td>BUCS-CSC</td>
+                            <td>BUCS-CSC</td>
+                            <td>BUCS-CSC</td>
+                            <td>BUCS-CSC</td>
+                            <td>BUCS-CSC</td>
                             <td>
                                 <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
@@ -73,113 +87,7 @@
                             <span onclick="toggleStatus(this)" class="status-box active">Active</span>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Joriza Oliva</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box inactive">Inactive</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Mathias Bermejo</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Jayferson Begino</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Joriza Oliva</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box inactive">Inactive</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                            <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
-                                <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
+                        
                         </tr>
                      </tbody>
                 </table>

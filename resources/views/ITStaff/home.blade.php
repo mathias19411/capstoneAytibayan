@@ -76,11 +76,6 @@
                         </div>
                     </div>
 
-                
-
-
-         
-            
             
          
         </div>
@@ -170,7 +165,9 @@
                     <h5 class="modal-title" id="modal-title">PROJECT COORDINATORS</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+               
                 <div class="modal-body">
+                    
                     <div class="accordion" id="coordinator_info">
                         @foreach ($coordinators as $key => $coordinator)
                             <div class="accordion-item">
@@ -195,6 +192,7 @@
                                                 @endif
 
                                             </div>
+
                                         </div>
                                     </button>
                                 </h2>
@@ -202,7 +200,7 @@
                                     aria-labelledby="coordinator{{ $key + 1 }}"
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <div class="row">
+                                        <div class="row" style="text-align: center;">
                                             <div class="col">
                                                 <div class="card_coordinator_img">
                                                     <img src="{{ !empty($coordinator->program->image) ? url('Uploads/Program_images/' . $coordinator->program->image) : url('Uploads/no-image.jpg') }}"
@@ -220,18 +218,26 @@
                                         
 
                                         </div>
-                                        <div class="row">
-                                            <div class="col" style="padding-top:10px">
+                                        <div class="row" style="text-align: center;">
+                                            <div class="col" style="padding-top:5px">
                                                 <p>
                                                     {{ $coordinator->program->description }}
                                                 </p>
                                             </div>
                                         </div>
+                                      
+                                     
+             
+
+                                        
                                     </div>
-                                </div>
+                                
                             </div>
+                           
                         @endforeach
+                       
                     </div>
+                   
                 </div>
 
                 <div class="modal-footer"> </div>
@@ -239,10 +245,8 @@
             </div>
         </div>
     </div>
-    
-    <script>
-    
-    </script>
+
+
     {{-- apex charts cdn --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 

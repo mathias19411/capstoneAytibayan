@@ -87,15 +87,15 @@
                     </div>
 
                     <div class="col-md-12 input">
-    <label for="password" class="form-label">Password</label>
-    <div class="input-group">
-        <input type="password" class="form-control" id="password" name="password" autocomplete="current-password">
-        <div class="input-group-append">
-            <button type="button" class="btn btn-warning" onclick="togglePasswordVisibility()">
-                <i id="eyeIcon" class="fa-solid fa-eye" style="color: black; border: none;"></i>
-            </button>
-        </div>
-    </div>
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" autocomplete="current-password">
+                        <div class="input-group-append">
+                            <button type="button" class="btn eyeicon" style="display: none;" id="eyeIcon" onclick="togglePasswordVisibility()">
+                                <i class="fa-solid fa-eye-slash" style="color: #808080;"></i>
+                            </button>
+                        </div>
+                    </div>
     @error('password')
         <div class="text-danger">{{ $message }}</div>
     @enderror
@@ -169,23 +169,26 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
 
-    <script>
-        function togglePasswordVisibility() {
-            var passwordField = document.getElementById("password");
-            var eyeIcon = document.getElementById("eyeIcon");
+<script>
+    var passwordInput = document.getElementById('password');
+    var eyeIcon = document.getElementById('eyeIcon');
 
-            if (passwordField.type === "password") {
-                passwordField.type = "text"; // Show the password
-                eyeIcon.classList.remove("fa-eye-slash");
-                eyeIcon.classList.add("fa-eye"); // Change the icon back to an eye
-                eyeIcon.style.color = "#white"; // Change the icon color to green
-            } else {
-                passwordField.type = "password"; // Hide the password
-                eyeIcon.classList.remove("fa-eye");
-                eyeIcon.classList.add("fa-eye-slash"); // Change the icon to an eye with a slash
-                eyeIcon.style.color = "black"; // Change the icon color to black
-            }
-        }
+    // Attach an input event listener to the password field
+    passwordInput.addEventListener('input', function () {
+        // Display the eye icon when there is input in the password field
+        eyeIcon.style.display = passwordInput.value.length > 0 ? 'inline-block' : 'none';
+    });
+
+    // Function to toggle password visibility
+    function togglePasswordVisibility() {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.innerHTML = '<i class="fa-solid fa-eye" style="color: black;"></i>';
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.innerHTML = '<i class="fa-solid fa-eye-slash" style="color: #808080;"></i>';
+        } 
+    }
 
         /* pati to mathias
         function togglePasswordVisibility() {

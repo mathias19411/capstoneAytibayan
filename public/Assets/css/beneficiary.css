@@ -2372,114 +2372,95 @@ body.beneficiary .add-modal:hover {
     }
 }
 
-/*PROGRESS TRACKER
-ul {
-
+  
+  /* Resetting List Styles */
+  ul {
     list-style: none;
-    
-    }
-    
-    body {
-    
-    background: #060810;
-    
-    height: 100vh;
-    
-    font-family: josefin sans, segoe ui, Arial, sans-serif;
-    
-    }
-    
-    .navmenu {
-    
+  }
+  
+  .box {
+    height: 200px;
+    width: 220px;
+    background-color: white;
+    margin: 20px auto;
+  }
+  
+  .process {
+    width: 100%;
+    height: 400px;
     position: absolute;
-    
+    bottom: 0;
+  }
+  
+  /* Navigation Menu Styles */
+  .navmenu {
+    position: absolute;
     top: 50%;
-    
     transform: translateY(-50%);
-    
-    }
-    
-    .navmenu ul {
-    
+  }
+  
+  /* List Styles in Navigation Menu */
+  .navmenu ul {
     padding-left: 50px;
-    
     position: relative;
-    
-    }
-    
-    .navmenu ul::after {
-    
-    content:"";
-    
-    position: absolute;
-    
-    width: 3px;
-    
-    height: calc(100% - 58px);
-    
-    left: 40px;
-    
-    top: 0;
-    
-    background: #3742da;
-    
-    z-index: -1;
-    
-    margin-top: 29px;
-    
-    }
-    
-    .navmenu ul li {
-    
-    padding: 30px 0;
-    
-    padding-left: 20px;
-    
-    }
-    
-    .navmenu ul li a {
-    
-    text-decoration: none;
-    
-    position: relative;
-    
-    color: #3742da;
-    
-    font-size: 1.5rem;
-    
-    line-height: 1rem;
-    
-    font-weight: 500;
-    
-    }
-    
-    .navmenu ul li a:before {
-    
+  }
+  
+  /* Vertical Line Separator */
+  .navmenu ul::after {
     content: "";
-    
     position: absolute;
-    
-    background: #060810;
-    
+    width: 3px;
+    height: calc(100% - 65px);
+    left: 40px;
+    top: 0;
+    background: #7bb701;
+    z-index: -1;
+    margin-top: 29px;
+  }
+  
+  /* List Item Styles */
+  .navmenu ul li {
+    padding: 28px 0;
+    padding-left: 20px;
+  }
+  
+  /* Anchor (Link) Styles */
+  .navmenu ul li a {
+    text-decoration: none;
+    position: relative;
+    color: #7bb701;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 500;
+  }
+  
+  /* Circle Indicator Before Links */
+  .navmenu ul li a:before {
+    content: "";
+    position: absolute;
+    background: #f2f2f2;
     width: 18px;
-    
     height: 18px;
-    
-    left: -42px;
-    
+    border: 2px solid #7bb701;
+    left: -40px;
     top: 50%;
-    
     transform: translateY(-50%);
-    
     border-radius: 50px;
-    
-    border: 4px solid ☐#3742da;
-    }
-    .navmenu ul li a.active { 
-    font-weight: 700;   
-    }
-    .navmenu ul li a.active::before {
-    background: #3742da; 
-    }
-
-    */
+  }
+  
+  /* Active Link Styles */
+  .navmenu ul li a.active {
+    font-weight: 700;
+  }
+  
+  .navmenu ul li a.active::before {
+    background: #7bb701;
+  }
+  
+  .progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+  }

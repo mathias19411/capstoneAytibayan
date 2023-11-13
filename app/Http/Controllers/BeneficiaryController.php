@@ -16,7 +16,12 @@ class BeneficiaryController extends Controller
 {
     public function BeneficiaryHome()
     {
-        return view('Beneficiary.home');
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        return view('Beneficiary.home', compact('userProfileData'));    
     } // End Method
 
     public function BeneficiaryLogout(Request $request)
@@ -47,8 +52,45 @@ class BeneficiaryController extends Controller
 
     public function BeneficiaryInquiry()
     {
-        return view('Beneficiary.inquiry');
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        return view('Beneficiary.inquiry', compact('userProfileData'));
+
     } // End Method
+
+    public function BeneficiaryInquiryStore(Request $request){
+
+    // Validate the request
+    $validatedData = $request->validate([
+        'fullname' => 'required|string|max:255',
+        'recipient' => 'required|string',
+        'email' => 'required|email',
+        'message' => 'required|string',
+        'contact' => 'required|string',
+        'attachment' => 'nullable|file',
+    ]);
+
+    // Check if validation passes
+    if ($validatedData) 
+    {
+        // Insert data into the database
+        inquiries::insert([
+            'fullname' => $validatedData['fullname'],
+            'to' => $validatedData['recipient'],
+            'email' => $validatedData['email'],
+            'contacts' => $validatedData['contact'],
+            'message' => $validatedData['message'],
+            'attachment' => $validatedData['attachment'],
+        ]);
+
+        return redirect()->back()->with('success', 'Inquiry Submitted!');
+    } else {
+        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+}
+} // End Method//End Method
 
     public function BeneficiaryViewProfile()
     {
@@ -132,4 +174,5 @@ class BeneficiaryController extends Controller
 
         return redirect()->back();
     } // End Method
+
 }

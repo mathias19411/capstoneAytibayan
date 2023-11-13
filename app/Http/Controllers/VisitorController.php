@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Models\inquiries;
 
 class VisitorController extends Controller
 {
@@ -95,4 +96,36 @@ class VisitorController extends Controller
 
         return view('Visitor.category_page', compact('program', 'beneficiaries'));
     } // End Method
+
+    public function VisitorInquiryStore(Request $request)
+    {
+        // 
+        // Validate the request
+        $validatedData = $request->validate([
+            'fullname' => 'required|string|max:255',
+            'to' => 'required|string',
+            'email' => 'required|email',
+            'message' => 'required|string',
+            'contacts' => 'required|string',
+            'attachments' => 'nullable|file',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            inquiries::insert([
+                'fullname' => $validatedData['fullname'],
+                'to' => $validatedData['to'],
+                'email' => $validatedData['email'],
+                'contacts' => $validatedData['contacts'],
+                'message' => $validatedData['message'],
+                'attachment' => $validatedData['attachments'],
+            ]);
+
+            return redirect()->back()->with('success', 'Inquiry Submitted!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+    } // End Method//End Method
 }

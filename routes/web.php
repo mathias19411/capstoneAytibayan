@@ -254,7 +254,6 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
 
     //Coordinator Inquiry
     Route::get('/ABAKA_ProjectCoordinator/Inquriy', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('abakaprojectcoordinator.inquiry');
-    Route::post('/ABAKA_ProjectCoordinator/Inquriy/store', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiryStore'])->name('store.inquirycoordinatorabaka');
     Route::post('/ABAKA_ProjectCoordinator/Inquriy/reply', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorInquiryReply'])->name('reply.inquirycoordinatorabaka');
     Route::delete('/ABAKA_ProjectCoordinator/Inquriy/delete', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiryDelete'])->name('delete.inquirycoordinatorabaka');
 
@@ -308,7 +307,8 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
     Route::get('/Beneficiary/schedule', [BeneficiaryController::class, 'BeneficiarySchedule'])->name('beneficiary.schedule');
 
     //Benef Inquiry
-    Route::get('/Beneficiary/inquiry', [BeneficiaryController::class, 'BeneficiaryInquiry'])->name('beneficiary.inquiry');
+    Route::get('/Beneficiary/Inquiry', [BeneficiaryController::class, 'BeneficiaryInquiry'])->name('beneficiary.inquiry');
+    Route::post('/Beneficiary/Inquiry', [BeneficiaryController::class, 'BeneficiaryInquiryStore'])->name('beneficiary.inquiries');
 
     //Benef View Profile
     Route::get('/Beneficiary/viewprofile', [BeneficiaryController::class, 'BeneficiaryViewProfile'])->name('beneficiary.viewprofile');
@@ -328,6 +328,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
 
 //Visitor Routes
     Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
+    Route::post('/Visitor/Inquiry', [VisitorController::class, 'VisitorInquiryStore'])->name('visitor.inquiry');
 
     //resend two factor code route
     Route::get('verify/resend', [TwoFactorController::class, 'resend'])->name('verify.resend');

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('email');
             $table->text('message');
-            $table->string('attachment');
-            $table->integer('contacts');
+            $table->string('attachment')->nullable;
+            $table->string('contacts')->nullable;
             $table->timestamps();
         });
     }
