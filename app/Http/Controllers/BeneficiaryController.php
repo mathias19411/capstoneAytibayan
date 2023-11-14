@@ -21,7 +21,12 @@ class BeneficiaryController extends Controller
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        return view('Beneficiary.home', compact('userProfileData'));    
+        $binhi = "ABAKA";
+        $public = "PUBLIC";
+        $announcement = announcement::where(function ($query) use ($binhi, $public) {
+            $query->where('to', $binhi)->orWhere('to', $public);})->get();
+
+        return view('Beneficiary.home', compact('userProfileData', 'announcement'));    
     } // End Method
 
     public function BeneficiaryLogout(Request $request)
@@ -69,28 +74,48 @@ class BeneficiaryController extends Controller
         'recipient' => 'required|string',
         'email' => 'required|email',
         'message' => 'required|string',
+        'date' => 'required|date',
         'contact' => 'required|string',
-        'attachment' => 'nullable|file',
+        'attachment' => 'file',
     ]);
 
+    // Check if the image key exists in the validated data array
+    if (isset($validatedData['attachment'])) {
+        // Get the image file
+        $file = $request->file('attachment');
+
+        // Generate a unique filename for the image file
+        $filename = date('YmdHi') . $file->getClientOriginalName();
+
+    } else {
+        // Assign an empty string to the filename variable
+        $filename = '';
+    }
+
+    // Set the image attribute of the event model to the filename
+    $validatedData['attachment'] = $filename;
+
     // Check if validation passes
-    if ($validatedData) 
-    {
+    if ($validatedData) {
         // Insert data into the database
-        inquiries::insert([
+        $inquiry = inquiries::create([
             'fullname' => $validatedData['fullname'],
             'to' => $validatedData['recipient'],
             'email' => $validatedData['email'],
             'contacts' => $validatedData['contact'],
+            'date' => $validatedData['date'],
             'message' => $validatedData['message'],
             'attachment' => $validatedData['attachment'],
         ]);
+        $inquiry->save();
 
-        return redirect()->back()->with('success', 'Inquiry Submitted!');
+        // If the attachment file is not empty, store it in the database
+
+        return redirect()->back()->with('success', 'New Inquiry Added!');
     } else {
         return redirect()->back()->with('error', 'Validation failed. Please check your input.');
-}
-} // End Method//End Method
+    }
+}// End Method//End Method
 
     public function BeneficiaryViewProfile()
     {

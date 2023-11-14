@@ -106,22 +106,33 @@ class VisitorController extends Controller
             'to' => 'required|string',
             'email' => 'required|email',
             'message' => 'required|string',
+            'date' => 'required|date',
             'contacts' => 'required|string',
-            'attachments' => 'nullable|file',
+            'attachments' => 'file',
         ]);
+        if (isset($validatedData['attachments'])) {
+            $file = $request->file('attachments');
+
+            $filename = date('YmdHi'). $file->getClientOriginalName();
+        } else {
+            $filename = '';
+        }
+        $validatedData['attachments'] = $filename;
 
         // Check if validation passes
         if ($validatedData) 
         {
             // Insert data into the database
-            inquiries::insert([
+            $inquiry = inquiries::create([
                 'fullname' => $validatedData['fullname'],
                 'to' => $validatedData['to'],
                 'email' => $validatedData['email'],
                 'contacts' => $validatedData['contacts'],
+                'date' => $validatedData['date'],
                 'message' => $validatedData['message'],
                 'attachment' => $validatedData['attachments'],
             ]);
+            $inquiry->save();
 
             return redirect()->back()->with('success', 'Inquiry Submitted!');
         } else {
