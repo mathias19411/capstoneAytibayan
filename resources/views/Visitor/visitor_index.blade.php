@@ -43,7 +43,6 @@
                         </div>
                         <div class="story-card-content">
                             <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
-                                quibusdam
                                 quasi
                                 quidem quaerat quidem quibusdam quasi quidem quaerat quidem quibusdam quasi Lorem ipsum
                                 dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
@@ -200,18 +199,24 @@
             </div>
 
             <div class="main">
-                <h2> About </h2>
+                <h2> Vision </h2>
                 <div class="line"></div>
-                <p>Lorem ipsum has no intelligible meaning Lorem ipsum has no intelligible meaning Lorem ipsum has no
-                    intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
-                <h2> Mandate </h2>
+                <p>A developed countryside and sustainable production areas led by strong, organized and self-reliant farmers and fisherfolk equipped
+                    with modern technologies and entrepreneurial capability ensuring steady supply of farm produceto meet food sufficiency.
+                </p>
+                <h2> Mission </h2>
                 <div class="line"></div>
-                <p>Lorem ipsum has no intelligible meaning Lorem ipsum has no intelligible meaning Lorem ipsum has no
-                    intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
-                <h2 id="missionHeader"> Mission </h2>
+                <p>To have an available and affordable food for Albayanos.</p>
+                <h2 id="missionHeader"> Objectives </h2>
                 <div class="line"></div>
-                <p>Lorem ipsum has no intelligible meaning Lorem ipsum has no intelligible meaning Lorem ipsum has no
-                    intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
+                <p>To sustain production od staple foods(rice, corn, and root crops) and high value crops through the transfer of cost-effective,
+                environment-friendly technologies to small farmers as well as increase in production areas.
+                </p>
+                <p>To improve financial food security through enhanced production, entrepreneurship, and greater market access.
+                </p>
+                <p>To encourage climate change adaptation measures in agriculture and fisheries to ensure food security through extension services, technical assistance,
+                    and on-site research and demonstration farms.
+                </p>
             </div>
 
             <div class="box lightbox" onclick="openImage(this)">
