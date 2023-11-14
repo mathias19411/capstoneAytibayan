@@ -8,6 +8,7 @@ use App\Models\announcement;
 use App\Models\events;
 use App\Models\Financialassistance;
 use App\Models\Financialassistancestatus;
+use App\Models\File;
 use App\Models\inquiries;
 use App\Models\Program;
 use App\Models\progress;
@@ -181,33 +182,54 @@ class ABAKAProjectCoordinatorController extends Controller
     } // End Method
 
     public function ProjCoordinatorEventStore(Request $request)
-    {
-        // Validate the request
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'date' => 'required|date',
-            'to' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'message' => 'required|string',
-        ]);
+{
+    // Validate the request
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'date' => 'required|date',
+        'to' => 'required|string',
+        'message' => 'required|string',
+        'image' => 'image'
+    ]);
 
-        // Check if validation passes
-        if ($validatedData) 
-        {
-            // Insert data into the database
-            events::insert([
-                'title' => $validatedData['title'],
-                'date' => $validatedData['date'],
-                'image' => $validatedData['image'],
-                'to' => $validatedData['to'],
-                'message' => $validatedData['message'],
-            ]);
+    // Check if the image key exists in the validated data array
+    if (isset($validatedData['image'])) {
+        // Get the image file
+        $file = $request->file('image');
 
-            return redirect()->back()->with('success', 'New Event Added!');
-        } else {
-            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        // Generate a unique filename for the image file
+        $filename = date('YmdHi') . $file->getClientOriginalName();
+
+    } else {
+        // Assign an empty string to the filename variable
+        $filename = '';
     }
-    } // End Method
+
+    // Set the image attribute of the event model to the filename
+    $validatedData['image'] = $filename;
+
+    // Check if validation passes
+    if ($validatedData) {
+        // Insert data into the database
+        $event = events::create([
+            'title' => $validatedData['title'],
+            'date' => $validatedData['date'],
+            'to' => $validatedData['to'],
+            'message' => $validatedData['message'],
+            'image' => $validatedData['image'],
+        ]);
+        $event->save();
+
+        // If the attachment file is not empty, store it in the database
+
+        return redirect()->back()->with('success', 'New Event Added!');
+    } else {
+        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+}
+
+
+
 
     public function ProjCoordinatorEventUpdate(Request $request)
     {

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('to');
             $table->date('date');
             $table->text('message');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('project_coordinator')->default('anonymous');
 
             $table->timestamps();

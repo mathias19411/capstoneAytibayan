@@ -402,11 +402,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label id="label_">Full Name:</label>
-                                    <input class="form-control" type="text" id="textbox" name="fullname">
+                                    <input class="form-control" type="text" id="textbox" name="fullname" required>
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">Email:</label>
-                                    <input class="form-control" type="text" name="email" id="textbox">
+                                    <input class="form-control" type="text" name="email" id="textbox" required>
                                 </div>
                             </div>
                         </div>
@@ -414,11 +414,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label id="label_">Contact Number:</label>
-                                    <input class="form-control" type="text" name="contacts" id="textbox">
+                                    <input class="form-control" type="text" name="contacts" id="textbox" required>
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">To:</label>
-                                    <select class="form-control" type="text" name="to" id="textbox">
+                                    <select class="form-control" type="text" name="to" id="textbox" required>
                                         <option value="ABAKA">ABAKA</option>
                                         <option value="AGRIPINAY">AGRIPINAY</option>
                                         <option value="AKBAY">AKBAY</option>
@@ -427,11 +427,15 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                    <label id="label_">Date:</label>
+                                    <input class="form-control" type="date" name="date" id="textbox" required>
+                                </div>
                         </div>
                         <div>
                             <div class="col-12" style="margin: 5px;">
                                 <label id="label_">Message:</label>
-                                <input class="form-control" type="text" name="message" id="textbox_m">
+                                <input class="form-control" type="text" name="message" id="textbox_m" required>
                             </div>
                             <div class="col-6">
                                     <label id="label_">Attach File(Optional)</label>
