@@ -69,14 +69,14 @@
                 </div>
             </div>
             <div class="description-section">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo dolores, molestiae voluptatum rem
-                    iure enim eos ut ex repellendus nobis ipsa suscipit odio. Repellat earum, eaque minus voluptatibus sed
-                    cum sequi quod unde modi dignissimos provident numquam architecto odit culpa consequatur a temporibus
-                    deleniti aspernatur, soluta maiores accusamus quisquam. Explicabo optio harum rerum culpa iste minima
-                    eligendi totam labore voluptatem praesentium, libero sapiente quaerat repellat iure, dolores magnam
-                    laborum tempora animi officiis cupiditate ex corporis eos veniam saepe. Qui, nam quaerat aut molestiae
-                    sit ea id tenetur, minima, mollitia eveniet at doloribus ut. Qui, dolor fuga totam obcaecati nobis
-                    repellat.</p>
+                <p>In the province of Albay, located in Bicol Region Philippines, the Albay Provincial Agricultural Office 
+                    (APAO) is the office assigned in implementing sustainable livelihood programs and is responsible for 
+                    promoting agricultural development in Albay. There are currently five different SLPs operating in its 
+                    office; the Abaka Mo Piso Mo Cash Incentive Scheme, Binhi ng Pag-asa Program, AgriPinay, Livelihood
+                     Enhancement Agricultural Development (LEAD) Program, and the Agrikultura: Kaagapay ng Bayang Pinoy 
+                     (AkBay) program. Each program requires APAO to gather data in marginalized communities, especially 
+                     farmers in which it includes their demographic profile. 
+                </p>
             </div>
             <div class="announcements-section">
                 <div class="announcements-title">
@@ -192,9 +192,9 @@
         </div>
 
         <div class="container">
-            <div class="box lightbox" onclick="openImage(this)">
+            <div class="box_about lightbox" onclick="openImage(this)">
                 <h2>Organizational Chart</h2>
-                <img src="\images\orgchart.png">
+                <img src="\images\apao_orgchart.png">
             </div>
 
             <div class="main">
@@ -218,13 +218,16 @@
                 </p>
             </div>
 
-            <div class="box lightbox" onclick="openImage(this)">
+            <div class="box_about lightbox" onclick="openImage(this)">
                 <h2>History</h2>
-                <img src="\images\history.png" alt="History Image">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                <img src="\images\history.png" alt="History Image" class="history">
+                <div class="txt_history">APAO started in 2009 and drives to established agricultural development in Albay, it has been pivotal in 
+                    implementing transformative programs. With a focus on data-driven decisions, 
+                    APAO gathers demographic information from farmers to tailor effective initiatives, showcasing a history 
+                    marked by adaptability and commitment to sustainable growth in Albay's agricultural sector.</div>
             </div>
 
-        </div>
+        </div><script type="module" src=""></script>
     </section>
 
     <!------------------ PROGRAM ---------------------->
