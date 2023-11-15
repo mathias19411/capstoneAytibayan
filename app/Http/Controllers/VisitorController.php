@@ -68,11 +68,16 @@ class VisitorController extends Controller
                 $beneficiaryCount[$program->program_name][$city] = $program->user->where('role.role_name', 'beneficiary')->count();
             }
         }
+        $public = "PUBLIC";
+        $announcement = announcement::where(function ($query) use ($public) {
+            $query->where('to', $public);})->get();
+         $events = events::where(function ($query) use ($public) {
+             $query->where('to', $public);})->get(); 
 
 
         toastr()->timeOut(10000)->addInfo('Welcome to the Website of APAO Region V!');
 
-        return view('Visitor.visitor_index', compact('programs', 'programNames', 'beneficiaryCounts', 'dataLineChart', 'months', 'monthCount', 'beneficiaryCount', 'cities'));
+        return view('Visitor.visitor_index', compact('programs', 'programNames', 'beneficiaryCounts', 'dataLineChart', 'months', 'monthCount', 'beneficiaryCount', 'cities', 'announcement', 'events'));
     } // End Method
 
     public function visitorProgramsView($id)

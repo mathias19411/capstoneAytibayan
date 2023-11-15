@@ -89,12 +89,11 @@
                             <span class="material-symbols-outlined">
                                 schedule
                             </span>
-                            <span class="announcement-time">3 min ago</span>
+                            @foreach($announcement->reverse() as $announcement)
+                            <span class="announcement-time">{{ $announcement->date }}</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto consectetur dolore unde eius
-                            praesentium distinctio dolor sunt, accusantium corporis voluptates labore officia veniam.
-                            Obcaecati
-                            explicabo harum aliquam blanditiis libero eaque?</p>
+                        <p>{{ $announcement->message }}</p>
+                        @endforeach
 
                     </div>
                 </div>

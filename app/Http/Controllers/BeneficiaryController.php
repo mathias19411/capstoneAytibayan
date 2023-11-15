@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\announcement;
+use App\Models\Program;
 use App\Models\inquiries;
 use App\Models\progress;
 use App\Models\events;
@@ -14,19 +15,22 @@ use App\Models\events;
 
 class BeneficiaryController extends Controller
 {
-    public function BeneficiaryHome()
+    public function BeneficiaryHome(Request $request)
     {
         $id = AUTH::user()->id;
 
-        //Access the specific row data of the user's id
-        $userProfileData = User::find($id);
+       // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
 
-        $binhi = "ABAKA";
-        $public = "PUBLIC";
-        $announcement = announcement::where(function ($query) use ($binhi, $public) {
-            $query->where('to', $binhi)->orWhere('to', $public);})->get();
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = "PUBLIC";
+       $announcement = announcement::where(function ($query) use ($programName, $public) {
+           $query->where('to', $programName)->orWhere('to', $public);})->get();
+        $events = events::where(function ($query) use ($programName, $public) {
+            $query->where('to', $programName)->orWhere('to', $public);})->get(); 
 
-        return view('Beneficiary.home', compact('userProfileData', 'announcement'));    
+        return view('Beneficiary.home', compact('announcement', 'programName', 'events'));    
     } // End Method
 
     public function BeneficiaryLogout(Request $request)
@@ -62,7 +66,13 @@ class BeneficiaryController extends Controller
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        return view('Beneficiary.inquiry', compact('userProfileData'));
+        // Get the programId of the user table
+        $programId = User::where('id', $id)->pluck('program_id');
+
+        // Get the programname of the program table
+        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+
+        return view('Beneficiary.inquiry', compact('userProfileData', 'programName'));
 
     } // End Method
 

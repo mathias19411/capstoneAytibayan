@@ -89,12 +89,22 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorAnnouncement()
     {
-        $binhi = "ABAKA";
-        $public = "PUBLIC";
-        $announcement = announcement::where(function ($query) use ($binhi, $public) {
-            $query->where('to', $binhi)->orWhere('to', $public);})->get();
+        $id = AUTH::user()->id;
 
-        return view('ABAKA_Project_Coordinator.announcement', ['announcement'=>$announcement]);
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        // Get the programId of the user table
+        $programId = User::where('id', $id)->pluck('program_id');
+
+        // Get the programname of the program table
+        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+
+        $public = "PUBLIC";
+        $announcement = announcement::where(function ($query) use ($programName, $public) {
+            $query->where('to', $programName)->orWhere('to', $public);})->get();
+
+        return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName'));
     } // End Method
 
     public function ProjectCoordinatorAnnouncementEdit($id)
@@ -166,12 +176,19 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorEvent()
     {
-        $binhi = "ABAKA";
-        $public = "PUBLIC";
-        $event = events::where(function ($query) use ($binhi, $public) {
-            $query->where('to', $binhi)->orWhere('to', $public);})->get();
+        $id = AUTH::user()->id;
 
-        return view('ABAKA_Project_Coordinator.event', ['event'=>$event]);
+        // Get the programId of the user table
+        $programId = User::where('id', $id)->pluck('program_id');
+
+        // Get the programname of the program table
+        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+
+        $public = "PUBLIC";
+        $event = events::where(function ($query) use ($programName, $public) {
+            $query->where('to', $programName)->orWhere('to', $public);})->get();
+
+        return view('ABAKA_Project_Coordinator.event', compact('event','programName'));
     } // End Method
 
     public function ProjectCoordinatorEventEdit($id)
@@ -227,10 +244,6 @@ class ABAKAProjectCoordinatorController extends Controller
         return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
 }
-
-
-
-
     public function ProjCoordinatorEventUpdate(Request $request)
     {
         $aid = $request->event_id;
