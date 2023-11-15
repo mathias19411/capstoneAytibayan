@@ -1737,6 +1737,7 @@ section.programs_view {
     }
     
     #label_ {
+        margin-top: 10px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -2211,6 +2212,7 @@ section.about .box {
   }
   
   section.contact  #label_ {
+    margin-top: 10px;
       white-space: nowrap; 
       overflow: hidden;
       text-overflow: ellipsis;
@@ -2220,6 +2222,8 @@ section.about .box {
       background-color: #f2f2f2; 
       border-radius: 10px;
   }
+
+  
   section.contact #textbox_m {
       background-color: #f2f2f2; 
       border-radius: 10px; 
@@ -2264,7 +2268,7 @@ section.about .box {
     padding-left: 70px;
 }
 .col #inquiry {
-    text-align: center;
+    
     flex-direction: column;
 }
 

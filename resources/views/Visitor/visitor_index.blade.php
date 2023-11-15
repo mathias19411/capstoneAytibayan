@@ -432,20 +432,27 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                    <label id="label_">Date:</label>
-                                    <input class="form-control" type="date" name="date" id="textbox" required>
-                                </div>
                         </div>
-                        <div>
+                            <div class="col">
+                                <div class="row">
+                                        <div class="col-6">
+                                            <label id="label_">Date:</label>
+                                            <input class="form-control" type="date" name="date" id="textbox" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label id="label_">Attach File(Optional)</label>
+                                            <input class="form-control" type="file" name="attachments" id="textbox">
+                                        </div>
+                                 </div>
+                            </div>
+                           
+                       
+                       
                             <div class="col-12" style="margin: 5px;">
                                 <label id="label_">Message:</label>
                                 <input class="form-control" type="text" name="message" id="textbox_m" required>
                             </div>
-                            <div class="col-6">
-                                    <label id="label_">Attach File(Optional)</label>
-                                    <input class="form-control" type="file" name="attachments" id="textbox">
-                                </div>
+                           
                             <div class="col" id="button_">
                                 <input type="submit" class="btn" value="Send" id="send_">
                             </div>

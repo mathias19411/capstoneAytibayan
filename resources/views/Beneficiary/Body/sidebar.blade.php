@@ -39,9 +39,9 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </a>
             </li>
             <li>
-                <a href="{{ route('beneficiary.inquiry') }}" class="{{ request()->is('/Beneficiary/inquiry') ? 'active' : '' }}">
+                <a href=" "class="">
                     <i class="uil uil-user-circle"></i>
-                    <span class="link-name">Inquiry</span>
+                    <span class="link-name">Profile</span>
                 </a>
             </li>
 
@@ -86,7 +86,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </div>
             </div>
             <div class="message-icon">
-                <a href="" class="">
+            <a href="{{ route('beneficiary.inquiry') }}" class="{{ request()->is('/Beneficiary/inquiry') ? 'active' : '' }}">
                     <i class="uil uil-comment-dots"></i>
                 </a>
             </div>
