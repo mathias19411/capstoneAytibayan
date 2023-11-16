@@ -10,74 +10,109 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="{{ asset('Assets/css/beneficiary.css') }}">
+
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body class="inquiry">
 @include('beneficiary.Body.sidebar')
-<div class="title">
-        <h1>inquiry</h1>
+  <div class="title">
+          <h1>inquiry</h1>
     </div>
-  <div class="inquiry-container">
-    <div class="content">
-      <div class="left-side">
-        <div class="address details">
-          <i class="fas fa-map-marker-alt"></i>
-          <div class="topic">Address</div>
-          <div class="text-one">Albay Farmer's Village Complex </div>
-          <div class="text-two">Camalig, Albay, Philippines</div>
+      <div class="inquiry-container">
+        <div class="content">
+          <div class="left-side">
+            <div class="address details">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="topic">Address</div>
+              <div class="text-one">Albay Farmer's Village Complex </div>
+              <div class="text-two">Camalig, Albay, Philippines</div>
+            </div>
+            <div class="phone details">
+              <i class="fas fa-phone-alt"></i>
+              <div class="topic">Phone</div>
+              <div class="text-one">+0098 9893 5647</div>
+              <div class="text-two">+0096 3434 5678</div>
+            </div>
+            <div class="email details">
+              <i class="fas fa-envelope"></i>
+              <div class="topic">Email</div>
+              <div class="text-one">APAO_albay@gmail.com</div>
+              <div class="text-two">info.apao@gmail.com</div>
+            </div>
+          </div>
+          <div class="right-side">
+            <p></p>
+          <form action="{{ route('beneficiary.inquiries') }}" method="post" enctype="multipart/form-data"> 
+            @csrf
+          <div class="input-box">
+          <label class="label">Full Name:</label>
+          <input type="text" placeholder="" name="fullname" required>
         </div>
-        <div class="phone details">
-          <i class="fas fa-phone-alt"></i>
-          <div class="topic">Phone</div>
-          <div class="text-one">+0098 9893 5647</div>
-          <div class="text-two">+0096 3434 5678</div>
+        <div class="input-box">
+          <label class="label" >Personal Email:</label>
+          <input type="email" value="{{ $userProfileData->email }}" name="email" required>
         </div>
-        <div class="email details">
-          <i class="fas fa-envelope"></i>
-          <div class="topic">Email</div>
-          <div class="text-one">APAO_albay@gmail.com</div>
-          <div class="text-two">info.apao@gmail.com</div>
+        <div class="input-box">
+          <label class="label">Contact Number:</label>
+          <input type="text" value="{{ $userProfileData->phone }}" name="contact" required>
+        </div>
+        <div class="input-box">
+          <label class="label">To:</label>
+          <input type="text" placeholder="To" value="{{ $programName }}" name="recipient" readonly>
+        </div>
+        <div class="input-box">
+          <label class="label">Date:</label>
+          <input type="date" name="date" required>
+        </div>
+        <div class="input-box message-box">
+          <label class="label">Message:</label>
+          <textarea type="text" placeholder="" name="message" required></textarea>
+        </div>
+        <div class="input-box">
+          <label class="label">Attach File:</label>
+          <input type="file" name="attachment">
+        </div>
+            <div class="button">
+              <input type="submit" value="Send" >
+            </div>
+          </form>
+        </div>
         </div>
       </div>
-      <div class="right-side">
-        <p></p>
-      <form action="{{ route('beneficiary.inquiries') }}" method="post" enctype="multipart/form-data"> 
-        @csrf
-      <div class="input-box">
-      <label class="label">Full Name:</label>
-      <input type="text" placeholder="" name="fullname" required>
-    </div>
-    <div class="input-box">
-      <label class="label" >Personal Email:</label>
-      <input type="email" value="{{ $userProfileData->email }}" name="email" required>
-    </div>
-    <div class="input-box">
-      <label class="label">Contact Number:</label>
-      <input type="text" value="{{ $userProfileData->phone }}" name="contact" required>
-    </div>
-    <div class="input-box">
-      <label class="label">To:</label>
-      <input type="text" placeholder="To" value="{{ $programName }}" name="recipient" readonly>
-    </div>
-    <div class="input-box">
-      <label class="label">Date:</label>
-      <input type="date" name="date" required>
-    </div>
-    <div class="input-box message-box">
-      <label class="label">Message:</label>
-      <textarea type="text" placeholder="" name="message" required></textarea>
-    </div>
-    <div class="input-box">
-      <label class="label">Attach File:</label>
-      <input type="file" name="attachment">
-    </div>
-        <div class="button">
-          <input type="submit" value="Send" >
+
+        <div class="title1">
+            <h1>Sent Messages</h1>
         </div>
-      </form>
-    </div>
-    </div>
+        <div class="sentmessages">
+        <table class="table">
+          <tr>
+              <th>Full Name</th>
+              <th>Message</th>
+              <th>Attached File</th>
+              <th>Date</th>
+          </tr>
+          <tr>
+                            <td>Joriza Oliva</td>
+                            <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</td>
+                            <td></td>
+                            <td>2023-09-21</td>
+                           
+                        </tr>
+                        <tr>
+                            <td>Joriza Oliva</td>
+                            <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</td>
+                            <td></td>
+                            <td>2023-09-21</td>
+                           
+                        </tr>
+        </table>
+      
+      </div>
+
+     
   </div>
+  
+ 
 </body>
 </html>

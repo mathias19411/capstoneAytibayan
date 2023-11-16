@@ -96,7 +96,8 @@ nav .logo-image img {
 }
 
 nav .logo-name .logo_name {
-    margin-top: 10px;
+    margin-top: 9px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text-color);
     margin-left: 14px;
@@ -117,6 +118,7 @@ nav .menu-items {
 }
 .menu-items li {
     list-style: none;
+    margin: 0;
 }
 .menu-items li a {
     display: flex;
@@ -151,7 +153,7 @@ body.dark li a:hover:before {
     background-color: var(--text-color);
 }
 .menu-items li a i {
-    font-size: 28px;
+    font-size: 20px;
     min-width: 45px;
     height: 100%;
     display: flex;
@@ -160,7 +162,7 @@ body.dark li a:hover:before {
     color: var(--black-light-color);
 }
 .menu-items li a .link-name {
-    font-size: 19px;
+    font-size: 16px;
     margin-left: 5px;
     font-weight: 400;
     color: var(--black-light-color);
@@ -181,6 +183,7 @@ body.dark .nav-links li a:hover .link-name {
 .menu-items .logout-mode {
     padding-top: 10px;
     border-top: 1px solid var(--border-color);
+    margin-bottom: 0;
 }
 .menu-items .mode {
     display: flex;
@@ -319,14 +322,15 @@ nav.close ~ .dashboard .top {
 .profile-dropdown {
     position: relative; /* Ensure it's a positioned element for absolute positioning */
     display: inline-block; /* Display it inline with the content */
-    margin-right: 20px; /* Add spacing to the right */
+    margin-right: 0; /* Add spacing to the right */
 }
 
 /* Style the image */
 .profile-dropdown img {
-    width: 50px; /* Adjust the width as needed */
+    max-width: 50px; /* Adjust the width as needed */
     height: 50px; /* Adjust the height as needed */
     cursor: pointer; /* Change the cursor to a pointer to indicate it's clickable */
+    margin-right: 0;
 }
 
 /* Style the name */
@@ -375,8 +379,8 @@ nav.close ~ .dashboard .top {
 /* Style the profile image */
 .profile-image img {
     margin-top: 5px;
-    width: 110px;
-    height: 110px;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
 }
 /* Style the submenu items */
@@ -491,7 +495,25 @@ body {
     align-items: center;
     margin: 80px 20px 20px 20px;
 }
-
+.title1 {
+    background-color: #7bb701;
+    background-position: center;
+    border-radius: 5px;
+    width: auto;
+    height: 40px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px 20px 20px;
+}
+.title1 h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+}
 .title h1 {
     font-size: 1.3rem;
     font-weight: bold;
@@ -499,7 +521,12 @@ body {
     color: #ffffff;
     text-transform: uppercase;
 }
-
+.notification-icon i ,
+.message-icon i ,
+.rounded-circle {
+    max-width: 100%;
+    height: auto;
+}
 @media (max-width: 1000px) {
     nav {
         width: 73px;
@@ -542,6 +569,11 @@ body {
     nav.close ~ .dashboard .top {
         left: 250px;
         width: calc(100% - 250px);
+    }
+    .profile-dropdown img {
+        max-width: 100%; /* Adjust the width as needed */
+        height:100%; /* Adjust the height as needed */
+       
     }
 }
 
@@ -608,13 +640,14 @@ body {
     #notification-dropdown ul li {
         font-size: 8px; /* Reduce font size for smaller screens */
     }
+   
+    
 }
 
-@media (max-width: 560px) {
-    .dash-content .boxes .box {
-        width: 100%;
-    }
-}
+
+
+
+
 @media (max-width: 400px) {
     nav {
         width: 0px;
@@ -658,6 +691,10 @@ body {
     nav .logo-image,
     nav .logo-image img {
         display: none;
+    }
+    .notification-icon a i, .message-icon a i {
+        width: 25%;
+        margin: 0;
     }
 }
 
@@ -1255,6 +1292,8 @@ ul.days .scheduled::before {
     .container {
         width: 100%; /* Take up full width */
         margin: 0; /* Remove margin */
+        flex-direction: row-reverse;
+       
     }
 
     .schedule-descrip {
@@ -1279,14 +1318,19 @@ body.inquiry {
 
 .inquiry-container {
     margin-top: 30px;
-    max-width: 100%;
+    max-width: 70%;
+    height: 500px;
     background: #fff;
     border-radius: 10px;
-    padding: 30px 40px 30px 40px;
+    padding: 30px 40px;
     justify-content: center;
     align-items: center;
     border-collapse: collapse;
     box-shadow: 0 5px 10px rgba(0.2, 0.2, 0.2, 0.2);
+    display: flex; /* Add this line */
+    flex-direction: column; /* Add this line if it's not the default value */
+    margin: 0 auto; /* This will center the container horizontally */
+
 }
 
 .inquiry-container .content {
@@ -1319,18 +1363,18 @@ body.inquiry {
     text-align: center;
 }
 .inquiry-container .content .left-side .details i {
-    font-size: 30px;
+    font-size: 25px;
     color: var(--primary-color);
     margin-bottom: 10px;
 }
 .inquiry-container .content .left-side .details .topic {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 500;
     color: #555;
 }
 .inquiry-container .content .left-side .details .text-one,
 .inquiry-container .content .left-side .details .text-two {
-    font-size: 14px;
+    font-size: 12px;
     color: #afafb6;
 }
 .inquiry-container .content .right-side {
@@ -1338,12 +1382,12 @@ body.inquiry {
     margin-left: 75px;
 }
 .inquiry-container .content .right-side .topic-text {
-    font-size: 23px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--primary-color);
 }
 .inquiry-container .right-side .input-box {
-    height: 50px;
+    height: 30px;
     width: 95%;
     margin: 12px 0;
     display: flex;
@@ -1354,6 +1398,7 @@ body.inquiry {
     width: 120px;
     text-align: left;
     margin-right: 10px;
+    font-size: 13px;
 }
 .inquiry-container .right-side .input-box input,
 .inquiry-container .right-side .input-box textarea {
@@ -1361,7 +1406,7 @@ body.inquiry {
     width: 100%;
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: 14px;
     background: #f0f1f8;
     border-radius: 10px;
     padding: 0 15px;
@@ -1412,7 +1457,7 @@ body.inquiry {
         display: none;
     }
     .inquiry-container .content .right-side {
-        width: 100%;
+        flex-direction: column;
         margin-left: 0;
     }
     .inquiry-container .right-side .input-box {
@@ -2464,3 +2509,53 @@ body.beneficiary .add-modal:hover {
     border-radius: 10px;
     transition: width 0.3s ease-in-out;
   }
+
+  .sentmessages{
+    overflow-x: auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    border-collapse: collapse;
+
+  }
+
+  
+  .sentmessages .table{
+    width:100%;
+}
+
+.sentmessages  .table th {
+    position: relative; /* Make the <th> element a positioning context */
+}
+
+.sentmessages .table th::after {
+    content: "";
+    display: block;
+    height: 1px; 
+    background-color: var(--primary-color); 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.sentmessages  th,
+td {
+    padding: 10px;
+    text-align: center;
+}
+.sentmessages td {
+    font-size: 13px;
+}
+
+.sentmessages  tr:hover td {
+    color: #7bb701;
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+.sentmessages tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

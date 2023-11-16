@@ -16,6 +16,8 @@ use App\Http\Controllers\Auth\TwoFactorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\SmsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -329,38 +331,41 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
 }); //End group beneficiary middleware
 
 //Visitor Routes
-    Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
-    Route::post('/Visitor/Inquiry', [VisitorController::class, 'VisitorInquiryStore'])->name('visitor.inquiry');
+Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
+Route::post('/Visitor/Inquiry', [VisitorController::class, 'VisitorInquiryStore'])->name('visitor.inquiry');
 
-    //resend two factor code route
-    Route::get('verify/resend', [TwoFactorController::class, 'resend'])->name('verify.resend');
+//resend two factor code route
+Route::get('verify/resend', [TwoFactorController::class, 'resend'])->name('verify.resend');
 
-    Route::get('verify/index', [TwoFactorController::class, 'index'])->name('verify.index');
+Route::get('verify/index', [TwoFactorController::class, 'index'])->name('verify.index');
 
-    Route::post('verify/store', [TwoFactorController::class, 'store'])->name('verify.store');
-
-
-    Route::get('/Visitor/contacts', function () {
-        return view('Visitor.contacts');
-    });
-
-    Route::get('/Visitor/programs', function () {
-        return view('Visitor.programs');
-    });
-
-    Route::get('/Visitor/programs_view/{id}', [VisitorController::class, 'visitorProgramsView'])->name('visitor.programsView');
+Route::post('verify/store', [TwoFactorController::class, 'store'])->name('verify.store');
 
 
-    Route::get('/Visitor/about', function () {
-        return view('Visitor.about');
-    });
+Route::get('/Visitor/contacts', function () {
+    return view('Visitor.contacts');
+});
 
-    Route::get('/Visitor/category_page/{category}', function ($category) {
-        // You can pass the $category variable to the view or use it to fetch category information from the database
-        return view('Visitor.category_page', compact('category'));
-    })->name('Visitor.category.page');
+Route::get('/Visitor/programs', function () {
+    return view('Visitor.programs');
+});
+
+Route::get('/Visitor/programs_view/{id}', [VisitorController::class, 'visitorProgramsView'])->name('visitor.programsView');
+
+
+Route::get('/Visitor/about', function () {
+    return view('Visitor.about');
+});
+
+Route::get('/Visitor/category_page/{category}', function ($category) {
+    // You can pass the $category variable to the view or use it to fetch category information from the database
+    return view('Visitor.category_page', compact('category'));
+})->name('Visitor.category.page');
 
 Route::get('/Visitor', [EventController::class, 'index']);
+
+//send sms
+Route::get('/sendsms', [SmsController::class, 'sendsms']);
 
 //registerView
 // route::post('/ITStaff/registerView', [RegisterViewController::class, 'store'])->name('store-registerView');
