@@ -107,69 +107,22 @@
                     <h3>Upcoming Events</h3>
                 </div>
                 <div class="events-main">
+                    @foreach($events->reverse() as $event)
                     <div class="events-card">
                         <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
+                        @php
+                            $dayEvent = \Carbon\Carbon::parse($event->date)->format('d');
+                            $monthEvent = \Carbon\Carbon::parse($event->date)->format('M');
+                        @endphp
+                            <div class="date">{{ $dayEvent }}</div>
+                            <div class="month">{{ $monthEvent }}</div>
                         </div>
                         <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
+                        <h2>Title: {{ $event->title }}</h2>
+                            <h5>{{ $event->message }}</h5>
                         </div>
                     </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

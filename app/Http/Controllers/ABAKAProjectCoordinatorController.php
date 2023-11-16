@@ -91,16 +91,12 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         $id = AUTH::user()->id;
 
-        //Access the specific row data of the user's id
-        $userProfileData = User::find($id);
+       // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
 
-        // Get the programId of the user table
-        $programId = User::where('id', $id)->pluck('program_id');
-
-        // Get the programname of the program table
-        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
-
-        $public = "PUBLIC";
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = "PUBLIC";
         $announcement = announcement::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
 
@@ -178,13 +174,12 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         $id = AUTH::user()->id;
 
-        // Get the programId of the user table
-        $programId = User::where('id', $id)->pluck('program_id');
+       // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
 
-        // Get the programname of the program table
-        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
-
-        $public = "PUBLIC";
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = "PUBLIC";
         $event = events::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
 
@@ -244,6 +239,10 @@ class ABAKAProjectCoordinatorController extends Controller
         return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
 }
+
+
+
+
     public function ProjCoordinatorEventUpdate(Request $request)
     {
         $aid = $request->event_id;
@@ -280,10 +279,16 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorInquiry()
     {
-        $binhi = "ABAKA";
-        $public = "PUBLIC";
-        $inquiry = inquiries::where(function ($query) use ($binhi, $public) {
-            $query->where('to', $binhi)->orWhere('to', $public);})->get();
+        $id = AUTH::user()->id;
+
+       // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
+
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = "PUBLIC";
+        $inquiry = inquiries::where(function ($query) use ($programName, $public) {
+            $query->where('to', $programName)->orWhere('to', $public);})->get();
 
 
         return view('ABAKA_Project_Coordinator.inquiry', ['inquiry'=>$inquiry]);

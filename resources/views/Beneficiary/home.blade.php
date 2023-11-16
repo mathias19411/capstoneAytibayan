@@ -246,8 +246,12 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             @foreach($events->reverse() as $event)
                                 <div class="event-info">
                                     <div class="event-date">
-                                        <div class="date">12</div>
-                                        <div class="month">Dec</div>
+                                    @php
+                                        $dayEvent = \Carbon\Carbon::parse($event->date)->format('d');
+                                        $monthEvent = \Carbon\Carbon::parse($event->date)->format('M');
+                                    @endphp
+                                        <div class="date">{{ $dayEvent }}</div>
+                                        <div class="month">{{ $monthEvent }}</div>
                                     </div>
                                     <div class="event-title">Title: {{ $event->title }}</div>
                                     <div class="event-text">{{ $event->message }}</div>
