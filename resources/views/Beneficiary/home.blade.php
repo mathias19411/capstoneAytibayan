@@ -229,24 +229,13 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                         <div class="card-announcement">
                             <h2 class="card-title">ANNOUNCEMENT</h2>
                             <div class="card-content">
+                                @foreach($announcement->reverse() as $announcements)
                                 <div class="announcement-info">
-                                    <div class="announcement-title">From: Binhi ng Pag-asa Coordinator</div>
-                                    <div class="announcement-text">This is some sample text for annoucement. You can add
-                                        more content here.</div>
-                                    <div class="time">3:35 AM</div>
+                                    <div class="announcement-title">From: {{ $programName }} Coordinator</div>
+                                    <div class="announcement-text">{{ $announcements->message }}</div>
+                                    <div class="time">{{ $announcements->date }}</div>
                                 </div>
-                                <div class="announcement-info">
-                                    <div class="announcement-title">From: Binhi ng Pag-asa Coordinator</div>
-                                    <div class="announcement-text">This is some sample text for annoucement. You can add
-                                        more content here.</div>
-                                    <div class="time">3:35 AM</div>
-                                </div>
-                                <div class="announcement-info">
-                                    <div class="announcement-title">From: Binhi ng Pag-asa Coordinator</div>
-                                    <div class="announcement-text">This is some sample text for annoucement. You can add
-                                        more content here.</div>
-                                    <div class="time">3:35 AM</div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -254,42 +243,21 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                         <div class="card-event">
                             <h2 class="card-title">EVENT</h2>
                             <div class="card-content">
+                            @foreach($events->reverse() as $event)
                                 <div class="event-info">
                                     <div class="event-date">
                                         <div class="date">12</div>
                                         <div class="month">Dec</div>
                                     </div>
-                                    <div class="event-title">Title: Seminar</div>
-                                    <div class="event-text">This is some sample text for event</div>
-                                    <div class="time">3:35 AM</div>
-                                </div>
-                                <div class="event-info">
-                                    <div class="event-date">
-                                        <div class="date">12</div>
-                                        <div class="month">Dec</div>
+                                    <div class="event-title">Title: {{ $event->title }}</div>
+                                    <div class="event-text">{{ $event->message }}</div>
+                                    <div id="img-view">
+                                        <img src="/images/image_icon.png" alt="Image Icon">
+                                        <p>No Image Posted</p>
                                     </div>
-                                    <div class="event-title">Title: Seminar</div>
-                                    <div class="event-text">This is some sample text for event</div>
                                     <div class="time">3:35 AM</div>
                                 </div>
-                                <div class="event-info">
-                                    <div class="event-date">
-                                        <div class="date">12</div>
-                                        <div class="month">Dec</div>
-                                    </div>
-                                    <div class="event-title">Title: Seminar</div>
-                                    <div class="event-text">This is some sample text for event</div>
-                                    <div class="time">3:35 AM</div>
-                                </div>
-                                <div class="event-info">
-                                    <div class="event-date">
-                                        <div class="date">12</div>
-                                        <div class="month">Dec</div>
-                                    </div>
-                                    <div class="event-title">Title: Seminar</div>
-                                    <div class="event-text">This is some sample text for event</div>
-                                    <div class="time">3:35 AM</div>
-                                </div>
+                            @endforeach
                             </div>
                         </div>
                     </div>

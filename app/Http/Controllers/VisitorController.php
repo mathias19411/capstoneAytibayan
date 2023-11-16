@@ -68,11 +68,16 @@ class VisitorController extends Controller
                 $beneficiaryCount[$program->program_name][$city] = $program->user->where('role.role_name', 'beneficiary')->count();
             }
         }
+        $public = "PUBLIC";
+        $announcement = announcement::where(function ($query) use ($public) {
+            $query->where('to', $public);})->get();
+         $events = events::where(function ($query) use ($public) {
+             $query->where('to', $public);})->get(); 
 
 
         toastr()->timeOut(10000)->addInfo('Welcome to the Website of APAO Region V!');
 
-        return view('Visitor.visitor_index', compact('programs', 'programNames', 'beneficiaryCounts', 'dataLineChart', 'months', 'monthCount', 'beneficiaryCount', 'cities'));
+        return view('Visitor.visitor_index', compact('programs', 'programNames', 'beneficiaryCounts', 'dataLineChart', 'months', 'monthCount', 'beneficiaryCount', 'cities', 'announcement', 'events'));
     } // End Method
 
     public function visitorProgramsView($id)
@@ -106,22 +111,33 @@ class VisitorController extends Controller
             'to' => 'required|string',
             'email' => 'required|email',
             'message' => 'required|string',
+            'date' => 'required|date',
             'contacts' => 'required|string',
-            'attachments' => 'nullable|file',
+            'attachments' => 'file',
         ]);
+        if (isset($validatedData['attachments'])) {
+            $file = $request->file('attachments');
+
+            $filename = date('YmdHi'). $file->getClientOriginalName();
+        } else {
+            $filename = '';
+        }
+        $validatedData['attachments'] = $filename;
 
         // Check if validation passes
         if ($validatedData) 
         {
             // Insert data into the database
-            inquiries::insert([
+            $inquiry = inquiries::create([
                 'fullname' => $validatedData['fullname'],
                 'to' => $validatedData['to'],
                 'email' => $validatedData['email'],
                 'contacts' => $validatedData['contacts'],
+                'date' => $validatedData['date'],
                 'message' => $validatedData['message'],
                 'attachment' => $validatedData['attachments'],
             ]);
+            $inquiry->save();
 
             return redirect()->back()->with('success', 'Inquiry Submitted!');
         } else {

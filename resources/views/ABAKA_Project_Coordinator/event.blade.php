@@ -124,7 +124,7 @@
                                                     <div class="form-group">
                                                     <label for="edit-recipient">To:</label>
                                                         <select class="form-control" type="text" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                            <option>ABAKA</option>
+                                                            <option>{{ $programName }}</option>
                                                             <option>PUBLIC</option>
                                                         </select>
                                                     </div>
@@ -282,7 +282,7 @@
                             <div class="form-outline">
                             <label id="label_">To:</label>
                                         <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                        <option>ABAKA</option>
+                                        <option>{{ $programName }}</option>
                                         <option>PUBLIC</option>
                                         </select>
                                     </div>

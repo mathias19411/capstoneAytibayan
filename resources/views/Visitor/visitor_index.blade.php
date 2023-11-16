@@ -43,7 +43,6 @@
                         </div>
                         <div class="story-card-content">
                             <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
-                                quibusdam
                                 quasi
                                 quidem quaerat quidem quibusdam quasi quidem quaerat quidem quibusdam quasi Lorem ipsum
                                 dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
@@ -70,14 +69,14 @@
                 </div>
             </div>
             <div class="description-section">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo dolores, molestiae voluptatum rem
-                    iure enim eos ut ex repellendus nobis ipsa suscipit odio. Repellat earum, eaque minus voluptatibus sed
-                    cum sequi quod unde modi dignissimos provident numquam architecto odit culpa consequatur a temporibus
-                    deleniti aspernatur, soluta maiores accusamus quisquam. Explicabo optio harum rerum culpa iste minima
-                    eligendi totam labore voluptatem praesentium, libero sapiente quaerat repellat iure, dolores magnam
-                    laborum tempora animi officiis cupiditate ex corporis eos veniam saepe. Qui, nam quaerat aut molestiae
-                    sit ea id tenetur, minima, mollitia eveniet at doloribus ut. Qui, dolor fuga totam obcaecati nobis
-                    repellat.</p>
+                <p>In the province of Albay, located in Bicol Region Philippines, the Albay Provincial Agricultural Office 
+                    (APAO) is the office assigned in implementing sustainable livelihood programs and is responsible for 
+                    promoting agricultural development in Albay. There are currently five different SLPs operating in its 
+                    office; the Abaka Mo Piso Mo Cash Incentive Scheme, Binhi ng Pag-asa Program, AgriPinay, Livelihood
+                     Enhancement Agricultural Development (LEAD) Program, and the Agrikultura: Kaagapay ng Bayang Pinoy 
+                     (AkBay) program. Each program requires APAO to gather data in marginalized communities, especially 
+                     farmers in which it includes their demographic profile. 
+                </p>
             </div>
             <div class="announcements-section">
                 <div class="announcements-title">
@@ -90,12 +89,11 @@
                             <span class="material-symbols-outlined">
                                 schedule
                             </span>
-                            <span class="announcement-time">3 min ago</span>
+                            @foreach($announcement->reverse() as $announcement)
+                            <span class="announcement-time">{{ $announcement->date }}</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto consectetur dolore unde eius
-                            praesentium distinctio dolor sunt, accusantium corporis voluptates labore officia veniam.
-                            Obcaecati
-                            explicabo harum aliquam blanditiis libero eaque?</p>
+                        <p>{{ $announcement->message }}</p>
+                        @endforeach
 
                     </div>
                 </div>
@@ -194,33 +192,42 @@
         </div>
 
         <div class="container">
-            <div class="box lightbox" onclick="openImage(this)">
+            <div class="box_about lightbox" onclick="openImage(this)">
                 <h2>Organizational Chart</h2>
-                <img src="\images\orgchart.png">
+                <img src="\images\apao_orgchart.png">
             </div>
 
             <div class="main">
-                <h2> About </h2>
+                <h2> Vision </h2>
                 <div class="line"></div>
-                <p>Lorem ipsum has no intelligible meaning Lorem ipsum has no intelligible meaning Lorem ipsum has no
-                    intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
-                <h2> Mandate </h2>
+                <p>A developed countryside and sustainable production areas led by strong, organized and self-reliant farmers and fisherfolk equipped
+                    with modern technologies and entrepreneurial capability ensuring steady supply of farm produceto meet food sufficiency.
+                </p>
+                <h2> Mission </h2>
                 <div class="line"></div>
-                <p>Lorem ipsum has no intelligible meaning Lorem ipsum has no intelligible meaning Lorem ipsum has no
-                    intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
-                <h2 id="missionHeader"> Mission </h2>
+                <p>To have an available and affordable food for Albayanos.</p>
+                <h2 id="missionHeader"> Objectives </h2>
                 <div class="line"></div>
-                <p>Lorem ipsum has no intelligible meaning Lorem ipsum has no intelligible meaning Lorem ipsum has no
-                    intelligible meaning Lorem ipsum has no intelligible meaningLorem ipsum has no intelligible meaning</p>
+                <p>To sustain production od staple foods(rice, corn, and root crops) and high value crops through the transfer of cost-effective,
+                environment-friendly technologies to small farmers as well as increase in production areas.
+                </p>
+                <p>To improve financial food security through enhanced production, entrepreneurship, and greater market access.
+                </p>
+                <p>To encourage climate change adaptation measures in agriculture and fisheries to ensure food security through extension services, technical assistance,
+                    and on-site research and demonstration farms.
+                </p>
             </div>
 
-            <div class="box lightbox" onclick="openImage(this)">
+            <div class="box_about lightbox" onclick="openImage(this)">
                 <h2>History</h2>
-                <img src="\images\history.png" alt="History Image">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                <img src="\images\history.png" alt="History Image" class="history">
+                <div class="txt_history">APAO started in 2009 and drives to established agricultural development in Albay, it has been pivotal in 
+                    implementing transformative programs. With a focus on data-driven decisions, 
+                    APAO gathers demographic information from farmers to tailor effective initiatives, showcasing a history 
+                    marked by adaptability and commitment to sustainable growth in Albay's agricultural sector.</div>
             </div>
 
-        </div>
+        </div><script type="module" src=""></script>
     </section>
 
     <!------------------ PROGRAM ---------------------->
@@ -402,11 +409,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label id="label_">Full Name:</label>
-                                    <input class="form-control" type="text" id="textbox" name="fullname">
+                                    <input class="form-control" type="text" id="textbox" name="fullname" required>
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">Email:</label>
-                                    <input class="form-control" type="text" name="email" id="textbox">
+                                    <input class="form-control" type="text" name="email" id="textbox" required>
                                 </div>
                             </div>
                         </div>
@@ -414,11 +421,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label id="label_">Contact Number:</label>
-                                    <input class="form-control" type="text" name="contacts" id="textbox">
+                                    <input class="form-control" type="text" name="contacts" id="textbox" required>
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">To:</label>
-                                    <select class="form-control" type="text" name="to" id="textbox">
+                                    <select class="form-control" type="text" name="to" id="textbox" required>
                                         <option value="ABAKA">ABAKA</option>
                                         <option value="AGRIPINAY">AGRIPINAY</option>
                                         <option value="AKBAY">AKBAY</option>
@@ -428,15 +435,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
+                            <div class="col">
+                                <div class="row">
+                                        <div class="col-6">
+                                            <label id="label_">Date:</label>
+                                            <input class="form-control" type="date" name="date" id="textbox" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label id="label_">Attach File(Optional)</label>
+                                            <input class="form-control" type="file" name="attachments" id="textbox">
+                                        </div>
+                                 </div>
+                            </div>
+                           
+                       
+                       
                             <div class="col-12" style="margin: 5px;">
                                 <label id="label_">Message:</label>
-                                <input class="form-control" type="text" name="message" id="textbox_m">
+                                <input class="form-control" type="text" name="message" id="textbox_m" required>
                             </div>
-                            <div class="col-6">
-                                    <label id="label_">Attach File(Optional)</label>
-                                    <input class="form-control" type="file" name="attachments" id="textbox">
-                                </div>
+                           
                             <div class="col" id="button_">
                                 <input type="submit" class="btn" value="Send" id="send_">
                             </div>
