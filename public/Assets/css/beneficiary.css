@@ -118,6 +118,7 @@ nav .menu-items {
 }
 .menu-items li {
     list-style: none;
+    margin: 0;
 }
 .menu-items li a {
     display: flex;
@@ -152,7 +153,7 @@ body.dark li a:hover:before {
     background-color: var(--text-color);
 }
 .menu-items li a i {
-    font-size: 24px;
+    font-size: 20px;
     min-width: 45px;
     height: 100%;
     display: flex;
@@ -161,7 +162,7 @@ body.dark li a:hover:before {
     color: var(--black-light-color);
 }
 .menu-items li a .link-name {
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 5px;
     font-weight: 400;
     color: var(--black-light-color);
@@ -182,6 +183,7 @@ body.dark .nav-links li a:hover .link-name {
 .menu-items .logout-mode {
     padding-top: 10px;
     border-top: 1px solid var(--border-color);
+    margin-bottom: 0;
 }
 .menu-items .mode {
     display: flex;
@@ -320,14 +322,15 @@ nav.close ~ .dashboard .top {
 .profile-dropdown {
     position: relative; /* Ensure it's a positioned element for absolute positioning */
     display: inline-block; /* Display it inline with the content */
-    margin-right: 20px; /* Add spacing to the right */
+    margin-right: 0; /* Add spacing to the right */
 }
 
 /* Style the image */
 .profile-dropdown img {
-    width: 50px; /* Adjust the width as needed */
+    max-width: 50px; /* Adjust the width as needed */
     height: 50px; /* Adjust the height as needed */
     cursor: pointer; /* Change the cursor to a pointer to indicate it's clickable */
+    margin-right: 0;
 }
 
 /* Style the name */
@@ -376,8 +379,8 @@ nav.close ~ .dashboard .top {
 /* Style the profile image */
 .profile-image img {
     margin-top: 5px;
-    width: 110px;
-    height: 110px;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
 }
 /* Style the submenu items */
@@ -518,7 +521,12 @@ body {
     color: #ffffff;
     text-transform: uppercase;
 }
-
+.notification-icon i ,
+.message-icon i ,
+.rounded-circle {
+    max-width: 100%;
+    height: auto;
+}
 @media (max-width: 1000px) {
     nav {
         width: 73px;
@@ -561,6 +569,11 @@ body {
     nav.close ~ .dashboard .top {
         left: 250px;
         width: calc(100% - 250px);
+    }
+    .profile-dropdown img {
+        max-width: 100%; /* Adjust the width as needed */
+        height:100%; /* Adjust the height as needed */
+       
     }
 }
 
@@ -627,13 +640,14 @@ body {
     #notification-dropdown ul li {
         font-size: 8px; /* Reduce font size for smaller screens */
     }
+   
+    
 }
 
-@media (max-width: 560px) {
-    .dash-content .boxes .box {
-        width: 100%;
-    }
-}
+
+
+
+
 @media (max-width: 400px) {
     nav {
         width: 0px;
@@ -677,6 +691,10 @@ body {
     nav .logo-image,
     nav .logo-image img {
         display: none;
+    }
+    .notification-icon a i, .message-icon a i {
+        width: 25%;
+        margin: 0;
     }
 }
 
@@ -1274,6 +1292,8 @@ ul.days .scheduled::before {
     .container {
         width: 100%; /* Take up full width */
         margin: 0; /* Remove margin */
+        flex-direction: row-reverse;
+       
     }
 
     .schedule-descrip {
