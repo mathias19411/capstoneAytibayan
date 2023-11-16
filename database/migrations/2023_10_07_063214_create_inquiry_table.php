@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('message');
             $table->string('attachment')->nullable();
             $table->string('contacts')->nullable();
+            $table->date('date')->default(now());
             $table->timestamps();
         });
     }

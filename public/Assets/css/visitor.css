@@ -376,21 +376,21 @@ body {
 /* ---------------------------------- */
 .page-content {
     max-height: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     overflow: auto;
     padding: 1.1rem 1.1rem;
 }
 
 .main-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: .1fr .4fr .5fr repeat(2, .5fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows:.1fr repeat(3, .5fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 }
 
 .image-section {
-    grid-area: 1 / 1 / 2 / 3;
+    grid-area:1 / 1 / 2 / 4; ;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     position: relative; /* Needed for absolute positioning of the image */
@@ -410,7 +410,7 @@ body {
 }
 
 .horizontal-scroll-image-section {
-    grid-area: 3 / 1 / 4 / 3;
+    grid-area:  3 / 1 / 4 / 4;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     background-color: rgba(
@@ -501,7 +501,7 @@ body {
 }
 
 .beneficiay-chart-section1 {
-    grid-area: 2 / 2 / 3 / 3;
+    grid-area:2 / 3 / 3 / 4 ;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     background-color: rgba(
@@ -544,7 +544,7 @@ body {
 }
 
 .top-story-section {
-    grid-area: 4 / 2 / 5 / 3;
+    grid-area: 4 / 3 / 5 / 4 ;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     padding: 1.5rem;
@@ -638,7 +638,7 @@ body {
 }
 
 .description-section {
-    grid-area: 5 / 1 / 6 / 2;
+    grid-area:2 / 2 / 3 / 3;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     background-color: rgba(
@@ -655,7 +655,7 @@ body {
 }
 
 .announcements-section {
-    grid-area: 5 / 2 / 6 / 3;
+    grid-area:4 / 1 / 5 / 2;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     background-color: rgba(
@@ -764,7 +764,7 @@ body {
 }
 
 .events-section {
-    grid-area: 4 / 1 / 5 / 2;
+    grid-area: 4 / 2 / 5 / 3;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     padding: 1.5rem;
@@ -783,6 +783,7 @@ body {
     flex-direction: column;
     justify-content: flex-start; /* Pushes child to the top */
     align-items: center;
+   
 }
 
 .events-section .events-title {
@@ -1736,6 +1737,7 @@ section.programs_view {
     }
     
     #label_ {
+        margin-top: 10px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -1903,7 +1905,7 @@ section.about .container {
     margin-bottom: 1rem;
 }
 
-section.about .box {
+section.about .box_about {
     background-color: #FFFFFF;
     width: 25%;
     height: 400px;
@@ -1914,8 +1916,8 @@ section.about .box {
     margin: auto;
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
 }
-  
-  section.about .box h2 {
+
+  section.about .box_about h2 {
       font-size: 1.3rem;
       font-weight: bold;
       text-align: center;
@@ -1932,9 +1934,16 @@ section.about .box {
       margin-bottom: 1rem;
   }
   
-  section.about .box img {
-      border-radius: 1rem;
-      padding: 10px;
+  .txt_history {
+    overflow-x: auto;
+} 
+
+  section.about .box_about img {
+    border-radius: 1rem;
+    max-width: 100%; /* Ensure the image doesn't exceed the container width */
+    height: 400px; /* Maintain the aspect ratio of the image */
+    margin: 5px auto; /* Center the image horizontally */
+    display: block; /* Remove extra space beneath the image */
   }
   section.about .container .popup-box {
       position: fixed;s
@@ -1984,14 +1993,14 @@ section.about .box {
         width: 100%;
     }
 
-    section.about .box {
+    section.about .box_about {
         width: 100%;
         height: 300px;
     }
 
-    section.about .box img {
+    section.about .box_about img {
         max-width: 100%; /* Make the image in the box responsive */
-        height: auto;
+        height: 250px;
         border-radius: 1rem; /* Retaining border-radius */
         padding: 10px; /* Retaining padding */
     }
@@ -2210,6 +2219,7 @@ section.about .box {
   }
   
   section.contact  #label_ {
+    margin-top: 10px;
       white-space: nowrap; 
       overflow: hidden;
       text-overflow: ellipsis;
@@ -2219,6 +2229,8 @@ section.about .box {
       background-color: #f2f2f2; 
       border-radius: 10px;
   }
+
+  
   section.contact #textbox_m {
       background-color: #f2f2f2; 
       border-radius: 10px; 
@@ -2263,7 +2275,7 @@ section.about .box {
     padding-left: 70px;
 }
 .col #inquiry {
-    text-align: center;
+    
     flex-direction: column;
 }
 

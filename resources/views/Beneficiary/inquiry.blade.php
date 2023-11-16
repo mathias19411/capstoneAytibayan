@@ -58,7 +58,11 @@
     </div>
     <div class="input-box">
       <label class="label">To:</label>
-      <input type="text" placeholder="To" value="ABAKA" name="recipient" readonly>
+      <input type="text" placeholder="To" value="{{ $programName }}" name="recipient" readonly>
+    </div>
+    <div class="input-box">
+      <label class="label">Date:</label>
+      <input type="date" name="date" required>
     </div>
     <div class="input-box message-box">
       <label class="label">Message:</label>
@@ -66,7 +70,7 @@
     </div>
     <div class="input-box">
       <label class="label">Attach File:</label>
-      <input type="file" name="attachment" required>
+      <input type="file" name="attachment">
     </div>
         <div class="button">
           <input type="submit" value="Send" >
