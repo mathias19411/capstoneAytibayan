@@ -107,7 +107,7 @@ class VisitorController extends Controller
             'email' => 'required|email',
             'message' => 'required|string',
             'contacts' => 'required|string',
-            'attachments' => 'nullable|file',
+            'attachments' => 'file',
         ]);
 
         // Check if validation passes
