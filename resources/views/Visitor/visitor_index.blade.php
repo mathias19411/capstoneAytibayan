@@ -1,6 +1,6 @@
 @extends('Visitor.visitor_home')
 @section('visitor')
-    <button id="scrollToTopButton">Scroll to Top</button>
+    <button id="scrollToTopButton">Back to Top</button>
 
     <div class="page-content">
         <div class="main-cards">
