@@ -154,7 +154,7 @@ body.dark li a:hover:before {
     background-color: var(--text-color);
 }
 .menu-items li a i {
-    font-size: 20px;
+    font-size: 25px;
     min-width: 45px;
     height: 100%;
     display: flex;
@@ -163,7 +163,7 @@ body.dark li a:hover:before {
     color: var(--black-light-color);
 }
 .menu-items li a .link-name {
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 5px;
     font-weight: 400;
     color: var(--black-light-color);
