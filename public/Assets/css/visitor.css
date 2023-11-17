@@ -629,6 +629,7 @@ body {
     text-align: center;
     max-width: 100%;
     color: var(--colorWhite);
+    text-decoration: none;
     bottom: 0;
 }
 
@@ -690,9 +691,15 @@ body {
 }
 
 .announcements-section .announcements-read-more .read-more-button {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;;
     max-width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
     color: var(--colorWhite);
+    text-decoration: none;
+    height: 15px;
     bottom: 0;
 }
 
@@ -2341,9 +2348,7 @@ section.contact #c_description {
     margin-left: 2px;
 
   }
-  section.contact .container {
-    width: 45%;
-     }
+
 section.contact #inquiry {
     flex-direction: column;
     width: 80%;

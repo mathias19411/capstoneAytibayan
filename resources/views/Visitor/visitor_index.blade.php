@@ -79,32 +79,33 @@
                 </p>
             </div>
             <div class="announcements-section">
-                <div class="announcements-title">
-                    <h3>Announcements</h3>
-                </div>
+    <div class="announcements-title">
+        <h3>Announcements</h3>
+    </div>
 
-                <div class="announcements-card">
-                    <div class="announcements-card-date-time">
-                        <div class="announcements-card-date-time-title">
-                            <span class="material-symbols-outlined">
-                                schedule
-                            </span>
-                            @foreach($announcement->reverse() as $announcement)
-                            <span class="announcement-time">{{ $announcement->date }}</span>
-                        </div>
-                        <p>{{ $announcement->message }}</p>
-                        @endforeach
-
-                    </div>
+    @if($announcement->isEmpty())
+        <p>No announcements at the moment.</p>
+    @else
+        <div class="announcements-card">
+            <div class="announcements-card-date-time">
+                <div class="announcements-card-date-time-title">
+                    <span class="material-symbols-outlined">
+                        schedule
+                    </span>
+                    @foreach($announcement->reverse() as $announcement)
+                        <span class="announcement-time">{{ $announcement->date }}</span>
+                    @endforeach
                 </div>
-                <div class="announcements-read-more">
-                <button type="button" class="btn read-more-button" data-bs-toggle="modal" data-bs-target="#read_announcement">Read Announcement</button>
-                    <!--
-                    <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer"
-                        class="read-more-button">More Announcements></a>
--->
-                </div>
+                <p>{{ $announcement->message }}</p>
             </div>
+        </div>
+        <div class="announcements-read-more">
+            <button type="button" class="btn read-more-button" data-bs-toggle="modal" data-bs-target="#read_announcement">More Announcements</button>
+        </div>
+        
+    @endif
+</div>
+
             <div class="events-section">
                 <div class="events-title">
                     <h3>Upcoming Events</h3>

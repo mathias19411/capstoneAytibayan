@@ -772,7 +772,7 @@ ol, ul {
 
 .colored-line.inactive {
     height: 100%; /* Set the height to 100% to fill the number line */
-    background-color: red /* Set the color for the inactive line */
+    background-color: red;/* Set the color for the inactive line */
     border-radius: 10px;
 }
 
