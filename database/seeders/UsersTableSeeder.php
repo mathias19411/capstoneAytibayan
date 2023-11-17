@@ -134,7 +134,7 @@ class UsersTableSeeder extends Seeder
                 'last_name' => 'Apao',
                 'email' => 'bermejomathiasjohnoliver3@gmail.com',
                 'password' => Hash::make('beneficiary123'),
-                'phone' => '09998887777',
+                'phone' => '639923034018',
                 'barangay' => 'Tamaoyan',
                 'city' => 'Legazpi City',
                 'province' => 'Albay',

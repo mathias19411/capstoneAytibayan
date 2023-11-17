@@ -8,19 +8,21 @@ use Twilio\Rest\Client;
 class SmsController extends Controller
 {
     public function sendsms(){
-        $sid = getenv("TWILIO_AUTH_SID");
-        $token = getenv("TWILIO_AUTH_TOKEN");
-        $senderNumber = getenv("TWILIO_PHONE");
-        $twilio = new Client($sid, $token);
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
+        // dd('message sent sucessful!');
 
-        $message = $twilio->messages
-                        ->create("+63 992 303 4018", // to
-                                [
-                                    "body" => "This is the ship that made the Kessel Run in fourteen parsecs?",
-                                    "from" => $senderNumber
-                                ]
-                        );
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS("639923034018", "apao", 'A text message sent using the Nexmo SMS API')
+        );
 
-                        dd('message sent sucessful!');
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            echo "The message was sent successfully\n";
+        } else {
+            echo "The message failed with status: " . $message->getStatus() . "\n";
+        }
+        
     }
 }

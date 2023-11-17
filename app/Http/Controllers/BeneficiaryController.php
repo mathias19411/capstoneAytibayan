@@ -24,11 +24,10 @@ class BeneficiaryController extends Controller
 
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
-       $public = "PUBLIC";
-       $announcement = announcement::where(function ($query) use ($programName, $public) {
-           $query->where('to', $programName)->orWhere('to', $public);})->get();
-        $events = events::where(function ($query) use ($programName, $public) {
-            $query->where('to', $programName)->orWhere('to', $public);})->get(); 
+       $announcement = announcement::where(function ($query) use ($programName) {
+           $query->where('to', $programName);})->get();
+        $events = events::where(function ($query) use ($programName) {
+            $query->where('to', $programName);})->get(); 
 
         return view('Beneficiary.home', compact('announcement', 'programName', 'events'));    
     } // End Method

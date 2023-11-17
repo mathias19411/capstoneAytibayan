@@ -98,8 +98,11 @@
                     </div>
                 </div>
                 <div class="announcements-read-more">
+                <button type="button" class="btn read-more-button" data-bs-toggle="modal" data-bs-target="#read_announcement">Read Announcement</button>
+                    <!--
                     <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer"
                         class="read-more-button">More Announcements></a>
+-->
                 </div>
             </div>
             <div class="events-section">
@@ -465,6 +468,39 @@
 
         </div>
     </section>
+
+<!-- Read Announcement Modal -->
+<div class="modal fade" id="read_announcement" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Announcement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="announcements-card">
+                    <div class="announcements-card-date-time">
+                        <div class="announcements-card-date-time-title">
+                            <span class="material-symbols-outlined">
+                            </span>
+                            <span class="announcement-time"> </span>
+                        </div>
+                    </div>
+        </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="closee" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="add" id="save-schedule-button">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+   <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS Bundle (includes Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         var programNames = {!! json_encode($programNames) !!};
         var beneficiaryCounts = {!! json_encode($beneficiaryCounts) !!};
