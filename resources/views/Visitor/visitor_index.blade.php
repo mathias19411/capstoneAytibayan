@@ -42,13 +42,11 @@
                             <img src="{{ asset('images/APAO-R5.jpg') }}" alt="story image">
                         </div>
                         <div class="story-card-content">
-                            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
-                                quasi
-                                quidem quaerat quidem quibusdam quasi quidem quaerat quidem quibusdam quasi Lorem ipsum
-                                dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
-                                quibusdam
-                                quasi
-                                quidem quaerat quidem quibusdam quasi quidem quaerat quidem quibusdam quasi</h5>
+                            <h5>EARLIER: Provincial Agriculturist Cheryll O. Rebeta and Assistant Provincial Agriculturist Daryl John O. Buenconsejo attended 
+                                the Technical Budget Hearing of the Sangguniang Panlalawigan ng Albay, on November 16, 2023 held at the SPA Session Hall in 
+                                Legazpi City.In the session, Provincial Agriculturist Cheryll O. Rebeta presented the proposed annual budget for CY 2024 for 
+                                the Albay Provincial Agricultural Office (APAO). The engagement aimed to discuss and scrutinize the financial plan to ensure 
+                                its alignment with the objectives and needs of the agriculture sector in the province.</h5>
                         </div>
                     </div>
                     <div class="story-card">
@@ -56,10 +54,11 @@
                             <img src="{{ asset('images/APAO-R5.jpg') }}" alt="story image">
                         </div>
                         <div class="story-card-content">
-                            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
-                                quibusdam
-                                quasi
-                                quidem quaerat quidem quibusdam quasi quidem quaerat quidem quibusdam quasi</h5>
+                            <h5>A briefing was conducted to PAFC Chairperson Rene Delos Reyes, PAFC Co-Chair/Provincial Agriculturist Cheryll O. Rebeta, and 
+                                PAFC Secretariat-Coordinator Arminda Padilla by RAFC Regional Executive Officer Aloha Gigi I. Bañaria on November 14, 2023, 
+                                at the PMED Conference Room, Department of Agriculture RFO5 in Pili, Camarines Sur. 
+                                The briefing focused on the preparation for the National Validation for the Search for Outstanding PAFC, including the roles 
+                                of the PAFC Chairperson and PAFC Secretariat-Coordinator.</h5>
                         </div>
                     </div>
                 </div>
