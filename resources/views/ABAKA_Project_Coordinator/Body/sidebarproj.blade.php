@@ -1,7 +1,9 @@
 <nav>
     <div class="logo-name">
         <div class="logo-image">
-            <img src="\images\Logo_BinhiNgPagasa.png" alt="">
+            <a href="{{ route('visitor.home') }}">
+                <img src="\images\Logo_AbacaMoPisoMo.png" alt="Logo">
+            </a>
         </div>
 
         <span class="logo_name">ABAKA MO PISO MO</span>

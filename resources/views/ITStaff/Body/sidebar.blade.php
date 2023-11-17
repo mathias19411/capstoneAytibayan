@@ -1,7 +1,9 @@
 <nav>
     <div class="logo-name">
         <div class="logo-image">
+        <a href="{{ route('visitor.home') }}">
             <img src="\images\logo.png" alt="">
+            </a>
         </div>
 
         <span class="logo_name">IT Staff</span>

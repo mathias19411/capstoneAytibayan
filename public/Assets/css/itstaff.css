@@ -634,9 +634,7 @@ ol, ul {
     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-.dash-content .boxes .box:hover {
-    transform: scale(1.1);
-}
+
 
 .dash-content .boxes .add-button {
     display: flex;
@@ -804,9 +802,7 @@ ol, ul {
     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-.coord .box:hover {
-    transform: scale(1.1);
-}
+
 
 .coord .box button {
     font-size: 0.85rem;

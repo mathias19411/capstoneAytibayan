@@ -10,10 +10,11 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         $userProfileData = App\Models\User::find($id);
     @endphp
 
-        <div class="logo-image">
-            <img src="\images\Logo_BinhiNgPagasa.png" alt="">
+    <div class="logo-image">
+            <a href="{{ route('visitor.home') }}">
+                <img src="\images\Logo_AbacaMoPisoMo.png" alt="Logo">
+            </a>
         </div>
-        
 
         <span class="logo_name">{{ $userProfileData->program->program_name }}</span>
     </div>
