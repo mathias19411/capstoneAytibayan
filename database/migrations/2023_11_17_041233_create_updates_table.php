@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('from');
+        Schema::create('updates', function (Blueprint $table) {
+            $table->id();
+            $table->string('email');
+            $table->string('benef_of');
+            $table->string('date');
             $table->string('title');
-            $table->string('to');
-            $table->date('date');
-            $table->text('message');
-            $table->string('image')->nullable();
-
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('updates');
     }
 };

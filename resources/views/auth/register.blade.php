@@ -1,7 +1,6 @@
 {{-- <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -200,6 +199,10 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
 
                 <div class="col-12 register-button">
                     <button type="submit" class="button">Register</button>
+                </div>
+                <div class="col-lg-12 col-md-10" style="text-align: center;">
+                    <h1 class="display-2"></h1>
+                    <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
                 </div>
             </form>
         @else

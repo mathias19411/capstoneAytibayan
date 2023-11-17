@@ -11,6 +11,9 @@ use App\Models\Program;
 use App\Models\inquiries;
 use App\Models\progress;
 use App\Models\events;
+use App\Models\Updates;
+use App\Models\Role;
+
 
 
 class BeneficiaryController extends Controller
@@ -27,7 +30,7 @@ class BeneficiaryController extends Controller
        $announcement = announcement::where(function ($query) use ($programName) {
            $query->where('to', $programName);})->get();
         $events = events::where(function ($query) use ($programName) {
-            $query->where('to', $programName);})->get(); 
+            $query->where('to', $programName);})->get();
 
         return view('Beneficiary.home', compact('announcement', 'programName', 'events'));    
     } // End Method
@@ -50,8 +53,69 @@ class BeneficiaryController extends Controller
 
     public function BeneficiaryUpdates()
     {
-        return view('Beneficiary.update');
+        $id = AUTH::user()->id;
+
+        // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+        $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
+        $updates = Updates::where(function ($query) use ($userEmail) {
+            $query->where('email', $userEmail);})->get();
+        return view('Beneficiary.update', compact('updates', 'userEmail', 'programName', 'roleName'));
     } // End Method
+
+    public function BeneficiaryUpdateStore(Request $request){
+
+        // Validate the request
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'date' => 'required|date',
+            'benef_of' => 'required|string',
+            'title' => 'required|string',
+            'image' => 'image',
+        ]);
+    
+        // Check if the image key exists in the validated data array
+        if (isset($validatedData['image'])) {
+            // Get the image file
+            $file = $request->file('image');
+    
+            // Generate a unique filename for the image file
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move('Uploads/Updates/', $filename);
+    
+        } else {
+            // Assign an empty string to the filename variable
+            $filename = '';
+        }
+    
+        // Set the image attribute of the event model to the filename
+        $validatedData['image'] = $filename;
+    
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $updates = Updates::create([
+                'email' => $validatedData['email'],
+                'date' => $validatedData['date'],
+                'benef_of'=> $validatedData['benef_of'],
+                'title'=> $validatedData['title'],
+                'image' => $validatedData['image'],
+            ]);
+            $updates->save();
+    
+            // If the attachment file is not empty, store it in the database
+    
+            return redirect()->back()->with('success', 'New Inquiry Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+    }// End Method//End Method
+    
 
     public function BeneficiarySchedule()
     {

@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class announcement extends Model
+class Updates extends Model
 {
     protected $fillable = [
+        'email',
         'title',
-        'to',
-        'from',
-        'message',
+        'benef_of',
         'date',
+        'image',
     ];
-    
+
     use HasFactory;
 }

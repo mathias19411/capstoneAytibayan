@@ -93,14 +93,15 @@ class ABAKAProjectCoordinatorController extends Controller
 
        // Get the programId of the user table
        $programId = User::where('id', $id)->pluck('program_id');
-
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
        $public = "PUBLIC";
         $announcement = announcement::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
 
-        return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName'));
+        return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName', 'roleName'));
     } // End Method
 
     public function ProjectCoordinatorAnnouncementEdit($id)
@@ -115,6 +116,7 @@ class ABAKAProjectCoordinatorController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
+            'from'=> 'required|string',
             'date' => 'required|date',
             'to' => 'required|string',
             'message' => 'required|string',
@@ -124,12 +126,14 @@ class ABAKAProjectCoordinatorController extends Controller
         if ($validatedData) 
         {
             // Insert data into the database
-            announcement::insert([
+            $announcement = announcement::create([
                 'title' => $validatedData['title'],
+                'from'=> $validatedData['from'],
                 'date' => $validatedData['date'],
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
+            $announcement->save();
 
             return redirect()->back()->with('success', 'New Announcement Added!');
         } else {
@@ -176,6 +180,8 @@ class ABAKAProjectCoordinatorController extends Controller
 
        // Get the programId of the user table
        $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
 
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
@@ -183,7 +189,7 @@ class ABAKAProjectCoordinatorController extends Controller
         $event = events::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
 
-        return view('ABAKA_Project_Coordinator.event', compact('event','programName'));
+        return view('ABAKA_Project_Coordinator.event', compact('event','programName', 'roleName'));
     } // End Method
 
     public function ProjectCoordinatorEventEdit($id)
@@ -198,6 +204,7 @@ class ABAKAProjectCoordinatorController extends Controller
     // Validate the request
     $validatedData = $request->validate([
         'title' => 'required|string|max:255',
+        'from'=> 'string',
         'date' => 'required|date',
         'to' => 'required|string',
         'message' => 'required|string',
@@ -220,10 +227,13 @@ class ABAKAProjectCoordinatorController extends Controller
     // Set the image attribute of the event model to the filename
     $validatedData['image'] = $filename;
 
+    //dd($validatedData);
+
     // Check if validation passes
     if ($validatedData) {
         // Insert data into the database
         $event = events::create([
+            'from' => $validatedData['from'],
             'title' => $validatedData['title'],
             'date' => $validatedData['date'],
             'to' => $validatedData['to'],

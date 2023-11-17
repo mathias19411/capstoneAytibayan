@@ -35,7 +35,8 @@
         <div class="container">
                 <table class="table">
                     <thead>
-                    <tr>
+                    <tr>    
+                            <th>From</th>
                             <th>Title</th>
                             <th>To</th>
                             <th>Description</th>
@@ -226,11 +227,12 @@
                             </div>
                         </div>
                         <tr>
+                            <td>{{ $events->from }}</td>
                             <td>{{ $events->title }}</td>
                             <td>{{ $events->to }}</td>
                             <td>{{ $events->message }}</td>
                             <td>{{ $events->image }}</td>
-                            <td>{{ $events->date }}</td>
+                            <td>{{ $events->created_at }}</td>
                             <td>
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">
                             <i class="fa-solid fa-eye fa-2xs"></i>
@@ -276,6 +278,7 @@
                             <div class="form-outline">
                                 <label for="Title">Title</label>
                                 <input class="form-control" type="text" id="Title" placeholder="Title...." name="title">
+                                <input class="form-control" type="text" name="from" value="{{ $roleName }}">
                             </div>
                         </div>
                             <div class="col-md-6 mb-4">

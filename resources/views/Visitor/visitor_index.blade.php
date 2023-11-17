@@ -85,19 +85,25 @@
     @if($announcement->isEmpty())
         <p>No announcements at the moment.</p>
     @else
+    @foreach($announcement->reverse() as $announcement)
+    @php
+        $dayEvent = \Carbon\Carbon::parse($announcement->created_at)->format('d');
+        $monthEvent = \Carbon\Carbon::parse($announcement->created_at)->format('M');
+        $timeEvent = \Carbon\Carbon::parse($announcement->created_at)->format('H:i:s');
+    @endphp
         <div class="announcements-card">
             <div class="announcements-card-date-time">
                 <div class="announcements-card-date-time-title">
                     <span class="material-symbols-outlined">
                         schedule
                     </span>
-                    @foreach($announcement->reverse() as $announcement)
-                        <span class="announcement-time">{{ $announcement->date }}</span>
-                    @endforeach
+                        <span class="announcement-time">{{ $timeEvent }}</span>
                 </div>
-                <p>{{ $announcement->message }}</p>
+                <h2>{{ $announcement->message }}</h2>
+                <h4>{{ $announcement->date }}</h4>
             </div>
         </div>
+    @endforeach
         <div class="announcements-read-more">
             <button type="button" class="btn read-more-button" data-bs-toggle="modal" data-bs-target="#read_announcement">More Announcements</button>
         </div>
@@ -110,69 +116,28 @@
                     <h3>Upcoming Events</h3>
                 </div>
                 <div class="events-main">
+                    @foreach($events->reverse() as $event)
                     <div class="events-card">
                         <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
+                        @php
+                            $dayEvent = \Carbon\Carbon::parse($event->created_at)->format('d');
+                            $monthEvent = \Carbon\Carbon::parse($event->created_at)->format('M');
+                            $timeEvent = \Carbon\Carbon::parse($event->created_at)->format('H:i:s');
+                        @endphp
+                            <h2>{{ $dayEvent }}</h2>
+                            <h4>{{ $monthEvent }}</h4>
                         </div>
                         <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
+                        <div>
+                            <h2>Title: {{ $event->title }}</h2>
+                        </div>
+                            <h5>{{ $event->message }}</h5>
+                        <div>
+                            <div class="announcement-time">{{ $timeEvent }}</div>
+                        </div>
                         </div>
                     </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -447,11 +412,9 @@
                                 <div class="col-6">
                                     <label id="label_">To:</label>
                                     <select class="form-control" type="text" name="to" id="textbox" required>
-                                        <option value="ABAKA">ABAKA</option>
-                                        <option value="AGRIPINAY">AGRIPINAY</option>
-                                        <option value="AKBAY">AKBAY</option>
-                                        <option value="BINHI">BINHI</option>
-                                        <option value="LEAD">LEAD</option>
+                                    @foreach($programs as $program)    
+                                    <option>{{ $program->program_name }}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>

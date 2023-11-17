@@ -37,6 +37,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>From</th>
                             <th>Title</th>
                             <th>To</th>
                             <th>Message</th>
@@ -74,6 +75,10 @@
                                             <h5>Message:</h5>
                                             <p id="modal-message">{{ $announcements->message }}</p>
                                         </div>
+                                        <div class="col-md-12">
+                                            <h5>From:</h5>
+                                            <p id="modal-message">{{ $announcements->from }}</p>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="close" data-bs-dismiss="modal">Close</button>
@@ -96,6 +101,7 @@
                                         @method('PATCH')
                                             <div class="row">
                                             <input type="hidden" name="announcement_id" value="{{ $announcements->id }}">
+                                            <input type="hidden" name="from" value="{{ $announcements->from }}">
                                                 <div class="col-md-6 mb-4">
                                                 <div class="form-group">
                                                     <label for="edit-title">Title:</label>
@@ -176,10 +182,11 @@
                             </div>
                         </div>
                         <tr>
+                            <td>{{ $announcements->from }}</td>
                             <td>{{ $announcements->title }}</td>
                             <td>{{ $announcements->to }}</td>
                             <td>{{ $announcements->message }}</td>
-                            <td>{{ $announcements->date }}</td>
+                            <td>{{ $announcements->created_at }}</td>
                             <td>
                             <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view{{ $announcements->id }}">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
@@ -227,6 +234,7 @@
                             <div class="form-outline">
                             <label id="label_">Title</label>
                             <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">
+                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="from" value="{{ $roleName }}" hidden>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">

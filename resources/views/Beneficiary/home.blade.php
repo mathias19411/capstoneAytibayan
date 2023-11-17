@@ -230,11 +230,19 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             <h2 class="card-title">ANNOUNCEMENT</h2>
                             <div class="card-content">
                                 @foreach($announcement->reverse() as $announcements)
+                                    @php
+                                        $dayEvent = \Carbon\Carbon::parse($announcements->created_at)->format('d');
+                                        $monthEvent = \Carbon\Carbon::parse($announcements->created_at)->format('M');
+                                        $timeEvent = \Carbon\Carbon::parse($announcements->created_at)->format('H:i:s');
+                                    @endphp
                                 <div class="announcement-info">
-                                    <div class="announcement-title">From: {{ $programName }} Coordinator</div>
+                                    <div class="announcement-title">From: {{ $announcements->from }}</div>
                                     <div class="announcement-text">{{ $announcements->message }}</div>
                                     <div class="footer">
                                     <div class="date">{{ $announcements->date }}</div>
+                                    </div>
+                                    <div class="footer">
+                                        <div class="time">{{ $timeEvent }}</div>
                                     </div>
                                 </div>
                                 @endforeach
@@ -249,8 +257,9 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                 <div class="event-info">
                                     <div class="event-date">
                                     @php
-                                        $dayEvent = \Carbon\Carbon::parse($event->date)->format('d');
-                                        $monthEvent = \Carbon\Carbon::parse($event->date)->format('M');
+                                        $dayEvent = \Carbon\Carbon::parse($event->created_at)->format('d');
+                                        $monthEvent = \Carbon\Carbon::parse($event->created_at)->format('M');
+                                        $timeEvent = \Carbon\Carbon::parse($event->created_at)->format('H:i:s');
                                     @endphp
                                         <div class="date">{{ $dayEvent }}</div>
                                         <div class="month">{{ $monthEvent }}</div>
@@ -268,7 +277,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         </div>
                                         -->
                                         <div class="footer">
-                                        <div class="time">3:35 AM</div>
+                                        <div class="time">{{ $timeEvent }}</div>
                                         </div>
                                     </div>
                                 </div>  
