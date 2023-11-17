@@ -33,6 +33,22 @@ class TwoFactorController extends Controller
         $user->generateTwoFactorCode();
         $user->notify(new TwoFactorCode());
 
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your two-factor code is ". $user->two_factor_code)
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The two factor code has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The two factor code message failed with status: ' . $message->getStatus());
+        // }
+
         return view('auth.twoFactor');
     }
 
@@ -90,6 +106,8 @@ class TwoFactorController extends Controller
             return redirect()->intended($url);
         }
 
+        toastr()->timeOut(7500)->addError('The two factor code you have entered does not match!');
+
         return redirect()->back()->withErrors(['two_factor_code' => 'The two factor code you have entered does not match']);
     }
 
@@ -100,6 +118,16 @@ class TwoFactorController extends Controller
         $user = auth()->user();
         $user->generateTwoFactorCode();
         $user->notify(new TwoFactorCode());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your two-factor code is ". $user->two_factor_code)
+        // );
+
+        // $message = $response->current();
 
         toastr()->timeOut(10000)->addInfo('The two factor code has been sent again');
 
