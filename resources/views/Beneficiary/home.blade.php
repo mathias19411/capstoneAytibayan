@@ -233,7 +233,9 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                 <div class="announcement-info">
                                     <div class="announcement-title">From: {{ $programName }} Coordinator</div>
                                     <div class="announcement-text">{{ $announcements->message }}</div>
-                                    <div class="time">{{ $announcements->date }}</div>
+                                    <div class="footer">
+                                    <div class="date">{{ $announcements->date }}</div>
+                                    </div>
                                 </div>
                                 @endforeach
                             </div>
@@ -253,14 +255,23 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         <div class="date">{{ $dayEvent }}</div>
                                         <div class="month">{{ $monthEvent }}</div>
                                     </div>
-                                    <div class="event-title">Title: {{ $event->title }}</div>
-                                    <div class="event-text">{{ $event->message }}</div>
-                                    <div id="img-view">
-                                        <img src="/images/image_icon.png" alt="Image Icon">
-                                        <p>No Image Posted</p>
+
+                                    <div class="event-body">
+                                        <div class="event-title">Title: {{ $event->title }}</div>
+                                        <div class="event-text">{{ $event->message }}</div>
+                                        
+                                        <!--
+                                        <div id="img-view">
+                                            
+                                            <img src="/images/image_icon.png" alt="Image Icon">
+                                            <p>No Image Posted</p>
+                                        </div>
+                                        -->
+                                        <div class="footer">
+                                        <div class="time">3:35 AM</div>
+                                        </div>
                                     </div>
-                                    <div class="time">3:35 AM</div>
-                                </div>
+                                </div>  
                             @endforeach
                             </div>
                         </div>
