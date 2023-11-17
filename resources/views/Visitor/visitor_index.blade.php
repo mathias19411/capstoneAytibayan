@@ -98,8 +98,11 @@
                     </div>
                 </div>
                 <div class="announcements-read-more">
+                <button type="button" class="btn read-more-button" data-bs-toggle="modal" data-bs-target="#read_announcement">Read Announcement</button>
+                    <!--
                     <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer"
                         class="read-more-button">More Announcements></a>
+-->
                 </div>
             </div>
             <div class="events-section">
@@ -107,22 +110,69 @@
                     <h3>Upcoming Events</h3>
                 </div>
                 <div class="events-main">
-                    @foreach($events->reverse() as $event)
                     <div class="events-card">
                         <div class="events-card-title-date">
-                        @php
-                            $dayEvent = \Carbon\Carbon::parse($event->date)->format('d');
-                            $monthEvent = \Carbon\Carbon::parse($event->date)->format('M');
-                        @endphp
-                            <div class="date">{{ $dayEvent }}</div>
-                            <div class="month">{{ $monthEvent }}</div>
+                            <h2>11</h2>
+                            <h4>MAR</h4>
                         </div>
                         <div class="events-card-content">
-                        <h2>Title: {{ $event->title }}</h2>
-                            <h5>{{ $event->message }}</h5>
+                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
                         </div>
                     </div>
-                    @endforeach
+                    <div class="events-card">
+                        <div class="events-card-title-date">
+                            <h2>11</h2>
+                            <h4>MAR</h4>
+                        </div>
+                        <div class="events-card-content">
+                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
+                        </div>
+                    </div>
+                    <div class="events-card">
+                        <div class="events-card-title-date">
+                            <h2>11</h2>
+                            <h4>MAR</h4>
+                        </div>
+                        <div class="events-card-content">
+                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
+                        </div>
+                    </div>
+                    <div class="events-card">
+                        <div class="events-card-title-date">
+                            <h2>11</h2>
+                            <h4>MAR</h4>
+                        </div>
+                        <div class="events-card-content">
+                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
+                        </div>
+                    </div>
+                    <div class="events-card">
+                        <div class="events-card-title-date">
+                            <h2>11</h2>
+                            <h4>MAR</h4>
+                        </div>
+                        <div class="events-card-content">
+                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
+                        </div>
+                    </div>
+                    <div class="events-card">
+                        <div class="events-card-title-date">
+                            <h2>11</h2>
+                            <h4>MAR</h4>
+                        </div>
+                        <div class="events-card-content">
+                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
+                        </div>
+                    </div>
+                    <div class="events-card">
+                        <div class="events-card-title-date">
+                            <h2>11</h2>
+                            <h4>MAR</h4>
+                        </div>
+                        <div class="events-card-content">
+                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -418,6 +468,41 @@
 
         </div>
     </section>
+
+<!-- Read Announcement Modal -->
+<div class="modal fade" id="read_announcement" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Announcement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="announcements-card">
+                    <div class="announcements-card-date-time">
+                        <div class="announcements-card-date-time-title">
+                            <span class="material-symbols-outlined">
+                                schedule
+                            </span>
+                            <span class="announcement-time"></span>
+                        </div>
+                        <p>fewwegerhtrehtehteteyhrthtr</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="closee" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="add" id="save-schedule-button">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+   <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS Bundle (includes Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         var programNames = {!! json_encode($programNames) !!};
         var beneficiaryCounts = {!! json_encode($beneficiaryCounts) !!};
