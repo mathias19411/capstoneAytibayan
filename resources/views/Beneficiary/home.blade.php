@@ -185,7 +185,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </div>
             </div>
 
-            <!-- Special Announcement -->
+            <!-- Special prject -->
             <div class="col-md-8">
                 <div class="card-project">
                     <h2 class="card-title">PROJECTS</h2>
@@ -235,20 +235,25 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         $monthEvent = \Carbon\Carbon::parse($announcements->created_at)->format('M');
                                         $timeEvent = \Carbon\Carbon::parse($announcements->created_at)->format('H:i:s');
                                     @endphp
+                                 
                                 <div class="announcement-info">
+                                <div class="announcements-card-date-time-title">
+                                    <span class="material-symbols-outlined">
+                                        schedule
+                                    </span>
+                                        <span class="announcement-time">{{ $timeEvent }}</span>
+                                </div>
                                     <div class="announcement-title">From: {{ $announcements->from }}</div>
                                     <div class="announcement-text">{{ $announcements->message }}</div>
                                     <div class="footer">
                                     <div class="date">{{ $announcements->date }}</div>
-                                    </div>
-                                    <div class="footer">
-                                        <div class="time">{{ $timeEvent }}</div>
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-6">
                         <div class="card-event">
                             <h2 class="card-title">EVENT</h2>
