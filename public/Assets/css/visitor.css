@@ -254,7 +254,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 99;
-    font-size: 16px;
+    font-size: 13px;
     border: none;
     outline: none;
     background-color: var(--colorGreen);
@@ -263,7 +263,20 @@ body {
     padding: 10px;
     border-radius: 4px;
 }
+@media only screen and (max-width: 768px) {
+    #scrollToTopButton {
+        left: 90%; /* Adjust as needed */
+        transform: translateX(-90%);
+    }
+}
 
+/* Media query for screens up to 560px wide */
+@media only screen and (max-width: 560px) {
+    #scrollToTopButton {
+        left: 80%; /* Adjust as needed */
+        transform: translateX(-80%);
+    }
+}
 #scrollToTopButton:hover {
     transition: all 0.5s ease;
     scale: 105%;
@@ -1992,6 +2005,7 @@ section.about .box_about {
   
   .txt_history {
     overflow-x: auto;
+    text-align: center;
 } 
 
   section.about .box_about img {
