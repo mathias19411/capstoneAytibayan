@@ -482,13 +482,11 @@
                     <div class="announcements-card-date-time">
                         <div class="announcements-card-date-time-title">
                             <span class="material-symbols-outlined">
-                                schedule
                             </span>
-                            <span class="announcement-time"></span>
+                            <span class="announcement-time"> </span>
                         </div>
-                        <p>fewwegerhtrehtehteteyhrthtr</p>
                     </div>
-                </div>
+        </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="closee" data-bs-dismiss="modal">Close</button>
