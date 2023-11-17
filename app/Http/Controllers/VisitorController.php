@@ -71,9 +71,8 @@ class VisitorController extends Controller
         $public = "PUBLIC";
         $announcement = announcement::where(function ($query) use ($public) {
             $query->where('to', $public);})->get();
-         $events = events::where(function ($query) use ($public) {
+        $events = events::where(function ($query) use ($public) {
              $query->where('to', $public);})->get(); 
-
 
         toastr()->timeOut(10000)->addInfo('Welcome to the Website of APAO Region V!');
 

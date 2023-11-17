@@ -240,7 +240,7 @@
                             <label id="label_">To:</label>
                                 <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
                                     <option value="{{ $programName }}">{{ $programName }}</option>    
-                                    <option>Public</option>
+                                    <option>PUBLIC</option>
                                  </select>
                             </div>
                         </div>

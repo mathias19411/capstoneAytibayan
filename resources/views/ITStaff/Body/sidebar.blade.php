@@ -38,11 +38,24 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </a>
             </li>
             <li>
+                <a href="">
+                    <i class="uil uil-history"></i>
+                    <span class="link-name">Transactions</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="uil uil-x"></i>
+                    <span class="link-name">Blacklisted</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('itstaff.registerView') }}" class="{{ request()->is('ITStaff/registerView') ? 'active' : '' }}">
                     <i class="uil uil-user-plus"></i>
                     <span class="link-name">Registration</span>
                 </a>
             </li>
+             
             {{-- @auth
                 @if (Route::has('register'))
                     <li>
@@ -53,6 +66,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     </li>
                 @endif
             @endauth --}}
+           
 
             <div class="mode-toggle">
 

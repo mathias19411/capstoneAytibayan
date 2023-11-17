@@ -1548,6 +1548,47 @@ section.programs_view {
     margin-bottom: 10px;
 }
 
+.modal-title {
+    color: #7bb701;
+}
+
+ .modal-footer .add {
+    background-color: #f0a60f;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+.modal-footer .closee {
+    background-color: #bbbbbb;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 10px;
+}
+
+.modal-footer .add:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
+.modal-footer .close:hover {
+    background-color: #7bb701;
+    transition: 0.5s;
+}
+
 
 #main-container {
     display: flex;
@@ -1909,7 +1950,7 @@ section.about .box_about {
     background-color: #FFFFFF;
     width: 25%;
     height: 400px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
