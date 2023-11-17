@@ -760,19 +760,19 @@ ol, ul {
 /* Styling for the colored lines */
 .colored-line.total {
     height: 100%; /* Set the height to 100% to fill the number line */
-    background-color: var(--box1-color); /* Set the color for the total line */
+    background-color: var(--primary-color);/* Set the color for the total line */
     border-radius: 10px;
 }
 
 .colored-line.active {
     height: 100%; /* Set the height to 100% to fill the number line */
-    background-color: var(--primary-color); /* Set the color for the active line */
+    background-color: var(--colorOrange); /* Set the color for the active line */
     border-radius: 10px;
 }
 
 .colored-line.inactive {
     height: 100%; /* Set the height to 100% to fill the number line */
-    background-color: var(--colorOrange); /* Set the color for the inactive line */
+    background-color: red /* Set the color for the inactive line */
     border-radius: 10px;
 }
 

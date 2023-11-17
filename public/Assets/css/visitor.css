@@ -2068,6 +2068,9 @@ section.about .box_about {
     align-items: center;
     flex-wrap: wrap;
   }
+  section.contact .row .col {
+  
+  }
 
   section.contact #title {
       margin-top: 10px;
@@ -2077,12 +2080,19 @@ section.about .box_about {
       padding-top: 10px;
       box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
   }
-  section.contact #location_ {
-      margin: 10px;
-      box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      height: 30rem;
-  }
+  section.contact .google-map {
+    padding-bottom: 50%;
+    position: relative;
+}
+
+section.contact .google-map iframe {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    border-radius: 10px;
+}
   
   section.contact #location_img {
       height: 480px;
@@ -2152,102 +2162,108 @@ section.about .box_about {
       border-radius: 50%; 
       background-color: #f0a60f;
   }
-  
   section.contact #left_ {
-      border: transparent; 
-      background-color: #7bb701; 
-      border-radius: 10px; 
-      box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3); 
-      margin-bottom: 10px; 
-      padding-top: 10px; 
-      padding-bottom: 10px;
-  }
-  section.contact #proj_coordinator {
-      text-align: center; 
-      color: white; 
-      white-space: nowrap; 
-      overflow: hidden;
-      text-overflow: ellipsis;
+    border: transparent; 
+    background-color: #7bb701; 
+    border-radius: 10px; 
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3); 
+    margin-bottom: 10px; 
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}
+
+section.contact #proj_coordinator {
+    text-align: center; 
+    color: white; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+  .coordinators {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; 
+    /* Adjust spacing between coordinator sections */
+}
+
+section.contact #coordinators {
+    display: flex;
+    align-items: center;
+    border: transparent;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    margin-right: 0 !important;
+    width: fill;
+    height: fit-content;
   }
   
-  section.contact #coordinators {
-      border: transparent; 
-      background-color: white; 
-      border-radius: 10px; 
-      box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3); 
-      margin-bottom: 10px; 
-      width: fill;
-      height: fit-content;
-  }
-  
-  section.contact #profile {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  
+
   section.contact  #coordinator_img {
-      border: solid; 
-      border-radius: 10px; 
-      border-color: #7bb701; 
-      size: fill; 
-      height: 65px; 
-      width: 65px;
-      margin: 10px;
+    border: solid; 
+    border-radius: 10px; 
+    border-color: #7bb701; 
+    size: fill; 
+    height: 65px; 
+    width: 65px;
+    margin: 10px;
   }
-  
-  section.contact  #c_description {
-      margin-top: 10px; 
-      margin-bottom: 10px;
-      margin-left: 10px;
+
+  section.contact #c_description {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+
   }
-  
-  section.contact #c_name {
-      color: #7bb701; 
-      font-size: 12px;
-      white-space: nowrap; 
-      overflow: hidden; 
-      text-overflow: ellipsis;
-  }
-  
-  section.contact #c_program {
-      font-size: 10px; 
-      white-space: nowrap; 
-      overflow: hidden;
-      text-overflow: ellipsis;
-  }
-  
-  section.contact #phone {
-      font-size: 10px; 
-      white-space: nowrap; 
-      overflow: hidden;
-      text-overflow: ellipsis;
-  }
-  
-  section.contact #phone_icon {
-      border: transparent; 
-      padding: 2px; 
-      border-radius: 50%; 
-      background-color: #f0a60f; 
-      color: white; 
-      margin: auto;
-  }
-   
-  section.contact  #email {
-      font-size: 10px; 
-      white-space: nowrap; 
-      overflow: hidden;
-      text-overflow: ellipsis;
-  }
-  
-  section.contact  #email_icon {
-      border: transparent; 
-      padding: 2px; 
-      border-radius: 50%; 
-      background-color: #f0a60f; 
-      color: white; 
-      margin: auto;
-  }
+    
+section.contact #c_name {
+    color: #7bb701; 
+    font-size: 12px;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+section.contact #c_program {
+    font-size: 10px; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+section.contact #phone {
+    font-size: 10px; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+section.contact #phone_icon {
+    border: transparent; 
+    padding: 2px; 
+    border-radius: 50%; 
+    background-color: #f0a60f; 
+    color: white; 
+    margin: auto;
+}
+ 
+section.contact  #email {
+    font-size: 10px; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+section.contact  #email_icon {
+    border: transparent; 
+    padding: 2px; 
+    border-radius: 50%; 
+    background-color: #f0a60f; 
+    color: white; 
+    margin: auto;
+}
+
   section.contact #inquiry {
       border: transparent; 
       border-radius: 10px; 
@@ -2290,36 +2306,28 @@ section.about .box_about {
       padding: auto; 
       text-align: center;
   }
-  
-  @media (max-width: 767px) {
-    
-     
-    .contact .row {
-        
-         width: 100%;
-    }
-     
-    section.contact #c_description {
-         margin-left: 0;
-    }
-    section.contact .col{
- 
-        align-items:center;
-        padding-left: 30px; 
-    }
+  @media (max-width: 1000px) {
 
-    section.contact #coordinators{
-        padding-left: 50px;
-        text-align: center;
-   }
-   #coordinator_img{
-    padding-left: 70px;
-}
-.col #inquiry {
+    section.contact .container {
+        flex-direction: column;
+      }
     
+ 
+}
+@media (max-width: 768px) {
+    
+    section.contact .container {
+     width: 100%;
+      }
+    section.contact #coordinators {
+        align-items: center;
+        width: fill;
+        height: fit-content;
+      }
+    
+    .col #inquiry {
     flex-direction: column;
 }
-
 
 #textbox, #textbox_m {
     font-size: 14px;
@@ -2329,6 +2337,37 @@ section.about .box_about {
     width: 100%;
     flex-direction: column;
 }
+section.contact #c_description {
+    margin-left: 2px;
+
+  }
+  section.contact .container {
+    width: 45%;
+     }
+section.contact #inquiry {
+    flex-direction: column;
+    width: 80%;
+}
+
+    
 
 
 } 
+
+@media (max-width: 556px) {
+
+    section.contact .container {
+        width: 45%;
+         }
+    section.contact #inquiry {
+        flex-direction: column;
+        width: 60%;
+    }
+  
+          
+       
+    
+
+
+} 
+

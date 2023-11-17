@@ -306,15 +306,15 @@
     <section class="contact" id="contact">
     
         <div class="row">
-            <div class="col" id="title" style="margin-left: 10px; margin-top: 10px;">
+            <div class="col location" id="title" style="margin-left: 10px; margin-top: 10px;">
                 <h4><b>Location</b></h4>
-                <div id="location_">
-                    <img src="{{ URL('images/APAO.png') }}" class="img-fluid" id="location_img">
+                <div class="google-maps">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3884.687236006442!2d123.67126757469015!3d13.182109510228907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a10785c74a4761%3A0xd97e88fa71115e84!2sAlbay%20Farmers%20Bounty%20Village!5e0!3m2!1sen!2sph!4v1700218921809!5m2!1sen!2sph" width="100%" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col">
                     <div class="row" style="margin: 10px;">
                         <div id="marker_style"><i class="fa fa-map-marker" id="marker_icon"></i></div>
-                        <div class="col" id="address">Albay Farmer's Village Complex, Camalig, Philippines</div>
+                        <div class="col" id="address">Albay Farmer's Bounty Village Complex, Camalig, Albay, Philippines</div>
                     </div>
                 </div>
 
@@ -328,80 +328,98 @@
                 <div class="col-12" id="left_">
                     <div id="proj_coordinator">Program Coordinators</div>
                 </div>
+            <div class="container">
                 <div class="row">
-                    <div class="col">
-                        <div class="col-12" id="coordinators">
+                    <div class="col-md-4">
+                        <div id ="coordinators">
                             <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
                                 </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">BINIHI NG PAG-ASA</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12" id="coordinators">
-                            <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
-                                </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">AKBAY</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" id="coordinators">
-                            <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
-                                </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">LEAD</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Repeat this structure for other coordinators -->
                     </div>
-                    <div class="col">
-                        <div class="col-12" id="coordinators">
+                    <div class="col-md-4">
+                        <div id ="coordinators">
                             <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
                                 </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">AGRIPINAY</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12" id="coordinators">
+                        <!-- Repeat this structure for other coordinators -->
+                    </div>
+                    <div class="col-md-4">
+                        <div id ="coordinators">
                             <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
                                 </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">ABAKA MO, PISO MO</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Repeat this structure for other coordinators -->
+                    </div>
+                    <div class="col-md-4">
+                        <div id ="coordinators">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
+                                </div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Repeat this structure for other coordinators -->
+                    </div>
+                    <div class="col-md-4">
+                        <div id ="coordinators">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
+                                </div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Repeat this structure for other coordinators -->
+                    </div>
                     </div>
                 </div>
                 <div class="col" id="inquiry">
