@@ -416,6 +416,7 @@
                                 <div class="col-6">
                                     <label id="label_">Full Name:</label>
                                     <input class="form-control" type="text" id="textbox" name="fullname" required>
+                                    <input class="form-control" type="text" id="textbox" name="from" value="Public User" hidden>
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">Email:</label>
@@ -444,10 +445,6 @@
                                         <div class="col-6">
                                             <label id="label_">Date:</label>
                                             <input class="form-control" type="date" name="date" id="textbox" required>
-                                        </div>
-                                        <div class="col-6">
-                                            <label id="label_">Attach File(Optional)</label>
-                                            <input class="form-control" type="file" name="attachments" id="textbox">
                                         </div>
                                  </div>
                             </div>

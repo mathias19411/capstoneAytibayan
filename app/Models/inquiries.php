@@ -9,6 +9,7 @@ class inquiries extends Model
 {
     protected $fillable = [
         'fullname',
+        'from',
         'to',
         'date',
         'email',

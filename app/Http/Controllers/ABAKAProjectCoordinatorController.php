@@ -291,8 +291,10 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         $id = AUTH::user()->id;
 
-       // Get the programId of the user table
+        // Get the programId of the user table
        $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
 
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
@@ -301,10 +303,8 @@ class ABAKAProjectCoordinatorController extends Controller
             $query->where('to', $programName)->orWhere('to', $public);})->get();
 
 
-        return view('ABAKA_Project_Coordinator.inquiry', ['inquiry'=>$inquiry]);
+        return view('ABAKA_Project_Coordinator.inquiry', compact('roleName','programName','inquiry'));
     } // End Method
-
-
     public function ProjectCoordinatorInquiryEdit($id)
     {
         $event = inquiries::findOrFail($id);
@@ -314,45 +314,31 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjectCoordinatorInquiryReply(Request $request)
     {
+        $validatedData = $request->validate([
+            'recipient_email'=> 'string',
+            'fullname'=> 'string',
+            'subject'=> 'string',
+            'body' => 'string',
+            ]);
         // Get the email address of the recipient
-        $recipientEmail = $request->get('recipient_email');
+        $recipientEmail = $validatedData['recipient_email'];
 
         // Get the name of the recipient
-        $recipientName = $request->get('fullname');
+        $recipientName = $validatedData['fullname'];
 
         // Get the subject of the email
-        $subject = $request->get('subject');
+        $subject = $validatedData['subject'];
 
         // Get the body of the email
-        $body = $request->get('body');
+        $body = $validatedData['body'];
 
-        // Get the attachment
-        $attachment = $request->file('attachment');
-
-        if ($attachment !== null) {
-            // The file was uploaded, proceed with sending the email.
-
-            // Ensure the attachment is not null
-            if ($attachment->isValid()) {
-                // If the attachment is valid, you can proceed with sending the email.
-
+        if($validatedData) {
                 // Reply to the email message with a body and an attachment
-                Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $attachment, $recipientName));
+        Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $recipientName));
 
                 // Redirect back to the previous page
-                return redirect()->back()->with('success', 'Message Sent!');
-            } else {
-                // Handle the case when the uploaded file is not valid.
-                return redirect()->back()->with('error', 'Invalid file uploaded');
-            }
-        } 
-        else if ($attachment === null) {    
-
-            Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, null, $recipientName));
-
-            // Redirect back to the previous page
-            return redirect()->back()->with('success', 'Message Sent!');
-        }
+        return redirect()->back()->with('success', 'Message Sent!');
+    }
         else {
             // Handle the case when no file was uploaded.
             return redirect()->back()->with('error', 'No file uploaded');

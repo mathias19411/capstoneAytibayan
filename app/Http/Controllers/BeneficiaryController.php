@@ -110,11 +110,51 @@ class BeneficiaryController extends Controller
     
             // If the attachment file is not empty, store it in the database
     
-            return redirect()->back()->with('success', 'New Inquiry Added!');
+            return redirect()->back()->with('success', 'New Update Added!');
         } else {
             return redirect()->back()->with('error', 'Validation failed. Please check your input.');
         }
     }// End Method//End Method
+    public function BeneficiaryUpdateUpdate(Request $request)
+{
+    $id = $request->update_id;
+    // Validate the request
+    $validatedData = $request->validate([
+        'email' => 'required|email',
+        'benef_of' => 'required|string',
+        'title' => 'required|string',
+        'image' => 'image',
+    ]);
+
+    // Check if the image key exists in the validated data array
+    if (isset($validatedData['image'])) {
+        // Get the image file
+        $file = $request->file('image');
+
+        // Generate a unique filename for the image file
+        $filename = date('YmdHi') . $file->getClientOriginalName();
+
+        // Move the image file to the 'Uploads/Updates/' directory
+        $file->move('Uploads/Updates/', $filename);
+    } else {
+        // Assign an empty string to the filename variable
+        $filename = '';
+    }
+
+    // Set the image attribute of the event model to the filename
+    $validatedData['image'] = $filename;
+
+    // Check if validation passes
+    if ($validatedData) {
+        // Update data in the database
+        $update = Updates::findOrFail($id);
+        $update->update($validatedData);
+
+        return redirect()->back()->with('success', 'Update Successful!');
+    } else {
+        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+}
     
 
     public function BeneficiarySchedule()
@@ -131,11 +171,16 @@ class BeneficiaryController extends Controller
 
         // Get the programId of the user table
         $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
 
         // Get the programname of the program table
         $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+        $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
+        $inquiry = inquiries::where(function ($query) use ($userEmail) {
+            $query->where('email', $userEmail);})->get();
 
-        return view('Beneficiary.inquiry', compact('userProfileData', 'programName'));
+        return view('Beneficiary.inquiry', compact('inquiry', 'userProfileData', 'programName', 'roleName'));
 
     } // End Method
 
@@ -144,41 +189,25 @@ class BeneficiaryController extends Controller
     // Validate the request
     $validatedData = $request->validate([
         'fullname' => 'required|string|max:255',
+        'from'=> 'string',
         'recipient' => 'required|string',
         'email' => 'required|email',
         'message' => 'required|string',
         'date' => 'required|date',
         'contact' => 'required|string',
-        'attachment' => 'file',
     ]);
-
-    // Check if the image key exists in the validated data array
-    if (isset($validatedData['attachment'])) {
-        // Get the image file
-        $file = $request->file('attachment');
-
-        // Generate a unique filename for the image file
-        $filename = date('YmdHi') . $file->getClientOriginalName();
-
-    } else {
-        // Assign an empty string to the filename variable
-        $filename = '';
-    }
-
-    // Set the image attribute of the event model to the filename
-    $validatedData['attachment'] = $filename;
 
     // Check if validation passes
     if ($validatedData) {
         // Insert data into the database
         $inquiry = inquiries::create([
             'fullname' => $validatedData['fullname'],
+            'from'=> $validatedData['from'],
             'to' => $validatedData['recipient'],
             'email' => $validatedData['email'],
             'contacts' => $validatedData['contact'],
             'date' => $validatedData['date'],
             'message' => $validatedData['message'],
-            'attachment' => $validatedData['attachment'],
         ]);
         $inquiry->save();
 

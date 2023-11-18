@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('inquiries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('to');
+            $table->string('from');
             $table->string('fullname');
             $table->string('email');
             $table->text('message');
-            $table->string('attachment')->nullable();
             $table->string('contacts')->nullable();
             $table->date('date')->default(now());
             $table->timestamps();

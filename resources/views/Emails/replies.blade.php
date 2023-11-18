@@ -14,7 +14,7 @@
 <p>{{ $body }}</p>
 
 <p>Sincerely,</p>
-<p>Apao Coordinator</p>
+<p>APAO Coordinator</p>
 
 </body>
 </html>

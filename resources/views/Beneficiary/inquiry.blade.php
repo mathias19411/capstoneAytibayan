@@ -51,7 +51,8 @@
         </div>
         <div class="input-box">
           <label class="label" >Personal Email:</label>
-          <input type="email" value="{{ $userProfileData->email }}" name="email" required>
+          <input type="email" value="{{ $userProfileData->email }}" name="email" readonly>
+          <input type="text" value="{{ $roleName }}" name="from" hidden>
         </div>
         <div class="input-box">
           <label class="label">Contact Number:</label>
@@ -69,10 +70,6 @@
           <label class="label">Message:</label>
           <textarea type="text" placeholder="" name="message" required></textarea>
         </div>
-        <div class="input-box">
-          <label class="label">Attach File:</label>
-          <input type="file" name="attachment">
-        </div>
             <div class="button">
               <input type="submit" value="Send" >
             </div>
@@ -89,23 +86,15 @@
           <tr>
               <th>Full Name</th>
               <th>Message</th>
-              <th>Attached File</th>
               <th>Date</th>
           </tr>
+          @foreach($inquiry->reverse() as $inquiries)
           <tr>
-                            <td>Joriza Oliva</td>
-                            <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</td>
-                            <td></td>
-                            <td>2023-09-21</td>
-                           
-                        </tr>
-                        <tr>
-                            <td>Joriza Oliva</td>
-                            <td>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing</td>
-                            <td></td>
-                            <td>2023-09-21</td>
-                           
-                        </tr>
+                            <td>{{ $inquiries->fullname }}</td>
+                            <td>{{ $inquiries->message }}</td>
+                            <td>{{ $inquiries->date }}</td>              
+          </tr>
+          @endforeach 
         </table>
       
       </div>

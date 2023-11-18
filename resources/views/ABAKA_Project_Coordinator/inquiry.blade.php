@@ -46,9 +46,9 @@
                     <thead>
                         <tr>
                             <th>Full Name</th>
+                            <th>From</th>
                             <th>Message</th>
                             <th>Email Address</Address></th>
-                            <th>Attachment</th>
                             <th>Contact Number</th>
                             <th>Date</th>
                             <th>Action</th>
@@ -125,6 +125,7 @@
                                                     <div class="form-outline">
                                                         <label for="Title">Recipient Name:</label>
                                                         <input class="form-control" type="text" id="Title" placeholder="Title...." name="fullname" value="{{ $inquiry->fullname }}">
+                                                        <input class="form-control" type="text" id="Title" placeholder="Title...." name="from" value="{{ $roleName }}" hidden>
                                                     </div>
                                                 </div>
                                                     <div class="col-md-6 mb-4">
@@ -144,10 +145,6 @@
                                                     <div class="form-outline">
                                                         <label for="Message">Body:</label>
                                                         <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="body"></textarea>
-                                                    </div>
-                                                    <div class="form-outline">
-                                                    <label for="attachment">Attach a file(Optional)</label>
-                                                        <input type="file" class="form-control" id="attachment" name="attachment">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -193,9 +190,9 @@
                         </div>
                         <tr>
                             <td>{{ $inquiry->fullname }}</td>
+                            <td>{{ $inquiry->from }}</td>
                             <td>{{ $inquiry->message }}</td>
                             <td>{{ $inquiry->email }}</td>
-                            <td>{{ $inquiry->attachment }}</td>
                             <td>{{ $inquiry->contacts }}</td>
                             <td>{{ $inquiry->created_at }}</td>
                             <td>

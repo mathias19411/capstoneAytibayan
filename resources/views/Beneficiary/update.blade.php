@@ -43,6 +43,43 @@
             <div class="row">
                 <!-- Update cards will be dynamically generated here -->
                 @foreach($updates->reverse() as $update)
+                <div class="modal fade" id="editModal{{ $update->id }}" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">Edit Update</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="edit-form" action="{{ route('edit.updates') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" id="edit-update-id" name="update_id" value="{{ $update->id }}">
+                                    <input type="hidden" id="edit-update-id" name="benef_of" value="{{ $programName }}">
+                                    <input type="hidden" id="edit-update-id" name="email" value="{{ $userEmail }}">
+                                    <div class="mb-3"> 
+                                        <label for="edit-information" class="form-label">Change Title:</label>
+                                        <input id="edit-information" class="form-control" value="{{ $update->title }}" name="title" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="picture" class="form-label">Change Picture:</label>
+                                            <label id="drop-img">
+                                                <input name="image" type="file" hidden>
+                                                <div id="img-view">
+                                                    <img src="{{ asset('Uploads/Updates/'.$update->image) }}">
+                                                    <p> Drag and drop or click here <br> to upload picture</p>
+                                                </div>
+                                            </label>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="close" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" id="edit">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card mb-3 col-md-3">
                     <div class="card-body">
                         <p class="update-date">Date: {{ $update->date }}</p>
@@ -50,11 +87,8 @@
                         <p class="update-title">Title: {{ $update->title }}</p>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-pink edit-update" data-bs-toggle="modal" data-bs-target="#editModal" data-update-id="1">
+                        <button class="btn btn-pink edit-update" data-bs-toggle="modal" data-bs-target="#editModal{{ $update->id }}" data-update-id="1">
                             <i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>
-                        </button>
-                        <button class="btn btn-delete delete-update">
-                            <i class="fa-solid fa-trash fa-lg" style="color:#ff1100"></i>
                         </button>
                     </div>
                 </div>
@@ -62,45 +96,6 @@
             </div>
         </div>
     </div>
-    </div>
-    
-
-    <div class="modal fade" id="editModal" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Update</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="edit-form">
-                        <input type="hidden" id="edit-update-id">
-                        <div class="mb-3">
-                            <label for="edit-date" class="form-label">Date:</label>
-                            <input type="date" id="edit-date" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-picture" class="form-label">Picture:</label>
-                            <label for="edit-picture" id="drop-img">
-                <input name="image" type="file" accept="image/*" id="edit-picture"  hidden>
-                <div id="img-view">
-                <img src="/images/image_icon.png">
-                <p> Drag and drop or click here <br> to upload picture</p>
-                </div>
-                </label>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-information" class="form-label">Title:</label>
-                            <textarea id="edit-information" class="form-control" rows="4" required></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="delete">Delete</button>
-                    <button type="button" id="edit">Save</button>
-                </div>
-            </div>
-        </div>
     </div>
 
 @endsection

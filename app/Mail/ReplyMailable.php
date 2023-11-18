@@ -14,14 +14,12 @@ class ReplyMailable extends Mailable
     public $subject;
 
     protected $body;
-    protected $attachment;
+    public $from;
     public $recipientName;
 
-    public function __construct($subject, $body, $attachment, $recipientName)   
-    {
+    public function __construct($subject, $body, $recipientName) {
         $this->subject = $subject;
         $this->body = $body;
-        $this->attachment = $attachment;
         $this->recipientName = $recipientName;
     }
 
@@ -33,9 +31,6 @@ class ReplyMailable extends Mailable
                 'name' => $this->recipientName,
                 'subject' => $this->subject,
                 'body' => $this->body,
-            ])
-            ->attach($this->attachment);
+            ]);
     }
 }
-
-

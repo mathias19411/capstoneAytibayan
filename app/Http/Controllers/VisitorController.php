@@ -107,21 +107,13 @@ class VisitorController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'fullname' => 'required|string|max:255',
+            'from'=> 'string',
             'to' => 'required|string',
             'email' => 'required|email',
             'message' => 'required|string',
             'date' => 'required|date',
             'contacts' => 'required|string',
-            'attachments' => 'file',
         ]);
-        if (isset($validatedData['attachments'])) {
-            $file = $request->file('attachments');
-
-            $filename = date('YmdHi'). $file->getClientOriginalName();
-        } else {
-            $filename = '';
-        }
-        $validatedData['attachments'] = $filename;
 
         // Check if validation passes
         if ($validatedData) 
@@ -129,12 +121,12 @@ class VisitorController extends Controller
             // Insert data into the database
             $inquiry = inquiries::create([
                 'fullname' => $validatedData['fullname'],
+                'from'=> $validatedData['from'],
                 'to' => $validatedData['to'],
                 'email' => $validatedData['email'],
                 'contacts' => $validatedData['contacts'],
                 'date' => $validatedData['date'],
                 'message' => $validatedData['message'],
-                'attachment' => $validatedData['attachments'],
             ]);
             $inquiry->save();
 

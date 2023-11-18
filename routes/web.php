@@ -305,6 +305,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
     //Benef Updates
     Route::get('/Beneficiary/updates', [BeneficiaryController::class, 'BeneficiaryUpdates'])->name('beneficiary.updates');
     Route::post('/Beneficiary/updates', [BeneficiaryController::class, 'BeneficiaryUpdateStore'])->name('send.updates');
+    Route::patch('/Beneficiary/updates/edit', [BeneficiaryController::class, 'BeneficiaryUpdateUpdate'])->name('edit.updates');
 
     //Benef Schedule
     Route::get('/Beneficiary/schedule', [BeneficiaryController::class, 'BeneficiarySchedule'])->name('beneficiary.schedule');
