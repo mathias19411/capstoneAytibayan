@@ -101,7 +101,7 @@ $benefAssistanceStatuses = [];
                 <!--ADD PROJECTS-->
                 <div class="button-container">
                     <button class="button_top" data-bs-toggle="modal" data-bs-target="#projectModal">
-                        <i class="fa-solid fa-list-check" style="color: #ffffff;"></i>Program Activities
+                        <i class="fa-solid fa-list-check" style="color: #ffffff;"></i> Program Activities
                     </button>
                 </div>
                 

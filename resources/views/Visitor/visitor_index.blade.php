@@ -82,15 +82,15 @@
         <h4>Announcements</h4>
     </div>
 
-    @if($announcement->isEmpty())
-        <p>No announcements at the moment.</p>
-    @else
-    @foreach($announcement->reverse() as $announcement)
-    @php
-        $dayEvent = \Carbon\Carbon::parse($announcement->created_at)->format('d');
-        $monthEvent = \Carbon\Carbon::parse($announcement->created_at)->format('M');
-        $timeEvent = \Carbon\Carbon::parse($announcement->created_at)->format('H:i:s');
-    @endphp
+            @if($announcement->isEmpty())
+                <p>No announcements at the moment.</p>
+            @else
+            @foreach($announcement->reverse() as $announcement)
+            @php
+                $dayEvent = \Carbon\Carbon::parse($announcement->created_at)->format('d');
+                $monthEvent = \Carbon\Carbon::parse($announcement->created_at)->format('M');
+                $timeEvent = \Carbon\Carbon::parse($announcement->created_at)->format('H:i:s');
+            @endphp
         <div class="announcements-card">
             <div class="announcements-card-date-time">
                 <div class="announcements-card-date-time-title">
@@ -116,28 +116,35 @@
                     <h4>Upcoming Events</h4>
                 </div>
                 <div class="events-main">
-                    @foreach($events->reverse() as $event)
-                    <div class="events-card">
+            @if($events->isEmpty())
+                <p>No events at the moment.</p>
+            @else
+                @foreach($events->reverse() as $event)
+            <div class="events-card">
                         <div class="events-card-title-date">
-                        @php
-                            $dayEvent = \Carbon\Carbon::parse($event->created_at)->format('d');
-                            $monthEvent = \Carbon\Carbon::parse($event->created_at)->format('M');
-                            $timeEvent = \Carbon\Carbon::parse($event->created_at)->format('H:i:s');
-                        @endphp
+                            @php
+                                $dayEvent = \Carbon\Carbon::parse($event->created_at)->format('d');
+                                $monthEvent = \Carbon\Carbon::parse($event->created_at)->format('M');
+                                $timeEvent = \Carbon\Carbon::parse($event->created_at)->format('H:i:s');
+                            @endphp
                             <h2>{{ $dayEvent }}</h2>
                             <h4>{{ $monthEvent }}</h4>
                         </div>
                         <div class="events-card-content">
-                        <div>
-                            <h4>Title: {{ $event->title }}</h4>
-                        </div>
+                            <div>
+                                <h4>Title: {{ $event->title }}</h4>
+                            </div>
                             <h5>{{ $event->message }}</h5>
-                        <div>
-                            <div class="announcement-time">{{ $timeEvent }}</div>
-                        </div>
+                            <div>
+                                <div class="announcement-time">{{ $timeEvent }}</div>
+                            </div>
                         </div>
                     </div>
-                    @endforeach
+                @endforeach
+            @endif
+        </div>
+
+           
                 </div>
             </div>
         </div>

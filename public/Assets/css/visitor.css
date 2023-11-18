@@ -689,6 +689,8 @@ body {
     flex-direction: column;
     justify-content: space-between; /* Pushes child to the bottom while keeping space between items */
     align-items: center;
+    height: 39.625rem; 
+   
 }
 
 .announcements-section .announcements-read-more {
@@ -747,8 +749,8 @@ body {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     background: var(--colorWhite);
-    padding: 1rem;
-    z-index: 100;
+    width: 100%; /* Set the width to 100% */
+  
 }
 
 .announcements-section .announcements-card:hover {
@@ -815,6 +817,25 @@ body {
     justify-content: flex-start; /* Pushes child to the top */
     align-items: center;
    
+}
+
+
+.events-main p {
+    text-align: center;
+    font-size: 18px;
+    color: #555; /* Adjust the color as needed */
+    padding: 20px;
+    border: 1px solid #ccc; /* Add a border for better visibility */
+    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+}
+
+.announcements-section p {
+    text-align: center;
+    font-size: 18px;
+    color: #555; /* Adjust the color as needed */
+    padding: 20px;
+    border: 1px solid #ccc; /* Add a border for better visibility */
+    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
 }
 
 .events-section .events-title {
@@ -954,6 +975,8 @@ body {
     font-weight: 600;
     chart-title
 }
+
+
 /* -------------------------FOOTER------------------------------------ */
 .footer {
     bottom: 0;

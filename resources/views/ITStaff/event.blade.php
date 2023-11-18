@@ -11,8 +11,6 @@
             <select id="unread-filter">
                 <option value="all">All</option>
                 <option value="unread">Public</option>
-                <option value="read">Beneficiaries</option>
-                <option value="read">Beneficiaries</option>
                 <option value="binhi">Binhi ng Pag-asa</option>
                 <option value="abaka">Abaka Mo, Piso Mo</option>
                 <option value="lead">LEAD</option>
