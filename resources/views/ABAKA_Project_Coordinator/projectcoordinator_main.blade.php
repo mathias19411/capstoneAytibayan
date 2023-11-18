@@ -834,42 +834,57 @@
 
     <script>
         //FILTER BENEFICIARY
-
-        // Function to filter and paginate the table
-        function filterAndPaginate() {
-            const locationFilter = document.getElementById("location-filter").value;
-            const statusFilter = document.getElementById("status-filter").value;
-            const itemsPerPage = parseInt(document.getElementById("items-per-page").value);
-
-            const tableRows = document.querySelectorAll("tbody tr");
-
-            tableRows.forEach(function(row) {
-                const location = row.getAttribute("data-location");
-                const status = row.querySelector(".status-box").classList.contains("active") ? "active" :
-                    "inactive";
-
-                const matchesLocation = locationFilter === "all" || location === locationFilter;
-                const matchesStatus = statusFilter === "all" || status === statusFilter;
-
-                if (matchesLocation && matchesStatus) {
-                    row.style.display = "table-row";
-                } else {
-                    row.style.display = "none";
+        $(document).ready(function() {
+    $('#status-filter').change(function() {
+        var filterValue = $(this).val().toLowerCase();
+        if (filterValue === 'all') {
+            $('.table tbody tr').show();
+        } else {
+            $('.table tbody tr').hide();
+            $('.table tbody tr').each(function() {
+                var status = $(this).find('td:nth-child(8)').text().toLowerCase();
+                if (status === filterValue) {
+                    $(this).show();
                 }
             });
-
-            // You can add pagination logic here to show/hide rows based on itemsPerPage
         }
+    });
 
-        // Attach the filterAndPaginate function to filter and pagination events
-        document.getElementById("location-filter").addEventListener("change", filterAndPaginate);
-        document.getElementById("status-filter").addEventListener("change", filterAndPaginate);
-        document.getElementById("items-per-page").addEventListener("change", filterAndPaginate);
+    $('#search').on('keyup', function() {
+        var searchText = $(this).val().toLowerCase();
+        $('.table tbody tr').each(function() {
+            var rowText = $(this).text().toLowerCase();
+            if (rowText.indexOf(searchText) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    });
+});
 
-        // Initial call to filter and paginate when the page loads
-        filterAndPaginate();
+
     </script>
 
+   <script>
+$(document).ready(function() {
+    $('#unread-filter').change(function() {
+        var filterValue = $(this).val().toLowerCase();
+        if (filterValue === 'all') {
+            $('.table tbody tr').show();
+        } else {
+            $('.table tbody tr').hide();
+            $('.table tbody tr').each(function() {
+                $(this).find('td').each(function() {
+                    if ($(this).text().toLowerCase() === filterValue) {
+                        $(this).closest('tr').show();
+                    }
+                });
+            });
+        }
+    });
+});
+    </script>
 
 </body>
 

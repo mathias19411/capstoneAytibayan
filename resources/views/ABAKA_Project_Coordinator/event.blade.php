@@ -12,7 +12,7 @@
             <select id="unread-filter">
                 <option value="all">All</option>
                 <option value="Public">Public</option>
-                <option value="Beneficiary">Beneficiaries</option>
+                <option value="abakamopisomo">Beneficiaries</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">

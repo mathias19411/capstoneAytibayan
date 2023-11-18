@@ -10,12 +10,11 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Public</option>
-                <option value="binhi">Binhi ng Pag-asa</option>
-                <option value="abaka">Abaka Mo, Piso Mo</option>
-                <option value="lead">LEAD</option>
-                <option value="agripinay">AgriPinay</option>
-                <option value="akbay">Akbay</option>
+                <option value="PUBLIC">PUBLIC</option>
+                <option value="Abaka Mo, Piso Mo">Abaka Mo, Piso Mo</option>
+                <option value="LEAD">LEAD</option>
+                <option value="AgriPinay">AgriPinay</option>
+                <option value="Akbay">Akbay</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">

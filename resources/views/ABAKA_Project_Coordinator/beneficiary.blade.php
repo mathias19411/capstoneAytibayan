@@ -28,12 +28,6 @@
 
   <div class="table-header">
   <div class="table-header-left">
-    <label for="location-filter">Location: </label>
-    <select id="location-filter">
-        <option value="all">All</option>
-        <option value="Sagpon">Sagpon, Daraga</option>
-        <option value="Rawis">Rawis</option>
-    </select>
     <label for="status-filter">Status: </label>
     <select id="status-filter">
         <option value="all">All</option>
