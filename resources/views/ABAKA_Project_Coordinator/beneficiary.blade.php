@@ -24,7 +24,6 @@
   <button class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
   <button class="button_top"> <i class="fa-solid fa-file-arrow-up" style="color: #ffffff;"></i> Import</button>
   <button class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
-  <button class="button_top" class="add-modal" data-bs-toggle="modal" data-bs-target="#project"> <i class="fa-solid fa-list-check" style="color: #ffffff;"></i> Project</button>
 </div>
 
   <div class="table-header">
@@ -278,112 +277,5 @@
     </div>
 </div>
 
-<!--project-->
-<div class="modal fade" id="project" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Projects</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body justify-content-center">
-             <div class= "project_header">
-                <!--
-                <img src="\images\project_background1.png"> -->
-                <div class= "project_box">
-                    <div class="box">
-                        <img src="/images/binhi_funrun.png" alt="Image 1">
-                        <h2>Title 1</h2>
-                        <p>Description for Box 1.</p>
-                    </div>
-
-                    <div class="box">
-                        <img src="image2.jpg" alt="Image 2">
-                        <h2>Title 2</h2>
-                        <p>Description for Box 2.</p>
-                    </div>
-
-                    <div class="box">
-                        <img src="image3.jpg" alt="Image 3">
-                        <h2>Title 3</h2>
-                        <p>Description for Box 3.</p>
-                    </div>
-
-                    <div class="box">
-                        <img src="image3.jpg" alt="Image 3">
-                        <h2>Title 4</h2>
-                        <p>Description for Box 3.</p>
-                    </div>
-                </div>
-             </div>
-             <button type="button" class="add-project_modal" data-bs-toggle="modal" data-bs-target="#modal_addproject">Add Project</button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
- <!--ADD PROJECT-->
- <div class="modal fade" id="modal_addproject" tabindex="-1" data-backdrop="false" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modal-title">Add Project</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                        <div class="modal-body">
-                                                <div class="row">
-                                                <div class="col-md-6 mb-4">
-                                                    <div class="form-outline">
-                                                    <label id="label_">Title</label>
-                                                    <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">                            
-                                                </div>
-                                                </div>
-
-                                                <div class="col-md-6 mb-4">
-                                                        <div class="form-group">
-                                                            <label for="edit-recipient">To:</label>
-                                                            <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                            <option>PUBLIC</option>
-                                                            <option>AKBAY</option>
-                                                            </select>
-                                                        </div>
-                                                        </div>
-                                            <!--
-                                                <div class="col-md-6 mb-4">
-                                                    <div class="form-outline">
-                                                    <label id="label_">Date</label>
-                                                        <input class="form-control"  type="date" id="Date" placeholder="Title...." name="date">
-                                                </div>
-                                                </div>
-                                            -->
-                                                <div class="col-md-12 mb-4">
-                                                    <div class="form-outline">
-                                                        <label id="label_">Message:</label>
-                                                            <textarea class="form-control" rows="3" placeholder="Write something..." name="message"></textarea>
-                                                            </div>
-                                                    <div class="form-outline">
-                                                        <label id="drop-img">
-                                                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
-                                                            <div id="img-view">
-                                                                <img src="" alt="Image Icon">
-                                                                <p>Drag and drop or click here<br>to upload a picture</p>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="add">Save Changes</button>
-                                                </div>
-                                                </div>
-                                                </form>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
 @endsection
 

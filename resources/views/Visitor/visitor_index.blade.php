@@ -34,7 +34,7 @@
             </div>
             <div class="top-story-section">
                 <div class="top-story-title">
-                    <h3>Top Stories</h3>
+                    <h4>Top Stories</h4>
                 </div>
                 <div class="stories-main">
                     <div class="story-card">
@@ -79,7 +79,7 @@
             </div>
             <div class="announcements-section">
     <div class="announcements-title">
-        <h3>Announcements</h3>
+        <h4>Announcements</h4>
     </div>
 
     @if($announcement->isEmpty())
@@ -99,8 +99,8 @@
                     </span>
                         <span class="announcement-time">{{ $timeEvent }}</span>
                 </div>
-                <h2>{{ $announcement->message }}</h2>
-                <h4>{{ $announcement->date }}</h4>
+                <h5>{{ $announcement->message }}</h5>
+                <h6>{{ $announcement->date }}</h6>
             </div>
         </div>
     @endforeach
@@ -113,7 +113,7 @@
 
             <div class="events-section">
                 <div class="events-title">
-                    <h3>Upcoming Events</h3>
+                    <h4>Upcoming Events</h4>
                 </div>
                 <div class="events-main">
                     @foreach($events->reverse() as $event)
@@ -129,7 +129,7 @@
                         </div>
                         <div class="events-card-content">
                         <div>
-                            <h2>Title: {{ $event->title }}</h2>
+                            <h4>Title: {{ $event->title }}</h4>
                         </div>
                             <h5>{{ $event->message }}</h5>
                         <div>
@@ -482,6 +482,19 @@
 <!-- Bootstrap JS Bundle (includes Popper.js) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
+
+<script>
+    //EVENT 
+    const cards = document.querySelectorAll('.events-card-title-date');
+
+    cards.forEach((card, index) => {
+        if (index % 2 === 0) {
+            card.classList.add('orange-bg'); // Add orange background class
+        } else {
+            card.classList.add('green-bg'); // Add green background class
+        }
+    });
+</script>
     <script>
         var programNames = {!! json_encode($programNames) !!};
         var beneficiaryCounts = {!! json_encode($beneficiaryCounts) !!};
