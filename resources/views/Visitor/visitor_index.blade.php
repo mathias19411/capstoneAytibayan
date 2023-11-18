@@ -5,14 +5,15 @@
     <div class="page-content">
         <div class="main-cards">
             <div class="image-section">
-                <img src="{{ asset('images/image3.png') }}" alt="apao image" class="apao-big-image">
+                <img src="{{ asset('images/apao_main.png') }}" alt="apao image" class="apao-big-image">
             </div>
             <div class="horizontal-scroll-image-section">
                 <div class="horizontal-scroll-image-content">
-                    <img src="{{ asset('images/history.png') }}" alt="apao image" class="apao-horizontal-images">
-                    <img src="{{ asset('images/history.png') }}" alt="apao image" class="apao-horizontal-images">
-                    <img src="{{ asset('images/history.png') }}" alt="apao image" class="apao-horizontal-images">
-                    <img src="{{ asset('images/history.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Abaka1.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Lead1.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Abaka2.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Lead2.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Abaka3.png') }}" alt="apao image" class="apao-horizontal-images">
                 </div>
 
             </div>
@@ -26,7 +27,7 @@
             </div>
             <div class="beneficiay-chart-section1">
                 <div class="beneficiay-chart-section-charts-card">
-                    <div class="chart-title">
+                    <div class="chart-title">BA
                         <h4>Monthly Beneficiaries</h4>
                     </div>
                     <div id="line-chart"></div>
@@ -519,3 +520,4 @@
         var monthCount = {!! json_encode($monthCount) !!};
     </script>
 @endsection
+ 

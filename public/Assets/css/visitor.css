@@ -436,8 +436,8 @@ body {
     display: flex; /* Display images in a row */
     white-space: nowrap; /* Prevent images from wrapping to the next line */
     /* width: 41.063rem;*/
-    height: 30.125rem; 
-    padding: 1rem;
+    height: 240px; 
+    padding: 20px;
     overflow: hidden;
 }
 
@@ -447,12 +447,13 @@ body {
 }
 
 .horizontal-scroll-image-section .apao-horizontal-images {
-    width: 30%;
-    height: 100%;
+    width: 300px;
+    height: 200px;
     object-fit: cover; /* Preserve aspect ratio while filling the container */
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     margin-right: 10px;
+    border: 3px solid #7bb701;
 }
 
 .horizontal-scroll-image-section::-webkit-scrollbar {
@@ -2413,16 +2414,20 @@ section.contact  #email_icon {
 @media (max-width: 768px) {
     
     section.contact .container {
-     width: 100%;
+     width: 0 auto;
+     align-items: center;
+     align-content: center;
       }
     section.contact #coordinators {
+        margin-bottom: 10px;
         align-items: center;
-        width: fill;
+        width: 200px;
         height: fit-content;
       }
     
     .col #inquiry {
     flex-direction: column;
+    width: 300px;
 }
 
 #textbox, #textbox_m {

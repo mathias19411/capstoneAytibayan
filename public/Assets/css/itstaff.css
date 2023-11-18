@@ -2334,3 +2334,22 @@ body.announcement_events_inquiry tr:hover td {
         max-width: none;
     }
 }
+
+.rounded-circle {
+    height: 70px;
+    width: 70px;
+    border: 2px solid #7bb701;
+    margin: auto;
+    text-align: center;
+}
+
+.modal-body .name {
+    color: #7bb701;
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+}
+
+.profile {
+    text-align: center;
+}
