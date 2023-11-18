@@ -287,14 +287,27 @@
                     <div class="row" style="margin: 10px;">
                         <div id="marker_style"><i class="fa fa-map-marker" id="marker_icon"></i></div>
                         <div class="col" id="address">Albay Farmer's Bounty Village Complex, Camalig, Albay, Philippines</div>
+                        
                     </div>
                 </div>
 
                 <div style="text-align: end; margin: 10px">
-                    <i class="fa fa-facebook" id="fb_icon"></i>
-                    <i class="fa fa-instagram" id="ig_icon"></i>
-                    <i class="fa fa-twitter" id="tw_icon"></i>
+                <a href="mailto:albay.agri@gmail.com" target="_blank" rel="noopener noreferrer">
+                     <i class="fa fa-envelope" id="email_icon"></i>
+                 </a>
+                    <a href="https://www.facebook.com/apao.albay2023" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-facebook" id="fb_icon"></i>
+                    </a>
+                    <span title="No Account" class="no-account-hover">
+                        <i class="fa fa-instagram" id="ig_icon"></i>
+                    </span>
+                    <span title="No Account" class="no-account-hover">
+                        <i class="fa fa-twitter" id="tw_icon"></i>
+                    </span>
+                   
                 </div>
+
+
             </div>
             <div class="col" style="margin-left: 10px; margin-top: 10px;">
                 <div class="col-12" id="left_">

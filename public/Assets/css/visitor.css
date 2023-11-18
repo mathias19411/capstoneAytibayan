@@ -2203,7 +2203,23 @@ section.contact .google-map iframe {
       text-overflow: ellipsis;
       margin: auto;
   }
-  
+  section.contact div a {
+    text-decoration: none; /* Remove underline from all links within the div */
+}
+section.contact #email_icon {
+    font-size:24px; 
+    color: white; 
+    margin: auto; 
+    border: auto; 
+    padding-top: 4px; 
+    padding-bottom: 4px; 
+    padding-left: 8px; 
+    padding-right: 8px; 
+    border-radius: 50%; 
+    background-color: #f0a60f;
+    text-decoration: none; /* Remove underline from the "No Account" spans */
+}
+
   section.contact #fb_icon {
       font-size:24px; 
       color: white; 
@@ -2215,6 +2231,7 @@ section.contact .google-map iframe {
       padding-right: 8px; 
       border-radius: 50%; 
       background-color: #f0a60f;
+      text-decoration: none; /* Remove underline from the "No Account" spans */
   }
   section.contact #ig_icon {
       font-size: 24px; 
@@ -2335,6 +2352,16 @@ section.contact  #email_icon {
     background-color: #f0a60f; 
     color: white; 
     margin: auto;
+}
+.no-account-hover {
+    text-decoration: none; /* Remove underline from the "No Account" spans */
+    cursor: not-allowed;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.no-account-hover:hover {
+    opacity: 1;
 }
 
   section.contact #inquiry {
