@@ -293,7 +293,7 @@
 
                 <div style="text-align: end; margin: 10px">
                 <a href="mailto:albay.agri@gmail.com" target="_blank" rel="noopener noreferrer">
-                     <i class="fa fa-envelope" id="email_icon"></i>
+                     <i class="fa fa-envelope" id="email_icons"></i>
                  </a>
                     <a href="https://www.facebook.com/apao.albay2023" target="_blank" rel="noopener noreferrer">
                         <i class="fa fa-facebook" id="fb_icon"></i>
