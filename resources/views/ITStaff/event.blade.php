@@ -41,6 +41,7 @@
                 <table class="table">
                     <thead>
                     <tr>
+                            <th>From</th>
                             <th>Title</th>
                             <th>To</th>
                             <th>Description</th>
@@ -213,11 +214,12 @@
                         </div>
 
                         <tr>
+                            <td>{{ $events->from }}</td>
                             <td>{{ $events->title }}</td>
                             <td>{{ $events->to }}</td>
                             <td>{{ $events->message }}</td>
                             <td>{{ $events->image }}</td>
-                            <td>{{ $events->date }}</td>
+                            <td>{{ $events->created_at }}</td>
                             <td>
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">
                             <i class="fa-solid fa-eye fa-2xs"></i>
@@ -300,17 +302,17 @@
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                             <label id="label_">Title</label>
-                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">                            </div>
+                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">  
+                            <input class="form-control" type="text" id="Title" value="{{ $roleName }}" name="from" hidden>                            </div>
                         </div>
                         <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                     <label id="label_">To:</label>
                                         <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                        <option>PUBLIC</option>
-                                        <option>ABAKA</option>
-                                        <option>AKBAY</option>
-                                        <option>BINHI</option>
-                                        <option>LEAD</option>
+                                        <option>Public</option>
+                                        @foreach($programs as $program)
+                                        <option>{{ $program->program_name }}</option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>
