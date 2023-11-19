@@ -121,16 +121,18 @@
             </div>
             <div class="col" id="inquiry">
 				<h5 id="inquiry_">Inquiry</h5>
-				<form method="post">
-					<div class="col">
+				<form method="post" action="{{ route('specificinquiry.send') }}">
+					@csrf
+                    <div class="col">
 						<div class="row">
 							<div class="col-6">
 								<label id="label_">Full Name:</label>
-								<input class="form-control" type="text" id="textbox">
+								<input class="form-control" type="text" id="textbox" name="fullname">
+                                <input class="form-control" type="text" id="textbox" name="from" value="Public User" hidden>
 							</div>
 							<div class="col-6">
 								<label id="label_">Email:</label>
-								<input class="form-control" type="text" name="email" id="textbox">
+								<input class="form-control" type="text" name="email" id="textbox" required>
 							</div>
 						</div>
 					</div>
@@ -138,12 +140,11 @@
 						<div class="row">
 							<div class="col-6">
 								<label id="label_">Contact Number:</label>
-								<input class="form-control" type="text" name="contact" id="textbox">
+								<input class="form-control" type="text" name="contact" id="textbox" required>
 							</div>
 							<div class="col-6">
 								<label id="label_">To:</label>
-								<input class="form-control" type="text" name="to" id="textbox" value="{{ $program->coordinators->first() ? $program->coordinators->first()->email : 'No Project Coordinator Assigned' }}"
-                                readonly>
+								<input class="form-control" type="text" name="to" id="textbox" value="{{ $program->program_name }}" readonly>
 							</div>
 						</div>
 					    </div>
@@ -153,10 +154,6 @@
                                         <div class="col-6">
                                             <label id="label_">Date:</label>
                                             <input class="form-control" type="date" name="date" id="textbox" required>
-                                        </div>
-                                        <div class="col-6">
-                                            <label id="label_">Attach File(Optional)</label>
-                                            <input class="form-control" type="file" name="attachments" id="textbox">
                                         </div>
                                  </div>
                             </div>
