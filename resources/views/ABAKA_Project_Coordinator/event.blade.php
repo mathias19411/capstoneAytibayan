@@ -3,6 +3,7 @@
 @section('content')
 @include('ABAKA_Project_Coordinator.Body.sidebarproj')
     
+    
 <div class="title">
         <h1>Events</h1>
 </div>
@@ -236,7 +237,7 @@
                 <div id="pagination-message"></div>
              
               </div>
-            <div>
+           
                  <!--Button-->
                 <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_event" id="add-modal-button">
                     Add
