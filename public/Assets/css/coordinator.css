@@ -1482,6 +1482,10 @@ body.announcement_events_inquiry .generate {
     margin-top: 20px;
     margin-right: 10px;
 }
+body.announcement_events_inquiry  input[name="from"].form-control {
+    display: none;
+}
+
 
 body.announcement_events_inquiry .add-modal:hover {
     background-color: #8db600;

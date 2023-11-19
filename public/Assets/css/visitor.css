@@ -706,7 +706,7 @@ body {
     flex-direction: column;
     justify-content: flex-start; /* Pushes child to the top */
     align-items: center;
-    overflow: auto; /* Enable scrolling within the content */
+      overflow: auto; /* Enable scrolling within the content */
     overflow-y: scroll; /* Always show the scrollbar on the y-axis */
    
 }
