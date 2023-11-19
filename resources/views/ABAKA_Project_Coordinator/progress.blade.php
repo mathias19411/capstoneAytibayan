@@ -343,29 +343,14 @@ $benefAssistanceStatuses = [];
                 <!--
                 <img src="\images\project_background1.png"> -->
                 <div class= "project_box">
+                @foreach($project->reverse() as $projects)
                     <div class="box">
-                        <img src="/images/binhi_funrun.png" alt="Image 1">
-                        <h2>Title 1</h2>
-                        <p>Description for Box 1.</p>
+                        <h1>Title: {{ $projects->title }}</h1>
+                        <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}">
+                        <h2>Visibility: {{ $projects->recipient }}</h2>
+                        <p>Description: {{ $projects->message }}</p>
                     </div>
-
-                    <div class="box">
-                        <img src="image2.jpg" alt="Image 2">
-                        <h2>Title 2</h2>
-                        <p>Description for Box 2.</p>
-                    </div>
-
-                    <div class="box">
-                        <img src="image3.jpg" alt="Image 3">
-                        <h2>Title 3</h2>
-                        <p>Description for Box 3.</p>
-                    </div>
-
-                    <div class="box">
-                        <img src="image3.jpg" alt="Image 3">
-                        <h2>Title 4</h2>
-                        <p>Description for Box 3.</p>
-                    </div>
+                @endforeach   
                 </div>
              </div>
              <button type="button" class="add-project_modal" data-bs-toggle="modal" data-bs-target="#modal_addproject">Add Project</button>
@@ -385,21 +370,24 @@ $benefAssistanceStatuses = [];
                                         <h5 class="modal-title" id="modal-title">Add Project</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <form action="{{ route('add.project') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="modal-body">
                                                 <div class="row">
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                     <label id="label_">Title</label>
-                                                    <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">                            
+                                                    <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">   
+                                                    <input class="form-control" type="text" id="Title" value="{{ $programName }}" name="from" hidden>                           
                                                 </div>
                                                 </div>
 
                                                 <div class="col-md-6 mb-4">
                                                         <div class="form-group">
                                                             <label for="edit-recipient">To:</label>
-                                                            <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                            <option>PUBLIC</option>
-                                                            <option>AKBAY</option>
+                                                            <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="recipient">
+                                                                <option>{{ $programName }}</option>
+                                                                <option>Public</option>
                                                             </select>
                                                         </div>
                                                         </div>
@@ -418,7 +406,7 @@ $benefAssistanceStatuses = [];
                                                             </div>
                                                     <div class="form-outline">
                                                         <label id="drop-img">
-                                                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
+                                                            <input name="image" type="file" id="input-file" hidden>
                                                             <div id="img-view">
                                                                 <img src="" alt="Image Icon">
                                                                 <p>Drag and drop or click here<br>to upload a picture</p>

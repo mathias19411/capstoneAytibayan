@@ -270,7 +270,6 @@
                             <form action="{{ route('store.announcement') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                            <input type="date" name="date" id="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" hidden>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                     <label id="label_">Title</label>

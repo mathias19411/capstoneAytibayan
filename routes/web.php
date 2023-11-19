@@ -259,9 +259,9 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
     Route::post('/ABAKA_ProjectCoordinator/Inquriy/reply', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorInquiryReply'])->name('reply.inquirycoordinatorabaka');
     Route::delete('/ABAKA_ProjectCoordinator/Inquriy/delete', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiryDelete'])->name('delete.inquirycoordinatorabaka');
 
-
     //Coordinator Progress
     Route::get('/ABAKA_ProjectCoordinator/Progress', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('abakaprojectcoordinator.progress');
+    Route::post('/Project_Coordinator/Project_Page/Add', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAddProject'])->name('add.project');
 
     Route::post('/ABAKA_ProjectCoordinator/ProgressAdd', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgressAdd'])->name('abakaprojectcoordinator.progressAdd');
 
@@ -364,8 +364,6 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
     // You can pass the $category variable to the view or use it to fetch category information from the database
     return view('Visitor.category_page', compact('category'));
 })->name('Visitor.category.page');
-
-Route::get('/Visitor', [EventController::class, 'index']);
 
 //send sms
 Route::get('/sendsms', [SmsController::class, 'sendsms']);

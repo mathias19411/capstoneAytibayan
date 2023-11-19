@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\announcement;
 use App\Models\Program;
+use App\Models\Projects;
 use App\Models\inquiries;
 use App\Models\progress;
 use App\Models\events;
@@ -26,6 +27,8 @@ class BeneficiaryController extends Controller
 
        // Get the programId of the user table
        $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
 
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
@@ -33,8 +36,10 @@ class BeneficiaryController extends Controller
            $query->where('to', $programName);})->get();
         $events = events::where(function ($query) use ($programName) {
             $query->where('to', $programName);})->get();
+            $project = Projects::where(function ($query) use ($programName) {
+                $query->where('recipient', $programName);})->get();
 
-        return view('Beneficiary.home', compact('announcement', 'programName', 'events'));    
+        return view('Beneficiary.home', compact('announcement', 'programName', 'events', 'project'));    
     } // End Method
 
     public function BeneficiaryLogout(Request $request)
@@ -75,7 +80,6 @@ class BeneficiaryController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'email' => 'required|email',
-            'date' => 'required|date',
             'benef_of' => 'required|string',
             'title' => 'required|string',
             'image' => 'image',
@@ -103,7 +107,6 @@ class BeneficiaryController extends Controller
             // Insert data into the database
             $updates = Updates::create([
                 'email' => $validatedData['email'],
-                'date' => $validatedData['date'],
                 'benef_of'=> $validatedData['benef_of'],
                 'title'=> $validatedData['title'],
                 'image' => $validatedData['image'],
@@ -198,7 +201,6 @@ class BeneficiaryController extends Controller
         'programEmail'=> 'string',
         'email' => 'required|email',
         'message' => 'required|string',
-        'date' => 'required|date',
         'contact' => 'required|string',
     ]);
 
@@ -222,7 +224,6 @@ class BeneficiaryController extends Controller
             'programEmail'=> $validatedData['programEmail'],
             'email' => $validatedData['email'],
             'contacts' => $validatedData['contact'],
-            'date' => $validatedData['date'],
             'message' => $validatedData['message'],
         ]);
         Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $senderName, $recipientName));

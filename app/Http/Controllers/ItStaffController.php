@@ -342,7 +342,6 @@ class ItStaffController extends Controller
         $validatedData = $request->validate([
             'from'=> 'string',
             'title' => 'required|string|max:255',
-            'date' => 'required|date',
             'to' => 'required|string',
             'message' => 'required|string',
         ]);
@@ -354,7 +353,6 @@ class ItStaffController extends Controller
             $announcement = announcement::create([
                 'from'=> $validatedData['from'],
                 'title' => $validatedData['title'],
-                'date' => $validatedData['date'],
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);

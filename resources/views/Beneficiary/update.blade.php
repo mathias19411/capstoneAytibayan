@@ -18,8 +18,6 @@
                 <input type="text" id="title" class="form-control" name="title" maxlength="50" required>
             </div>
             <div class="mb-3">
-                <label for="date" class="form-label">Date:</label>
-                <input type="date" id="date" class="form-control" name="date" required>
                 <input type="email" name="email" value="{{ $userEmail }}" hidden>
                 <input type="text" name="benef_of" value="{{ $programName }}" hidden>
             </div>
@@ -82,7 +80,7 @@
                 </div>
                 <div class="card mb-3 col-md-3">
                     <div class="card-body">
-                        <p class="update-date">Date: {{ $update->date }}</p>
+                        <p class="update-date">Date: {{ $update->created_at }}</p>
                         <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
                         <p class="update-title">Title: {{ $update->title }}</p>
                     </div>

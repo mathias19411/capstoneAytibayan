@@ -190,36 +190,17 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 <div class="card-project">
                     <h2 class="card-title">PROJECTS</h2>
                     <div class="card-content">
+                        @foreach($project->reverse() as $project)
                         <div class="project-info">
                             <div class="project-image">
-                                <img src="/images/binhi_funrun.png">
+                                <img src="{{ asset('Uploads/Updates/'.$project->attachment) }}">
                             </div>
                             <div class="project-body">
-                                <div class="project-title">Binhi ng Pag-asa Fun Run 2022</div>
-                                <div class="project-text"> This is some sample text for project. You can add more content
-                                    here. </div>
+                                <div class="project-title">Title: {{ $project->title }}</div>
+                                <div class="project-text">Description: {{ $project->message }}</div>
                             </div>
                         </div>
-                        <div class="project-info">
-                            <div class="project-image">
-                                <img src="/images/binhi_funrun.png">
-                            </div>
-                            <div class="project-body">
-                                <div class="project-title">Binhi ng Pag-asa Fun Run 2022</div>
-                                <div class="project-text"> This is some sample text for project. You can add more content
-                                    here. </div>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-image">
-                                <img src="/images/binhi_funrun.png">
-                            </div>
-                            <div class="project-body">
-                                <div class="project-title">Binhi ng Pag-asa Fun Run 2022</div>
-                                <div class="project-text"> This is some sample text for project. You can add more content
-                                    here. </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
 

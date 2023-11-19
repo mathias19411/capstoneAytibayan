@@ -16,6 +16,7 @@ use App\Models\Role;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\Assistancesteps;
+use App\Models\Projects;
 use App\Notifications\FinancialAssistanceStatusRejected;
 use App\Notifications\FinancialAssistanceStatusUpdated;
 use Illuminate\Http\Request;
@@ -117,7 +118,6 @@ class ABAKAProjectCoordinatorController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'from'=> 'required|string',
-            'date' => 'required|date',
             'to' => 'required|string',
             'message' => 'required|string',
         ]);
@@ -129,7 +129,6 @@ class ABAKAProjectCoordinatorController extends Controller
             $announcement = announcement::create([
                 'title' => $validatedData['title'],
                 'from'=> $validatedData['from'],
-                'date' => $validatedData['date'],
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
@@ -417,12 +416,25 @@ class ABAKAProjectCoordinatorController extends Controller
         // })->whereHas('program', function ($query) use ($programId) {
         //     $query->where('id', $programId);
         // })->get();
+        $id = AUTH::user()->id;
+
+        // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = 'Public';
+        $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
+        $project = Projects::where(function ($query) use ($programName, $public) {
+            $query->where('recipient', $programName)->orwhere('recipient', $public);})->get();
 
         $assistanceStatuses = Financialassistancestatus::all();
 
         $assistanceUnsettledStatus = Financialassistancestatus::where('financial_assistance_status_name', 'unsettled')->first();
 
-        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries', 'assistanceStatuses', 'totalActiveAndInactiveCount', 'assistanceUnsettledStatus'));
+        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries', 'assistanceStatuses', 'totalActiveAndInactiveCount', 'assistanceUnsettledStatus', 'project', 'userEmail', 'programName', 'roleName'));
     } // End Method
 
     public function ProjCoordinatorProgressAdd(Request $request)
@@ -496,6 +508,53 @@ class ABAKAProjectCoordinatorController extends Controller
 
         return redirect()->route('abakaprojectcoordinator.progress');
     } // End Method
+
+    public function ProjCoordinatorAddProject(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from' => 'required|string',
+            'recipient' => 'required|string',
+            'message' => 'required|string',
+            'image' => 'image',
+        ]);
+    
+        // Check if the image key exists in the validated data array
+        if (isset($validatedData['image'])) {
+            // Get the image file
+            $file = $request->file('image');
+    
+            // Generate a unique filename for the image file
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move('Uploads/Updates/', $filename);
+    
+        } else {
+            // Assign an empty string to the filename variable
+            $filename = '';
+        }
+    
+        // Set the image attribute of the event model to the filename
+        $validatedData['image'] = $filename;
+    
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $projects = Projects::create([
+                'title' => $validatedData['title'],
+                'from' => $validatedData['from'],
+                'recipient'=> $validatedData['recipient'],
+                'message'=> $validatedData['message'],
+                'attachment' => $validatedData['image'],
+            ]);
+            $projects->save();
+    
+            // If the attachment file is not empty, store it in the database
+    
+            return redirect()->back()->with('success', 'New Project Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+    } //end method
 
     public function ProjCoordinatorViewProfile()
     {

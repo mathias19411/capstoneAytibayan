@@ -11,7 +11,6 @@ class Updates extends Model
         'email',
         'title',
         'benef_of',
-        'date',
         'image',
     ];
 

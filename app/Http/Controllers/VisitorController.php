@@ -9,6 +9,7 @@ use App\Models\Program;
 use App\Models\Role;
 use App\Models\Status;
 use App\Models\User;
+use App\Models\Projects;
 use Illuminate\Support\Facades\DB;
 use App\Models\inquiries;
 use App\Mail\ReplyMailable;
@@ -83,6 +84,9 @@ class VisitorController extends Controller
 
     public function visitorProgramsView($id)
     {
+
+
+        $programName = trim(implode(' ', Program::where('id', $id)->pluck('program_name')->toArray()));
         //get all coordinators associated with a specific program
         $program = Program::with('coordinators')->findOrFail($id);
 
@@ -97,10 +101,13 @@ class VisitorController extends Controller
             ->select('city', DB::raw('count(*) as count'))
             ->groupBy('city')
             ->get();
+            $public = 'Public';
+            $project = Projects::where(function ($query) use ($public, $programName) {
+                $query->where('recipient', $public)->where('from', $programName);})->get();
 
         // dd($program->coordinators);
 
-        return view('Visitor.category_page', compact('program', 'beneficiaries'));
+        return view('Visitor.category_page', compact('program', 'beneficiaries', 'project'));
     } // End Method
 
     public function VisitorInquiryStore(Request $request)
@@ -113,7 +120,6 @@ class VisitorController extends Controller
             'to' => 'required|string',
             'email' => 'required|email',
             'message' => 'required|string',
-            'date' => 'required|date',
             'contact' => 'required|string',
         ]);
 
@@ -141,7 +147,6 @@ class VisitorController extends Controller
                 'programEmail'=> $programEmail,
                 'email' => $validatedData['email'],
                 'contacts' => $validatedData['contact'],
-                'date' => $validatedData['date'],
                 'message' => $validatedData['message'],
             ]);
             Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $senderName, $recipientName));
