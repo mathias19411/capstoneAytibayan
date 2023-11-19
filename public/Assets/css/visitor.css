@@ -743,15 +743,22 @@ body {
 }
 
 .announcements-section .announcements-card {
+    /* Your existing styles */
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center;
+    align-items: center;
     margin: 1rem 0 1rem 0;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     background: var(--colorWhite);
-    width: 100%; /* Set the width to 100% */
-  
+    width: 350px;
+    height: auto; /* Change height to auto */
+    padding: 10px;
+    word-wrap: break-word; /* Add word wrap */
+    overflow-wrap: break-word; /* Add overflow wrap */
+    /* Add a max-width for better responsiveness */
+    max-width: 100%; /* Adjust as needed */
+    text-overflow: ellipsis;
 }
 
 .announcements-section .announcements-card:hover {
@@ -767,10 +774,15 @@ body {
     -webkit-line-clamp: 4; /* Number of lines to display */
     text-overflow: ellipsis;
     border-top: 2px solid #dad7cd;
+    overflow-wrap: break-word; /* or use overflow-wrap: break-word; */
+    width: 100%;
 }
 
 .announcements-card-date-time h5 {
     font-size: 18px;
+    width: 100%;
+    text-overflow: ellipsis;
+
 }
 .announcements-section
     .announcements-card
@@ -1183,13 +1195,13 @@ body {
 
     .horizontal-scroll-image-section {
         grid-area: 1 / 1 / 2 / 2;
-        height: 20rem;
-        max-width: 100%;
+        height: 240px; 
+        padding: 20px;
     }
 
     .horizontal-scroll-image-section .apao-horizontal-images {
-        width: 60%;
-        height: 100%;
+        width: 300px;
+        height: 200px;
     }
 
     .description-section {
@@ -2110,7 +2122,7 @@ section.about .box_about {
 
     section.about .box_about {
         width: 100%;
-        height: 300px;
+        height: 400px;
     }
 
     section.about .box_about img {

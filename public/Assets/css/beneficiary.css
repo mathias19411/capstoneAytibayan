@@ -2265,6 +2265,11 @@ body.beneficiary .add-modal:hover {
 .footer {
     margin-top: auto; 
 }
+
+.event-info {
+    display: flex;
+    align-items: stretch; /* Stretch both items to the same height */
+  }
 .event-body .time {
     left: 0;
     bottom: 0;
@@ -2274,36 +2279,66 @@ body.beneficiary .add-modal:hover {
     flex-direction: column;
 }
 
+.card-event .card-content {
+    max-height: calc(100% - 40px);
+    overflow-y: scroll;
+    height: auto;
+}
+
 .card-event {
     width: auto;
     max-width: 100%;
-    height: 400px;
+    height: 400px; 
     padding: 10px;
     margin: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
-}
-
-.event-date {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .event-info {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  
+  .event-date {
     background-color: #7bb701;
     color: #ffffff;
-    width: 50px;
-    height: 70px;
-    float: left;
+    width: 60px;
+    height: 80px;
     border-radius: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    line-height: 80%;
-    padding: 5px;
-    margin: auto;
-}
-.event-body {
+    margin-right: 10px;
+  }
+  
+  .event-date .date {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .event-body {
+    flex: 1;
     padding: 5px;
     display: flex;
     flex-direction: column;
-}
+  }
 
+  .event-body .event-title {
+    margin-bottom: 10px; /* Add margin between title and text */
+  }
+  
 .announcements-card-date-time-title {
     display: inline-flex; /* Display the container as inline flex to align items horizontally */
     align-items: center; /* Align items vertically in the center */
@@ -2363,8 +2398,21 @@ body.beneficiary .add-modal:hover {
     .card-project {
         width: 95%;
     }
+    .card-announcement .card-content {
+        max-height: calc(100% - 40px);
+        overflow-y: scroll;
+        height: auto;
+    }
     .card-announcement {
         width: 95%;
+    }
+    .announcement-info {
+        height: auto;
+    }
+    .card-event .card-content {
+        max-height: calc(100% - 40px);
+        overflow-y: scroll;
+        height: auto;
     }
     .card-event {
         width: 95%;
@@ -2373,7 +2421,7 @@ body.beneficiary .add-modal:hover {
         height: 110px;
     }
     .event-info {
-        height: 90px;
+        height: auto;
     }
     .event-date {
         height: 90px;
@@ -2396,7 +2444,6 @@ body.beneficiary .add-modal:hover {
     }
     .card-announcement {
         width: 95%;
-        height: 100%;
     }
     .card-event {
         width: 95%;
@@ -2405,7 +2452,7 @@ body.beneficiary .add-modal:hover {
         height: 100%;
     }
     .event-info {
-        height: 90px;
+        height: auto;
     }
     .event-date {
         height: 90px;

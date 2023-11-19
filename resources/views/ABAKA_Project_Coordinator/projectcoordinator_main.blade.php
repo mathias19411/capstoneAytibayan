@@ -885,6 +885,23 @@ $(document).ready(function() {
     });
 });
     </script>
+<script>
+
+//LIMIT TEXT
+document.addEventListener('DOMContentLoaded', function() {
+  const messageCells = document.querySelectorAll('.message-cell');
+
+  messageCells.forEach(cell => {
+    cell.addEventListener('click', function() {
+      const fullText = cell.textContent.trim();
+      if (fullText.endsWith('...')) {
+        // Show the full text in a pop-up (you can customize this, e.g., use a modal)
+        alert(fullText);
+      }
+    });
+  });
+});
+</script>
 
 </body>
 
