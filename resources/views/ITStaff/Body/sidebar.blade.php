@@ -20,21 +20,21 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
     <div class="menu-items">
         <ul class="nav-links">
-            <li>
-                <a href="{{ route('itstaff.home') }}" class="{{ request()->is('ITStaff/home') ? 'active' : '' }}">
+            <li  class="{{ request()->is('ITStaff/home') ? 'active' : '' }}">
+                <a href="{{ route('itstaff.home') }}">
                     <i class="uil uil-home"></i>
                     <span class="link-name">Home</span>
                 </a>
             </li>
-            <li>
+            <li  class="{{ request()->is('ITStaff/announcement') ? 'active' : '' }}">
                 <a href="{{ route('itstaff.announcement') }}"
-                    class="{{ request()->is('ITStaff/announcement') ? 'active' : '' }}">
+                   >
                     <i class="uil uil-bell"></i>
                     <span class="link-name">Announcement</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('itstaff.event') }}" class="{{ request()->is('ITStaff/event') ? 'active' : '' }}">
+            <li class="{{ request()->is('ITStaff/event') ? 'active' : '' }}">
+                <a href="{{ route('itstaff.event') }}" >
                     <i class="uil uil-calendar-alt"></i>
                     <span class="link-name">Event</span>
                 </a>
@@ -51,8 +51,8 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <span class="link-name">Blacklisted</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('itstaff.registerView') }}" class="{{ request()->is('ITStaff/registerView') ? 'active' : '' }}">
+            <li class="{{ Route::currentRouteName() ==  'itstaff.registerView' ? 'active' : '' }}">
+                <a href="{{ route('itstaff.registerView') }}">
                     <i class="uil uil-user-plus"></i>
                     <span class="link-name">Registration</span>
                 </a>
@@ -60,8 +60,8 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
              
             {{-- @auth
                 @if (Route::has('register'))
-                    <li>
-                        <a href="{{ route('register') }}" class="{{ request()->is('ITStaff/register') ? 'active' : '' }}">
+                <li class="{{ Route::currentRouteName() == 'itstaff.register' ? 'active' : '' }}">
+                        <a href="{{ route('register') }}">
                             <i class="uil uil-user-plus"></i>
                             <span class="link-name">Registration</span>
                         </a>
