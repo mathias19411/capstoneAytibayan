@@ -18,27 +18,32 @@ class ProgramsTableSeeder extends Seeder
             //Binhi
             [
                 // 'project_coordinator_id' => '1',
-                'program_name' => 'binhingpagasa'
+                'program_name' => 'binhingpagasa',
+                'email' => 'projectcoordinator@gmail.com'
             ],
             //Akbay
             [
                 // 'project_coordinator_id' => '3',
-                'program_name' => 'akbay'
+                'program_name' => 'akbay',
+                'email' => 'akbayprojectcoordinator@gmail.com'
             ],
             //Lead
             [
                 // 'project_coordinator_id' => '5',
-                'program_name' => 'lead'
+                'program_name' => 'lead',
+                'email' => 'leadprojectcoordinator@gmail.com'
             ],
             //AgriPinay
             [
                 // 'project_coordinator_id' => '9',
-                'program_name' => 'agripinay'
+                'program_name' => 'agripinay',
+                'email' => 'agripinayprojectcoordinator@gmail.com'
             ],
             //Abaka
             [
                 // 'project_coordinator_id' => '11',
-                'program_name' => 'abakamopisomo'
+                'program_name' => 'abakamopisomo',
+                'email' => 'abakaprojectcoordinator@gmail.com'
             ],
         ]);
     }

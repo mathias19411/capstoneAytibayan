@@ -42,7 +42,6 @@
                             <th>Title</th>
                             <th>To</th>
                             <th>Description</th>
-                            <th>Image</th>
                             <th>Date</th>
                             <th>Action</th>
 
@@ -115,10 +114,9 @@
                                                         <div class="form-group">
                                                             <label for="edit-recipient">To:</label>
                                                             <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                            <option>PUBLIC</option>
-                                                            <option>BINHI</option>
-                                                            <option>AKBAY</option>
-                                                            <option>LEAD</option>
+                                                            @foreach($programs as $program)
+                                                            <option>{{ $program->program_name }}</option>
+                                                            @endforeach
                                                             </select>
                                                         </div>
                                                         </div>
@@ -136,13 +134,7 @@
                                                             <textarea class="form-control" rows="3" placeholder="Write something..." name="message">{{ $events->message }}</textarea>
                                                             </div>
                                                             <div class="form-outline">
-                                                        <label id="drop-img">
-                                                            <input name="image" type="file" id="input-file" value="{{ $events->image }}" hidden>
-                                                            <div id="img-view">
-                                                            <img src="/images/image_icon.png">
-                                                            <p> Drag and drop or click here <br> to upload picture</p>
-                                                            </div>
-                                                        </label>
+                                                      
                                                     </div>
                                                 </div>
 
@@ -166,7 +158,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                         <div class="modal-body">
-                                        <form method="POST" action="{{ route('delete.announcement') }}">
+                                        <form method="POST" action="{{ route('delete.event') }}">
                                             @csrf
                                             @method('DELETE')
                                         <div class="row">
@@ -215,7 +207,6 @@
                             <td>{{ $events->title }}</td>
                             <td>{{ $events->to }}</td>
                             <td>{{ $events->message }}</td>
-                            <td>{{ $events->image }}</td>
                             <td>{{ $events->created_at }}</td>
                             <td>
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">
@@ -306,7 +297,7 @@
                                     <div class="form-outline">
                                     <label id="label_">To:</label>
                                         <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                        <option>Public</option>
+                                        <option>PUBLIC</option>
                                         @foreach($programs as $program)
                                         <option>{{ $program->program_name }}</option>
                                         @endforeach
@@ -326,13 +317,7 @@
                                     <textarea class="form-control" rows="3" placeholder="Write something..." name="message"></textarea>
                                     </div>
                                     <div class="form-outline">
-                                <label id="drop-img">
-                                    <input name="image" type="file" id="input-file" hidden>
-                                    <div id="img-view">
-                                    <img src="/images/image_icon.png">
-                                    <p> Drag and drop or click here <br> to upload picture</p>
-                                    </div>
-                                </label>
+                               
                             </div>
                         </div>
 

@@ -335,6 +335,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
 //Visitor Routes
 Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
 Route::post('/Visitor/Inquiry', [VisitorController::class, 'VisitorInquiryStore'])->name('visitor.inquiry');
+Route::post('/Visitor/Inquiry/ProgramPage', [VisitorController::class, 'VisitorInquiryStore'])->name('specificinquiry.send');
 
 //resend two factor code route
 Route::get('verify/resend', [TwoFactorController::class, 'resend'])->name('verify.resend');

@@ -558,7 +558,8 @@ body {
 }
 
 .top-story-section {
-    grid-area: 4 / 3 / 5 / 4 ;
+
+    grid-area: 4 / 2 / 5 / 3;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     padding: 1.5rem;
@@ -596,7 +597,20 @@ body {
 .top-story-section .stories-main {
     overflow: auto;
 }
+.top-story-section .stories-main::-webkit-scrollbar {
+    width: 6px; /* Set the width of the scrollbar */
+    background-color: transparent; /* Set the background color */
+}
 
+.top-story-section .stories-main::-webkit-scrollbar-thumb {
+    /* Styling for the scrollbar thumb */
+    background-color: #aaa; /* Set the color of the thumb */
+    border-radius: 3px; /* Round the edges of the thumb */
+}
+.top-story-section .stories-main::-webkit-scrollbar-thumb:hover {
+    /* Styling for the scrollbar thumb on hover */
+    background-color: #777; /* Change color on hover */
+}
 .top-story-section .stories-main .story-card .story-card-image img {
     display: inline-block;
     vertical-align: middle;
@@ -676,6 +690,7 @@ body {
     grid-area:4 / 1 / 5 / 2;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
     background-color: rgba(
         255,
         255,
@@ -684,14 +699,30 @@ body {
     ); /* Semi-transparent white color */
     backdrop-filter: blur(10px); /* Apply a blur effect */
     /* width: 24.188rem;
-    height: 15.5rem; */
-    padding: 1.5rem;
+    height: 37rem; */
+    height: 39.625rem; 
+    position: relative; /* Needed for absolutely positioned scrollbar */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Pushes child to the bottom while keeping space between items */
+    justify-content: flex-start; /* Pushes child to the top */
     align-items: center;
-    height: 39.625rem; 
+      overflow: auto; /* Enable scrolling within the content */
+    overflow-y: scroll; /* Always show the scrollbar on the y-axis */
    
+}
+.announcements-section::-webkit-scrollbar {
+    width: 6px; /* Set the width of the scrollbar */
+    background-color: transparent; /* Set the background color */
+}
+
+.announcements-section::-webkit-scrollbar-thumb {
+    /* Styling for the scrollbar thumb */
+    background-color: #aaa; /* Set the color of the thumb */
+    border-radius: 3px; /* Round the edges of the thumb */
+}
+.announcements-section::-webkit-scrollbar-thumb:hover {
+    /* Styling for the scrollbar thumb on hover */
+    background-color: #777; /* Change color on hover */
 }
 
 .announcements-section .announcements-read-more {
@@ -740,17 +771,28 @@ body {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     color: var(--colorWhite);
     width: 100%;
+    margin-bottom: 15px;
 }
 
 .announcements-section .announcements-card {
+<<<<<<< HEAD
     /* Your existing styles */
     display: flex;
     justify-content: center;
     align-items: center;
+=======
+    box-sizing: border-box;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+>>>>>>> 8430338b979f0ca7e95c95a51fd00a0eade54c5a
     margin: 1rem 0 1rem 0;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     background: var(--colorWhite);
+<<<<<<< HEAD
     width: 350px;
     height: auto; /* Change height to auto */
     padding: 10px;
@@ -759,6 +801,11 @@ body {
     /* Add a max-width for better responsiveness */
     max-width: 100%; /* Adjust as needed */
     text-overflow: ellipsis;
+=======
+    width: 100%; /* Set the width to 100% */
+   
+  
+>>>>>>> 8430338b979f0ca7e95c95a51fd00a0eade54c5a
 }
 
 .announcements-section .announcements-card:hover {
@@ -771,11 +818,13 @@ body {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4; /* Number of lines to display */
-    text-overflow: ellipsis;
     border-top: 2px solid #dad7cd;
+<<<<<<< HEAD
     overflow-wrap: break-word; /* or use overflow-wrap: break-word; */
     width: 100%;
+=======
+    
+>>>>>>> 8430338b979f0ca7e95c95a51fd00a0eade54c5a
 }
 
 .announcements-card-date-time h5 {
@@ -789,7 +838,7 @@ body {
     .announcements-card-date-time
     .announcements-card-date-time-title {
     display: inline-flex; /* Display the container as inline flex to align items horizontally */
-    align-items: center; /* Align items vertically in the center */
+    align-items: left; /* Align items vertically in the center */
 }
 
 .announcements-section
@@ -810,7 +859,7 @@ body {
 }
 
 .events-section {
-    grid-area: 4 / 2 / 5 / 3;
+    grid-area: 4 / 3 / 5 / 4 ;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     padding: 1.5rem;

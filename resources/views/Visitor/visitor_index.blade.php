@@ -82,6 +82,7 @@
     <div class="announcements-title">
         <h4>Announcements</h4>
     </div>
+    
 
             @if($announcement->isEmpty())
                 <p>No announcements at the moment.</p>
@@ -105,9 +106,7 @@
             </div>
         </div>
     @endforeach
-        <div class="announcements-read-more">
-            <button type="button" class="btn read-more-button" data-bs-toggle="modal" data-bs-target="#read_announcement">More Announcements</button>
-        </div>
+     
         
     @endif
 </div>
@@ -429,14 +428,14 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label id="label_">Contact Number:</label>
-                                    <input class="form-control" type="text" name="contacts" id="textbox" required>
+                                    <input class="form-control" type="text" name="contact" id="textbox" required>
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">To:</label>
                                     <select class="form-control" type="text" name="to" id="textbox" required>
-                                    @foreach($programs as $program)    
-                                    <option>{{ $program->program_name }}</option>
-                                    @endforeach
+                                        @foreach($programs as $program)    
+                                            <option>{{ $program->program_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

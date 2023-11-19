@@ -133,7 +133,7 @@ nav .menu-items {
     text-decoration: none;
     position: relative;
 }
-.nav-links li a:hover:before {
+.nav-links li a:hover:after {
     content: "";
     position: absolute;
     left: -7px;
@@ -142,17 +142,38 @@ nav .menu-items {
     border-radius: 50%;
     background-color: var(--primary-color);
 }
-
-.nav-links li a.active i {
-    color: var(--primary-color);
+/* Styles for the active state */
+.nav-links li.active a {
+    background-color: rgba(var(--primary-color-rgb), 30); 
+    border: none; 
+    position: relative;
 }
-.nav-links li a.active span {
+
+.nav-links li.active a i {
     color: var(--primary-color);
+    font-weight: bold;
+   
+}
+
+.nav-links li.active a span {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+/* Vertical line on the left side */
+.nav-links li.active a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px; /* Adjust the width of the vertical line */
+    background-color: var(--primary-color);
 }
 
 body.dark li a:hover:before {
     background-color: var(--text-color);
 }
+
 .menu-items li a i {
     font-size: 25px;
     min-width: 45px;
@@ -295,7 +316,7 @@ nav.close ~ .dashboard .top {
 
 .profile-image{
     border-radius: 50%;
-    border: 1px solid var(--primary-color);
+    
 }
 /* Style the profile image */
 .profile-image img {
@@ -1483,6 +1504,10 @@ body.announcement_events_inquiry .table td {
     font-size: 13px;
     padding: px 5px;
     margin: 10px;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px; /* Adjust the maximum width as needed */
 }
 
 body.announcement_events_inquiry .add-modal {

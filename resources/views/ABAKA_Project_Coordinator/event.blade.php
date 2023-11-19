@@ -3,6 +3,7 @@
 @section('content')
 @include('ABAKA_Project_Coordinator.Body.sidebarproj')
     
+    
 <div class="title">
         <h1>Events</h1>
 </div>
@@ -40,7 +41,7 @@
                             <th>Title</th>
                             <th>To</th>
                             <th>Description</th>
-                            <th>Image</th>
+                        
                             <th>Date</th>
                             <th>Action</th>
 
@@ -83,13 +84,7 @@
                                                         <p class="form-control" rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</p>
                                                     </div>
                                                     <div class="form-outline">
-                                                        <label id="drop-img">
-                                                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
-                                                            <div id="img-view">
-                                                                <img src="{{ $events->image }}" alt="Image Icon">
-                                                                <p>Drag and drop or click here<br>to upload a picture</p>
-                                                            </div>
-                                                        </label>
+                                                       
                                                     </div>
                                                 </div>
                                                 </div>
@@ -143,13 +138,7 @@
                                                         <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</textarea>
                                                     </div>
                                                     <div class="form-outline">
-                                                        <label id="drop-img">
-                                                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
-                                                            <div id="img-view">
-                                                                <img src="{{ $events->image }}" alt="Image Icon">
-                                                                <p>Drag and drop or click here<br>to upload a picture</p>
-                                                            </div>
-                                                        </label>
+                                                       
                                                     </div>
                                                 </div>
                                                 </div>
@@ -202,13 +191,7 @@
                                                         <p class="form-control" rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</p>
                                                     </div>
                                                     <div class="form-outline">
-                                                        <label id="drop-img">
-                                                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
-                                                            <div id="img-view">
-                                                                <img src="{{ $events->image }}" alt="Image Icon">
-                                                                <p>Drag and drop or click here<br>to upload a picture</p>
-                                                            </div>
-                                                        </label>
+                                                       
                                                     </div>
                                                     @if(session('error'))
                                                         <div class="alert alert-danger">
@@ -231,7 +214,7 @@
                             <td>{{ $events->title }}</td>
                             <td>{{ $events->to }}</td>
                             <td>{{ $events->message }}</td>
-                            <td>{{ $events->image }}</td>
+                  
                             <td>{{ $events->created_at }}</td>
                             <td>
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">
@@ -254,7 +237,7 @@
                 <div id="pagination-message"></div>
              
               </div>
-            <div>
+           
                  <!--Button-->
                 <button type="button" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_event" id="add-modal-button">
                     Add
@@ -303,13 +286,7 @@
                                 <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="message"></textarea>
                             </div>
                             <div class="form-outline">
-                                <label id="drop-img">
-                                    <input name="image" type="file" accept="image/*" id="input-file" hidden>
-                                    <div id="img-view">
-                                        <img src="/images/image_icon.png" alt="Image Icon">
-                                        <p>Drag and drop or click here<br>to upload a picture</p>
-                                    </div>
-                                </label>
+                                
                             </div>
                         </div>
                         <div class="modal-footer">

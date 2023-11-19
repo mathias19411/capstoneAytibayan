@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\ReplyMailable;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\announcement;
 use App\Models\Program;
@@ -174,13 +176,15 @@ class BeneficiaryController extends Controller
        $roleId = User::where('id', $id)->pluck('role_id');
        $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
 
+
         // Get the programname of the program table
         $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+        $programEmail = trim(implode(' ', Program::where('program_name', $programName)->pluck('email')->toArray()));
         $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
         $inquiry = inquiries::where(function ($query) use ($userEmail) {
             $query->where('email', $userEmail);})->get();
 
-        return view('Beneficiary.inquiry', compact('inquiry', 'userProfileData', 'programName', 'roleName'));
+        return view('Beneficiary.inquiry', compact('inquiry', 'userProfileData', 'programName', 'roleName', 'programEmail'));
 
     } // End Method
 
@@ -191,11 +195,22 @@ class BeneficiaryController extends Controller
         'fullname' => 'required|string|max:255',
         'from'=> 'string',
         'recipient' => 'required|string',
+        'programEmail'=> 'string',
         'email' => 'required|email',
         'message' => 'required|string',
         'date' => 'required|date',
         'contact' => 'required|string',
     ]);
+
+    $senderName = $validatedData['fullname'];
+
+    $recipientName = $validatedData['recipient'];
+
+    $recipientEmail = $validatedData['programEmail'];
+
+    $subject = $validatedData['from'];
+
+    $body = $validatedData['message'];
 
     // Check if validation passes
     if ($validatedData) {
@@ -204,11 +219,13 @@ class BeneficiaryController extends Controller
             'fullname' => $validatedData['fullname'],
             'from'=> $validatedData['from'],
             'to' => $validatedData['recipient'],
+            'programEmail'=> $validatedData['programEmail'],
             'email' => $validatedData['email'],
             'contacts' => $validatedData['contact'],
             'date' => $validatedData['date'],
             'message' => $validatedData['message'],
         ]);
+        Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $senderName, $recipientName));
         $inquiry->save();
 
         // If the attachment file is not empty, store it in the database
