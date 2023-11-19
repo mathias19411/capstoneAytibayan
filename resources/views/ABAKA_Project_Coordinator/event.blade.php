@@ -143,13 +143,7 @@
                                                         <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</textarea>
                                                     </div>
                                                     <div class="form-outline">
-                                                        <label id="drop-img">
-                                                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
-                                                            <div id="img-view">
-                                                                <img src="{{ $events->image }}" alt="Image Icon">
-                                                                <p>Drag and drop or click here<br>to upload a picture</p>
-                                                            </div>
-                                                        </label>
+                                                       
                                                     </div>
                                                 </div>
                                                 </div>
@@ -202,13 +196,7 @@
                                                         <p class="form-control" rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</p>
                                                     </div>
                                                     <div class="form-outline">
-                                                        <label id="drop-img">
-                                                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
-                                                            <div id="img-view">
-                                                                <img src="{{ $events->image }}" alt="Image Icon">
-                                                                <p>Drag and drop or click here<br>to upload a picture</p>
-                                                            </div>
-                                                        </label>
+                                                       
                                                     </div>
                                                     @if(session('error'))
                                                         <div class="alert alert-danger">

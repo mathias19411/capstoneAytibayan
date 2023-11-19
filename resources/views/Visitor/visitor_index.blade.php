@@ -27,7 +27,7 @@
             </div>
             <div class="beneficiay-chart-section1">
                 <div class="beneficiay-chart-section-charts-card">
-                    <div class="chart-title">BA
+                    <div class="chart-title">
                         <h4>Monthly Beneficiaries</h4>
                     </div>
                     <div id="line-chart"></div>
@@ -82,6 +82,7 @@
     <div class="announcements-title">
         <h4>Announcements</h4>
     </div>
+    
 
             @if($announcement->isEmpty())
                 <p>No announcements at the moment.</p>
@@ -105,9 +106,7 @@
             </div>
         </div>
     @endforeach
-        <div class="announcements-read-more">
-            <button type="button" class="btn read-more-button" data-bs-toggle="modal" data-bs-target="#read_announcement">More Announcements</button>
-        </div>
+     
         
     @endif
 </div>

@@ -136,13 +136,7 @@
                                                             <textarea class="form-control" rows="3" placeholder="Write something..." name="message">{{ $events->message }}</textarea>
                                                             </div>
                                                             <div class="form-outline">
-                                                        <label id="drop-img">
-                                                            <input name="image" type="file" id="input-file" value="{{ $events->image }}" hidden>
-                                                            <div id="img-view">
-                                                            <img src="/images/image_icon.png">
-                                                            <p> Drag and drop or click here <br> to upload picture</p>
-                                                            </div>
-                                                        </label>
+                                                      
                                                     </div>
                                                 </div>
 
@@ -326,13 +320,7 @@
                                     <textarea class="form-control" rows="3" placeholder="Write something..." name="message"></textarea>
                                     </div>
                                     <div class="form-outline">
-                                <label id="drop-img">
-                                    <input name="image" type="file" id="input-file" hidden>
-                                    <div id="img-view">
-                                    <img src="/images/image_icon.png">
-                                    <p> Drag and drop or click here <br> to upload picture</p>
-                                    </div>
-                                </label>
+                               
                             </div>
                         </div>
 
