@@ -1445,6 +1445,10 @@ body.announcement_events_inquiry .table td {
     font-size: 13px;
     padding: px 5px;
     margin: 10px;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px; /* Adjust the maximum width as needed */
 }
 
 body.announcement_events_inquiry .add-modal {
