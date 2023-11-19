@@ -114,10 +114,9 @@
                                                         <div class="form-group">
                                                             <label for="edit-recipient">To:</label>
                                                             <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                            <option>PUBLIC</option>
-                                                            <option>BINHI</option>
-                                                            <option>AKBAY</option>
-                                                            <option>LEAD</option>
+                                                            @foreach($programs as $program)
+                                                            <option>{{ $program->program_name }}</option>
+                                                            @endforeach
                                                             </select>
                                                         </div>
                                                         </div>
@@ -159,7 +158,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                         <div class="modal-body">
-                                        <form method="POST" action="{{ route('delete.announcement') }}">
+                                        <form method="POST" action="{{ route('delete.event') }}">
                                             @csrf
                                             @method('DELETE')
                                         <div class="row">
