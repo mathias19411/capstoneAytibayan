@@ -21,20 +21,20 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
     <div class="menu-items">
         <ul class="nav-links">
-            <li>
-                <a href="{{ route('beneficiary.home') }}" class="{{ request()->is('/Beneficiary/home') ? 'active' : '' }}">
+        <li class="{{ Route::currentRouteName() ==  'beneficiary.home' ? 'active' : '' }}">
+                <a href="{{ route('beneficiary.home') }}">
                     <i class="uil uil-home"></i>
                     <span class="link-name">Home</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('beneficiary.schedule') }}" class="">
+            <li class="{{ Route::currentRouteName() ==  'beneficiary.schedule' ? 'active' : '' }}">
+                <a href="{{ route('beneficiary.schedule') }}" >
                     <i class="uil uil-schedule"></i>
                     <span class="link-name">Schedule</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('beneficiary.updates') }}" class="">
+            <li class="{{ Route::currentRouteName() ==  'beneficiary.updates' ? 'active' : '' }}">
+                <a href="{{ route('beneficiary.updates') }}" >
                     <i class="uil uil-process"></i>
                     <span class="link-name">Update</span>
                 </a>
@@ -87,7 +87,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </div>
             </div>
             <div class="message-icon">
-            <a href="{{ route('beneficiary.inquiry') }}" class="{{ request()->is('/Beneficiary/inquiry') ? 'active' : '' }}">
+            <a href="{{ route('beneficiary.inquiry') }}" class= class="{{ Route::currentRouteName() ==  'beneficiary.inquiry' ? 'active' : '' }}">
                     <i class="uil uil-comment-dots"></i>
                 </a>
             </div>

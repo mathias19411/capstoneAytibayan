@@ -316,7 +316,7 @@ nav.close ~ .dashboard .top {
 
 .profile-image{
     border-radius: 50%;
-    border: 1px solid var(--primary-color);
+    
 }
 /* Style the profile image */
 .profile-image img {
