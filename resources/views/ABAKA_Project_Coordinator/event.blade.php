@@ -40,7 +40,7 @@
                             <th>Title</th>
                             <th>To</th>
                             <th>Description</th>
-                            <th>Image</th>
+                        
                             <th>Date</th>
                             <th>Action</th>
 
@@ -83,13 +83,7 @@
                                                         <p class="form-control" rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</p>
                                                     </div>
                                                     <div class="form-outline">
-                                                        <label id="drop-img">
-                                                            <input name="image" type="file" accept="image/*" id="input-file" hidden>
-                                                            <div id="img-view">
-                                                                <img src="{{ $events->image }}" alt="Image Icon">
-                                                                <p>Drag and drop or click here<br>to upload a picture</p>
-                                                            </div>
-                                                        </label>
+                                                       
                                                     </div>
                                                 </div>
                                                 </div>
@@ -219,7 +213,7 @@
                             <td>{{ $events->title }}</td>
                             <td>{{ $events->to }}</td>
                             <td>{{ $events->message }}</td>
-                            <td>{{ $events->image }}</td>
+                  
                             <td>{{ $events->created_at }}</td>
                             <td>
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">
@@ -291,13 +285,7 @@
                                 <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="message"></textarea>
                             </div>
                             <div class="form-outline">
-                                <label id="drop-img">
-                                    <input name="image" type="file" accept="image/*" id="input-file" hidden>
-                                    <div id="img-view">
-                                        <img src="/images/image_icon.png" alt="Image Icon">
-                                        <p>Drag and drop or click here<br>to upload a picture</p>
-                                    </div>
-                                </label>
+                                
                             </div>
                         </div>
                         <div class="modal-footer">

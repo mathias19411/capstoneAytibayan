@@ -42,7 +42,6 @@
                             <th>Title</th>
                             <th>To</th>
                             <th>Description</th>
-                            <th>Image</th>
                             <th>Date</th>
                             <th>Action</th>
 
@@ -209,7 +208,6 @@
                             <td>{{ $events->title }}</td>
                             <td>{{ $events->to }}</td>
                             <td>{{ $events->message }}</td>
-                            <td>{{ $events->image }}</td>
                             <td>{{ $events->created_at }}</td>
                             <td>
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">
