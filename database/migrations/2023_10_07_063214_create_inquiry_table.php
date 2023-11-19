@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('inquiries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('to');
+            $table->string('programEmail');
             $table->string('from');
             $table->string('fullname');
             $table->string('email');

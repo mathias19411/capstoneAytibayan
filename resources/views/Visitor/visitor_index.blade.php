@@ -429,14 +429,14 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label id="label_">Contact Number:</label>
-                                    <input class="form-control" type="text" name="contacts" id="textbox" required>
+                                    <input class="form-control" type="text" name="contact" id="textbox" required>
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">To:</label>
                                     <select class="form-control" type="text" name="to" id="textbox" required>
-                                    @foreach($programs as $program)    
-                                    <option>{{ $program->program_name }}</option>
-                                    @endforeach
+                                        @foreach($programs as $program)    
+                                            <option>{{ $program->program_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

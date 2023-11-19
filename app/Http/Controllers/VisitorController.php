@@ -11,6 +11,8 @@ use App\Models\Status;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\inquiries;
+use App\Mail\ReplyMailable;
+use Illuminate\Support\Facades\Mail;
 
 class VisitorController extends Controller
 {
@@ -112,9 +114,22 @@ class VisitorController extends Controller
             'email' => 'required|email',
             'message' => 'required|string',
             'date' => 'required|date',
-            'contacts' => 'required|string',
+            'contact' => 'required|string',
         ]);
 
+        $programName = $validatedData['to'];
+
+        $programEmail = trim(implode(' ', Program::where('program_name', $programName)->pluck('email')->toArray()));
+
+        $recipientEmail = $programEmail;
+
+        $recipientName = $validatedData['to'];
+
+        $subject = $validatedData['from'];
+
+        $body = $validatedData['message'];
+
+        $senderName = $validatedData['fullname'];
         // Check if validation passes
         if ($validatedData) 
         {
@@ -123,11 +138,13 @@ class VisitorController extends Controller
                 'fullname' => $validatedData['fullname'],
                 'from'=> $validatedData['from'],
                 'to' => $validatedData['to'],
+                'programEmail'=> $programEmail,
                 'email' => $validatedData['email'],
-                'contacts' => $validatedData['contacts'],
+                'contacts' => $validatedData['contact'],
                 'date' => $validatedData['date'],
                 'message' => $validatedData['message'],
             ]);
+            Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $senderName, $recipientName));
             $inquiry->save();
 
             return redirect()->back()->with('success', 'Inquiry Submitted!');

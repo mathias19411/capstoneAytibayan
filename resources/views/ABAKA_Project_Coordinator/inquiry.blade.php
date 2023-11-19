@@ -125,7 +125,6 @@
                                                     <div class="form-outline">
                                                         <label for="Title">Recipient Name:</label>
                                                         <input class="form-control" type="text" id="Title" placeholder="Title...." name="fullname" value="{{ $inquiry->fullname }}">
-                                                        <input class="form-control" type="text" id="Title" placeholder="Title...." name="from" value="{{ $roleName }}" hidden>
                                                     </div>
                                                 </div>
                                                     <div class="col-md-6 mb-4">
@@ -138,7 +137,7 @@
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Date">Subject:</label>
-                                                        <input class="form-control" type="text" id="Subject" name="subject">
+                                                        <input class="form-control" type="text" id="Subject" name="subject" value="{{ $roleName }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mb-4">

@@ -61,6 +61,7 @@
         <div class="input-box">
           <label class="label">To:</label>
           <input type="text" placeholder="To" value="{{ $programName }}" name="recipient" readonly>
+          <input type="email" value="{{ $programEmail }}" name="programEmail" hidden>
         </div>
         <div class="input-box">
           <label class="label">Date:</label>

@@ -11,6 +11,7 @@ class inquiries extends Model
         'fullname',
         'from',
         'to',
+        'programEmail',
         'date',
         'email',
         'contacts',

@@ -301,9 +301,10 @@ class ABAKAProjectCoordinatorController extends Controller
        $public = "PUBLIC";
         $inquiry = inquiries::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
+            $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
 
 
-        return view('ABAKA_Project_Coordinator.inquiry', compact('roleName','programName','inquiry'));
+        return view('ABAKA_Project_Coordinator.inquiry', compact('roleName','programName','inquiry', 'userEmail'));
     } // End Method
     public function ProjectCoordinatorInquiryEdit($id)
     {
@@ -320,6 +321,9 @@ class ABAKAProjectCoordinatorController extends Controller
             'subject'=> 'string',
             'body' => 'string',
             ]);
+
+        $senderName = $validatedData['subject'];
+
         // Get the email address of the recipient
         $recipientEmail = $validatedData['recipient_email'];
 
@@ -334,7 +338,7 @@ class ABAKAProjectCoordinatorController extends Controller
 
         if($validatedData) {
                 // Reply to the email message with a body and an attachment
-        Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $recipientName));
+        Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $senderName, $recipientName));
 
                 // Redirect back to the previous page
         return redirect()->back()->with('success', 'Message Sent!');
