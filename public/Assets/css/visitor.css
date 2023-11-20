@@ -409,7 +409,7 @@ body {
     position: relative; /* Needed for absolute positioning of the image */
     /* width: 41.063rem;
     height: 26.25rem; */
-    height: 20rem;
+    height: 25rem;
 }
 
 .image-section .apao-big-image {
@@ -788,7 +788,7 @@ body {
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 >>>>>>> 8430338b979f0ca7e95c95a51fd00a0eade54c5a
-    margin: 1rem 0 1rem 0;
+    margin: 1rem;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     background: var(--colorWhite);

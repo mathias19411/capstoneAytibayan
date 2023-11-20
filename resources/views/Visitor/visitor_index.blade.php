@@ -5,7 +5,7 @@
     <div class="page-content">
         <div class="main-cards">
             <div class="image-section">
-                <img src="{{ asset('images/apao_main.png') }}" alt="apao image" class="apao-big-image">
+                <img src="{{ asset('images/apao_visitor.png') }}" alt="apao image" class="apao-big-image">
             </div>
             <div class="horizontal-scroll-image-section">
                 <div class="horizontal-scroll-image-content">
@@ -155,7 +155,7 @@
         <!--background slides!-->
         <div class="slides">
             <div class="slide slide1">
-                <img id="img" src="\images\image1.png">
+                <img id="img" src="\images\apao_main.png">
             </div>
             <div class="slide slide2">
                 <img id="img" src="\images\image2.png">
