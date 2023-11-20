@@ -155,6 +155,14 @@ body {
     background: var(--colorWhite);
     color: var(--colorBlack);
 }
+#menu ul li.active a {
+    /* Your styles for the active list item go here */
+    color: var(--colorGreen);
+    /* Add any additional styles as needed */
+}
+
+
+
 
 #menu .nav-left {
     display: flex;

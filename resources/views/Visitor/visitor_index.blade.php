@@ -78,7 +78,7 @@
                      farmers in which it includes their demographic profile. 
                 </p>
             </div>
-        </div> 
+      
     <div class="announcements-section">
     <div class="announcements-title">
         <h4>Announcements</h4>
