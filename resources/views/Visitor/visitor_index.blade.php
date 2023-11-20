@@ -102,6 +102,7 @@
                     </span>
                         <span class="announcement-time">{{ $timeEvent }}</span>
                 </div>
+                <h5>{{ $announcement->title }}</h5>
                 <h5>{{ $announcement->message }}</h5>
                 <h6>{{ $announcement->created_at->format('Y-m-d') }}</h6>
             </div>
