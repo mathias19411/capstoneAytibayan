@@ -90,7 +90,7 @@
                                                 <div class="col-md-6 mb-4" style="padding-left: 10%;">
                                                     <div class="form-outline">
                                                         <label for="Date">Date:</label>
-                                                        <p class="form-control" type="date" id="Date" name="date">{{ $inquiry->created_at }}</p>
+                                                        <p class="form-control" type="date" id="Date" name="date">{{ $inquiry->created_at->format('Y-m-d h:i A')  }}</p>
                                                     </div>
                                                 </div>
 
@@ -193,7 +193,7 @@
                             <td>{{ $inquiry->message }}</td>
                             <td>{{ $inquiry->email }}</td>
                             <td>{{ $inquiry->contacts }}</td>
-                            <td>{{ $inquiry->created_at }}</td>
+                            <td>{{ $inquiry->created_at->format('Y-m-d')  }}</td>
                             <td>
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $inquiry->id }}">
                                 <i class="fa-solid fa-eye fa-2xs"></i>

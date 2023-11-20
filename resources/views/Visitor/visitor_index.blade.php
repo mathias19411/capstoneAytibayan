@@ -92,7 +92,7 @@
             @php
                 $dayEvent = \Carbon\Carbon::parse($announcement->created_at)->format('d');
                 $monthEvent = \Carbon\Carbon::parse($announcement->created_at)->format('M');
-                $timeEvent = \Carbon\Carbon::parse($announcement->created_at)->format('H:i:s');
+                $timeEvent = \Carbon\Carbon::parse($announcement->created_at)->format('h:i A');
             @endphp
         <div class="announcements-card">
             <div class="announcements-card-date-time">
@@ -137,7 +137,7 @@
                             </div>
                             <h5>{{ $event->message }}</h5>
                             <div>
-                                <div class="event-time">Posted: {{$event->created_at}}</div>
+                                <div class="event-time">Posted: {{$event->created_at->format('Y-m-d h:i A') }}</div>
                             </div>
                         </div>
                     </div>

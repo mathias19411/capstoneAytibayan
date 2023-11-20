@@ -63,10 +63,7 @@
           <input type="text" placeholder="To" value="{{ $programName }}" name="recipient" readonly>
           <input type="email" value="{{ $programEmail }}" name="programEmail" hidden>
         </div>
-        <div class="input-box">
-          <label class="label">Date:</label>
-          <input type="date" name="date" required>
-        </div>
+        
         <div class="input-box message-box">
           <label class="label">Message:</label>
           <textarea type="text" placeholder="" name="message" required></textarea>
@@ -93,7 +90,9 @@
           <tr>
                             <td>{{ $inquiries->fullname }}</td>
                             <td>{{ $inquiries->message }}</td>
-                            <td>{{ $inquiries->date }}</td>              
+                            <td>{{ $inquiries->created_at->format('Y-m-d h:i A') }}</td>
+
+         
           </tr>
           @endforeach 
         </table>

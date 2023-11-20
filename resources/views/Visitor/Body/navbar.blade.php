@@ -15,7 +15,7 @@
 
     <div class="nav-right">
         <ul>
-        <li class="{{ request()->is('/') ? 'active' : '' }}">
+        <li class="{{ request()->is('visitor.home') ? 'active' : '' }}">
             <a href="{{ route('visitor.home') }}" class="scrollToTopButton">Home</a>
         </li>
 
