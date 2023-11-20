@@ -190,6 +190,11 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 <div class="card-project">
                     <h2 class="card-title">PROJECTS</h2>
                     <div class="card-content">
+                    @if($project->isEmpty())
+                    <div class="project-info">
+                        <p>No projects yet</p>
+                    </div>
+                    @else
                         @foreach($project->reverse() as $project)
                         <div class="project-info">
                             <div class="project-image">
@@ -201,6 +206,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             </div>
                         </div>
                         @endforeach
+                    @endif
                     </div>
                 </div>
 
@@ -210,6 +216,9 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                         <div class="card-announcement">
                             <h2 class="card-title">ANNOUNCEMENT</h2>
                             <div class="card-content">
+                            @if($announcement->isEmpty())
+                                <p>No announcements at the moment.</p>
+                            @else
                                 @foreach($announcement->reverse() as $announcements)
                                     @php
                                         $dayEvent = \Carbon\Carbon::parse($announcements->created_at)->format('d');
@@ -227,10 +236,12 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                     <div class="announcement-title">From: {{ $announcements->from }}</div>
                                     <div class="announcement-text">{{ $announcements->message }}</div>
                                     <div class="footer">
-                                    <div class="date">{{ $announcements->date }}</div>
+                                  <div class="date">{{ $announcements->created_at->format('Y-m-d') }}</div>
+
                                     </div>
                                 </div>
                                 @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -239,16 +250,22 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                         <div class="card-event">
                             <h2 class="card-title">EVENT</h2>
                             <div class="card-content">
+                            @if($events->isEmpty())
+                                <p>No events at the moment.</p>
+                            @else
                             @foreach($events->reverse() as $event)
                                 <div class="event-info">
                                     <div class="event-date">
                                     @php
-                                        $dayEvent = \Carbon\Carbon::parse($event->created_at)->format('d');
-                                        $monthEvent = \Carbon\Carbon::parse($event->created_at)->format('M');
+                                        $dayEvent = \Carbon\Carbon::parse($event->date)->format('d');
+                                        $monthEvent = \Carbon\Carbon::parse($event->date)->format('M');
+                                        $yearEvent = \Carbon\Carbon::parse($event->date)->format('Y');
                                         $timeEvent = \Carbon\Carbon::parse($event->created_at)->format('H:i:s');
                                     @endphp
+                                        <div class="year">{{ $yearEvent }}</div>
                                         <div class="date">{{ $dayEvent }}</div>
                                         <div class="month">{{ $monthEvent }}</div>
+                                       
                                     </div>
 
                                     <div class="event-body">
@@ -263,11 +280,12 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         </div>
                                         -->
                                         <div class="footer">
-                                        <div class="time">{{ $timeEvent }}</div>
+                                        <div class="time"> Posted: {{$event->created_at}}</div>
                                         </div>
                                     </div>
                                 </div>  
                             @endforeach
+                            @endif
                             </div>
                         </div>
                     </div>

@@ -102,12 +102,10 @@
                         <span class="announcement-time">{{ $timeEvent }}</span>
                 </div>
                 <h5>{{ $announcement->message }}</h5>
-                <h6>{{ $announcement->date }}</h6>
+                <h6>{{ $announcement->created_at->format('Y-m-d') }}</h6>
             </div>
         </div>
     @endforeach
-     
-        
     @endif
 </div>
 
@@ -123,12 +121,14 @@
             <div class="events-card">
                         <div class="events-card-title-date">
                             @php
-                                $dayEvent = \Carbon\Carbon::parse($event->created_at)->format('d');
-                                $monthEvent = \Carbon\Carbon::parse($event->created_at)->format('M');
+                                $dayEvent = \Carbon\Carbon::parse($event->date)->format('d');
+                                $monthEvent = \Carbon\Carbon::parse($event->date)->format('M');
+                                $yearEvent = \Carbon\Carbon::parse($event->date)->format('Y');
                                 $timeEvent = \Carbon\Carbon::parse($event->created_at)->format('H:i:s');
                             @endphp
-                            <h2>{{ $dayEvent }}</h2>
-                            <h4>{{ $monthEvent }}</h4>
+                            <div class="year">{{ $yearEvent }}</div>
+                            <div class="date">{{ $dayEvent }}</div>
+                            <div class="month">{{ $monthEvent }}</div>
                         </div>
                         <div class="events-card-content">
                             <div>
@@ -136,7 +136,7 @@
                             </div>
                             <h5>{{ $event->message }}</h5>
                             <div>
-                                <div class="announcement-time">{{ $timeEvent }}</div>
+                                <div class="event-time">Posted: {{$event->created_at}}</div>
                             </div>
                         </div>
                     </div>

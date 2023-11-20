@@ -922,17 +922,15 @@ body.schedule {
     position: absolute;
     opacity: 1;
 }
-.month,
-.day {
+.month{
     font-size: 10px;
     line-height: 30px;
     font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 3px;
 }
 .date {
     font-size: 40px;
-    line-height: 40px;
+    line-height: 30px;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -953,18 +951,13 @@ body.schedule {
 }
 
 .year {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    font-size: 14px;
+    font-size: 10px;
     line-height: 30px;
-    font-weight: 300;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0;
-    text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    color: var(--primary-color);
+    letter-spacing: 3px;
+    margin-top:5px;
+
 }
 .calendarNormal {
     width: 100%;
@@ -2417,7 +2410,8 @@ body.beneficiary .add-modal:hover {
 .event-body .time {
     left: 0;
     bottom: 0;
-    font-size: 12px;
+    margin-top: 5px;
+    font-size: 9px;
     float: right;
     display: flex;
     flex-direction: column;

@@ -2153,7 +2153,7 @@ body.announcement_events_inquiry .message-row {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     max-width: calc(33.33% - 20px); /* Set max width for each box */
     height: 300px; /* Set a fixed height for each box */
-    overflow: hidden;
+    overflow: auto;
     position:relative ;
 }
 

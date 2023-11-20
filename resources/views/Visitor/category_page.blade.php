@@ -98,14 +98,24 @@
               <!-- Content for the right section -->
               <div class="title" >
                  <h3>Projects</h3>
-        </div>
-        @foreach($project->reverse() as $project)
-            <div class="project">
-                <img src="{{ asset('Uploads/Updates/'.$project->attachment) }}">
-                <h1>Title: {{ $project->title }}</h1>
-                <h2>Description: {{ $project->message }}</h2>
             </div>
-        @endforeach
+            @if($project->isEmpty())
+            <div class="project">
+                <p>No projects yet</p>
+            </div>
+            @else
+                @foreach($project->reverse() as $project)
+                    <div class="project">
+                        <div class ="project-image">
+                            <img src="{{ asset('Uploads/Updates/'.$project->attachment) }}">
+                        </div>
+                        <div class="eme">
+                            <h1>Title: {{ $project->title }}</h1>
+                            <h2>Description: {{ $project->message }}</h2>
+                        </div>
+                    </div>
+                @endforeach
+                @endif
             <div class="col" id="inquiry">
 				<h5 id="inquiry_">Inquiry</h5>
 				<form method="post" action="{{ route('specificinquiry.send') }}">
