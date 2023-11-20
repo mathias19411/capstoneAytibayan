@@ -922,7 +922,8 @@ body.schedule {
     position: absolute;
     opacity: 1;
 }
-.month{
+.month,
+.day{
     font-size: 10px;
     line-height: 30px;
     font-weight: 600;
@@ -950,15 +951,7 @@ body.schedule {
     visibility: hidden;
 }
 
-.year {
-    font-size: 10px;
-    line-height: 30px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-top:5px;
 
-}
 .calendarNormal {
     width: 100%;
     position: absolute;
@@ -2407,6 +2400,15 @@ body.beneficiary .add-modal:hover {
     display: flex;
     align-items: stretch; /* Stretch both items to the same height */
   }
+.event-info .year {
+    font-size: 10px;
+    line-height: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top:5px;
+
+}
 .event-body .time {
     left: 0;
     bottom: 0;
