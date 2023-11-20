@@ -332,7 +332,7 @@ $benefAssistanceStatuses = [];
 
 <!--project-->
 <div class="modal fade" id="projectModal" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal-title">Projects</h5>
@@ -345,11 +345,16 @@ $benefAssistanceStatuses = [];
                 <div class= "project_box">
                 @foreach($project->reverse() as $projects)
                     <div class="box">
-                        <h1>Title: {{ $projects->title }}</h1>
+                    <button class="delete-btn" title="Delete Project">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                        <h5>Title: {{ $projects->title }}</h5>
                         <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}">
                         <h2>Visibility: {{ $projects->recipient }}</h2>
+                        <div class="description">
                         <p>Description: {{ $projects->message }}</p>
                     </div>
+                </div>
                 @endforeach   
                 </div>
              </div>
