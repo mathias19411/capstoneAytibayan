@@ -310,7 +310,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
     //Benef Schedule
     Route::get('/Beneficiary/schedule', [BeneficiaryController::class, 'BeneficiarySchedule'])->name('beneficiary.schedule');
     //Benef Program Profile
-    //Route::get('/Beneficiary/programprofile', [BeneficiaryController::class, 'BeneficiaryProgramProfile'])->name('beneficiary.programprofile');
+    Route::get('/Beneficiary/programprofile', [BeneficiaryController::class, 'Beneficiaryprogramprofile'])->name('beneficiary.programprofile');
 
     //Benef Inquiry
     Route::get('/Beneficiary/Inquiry', [BeneficiaryController::class, 'BeneficiaryInquiry'])->name('beneficiary.inquiry');

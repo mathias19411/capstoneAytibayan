@@ -320,4 +320,9 @@ class BeneficiaryController extends Controller
         return redirect()->back();
     } // End Method
 
+    public function Beneficiaryprogramprofile()
+    {
+        return view('beneficiary.programprofile');
+    }
+
 }
