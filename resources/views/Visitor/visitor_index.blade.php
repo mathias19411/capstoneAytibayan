@@ -103,6 +103,7 @@
                         <span class="announcement-time">{{ $timeEvent }}</span>
                 </div>
                 <h4>{{ $announcement->title }}</h4>
+                <hr class="announcement">
                 <h5>{{ $announcement->message }}</h5>
                 <h6>{{ $announcement->created_at->format('Y-m-d') }}</h6>
             </div>

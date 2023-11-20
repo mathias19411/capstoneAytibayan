@@ -343,21 +343,31 @@ $benefAssistanceStatuses = [];
                 <!--
                 <img src="\images\project_background1.png"> -->
                 <div class= "project_box">
-                @foreach($project->reverse() as $projects)
-                    <div class="box">
-                    <button class="delete-btn" title="Delete Project">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                        <h5>Title: {{ $projects->title }}</h5>
-                        <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}">
-                        <h2>Visibility: {{ $projects->recipient }}</h2>
-                        <div class="description">
-                        <p>Description: {{ $projects->message }}</p>
+                        @foreach($project->reverse() as $projects)
+                        <div class="box">
+                            <div class="project-info">
+                                <h5>Title: {{ $projects->title }}</h5>
+                                <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}">
+                                <h2>Visibility: {{ $projects->recipient }}</h2>
+                                <hr class="rounded">
+                                <div class="description">
+                                    <p>Description: {{ $projects->message }}</p>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <button class="edit-btn" title="Edit Project">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="delete-btn" title="Delete Project">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        @endforeach   
                     </div>
                 </div>
-                @endforeach   
-                </div>
-             </div>
              <button type="button" class="add-project_modal" data-bs-toggle="modal" data-bs-target="#modal_addproject">Add Project</button>
             </div>
             <div class="modal-footer">

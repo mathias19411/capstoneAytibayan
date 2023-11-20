@@ -2133,17 +2133,19 @@ body.announcement_events_inquiry .message-row {
 }
 
 .project_box {
+    /* Styles for the container of multiple project boxes */
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 20px;
-    max-height: 400px; /* Use max-height instead of height */
-    width: 100%; /* Adjust width */
+    max-height: 400px; /* Using max-height instead of height for container */
+    width: 100%;
     overflow: auto; /* Enable scrolling if content exceeds max-height */
 }
 
 .project_box .box {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust to accommodate three boxes */
+    /* Styles for individual project boxes */
+    flex: 0 0 calc(33.33% - 20px); /* Adjust to accommodate three boxes in a row */
     margin: 10px;
     text-align: center;
     border: 1px solid #ccc;
@@ -2153,25 +2155,40 @@ body.announcement_events_inquiry .message-row {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     max-width: calc(33.33% - 20px); /* Set max width for each box */
     height: 300px; /* Set a fixed height for each box */
-    overflow: auto;
-    position:relative ;
+    position: relative; /* Positioning context for absolute elements */
+    overflow: hidden; /* Prevent content overflow */
 }
 
-.delete-btn {
+.project-info {
+    position: relative;
+    height: calc(100% - 40px); /* Adjust height for the content area, considering the button's height */
+    overflow-y: auto; 
+}
+
+.footer {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
+    bottom: 0;
+    width: 100%;
+    text-align: center; 
+    padding: 10px; 
+    background: none;  
+    margin: auto;  
+}
+
+.edit-btn,
+.delete-btn {
     background: none;
     border: none;
     cursor: pointer;
+    margin-right: 10px;
 }
 
-.description {
-    overflow: auto;
+.edit-btn i {
+    font-size: 15px;
+    color: #f0a60f;
 }
-
 .delete-btn i {
-    color: #ff0000; /* Red color for delete icon */
+    color: #ff0000;
     font-size: 15px;
 }
 
@@ -2181,14 +2198,31 @@ body.announcement_events_inquiry .message-row {
     object-fit: cover; /* Use object-fit for image sizing */
 }
 
-.project_box .box h2 {
+.project_box .box h5 {
     font-size: 17px;
+    color: #7bb701;
+    text-align: left;
+}
+
+
+.project_box .box h2 {
+    font-size: 16px;
     color: black;
+    font-weight: 400;
     margin: 10px 0;
 }
 
+ hr.rounded {
+    border: 1px solid #7bb701;
+    border-radius: 5px;
+    width: 50px;
+    margin: auto;
+    opacity: 100;
+    margin-bottom: 5px;
+}
+
 .project_box .box .description {
-    font-size: 16px;    
+    font-size: 14px;    
     white-space: normal; /* Prevent text wrapping */
     overflow: auto;
 }

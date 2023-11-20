@@ -823,9 +823,9 @@ body {
 }
 
 .announcements-card-date-time h5 {
-    font-size: 18px;
+    font-size: 16px;
     width: 100%;
-    font-weight: light;
+    font-weight: 400;
     text-align: left;
 }
 
@@ -834,6 +834,15 @@ body {
     width: 100%;
     font-weight: lighter;
     text-align: right;
+}
+
+hr.announcement {
+    border: 2px solid #7bb701;
+    border-radius: 5px;
+    width: 50px;
+    text-align: left;
+    opacity: 300;
+    margin: 10px 0 10px 0;
 }
 
 .announcements-section
