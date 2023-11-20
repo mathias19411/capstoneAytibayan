@@ -27,169 +27,97 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('Assets/js/beneficiary.js') }}"></script>
     <script>
-        const updates = [{
-                id: 1,
-                date: '2023-09-22',
-                picture: '/images/agri1.png',
-                title: 'Update 1 title here.',
-            },
-            {
-                id: 2,
-                date: '2023-09-23',
-                picture: '/images/agri2.png',
-                title: 'Update 2 title here.',
-            },
-            {
-                id: 3,
-                date: '2023-09-23',
-                picture: '/images/agri3.png',
-                title: 'Update 2 title here.',
-            },
-            {
-                id: 4,
-                date: '2023-09-23',
-                picture: '/images/agri4.png',
-                title: 'Update 2 title here.',
-            },
-        ];
+// Function to create an update card
+function createUpdateCard(update) {
+    const card = document.createElement("div");
+    card.classList.add("card", "mb-3", "col-md-3", "d-flex", "flex-column"); // Apply Bootstrap grid classes and flex column layout
 
-        // Function to create an update card
-        function createUpdateCard(update) {
-            const card = document.createElement("div");
-            card.classList.add("card", "mb-3", "col-md-3"); // Apply Bootstrap grid classes
+    // Create card body
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
 
-            // Create card body
-            const cardBody = document.createElement("div");
-            cardBody.classList.add("card-body");
+    // Display date with smaller font size
+    const dateElement = document.createElement("p");
+    dateElement.classList.add("update-date");
+    dateElement.innerText = `Date: ${update.date}`;
+    dateElement.style.fontSize = "12px"; // Adjust the font size as needed
+    cardBody.appendChild(dateElement);
 
-            // Display date
-            const dateElement = document.createElement("p");
-            dateElement.classList.add("update-date");
-            dateElement.innerText = `Date: ${update.date}`;
-            cardBody.appendChild(dateElement);
+    // Display picture (if provided)
+    if (update.picture) {
+        const pictureElement = document.createElement("img");
+        pictureElement.src = update.picture;
+        pictureElement.alt = "Beneficiary's Picture";
+        pictureElement.classList.add("img-thumbnail"); // Add Bootstrap class for a smaller image
+        cardBody.appendChild(pictureElement);
+    }
 
-            // Display picture (if provided)
-            if (update.picture) {
-                const pictureElement = document.createElement("img");
-                pictureElement.src = update.picture;
-                pictureElement.alt = "Beneficiary's Picture";
-                pictureElement.classList.add("img-thumbnail"); // Add Bootstrap class for a smaller image
-                cardBody.appendChild(pictureElement);
-            }
+    // Display title with scrollable container
+    const titleContainer = document.createElement("div");
+    titleContainer.classList.add("update-title-container");
+    titleContainer.style.maxHeight = "100px"; // Adjust the height as needed
+    titleContainer.style.overflowY = "auto";
+    const titleElement = document.createElement("p");
+    titleElement.classList.add("update-title");
+    titleElement.innerText = update.title;
+    titleContainer.appendChild(titleElement);
+    cardBody.appendChild(titleContainer);
 
-            // Display title (limited to 50 words)
-            const titleElement = document.createElement("p");
-            titleElement.classList.add("update-title");
-            titleElement.innerText = `Title: ${update.title}`;
-            cardBody.appendChild(titleElement);
+    // Create card footer for edit button
+    const cardFooter = document.createElement("div");
+    cardFooter.classList.add("card-footer", "mt-auto", "d-flex", "justify-content-end", "align-items-center");
 
-            // Create card footer for edit and delete buttons
-            const cardFooter = document.createElement("div");
-            cardFooter.classList.add("card-footer");
+    // Create edit button with Bootstrap modal attributes
+    const editButton = document.createElement("button");
+    editButton.classList.add("btn", "btn-pink", "edit-update");
+    editButton.innerHTML = '<i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>';
 
-            // Create edit button with Bootstrap modal attributes
-            const editButton = document.createElement("button");
-            editButton.classList.add("btn", "btn-pink", "edit-update");
-            editButton.innerHTML = '<i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>';
+    // Add Bootstrap modal attributes to the "Edit" button
+    editButton.setAttribute("data-bs-toggle", "modal");
+    editButton.setAttribute("data-bs-target", "#editModal");
 
-            // Add Bootstrap modal attributes to the "Edit" button
-            editButton.setAttribute("data-bs-toggle", "modal");
-            editButton.setAttribute("data-bs-target", "#editModal");
+    // Attach the update data to the edit button as a dataset attribute
+    editButton.dataset.updateId = update.id;
 
-            // Attach the update data to the edit button as a dataset attribute
-            editButton.dataset.updateId = update.id;
+    editButton.addEventListener("click", () => {
+        // Implement edit functionality here
+        const editUpdateId = editButton.dataset.updateId;
+        const selectedUpdate = updates.find((update) => update.id == editUpdateId);
 
-            editButton.addEventListener("click", () => {
-                // Implement edit functionality here
-                const editUpdateId = editButton.dataset.updateId;
-                const selectedUpdate = updates.find((update) => update.id == editUpdateId);
+        // Populate the edit modal with the selected update's data
+        document.getElementById("edit-date").value = selectedUpdate.date;
+        document.getElementById("edit-title").value = selectedUpdate.title;
+        // You can handle the picture editing here as well
+    });
 
-                // Populate the edit modal with the selected update's data
-                document.getElementById("edit-date").value = selectedUpdate.date;
-                document.getElementById("edit-title").value = selectedUpdate.title;
-                // You can handle the picture editing here as well
-            });
+    // Append edit button to the card footer
+    cardFooter.appendChild(editButton);
 
-            // Create delete button
-            const deleteButton = document.createElement("button");
-            deleteButton.classList.add("btn", "btn-delete", "delete-update");
-            deleteButton.innerHTML = '<i class="fa-solid fa-trash fa-lg" style="color:#ff1100"></i>';
+    // Append card body and card footer to the card
+    card.appendChild(cardBody);
+    card.appendChild(cardFooter);
 
-            deleteButton.addEventListener("click", () => {
-                // Implement delete functionality here
-                const editUpdateId = editButton.dataset.updateId;
-                const updateIndex = updates.findIndex((update) => update.id == editUpdateId);
+    return card;
+}
 
-                if (updateIndex !== -1) {
-                    // Remove the update from the updates array
-                    updates.splice(updateIndex, 1);
+// Function to display updates as cards
+function displayUpdates() {
+    const updateDetails = document.getElementById("update-details");
 
-                    // Remove the card from the UI
-                    card.remove();
-                }
-            });
+    // Clear existing update cards
+    updateDetails.innerHTML = "";
 
-            // Append edit and delete buttons to the card footer
-            cardFooter.appendChild(editButton);
-            cardFooter.appendChild(deleteButton);
+    // Loop through updates and create cards
+    updates.forEach((update) => {
+        const updateCard = createUpdateCard(update);
+        updateDetails.appendChild(updateCard);
+    });
+}
 
-            // Append card body and card footer to the card
-            card.appendChild(cardBody);
-            card.appendChild(cardFooter);
+// Call the displayUpdates function initially to populate the update cards
+displayUpdates();
 
-            return card;
-        }
-
-        // Function to display updates as cards
-        function displayUpdates() {
-            const updateDetails = document.getElementById("update-details");
-
-            // Clear existing update cards
-            updateDetails.innerHTML = "";
-
-            // Loop through updates and create cards
-            updates.forEach((update) => {
-                const updateCard = createUpdateCard(update);
-                updateDetails.appendChild(updateCard);
-            });
-        }
-
-        // Call the displayUpdates function initially to populate the update cards
-        displayUpdates();
-
-        // Function to update an existing update
-        function updateUpdate(updateId, newUpdateData) {
-            const updateIndex = updates.findIndex((update) => update.id == updateId);
-
-            if (updateIndex !== -1) {
-                // Update the existing update with the new data
-                updates[updateIndex] = {
-                    ...updates[updateIndex],
-                    ...newUpdateData
-                };
-            }
-        }
-
-        // Handle Save Changes button click in the modal
-        const editModalSaveButton = document.getElementById("edit");
-        editModalSaveButton.addEventListener("click", () => {
-            const editUpdateId = editModalSaveButton.dataset.updateId;
-            const newDate = document.getElementById("edit-date").value;
-            const newTitle = document.getElementById("edit-title").value;
-
-            // Update the existing update with the new data
-            updateUpdate(editUpdateId, {
-                date: newDate,
-                title: newTitle
-            });
-
-            // Hide the edit modal
-            const editModal = new bootstrap.Modal(document.getElementById("editModal"));
-            editModal.hide();
-
-            // Refresh the displayed updates
-            displayUpdates();
-        });
+// Rest of your code remains unchanged...
 
         // Add update functionality
         const updateForm = document.getElementById("update-form");
@@ -207,6 +135,50 @@
 
 
         });
+    </script>
+
+<script>
+    //OPEN PICTURE 
+// Display picture (if provided)
+if (update.picture) {
+    const pictureElement = document.createElement("img");
+    pictureElement.src = update.picture;
+    pictureElement.alt = "Beneficiary's Picture";
+    pictureElement.classList.add("img-thumbnail"); // Add Bootstrap class for a smaller image
+
+    // Add click event to open the image in a modal
+    pictureElement.addEventListener("click", () => {
+        displayImageInModal(update.picture);
+    });
+
+    cardBody.appendChild(pictureElement);
+}
+
+// Function to display the image in a modal
+function displayImageInModal(imageURL) {
+    const modalBody = document.createElement("div");
+    modalBody.classList.add("modal-body");
+
+    const modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
+
+    const modalImage = document.createElement("img");
+    modalImage.src = imageURL;
+    modalImage.alt = "Beneficiary's Picture";
+
+    modalBody.appendChild(modalImage);
+    modalContent.appendChild(modalBody);
+
+    // Open Bootstrap modal
+    const modal = new bootstrap.Modal(document.getElementById("imageModal"));
+    modal.show();
+
+    // Append the modal content to the modal dialog
+    const modalDialog = document.getElementById("imageModalDialog");
+    modalDialog.innerHTML = '';
+    modalDialog.appendChild(modalContent);
+}
+
     </script>
 
     <script>

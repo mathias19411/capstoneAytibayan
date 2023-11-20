@@ -1952,11 +1952,72 @@ body.beneficiary #img-view {
     background-size: cover;
 }
 
+.modal-body #img-view {
+    width: 100%;
+    height: 100%;
+    border: 5px;
+    border: 2px dashed #bbb5ff;
+    background: #f0fff0;
+    font-size: 12px;
+    background-size: cover;
+}
+
 body.beneficiary #img-view img {
     margin: auto;
     width: auto;
-    padding-top: 10px;
 }
+
+.card-body {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+.update-details {
+    font-weight: bold;
+    color: white;
+    background-color: #7bb701;
+    border-radius: 100px;
+    width: 300px;
+    padding: 5px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.update-title {
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+.update-date {
+    font-size: 13px;
+    background-color: #7bb701;
+    color: white;
+    border-radius: 10px;
+    margin: 5px;
+    opacity: 0.8;
+    
+}
+.image-update #img-view {
+    width: 100%; /* Adjust the width as needed */
+    height: auto;
+    max-height: 300px; /* Set maximum height to prevent overflow */
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-size: cover;
+}
+
+.image-update #img-view img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 
 .modal-backdrop {
     z-index: -1;
@@ -2050,7 +2111,7 @@ body.beneficiary .add-modal:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0 auto;
+    margin: 20px;
     font-size: 15px;
 }
 /*
@@ -2068,7 +2129,7 @@ body.beneficiary .add-modal:hover {
 */
 
 .card-progress {
-    width: 450px;
+    width: 100%;
     max-width: 100%;
     height: 620px;
     padding: 10px;
@@ -2237,7 +2298,7 @@ body.beneficiary .add-modal:hover {
 }
 
 .card-project {
-    width: auto;
+    width: 100%;
     height: 200px;
     padding: 10px;
     margin: 10px;
@@ -2295,7 +2356,7 @@ body.beneficiary .add-modal:hover {
 }
 
 .card-announcement {
-    width: auto;
+    width: 100%;
     max-width: 100%;
     height: 400px;
     padding: 10px;
@@ -2369,7 +2430,7 @@ body.beneficiary .add-modal:hover {
 }
 
 .card-event {
-    width: auto;
+    width: 100%;
     max-width: 100%;
     height: 400px; 
     padding: 10px;

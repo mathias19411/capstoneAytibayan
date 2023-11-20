@@ -15,7 +15,7 @@
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title:</label>
-                <input type="text" id="title" class="form-control" name="title" maxlength="50" required>
+                <input type="text" id="title" class="form-control" name="title" maxlength="100" required>
             </div>
             <div class="mb-3">
                 <input type="email" name="email" value="{{ $userEmail }}" hidden>
@@ -37,7 +37,7 @@
         </div>
         <div class="row mt-5">
         <div class="col mx-auto">
-            <h4 class="text-center">Update Details</h4>
+            <h4 class="update-details text-center">Update Details</h4>
             <div class="row">
                 <!-- Update cards will be dynamically generated here -->
                 @foreach($updates->reverse() as $update)
@@ -59,13 +59,12 @@
                                         <label for="edit-information" class="form-label">Change Title:</label>
                                         <input id="edit-information" class="form-control" value="{{ $update->title }}" name="title" required>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-3 image-update">
                                         <label for="picture" class="form-label">Change Picture:</label>
                                             <label id="drop-img">
                                                 <input name="image" type="file" hidden>
                                                 <div id="img-view">
                                                     <img src="{{ asset('Uploads/Updates/'.$update->image) }}">
-                                                    <p> Drag and drop or click here <br> to upload picture</p>
                                                 </div>
                                             </label>
                                     </div>
@@ -80,10 +79,10 @@
                 </div>
                 <div class="card mb-3 col-md-3">
                     <div class="card-body">
-                        <p class="update-date">Date: {{ $update->created_at }}</p>
                         <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
                         <p class="update-title">Title: {{ $update->title }}</p>
                     </div>
+                    <p class="update-date">Date: {{ $update->created_at }}</p>
                     <div class="card-footer">
                         <button class="btn btn-pink edit-update" data-bs-toggle="modal" data-bs-target="#editModal{{ $update->id }}" data-update-id="1">
                             <i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>
@@ -95,5 +94,17 @@
         </div>
     </div>
     </div>
+
+<!-- Modal Clicking the picture -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- Image will be displayed here -->
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endsection
