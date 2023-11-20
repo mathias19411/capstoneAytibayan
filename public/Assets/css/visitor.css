@@ -793,7 +793,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
     margin: 1rem;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
@@ -820,6 +819,7 @@ body {
 .announcements-card-date-time h5 {
     font-size: 18px;
     width: 100%;
+    text-align: left;
 
 
 }
@@ -831,6 +831,13 @@ body {
     align-items: left;
     margin: 0;
 }
+
+.announcements-section
+    .announcements-card
+    .announcements-card-date-time {
+    padding: 10px;
+    text-align: left;
+    }
 
 .announcements-section
     .announcements-card
