@@ -223,7 +223,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                     @php
                                         $dayEvent = \Carbon\Carbon::parse($announcements->created_at)->format('d');
                                         $monthEvent = \Carbon\Carbon::parse($announcements->created_at)->format('M');
-                                        $timeEvent = \Carbon\Carbon::parse($announcements->created_at)->format('H:i:s');
+                                        $timeEvent = \Carbon\Carbon::parse($announcements->created_at)->format('h:i A');
                                     @endphp
                                  
                                 <div class="announcement-info">
@@ -280,7 +280,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         </div>
                                         -->
                                         <div class="footer">
-                                        <div class="time"> Posted: {{$event->created_at}}</div>
+                                        <div class="time"> Posted: {{$event->created_at->format('Y-m-d h:i A')}}</div>
                                         </div>
                                     </div>
                                 </div>  
