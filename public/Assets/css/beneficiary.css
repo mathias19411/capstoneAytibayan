@@ -2382,16 +2382,28 @@ body.beneficiary .add-modal:hover {
 }
 
 .announcement-title {
-    padding-top: 5px;
-    font-size: 15px;
+    font-size: 18px;
+    color: #7bb701;
     font-weight: bold;
+    text-align: left;
+
 }
 
 .announcement-text {
-    line-height: 120%;
+    font-size: 16px;
+    width: 100%;
+    font-weight: 400;
+    text-align: left;
 }
 
-
+hr.announcement {
+    border: 2px solid #7bb701;
+    border-radius: 5px;
+    width: 50px;
+    text-align: left;
+    opacity: 300;
+    margin: 10px 0 10px 0;
+}
 
 .card-announcement .card-content {
     max-height: calc(100% - 40px);

@@ -40,7 +40,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </a>
             </li>
             <li class="{{ Route::currentRouteName() ==  'beneficiary.programprofile' ? 'active' : '' }}">
-                <a href="{{ route('beneficiary.programprofile') }}" >
+                <a href ="">
                     <i class="uil uil-user-circle"></i>
                     <span class="link-name">Profile</span>
                 </a>

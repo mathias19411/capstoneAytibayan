@@ -234,6 +234,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         <span class="announcement-time">{{ $timeEvent }}</span>
                                 </div>
                                     <div class="announcement-title">From: {{ $announcements->from }}</div>
+                                    <hr class="announcement">
                                     <div class="announcement-text">{{ $announcements->message }}</div>
                                     <div class="footer">
                                   <div class="date">{{ $announcements->created_at->format('Y-m-d') }}</div>

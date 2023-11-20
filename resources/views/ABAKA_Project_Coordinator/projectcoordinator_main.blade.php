@@ -903,6 +903,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script>
+    //DELETE PROJECT
+    function deleteProject(button) {
+    if (confirm('Are you sure you want to delete this project?')) {
+        // Assuming each box is a parent element of the delete button
+        const box = button.closest('.box');
+        // Perform deletion logic here, for example:
+        box.remove(); 
+    } else {
+    }
+}
+    </script>
+
+    
 </body>
 
 </html>
