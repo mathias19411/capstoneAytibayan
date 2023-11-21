@@ -182,12 +182,12 @@
                             </div>
                         </div>
                         <tr>
-                            <td>{{ $announcements->from }}</td>
-                            <td>{{ $announcements->title }}</td>
-                            <td>{{ $announcements->to }}</td>
-                            <td>{{ $announcements->message }}</td>
-                            <td>{{ $announcements->created_at }}</td>
-                            <td>
+                        <td class="column">{{ $announcements->from }}</td>
+                        <td class="column">{{ $announcements->title }}</td>
+                        <td class="column">{{ $announcements->to }}</td>
+                        <td class="column message-column">{{ $announcements->message }}</td>
+                        <td class="column">{{ $announcements->created_at }}</td>
+                        <td>
                             <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view{{ $announcements->id }}">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                             </button>

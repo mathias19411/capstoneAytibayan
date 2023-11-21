@@ -1500,14 +1500,17 @@ body.announcement_events_inquiry .table .action{
     padding-bottom: 1px;
 }
 
-body.announcement_events_inquiry .table td {
+body.announcement_events_inquiry .table .column {
     font-size: 13px;
     padding: px 5px;
     margin: 10px;
-    white-space: nowrap; /* Prevent text wrapping */
+   
+}
+body.announcement_events_inquiry .table  td.message-column {
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 200px; /* Adjust the maximum width as needed */
+    max-width: 250px; 
 }
 
 body.announcement_events_inquiry .add-modal {
@@ -2008,6 +2011,8 @@ body.announcement_events_inquiry tr:hover td {
     opacity: 1;
 }
 
+
+
 /**message viewpopup**/
 
 /* Popup container */
@@ -2289,30 +2294,7 @@ body.announcement_events_inquiry tr:hover td {
     cursor: pointer;
     background-color: #f2f2f2;
 }
-/* Common tooltip style for all buttons */
-.tooltip-button {
-    position: relative;
-}
 
-.tooltip-button::after {
-    content: attr(data-tooltip);
-    background-color: #989393;
-    color: #fff;
-    border-radius: 5px;
-    padding: 5px 10px;
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-    pointer-events: none;
-}
-
-
-.tooltip-button:hover::after {
-    opacity: 1;
-}
 
 #modal_announcement .modal-body {
     overflow-y: auto; 

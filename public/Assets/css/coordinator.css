@@ -1441,14 +1441,17 @@ body.announcement_events_inquiry .table .action{
     padding-bottom: 1px;
 }
 
-body.announcement_events_inquiry .table td {
+body.announcement_events_inquiry .table .column {
     font-size: 13px;
     padding: px 5px;
     margin: 10px;
-    white-space: nowrap; /* Prevent text wrapping */
+   
+}
+body.announcement_events_inquiry .table  td.message-column {
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 200px; /* Adjust the maximum width as needed */
+    max-width: 250px; 
 }
 
 body.announcement_events_inquiry .add-modal {
