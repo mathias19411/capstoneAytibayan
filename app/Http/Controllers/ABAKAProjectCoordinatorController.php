@@ -555,6 +555,38 @@ class ABAKAProjectCoordinatorController extends Controller
             return redirect()->back()->with('error', 'Validation failed. Please check your input.');
         }
     } //end method
+    public function ProjCoordinatorUpdateProject(Request $request)
+    {
+        $aid = $request->project_id;
+        
+        Projects::findOrFail($aid)->update([
+            'title'=>$request->title,
+            'recipient'=>$request->recipient,
+            'attachment'=>$request->image,
+            'message'=>$request->message,
+        ]);
+
+        return redirect()->back()->with('success', 'Project is Updated!');
+    } // End Method
+    public function ProjCoordinatorDeleteProject(Request $request)
+    {
+        $id = $request->project_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = Projects::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Project Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
+    } // End Method
 
     public function ProjCoordinatorViewProfile()
     {
@@ -696,5 +728,10 @@ class ABAKAProjectCoordinatorController extends Controller
         } catch (\Exception $e) {
         return response()->json(['error' => 'Error sending notification: ' . $e->getMessage()], 500);
     }
+    }
+
+    public function ProgramProfile(){
+
+        return view('');
     }
 }

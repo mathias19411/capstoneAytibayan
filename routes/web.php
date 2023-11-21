@@ -262,6 +262,8 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
     //Coordinator Progress
     Route::get('/ABAKA_ProjectCoordinator/Progress', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('abakaprojectcoordinator.progress');
     Route::post('/Project_Coordinator/Project_Page/Add', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAddProject'])->name('add.project');
+    Route::patch('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorUpdateProject'])->name('edit.project');
+    Route::delete('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorDeleteProject'])->name('delete.project');
 
     Route::post('/ABAKA_ProjectCoordinator/ProgressAdd', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgressAdd'])->name('abakaprojectcoordinator.progressAdd');
 
@@ -309,8 +311,9 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
 
     //Benef Schedule
     Route::get('/Beneficiary/schedule', [BeneficiaryController::class, 'BeneficiarySchedule'])->name('beneficiary.schedule');
+   
     //Benef Program Profile
-    Route::get('/Beneficiary/programprofile', [BeneficiaryController::class, 'Beneficiaryprogramprofile'])->name('beneficiary.programprofile');
+    Route::get('/Beneficiary/programprofile', [BeneficiaryController::class, 'Beneficiaryprogramprofile'])->name('beneficiaryprogram.profile');
 
     //Benef Inquiry
     Route::get('/Beneficiary/Inquiry', [BeneficiaryController::class, 'BeneficiaryInquiry'])->name('beneficiary.inquiry');

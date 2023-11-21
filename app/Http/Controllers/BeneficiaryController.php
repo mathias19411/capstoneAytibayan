@@ -322,7 +322,7 @@ class BeneficiaryController extends Controller
 
     public function Beneficiaryprogramprofile()
     {
-        return view('beneficiary.programprofile');
+        return view('Beneficiary.programprofile');
     }
 
 }
