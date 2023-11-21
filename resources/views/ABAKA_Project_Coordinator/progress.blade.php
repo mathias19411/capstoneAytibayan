@@ -356,29 +356,38 @@ $benefAssistanceStatuses = [];
                                         @csrf
                                         @method('PATCH')
                                         <div class="modal-body">
-                                                    <div class="project-info">
-                                                        <input type="hidden" name="project_id" value="{{ $projects->id }}">
-                                                        <h5>Title: <input type="text" value="{{ $projects->title }}" name="title"></h5>
-                                                        <div class="row">
+                                            <div class="project-info-edit">
+                                                <input type="hidden" name="project_id" value="{{ $projects->id }}">
+                                                <div class="mb-3">
+                                                    <label for="projectTitle" class="form-label">Title:</label>
+                                                    <input type="text" class="form-control" id="projectTitle" value="{{ $projects->title }}" name="title">
+                                                </div>
+                                                <div class="row mb-3 image-update">
+                                                    <label for="projectImage" class="col-sm-2 col-form-label">Image:</label>
+                                                    <div class="col-sm-10">
                                                         <label id="drop-img">
                                                             <input name="image" type="file" hidden>
                                                             <div id="img-view">
-                                                            <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}">
+                                                                <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}" class="img-fluid">
                                                             </div>
                                                         </label>
-                                                        </div>
-                                                        <h2>Visibility: <input type="text" name="recipient" value="{{ $projects->recipient }}"></h2>
-                                                        <hr class="rounded">
-                                                        <div class="description">
-                                                            <p>Description: <input type="text" name="message" value="{{ $projects->message }}"></p>
-                                                        </div>
                                                     </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="add">Save Changes</button>
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label for="projectVisibility" class="form-label">Visibility:</label>
+                                                    <input type="text" class="form-control" id="projectVisibility" value="{{ $projects->recipient }}" name="recipient">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="projectDescription" class="form-label">Description:</label>
+                                                    <input type="text" class="form-control" id="projectDescription" value="{{ $projects->message }}" name="message">
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="add">Save Changes</button>
+                                        </div>
+
                                     </form>
                                     </div>
                             </div>

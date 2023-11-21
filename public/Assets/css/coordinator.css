@@ -2147,8 +2147,7 @@ body.announcement_events_inquiry .message-row {
 }
 
 .project_box .box {
-    /* Styles for individual project boxes */
-    flex: 0 0 calc(33.33% - 20px); /* Adjust to accommodate three boxes in a row */
+
     margin: 10px;
     text-align: center;
     border: 1px solid #ccc;
@@ -2156,16 +2155,16 @@ body.announcement_events_inquiry .message-row {
     padding: 10px;
     background-color: #f2f2f2;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-    max-width: calc(33.33% - 20px); /* Set max width for each box */
-    height: 300px; /* Set a fixed height for each box */
+    width: 220px;
+    height: 300px; 
     position: relative; /* Positioning context for absolute elements */
     overflow: hidden; /* Prevent content overflow */
 }
 
 .project-info {
     position: relative;
-    height: calc(100% - 40px); /* Adjust height for the content area, considering the button's height */
-    overflow-y: auto; 
+    height: calc(100% - 40px); 
+    overflow: auto;
 }
 
 .footer {
@@ -2230,6 +2229,23 @@ body.announcement_events_inquiry .message-row {
     overflow: auto;
 }
 
+.image-update #img-view {
+    width: 100%; /* Adjust the width as needed */
+    height: auto;
+    max-height: 300px; /* Set maximum height to prevent overflow */
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-size: cover;
+}
+
+.image-update #img-view img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
 
 .chart-inner {
     display: flex;

@@ -79,20 +79,22 @@
                                                         <p class="form-control" type="text" name="to">{{ $inquiry->email }}</p>
                                                     </div>
                                                 </div>
-                                            </div>
-                                                <div class="col-md-6 mb-4" style="padding-left: 10%;">
+                                            <div class ="row">
+                                                <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Date">Contact Number:</label>
                                                         <p class="form-control" type="date" id="Date" name="date">{{ $inquiry->contacts }}</p>
                                                     </div>
                                                 </div>
+                                            
 
-                                                <div class="col-md-6 mb-4" style="padding-left: 10%;">
+                                                <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Date">Date:</label>
                                                         <p class="form-control" type="date" id="Date" name="date">{{ $inquiry->created_at->format('Y-m-d h:i A')  }}</p>
                                                     </div>
                                                 </div>
+                                            </div>
 
                                                 <div class="col-md-12 mb-4">
                                                     <div class="form-outline">
@@ -104,9 +106,10 @@
                                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
+</div>
                                     </div>
                             </div>
-                        </div>
+
 
                         <!--MODAL Reply-->
                         <div class="modal fade" id="modal_reply{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
