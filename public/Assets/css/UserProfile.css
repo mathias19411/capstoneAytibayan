@@ -164,6 +164,21 @@ button:hover {
     text-align: right;
 }
 
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: var(--primary-color); /* Adjust the background color as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: var(--colorOrange); /* Adjust the hover background color as needed */
+}
+
 button:focus {
     outline: 1px dotted;
     outline: 5px auto -webkit-focus-ring-color;

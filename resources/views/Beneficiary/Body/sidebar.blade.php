@@ -10,38 +10,33 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         $userProfileData = App\Models\User::find($id);
     @endphp
 
-        <div class="logo-image">
-            <img src="\images\Logo_BinhiNgPagasa.png" alt="">
+    <div class="logo-image">
+            <a href="{{ route('visitor.home') }}">
+                <img src="\images\Logo_AbacaMoPisoMo.png" alt="Logo">
+            </a>
         </div>
-        
 
         <span class="logo_name">{{ $userProfileData->program->program_name }}</span>
     </div>
 
     <div class="menu-items">
         <ul class="nav-links">
-            <li>
-                <a href="{{ route('beneficiary.home') }}" class="{{ request()->is('/Beneficiary/home') ? 'active' : '' }}">
+        <li class="{{ Route::currentRouteName() ==  'beneficiary.home' ? 'active' : '' }}">
+                <a href="{{ route('beneficiary.home') }}">
                     <i class="uil uil-home"></i>
                     <span class="link-name">Home</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('beneficiary.schedule') }}" class="">
+            <li class="{{ Route::currentRouteName() ==  'beneficiary.schedule' ? 'active' : '' }}">
+                <a href="{{ route('beneficiary.schedule') }}" >
                     <i class="uil uil-schedule"></i>
                     <span class="link-name">Schedule</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('beneficiary.updates') }}" class="">
+            <li class="{{ Route::currentRouteName() ==  'beneficiary.updates' ? 'active' : '' }}">
+                <a href="{{ route('beneficiary.updates') }}" >
                     <i class="uil uil-process"></i>
                     <span class="link-name">Update</span>
-                </a>
-            </li>
-            <li>
-                <a href=" "class="">
-                    <i class="uil uil-user-circle"></i>
-                    <span class="link-name">Profile</span>
                 </a>
             </li>
 
@@ -86,7 +81,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </div>
             </div>
             <div class="message-icon">
-            <a href="{{ route('beneficiary.inquiry') }}" class="{{ request()->is('/Beneficiary/inquiry') ? 'active' : '' }}">
+            <a href="{{ route('beneficiary.inquiry') }}" class= class="{{ Route::currentRouteName() ==  'beneficiary.inquiry' ? 'active' : '' }}">
                     <i class="uil uil-comment-dots"></i>
                 </a>
             </div>

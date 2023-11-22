@@ -10,8 +10,8 @@ class announcement extends Model
     protected $fillable = [
         'title',
         'to',
+        'from',
         'message',
-        'date'
     ];
     
     use HasFactory;

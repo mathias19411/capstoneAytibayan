@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Mail\FinancialAssistanceStatusUpdate;
 use App\Mail\ReplyMailable;
 use App\Models\announcement;
-use App\Models\Assistancesteps;
 use App\Models\events;
 use App\Models\File;
 use App\Models\Financialassistance;
@@ -19,6 +18,8 @@ use App\Models\progress;
 use App\Models\Role;
 use App\Models\Status;
 use App\Models\User;
+use App\Models\Assistancesteps;
+use App\Models\Projects;
 use App\Notifications\AccountUpdateNotif;
 use App\Notifications\BlacklistNotification;
 use App\Notifications\FinancialAssistanceStatusRejected;
@@ -100,14 +101,15 @@ class ABAKAProjectCoordinatorController extends Controller
 
        // Get the programId of the user table
        $programId = User::where('id', $id)->pluck('program_id');
-
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
        $public = "PUBLIC";
         $announcement = announcement::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
 
-        return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName'));
+        return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName', 'roleName'));
     } // End Method
 
     public function ProjectCoordinatorAnnouncementEdit($id)
@@ -122,7 +124,7 @@ class ABAKAProjectCoordinatorController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'date' => 'required|date',
+            'from'=> 'required|string',
             'to' => 'required|string',
             'message' => 'required|string',
         ]);
@@ -131,12 +133,13 @@ class ABAKAProjectCoordinatorController extends Controller
         if ($validatedData) 
         {
             // Insert data into the database
-            announcement::insert([
+            $announcement = announcement::create([
                 'title' => $validatedData['title'],
-                'date' => $validatedData['date'],
+                'from'=> $validatedData['from'],
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
+            $announcement->save();
 
             return redirect()->back()->with('success', 'New Announcement Added!');
         } else {
@@ -183,6 +186,8 @@ class ABAKAProjectCoordinatorController extends Controller
 
        // Get the programId of the user table
        $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
 
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
@@ -190,7 +195,7 @@ class ABAKAProjectCoordinatorController extends Controller
         $event = events::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
 
-        return view('ABAKA_Project_Coordinator.event', compact('event','programName'));
+        return view('ABAKA_Project_Coordinator.event', compact('event','programName', 'roleName'));
     } // End Method
 
     public function ProjectCoordinatorEventEdit($id)
@@ -205,6 +210,7 @@ class ABAKAProjectCoordinatorController extends Controller
     // Validate the request
     $validatedData = $request->validate([
         'title' => 'required|string|max:255',
+        'from'=> 'string',
         'date' => 'required|date',
         'to' => 'required|string',
         'message' => 'required|string',
@@ -227,10 +233,13 @@ class ABAKAProjectCoordinatorController extends Controller
     // Set the image attribute of the event model to the filename
     $validatedData['image'] = $filename;
 
+    //dd($validatedData);
+
     // Check if validation passes
     if ($validatedData) {
         // Insert data into the database
         $event = events::create([
+            'from' => $validatedData['from'],
             'title' => $validatedData['title'],
             'date' => $validatedData['date'],
             'to' => $validatedData['to'],
@@ -288,20 +297,21 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         $id = AUTH::user()->id;
 
-       // Get the programId of the user table
+        // Get the programId of the user table
        $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
 
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
        $public = "PUBLIC";
         $inquiry = inquiries::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
+            $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
 
 
-        return view('ABAKA_Project_Coordinator.inquiry', ['inquiry'=>$inquiry]);
+        return view('ABAKA_Project_Coordinator.inquiry', compact('roleName','programName','inquiry', 'userEmail'));
     } // End Method
-
-
     public function ProjectCoordinatorInquiryEdit($id)
     {
         $event = inquiries::findOrFail($id);
@@ -311,45 +321,34 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjectCoordinatorInquiryReply(Request $request)
     {
+        $validatedData = $request->validate([
+            'recipient_email'=> 'string',
+            'fullname'=> 'string',
+            'subject'=> 'string',
+            'body' => 'string',
+            ]);
+
+        $senderName = $validatedData['subject'];
+
         // Get the email address of the recipient
-        $recipientEmail = $request->get('recipient_email');
+        $recipientEmail = $validatedData['recipient_email'];
 
         // Get the name of the recipient
-        $recipientName = $request->get('fullname');
+        $recipientName = $validatedData['fullname'];
 
         // Get the subject of the email
-        $subject = $request->get('subject');
+        $subject = $validatedData['subject'];
 
         // Get the body of the email
-        $body = $request->get('body');
+        $body = $validatedData['body'];
 
-        // Get the attachment
-        $attachment = $request->file('attachment');
-
-        if ($attachment !== null) {
-            // The file was uploaded, proceed with sending the email.
-
-            // Ensure the attachment is not null
-            if ($attachment->isValid()) {
-                // If the attachment is valid, you can proceed with sending the email.
-
+        if($validatedData) {
                 // Reply to the email message with a body and an attachment
-                Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $attachment, $recipientName));
+        Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $senderName, $recipientName));
 
                 // Redirect back to the previous page
-                return redirect()->back()->with('success', 'Message Sent!');
-            } else {
-                // Handle the case when the uploaded file is not valid.
-                return redirect()->back()->with('error', 'Invalid file uploaded');
-            }
-        } 
-        else if ($attachment === null) {    
-
-            Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, null, $recipientName));
-
-            // Redirect back to the previous page
-            return redirect()->back()->with('success', 'Message Sent!');
-        }
+        return redirect()->back()->with('success', 'Message Sent!');
+    }
         else {
             // Handle the case when no file was uploaded.
             return redirect()->back()->with('error', 'No file uploaded');
@@ -426,6 +425,19 @@ class ABAKAProjectCoordinatorController extends Controller
         // })->whereHas('program', function ($query) use ($programId) {
         //     $query->where('id', $programId);
         // })->get();
+        $id = AUTH::user()->id;
+
+        // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = 'Public';
+        $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
+        $project = Projects::where(function ($query) use ($programName, $public) {
+            $query->where('recipient', $programName)->orwhere('recipient', $public);})->get();
 
         $assistanceStatuses = Financialassistancestatus::all();
 
@@ -435,6 +447,7 @@ class ABAKAProjectCoordinatorController extends Controller
 
         $assistanceUnsettledStatus = Financialassistancestatus::where('financial_assistance_status_name', 'unsettled')->first();
 
+        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries', 'assistanceStatuses', 'totalActiveAndInactiveCount', 'assistanceUnsettledStatus', 'project', 'userEmail', 'programName', 'roleName'));
         return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries', 'filteredassistanceStatuses', 'totalActiveAndInactiveCount', 'assistanceUnsettledStatus'));
     } // End Method
 
@@ -585,6 +598,105 @@ class ABAKAProjectCoordinatorController extends Controller
         toastr()->timeOut(10000)->addSuccess('Beneficiary Financial Assistance Status has been updated!');
 
         return redirect()->route('abakaprojectcoordinator.progress');
+    } // End Method
+
+    public function ProjCoordinatorAddProject(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from' => 'required|string',
+            'recipient' => 'required|string',
+            'message' => 'required|string',
+            'image' => 'image',
+        ]);
+    
+        // Check if the image key exists in the validated data array
+        if (isset($validatedData['image'])) {
+            // Get the image file
+            $file = $request->file('image');
+    
+            // Generate a unique filename for the image file
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move('Uploads/Updates/', $filename);
+    
+        } else {
+            // Assign an empty string to the filename variable
+            $filename = '';
+        }
+    
+        // Set the image attribute of the event model to the filename
+        $validatedData['image'] = $filename;
+    
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $projects = Projects::create([
+                'title' => $validatedData['title'],
+                'from' => $validatedData['from'],
+                'recipient'=> $validatedData['recipient'],
+                'message'=> $validatedData['message'],
+                'attachment' => $validatedData['image'],
+            ]);
+            $projects->save();
+    
+            // If the attachment file is not empty, store it in the database
+    
+            return redirect()->back()->with('success', 'New Project Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+    } //end method
+    public function ProjCoordinatorUpdateProject(Request $request)
+    {
+        $aid = $request->project_id;
+
+        $validatedData = $request->validate([
+            'attachment' => 'image'
+        ]);
+
+        // Check if the image key exists in the validated data array
+        if (isset($validatedData['attachment'])) {
+            // Get the image file
+            $file = $request->file('attachment');
+    
+            // Generate a unique filename for the image file
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move('Uploads/Updates/', $filename);
+    
+        } else {
+            // Assign an empty string to the filename variable
+            $filename = '';
+        }
+        // Set the image attribute of the event model to the filename
+        $validatedData['attachment'] = $filename;
+        
+        Projects::findOrFail($aid)->update([
+            'title'=>$request->title,
+            'recipient'=>$request->recipient,
+            'attachment'=>$validatedData['attachment'],
+            'message'=>$request->message,
+        ]);
+
+        return redirect()->back()->with('success', 'Project is Updated!');
+    } // End Method
+    public function ProjCoordinatorDeleteProject(Request $request)
+    {
+        $id = $request->project_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = Projects::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Project Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
     } // End Method
 
     public function ProjCoordinatorViewProfile()
@@ -809,6 +921,11 @@ class ABAKAProjectCoordinatorController extends Controller
         } catch (\Exception $e) {
         return response()->json(['error' => 'Error sending notification: ' . $e->getMessage()], 500);
         }
+    }
+
+    public function ProgramProfile(){
+
+        return view('');
     }
 
     public function ItStaffBlacklistView()

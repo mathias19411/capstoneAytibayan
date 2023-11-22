@@ -12,10 +12,10 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Public</option>
-                <option value="read">Beneficiaries</option>
+                <option value="PUBLIC">Public</option>
+      
                 <option value="binhi">Binhi ng Pag-asa</option>
-                <option value="abaka">Abaka Mo, Piso Mo</option>
+                <option value="abakamopisomo">Abaka Mo, Piso Mo</option>
                 <option value="lead">LEAD</option>
                 <option value="agripinay">AgriPinay</option>
                 <option value="akbay">Akbay</option>
@@ -42,6 +42,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>From</th>
                             <th>Title</th>
                             <th>To</th>
                             <th>Message</th>
@@ -184,11 +185,12 @@
                         </div>
 
                         <tr>
-                            <td>{{ $announcements->title }}</td>
-                            <td>{{ $announcements->to }}</td>
-                            <td>{{ $announcements->message }}</td>
-                            <td>{{ $announcements->date }}</td>
-                            <td>
+                        <td class="column">{{ $announcements->from }}</td>
+                        <td class="column">{{ $announcements->title }}</td>
+                        <td class="column">{{ $announcements->to }}</td>
+                        <td class="column message-column">{{ $announcements->message }}</td>
+                        <td class="column">{{ $announcements->created_at }}</td>
+                        <td>
                             <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view{{ $announcements->id }}">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                             </button>
@@ -268,22 +270,21 @@
                             <form action="{{ route('store.announcement') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                            <input type="date" name="date" id="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" hidden>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                     <label id="label_">Title</label>
                                     <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">
+                                    <input class="form-control" type="text" id="Title" value="{{ $roleName }}" name="from" hidden>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                     <label id="label_">To:</label>
                                         <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                        <option>PUBLIC</option>
-                                        <option>ABAKA</option>
-                                        <option>AKBAY</option>
-                                        <option>BINHI</option>
-                                        <option>LEAD</option>
+                                        <option>Public</option>
+                                        @foreach($programs as $program)
+                                        <option>{{ $program->program_name }}</option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>

@@ -1,18 +1,19 @@
 @extends('Visitor.visitor_home')
 @section('visitor')
-    <button id="scrollToTopButton">Scroll to Top</button>
+    <button id="scrollToTopButton">Back to Top</button>
 
     <div class="page-content">
         <div class="main-cards">
             <div class="image-section">
-                <img src="{{ asset('images/image3.png') }}" alt="apao image" class="apao-big-image">
+                <img src="{{ asset('images/apao_visitor.png') }}" alt="apao image" class="apao-big-image">
             </div>
             <div class="horizontal-scroll-image-section">
                 <div class="horizontal-scroll-image-content">
-                    <img src="{{ asset('images/history.png') }}" alt="apao image" class="apao-horizontal-images">
-                    <img src="{{ asset('images/history.png') }}" alt="apao image" class="apao-horizontal-images">
-                    <img src="{{ asset('images/history.png') }}" alt="apao image" class="apao-horizontal-images">
-                    <img src="{{ asset('images/history.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Abaka1.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Lead1.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Abaka2.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Lead2.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/Abaka3.png') }}" alt="apao image" class="apao-horizontal-images">
                 </div>
 
             </div>
@@ -34,7 +35,7 @@
             </div>
             <div class="top-story-section">
                 <div class="top-story-title">
-                    <h3>Top Stories</h3>
+                    <h4>Top Stories</h4>
                 </div>
                 <div class="stories-main">
                     <div class="story-card">
@@ -42,13 +43,11 @@
                             <img src="{{ asset('images/APAO-R5.jpg') }}" alt="story image">
                         </div>
                         <div class="story-card-content">
-                            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
-                                quasi
-                                quidem quaerat quidem quibusdam quasi quidem quaerat quidem quibusdam quasi Lorem ipsum
-                                dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
-                                quibusdam
-                                quasi
-                                quidem quaerat quidem quibusdam quasi quidem quaerat quidem quibusdam quasi</h5>
+                            <h5>EARLIER: Provincial Agriculturist Cheryll O. Rebeta and Assistant Provincial Agriculturist Daryl John O. Buenconsejo attended 
+                                the Technical Budget Hearing of the Sangguniang Panlalawigan ng Albay, on November 16, 2023 held at the SPA Session Hall in 
+                                Legazpi City.In the session, Provincial Agriculturist Cheryll O. Rebeta presented the proposed annual budget for CY 2024 for 
+                                the Albay Provincial Agricultural Office (APAO). The engagement aimed to discuss and scrutinize the financial plan to ensure 
+                                its alignment with the objectives and needs of the agriculture sector in the province.</h5>
                         </div>
                     </div>
                     <div class="story-card">
@@ -56,10 +55,11 @@
                             <img src="{{ asset('images/APAO-R5.jpg') }}" alt="story image">
                         </div>
                         <div class="story-card-content">
-                            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quaerat quidem
-                                quibusdam
-                                quasi
-                                quidem quaerat quidem quibusdam quasi quidem quaerat quidem quibusdam quasi</h5>
+                            <h5>A briefing was conducted to PAFC Chairperson Rene Delos Reyes, PAFC Co-Chair/Provincial Agriculturist Cheryll O. Rebeta, and 
+                                PAFC Secretariat-Coordinator Arminda Padilla by RAFC Regional Executive Officer Aloha Gigi I. Bañaria on November 14, 2023, 
+                                at the PMED Conference Room, Department of Agriculture RFO5 in Pili, Camarines Sur. 
+                                The briefing focused on the preparation for the National Validation for the Search for Outstanding PAFC, including the roles 
+                                of the PAFC Chairperson and PAFC Secretariat-Coordinator.</h5>
                         </div>
                     </div>
                 </div>
@@ -78,101 +78,76 @@
                      farmers in which it includes their demographic profile. 
                 </p>
             </div>
-            <div class="announcements-section">
-                <div class="announcements-title">
-                    <h3>Announcements</h3>
-                </div>
+      
+    <div class="announcements-section">
+    <div class="announcements-title">
+        <h4>Announcements</h4>
+    </div>
+    
 
-                <div class="announcements-card">
-                    <div class="announcements-card-date-time">
-                        <div class="announcements-card-date-time-title">
-                            <span class="material-symbols-outlined">
-                                schedule
-                            </span>
-                            @foreach($announcement->reverse() as $announcement)
-                            <span class="announcement-time">{{ $announcement->date }}</span>
-                        </div>
-                        <p>{{ $announcement->message }}</p>
-                        @endforeach
-
-                    </div>
+            @if($announcement->isEmpty())
+                <p>No announcements at the moment.</p>
+            @else
+            @foreach($announcement->reverse() as $announcement)
+            @php
+                $dayEvent = \Carbon\Carbon::parse($announcement->created_at)->format('d');
+                $monthEvent = \Carbon\Carbon::parse($announcement->created_at)->format('M');
+                $timeEvent = \Carbon\Carbon::parse($announcement->created_at)->format('h:i A');
+            @endphp
+        <div class="announcements-card">
+            <div class="announcements-card-date-time">
+                <div class="announcements-card-date-time-title">
+                    <span class="material-symbols-outlined">
+                        schedule
+                    </span>
+                        <span class="announcement-time">{{ $timeEvent }}</span>
                 </div>
-                <div class="announcements-read-more">
-                <button type="button" class="btn read-more-button" data-bs-toggle="modal" data-bs-target="#read_announcement">Read Announcement</button>
-                    <!--
-                    <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer"
-                        class="read-more-button">More Announcements></a>
--->
-                </div>
+                <h4>{{ $announcement->title }}</h4>
+                <hr class="announcement">
+                <h5>{{ $announcement->message }}</h5>
+                <h6>{{ $announcement->created_at->format('Y-m-d') }}</h6>
             </div>
+        </div>
+    @endforeach
+    @endif
+</div>
+
             <div class="events-section">
                 <div class="events-title">
-                    <h3>Upcoming Events</h3>
+                    <h4>Upcoming Events</h4>
                 </div>
                 <div class="events-main">
-                    <div class="events-card">
+            @if($events->isEmpty())
+                <p>No events at the moment.</p>
+            @else
+                @foreach($events->reverse() as $event)
+            <div class="events-card">
                         <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
+                            @php
+                                $dayEvent = \Carbon\Carbon::parse($event->date)->format('d');
+                                $monthEvent = \Carbon\Carbon::parse($event->date)->format('M');
+                                $yearEvent = \Carbon\Carbon::parse($event->date)->format('Y');
+                                $timeEvent = \Carbon\Carbon::parse($event->created_at)->format('H:i:s');
+                            @endphp
+                            <div class="year">{{ $yearEvent }}</div>
+                            <div class="date">{{ $dayEvent }}</div>
+                            <div class="month">{{ $monthEvent }}</div>
                         </div>
                         <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
+                            <div>
+                                <h4>Title: {{ $event->title }}</h4>
+                            </div>
+                            <h5>{{ $event->message }}</h5>
+                            <div>
+                                <div class="event-time">Posted: {{$event->created_at->format('Y-m-d h:i A') }}</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
-                    <div class="events-card">
-                        <div class="events-card-title-date">
-                            <h2>11</h2>
-                            <h4>MAR</h4>
-                        </div>
-                        <div class="events-card-content">
-                            <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, iure.</h5>
-                        </div>
-                    </div>
+                @endforeach
+            @endif
+        </div>
+
+           
                 </div>
             </div>
         </div>
@@ -183,7 +158,7 @@
         <!--background slides!-->
         <div class="slides">
             <div class="slide slide1">
-                <img id="img" src="\images\image1.png">
+                <img id="img" src="\images\apao_main.png">
             </div>
             <div class="slide slide2">
                 <img id="img" src="\images\image2.png">
@@ -306,102 +281,133 @@
     <section class="contact" id="contact">
     
         <div class="row">
-            <div class="col" id="title" style="margin-left: 10px; margin-top: 10px;">
+            <div class="col location" id="title" style="margin-left: 10px; margin-top: 10px;">
                 <h4><b>Location</b></h4>
-                <div id="location_">
-                    <img src="{{ URL('images/APAO.png') }}" class="img-fluid" id="location_img">
+                <div class="google-maps">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3884.687236006442!2d123.67126757469015!3d13.182109510228907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a10785c74a4761%3A0xd97e88fa71115e84!2sAlbay%20Farmers%20Bounty%20Village!5e0!3m2!1sen!2sph!4v1700218921809!5m2!1sen!2sph" width="100%" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col">
                     <div class="row" style="margin: 10px;">
                         <div id="marker_style"><i class="fa fa-map-marker" id="marker_icon"></i></div>
-                        <div class="col" id="address">Albay Farmer's Village Complex, Camalig, Philippines</div>
+                        <div class="col" id="address">Albay Farmer's Bounty Village Complex, Camalig, Albay, Philippines</div>
+                        
                     </div>
                 </div>
 
                 <div style="text-align: end; margin: 10px">
-                    <i class="fa fa-facebook" id="fb_icon"></i>
-                    <i class="fa fa-instagram" id="ig_icon"></i>
-                    <i class="fa fa-twitter" id="tw_icon"></i>
+                <a href="mailto:albay.agri@gmail.com" target="_blank" rel="noopener noreferrer">
+                     <i class="fa fa-envelope" id="email_icons"></i>
+                 </a>
+                    <a href="https://www.facebook.com/apao.albay2023" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-facebook" id="fb_icon"></i>
+                    </a>
+                    <span title="No Account" class="no-account-hover">
+                        <i class="fa fa-instagram" id="ig_icon"></i>
+                    </span>
+                    <span title="No Account" class="no-account-hover">
+                        <i class="fa fa-twitter" id="tw_icon"></i>
+                    </span>
+                   
                 </div>
+
+
             </div>
             <div class="col" style="margin-left: 10px; margin-top: 10px;">
                 <div class="col-12" id="left_">
                     <div id="proj_coordinator">Program Coordinators</div>
                 </div>
+            <div class="container">
                 <div class="row">
-                    <div class="col">
-                        <div class="col-12" id="coordinators">
+                    <div class="col-md-4">
+                        <div id ="coordinators">
                             <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
                                 </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">BINIHI NG PAG-ASA</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12" id="coordinators">
-                            <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
-                                </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">AKBAY</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" id="coordinators">
-                            <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
-                                </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">LEAD</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Repeat this structure for other coordinators -->
                     </div>
-                    <div class="col">
-                        <div class="col-12" id="coordinators">
+                    <div class="col-md-4">
+                        <div id ="coordinators">
                             <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
                                 </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">AGRIPINAY</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12" id="coordinators">
+                        <!-- Repeat this structure for other coordinators -->
+                    </div>
+                    <div class="col-md-4">
+                        <div id ="coordinators">
                             <div class="row">
-                                <div>
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt=""
-                                        id="coordinator_img">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
                                 </div>
-                                <div id="c_description">
-                                    <div id="c_name">Marife S. Azares</div>
-                                    <div id="c_program">ABAKA MO, PISO MO</div>
-                                    <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                    <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Repeat this structure for other coordinators -->
+                    </div>
+                    <div class="col-md-4">
+                        <div id ="coordinators">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
+                                </div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Repeat this structure for other coordinators -->
+                    </div>
+                    <div class="col-md-4">
+                        <div id ="coordinators">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
+                                </div>
+                                <div class="col-8">
+                                    <div id="c_description">
+                                        <div id="c_name">Marife S. Azares</div>
+                                        <div id="c_program">BINIHI NG PAG-ASA</div>
+                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
+                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Repeat this structure for other coordinators -->
+                    </div>
                     </div>
                 </div>
                 <div class="col" id="inquiry">
@@ -413,6 +419,7 @@
                                 <div class="col-6">
                                     <label id="label_">Full Name:</label>
                                     <input class="form-control" type="text" id="textbox" name="fullname" required>
+                                    <input class="form-control" type="text" id="textbox" name="from" value="Public User" hidden>
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">Email:</label>
@@ -424,35 +431,19 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label id="label_">Contact Number:</label>
-                                    <input class="form-control" type="text" name="contacts" id="textbox" required>
+                                    <input class="form-control" type="text" name="contact" id="textbox" required>
                                 </div>
                                 <div class="col-6">
                                     <label id="label_">To:</label>
                                     <select class="form-control" type="text" name="to" id="textbox" required>
-                                        <option value="ABAKA">ABAKA</option>
-                                        <option value="AGRIPINAY">AGRIPINAY</option>
-                                        <option value="AKBAY">AKBAY</option>
-                                        <option value="BINHI">BINHI</option>
-                                        <option value="LEAD">LEAD</option>
+                                        @foreach($programs as $program)    
+                                            <option>{{ $program->program_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
-                            <div class="col">
-                                <div class="row">
-                                        <div class="col-6">
-                                            <label id="label_">Date:</label>
-                                            <input class="form-control" type="date" name="date" id="textbox" required>
-                                        </div>
-                                        <div class="col-6">
-                                            <label id="label_">Attach File(Optional)</label>
-                                            <input class="form-control" type="file" name="attachments" id="textbox">
-                                        </div>
-                                 </div>
-                            </div>
                            
-                       
-                       
                             <div class="col-12" style="margin: 5px;">
                                 <label id="label_">Message:</label>
                                 <input class="form-control" type="text" name="message" id="textbox_m" required>
@@ -501,6 +492,19 @@
 <!-- Bootstrap JS Bundle (includes Popper.js) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
+
+<script>
+    //EVENT 
+    const cards = document.querySelectorAll('.events-card-title-date');
+
+    cards.forEach((card, index) => {
+        if (index % 2 === 0) {
+            card.classList.add('orange-bg'); // Add orange background class
+        } else {
+            card.classList.add('green-bg'); // Add green background class
+        }
+    });
+</script>
     <script>
         var programNames = {!! json_encode($programNames) !!};
         var beneficiaryCounts = {!! json_encode($beneficiaryCounts) !!};
@@ -508,3 +512,4 @@
         var monthCount = {!! json_encode($monthCount) !!};
     </script>
 @endsection
+ 

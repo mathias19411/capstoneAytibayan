@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('from');
             $table->string('title');
             $table->string('to');
             $table->date('date');
             $table->text('message');
             $table->string('image')->nullable();
-            $table->string('project_coordinator')->default('anonymous');
 
             $table->timestamps();
         });

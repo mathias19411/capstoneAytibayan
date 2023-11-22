@@ -98,39 +98,38 @@
               <!-- Content for the right section -->
               <div class="title" >
                  <h3>Projects</h3>
-        </div>
-            <div class="project">
-                <img src="\images\binhi.jpg" alt="Picture 1">
-                <h2>Lorem epsum It is a long established fact that a reader will</h2>
-                <p>Date 1</p>
             </div>
+            @if($project->isEmpty())
             <div class="project">
-                <img src="\images\binhi.jpg" alt="Picture 2">
-                <h2>Lorem Epsum It is a long established fact that a reader will</h2>
-                <p>Date 2</p>
+                <p>No projects yet</p>
             </div>
-            <div class="project">
-                <img src="\images\binhi.jpg" alt="Picture 3">
-                <h2>Lorem Epsum It is a long established fact that a reader will</h2>
-                <p>Date 3</p>
-            </div>
-            <div class="project">
-                <img src="\images\binhi.jpg" alt="Picture 3">
-                <h2>Lorem Epsum It is a long established fact that a reader will</h2>
-                <p>Date 4</p>
-            </div>
+            @else
+                @foreach($project->reverse() as $project)
+                    <div class="project">
+                        <div class ="project-image">
+                            <img src="{{ asset('Uploads/Updates/'.$project->attachment) }}">
+                        </div>
+                        <div class="eme">
+                            <h1>Title: {{ $project->title }}</h1>
+                            <h2>Description: {{ $project->message }}</h2>
+                        </div>
+                    </div>
+                @endforeach
+                @endif
             <div class="col" id="inquiry">
 				<h5 id="inquiry_">Inquiry</h5>
-				<form method="post">
-					<div class="col">
+				<form method="post" action="{{ route('specificinquiry.send') }}">
+					@csrf
+                    <div class="col">
 						<div class="row">
 							<div class="col-6">
 								<label id="label_">Full Name:</label>
-								<input class="form-control" type="text" id="textbox">
+								<input class="form-control" type="text" id="textbox" name="fullname">
+                                <input class="form-control" type="text" id="textbox" name="from" value="Public User" hidden>
 							</div>
 							<div class="col-6">
 								<label id="label_">Email:</label>
-								<input class="form-control" type="text" name="email" id="textbox">
+								<input class="form-control" type="text" name="email" id="textbox" required>
 							</div>
 						</div>
 					</div>
@@ -138,29 +137,15 @@
 						<div class="row">
 							<div class="col-6">
 								<label id="label_">Contact Number:</label>
-								<input class="form-control" type="text" name="contact" id="textbox">
+								<input class="form-control" type="text" name="contact" id="textbox" required>
 							</div>
 							<div class="col-6">
 								<label id="label_">To:</label>
-								<input class="form-control" type="text" name="to" id="textbox" value="{{ $program->coordinators->first() ? $program->coordinators->first()->email : 'No Project Coordinator Assigned' }}"
-                                readonly>
+								<input class="form-control" type="text" name="to" id="textbox" value="{{ $program->program_name }}" readonly>
 							</div>
 						</div>
 					    </div>
-					<div>
-                    <div class="col">
-                                <div class="row">
-                                        <div class="col-6">
-                                            <label id="label_">Date:</label>
-                                            <input class="form-control" type="date" name="date" id="textbox" required>
-                                        </div>
-                                        <div class="col-6">
-                                            <label id="label_">Attach File(Optional)</label>
-                                            <input class="form-control" type="file" name="attachments" id="textbox">
-                                        </div>
-                                 </div>
-                            </div>
-                           
+					<div>    
 					<div class="col-12" style="margin: 5px;">
 						<label id="label_">Message:</label>
 						<input class="form-control" type="text" name="message" id="textbox_m">

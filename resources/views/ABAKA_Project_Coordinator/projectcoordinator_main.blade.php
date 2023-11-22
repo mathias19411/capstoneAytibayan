@@ -834,43 +834,89 @@
 
     <script>
         //FILTER BENEFICIARY
-
-        // Function to filter and paginate the table
-        function filterAndPaginate() {
-            const locationFilter = document.getElementById("location-filter").value;
-            const statusFilter = document.getElementById("status-filter").value;
-            const itemsPerPage = parseInt(document.getElementById("items-per-page").value);
-
-            const tableRows = document.querySelectorAll("tbody tr");
-
-            tableRows.forEach(function(row) {
-                const location = row.getAttribute("data-location");
-                const status = row.querySelector(".status-box").classList.contains("active") ? "active" :
-                    "inactive";
-
-                const matchesLocation = locationFilter === "all" || location === locationFilter;
-                const matchesStatus = statusFilter === "all" || status === statusFilter;
-
-                if (matchesLocation && matchesStatus) {
-                    row.style.display = "table-row";
-                } else {
-                    row.style.display = "none";
+        $(document).ready(function() {
+    $('#status-filter').change(function() {
+        var filterValue = $(this).val().toLowerCase();
+        if (filterValue === 'all') {
+            $('.table tbody tr').show();
+        } else {
+            $('.table tbody tr').hide();
+            $('.table tbody tr').each(function() {
+                var status = $(this).find('td:nth-child(8)').text().toLowerCase();
+                if (status === filterValue) {
+                    $(this).show();
                 }
             });
-
-            // You can add pagination logic here to show/hide rows based on itemsPerPage
         }
+    });
 
-        // Attach the filterAndPaginate function to filter and pagination events
-        document.getElementById("location-filter").addEventListener("change", filterAndPaginate);
-        document.getElementById("status-filter").addEventListener("change", filterAndPaginate);
-        document.getElementById("items-per-page").addEventListener("change", filterAndPaginate);
+    $('#search').on('keyup', function() {
+        var searchText = $(this).val().toLowerCase();
+        $('.table tbody tr').each(function() {
+            var rowText = $(this).text().toLowerCase();
+            if (rowText.indexOf(searchText) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    });
+});
 
-        // Initial call to filter and paginate when the page loads
-        filterAndPaginate();
+
     </script>
 
+   <script>
+$(document).ready(function() {
+    $('#unread-filter').change(function() {
+        var filterValue = $(this).val().toLowerCase();
+        if (filterValue === 'all') {
+            $('.table tbody tr').show();
+        } else {
+            $('.table tbody tr').hide();
+            $('.table tbody tr').each(function() {
+                $(this).find('td').each(function() {
+                    if ($(this).text().toLowerCase() === filterValue) {
+                        $(this).closest('tr').show();
+                    }
+                });
+            });
+        }
+    });
+});
+    </script>
+<script>
 
+//LIMIT TEXT
+document.addEventListener('DOMContentLoaded', function() {
+  const messageCells = document.querySelectorAll('.message-cell');
+
+  messageCells.forEach(cell => {
+    cell.addEventListener('click', function() {
+      const fullText = cell.textContent.trim();
+      if (fullText.endsWith('...')) {
+        // Show the full text in a pop-up (you can customize this, e.g., use a modal)
+        alert(fullText);
+      }
+    });
+  });
+});
+</script>
+
+<script>
+    //DELETE PROJECT
+    function deleteProject(button) {
+    if (confirm('Are you sure you want to delete this project?')) {
+        // Assuming each box is a parent element of the delete button
+        const box = button.closest('.box');
+        // Perform deletion logic here, for example:
+        box.remove(); 
+    } else {
+    }
+}
+    </script>
+
+    
 </body>
 
 </html>

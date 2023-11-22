@@ -320,7 +320,85 @@ function saveEdit() {
         }
     </script>
 
-    
+<script>
+//FILTER IN EVENT
+$(document).ready(function() {
+    $('#unread-filter').change(function() {
+        var filterValue = $(this).val().toLowerCase();
+        if (filterValue === 'all') {
+            $('.table tbody tr').show();
+        } else {
+            $('.table tbody tr').hide();
+            $('.table tbody tr').each(function() {
+                var from = $(this).find('td:nth-child(1)').text().toLowerCase();
+                var title = $(this).find('td:nth-child(2)').text().toLowerCase();
+                var to = $(this).find('td:nth-child(3)').text().toLowerCase();
+                var description = $(this).find('td:nth-child(4)').text().toLowerCase();
+                var image = $(this).find('td:nth-child(5)').text().toLowerCase();
+                var date = $(this).find('td:nth-child(6)').text().toLowerCase();
+
+                if (
+                    from.includes(filterValue) ||
+                    title.includes(filterValue) ||
+                    to.includes(filterValue) ||
+                    description.includes(filterValue) ||
+                    image.includes(filterValue) ||
+                    date.includes(filterValue)
+                ) {
+                    $(this).show();
+                }
+            });
+        }
+    });
+
+    $('#search').on('keyup', function() {
+        var searchText = $(this).val().toLowerCase();
+        $('.table tbody tr').each(function() {
+            var rowText = $(this).text().toLowerCase();
+            if (rowText.indexOf(searchText) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    });
+});
+
+</script>
+
+    <script>
+        //
+$(document).ready(function() {
+    $('#unread-filter').change(function() {
+        var filterValue = $(this).val().toLowerCase();
+        if (filterValue === 'all') {
+            $('.table tbody tr').show();
+        } else {
+            $('.table tbody tr').hide();
+            $('.table tbody tr').each(function() {
+                $(this).find('td').each(function() {
+                    if ($(this).text().toLowerCase() === filterValue) {
+                        $(this).closest('tr').show();
+                    }
+                });
+            });
+        }
+    });
+
+    // Search functionality
+    $('#search').on('keyup', function() {
+        var searchText = $(this).val().toLowerCase();
+        $('.table tbody tr').each(function() {
+            var rowText = $(this).text().toLowerCase();
+            if (rowText.indexOf(searchText) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>

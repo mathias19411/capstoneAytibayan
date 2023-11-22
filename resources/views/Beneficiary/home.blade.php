@@ -185,41 +185,28 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </div>
             </div>
 
-            <!-- Special Announcement -->
+            <!-- Special prject -->
             <div class="col-md-8">
                 <div class="card-project">
                     <h2 class="card-title">PROJECTS</h2>
                     <div class="card-content">
+                    @if($project->isEmpty())
+                    <div class="project-info">
+                        <p>No projects yet</p>
+                    </div>
+                    @else
+                        @foreach($project->reverse() as $project)
                         <div class="project-info">
                             <div class="project-image">
-                                <img src="/images/binhi_funrun.png">
+                                <img src="{{ asset('Uploads/Updates/'.$project->attachment) }}">
                             </div>
                             <div class="project-body">
-                                <div class="project-title">Binhi ng Pag-asa Fun Run 2022</div>
-                                <div class="project-text"> This is some sample text for project. You can add more content
-                                    here. </div>
+                                <div class="project-title">Title: {{ $project->title }}</div>
+                                <div class="project-text">Description: {{ $project->message }}</div>
                             </div>
                         </div>
-                        <div class="project-info">
-                            <div class="project-image">
-                                <img src="/images/binhi_funrun.png">
-                            </div>
-                            <div class="project-body">
-                                <div class="project-title">Binhi ng Pag-asa Fun Run 2022</div>
-                                <div class="project-text"> This is some sample text for project. You can add more content
-                                    here. </div>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-image">
-                                <img src="/images/binhi_funrun.png">
-                            </div>
-                            <div class="project-body">
-                                <div class="project-title">Binhi ng Pag-asa Fun Run 2022</div>
-                                <div class="project-text"> This is some sample text for project. You can add more content
-                                    here. </div>
-                            </div>
-                        </div>
+                        @endforeach
+                    @endif
                     </div>
                 </div>
 
@@ -229,39 +216,77 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                         <div class="card-announcement">
                             <h2 class="card-title">ANNOUNCEMENT</h2>
                             <div class="card-content">
+                            @if($announcement->isEmpty())
+                                <p>No announcements at the moment.</p>
+                            @else
                                 @foreach($announcement->reverse() as $announcements)
+                                    @php
+                                        $dayEvent = \Carbon\Carbon::parse($announcements->created_at)->format('d');
+                                        $monthEvent = \Carbon\Carbon::parse($announcements->created_at)->format('M');
+                                        $timeEvent = \Carbon\Carbon::parse($announcements->created_at)->format('h:i A');
+                                    @endphp
+                                 
                                 <div class="announcement-info">
-                                    <div class="announcement-title">From: {{ $programName }} Coordinator</div>
+                                <div class="announcements-card-date-time-title">
+                                    <span class="material-symbols-outlined">
+                                        schedule
+                                    </span>
+                                        <span class="announcement-time">{{ $timeEvent }}</span>
+                                </div>
+                                    <div class="announcement-title">From: {{ $announcements->from }}</div>
+                                    <hr class="announcement">
                                     <div class="announcement-text">{{ $announcements->message }}</div>
-                                    <div class="time">{{ $announcements->date }}</div>
+                                    <div class="footer">
+                                  <div class="date">{{ $announcements->created_at->format('Y-m-d') }}</div>
+
+                                    </div>
                                 </div>
                                 @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-6">
                         <div class="card-event">
                             <h2 class="card-title">EVENT</h2>
                             <div class="card-content">
+                            @if($events->isEmpty())
+                                <p>No events at the moment.</p>
+                            @else
                             @foreach($events->reverse() as $event)
                                 <div class="event-info">
                                     <div class="event-date">
                                     @php
                                         $dayEvent = \Carbon\Carbon::parse($event->date)->format('d');
                                         $monthEvent = \Carbon\Carbon::parse($event->date)->format('M');
+                                        $yearEvent = \Carbon\Carbon::parse($event->date)->format('Y');
+                                        $timeEvent = \Carbon\Carbon::parse($event->created_at)->format('H:i:s');
                                     @endphp
+                                        <div class="year">{{ $yearEvent }}</div>
                                         <div class="date">{{ $dayEvent }}</div>
                                         <div class="month">{{ $monthEvent }}</div>
+                                       
                                     </div>
-                                    <div class="event-title">Title: {{ $event->title }}</div>
-                                    <div class="event-text">{{ $event->message }}</div>
-                                    <div id="img-view">
-                                        <img src="/images/image_icon.png" alt="Image Icon">
-                                        <p>No Image Posted</p>
+
+                                    <div class="event-body">
+                                        <div class="event-title">Title: {{ $event->title }}</div>
+                                        <div class="event-text">{{ $event->message }}</div>
+                                        
+                                        <!--
+                                        <div id="img-view">
+                                            
+                                            <img src="/images/image_icon.png" alt="Image Icon">
+                                            <p>No Image Posted</p>
+                                        </div>
+                                        -->
+                                        <div class="footer">
+                                        <div class="time"> Posted: {{$event->created_at->format('Y-m-d h:i A')}}</div>
+                                        </div>
                                     </div>
-                                    <div class="time">3:35 AM</div>
-                                </div>
+                                </div>  
                             @endforeach
+                            @endif
                             </div>
                         </div>
                     </div>

@@ -9,8 +9,11 @@ use App\Models\Program;
 use App\Models\Role;
 use App\Models\Status;
 use App\Models\User;
+use App\Models\Projects;
 use Illuminate\Support\Facades\DB;
 use App\Models\inquiries;
+use App\Mail\ReplyMailable;
+use Illuminate\Support\Facades\Mail;
 
 class VisitorController extends Controller
 {
@@ -81,6 +84,9 @@ class VisitorController extends Controller
 
     public function visitorProgramsView($id)
     {
+
+
+        $programName = trim(implode(' ', Program::where('id', $id)->pluck('program_name')->toArray()));
         //get all coordinators associated with a specific program
         $program = Program::with('coordinators')->findOrFail($id);
 
@@ -95,10 +101,13 @@ class VisitorController extends Controller
             ->select('city', DB::raw('count(*) as count'))
             ->groupBy('city')
             ->get();
+            $public = 'Public';
+            $project = Projects::where(function ($query) use ($public, $programName) {
+                $query->where('recipient', $public)->where('from', $programName);})->get();
 
         // dd($program->coordinators);
 
-        return view('Visitor.category_page', compact('program', 'beneficiaries'));
+        return view('Visitor.category_page', compact('program', 'beneficiaries', 'project'));
     } // End Method
 
     public function VisitorInquiryStore(Request $request)
@@ -107,35 +116,40 @@ class VisitorController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'fullname' => 'required|string|max:255',
+            'from'=> 'string',
             'to' => 'required|string',
             'email' => 'required|email',
             'message' => 'required|string',
-            'date' => 'required|date',
-            'contacts' => 'required|string',
-            'attachments' => 'file',
+            'contact' => 'required|string',
         ]);
-        if (isset($validatedData['attachments'])) {
-            $file = $request->file('attachments');
 
-            $filename = date('YmdHi'). $file->getClientOriginalName();
-        } else {
-            $filename = '';
-        }
-        $validatedData['attachments'] = $filename;
+        $programName = $validatedData['to'];
 
+        $programEmail = trim(implode(' ', Program::where('program_name', $programName)->pluck('email')->toArray()));
+
+        $recipientEmail = $programEmail;
+
+        $recipientName = $validatedData['to'];
+
+        $subject = $validatedData['from'];
+
+        $body = $validatedData['message'];
+
+        $senderName = $validatedData['fullname'];
         // Check if validation passes
         if ($validatedData) 
         {
             // Insert data into the database
             $inquiry = inquiries::create([
                 'fullname' => $validatedData['fullname'],
+                'from'=> $validatedData['from'],
                 'to' => $validatedData['to'],
+                'programEmail'=> $programEmail,
                 'email' => $validatedData['email'],
-                'contacts' => $validatedData['contacts'],
-                'date' => $validatedData['date'],
+                'contacts' => $validatedData['contact'],
                 'message' => $validatedData['message'],
-                'attachment' => $validatedData['attachments'],
             ]);
+            Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $senderName, $recipientName));
             $inquiry->save();
 
             return redirect()->back()->with('success', 'Inquiry Submitted!');

@@ -46,9 +46,9 @@
                     <thead>
                         <tr>
                             <th>Full Name</th>
+                            <th>From</th>
                             <th>Message</th>
                             <th>Email Address</Address></th>
-                            <th>Attachment</th>
                             <th>Contact Number</th>
                             <th>Date</th>
                             <th>Action</th>
@@ -79,20 +79,22 @@
                                                         <p class="form-control" type="text" name="to">{{ $inquiry->email }}</p>
                                                     </div>
                                                 </div>
-                                            </div>
-                                                <div class="col-md-6 mb-4" style="padding-left: 10%;">
+                                            <div class ="row">
+                                                <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Date">Contact Number:</label>
                                                         <p class="form-control" type="date" id="Date" name="date">{{ $inquiry->contacts }}</p>
                                                     </div>
                                                 </div>
+                                            
 
-                                                <div class="col-md-6 mb-4" style="padding-left: 10%;">
+                                                <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Date">Date:</label>
-                                                        <p class="form-control" type="date" id="Date" name="date">{{ $inquiry->created_at }}</p>
+                                                        <p class="form-control" type="date" id="Date" name="date">{{ $inquiry->created_at->format('Y-m-d h:i A')  }}</p>
                                                     </div>
                                                 </div>
+                                            </div>
 
                                                 <div class="col-md-12 mb-4">
                                                     <div class="form-outline">
@@ -104,9 +106,10 @@
                                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
+</div>
                                     </div>
                             </div>
-                        </div>
+
 
                         <!--MODAL Reply-->
                         <div class="modal fade" id="modal_reply{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
@@ -137,17 +140,13 @@
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Date">Subject:</label>
-                                                        <input class="form-control" type="text" id="Subject" name="subject">
+                                                        <input class="form-control" type="text" id="Subject" name="subject" value="{{ $roleName }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Message">Body:</label>
                                                         <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="body"></textarea>
-                                                    </div>
-                                                    <div class="form-outline">
-                                                    <label for="attachment">Attach a file(Optional)</label>
-                                                        <input type="file" class="form-control" id="attachment" name="attachment">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -192,13 +191,13 @@
                             </div>
                         </div>
                         <tr>
-                            <td>{{ $inquiry->fullname }}</td>
-                            <td>{{ $inquiry->message }}</td>
-                            <td>{{ $inquiry->email }}</td>
-                            <td>{{ $inquiry->attachment }}</td>
-                            <td>{{ $inquiry->contacts }}</td>
-                            <td>{{ $inquiry->created_at }}</td>
-                            <td>
+                        <td class="column">{{ $inquiry->fullname }}</td>
+                        <td class="column">{{ $inquiry->from }}</td>
+                        <td class="column message-column">{{ $inquiry->message }}</td>
+                        <td class="column">{{ $inquiry->email }}</td>
+                        <td class="column">{{ $inquiry->contacts }}</td>
+                        <td class="column">{{ $inquiry->created_at->format('Y-m-d')  }}</td>
+                        <td class="column">
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $inquiry->id }}">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                             </button>

@@ -160,6 +160,7 @@
             <div class="modal-footer">
                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="add">Save</button>
+
          </div>
     </di >
 </div>

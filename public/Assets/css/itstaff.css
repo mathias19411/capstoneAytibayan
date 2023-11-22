@@ -133,7 +133,7 @@ nav .menu-items {
     text-decoration: none;
     position: relative;
 }
-.nav-links li a:hover:before {
+.nav-links li a:hover:after {
     content: "";
     position: absolute;
     left: -7px;
@@ -142,19 +142,40 @@ nav .menu-items {
     border-radius: 50%;
     background-color: var(--primary-color);
 }
-
-.nav-links li a.active i {
-    color: var(--primary-color);
+/* Styles for the active state */
+.nav-links li.active a {
+    background-color: rgba(var(--primary-color-rgb), 30); 
+    border: none; 
+    position: relative;
 }
-.nav-links li a.active span {
+
+.nav-links li.active a i {
     color: var(--primary-color);
+    font-weight: bold;
+   
+}
+
+.nav-links li.active a span {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+/* Vertical line on the left side */
+.nav-links li.active a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px; /* Adjust the width of the vertical line */
+    background-color: var(--primary-color);
 }
 
 body.dark li a:hover:before {
     background-color: var(--text-color);
 }
+
 .menu-items li a i {
-    font-size: 20px;
+    font-size: 25px;
     min-width: 45px;
     height: 100%;
     display: flex;
@@ -163,7 +184,7 @@ body.dark li a:hover:before {
     color: var(--black-light-color);
 }
 .menu-items li a .link-name {
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 5px;
     font-weight: 400;
     color: var(--black-light-color);
@@ -295,7 +316,7 @@ nav.close ~ .dashboard .top {
 
 .profile-image{
     border-radius: 50%;
-    border: 1px solid var(--primary-color);
+    
 }
 /* Style the profile image */
 .profile-image img {
@@ -634,9 +655,7 @@ ol, ul {
     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-.dash-content .boxes .box:hover {
-    transform: scale(1.1);
-}
+
 
 .dash-content .boxes .add-button {
     display: flex;
@@ -760,19 +779,19 @@ ol, ul {
 /* Styling for the colored lines */
 .colored-line.total {
     height: 100%; /* Set the height to 100% to fill the number line */
-    background-color: var(--box1-color); /* Set the color for the total line */
+    background-color: var(--primary-color);/* Set the color for the total line */
     border-radius: 10px;
 }
 
 .colored-line.active {
     height: 100%; /* Set the height to 100% to fill the number line */
-    background-color: var(--primary-color); /* Set the color for the active line */
+    background-color: var(--colorOrange); /* Set the color for the active line */
     border-radius: 10px;
 }
 
 .colored-line.inactive {
     height: 100%; /* Set the height to 100% to fill the number line */
-    background-color: var(--colorOrange); /* Set the color for the inactive line */
+    background-color: red;/* Set the color for the inactive line */
     border-radius: 10px;
 }
 
@@ -804,9 +823,7 @@ ol, ul {
     box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-.coord .box:hover {
-    transform: scale(1.1);
-}
+
 
 .coord .box button {
     font-size: 0.85rem;
@@ -1483,10 +1500,17 @@ body.announcement_events_inquiry .table .action{
     padding-bottom: 1px;
 }
 
-body.announcement_events_inquiry .table td {
+body.announcement_events_inquiry .table .column {
     font-size: 13px;
     padding: px 5px;
     margin: 10px;
+   
+}
+body.announcement_events_inquiry .table  td.message-column {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px; 
 }
 
 body.announcement_events_inquiry .add-modal {
@@ -1987,6 +2011,8 @@ body.announcement_events_inquiry tr:hover td {
     opacity: 1;
 }
 
+
+
 /**message viewpopup**/
 
 /* Popup container */
@@ -2268,30 +2294,7 @@ body.announcement_events_inquiry tr:hover td {
     cursor: pointer;
     background-color: #f2f2f2;
 }
-/* Common tooltip style for all buttons */
-.tooltip-button {
-    position: relative;
-}
 
-.tooltip-button::after {
-    content: attr(data-tooltip);
-    background-color: #989393;
-    color: #fff;
-    border-radius: 5px;
-    padding: 5px 10px;
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-    pointer-events: none;
-}
-
-
-.tooltip-button:hover::after {
-    opacity: 1;
-}
 
 #modal_announcement .modal-body {
     overflow-y: auto; 
@@ -2337,4 +2340,23 @@ body.announcement_events_inquiry tr:hover td {
     body.announcement_events_inquiry .table-header-right .search-container input[type="text"] {
         max-width: none;
     }
+}
+
+.rounded-circle {
+    height: 70px;
+    width: 70px;
+    border: 2px solid #7bb701;
+    margin: auto;
+    text-align: center;
+}
+
+.modal-body .name {
+    color: #7bb701;
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+}
+
+.profile {
+    text-align: center;
 }

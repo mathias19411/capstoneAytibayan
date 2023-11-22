@@ -12,8 +12,12 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Read</option>
-                <option value="read">Unread</option>
+                <option value="itstaff">itstaff</option>
+                <option value="binhingpagasa">binhingpagasa</option>
+                <option value="abakamopisomo">abakamopisomo</option>
+                <option value="lead">lead</option>
+                <option value="agripinay">agripinay</option>
+                <option value="akbay">akbay</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -61,14 +65,14 @@
                                 
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col profile">
                                             <div class="col-md-12">
                                                 <img class="ht-50 wd-50 rounded-circle"
                                                     src="{{ !empty($user->photo) ? url('Uploads/Beneficiary_Images/' . $user->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                                     alt="profile">
                                             </div>
                                             <br>
-                                            <span class="h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</span>
+                                            <span class="h4 ms-3 name">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</span>
                                             <br><br>
                                         </div>
                                         <div class="col-md-12">
@@ -109,13 +113,15 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                     <div class="modal-body">
+                                        <div class="col profile">
                                         <div class="col-md-12">
                                             <img class="ht-50 wd-50 rounded-circle"
                                                 src="{{ !empty($user->photo) ? url('Uploads/Beneficiary_Images/' . $user->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                                 alt="profile">
                                         </div>
                                         <br>
-                                        <span class="h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</span>
+                                        <span class="h4 ms-3 name">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</span>
+                                        </div>
                                         <br><br>
                                             <form action="{{ route('abakaprojectcoordinator.registerEditUser') }}" enctype="multipart/form-data" method="post">
                                                 @csrf

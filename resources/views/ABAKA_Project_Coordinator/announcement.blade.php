@@ -12,8 +12,8 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="Public">Public</option>
-                <option value="Beneficiary">Beneficiaries</option>
+                <option value="PUBLIC">Public</option>
+                <option value="abakamopisomo">Beneficiaries</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -37,6 +37,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>From</th>
                             <th>Title</th>
                             <th>To</th>
                             <th>Message</th>
@@ -74,6 +75,10 @@
                                             <h5>Message:</h5>
                                             <p id="modal-message">{{ $announcements->message }}</p>
                                         </div>
+                                        <div class="col-md-12">
+                                            <h5>From:</h5>
+                                            <p id="modal-message">{{ $announcements->from }}</p>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="close" data-bs-dismiss="modal">Close</button>
@@ -96,6 +101,7 @@
                                         @method('PATCH')
                                             <div class="row">
                                             <input type="hidden" name="announcement_id" value="{{ $announcements->id }}">
+                                            <input type="hidden" name="from" value="{{ $announcements->from }}">
                                                 <div class="col-md-6 mb-4">
                                                 <div class="form-group">
                                                     <label for="edit-title">Title:</label>
@@ -106,6 +112,7 @@
                                                 <div class="form-group">
                                                     <label for="edit-recipient">To:</label>
                                                     <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
+                                                    <option>{{ $announcements->to }}</option>
                                                     <option>{{ $programName }}</option>
                                                     <option>PUBLIC</option>
                                                     </select>
@@ -176,11 +183,12 @@
                             </div>
                         </div>
                         <tr>
-                            <td>{{ $announcements->title }}</td>
-                            <td>{{ $announcements->to }}</td>
-                            <td>{{ $announcements->message }}</td>
-                            <td>{{ $announcements->date }}</td>
-                            <td>
+                        <td class="column">{{ $announcements->from }}</td>
+                        <td class="column">{{ $announcements->title }}</td>
+                        <td class="column">{{ $announcements->to }}</td>
+                        <td class="column message-column">{{ $announcements->message }}</td>
+                        <td class="column">{{ $announcements->created_at }}</td>
+                        <td>
                             <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view{{ $announcements->id }}">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                             </button>
@@ -227,12 +235,7 @@
                             <div class="form-outline">
                             <label id="label_">Title</label>
                             <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <label for="Date">Date</label>
-                                <input class="form-control" type="date" id="Date" name="date">
+                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="from" value="{{ $roleName }}" hidden>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">

@@ -13,9 +13,9 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="read">itstaff</option>
-                <option value="binhi">binhingpagasa</option>
-                <option value="abaka">abakamopisomo</option>
+                <option value="itstaff">itstaff</option>
+                <option value="binhingpagasa">binhingpagasa</option>
+                <option value="abakamopisomo">abakamopisomo</option>
                 <option value="lead">lead</option>
                 <option value="agripinay">agripinay</option>
                 <option value="akbay">akbay</option>
@@ -67,7 +67,7 @@
 
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col profile">
                                             <div class="col-md-12">
                                                 <img class="profile ht-50 wd-50 rounded-circle"
                                                     src="{{ !empty($user->photo)
@@ -131,6 +131,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                    <div class="col profile">
                                     <div class="col-md-12">
                                         <img class="profile ht-50 wd-50 rounded-circle"
                                             src="{{ !empty($user->photo)
@@ -147,10 +148,11 @@
                                                         : url('Uploads/Beneficiary_Images/' . $user->photo)))
                                                 : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                             alt="profile">
-                                    </div>
+                                        </div>
                                     <br>
-                                    <span class="h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }}
+                                    <span class="name h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }}
                                         {{ $user->last_name }}</span>
+                                        </div>
                                     <br><br>
                                     <form action="{{ route('itstaff.registerEditUser') }}" enctype="multipart/form-data"
                                         method="post">
@@ -182,7 +184,7 @@
                                                 </select>
                                             </div>
                                         </div>
-
+                                                    </div>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                             <button type="submit" class="add">Save Changes</button>

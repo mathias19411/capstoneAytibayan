@@ -321,9 +321,18 @@ class ItStaffController extends Controller
 
     public function ITStaffAnnouncement()
     {
+        $programs = Program::all();
+        $id = AUTH::user()->id;
+
+        // Get the programId of the user table
+        $programId = User::where('id', $id)->pluck('program_id');
+        $roleId = User::where('id', $id)->pluck('role_id');
+        $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+        // Get the programname of the program table
+        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
         $announcement = announcement::all();
 
-        return view('ITStaff.announcement', ['announcement'=>$announcement]);
+        return view('ITStaff.announcement', compact('announcement','roleName','programName', 'programs'));
     } // End Method
 
     public function ITStaffAnnouncementEdit($id)
@@ -337,8 +346,8 @@ class ItStaffController extends Controller
     {
         // Validate the request
         $validatedData = $request->validate([
+            'from'=> 'string',
             'title' => 'required|string|max:255',
-            'date' => 'required|date',
             'to' => 'required|string',
             'message' => 'required|string',
         ]);
@@ -347,12 +356,13 @@ class ItStaffController extends Controller
         if ($validatedData) 
         {
             // Insert data into the database
-            announcement::insert([
+            $announcement = announcement::create([
+                'from'=> $validatedData['from'],
                 'title' => $validatedData['title'],
-                'date' => $validatedData['date'],
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
+            $announcement->save();
 
             return redirect()->back()->with('success', 'New Announcement Added!');
         } else {
@@ -395,9 +405,19 @@ class ItStaffController extends Controller
     
     public function ITStaffEvent()
     {
+        $programs = Program::all();
+        $id = AUTH::user()->id;
+
+        // Get the programId of the user table
+        $programId = User::where('id', $id)->pluck('program_id');
+        $roleId = User::where('id', $id)->pluck('role_id');
+        $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+        // Get the programname of the program table
+        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+
         $event = events::all();
 
-        return view('ITStaff.event', ['event'=>$event]);
+        return view('ITStaff.event', compact('event','roleName','programName', 'programs'));
     } // End Method
 
     public function ITStaffEventEdit($id)
@@ -411,29 +431,51 @@ class ItStaffController extends Controller
     public function ITStaffEventStore(Request $request)
     {
         // Validate the request
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'to' => 'required|string',
-            'message' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Example: Allow JPEG, PNG, and GIF images, max 2MB
-            'date' => 'required|date',
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'from'=> 'string',
+        'date' => 'required|date',
+        'to' => 'required|string',
+        'message' => 'required|string',
+        'image' => 'image'
+    ]);
+
+    // Check if the image key exists in the validated data array
+    if (isset($validatedData['image'])) {
+        // Get the image file
+        $file = $request->file('image');
+
+        // Generate a unique filename for the image file
+        $filename = date('YmdHi') . $file->getClientOriginalName();
+
+    } else {
+        // Assign an empty string to the filename variable
+        $filename = '';
+    }
+
+    // Set the image attribute of the event model to the filename
+    $validatedData['image'] = $filename;
+
+    //dd($validatedData);
+
+    // Check if validation passes
+    if ($validatedData) {
+        // Insert data into the database
+        $event = events::create([
+            'from' => $validatedData['from'],
+            'title' => $validatedData['title'],
+            'date' => $validatedData['date'],
+            'to' => $validatedData['to'],
+            'message' => $validatedData['message'],
+            'image' => $validatedData['image'],
         ]);
+        $event->save();
 
-        // Check if validation passes
-        if ($validatedData) 
-        {
-            // Insert data into the database
-            events::insert([
-                'title' => $validatedData['title'],
-                'to' => $validatedData['to'],
-                'message' => $validatedData['message'],
-                'image' => $validatedData['image'],
-                'date' => $validatedData['date'],
-            ]);
+        // If the attachment file is not empty, store it in the database
 
-            return redirect()->back()->with('success', 'New Event Added!');
-        } else {
-            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        return redirect()->back()->with('success', 'New Event Added!');
+    } else {
+        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
 
     } // End Method

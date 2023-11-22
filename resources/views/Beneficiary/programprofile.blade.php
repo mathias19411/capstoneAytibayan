@@ -1,3 +1,5 @@
+
+@include('beneficiary.Body.sidebar')
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +20,6 @@
 
 </head>
 <body class="programprofile">
-@include('beneficiary.Body.sidebar')
 <div class="title">
         <h1>program profile</h1>
     </div>

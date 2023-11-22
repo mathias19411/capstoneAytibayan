@@ -308,9 +308,11 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
     Route::post('/ABAKA_ProjectCoordinator/Inquriy/reply', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorInquiryReply'])->name('reply.inquirycoordinatorabaka');
     Route::delete('/ABAKA_ProjectCoordinator/Inquriy/delete', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiryDelete'])->name('delete.inquirycoordinatorabaka');
 
-
     //Coordinator Progress
     Route::get('/ABAKA_ProjectCoordinator/Progress', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('abakaprojectcoordinator.progress');
+    Route::post('/Project_Coordinator/Project_Page/Add', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAddProject'])->name('add.project');
+    Route::patch('/ABAKA_ProjectCoordinator/Projects', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorUpdateProject'])->name('edit.project');
+    Route::delete('/ABAKA_ProjectCoordinator/Projects', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorDeleteProject'])->name('delete.project');
 
     Route::post('/ABAKA_ProjectCoordinator/ProgressAdd', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgressAdd'])->name('abakaprojectcoordinator.progressAdd');
 
@@ -353,11 +355,14 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
     
     //Benef Updates
     Route::get('/Beneficiary/updates', [BeneficiaryController::class, 'BeneficiaryUpdates'])->name('beneficiary.updates');
+    Route::post('/Beneficiary/updates', [BeneficiaryController::class, 'BeneficiaryUpdateStore'])->name('send.updates');
+    Route::patch('/Beneficiary/updates/edit', [BeneficiaryController::class, 'BeneficiaryUpdateUpdate'])->name('edit.updates');
 
     //Benef Schedule
     Route::get('/Beneficiary/schedule', [BeneficiaryController::class, 'BeneficiarySchedule'])->name('beneficiary.schedule');
+   
     //Benef Program Profile
-    //Route::get('/Beneficiary/programprofile', [BeneficiaryController::class, 'BeneficiaryProgramProfile'])->name('beneficiary.programprofile');
+    Route::get('/Beneficiary/programprofile', [BeneficiaryController::class, 'Beneficiaryprogramprofile'])->name('beneficiaryprogram.profile');
 
     //Benef Inquiry
     Route::get('/Beneficiary/Inquiry', [BeneficiaryController::class, 'BeneficiaryInquiry'])->name('beneficiary.inquiry');
@@ -382,6 +387,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->grou
 //Visitor Routes
 Route::get('/', [VisitorController::class, 'VisitorHome'])->name('visitor.home');
 Route::post('/Visitor/Inquiry', [VisitorController::class, 'VisitorInquiryStore'])->name('visitor.inquiry');
+Route::post('/Visitor/Inquiry/ProgramPage', [VisitorController::class, 'VisitorInquiryStore'])->name('specificinquiry.send');
 
 //resend two factor code route
 Route::get('verify/resend', [TwoFactorController::class, 'resend'])->name('verify.resend');
@@ -410,8 +416,6 @@ Route::get('/Visitor/category_page/{category}', function ($category) {
     // You can pass the $category variable to the view or use it to fetch category information from the database
     return view('Visitor.category_page', compact('category'));
 })->name('Visitor.category.page');
-
-Route::get('/Visitor', [EventController::class, 'index']);
 
 //send sms
 Route::get('/sendsms', [SmsController::class, 'sendsms']);

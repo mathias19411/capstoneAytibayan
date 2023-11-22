@@ -133,7 +133,7 @@ nav .menu-items{
     text-decoration: none;
     position: relative;
 }
-.nav-links li a:hover:before{
+.nav-links li a:hover:after {
     content: "";
     position: absolute;
     left: -7px;
@@ -143,19 +143,43 @@ nav .menu-items{
     background-color: var(--primary-color);
 }
 
-.nav-links li a.active i {
-    color: var(--primary-color);
+
+/* Styles for the active state */
+.nav-links li.active a {
+    background-color: rgba(var(--primary-color-rgb), 30); 
+    border: none; 
+    position: relative;
 }
-.nav-links li a.active span {
+
+.nav-links li.active a i {
     color: var(--primary-color);
+    font-weight: bold;
+   
 }
+
+.nav-links li.active a span {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+/* Vertical line on the left side */
+.nav-links li.active a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px; /* Adjust the width of the vertical line */
+    background-color: var(--primary-color);
+}
+
+
 
 
 body.dark li a:hover:before {
     background-color: var(--text-color);
 }
 .menu-items li a i{
-    font-size: 20px;
+    font-size: 25px;
     min-width: 45px;
     height: 100%;
     display: flex;
@@ -164,7 +188,7 @@ body.dark li a:hover:before {
     color: var(--black-light-color);
 }
 .menu-items li a .link-name{
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 5px;
     font-weight: 400;
     color: var(--black-light-color);    
@@ -301,7 +325,7 @@ nav.close ~ .dashboard .top{
 }
 .profile-image{
     border-radius: 50%;
-    border: 1px solid var(--primary-color);
+
 }
     
 /* Style the profile image */
@@ -855,11 +879,24 @@ body {
   #add-step {
     background-color: var(--primary-color); 
     color: white; 
-    padding: 10px 20px; 
+    padding: 5px 15px; 
     border: none; 
     border-radius: 10px; 
     cursor: pointer; 
   }
+  #reset-steps {
+    background-color: var(--colorOrange); 
+    color: white; 
+    padding: 5px 15px; 
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+  }
+  #add-step:hover,
+    #reset-steps:hover {
+        opacity: 0.8;
+    }
+
 
 
 .done-button:hover {
@@ -1459,10 +1496,17 @@ body.announcement_events_inquiry .table .action{
     padding-bottom: 1px;
 }
 
-body.announcement_events_inquiry .table td {
+body.announcement_events_inquiry .table .column {
     font-size: 13px;
     padding: px 5px;
     margin: 10px;
+   
+}
+body.announcement_events_inquiry .table  td.message-column {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px; 
 }
 
 body.announcement_events_inquiry .add-modal {
@@ -1496,6 +1540,10 @@ body.announcement_events_inquiry .generate {
     margin-top: 20px;
     margin-right: 10px;
 }
+body.announcement_events_inquiry  input[name="from"].form-control {
+    display: none;
+}
+
 
 body.announcement_events_inquiry .add-modal:hover {
     background-color: #8db600;
@@ -2143,14 +2191,18 @@ body.announcement_events_inquiry .message-row {
 }
 
 .project_box {
+    /* Styles for the container of multiple project boxes */
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 20px;
+    max-height: 400px; /* Using max-height instead of height for container */
+    width: 100%;
+    overflow: auto; /* Enable scrolling if content exceeds max-height */
 }
 
 .project_box .box {
-    flex: 0 0 calc(25% - 20px);
+
     margin: 10px;
     text-align: center;
     border: 1px solid #ccc;
@@ -2158,31 +2210,96 @@ body.announcement_events_inquiry .message-row {
     padding: 10px;
     background-color: #f2f2f2;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    width: 220px;
+    height: 300px; 
+    position: relative; /* Positioning context for absolute elements */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.project-info {
+    position: relative;
+    height: calc(100% - 40px); 
+    overflow: auto;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center; 
+    padding: 10px; 
+    background: none;  
+    margin: auto;  
+}
+
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.edit-btn i {
+    font-size: 15px;
+    color: #f0a60f;
+}
+.delete-btn i {
+    color: #ff0000;
+    font-size: 15px;
 }
 
 .project_box .box img {
     width: 100%;
     height: 90px;
-    background-size: cover;
+    object-fit: cover; /* Use object-fit for image sizing */
 }
 
-.project_box .box h2 {
+.project_box .box h5 {
     font-size: 17px;
+    color: #7bb701;
+    text-align: left;
+}
+
+
+.project_box .box h2 {
+    font-size: 16px;
     color: black;
+    font-weight: 400;
     margin: 10px 0;
 }
 
-.project_box .box p {
-    font-size: 16px;
+ hr.rounded {
+    border: 1px solid #7bb701;
+    border-radius: 5px;
+    width: 50px;
+    margin: auto;
+    opacity: 100;
+    margin-bottom: 5px;
 }
 
-#add-project-button {
-    background-color: #7bb701;
-    border: none;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 5px;
-    font-size: 15px;
+.project_box .box .description {
+    font-size: 14px;    
+    white-space: normal; /* Prevent text wrapping */
+    overflow: auto;
+}
+
+.image-update #img-view {
+    width: 100%; /* Adjust the width as needed */
+    height: auto;
+    max-height: 300px; /* Set maximum height to prevent overflow */
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-size: cover;
+}
+
+.image-update #img-view img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .chart-inner {
@@ -2204,4 +2321,24 @@ body.announcement_events_inquiry .message-row {
     border-radius: 5px;
     font-size: 15px;
     margin:0 auto;
+}
+
+
+.rounded-circle {
+    height: 70px;
+    width: 70px;
+    border: 2px solid #7bb701;
+    margin: auto;
+    text-align: center;
+}
+
+.modal-body .name {
+    color: #7bb701;
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+}
+
+.profile {
+    text-align: center;
 }
