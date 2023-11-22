@@ -136,7 +136,7 @@
                                 <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates"><i class="fa-solid fa-eye fa-2xs"></i></button>
                                     <button class="tooltip-button" data-tooltip="Update"
                                         onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
-                                            class="fa-solid fa-pen-to-square fa-2xs"></i></button> --}}
+                                            class="fa-solid fa-pen-to-square fa-2xs"></i></button> 
 
                                 <td>{{ $abakaBeneficiary->status->status_name }}</td>
                             

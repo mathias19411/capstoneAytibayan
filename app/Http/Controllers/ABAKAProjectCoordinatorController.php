@@ -938,7 +938,7 @@ class ABAKAProjectCoordinatorController extends Controller
         // Return an error response
         return response()->json(['error' => 'Internal Server Error'], 500);
     }
-
+}
     public function ItStaffBlacklistView()
     {
         //Access the authenticated user's id
@@ -990,4 +990,4 @@ class ABAKAProjectCoordinatorController extends Controller
 
     
 
-}
+
