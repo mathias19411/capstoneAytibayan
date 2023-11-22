@@ -21,7 +21,7 @@ class RolesTableSeeder extends Seeder
             ],
             //Coordinator
             [
-                'role_name' => 'projectcoordinator'
+                'role_name' => 'binhiprojectcoordinator'
             ],
             [
                 'role_name' => 'abakaprojectcoordinator'

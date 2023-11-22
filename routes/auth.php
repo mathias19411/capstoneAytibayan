@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Requests\Auth\LoginRequest;
 
 
-Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff|abakaprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff|abakaprojectcoordinator|agripinayprojectcoordinator|akbayprojectcoordinator|leadprojectcoordinator|binhiprojectcoordinator'])->group(function(){
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 

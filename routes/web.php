@@ -67,6 +67,19 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff'])->group(fu
     //edit existing program 
     Route::post('/ITStaff/updateProgram', [ItStaffController::class, 'ItStaffUpdateProgram'])->name('itstaff.updateProgram');
 
+    //transactions
+    Route::get('/ITStaff/transactions', [ItStaffController::class, 'ItStaffTransactionsView'])->name('itstaff.TransactionsView');
+    //financial assistance transactions
+    Route::get('/ITStaff/financialAssistanceTransactions', [ItStaffController::class, 'ItStaffAssistanceTransactionsView'])->name('itstaff.financialAssistanceTransactionsView');
+    //loan transactions
+    Route::get('/ITStaff/loanTransactions', [ItStaffController::class, 'ItStaffLoanTransactionsView'])->name('itstaff.loanTransactionsView');
+
+    //blacklist view
+    Route::get('/ITStaff/blackilist', [ItStaffController::class, 'ItStaffBlacklistView'])->name('itstaff.BlacklistView');
+
+    //blacklist a user
+    Route::get('/ITStaff/blackilist/{id}', [ItStaffController::class, 'ItStaffBlacklistUser'])->name('itstaff.BlacklistUser');
+
     Route::get('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncement'])->name('itstaff.announcement');
 
     Route::post('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncementStore'])->name('store.announcement');
@@ -108,7 +121,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff'])->group(fu
 }); //End group itstaff middleware
 
 //Project Coordinator BINHI Group Middleware
-Route::middleware(['auth', 'twofactor', 'userroleprotection:projectcoordinator'])->group(function(){
+Route::middleware(['auth', 'twofactor', 'userroleprotection:binhiprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/ProjectCoordinator/home', [ProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('projectcoordinator.beneficiaries');
 
@@ -140,6 +153,8 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:projectcoordinator']
 //Project Coordinator AGRIPINAY Group Middleware
 Route::middleware(['auth', 'twofactor', 'userroleprotection:agripinayprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
+
+    //home
     Route::get('/AGRIPINAY_ProjectCoordinator/home', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('agripinayprojectcoordinator.beneficiaries');
 
     //ITStaff Logout
@@ -161,7 +176,41 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:agripinayprojectcoor
 
     Route::get('/AGRIPINAY_ProjectCoordinator/Inquriy', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('agripinayprojectcoordinator.inquiry');
 
+    //Coordinator Progress
     Route::get('/AGRIPINAY_ProjectCoordinator/Progress', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('agripinayprojectcoordinator.progress');
+
+    Route::post('/AGRIPINAY_ProjectCoordinator/ProgressAdd', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorProgressAdd'])->name('agripinayprojectcoordinator.progressAdd');
+
+    Route::post('/AGRIPINAY_ProjectCoordinator/ProgressUpdate', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorProgressUpdate'])->name('agripinayprojectcoordinator.progressUpdate');
+
+    Route::post('/AGRIPINAY_ProjectCoordinator/CurrentLoanUpdate', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorCurrentLoanUpdate'])->name('agripinayprojectcoordinator.currentLoanUpdate');
+
+    //Repayment
+    Route::post('/AGRIPINAY_ProjectCoordinator/ProgressUpdateRepayment', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorProgressUpdateRepayment'])->name('agripinayprojectcoordinator.progressUpdateRepayment');
+
+    //Repayment Schedule Reminder
+    Route::post('/AGRIPINAY_ProjectCoordinator/ProgressLoanReminder/{userId}', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorProgressLoanReminder'])->name('agripinayprojectcoordinator.progressLoanReminder');
+
+    //Agripinay Coordinator View Profile
+    Route::get('/AGRIPINAY_ProjectCoordinator/viewprofile', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorViewProfile'])->name('agripinayprojectcoordinator.viewprofile');
+
+    //Agripinay Coordinator Edit Profile Data
+    Route::post('/AGRIPINAY_ProjectCoordinator/editprofile', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEditProfile'])->name('agripinayprojectcoordinator.editprofile');
+
+    //Agripinay Coordinator View Change Password
+    Route::get('/AGRIPINAY_ProjectCoordinator/viewchangepassword', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorViewChangePassword'])->name('agripinayprojectcoordinator.viewchangepassword');
+
+    //Agripinay Coordinator Edit Change Password
+    Route::post('/AGRIPINAY_ProjectCoordinator/editchangepassword', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEditChangePassword'])->name('agripinayprojectcoordinator.editchangepassword');
+
+    //Agripinay Coordinator Register View
+    Route::get('/AGRIPINAY_ProjectCoordinator/registerview', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorRegisterView'])->name('agripinayprojectcoordinator.registerView');
+
+    //Agripinay Coordinator Edit user status and role
+    Route::post('/AGRIPINAY_ProjectCoordinator/registeredituser', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorRegisterEditUser'])->name('agripinayprojectcoordinator.registerEditUser');
+
+    //Notify all beneficiaries with status
+    Route::post('/AGRIPINAY_ProjectCoordinator/notify-beneficiaries', [AGRIPINAYProjectCoordinatorController::class, 'notifyBeneficiaries']);
 
     // more routes here for Project Coordinator
 

@@ -39,10 +39,11 @@ class User extends Authenticatable
         'password',
         'photo',
         'phone',
-        'primary_address',
+        'barangay',
         'city',
         'province',
         'zip',
+        'blacklisted',
         'role_id',
         'program_id',
         'status_id',
@@ -137,6 +138,19 @@ class User extends Authenticatable
 
     public function financialAssistanceStatus() {
         return $this->assistance->belongsTo(Financialassistancestatus::class, 'financialassistancestatus_id');
+    }
+
+    public function loan()
+    {
+        return $this->hasOne(Loan::class, 'user_id');
+    }
+
+    public function loanstatus() {
+        return $this->loan->belongsTo(Loanstatus::class, 'loanstatus_id');
+    }
+
+    public function currentloanstatus() {
+        return $this->loan->belongsTo(CurrentLoanstatus::class, 'currentloanstatus_id');
     }
 
     public function assistanceSteps()
