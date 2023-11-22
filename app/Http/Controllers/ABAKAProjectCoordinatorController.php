@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
+
+
 class ABAKAProjectCoordinatorController extends Controller
 {
     public function ProjectCoordinatorHome()
@@ -750,8 +752,25 @@ class ABAKAProjectCoordinatorController extends Controller
     }
     }
 
-    public function ProgramProfile(){
+    public function markInquiryAsRead(Inquiries $inquiry)
+{
+    \Log::info('Inquiry ID: ' . $inquiry->id); // Log the ID
 
-        return view('');
+    try {
+        $inquiry->update(['is_read' => true]);
+        return response()->json(['message' => 'Message marked as read']);
+    } catch (\Exception $e) {
+        // Log the error
+        \Log::error('Error marking message as read: ' . $e->getMessage());
+
+        // Return an error response
+        return response()->json(['error' => 'Internal Server Error'], 500);
     }
+}
+
+
+    
+
+    
+
 }

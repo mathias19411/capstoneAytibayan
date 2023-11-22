@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Modal -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -916,7 +917,39 @@ document.addEventListener('DOMContentLoaded', function() {
 }
     </script>
 
+<script>// Add this script at the end of your Blade template or in a separate JS file.
+document.addEventListener('DOMContentLoaded', function () {
+    const viewButtons = document.querySelectorAll('.tooltip-button[data-tooltip="View"]');
     
+    viewButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const inquiryId = this.getAttribute('data-inquiry-id');
+
+
+
+            // Make an AJAX request to mark the message as read
+            fetch(`/ABAKA_ProjectCoordinator/inquiry/mark-as-read/${inquiryId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Update the UI to remove the 'unread' class
+                    this.closest('tr').classList.remove('unread');
+                }
+            })
+            .catch(error => {
+                console.error('Error marking message as read:', error);
+            });
+        });
+    });
+});
+
+</script>
+
 </body>
 
 </html>

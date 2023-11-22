@@ -1944,7 +1944,7 @@ body.announcement_events_inquiry td button:nth-child(3) {
 }
 
 body.announcement_events_inquiry tr:nth-child(even) {
-    background-color: #f2f2f2;
+    
 }
 
 
@@ -1953,7 +1953,21 @@ body.announcement_events_inquiry td {
     font-size: 13px;
 }
 
-body.announcement_events_inquiry tr:hover td {
+/* Add this to your stylesheet */
+body.announcement_events_inquiry tr.unread {
+    background-color: #ffecb3; /* or any other highlighting style */
+}
+
+/* Optional: Style for read inquiries */
+body.announcement_events_inquiry tr.read {
+    background-color: #f2f2f2;
+}
+/* Add a transition effect for background color changes 
+body.announcement_events_inquiry tr:hover {
+    background-color: #e0e0e0; /* Lighter gray background on hover */
+
+
+/* body.announcement_events_inquiry tr:hover td {
     color: #7bb701;
     cursor: pointer;
     background-color: #f2f2f2;

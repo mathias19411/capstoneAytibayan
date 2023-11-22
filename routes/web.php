@@ -240,6 +240,12 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
     //Coordinator Inquiry
     Route::get('/ABAKA_ProjectCoordinator/inquiry', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('ABAKA_Project_Coordinator.inquiry');
 
+
+   // Route::get('/ABAKA_ProjectCoordinator/inquiry/check-read-status/{inquiryId}', [ABAKAProjectCoordinatorController::class, 'checkReadStatus'])
+    //->name('ABAKA_Project_Coordinator.inquiry.checkReadStatus');
+
+
+
     //Coordinator Announcements
     Route::get('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('abakaprojectcoordinator.announcement');
     Route::post('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorabaka');
