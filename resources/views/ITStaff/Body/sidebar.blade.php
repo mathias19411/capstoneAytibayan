@@ -38,13 +38,13 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('itstaff.TransactionsView') }}">
                     <i class="uil uil-history"></i>
                     <span class="link-name">Transactions</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('itstaff.BlacklistView') }}">
                     <i class="uil uil-x"></i>
                     <span class="link-name">Blacklisted</span>
                 </a>

@@ -109,10 +109,20 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="col-md-12">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"
+                        placeholder="example@gmail.com" required>
+                    @error('inputEmail')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                    <input type="hidden" name="password" value="ApaoAlbay2023">
+                </div>
                 <div class="col-md-6">
                     <label for="inputNumber" class="form-label">Phone Number</label>
                     <input type="text" class="form-control" id="inputNumber" name="phone_number"
-                        placeholder="09*********" required>
+                        placeholder="+63 9** *** ***9" required>
                     @error('phone_number')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -233,10 +243,20 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="col-md-12">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"
+                        placeholder="example@gmail.com" required>
+                    @error('inputEmail')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                    <input type="hidden" name="password" value="ApaoAlbay2023">
+                </div>
                 <div class="col-md-6">
                     <label for="inputNumber" class="form-label">Phone Number</label>
                     <input type="text" class="form-control" id="inputNumber" name="phone_number"
-                        placeholder="09*********" required>
+                        placeholder="+63 9** *** ***9" required>
                     @error('phone_number')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror

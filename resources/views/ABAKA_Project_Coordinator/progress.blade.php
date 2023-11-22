@@ -29,6 +29,17 @@ $benefAssistanceStatuses = [];
 
         @if (App\Models\Financialassistance::count() > 0)
             @php
+            //total pending benef
+                $abakaStartedCount = App\Models\User::whereHas('role', function ($query) {
+                        $query->where('role_name', 'beneficiary');
+                    })
+                    ->whereHas('program', function ($query) use ($userProgramId) {
+                        $query->where('id', $userProgramId);
+                    })
+                    ->whereHas('assistance', function ($query) {
+                        $query->where('financialassistancestatus_id', 2);
+                    })
+                    ->count();
                 //total pending benef
                 $abakaPendingCount = App\Models\User::whereHas('role', function ($query) {
                     $query->where('role_name', 'beneficiary');
@@ -37,7 +48,7 @@ $benefAssistanceStatuses = [];
                         $query->where('id', $userProgramId);
                     })
                     ->whereHas('assistance', function ($query) {
-                        $query->where('financialassistancestatus_id', 2);
+                        $query->where('financialassistancestatus_id', 3);
                     })
                     ->count();
                 //total approved benef
@@ -48,7 +59,7 @@ $benefAssistanceStatuses = [];
                         $query->where('id', $userProgramId);
                     })
                     ->whereHas('assistance', function ($query) {
-                        $query->where('financialassistancestatus_id', 3);
+                        $query->where('financialassistancestatus_id', 4);
                     })
                     ->count();
                 //total disbursed benef
@@ -59,13 +70,13 @@ $benefAssistanceStatuses = [];
                         $query->where('id', $userProgramId);
                     })
                     ->whereHas('assistance', function ($query) {
-                        $query->where('financialassistancestatus_id', 4);
+                        $query->where('financialassistancestatus_id', 5);
                     })
                     ->count();
 
                 $benefExistingProjectCount = App\Models\Financialassistance::count();
 
-                $benefAssistanceStatuses = [$abakaPendingCount, $abakaApprovedCount, $abakaDisbursedCount];
+                $benefAssistanceStatuses = [$abakaStartedCount, $abakaPendingCount, $abakaApprovedCount, $abakaDisbursedCount];
             @endphp
             <div class="box box-1 ">
                 <h1>Existing Beneficiry Projects</h1>
@@ -204,6 +215,7 @@ $benefAssistanceStatuses = [];
                             @if ($abakaBeneficiary->assistance)
                                 <p><strong>Project:</strong> <span>{{ $abakaBeneficiary->assistance->project }}</span></p>
                                 <p><strong>Amount:</strong> <span>{{ $abakaBeneficiary->assistance->amount }}</span></p>
+                                <p><strong>Number of Hectares:</strong> <span>{{ $abakaBeneficiary->assistance->number_of_hectares }}</span></p>
                                 <p><strong>Last Updated:</strong>
                                     <span>{{ $abakaBeneficiary->assistance->updated_at }}</span>
                                 </p>
@@ -222,10 +234,10 @@ $benefAssistanceStatuses = [];
 
 
                                     <select id="update-status-dropdown" name="inputAssistanceUpdate">
-                                        @foreach ($assistanceStatuses as $assistanceStatus)
-                                            <option value="{{ $assistanceStatus->id }}"
-                                                @if ($assistanceStatus->id == $abakaBeneficiary->assistance->financialassistancestatus_id) selected @endif>
-                                                {{ $assistanceStatus->financial_assistance_status_name }}</option>
+                                        @foreach ($filteredassistanceStatuses as $filteredassistanceStatus)
+                                            <option value="{{ $filteredassistanceStatus->id }}"
+                                                @if ($filteredassistanceStatus->id == $abakaBeneficiary->assistance->financialassistancestatus_id) selected @endif>
+                                                {{ $filteredassistanceStatus->financial_assistance_status_name }}</option>
                                         @endforeach
                                     </select>
                                 @endif
@@ -414,10 +426,11 @@ $benefAssistanceStatuses = [];
             colors: [
                 "#7bb701",
                 "#f0a60f",
-                "#58c0e2"
+                "#58c0e2",
+                "#3F5E5A",
 
             ],
-            labels: ['Pending', 'Approved', 'Disbursed'],
+            labels: ['Started', 'Pending', 'Approved', 'Disbursed'],
             responsive: [{
                     breakpoint: 1000, // Set a breakpoint for smaller screens (e.g., tablets)
                     options: {

@@ -27,14 +27,24 @@ class DatabaseSeeder extends Seeder
             StatusesTableSeeder::class,
         ]);
 
-        // Seed sstuses table
+        // Seed financial assistance statuses table
         $this->call([
             FinancialAssistanceStatusSeeder::class,
         ]);
 
+        // Seed loan statuses table
+        $this->call([
+            LoansStatusTableSeeder::class,
+        ]);
+
+        // Seed current loan statuses table
+        $this->call([
+            ExistingLoanStatusTableSeeder::class,
+        ]);
+
         // seed users table 
         $this->call(UsersTableSeeder::class);
-        \App\Models\User::factory(15)->create();
+        \App\Models\User::factory(40)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

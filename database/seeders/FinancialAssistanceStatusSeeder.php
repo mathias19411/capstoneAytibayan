@@ -19,7 +19,7 @@ class FinancialAssistanceStatusSeeder extends Seeder
             [
                 'financial_assistance_status_name' => 'unsettled', 'description' => 'You may create a financial assistance request to the office'
             ],
-            //unsettled
+            //started
             [
                 'financial_assistance_status_name' => 'started', 'description' => 'Your financial assistance request has been started processing'
             ],

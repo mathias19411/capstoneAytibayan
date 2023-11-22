@@ -133,15 +133,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     </div>
-                                        <!--
-                                        <input type="password" name="inputOldPassword"
-                                            class="form-control form-control-alternative @error('inputOldPassword') is-invalid
-                                            @enderror"
-                                            id="inputOldPassword" placeholder="Old Password" autocomplete="off">
-                                        @error('inputOldPassword')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                        -->
+                                        
                                     
                                     <div class="form-group focused">
                                         <label class="form-control-label" for="inputNewPassword">New Password</label>

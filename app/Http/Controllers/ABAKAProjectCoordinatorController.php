@@ -5,19 +5,26 @@ namespace App\Http\Controllers;
 use App\Mail\FinancialAssistanceStatusUpdate;
 use App\Mail\ReplyMailable;
 use App\Models\announcement;
+use App\Models\Assistancesteps;
 use App\Models\events;
-use App\Models\Financialassistance;
-use App\Models\Financialassistancestatus;
 use App\Models\File;
+use App\Models\Financialassistance;
+use App\Models\Financialassistancehistory;
+use App\Models\Financialassistancestatus;
 use App\Models\inquiries;
+use App\Models\Loan;
+use App\Models\Loanstatus;
 use App\Models\Program;
 use App\Models\progress;
 use App\Models\Role;
 use App\Models\Status;
 use App\Models\User;
-use App\Models\Assistancesteps;
+use App\Notifications\AccountUpdateNotif;
+use App\Notifications\BlacklistNotification;
 use App\Notifications\FinancialAssistanceStatusRejected;
 use App\Notifications\FinancialAssistanceStatusUpdated;
+use App\Notifications\InactiveStatusNotif;
+use App\Notifications\PasswordUpdateNotif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -409,6 +416,8 @@ class ABAKAProjectCoordinatorController extends Controller
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
+        })->whereHas('status', function ($query) {
+            $query->where('status_name', 'Active');
         })->get();
 
 
@@ -420,9 +429,13 @@ class ABAKAProjectCoordinatorController extends Controller
 
         $assistanceStatuses = Financialassistancestatus::all();
 
+        $filteredassistanceStatuses = $assistanceStatuses->filter(function ($assistanceStatus) {
+            return in_array($assistanceStatus->id, [2, 3, 4, 5, 6]);
+        });
+
         $assistanceUnsettledStatus = Financialassistancestatus::where('financial_assistance_status_name', 'unsettled')->first();
 
-        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries', 'assistanceStatuses', 'totalActiveAndInactiveCount', 'assistanceUnsettledStatus'));
+        return view('ABAKA_Project_Coordinator.progress', compact('progress', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'abakaBeneficiaries', 'filteredassistanceStatuses', 'totalActiveAndInactiveCount', 'assistanceUnsettledStatus'));
     } // End Method
 
     public function ProjCoordinatorProgressAdd(Request $request)
@@ -451,6 +464,22 @@ class ABAKAProjectCoordinatorController extends Controller
             $user = User::findOrFail($userId);
 
             $user->notify(new FinancialAssistanceStatusUpdated());
+
+            //send via sms
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
+
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $user->financialAssistanceStatus->financial_assistance_status_name. " today at " . $user->assistance->updated_at)
+            // );
+
+            // $message = $response->current();
+
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
         }
 
 
@@ -478,6 +507,51 @@ class ABAKAProjectCoordinatorController extends Controller
             $user->notify(new FinancialAssistanceStatusRejected());
             // Status is "rejected," delete the associated row
 
+            //send via sms
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
+
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
+            // );
+
+            // $message = $response->current();
+
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
+
+        }
+        elseif ($request->inputAssistanceUpdate == 5) {
+            $financialAssistanceId->update([
+                'financialassistancestatus_id' => $request->inputAssistanceUpdate,
+            ]);
+
+            Financialassistancehistory::create([
+                'transaction_type' => 'financial assistance',
+                'user_id' => $userId,
+                'financialassistance_id' => $assistanceId,
+            ]);
+
+            $financialAssistanceId->user->notify(new FinancialAssistanceStatusUpdated());
+
+            //send via sms
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
+
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($financialAssistanceId->user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
+            // );
+
+            // $message = $response->current();
+
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
         }
         else
         {
@@ -486,10 +560,26 @@ class ABAKAProjectCoordinatorController extends Controller
             ]);
 
             // Send an email notification to the user
-            if (in_array($request->inputAssistanceUpdate, [2, 3, 4, 5])) {
-                // Use the IDs that correspond to "pending," "approved," and "disbursed" status
+            if (in_array($request->inputAssistanceUpdate, [2, 3, 4])) {
+                // Use the IDs that correspond to "started", "pending," "approved," and "disbursed" status
                 $financialAssistanceId->user->notify(new FinancialAssistanceStatusUpdated());
-        }
+
+                //send via sms
+                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+                // $client = new \Vonage\Client($basic);
+
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($financialAssistanceId->user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
+                // );
+
+                // $message = $response->current();
+
+                // if ($message->getStatus() == 0) {
+                //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+                // } else {
+                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+                // }
+            }
         }
 
         toastr()->timeOut(10000)->addSuccess('Beneficiary Financial Assistance Status has been updated!');
@@ -537,6 +627,25 @@ class ABAKAProjectCoordinatorController extends Controller
         }
         $userData->save();
 
+        //notify on email
+        $userData->notify(new AccountUpdateNotif());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been successfully updated!")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
         toastr()->timeOut(10000)->addSuccess('Your Profile has been Updated!');
 
         return redirect()->back();
@@ -555,6 +664,12 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorEditChangePassword(Request $request)
     {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userData = User::find($id);
+
         //Validation
         $request->validate([
             'inputOldPassword' => 'required',
@@ -562,7 +677,7 @@ class ABAKAProjectCoordinatorController extends Controller
         ]);
 
         ///Match the old password
-        if (!Hash::check($request->inputOldPassword, auth::user()->password))
+        if (!Hash::check($request->inputOldPassword, $userData->password))
         {
         //confirmation message
         toastr()->timeOut(10000)->addError('Old Password does not match!');
@@ -571,9 +686,28 @@ class ABAKAProjectCoordinatorController extends Controller
         }
 
         //Update the new password
-        User::whereId(auth()->user()->id)->update([
+        $userData->update([
             'password' => Hash::make($request->inputNewPassword) //inputNewPassword field name from name="inputNewPassword" in admin_change_password.blade.php
         ]);
+
+        //notify on email
+        $userData->notify(new PasswordUpdateNotif());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account password for Albay Provincial Agriculture Office has been successfully updated!")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         toastr()->timeOut(10000)->addSuccess('Your Password has been Updated!');
 
@@ -609,6 +743,26 @@ class ABAKAProjectCoordinatorController extends Controller
 
         $userData->save();
 
+        //notify on email
+        $userData->notify(new InactiveStatusNotif());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been set to " . $userdata->status-status_name ."\n If you're status is INACTIVE, Logging in to the Web Application using your account is forbidden. \n You may contact your program coordinator at the Albay Provincial Agriculture Office or send an Inquiry.")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
+
         toastr()->timeOut(10000)->addSuccess('User data has been updated successfully!');
         
         return redirect()->back();
@@ -631,11 +785,74 @@ class ABAKAProjectCoordinatorController extends Controller
             foreach ($beneficiaries as $beneficiary) {
                 // Send email using the FinancialAssistanceStatusUpdate Mailable
                 Mail::to($beneficiary->email)->send(new FinancialAssistanceStatusUpdate($description));
+
+                //send via sms
+                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+                // $client = new \Vonage\Client($basic);
+
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($beneficiary->phone, "apao", "Financial Assistance Update\n\n" . $description)
+                // );
+
+                // $message = $response->current();
+
+                // if ($message->getStatus() == 0) {
+                //     toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
+                // } else {
+                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+                // }
             }
+
+            toastr()->timeOut(10000)->addSuccess('Tracking step notification has been sent to all program beneficiaries successfully!');
 
             return response()->json(['message' => 'Notification sent successfully']);
         } catch (\Exception $e) {
         return response()->json(['error' => 'Error sending notification: ' . $e->getMessage()], 500);
+        }
     }
-    }
+
+    public function ItStaffBlacklistView()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        $users = User::orderBy('id', 'asc')->where('blacklisted', true)->get();
+
+        return view('ITStaff.blacklisted', compact('userProfileData', 'users'));
+    } // End Method
+
+    public function ItStaffBlacklistUser($id)
+    {
+        $userId = User::findOrFail($id);
+
+        $userId->update([
+            'blacklisted' => true,
+        ]);
+
+        //notify via email
+        $userId->notify(new BlacklistNotification());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Blacklisted, please contact your Program Project Coordinator for inquiries.")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
+        toastr()->timeOut(10000)->addSuccess('User has been Blacklisted!');
+
+        return redirect()->back();
+    } // End Method
 }

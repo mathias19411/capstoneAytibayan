@@ -6,6 +6,20 @@
 <div class="title">
         <h1>Beneficiaries</h1>
 </div>
+<div class="boxes1">
+    <div class="box box-5">
+        <h1>Beneficiaries</h1>
+        <p>{{ $agripinayBeneficiariesCount }}</p>
+    </div>
+    <div class="box box-5 ">
+        <h1>Active</h1>
+        <p>{{ $agripinayActiveCount }}</p>
+    </div>
+    <div class="box box-6">
+        <h1>Inactive</h1>
+        <p>{{ $agripinayInactiveCount }}</p>
+    </div>
+</div>
 
 <div class="button-container">
   <button class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
@@ -13,82 +27,130 @@
   <button class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
 </div>
 
-  <div class="table-header">
-        <div class="table-header-left">
-            <label for="unread-filter">Filter: </label>
-            <select id="unread-filter">
-                <option value="all">All</option>
-                <option value="unread">Sagpon, Daraga</option>
-                <option value="read">Rawis</option>
-            </select>
-            <label for="items-per-page">Items per page: </label>
-            <select id="items-per-page">
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="all">All</option>
-            </select>
-        </div>
-        <div class="table-header-right">
-            <div class="search-container">
-                <input type="text" id="search" placeholder="Search">
-                <i class="fas fa-search search-icon"></i>
-            </div>
+<div class="table-header">
+    <div class="table-header-left">
+        <label for="location-filter">Location: </label>
+        <select id="location-filter">
+            <option value="all">All</option>
+            <option value="Sagpon">Sagpon, Daraga</option>
+            <option value="Rawis">Rawis</option>
+        </select>
+        <label for="status-filter">Status: </label>
+        <select id="status-filter">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+        </select>
+
+        <label for="items-per-page">Items per page: </label>
+        <select id="items-per-page">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="all">All</option>
+        </select>
+    </div>
+
+    <div class="table-header-right">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search">
+            <i class="fas fa-search search-icon"></i>
         </div>
     </div>
+</div>
 
 
         <div class="container">
                 <table class="table">
                     <thead>
                     <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Loan Amount</th>
-                            <th scope="col">Savings Amount</th>
-                            <th scope="col">Date of Payment</th>
-                            <th scope="col">Shared Capital Amount/th>
-                            <th scope="col">Repayment Schedule</th>
-                            <th scope="col">Date of Release</th>
-                            <th scope="col">Date of Maturity</th>
-                            <th scope="col">Amount Paid</th>
-                            <th scope="col">Balance</th>
-                            <th scope="col">Repayment (%)</th>
-                            <th scope="col">Remarks</th>
-                            <th scope="col">Action</th>
-                            <th scope="col">Status</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Province</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Project</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Orly Encabo</td>
-                            <td>Sagpon, Daraga</td>
-                            <td>09123456789</td>
-                            <td>orlybinhi@gmail.com</td>
-                            <td>Free Range Chicken</td>
-                            <td>BUCS-CSC</td>
-                            <td>BUCS-CSC</td>
-                            <td>BUCS-CSC</td>
-                            <td>BUCS-CSC</td>
-                            <td>BUCS-CSC</td>
-                            <td>BUCS-CSC</td>
-                            <td>BUCS-CSC</td>
-                            <td>BUCS-CSC</td>
-                            <td>
-                                <button class="tooltip-button" data-tooltip="Message"data-beneficiary-id="1"  class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates">
+                        @foreach ($agripinayBeneficiaries as $agripinayBeneficiary)
+                            {{-- Modal View --}}
+                    <div class="modal fade" id="itStaffRegister{{ $agripinayBeneficiary->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">User Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col-md-12">
+                                                    <img class="ht-50 wd-50 rounded-circle"
+                                                        src="{{ !empty($agripinayBeneficiary->photo) ? url('Uploads/Beneficiary_Images/' . $agripinayBeneficiary->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                                        alt="profile">
+                                                </div>
+                                                <br>
+                                                <span class="h4 ms-3">{{ $agripinayBeneficiary->first_name }} {{ $agripinayBeneficiary->middle_name }} {{ $agripinayBeneficiary->last_name }}</span>
+                                                <br><br>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Email:</h5>
+                                                <p id="modal-recipient">{{ $agripinayBeneficiary->email }}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Program:</h5>
+                                                <p id="modal-recipient">{{ $agripinayBeneficiary->program->program_name }}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Role:</h5>
+                                                <p id="modal-message">{{ $agripinayBeneficiary->role->role_name }}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Contact Number:</h5>
+                                                <p id="modal-message">{{ $agripinayBeneficiary->phone }}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Address:</h5>
+                                                <p id="modal-message">{{ $agripinayBeneficiary->barangay }}, {{ $agripinayBeneficiary->city }}, {{ $agripinayBeneficiary->province }} {{ $agripinayBeneficiary->zip }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                            <tr>
+                                <td>{{ $agripinayBeneficiary->id }}</td>
+                                <td>{{ $agripinayBeneficiary->first_name }} {{ $agripinayBeneficiary->middle_name }}
+                                    {{ $agripinayBeneficiary->last_name }}</td>
+                                <td>{{ $agripinayBeneficiary->barangay }} {{ $agripinayBeneficiary->city }}</td>
+                                <td>{{ $agripinayBeneficiary->province }}</td>
+                                
+                                <td>{{ $agripinayBeneficiary->email }}</td>
+
+                                <td>N/A</td>
+                                <td class="no-print">
+                                    <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal"
+                            data-bs-target="#itStaffRegister{{ $agripinayBeneficiary->id }}">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
-                                </button>
-                                <button class="tooltip-button" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                            </td>    
-                            <td>
-                            <span onclick="toggleStatus(this)" class="status-box active">Active</span>
-                            </td>
-                        </tr>
-                        
-                        </tr>
+                            </button>
+                                    {{-- <button class="tooltip-button" data-tooltip="Update"
+                                        onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
+                                            class="fa-solid fa-pen-to-square fa-2xs"></i></button> --}}
+
+                                <td>{{ $agripinayBeneficiary->status->status_name }}</td>
+                            
+                        @endforeach
                      </tbody>
                 </table>
                 <div class="pagination">

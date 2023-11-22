@@ -232,7 +232,7 @@
                                         <div class="col">
                                             <div class="col-md-12">
                                                 <img class="ht-50 wd-50 rounded-circle"
-                                                    src="{{ !empty($user->photo) ? url('Uploads/ITStaff_Images/' . $user->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                                    src="{{ !empty($user->photo) ? url('Uploads/Beneficiary_Images/' . $user->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                                     alt="profile">
                                             </div>
                                             <br>

@@ -123,14 +123,14 @@
                     </div>
                     -->
                     <!-- Remember Me -->
-                    <div class="block mt-4">
+                    {{-- <div class="block mt-4">
                         <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox"
                                 class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
                                 name="remember">
                             <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                         </label>
-                    </div>
+                    </div> --}}
                     {{-- <div class="col-12">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="gridCheck">

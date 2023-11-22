@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\announcement;
 use App\Models\events;
+use App\Models\Financialassistancehistory;
+use App\Models\Loanhistory;
 use App\Models\Program;
 use App\Models\Role;
 use App\Models\Status;
 use App\Models\User;
+use App\Notifications\AccountUpdateNotif;
+use App\Notifications\BlacklistNotification;
+use App\Notifications\InactiveStatusNotif;
+use App\Notifications\PasswordUpdateNotif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +36,7 @@ class ItStaffController extends Controller
 
         // Get the number of users with the role "project_coordinator"
         $totalcoordinators = User::whereHas('role', function ($query) {
-            $query->whereIn('role_name', ['projectcoordinator']);
+            $query->whereIn('role_name', ['binhiprojectcoordinator', 'abakaprojectcoordinator', 'agripinayprojectcoordinator', 'akbayprojectcoordinator', 'leadprojectcoordinator']);
         })->count();
 
         // Get the number of users with the role "beneficiary"
@@ -55,7 +61,7 @@ class ItStaffController extends Controller
         $totalActiveandInactiveBeneficiaries = [$activeBeneficiaries, $inactiveBeneficiaries];
 
         $coordinators = User::whereHas('role', function ($query) {
-            $query->where('role_name', 'projectcoordinator');
+            $query->whereIn('role_name', ['binhiprojectcoordinator', 'abakaprojectcoordinator', 'agripinayprojectcoordinator', 'akbayprojectcoordinator', 'leadprojectcoordinator']);
         })
         ->with('program')
         ->get();
@@ -468,7 +474,7 @@ class ItStaffController extends Controller
 
     public function ITStaffRegisterView()
     {
-        $users = User::orderBy('id', 'asc')->get();
+        $users = User::orderBy('id', 'asc')->where('blacklisted', false)->get();
         $roles = Role::all();
         $statuses = Status::all();
 
@@ -487,6 +493,29 @@ class ItStaffController extends Controller
         ]);
 
         $userData->save();
+
+        //notify on email
+        $userData->notify(new InactiveStatusNotif());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been set to INACTIVE.\n Logging in to the Web Application using your account is now forbidden. \n You may contact your program coordinator at the Albay Provincial Agriculture Office or send an Inquiry.")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
+        
+
+
 
         toastr()->timeOut(10000)->addSuccess('User data has been updated successfully!');
         
@@ -516,7 +545,7 @@ class ItStaffController extends Controller
         $userData->middle_name = $request->middle_name;
         $userData->last_name = $request->last_name;
         $userData->phone = $request->phone;
-        $userData->primary_address = $request->primary_address;
+        $userData->barangay = $request->primary_address;
         $userData->city = $request->city;
         $userData->province = $request->province;
         $userData->zip = $request->zip;
@@ -532,6 +561,25 @@ class ItStaffController extends Controller
             $userData['photo'] = $fileName;
         }
         $userData->save();
+
+        //notify on email
+        $userData->notify(new AccountUpdateNotif());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been successfully updated!")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         toastr()->timeOut(10000)->addSuccess('Your Profile has been Updated!');
 
@@ -551,6 +599,13 @@ class ItStaffController extends Controller
 
     public function ITStaffEditChangePassword(Request $request)
     {
+
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userData = User::find($id);
+
         //Validation
         $request->validate([
             'inputOldPassword' => 'required',
@@ -558,7 +613,7 @@ class ItStaffController extends Controller
         ]);
 
         ///Match the old password
-        if (!Hash::check($request->inputOldPassword, auth::user()->password))
+        if (!Hash::check($request->inputOldPassword, $userData->password))
         {
         //confirmation message
         toastr()->timeOut(10000)->addError('Old Password does not match!');
@@ -567,11 +622,112 @@ class ItStaffController extends Controller
         }
 
         //Update the new password
-        User::whereId(auth()->user()->id)->update([
+        $userData->update([
             'password' => Hash::make($request->inputNewPassword) //inputNewPassword field name from name="inputNewPassword" in admin_change_password.blade.php
         ]);
 
+        //notify on email
+        $userData->notify(new PasswordUpdateNotif());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account password for Albay Provincial Agriculture Office has been successfully updated!")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
         toastr()->timeOut(10000)->addSuccess('Your Password has been Updated!');
+
+        return redirect()->back();
+    } // End Method
+
+    public function ItStaffTransactionsView()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        return view('ITStaff.transactions', compact('userProfileData'));
+    } // End Method
+
+    public function ItStaffAssistanceTransactionsView()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        $assistanceTransactions = Financialassistancehistory::all();
+
+        return view('ITStaff.financial_assistance_history', compact('userProfileData', 'assistanceTransactions'));
+    } // End Method
+
+    public function ItStaffLoanTransactionsView()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        $loanTransactions = Loanhistory::all();
+
+        return view('ITStaff.loan_transaction_histories', compact('userProfileData', 'loanTransactions'));
+    } // End Method
+
+    public function ItStaffBlacklistView()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        $users = User::orderBy('id', 'asc')->where('blacklisted', true)->get();
+
+        return view('ITStaff.blacklisted', compact('userProfileData', 'users'));
+    } // End Method
+
+    public function ItStaffBlacklistUser($id)
+    {
+        $userId = User::findOrFail($id);
+
+        $userId->update([
+            'blacklisted' => true,
+        ]);
+
+        //notify via email
+        $userId->notify(new BlacklistNotification());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Blacklisted, please contact your Program Project Coordinator for inquiries.")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
+        toastr()->timeOut(10000)->addSuccess('User has been Blacklisted!');
 
         return redirect()->back();
     } // End Method

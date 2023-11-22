@@ -7,19 +7,19 @@
         <h1>Beneficiaries</h1>
 </div>
 <div class="boxes1">
-            <div class="box box-5">
-                <h1>Beneficiaries</h1>
-                <p>{{ $abakaBeneficiariesCount }}</p>
-            </div>
-            <div class="box box-5 ">
-                <h1>Active</h1>
-                <p>{{ $abakaActiveCount }}</p>
-            </div>
-            <div class="box box-6">
-                <h1>Inactive</h1>
-                <p>{{ $abakaInactiveCount }}</p>
-            </div>
-         </div>
+    <div class="box box-5">
+        <h1>Beneficiaries</h1>
+        <p>{{ $abakaBeneficiariesCount }}</p>
+    </div>
+    <div class="box box-5 ">
+        <h1>Active</h1>
+        <p>{{ $abakaActiveCount }}</p>
+    </div>
+    <div class="box box-6">
+        <h1>Inactive</h1>
+        <p>{{ $abakaInactiveCount }}</p>
+    </div>
+</div>
 <div class="button-container">
   <button class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
   <button class="button_top"> <i class="fa-solid fa-file-arrow-up" style="color: #ffffff;"></i> Import</button>
@@ -27,38 +27,38 @@
   <button class="button_top" class="add-modal" data-bs-toggle="modal" data-bs-target="#project"> <i class="fa-solid fa-list-check" style="color: #ffffff;"></i> Project</button>
 </div>
 
-  <div class="table-header">
-  <div class="table-header-left">
-    <label for="location-filter">Location: </label>
-    <select id="location-filter">
-        <option value="all">All</option>
-        <option value="Sagpon">Sagpon, Daraga</option>
-        <option value="Rawis">Rawis</option>
-    </select>
-    <label for="status-filter">Status: </label>
-    <select id="status-filter">
-        <option value="all">All</option>
-        <option value="active">Active</option>
-        <option value="inactive">Inactive</option>
-    </select>
+<div class="table-header">
+    <div class="table-header-left">
+        <label for="location-filter">Location: </label>
+        <select id="location-filter">
+            <option value="all">All</option>
+            <option value="Sagpon">Sagpon, Daraga</option>
+            <option value="Rawis">Rawis</option>
+        </select>
+        <label for="status-filter">Status: </label>
+        <select id="status-filter">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+        </select>
 
-    <label for="items-per-page">Items per page: </label>
-    <select id="items-per-page">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-        <option value="all">All</option>
-    </select>
-</div>
+        <label for="items-per-page">Items per page: </label>
+        <select id="items-per-page">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="all">All</option>
+        </select>
+    </div>
 
-        <div class="table-header-right">
-            <div class="search-container">
-                <input type="text" id="search" placeholder="Search">
-                <i class="fas fa-search search-icon"></i>
-            </div>
+    <div class="table-header-right">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search">
+            <i class="fas fa-search search-icon"></i>
         </div>
     </div>
+</div>
 
 
         <div class="container">
@@ -77,76 +77,57 @@
                     </thead>
                     <tbody>
                         @foreach ($abakaBeneficiaries as $abakaBeneficiary)
-                            {{-- Modal View for Add --}}
-                            <div id="add-value-popup-{{ $abakaBeneficiary->id }}" class="add-value-popup">
-                                <div class="add-value-popup-content">
-                                <div class="modal-header">
-                                        <h5 class="modal-title" id="modal-title">View Beneficiary</h5>
-                                        <span class="add-value-popup-close"
-                                        onclick="hideAddValuePopup({{ $abakaBeneficiary->id }})">&times;</span>
-                                </div>  
-                               
-                                    <h2>Add Beneficiary</h2>
-                                    <form action="{{ route('abakaprojectcoordinator.progressAdd') }}" enctype="multipart/form-data"
-                                        method="post">
-                                        @csrf
-
-                                        <input type="hidden" name="userId" value="{{ $abakaBeneficiary->id }}">
-
-                                        <label for="name">Beneficiary Name:</label>
-                                        <input type="text" id="name" name="name"
-                                            value="{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}"
-                                            readonly>
-                                        <label for="project">Project:</label>
-                                        <input type="text" id="project" name="project" required>
-                                        @error('project')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                        <label for="amount">Amount:</label>
-                                        <input type="number" id="amount" name="amount" required>
-                                        @error('amount')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                        <input type="hidden" name="financialassistancestatus_id" value="2">
-
-                                        <button type="submit" class="add">Save Changes</button>
-                                    </form>
-                                </div>
-                            </div>
-
-                            {{-- Modal View for Update --}}
-                            <div id="update-status-popup-{{ $abakaBeneficiary->id }}" class="update-status-popup">
-                                <div class="update-status-popup-content">
-                                <div class="modal-header">
-                                        <h5 class="modal-title" id="modal-title">Update Beneficiary</h5>
-                                        <span class="update-status-popup-close"
-                                        onclick="hideUpdateStatusPopup({{ $abakaBeneficiary->id }})">&times;</span>
-                                </div>  
+                            {{-- Modal View --}}
+                    <div class="modal fade" id="itStaffRegister{{ $abakaBeneficiary->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">User Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
                                     
-                                    <h2>Beneficiary Progress Details</h2>
-                                    <p><strong>Beneficiary Name:</strong> <span>{{ $abakaBeneficiary->first_name }}
-                                            {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</span></p>
-                                    @if ($abakaBeneficiary->assistance)
-                                        <p><strong>Project:</strong> <span>{{ $abakaBeneficiary->assistance->project }}</span></p>
-                                        <p><strong>Amount:</strong> <span>{{ $abakaBeneficiary->assistance->amount }}</span></p>
-                                        <p><strong>Last Updated:</strong>
-                                            <span>{{ $abakaBeneficiary->assistance->updated_at }}</span>
-                                        </p>
-                                    @endif
-
-                                    <label for="update-status-dropdown">Update Status:</label>
-                                    <form action="{{ route('abakaprojectcoordinator.progressUpdate') }}"
-                                        enctype="multipart/form-data" method="post">
-                                        @csrf
-
-                                        <input type="hidden" name="userId" value="{{ $abakaBeneficiary->id }}">
-
-                                        
-
-                                        <button type="submit" class="add">Save Changes</button>
-                                    </form>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col-md-12">
+                                                    <img class="ht-50 wd-50 rounded-circle"
+                                                        src="{{ !empty($abakaBeneficiary->photo) ? url('Uploads/Beneficiary_Images/' . $abakaBeneficiary->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                                        alt="profile">
+                                                </div>
+                                                <br>
+                                                <span class="h4 ms-3">{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</span>
+                                                <br><br>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Email:</h5>
+                                                <p id="modal-recipient">{{ $abakaBeneficiary->email }}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Program:</h5>
+                                                <p id="modal-recipient">{{ $abakaBeneficiary->program->program_name }}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Role:</h5>
+                                                <p id="modal-message">{{ $abakaBeneficiary->role->role_name }}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Contact Number:</h5>
+                                                <p id="modal-message">{{ $abakaBeneficiary->phone }}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Address:</h5>
+                                                <p id="modal-message">{{ $abakaBeneficiary->barangay }}, {{ $abakaBeneficiary->city }}, {{ $abakaBeneficiary->province }} {{ $abakaBeneficiary->zip }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+
 
                             <tr>
                                 <td>{{ $abakaBeneficiary->id }}</td>
@@ -159,12 +140,13 @@
 
                                 <td>N/A</td>
                                 <td class="no-print">
-                                    <button class="tooltip-button" data-tooltip="View"
-                                        onclick="showAddValuePopup({{ $abakaBeneficiary->id }})"><i
-                                            class="fa-solid fa-eye fa-2xs"></i></button>
-                                    <button class="tooltip-button" data-tooltip="Update"
+                                    <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal"
+                            data-bs-target="#itStaffRegister{{ $abakaBeneficiary->id }}">
+                                <i class="fa-solid fa-eye fa-2xs"></i>
+                            </button>
+                                    {{-- <button class="tooltip-button" data-tooltip="Update"
                                         onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
-                                            class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                            class="fa-solid fa-pen-to-square fa-2xs"></i></button> --}}
 
                                 <td>{{ $abakaBeneficiary->status->status_name }}</td>
                             

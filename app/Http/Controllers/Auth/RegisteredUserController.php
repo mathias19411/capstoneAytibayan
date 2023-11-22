@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use App\Notifications\AccountRegistrationNotification;
 
 class RegisteredUserController extends Controller
 {
@@ -42,7 +43,8 @@ class RegisteredUserController extends Controller
         $request->validate([
             'first_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
             'last_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'phone_number' => ['required', 'string', 'max:11'],
+            'inputEmail' => ['required', 'email', 'unique:'.User::class],
+            'phone_number' => ['required', 'string', 'max:10'],
             'inputRole' => ['required', Rule::in(Role::pluck('id')->all())],
             'inputProgram' => ['required', Rule::in(Program::pluck('id')->all())],
             'primaryAddress' => ['required', 'string', 'max:255'],
@@ -57,7 +59,9 @@ class RegisteredUserController extends Controller
             'first_name' => $request->first_name,
             'middle_name' => $request->middle_name,
             'last_name' => $request->last_name,
-            'phone' => $request->phone_number,
+            'email' => $request->inputEmail,
+            'password' => Hash::make($request->password),
+            'phone' => '63'.$request->phone_number,
             'barangay' => $request->primaryAddress,
             'city' => $request->inputCity,
             'province' => $request->inputProvince,
@@ -72,6 +76,25 @@ class RegisteredUserController extends Controller
         // event(new Registered($user));
         
         // event(new UserEvent($user));
+
+        //notify on email
+        $user->notify(new AccountRegistrationNotification());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your account for Albay Provincial Agriculture Office has been created. You may login with your credentials:\n Email: ". $user->email. "\n Password: ApaoAlbay2023 \n\n You may change your password anytime at the Albay Provincial Agriculture Office Web Application.")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
 
         // Auth::login($user);

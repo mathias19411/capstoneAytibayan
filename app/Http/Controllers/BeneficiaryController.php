@@ -11,6 +11,9 @@ use App\Models\Program;
 use App\Models\inquiries;
 use App\Models\progress;
 use App\Models\events;
+use App\Notifications\InactiveStatusNotif;
+use App\Notifications\AccountUpdateNotif;
+use App\Notifications\PasswordUpdateNotif;
 
 
 class BeneficiaryController extends Controller
@@ -166,6 +169,25 @@ class BeneficiaryController extends Controller
         }
         $userData->save();
 
+        //notify on email
+        $userData->notify(new AccountUpdateNotif());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been successfully updated!")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
         toastr()->timeOut(10000)->addSuccess('Your Profile has been Updated!');
 
         return redirect()->back();
@@ -184,6 +206,12 @@ class BeneficiaryController extends Controller
 
     public function BeneficiaryEditChangePassword(Request $request)
     {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userData = User::find($id);
+
         //Validation
         $request->validate([
             'inputOldPassword' => 'required',
@@ -191,7 +219,7 @@ class BeneficiaryController extends Controller
         ]);
 
         ///Match the old password
-        if (!Hash::check($request->inputOldPassword, auth::user()->password))
+        if (!Hash::check($request->inputOldPassword, $userData->password))
         {
         //confirmation message
         toastr()->timeOut(10000)->addError('Old Password does not match!');
@@ -200,9 +228,28 @@ class BeneficiaryController extends Controller
         }
 
         //Update the new password
-        User::whereId(auth()->user()->id)->update([
+        $userData->update([
             'password' => Hash::make($request->inputNewPassword) //inputNewPassword field name from name="inputNewPassword" in admin_change_password.blade.php
         ]);
+
+        //notify on email
+        $userData->notify(new PasswordUpdateNotif());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account password for Albay Provincial Agriculture Office has been successfully updated!")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         toastr()->timeOut(10000)->addSuccess('Your Password has been Updated!');
 
