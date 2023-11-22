@@ -558,11 +558,31 @@ class ABAKAProjectCoordinatorController extends Controller
     public function ProjCoordinatorUpdateProject(Request $request)
     {
         $aid = $request->project_id;
+
+        $validatedData = $request->validate([
+            'attachment' => 'image'
+        ]);
+
+        // Check if the image key exists in the validated data array
+        if (isset($validatedData['attachment'])) {
+            // Get the image file
+            $file = $request->file('attachment');
+    
+            // Generate a unique filename for the image file
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move('Uploads/Updates/', $filename);
+    
+        } else {
+            // Assign an empty string to the filename variable
+            $filename = '';
+        }
+        // Set the image attribute of the event model to the filename
+        $validatedData['attachment'] = $filename;
         
         Projects::findOrFail($aid)->update([
             'title'=>$request->title,
             'recipient'=>$request->recipient,
-            'attachment'=>$request->image,
+            'attachment'=>$validatedData['attachment'],
             'message'=>$request->message,
         ]);
 

@@ -362,13 +362,14 @@ $benefAssistanceStatuses = [];
                                                     <label for="projectTitle" class="form-label">Title:</label>
                                                     <input type="text" class="form-control" id="projectTitle" value="{{ $projects->title }}" name="title">
                                                 </div>
+
                                                 <div class="row mb-3 image-update">
+                                                <div class="col-sm-10">
                                                     <label for="projectImage" class="col-sm-2 col-form-label">Image:</label>
-                                                    <div class="col-sm-10">
                                                         <label id="drop-img">
-                                                            <input name="image" type="file" hidden>
+                                                            <input name="attachment" type="file" id="input-file" hidden>
                                                             <div id="img-view">
-                                                                <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}" class="img-fluid">
+                                                                <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}" class="img-fluid" alt="Image Icon">
                                                             </div>
                                                         </label>
                                                     </div>

@@ -112,6 +112,7 @@
                                                 <div class="form-group">
                                                     <label for="edit-recipient">To:</label>
                                                     <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
+                                                    <option>{{ $announcements->to }}</option>
                                                     <option>{{ $programName }}</option>
                                                     <option>PUBLIC</option>
                                                     </select>
