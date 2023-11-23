@@ -18,10 +18,12 @@ use App\Models\progress;
 use App\Models\Role;
 use App\Models\Status;
 use App\Models\User;
+use App\Models\Updates;
 use App\Models\Assistancesteps;
 use App\Models\Projects;
 use App\Notifications\AccountUpdateNotif;
 use App\Notifications\BlacklistNotification;
+use App\Models\Schedule;
 use App\Notifications\FinancialAssistanceStatusRejected;
 use App\Notifications\FinancialAssistanceStatusUpdated;
 use App\Notifications\InactiveStatusNotif;
@@ -46,6 +48,11 @@ class ABAKAProjectCoordinatorController extends Controller
         $userRole = AUTH::user()->role->role_name;
 
         $userProgramId = AUTH::user()->program->id;
+
+        $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
+
+        $updates = Updates::where(function ($query) use ($programName) {
+            $query->where('benef_of', $programName);})->get();
 
         $abakaBeneficiaries = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
@@ -78,7 +85,7 @@ class ABAKAProjectCoordinatorController extends Controller
             $query->where('status_name', 'Inactive');
         })->count();
 
-        return view('ABAKA_Project_Coordinator.beneficiary', compact('userProfileData', 'abakaBeneficiaries', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount'));
+        return view('ABAKA_Project_Coordinator.beneficiary', compact('userProfileData', 'abakaBeneficiaries', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'programName', 'updates'));
     } // End Method
 
     public function ProjectCoordinatorLogout(Request $request)
@@ -294,6 +301,38 @@ class ABAKAProjectCoordinatorController extends Controller
             return redirect()->back()->with('error', 'Record Not Found!');
         }
     } // End Method
+
+    public function ProjCoordinatorAddSchedule(Request $request){
+
+        // Validate the request
+        $validatedData = $request->validate([
+            'from'=> 'required|string',
+            'recipient_email' => 'required|string',
+            'description' => 'required|string',
+            'date'=> 'required|date',
+            'time' => 'required|string',
+        ]);
+        $time = $validatedData['time'];
+        $ampmTime = date('h:i A', strtotime($time));
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $schedules = Schedule::create([
+                'from'=> $validatedData['from'],
+                'recipient_email'=> $validatedData['recipient_email'],
+                'description'=> $validatedData['description'],
+                'time' => $ampmTime,
+                'date' => $validatedData['date'],
+            ]);
+            $schedules->save();
+    
+            // If the attachment file is not empty, store it in the database
+    
+            return redirect()->back()->with('success', 'New Schedule Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+    }// End Method//End Method
 
     public function ProjCoordinatorInquiry()
     {
