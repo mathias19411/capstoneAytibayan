@@ -70,15 +70,119 @@
                     </thead>
                     <tbody>
                         @foreach ($abakaBeneficiaries as $abakaBeneficiary)
-                            {{-- Modal View --}}
-                    <div class="modal fade" id="itStaffRegister{{ $abakaBeneficiary->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modal-title">User Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                            <!--view_beneficiaries-->
+                            <div class="modal fade" id="view_beneficiary_updates{{ $abakaBeneficiary->id }}" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modal-title">Beneficiary Updates</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body justify-content-center">
+                                            <h4 class="text-center">Beneficiary: {{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }}
+                                                {{ $abakaBeneficiary->last_name }}</h4>
+                                                @foreach($updates as $update)
+                                            <div class="card mb-3 col-md-3">
+                                                <div class="card-body">
+                                                @if ($abakaBeneficiary->email === $update->email)
+                                                <p class="update-date">Date: {{ $update->created_at }} </p>
+                                                    <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
+                                                    <p class="update-title">Title: {{ $update->title }}</p>
+                                                @endif
+                                                </div>
+                                            </div>
+                                                @endforeach
+                                        </div>
+                                        <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
+                                        <div class="modal-footer">
+                                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Add Schedule Modal -->
+                            <div class="modal fade" id="add-schedule-modal{{ $abakaBeneficiary->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add Schedule</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form id="add-schedule-form" action="{{ route('add.schedule') }}" method="post">
+                                            @csrf
+                                        <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="schedule-description" class="form-label">Description:</label>
+                                                    <input name="description" type="text" class="form-control" id="schedule-description" required>
+                                                    <input type="hidden" name="from" value="{{ $programName }}">
+                                                    <input type="hidden" name="recipient_email" value="{{ $abakaBeneficiary->email }}">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="schedule-date" class="form-label">Date:</label>
+                                                    <input name="date" type="date" class="form-control" id="schedule-date" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="schedule-time" class="form-label">Time:</label>
+                                                    <input name="time" type="time" class="form-control" id="schedule-time" required>
+                                                </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="add" id="save-schedule-button">Save</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- Modal View for Add --}}
+                            <div id="add-value-popup-{{ $abakaBeneficiary->id }}" class="add-value-popup">
+                                <div class="add-value-popup-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">View Beneficiary</h5>
+                                        <span class="add-value-popup-close"
+                                        onclick="hideAddValuePopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                </div>  
+                               
+                                    <h2>Add Beneficiary</h2>
+                                    <form action="{{ route('abakaprojectcoordinator.progressAdd') }}" enctype="multipart/form-data"
+                                        method="post">
+                                        @csrf
+
+                                        <input type="hidden" name="userId" value="{{ $abakaBeneficiary->id }}">
+
+                                        <label for="name">Beneficiary Name:</label>
+                                        <input type="text" id="name" name="name"
+                                            value="{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}"
+                                            readonly>
+                                        <label for="project">Project:</label>
+                                        <input type="text" id="project" name="project" required>
+                                        @error('project')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        <label for="amount">Amount:</label>
+                                        <input type="number" id="amount" name="amount" required>
+                                        @error('amount')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        <input type="hidden" name="financialassistancestatus_id" value="2">
+
+                                        <button type="submit" class="add">Save Changes</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            {{-- Modal View for Update --}}
+                            <div id="update-status-popup-{{ $abakaBeneficiary->id }}" class="update-status-popup">
+                                <div class="update-status-popup-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Update Beneficiary</h5>
+                                        <span class="update-status-popup-close"
+                                        onclick="hideUpdateStatusPopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                </div>  
                                     
                                     <div class="modal-body">
                                         <div class="row">
@@ -133,8 +237,12 @@
 
                                 <td>N/A</td>
                                 <td class="no-print">
-                                <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates"><i class="fa-solid fa-eye fa-2xs"></i></button>
-
+                                <input type="hidden" name="benef_email" value="{{ $abakaBeneficiary->email }}" > 
+                                <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates{{ $abakaBeneficiary->id }}"><i class="fa-solid fa-eye fa-2xs"></i></button>
+                                    <button class="tooltip-button" data-tooltip="Update"
+                                        onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
+                                            class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                </td>
                                 <td>{{ $abakaBeneficiary->status->status_name }}</td>
                             
                         @endforeach
@@ -191,61 +299,6 @@
             </div>
 
         <div class="popup-status" id="statusPopup"></div>
-
-<!--view_beneficiaries-->
-<div class="modal fade" id="view_beneficiary_updates" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Beneficiary Updates</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body justify-content-center">
-                <h4 class="text-center">Beneficiary: <span id="actual-beneficiary-name"></span></h4>
-                <div id="update-details" class="row justify-content-center">
-                    <!-- Update cards will be dynamically generated here -->
-                </div>
-                <button type="button" class="btn add" id="add-schedule-button">Add Schedule</button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Add Schedule Modal -->
-<div class="modal fade" id="add-schedule-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Schedule</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="add-schedule-form">
-                    <div class="mb-3">
-                        <label for="schedule-description" class="form-label">Description:</label>
-                        <input type="text" class="form-control" id="schedule-description" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="schedule-date" class="form-label">Date:</label>
-                        <input type="date" class="form-control" id="schedule-date" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="schedule-time" class="form-label">Time:</label>
-                        <input type="time" class="form-control" id="schedule-time" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="add" id="save-schedule-button">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection
 

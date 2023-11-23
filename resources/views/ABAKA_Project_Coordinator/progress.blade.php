@@ -78,7 +78,7 @@ $benefAssistanceStatuses = [];
 
                 $benefAssistanceStatuses = [$abakaStartedCount, $abakaPendingCount, $abakaApprovedCount, $abakaDisbursedCount];
             @endphp
-            <div class="box box-1 ">
+            <div class="box box-11 ">
                 <h1>Existing Beneficiry Projects</h1>
                 <p>{{ $benefExistingProjectCount }}</p>
             </div>

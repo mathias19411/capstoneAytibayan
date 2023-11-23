@@ -12,6 +12,7 @@ use App\Models\announcement;
 use App\Models\Program;
 use App\Models\Projects;
 use App\Models\inquiries;
+use App\Models\Schedule;
 use App\Models\progress;
 use App\Models\events;
 use App\Models\Updates;
@@ -167,7 +168,12 @@ class BeneficiaryController extends Controller
 
     public function BeneficiarySchedule()
     {
-        return view('Beneficiary.schedule');
+        $id = AUTH::user()->id;
+
+        $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
+        $schedules = Schedule::where(function ($query) use ($userEmail) {
+            $query->where('recipient_email', $userEmail);})->get();
+        return view('Beneficiary.schedule', compact('schedules'));
     } // End Method
 
     public function BeneficiaryInquiry()
@@ -367,9 +373,8 @@ class BeneficiaryController extends Controller
         return redirect()->back();
     } // End Method
 
-    public function Beneficiaryprogramprofile()
+    public function BeneficiaryProgramprofile()
     {
         return view('Beneficiary.programprofile');
-    }
-
+    } // E
 }

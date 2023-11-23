@@ -68,105 +68,28 @@
   </div>
   <div class="schedule-descrip">
         <h1>Schedule for Monitoring</h1>
+        @foreach($schedules->reverse() as $schedule)
+        @php
+                $daySched = \Carbon\Carbon::parse($schedule->created_at)->format('d');
+                $monthSched = \Carbon\Carbon::parse($schedule->created_at)->format('M');
+                $yearSched= \Carbon\Carbon::parse($schedule->created_at)->format('Y');
+            @endphp
         <div class="schedule-item">
             <div class="left-content">
 
-                <div class="schedule-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
-                <div class="schedule-time">10:00 AM</div>
+                <div class="schedule-description">{{ $schedule->description }} </div>
+                <div class="schedule-time">{{ $schedule->time }}</div>
             </div>
             <div class="right-content">
             <div class="schedule-date-container">
             
-            <div class="schedule-date ">28 </div>
-                <div class="schedule-month">Mar</div>
-                <div class="schedule-year ">2024</div>
+            <div class="schedule-date ">{{ $daySched }} </div>
+                <div class="schedule-month">{{ $monthSched }}</div>
+                <div class="schedule-year ">{{ $yearSched }}</div>
             </div>
         </div>
         </div>
-        <div class="schedule-item">
-            <div class="left-content">
-              
-                <div class="schedule-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
-                <div class="schedule-time">2:30 PM</div>
-            </div>
-            <div class="right-content">
-            <div class="schedule-date-container">
-                <div class="schedule-date">12</div>
-                <div class="schedule-month ">Dec</div>
-                <div class="schedule-year">2023</div>
-            </div>
-</div>
-        </div>
-        <div class="schedule-item">
-            <div class="left-content">
-              
-                <div class="schedule-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
-                <div class="schedule-time">2:30 PM</div>
-            </div>
-            <div class="right-content">
-            <div class="schedule-date-container">
-                <div class="schedule-date ">1</div>
-                <div class="schedule-month ">Nov</div>
-                <div class="schedule-year ">2023</div>
-            </div>
-</div>
-        </div>
-        <div class="schedule-item">
-            <div class="left-content">
-              
-                <div class="schedule-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
-                <div class="schedule-time">2:30 PM</div>
-            </div>
-            <div class="right-content">
-            <div class="schedule-date-container">
-                <div class="schedule-date">05</div>
-                <div class="schedule-month ">Oct</div>
-                <div class="schedule-year ">2023</div>
-            </div>
-            </div>
-        </div>
-        <div class="schedule-item">
-            <div class="left-content">
-              
-                <div class="schedule-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
-                <div class="schedule-time">2:30 PM</div>
-            </div>
-            <div class="right-content">
-            <div class="schedule-date-container">
-                <div class="schedule-date">22</div>
-                <div class="schedule-month">Sept</div>
-                <div class="schedule-year">2023</div>
-            </div>
-            </div>
-        </div>
-        <div class="schedule-item">
-            <div class="left-content">
-              
-                <div class="schedule-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
-                <div class="schedule-time">2:30 PM</div>
-            </div>
-            <div class="right-content">
-            <div class="schedule-date-container">
-                <div class="schedule-date">22</div>
-                <div class="schedule-month">Sept</div>
-                <div class="schedule-year">2023</div>
-            </div>
-            </div>
-        </div>
-        <div class="schedule-item">
-            <div class="left-content">
-              
-                <div class="schedule-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
-                <div class="schedule-time">2:30 PM</div>
-            </div>
-            <div class="right-content">
-            <div class="schedule-date-container">
-                <div class="schedule-date">22</div>
-                <div class="schedule-month">Sept</div>
-                <div class="schedule-year">2023</div>
-            </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <div class="container">
   <div class="calendar">

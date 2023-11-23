@@ -39,6 +39,13 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <span class="link-name">Update</span>
                 </a>
             </li>
+            <li class="">
+                <a href="" >
+                    <i class="uil uil-user-square"></i>
+                    <span class="link-name">Program Profile</span>
+                </a>
+            </li>
+
 
            
 
