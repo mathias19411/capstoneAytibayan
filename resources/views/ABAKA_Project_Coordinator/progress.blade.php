@@ -368,7 +368,7 @@ $benefAssistanceStatuses = [];
     </div>
 
     <div class="progress-section">
-        <h2>Process</h2>
+        <h3>Process</h3>
         <ul id="progress-list">
             <!-- Steps will be added dynamically here -->
         </ul>
