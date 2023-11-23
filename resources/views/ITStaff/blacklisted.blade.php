@@ -46,7 +46,7 @@
                 <th>Last Name</th>
                 <th>Program</th>
                 <th>Role</th>
-                <th>Status</th>
+        
             
             </tr>
         </thead>
@@ -59,7 +59,7 @@
                     <td>{{ $user->last_name }}</td>
                     <td>{{ $user->program->program_name }}</td>
                     <td>{{ $user->role->role_name }}</td>
-                    <td>{{ $user->status->status_name }}</td>
+                
                 </tr>
             @endforeach
         </tbody>

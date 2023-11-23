@@ -22,7 +22,6 @@
 </div>
 <div class="button-container">
   <button class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
-  <button class="button_top"> <i class="fa-solid fa-file-arrow-up" style="color: #ffffff;"></i> Import</button>
   <button class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
 </div>
 

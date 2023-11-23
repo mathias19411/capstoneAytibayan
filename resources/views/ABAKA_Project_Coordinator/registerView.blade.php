@@ -11,13 +11,9 @@
         <div class="table-header-left">
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
-                <option value="all">All</option>
-                <option value="itstaff">itstaff</option>
-                <option value="binhingpagasa">binhingpagasa</option>
-                <option value="abakamopisomo">abakamopisomo</option>
-                <option value="lead">lead</option>
-                <option value="agripinay">agripinay</option>
-                <option value="akbay">akbay</option>
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -140,7 +136,7 @@
                                                     <label id="inputStatus">User Status:</label>
                                                     <select id="inputStatus" class="form-select" name="inputStatus">
                                                         @foreach ($statuses as $status)
-                                                            <option value="{{ $status->id }}">{{ $status->status_name }}</option>
+                                                            <option value="{{ $status->id }}" @if ($status->id == $user->status_id) selected @endif>{{ $status->status_name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

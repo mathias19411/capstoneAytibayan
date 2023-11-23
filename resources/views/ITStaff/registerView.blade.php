@@ -138,7 +138,7 @@
                                                 ? ($user->role->role_name === 'itstaff'
                                                     ? url('Uploads/ITStaff_Images/' . $user->photo)
                                                     : (in_array($user->role->role_name, [
-                                                        'projectcoordinator',
+                                                        'binhiprojectcoordinator',
                                                         'abakaprojectcoordinator',
                                                         'agripinayprojectcoordinator',
                                                         'akbayprojectcoordinator',
@@ -165,7 +165,7 @@
                                                 <label id="inputRole">User Role:</label>
                                                 <select id="inputRole" class="form-select" name="inputRole">
                                                     @foreach ($roles as $role)
-                                                        <option value="{{ $role->id }}">
+                                                        <option value="{{ $role->id }}" @if ($user->role_id == $role->id) selected @endif>
                                                             {{ ucwords($role->role_name) }}</option>
                                                     @endforeach
                                                 </select>
