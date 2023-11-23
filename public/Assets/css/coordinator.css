@@ -2009,7 +2009,7 @@ body.announcement_events_inquiry td button:nth-child(3) {
 }
 
 body.announcement_events_inquiry tr:nth-child(even) {
-    
+    background-color: #f2f2f2;
 }
 
 
@@ -2032,7 +2032,7 @@ body.announcement_events_inquiry tr:hover {
     background-color: #e0e0e0; /* Lighter gray background on hover */
 
 
-/* body.announcement_events_inquiry tr:hover td {
+body.announcement_events_inquiry tr:hover td {
     color: #7bb701;
     cursor: pointer;
     background-color: #f2f2f2;
