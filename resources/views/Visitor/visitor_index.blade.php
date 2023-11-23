@@ -318,96 +318,40 @@
                 </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div id ="coordinators">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
-                                </div>
-                                <div class="col-8">
-                                    <div id="c_description">
-                                        <div id="c_name">Marife S. Azares</div>
-                                        <div id="c_program">BINIHI NG PAG-ASA</div>
-                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
+                    @foreach ($coordinators as $coordinator)
+                        <div class="col-md-4">
+                            <div id ="coordinators">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img src="{{ !empty($coordinator->photo)
+                                            ? ($coordinator->role->role_name === 'itstaff'
+                                                ? url('Uploads/ITStaff_Images/' . $coordinator->photo)
+                                                : (in_array($coordinator->role->role_name, [
+                                                    'binhiprojectcoordinator',
+                                                    'abakaprojectcoordinator',
+                                                    'agripinayprojectcoordinator',
+                                                    'akbayprojectcoordinator',
+                                                    'leadprojectcoordinator',
+                                                ])
+                                                    ? url('Uploads/Coordinator_Images/' . $coordinator->photo)
+                                                    : url('Uploads/Beneficiary_Images/' . $coordinator->photo)))
+                                            : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}" class="img-fluid" alt="" id="coordinator_img">
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="c_description">
+                                            <div id="c_name">{{ $coordinator->first_name }} {{ $coordinator->middle_name }} {{ $coordinator->last_name }}</div>
+                                            <div id="c_program">{{ $coordinator->program->program_name }}</div>
+                                            <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>{{ $coordinator->phone }}</div>
+                                            <div id="email"><i class="fa fa-envelope" id="email_icon"></i>{{ $coordinator->email }}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Repeat this structure for other coordinators -->
                         </div>
-                        <!-- Repeat this structure for other coordinators -->
-                    </div>
-                    <div class="col-md-4">
-                        <div id ="coordinators">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
-                                </div>
-                                <div class="col-8">
-                                    <div id="c_description">
-                                        <div id="c_name">Marife S. Azares</div>
-                                        <div id="c_program">BINIHI NG PAG-ASA</div>
-                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repeat this structure for other coordinators -->
-                    </div>
-                    <div class="col-md-4">
-                        <div id ="coordinators">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
-                                </div>
-                                <div class="col-8">
-                                    <div id="c_description">
-                                        <div id="c_name">Marife S. Azares</div>
-                                        <div id="c_program">BINIHI NG PAG-ASA</div>
-                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repeat this structure for other coordinators -->
-                    </div>
-                    <div class="col-md-4">
-                        <div id ="coordinators">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
-                                </div>
-                                <div class="col-8">
-                                    <div id="c_description">
-                                        <div id="c_name">Marife S. Azares</div>
-                                        <div id="c_program">BINIHI NG PAG-ASA</div>
-                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repeat this structure for other coordinators -->
-                    </div>
-                    <div class="col-md-4">
-                        <div id ="coordinators">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="{{ URL('images/default.png') }}" class="img-fluid" alt="" id="coordinator_img">
-                                </div>
-                                <div class="col-8">
-                                    <div id="c_description">
-                                        <div id="c_name">Marife S. Azares</div>
-                                        <div id="c_program">BINIHI NG PAG-ASA</div>
-                                        <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>XXXXXXXXXXX</div>
-                                        <div id="email"><i class="fa fa-envelope" id="email_icon"></i>email.com</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repeat this structure for other coordinators -->
-                    </div>
+                    @endforeach
+
+                    
                     </div>
                 </div>
                 <div class="col" id="inquiry">

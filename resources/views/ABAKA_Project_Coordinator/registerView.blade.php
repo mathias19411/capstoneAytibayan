@@ -140,7 +140,7 @@
                                                     <label id="inputStatus">User Status:</label>
                                                     <select id="inputStatus" class="form-select" name="inputStatus">
                                                         @foreach ($statuses as $status)
-                                                            <option value="{{ $status->id }}">{{ $status->status_name }}</option>
+                                                            <option value="{{ $status->id }}" @if ($status->id == $user->status_id) selected @endif>{{ $status->status_name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
