@@ -287,14 +287,8 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
     //Coordinator Logout
     Route::get('/ABAKA_ProjectCoordinator/logout', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('abakaprojectCoordinator.logout');
 
-    //Coordinator Inquiry
-    Route::get('/ABAKA_ProjectCoordinator/inquiry', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('ABAKA_Project_Coordinator.inquiry');
-
-
    // Route::get('/ABAKA_ProjectCoordinator/inquiry/check-read-status/{inquiryId}', [ABAKAProjectCoordinatorController::class, 'checkReadStatus'])
     //->name('ABAKA_Project_Coordinator.inquiry.checkReadStatus');
-
-
 
     //Coordinator Announcements
     Route::get('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('abakaprojectcoordinator.announcement');
@@ -314,6 +308,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
     Route::get('/ABAKA_ProjectCoordinator/Inquriy', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('abakaprojectcoordinator.inquiry');
     Route::post('/ABAKA_ProjectCoordinator/Inquriy/reply', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorInquiryReply'])->name('reply.inquirycoordinatorabaka');
     Route::delete('/ABAKA_ProjectCoordinator/Inquriy/delete', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiryDelete'])->name('delete.inquirycoordinatorabaka');
+   
     Route::post('/ABAKA_ProjectCoordinator/Add Schedule', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAddSchedule'])->name('add.schedule');
 
     //Coordinator Progress

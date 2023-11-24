@@ -410,13 +410,14 @@ $benefAssistanceStatuses = [];
                                                 <div class="mb-3">
                                                     <label for="projectTitle" class="form-label">Title:</label>
                                                     <input type="text" class="form-control" id="projectTitle" value="{{ $projects->title }}" name="title">
+                                                    <input type="text" class="form-control" id="projectTitle" value="{{ $projects->from }}" name="from">
                                                 </div>
 
                                                 <div class="row mb-3 image-update">
                                                 <div class="col-sm-10">
                                                     <label for="projectImage" class="col-sm-2 col-form-label">Image:</label>
                                                         <label id="drop-img">
-                                                            <input name="attachment" type="file" id="input-file" hidden>
+                                                            <input name="attachment" type="file" id="input-file" value="{{ $projects->attachment }}" hidden>
                                                             <div id="img-view">
                                                                 <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}" class="img-fluid" alt="Image Icon">
                                                             </div>
@@ -424,8 +425,12 @@ $benefAssistanceStatuses = [];
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="projectVisibility" class="form-label">Visibility:</label>
-                                                    <input type="text" class="form-control" id="projectVisibility" value="{{ $projects->recipient }}" name="recipient">
+                                                    <label for="projectVisibility" class="form-label">Edit Visibility:</label>
+                                                    <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="recipient">
+                                                                <option>{{ $projects->recipient }}</option>
+                                                                <option>{{ $programName }}</option>
+                                                                <option>Public</option>
+                                                    </select>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="projectDescription" class="form-label">Description:</label>

@@ -94,7 +94,6 @@
                                             </div>
                                     </div>
                             </div>
-                        </div>
 
                         <!--MODAL UPDATE-->
                         <div class="modal fade" id="modal_edit{{ $events->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
@@ -151,7 +150,6 @@
                                             </div>
                                     </div>
                             </div>
-                        </div>
 
                         <!--MODAL DELETE-->
                         <div class="modal fade" id="modal_delete{{ $events->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
