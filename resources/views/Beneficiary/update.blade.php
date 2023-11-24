@@ -108,7 +108,7 @@ else {
                      </a>
                         <p class="update-title">{{ $update->title }}</p>
                     </div>
-                    <p class="update-date">Date: {{ $update->created_at }}</p>
+                    <p class="update-date">Date: {{ $update->created_at->format('Y-m-d h:i A') }}</p>
                     <div class="card-footer">
                         <button class="btn btn-pink edit-update" data-bs-toggle="modal" data-bs-target="#editModal{{ $update->id }}" data-update-id="1">
                             <i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>
