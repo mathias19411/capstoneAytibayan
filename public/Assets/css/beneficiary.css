@@ -1721,6 +1721,7 @@ body.beneficiary #update-details {
     justify-content: center;
     align-items: center;
     min-height: 300px;
+ 
 }
 
 body.beneficiary h1 {
@@ -1972,7 +1973,7 @@ body.beneficiary #img-view img {
     color: white;
     background-color: #7bb701;
     border-radius: 100px;
-    width: 300px;
+    max-width: 300px;
     padding: 5px;
     margin: auto;
     margin-bottom: 10px;
@@ -2081,6 +2082,15 @@ body.beneficiary .add-modal:hover {
         background: #f0fff0;
         font-size: 12px;
         background-size: cover;
+    }
+    .row{
+        justify-content: center;
+    align-items: center;
+
+    }
+    .update-details {
+        width: 100%;
+        font-size: 20px; /* Adjust font size for smaller screens */
     }
 }
 
