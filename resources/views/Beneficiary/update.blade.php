@@ -3,6 +3,30 @@
 @section('content')
 @include('beneficiary.Body.sidebar')
 
+    @php
+        // Access the authenticated user's id
+    $id = Illuminate\Support\Facades\Auth::user()->id;
+
+// Access the specific row data of the user's id
+// When using a model in blade.php, indicate the direct path of the model
+$userProfileData = App\Models\User::find($id);
+
+$authUser = Illuminate\Support\Facades\Auth::user();
+
+$description = App\Models\FinancialAssistanceStatus::find(1)->description;
+
+        $statusName = App\Models\FinancialAssistanceStatus::find(1)->financial_assistance_status_name;
+
+if ($authUser->assistance) {
+    $userAssistanceStatus = auth()->user()->financialAssistanceStatus->financial_assistance_status_name;
+}
+elseif ($authUser->loan){
+    $userAssistanceStatus = auth()->user()->loanstatus->loan_status_name;
+}
+else {
+    $userAssistanceStatus = $statusName;
+}
+    @endphp
     <div class="title">
         <h1>UPDATE</h1>
     </div>
