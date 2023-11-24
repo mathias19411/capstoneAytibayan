@@ -49,52 +49,46 @@
                     </thead>
                     <tbody>
                     @foreach($event->reverse() as $events)
-                        <!--MODAL VIEW-->
-                        <div class="modal fade" id="view_itstaff{{ $events->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modal-title">Event Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <!-- MODAL VIEW -->
+                <div class="modal fade" id="view_itstaff{{ $events->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">Event Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="justify-content: left; padding-left:0%; margin-left:10%">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>Title:</h5>
+                                        <p id="Title" name="title">{{ $events->title }}</p>
                                     </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-6 mb-4" style="width: 100%;">
-                                                    <div class="form-outline">
-                                                        <label for="Title">Title:</label>
-                                                        <p class="form-control" type="text" id="Title" placeholder="Title...." name="title">{{ $events->title }}</p>
-                                                    </div>
-                                                </div>
-                                                    <div class="col-md-6 mb-4" style="width: 100%;">
-                                                    <div class="form-outline">
-                                                    <label id="label_">To:</label>
-                                                        <p class="form-control" type="text" name="to">{{ $events->to }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                <div class="col-md-6 mb-4" style="padding-left: 10%;">
-                                                    <div class="form-outline">
-                                                        <label for="Date">Date:</label>
-                                                        <p class="form-control" type="date" id="Date" name="date">{{ $events->date }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 mb-4">
-                                                    <div class="form-outline">
-                                                        <label for="Message">Message:</label>
-                                                        <p class="form-control" rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</p>
-                                                    </div>
-                                                    <div class="form-outline">
-                                                       
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
+                                    <div class="col-md-12">
+                                        <h5>To:</h5>
+                                        <p name="to">{{ $events->to }}</p>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>Date:</h5>
+                                        <p id="Date" name="date">{{ $events->date }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-outline">
+                                            <h5>Message:</h5>
+                                            <p rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
+                    </div>
+                </div>
 
                         <!--MODAL UPDATE-->
                         <div class="modal fade" id="modal_edit{{ $events->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
@@ -117,17 +111,17 @@
                                                     </div>
                                                 </div>
                                                     <div class="col-md-6 mb-4">
-                                                    <div class="form-group">
-                                                    <label for="edit-recipient">To:</label>
-                                                        <select class="form-control" type="text" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                            <option>{{ $events->to }}</option>    
-                                                            <option>{{ $programName }}</option>
-                                                            <option>PUBLIC</option>
-                                                        </select>
+                                                        <div class="form-group">
+                                                            <label for="edit-recipient">To:</label>
+                                                            <select class="form-control" type="text" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
+                                                                <option>{{ $events->to }}</option>    
+                                                                <option>{{ $programName }}</option>
+                                                                <option>PUBLIC</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
                                             </div>
-                                                <div class="col-md-6 mb-4">
+                                                <div class="col-md-12 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Date">Date:</label>
                                                         <input class="form-control" type="date" id="Date" name="date" value="{{ $events->date }}">
@@ -161,39 +155,38 @@
                                         <h5 class="modal-title" id="modal-title">Event Details</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body" style="justify-content: left; padding-left:0%; margin-left:10%">
                                         <form method="POST" action="{{ route('delete.eventcoordinatorabaka') }}">
                                             @csrf
                                             @method('DELETE')
                                             <div class="row">
                                             <input type="hidden" name="event_id" value="{{ $events->id }}">
-                                                <div class="col-md-6 mb-4" style="width: 100%;">
-                                                    <div class="form-outline">
-                                                        <label for="Title">Title:</label>
-                                                        <p class="form-control" type="text" id="Title" placeholder="Title...." name="title">{{ $events->title }}</p>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h5>Title:</h5>
+                                                    <p id="Title" name="title">{{ $events->title }}</p>
                                                 </div>
-                                                    <div class="col-md-6 mb-4" style="width: 100%;">
-                                                    <div class="form-outline">
-                                                    <label id="label_">To:</label>
-                                                        <p class="form-control" type="text" name="to">{{ $events->to }}</p>
-                                                    </div>
+                                                <div class="col-md-12">
+                                                    <h5>To:</h5>
+                                                    <p name="to">{{ $events->to }}</p>
                                                 </div>
                                             </div>
-                                                <div class="col-md-6 mb-4" style="padding-left: 10%;">
-                                                    <div class="form-outline">
-                                                        <label for="Date">Date:</label>
-                                                        <p class="form-control" type="date" id="Date" name="date">{{ $events->date }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 mb-4">
-                                                    <div class="form-outline">
-                                                        <label for="Message">Message:</label>
-                                                        <p class="form-control" rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</p>
-                                                    </div>
-                                                    <div class="form-outline">
-                                                       
-                                                    </div>
+                                            <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>Date:</h5>
+                                        <p id="Date" name="date">{{ $events->date }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-outline">
+                                            <h5>Message:</h5>
+                                            <p rows="3" id="Message" placeholder="Write something..." name="message">{{ $events->message }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                                                     @if(session('error'))
                                                         <div class="alert alert-danger">
                                                             {{ session('error') }}

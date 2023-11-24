@@ -1626,7 +1626,6 @@ body.announcement_events_inquiry .modal-body {
     flex: 1 1 auto;
     padding: 1rem;
     text-align: left;
-    display: flex;
     flex-wrap: wrap;
 }
 
