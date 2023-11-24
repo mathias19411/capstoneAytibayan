@@ -2383,6 +2383,13 @@ body.announcement_events_inquiry .message-row {
 }
 
 /*------------------VIEW UPDATE-----------------*/
+.modal-body{
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+.card{
+    
+}
 .card-body {
     justify-content: center;
     align-items: center;
@@ -2426,29 +2433,24 @@ body.announcement_events_inquiry .message-row {
     object-fit: cover;
 }
 
-.update-details {
-    font-weight: bold;
-    color: white;
-    background-color: #7bb701;
-    border-radius: 100px;
-    width: 300px;
-    padding: 5px;
-    margin: auto;
-    margin-bottom: 10px;
-}
+
 
 .update-title {
     overflow: auto;
     scroll-behavior: smooth;
+    text-align: center;
+    margin:0;
+    padding: 0;
+    margin-bottom: 5px;
 }
 .update-date {
-    font-size: 13px;
-    background-color: #7bb701;
-    color: white;
+    font-size: 10px;
+    color: var(--primary-color);
     border-radius: 10px;
-    margin: 5px;
     opacity: 0.8;
-    text-align: center;
+    margin: 0;
+    padding: 0;
+    text-align: right;
 }
 
 .update_beneficiaryname {

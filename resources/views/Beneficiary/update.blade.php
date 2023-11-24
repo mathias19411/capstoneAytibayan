@@ -38,8 +38,8 @@ else {
         <form action="{{ route('send.updates') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="title" class="form-label">Title:</label>
-                <input type="text" id="title" class="form-control" name="title" maxlength="100" required>
+                <label for="title" class="form-label">Caption:</label>
+                <input type="text" id="title" class="form-control" name="title" maxlength="10000000" required>
             </div>
             <div class="mb-3">
                 <input type="email" name="email" value="{{ $userEmail }}" hidden>
@@ -80,7 +80,7 @@ else {
                                     <input type="hidden" id="edit-update-id" name="benef_of" value="{{ $programName }}">
                                     <input type="hidden" id="edit-update-id" name="email" value="{{ $userEmail }}">
                                     <div class="mb-3"> 
-                                        <label for="edit-information" class="form-label">Change Title:</label>
+                                        <label for="edit-information" class="form-label">Edit Caption:</label>
                                         <input id="edit-information" class="form-control" value="{{ $update->title }}" name="title" required>
                                     </div>
                                     <div class="mb-3 image-update">
@@ -103,8 +103,10 @@ else {
                 </div>
                 <div class="card mb-3 col-md-3">
                     <div class="card-body">
-                        <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
-                        <p class="update-title">Title: {{ $update->title }}</p>
+                    <a href="{{ asset('Uploads/Updates/'.$update->image) }}" target="_blank">
+                          <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
+                     </a>
+                        <p class="update-title">{{ $update->title }}</p>
                     </div>
                     <p class="update-date">Date: {{ $update->created_at }}</p>
                     <div class="card-footer">
