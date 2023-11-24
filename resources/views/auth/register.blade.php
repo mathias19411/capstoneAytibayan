@@ -180,21 +180,6 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                         <option value="Tabaco City">Tabaco City</option>
                         <option value="Tiwi">Tiwi</option>
                         <option value="Bacacay">Bacacay</option>
-                        <option value="Camalig">Camalig</option>
-                        <option value="Daraga">Daraga</option>
-                        <option value="Guinobatan">Guinobatan</option>
-                        <option value="Jovellar">Jovellar</option>
-                        <option value="Legazpi City">Legazpi City</option>
-                        <option value="Libon">Libon</option>
-                        <option value="Ligao">Ligao</option>
-                        <option value="Malilipot">Malilipot</option>
-                        <option value="Malinao">Malinao</option>
-                        <option value="Manito">Manito</option>
-                        <option value="Oas">Oas</option>
-                        <option value="Pioduran">Pioduran</option>
-                        <option value="Sto.Domingo">Sto. Domingo</option>
-                        <option value="Tabaco City">Tabaco City</option>
-                        <option value="Tiwi">Tiwi</option>
                     </select>
                     @error('inputCity')
                         <div class="text-danger">{{ $message }}</div>
@@ -345,21 +330,6 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                         <option value="Tabaco City">Tabaco City</option>
                         <option value="Tiwi">Tiwi</option>
                         <option value="Bacacay">Bacacay</option>
-                        <option value="Camalig">Camalig</option>
-                        <option value="Daraga">Daraga</option>
-                        <option value="Guinobatan">Guinobatan</option>
-                        <option value="Jovellar">Jovellar</option>
-                        <option value="Legazpi City">Legazpi City</option>
-                        <option value="Libon">Libon</option>
-                        <option value="Ligao">Ligao</option>
-                        <option value="Malilipot">Malilipot</option>
-                        <option value="Malinao">Malinao</option>
-                        <option value="Manito">Manito</option>
-                        <option value="Oas">Oas</option>
-                        <option value="Pioduran">Pioduran</option>
-                        <option value="Sto.Domingo">Sto. Domingo</option>
-                        <option value="Tabaco City">Tabaco City</option>
-                        <option value="Tiwi">Tiwi</option>
                     </select>
                     @error('inputCity')
                         <div class="text-danger">{{ $message }}</div>
@@ -400,7 +370,18 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 </div>
                 <div class="col-lg-12 col-md-10" style="text-align: center;">
                     <h1 class="display-2"></h1>
-                    <a href="{{ route('visitor.home') }}" class="btn btn-info ">Back to Home</a>
+                    @if ($userRole === 'binhiprojectcoordinator')
+                        <a href="{{ route('projectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
+                    @elseif ($userRole === 'abakaprojectcoordinator')
+                        <a href="{{ route('abakaprojectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
+                    @elseif ($userRole === 'agripinayprojectcoordinator')
+                        <a href="{{ route('agripinayprojectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
+                    @elseif ($userRole === 'akbayprojectcoordinator')
+                        <a href="{{ route('akbayprojectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
+                    @elseif ($userRole === 'leadprojectcoordinator')
+                        <a href="{{ route('leadprojectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
+                    @endif
+                    
                 </div>
             </form>
         @endif
