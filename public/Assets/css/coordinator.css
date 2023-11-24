@@ -168,7 +168,7 @@ nav .menu-items{
     left: 0;
     top: 0;
     bottom: 0;
-    width: 4px; /* Adjust the width of the vertical line */
+    width: 4px; 
     background-color: var(--primary-color);
 }
 
