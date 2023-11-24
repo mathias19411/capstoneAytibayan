@@ -154,13 +154,13 @@ $benefAssistanceStatuses = [];
                         <option value="Tabaco City">Tabaco City</option>
                         <option value="Tiwi">Tiwi</option>
             </select>
-            <label for="unread-filter">Status: </label>
-            <select id="unread-filter">
+            <label for="status-filter">Status: </label>
+            <select id="status-filter">
                         <option value="all">All</option>
-                        <option value="">Started</option>
-                        <option value="">Pending</option>
-                        <option value="">Approved</option>
-                        <option value="">Disbursed</option>
+                        <option value="started">Started</option>
+                        <option value="unsettled">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="disbursed">Disbursed</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -187,7 +187,13 @@ $benefAssistanceStatuses = [];
     </div>
 
     <div class="container">
-
+    <div id="printableContent">
+        <div class="print-header">
+            <img src="\images\APAO-R5.jpg" alt="Albay Provincial Agricultural Office Logo">
+            <h3>Republic of Albay, Province of Albay</h3>
+            <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
+            <h4>AbakaBuhayan Project, "ABAKA MO, PISO MO" CASH INCENTIVE SCHEME</h4>
+            </div>
         <table class="table" id="beneficiaries-table">
 
 
@@ -329,7 +335,7 @@ $benefAssistanceStatuses = [];
                 @endforeach
             </tbody>
         </table>
-
+    </div>
 
 
 
@@ -344,8 +350,8 @@ $benefAssistanceStatuses = [];
 
         <div id="pagination-message"></div>
         <div class="button-container">
-            <button class="button_top buttons-print" onclick="printTable()"> <i class="fa-solid fa-print"
-                    style="color: #ffffff;"></i> Print</button>
+              <button id="printButton" class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
+
 
         </div>
     </div>

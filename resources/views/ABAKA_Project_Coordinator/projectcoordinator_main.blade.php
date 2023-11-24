@@ -280,7 +280,7 @@
     </script>
 
     <script>
-        //IEW MODAL
+        //VIEW MODAL
         $(document).ready(function() {
             $(".view-btn").on("click", function() {
                 // Get the row index from the clicked button's data attribute
@@ -925,8 +925,6 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             const inquiryId = this.getAttribute('data-inquiry-id');
 
-
-
             // Make an AJAX request to mark the message as read
             fetch(`/ABAKA_ProjectCoordinator/inquiry/mark-as-read/${inquiryId}`, {
                 method: 'POST',
@@ -964,6 +962,27 @@ document.addEventListener('DOMContentLoaded', function () {
       location.reload();
     }, 1000); // Adjust the timeout value as needed
   });
+</script>
+ 
+<!----------STATUS FILTER------------>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const statusFilter = document.getElementById('status-filter');
+  const tableRows = document.querySelectorAll('#beneficiaries-table tbody tr');
+
+  statusFilter.addEventListener('change', function() {
+    const selectedStatus = statusFilter.value;
+
+    tableRows.forEach(row => {
+      const statusCell = row.querySelector('td:nth-child(5)'); // Adjust index based on your table structure
+      if (selectedStatus === 'all' || statusCell.textContent.toLowerCase().includes(selectedStatus)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+});
 </script>
 </body>
 
