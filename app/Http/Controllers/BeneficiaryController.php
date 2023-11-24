@@ -375,6 +375,12 @@ class BeneficiaryController extends Controller
 
     public function BeneficiaryProgramprofile()
     {
-        return view('Beneficiary.programprofile');
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        return view('Beneficiary.programprofile', compact('userProfileData'));
     } // E
 }

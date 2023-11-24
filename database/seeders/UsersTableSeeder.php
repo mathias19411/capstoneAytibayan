@@ -31,27 +31,11 @@ class UsersTableSeeder extends Seeder
                 'program_id' => '2',
                 'status_id' => '1',
             ],
-            //Project Coordinator
-            [
-                'first_name' => 'Project Coordinator',
-                'middle_name' => 'of',
-                'last_name' => 'Apao',
-                'email' => 'bermejomathiasjohnoliver313131@gmail.com',
-                'password' => Hash::make('coordinator123'),
-                'phone' => '09998887777',
-                'barangay' => 'Tamaoyan',
-                'city' => 'Legazpi City',
-                'province' => 'Albay',
-                'zip' => '4500',
-                'role_id' => '2',
-                'program_id' => '1',
-                'status_id' => '1',
-            ],
             //BINHIProject Coordinator
             [
                 'first_name' => 'Project Coordinator',
                 'middle_name' => 'of',
-                'last_name' => 'Apao',
+                'last_name' => 'Binhi',
                 'email' => 'projectcoordinator@gmail.com',
                 'password' => Hash::make('coordinator123'),
                 'phone' => '09998887777',
@@ -99,7 +83,7 @@ class UsersTableSeeder extends Seeder
             [
                 'first_name' => 'Project Coordinator',
                 'middle_name' => 'of',
-                'last_name' => 'Apao',
+                'last_name' => 'Akbay',
                 'email' => 'akbayprojectcoordinator@gmail.com',
                 'password' => Hash::make('coordinator123'),
                 'phone' => '09998887777',
@@ -115,7 +99,7 @@ class UsersTableSeeder extends Seeder
             [
                 'first_name' => 'Project Coordinator',
                 'middle_name' => 'of',
-                'last_name' => 'Apao',
+                'last_name' => 'Lead',
                 'email' => 'leadprojectcoordinator@gmail.com',
                 'password' => Hash::make('coordinator123'),
                 'phone' => '09998887777',
@@ -171,7 +155,7 @@ class UsersTableSeeder extends Seeder
                 'city' => 'Legazpi',
                 'province' => 'Albay',
                 'zip' => '4500',
-                'role_id' => '1',
+                'role_id' => '7',
                 'program_id' => '4',
                 'status_id' => '1',
             ]
