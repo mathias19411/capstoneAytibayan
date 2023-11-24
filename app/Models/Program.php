@@ -40,6 +40,6 @@ class Program extends Model
 
     public function coordinators()
 {
-    return $this->hasMany(User::class)->where('role_id', Role::where('role_name', 'projectcoordinator')->first()->id);
+    return $this->hasMany(User::class)->where('role_id', Role::where('role_name', ['binhiprojectcoordinator', 'abakaprojectcoordinator', 'agripinayprojectcoordinator', 'akbayprojectcoordinator', 'leadprojectcoordinator'])->first()->id);
 }
 }

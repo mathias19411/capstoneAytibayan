@@ -323,17 +323,41 @@ function displayImageInModal(imageURL) {
     </script> --}}
 
     <script>
-        //CIRCLE CHART
-        const numb = document.querySelector(".numb");
-        let counter = 0;
-        setInterval(() => {
-            if (counter == 100) {
-                clearInterval();
-            } else {
-                counter += 1;
-                numb.textContent = counter + "%";
+        let circularProgress = document.querySelector(".chart"),
+            progressValue = document.querySelector(".progress-value");
+
+        let progressStartValue = 0,
+            progressEndValue = 0,
+            speed = 20;
+
+        // Set progressEndValue based on the user's assistance_status_name
+        switch ("{{ $userAssistanceStatus }}") {
+            case "started":
+                progressEndValue = 25;
+                break;
+            case "pending":
+                progressEndValue = 50;
+                break;
+            case "approved":
+                progressEndValue = 75;
+                break;
+            case "disbursed":
+                progressEndValue = 100;
+                break;
+            default:
+                progressEndValue = 0;
+        }
+
+        let progress = setInterval(() => {
+            progressStartValue++;
+
+            progressValue.textContent = `${progressStartValue}%`
+            circularProgress.style.background = `conic-gradient(#f0a60f ${progressStartValue * 3.6}deg, #f2f2f2 0deg)`
+
+            if(progressStartValue == progressEndValue || "{{ $userAssistanceStatus }}" == "unsettled") {
+                clearInterval(progress);
             }
-        }, 80);
+        }, speed);
     </script>
     <!--
     <script>

@@ -101,7 +101,7 @@ $benefAssistanceStatuses = [];
                 <p>No Projects</p>
             </div>
             <div class="box box-3">
-                <h1>Progress %</h1>
+                <h1>Steps Progress</h1>
                 <div class="progress-bar"></div>
                 <p></p>
             </div>

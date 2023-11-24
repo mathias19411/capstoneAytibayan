@@ -174,13 +174,8 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 </div>
                 <div class="col-md-4">
                     <label for="inputProvince" class="form-label">Province</label>
-                    <select id="inputProvince" class="form-select" name="inputProvince">
+                    <select id="inputProvince" class="form-select" name="inputProvince" disabled>
                         <option value="Albay" selected>Albay</option>
-                        <option value="Camarines Sur">Camarines Sur</option>
-                        <option value="Camarines Norte">Camarines Norte</option>
-                        <option value="Catanduanes">Catanduanes</option>
-                        <option value="Masbate">Masbate</option>
-                        <option value="Sorsogon">Sorsogon</option>
                     </select>
                     @error('inputProvince')
                         <div class="text-danger">{{ $message }}</div>
@@ -316,13 +311,8 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 </div>
                 <div class="col-md-4">
                     <label for="inputProvince" class="form-label">Province</label>
-                    <select id="inputProvince" class="form-select" name="inputProvince">
+                    <select id="inputProvince" class="form-select" name="inputProvince" disabled>
                         <option value="Albay" selected>Albay</option>
-                        <option value="Camarines Sur">Camarines Sur</option>
-                        <option value="Camarines Norte">Camarines Norte</option>
-                        <option value="Catanduanes">Catanduanes</option>
-                        <option value="Masbate">Masbate</option>
-                        <option value="Sorsogon">Sorsogon</option>
                     </select>
                     @error('inputProvince')
                         <div class="text-danger">{{ $message }}</div>

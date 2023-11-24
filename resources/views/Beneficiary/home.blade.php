@@ -8,18 +8,32 @@
     </div>
 
     @php
-        //Access the authenticated user's id
-$id = Illuminate\Support\Facades\AUTH::user()->id;
+        // Access the authenticated user's id
+    $id = Illuminate\Support\Facades\Auth::user()->id;
 
-//Access the specific row data of the user's id
-        //when using a model in blade.php, indicate the direct path of the model
-        $userProfileData = App\Models\User::find($id);
+// Access the specific row data of the user's id
+// When using a model in blade.php, indicate the direct path of the model
+$userProfileData = App\Models\User::find($id);
 
-        $authUser = Illuminate\Support\Facades\AUTH::user();
+$authUser = Illuminate\Support\Facades\Auth::user();
 
-        $description = App\Models\FinancialAssistanceStatus::find(1)->description;
+$description = App\Models\FinancialAssistanceStatus::find(1)->description;
 
         $statusName = App\Models\FinancialAssistanceStatus::find(1)->financial_assistance_status_name;
+
+if ($authUser->assistance) {
+    $userAssistanceStatus = auth()->user()->financialAssistanceStatus->financial_assistance_status_name;
+}
+elseif ($authUser->loan){
+    $userAssistanceStatus = auth()->user()->loanstatus->loan_status_name;
+}
+else {
+    $userAssistanceStatus = $statusName;
+}
+
+        
+
+        
 
         $descriptionStarted = App\Models\FinancialAssistanceStatus::find(2)->description;
 
@@ -28,6 +42,19 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         $descriptionApproved = App\Models\FinancialAssistanceStatus::find(4)->description;
 
         $descriptionDisbursed = App\Models\FinancialAssistanceStatus::find(5)->description;
+
+        $descriptionLoan = App\Models\Loanstatus::find(1)->description;
+
+        $statusNameLoan = App\Models\Loanstatus::find(1)->loan_status_name;
+
+        $descriptionStartedLoan = App\Models\Loanstatus::find(2)->description;
+
+        $descriptionPendingLoan = App\Models\Loanstatus::find(3)->description;
+
+        $descriptionApprovedLoan = App\Models\Loanstatus::find(4)->description;
+
+        $descriptionDisbursedLoan = App\Models\Loanstatus::find(5)->description;
+
 
     @endphp
 
@@ -41,6 +68,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <div class="card-content">
                         @if ($authUser->assistance)
                             <div class="chart" id="progressChart">
+                                <span class="progress-value">0%</span>
                             </div>
                             <h6>{{ ucwords($authUser->financialAssistanceStatus->financial_assistance_status_name) }}</h6>
 
@@ -166,10 +194,140 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
                                 </ul>
                             </div>
+                        @elseif ($authUser->loan)
+                        <div class="chart" id="progressChart">
+                            <span class="progress-value">0%</span>
+                        </div>
+                        <h6>{{ ucwords($authUser->loanstatus->loan_status_name) }}</h6>
+
+                            <div class="progressbar">
+                                <ul>
+                                    @if ($authUser->loan->loanstatus_id === 2)
+                                        <li>
+                                            <div class="progress one active" style="cursor: auto;">
+                                                <p>1</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionStartedLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress two" style="cursor: auto;">
+                                                <p>2</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionPendingLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress three" style="cursor: auto;">
+                                                <p>3</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionApprovedLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress four" style="cursor: auto;">
+                                                <p>4</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionDisbursedLoan }}</p>
+                                        </li>
+                                    @elseif ($authUser->loan->loanstatus_id === 3)
+                                        <li>
+                                            <div class="progress one active" style="cursor: auto;">
+                                                <p>1</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionStartedLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress two active" style="cursor: auto;">
+                                                <p>2</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionPendingLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress three" style="cursor: auto;">
+                                                <p>3</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionApprovedLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress four" style="cursor: auto;">
+                                                <p>4</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionDisbursedLoan }}</p>
+                                        </li>
+                                    @elseif ($authUser->loan->loanstatus_id === 4)
+                                        <li>
+                                            <div class="progress one active" style="cursor: auto;">
+                                                <p>1</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionStartedLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress two active" style="cursor: auto;">
+                                                <p>2</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionPendingLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress three active" style="cursor: auto;">
+                                                <p>3</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionApprovedLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress four" style="cursor: auto;">
+                                                <p>4</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionDisbursedLoan }}</p>
+                                        </li>
+                                    @elseif ($authUser->loan->loanstatus_id === 5)
+                                        <li>
+                                            <div class="progress one active" style="cursor: auto;">
+                                                <p>1</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionStartedLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress two active" style="cursor: auto;">
+                                                <p>2</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionPendingLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress three active" style="cursor: auto;">
+                                                <p>3</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionApprovedLoan }}</p>
+                                        </li>
+                                        <li>
+                                            <div class="progress four active" style="cursor: auto;">
+                                                <p>4</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">{{ $descriptionDisbursedLoan }}</p>
+                                        </li>
+                                    @endif
+
+                                </ul>
+                            </div>
+
                         @else
                             <div class="chart" id="progressChart">
-                                <h4>{{ $statusName }}</h4>
+                                <span class="progress-value">0%</span>
                             </div>
+                            <h4>{{ ucwords($statusName) }}</h4>
 
                             <div class="progressbar">
                                 <ul>

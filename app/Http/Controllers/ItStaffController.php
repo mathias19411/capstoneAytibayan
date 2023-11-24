@@ -257,10 +257,10 @@ class ItStaffController extends Controller
 
         $validatedData = $request->validate([
             'programnameInput' => ['string', 'max:30'],
-            'password' => ['confirmed', Rules\Password::defaults()],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
             'inputLocation' => ['string', 'max:50'],
             'inputEmail' => ['string', 'email', 'max:255'],
-            'inputContact' => ['string', 'max:12'],
+            'inputContact' => ['string', 'max:10'],
             'inputInfo' => ['string', 'max:500'],
             'inputApply' => ['string', 'max:500'],
             'inputReqs' => ['string', 'max:500'],
@@ -277,7 +277,7 @@ class ItStaffController extends Controller
                 'program_name' => $validatedData['programnameInput'],
                 'location' => $validatedData['inputLocation'],
                 'email' => $validatedData['inputEmail'],
-                'contact' => $validatedData['inputContact'],
+                'contact' => '63'.$validatedData['inputContact'],
                 'description' => $validatedData['inputInfo'],
                 'quiry' => $validatedData['inputApply'],
                 'requirements' => $validatedData['inputReqs'],
