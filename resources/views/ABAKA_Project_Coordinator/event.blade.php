@@ -119,9 +119,14 @@
                                                     <div class="form-group">
                                                     <label for="edit-recipient">To:</label>
                                                         <select class="form-control" type="text" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                            <option>{{ $events->to }}</option>    
-                                                            <option>{{ $programName }}</option>
-                                                            <option>PUBLIC</option>
+                                        
+                                                            @if($events->to === 'PUBLIC')
+                                                                <option>PUBLIC</option>
+                                                                <option>{{ $programName }}</option>
+                                                            @else
+                                                                <option>{{ $events->to }}</option>
+                                                                <option>PUBLIC</option>
+                                                            @endif
                                                         </select>
                                                     </div>
                                                 </div>
