@@ -78,22 +78,26 @@
                                             <h5 class="modal-title" id="modal-title">Beneficiary Updates</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body justify-content-center">
-                                            <h4 class="text-center">Beneficiary: {{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }}
-                                                {{ $abakaBeneficiary->last_name }}</h4>
+                                        <div class="modal-body">
+                                            
+                                            <h5 class="update_beneficiaryname">Beneficiary: {{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }}
+                                                {{ $abakaBeneficiary->last_name }}</h5>
+                                        
                                                 @foreach($updates as $update)
-                                            <div class="card mb-3 col-md-3">
+                                            <div class="card mb-3 col-md-3 ">
                                                 <div class="card-body">
                                                 @if ($abakaBeneficiary->email === $update->email)
-                                                <p class="update-date">Date: {{ $update->created_at }} </p>
                                                     <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
                                                     <p class="update-title">Title: {{ $update->title }}</p>
-                                                @endif
                                                 </div>
+                                                    <p class="update-date">Date: {{ $update->created_at }} </p>
+                                                @endif
                                             </div>
                                                 @endforeach
                                         </div>
-                                        <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
+                                    
+                            
+                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                         </div>

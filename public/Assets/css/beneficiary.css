@@ -1952,15 +1952,6 @@ body.beneficiary #img-view {
     background-size: cover;
 }
 
-.modal-body #img-view {
-    width: 100%;
-    height: 100%;
-    border: 5px;
-    border: 2px dashed #bbb5ff;
-    background: #f0fff0;
-    font-size: 12px;
-    background-size: cover;
-}
 
 body.beneficiary #img-view img {
     margin: auto;
@@ -1971,9 +1962,9 @@ body.beneficiary #img-view img {
     justify-content: center;
     align-items: center;
     margin: auto;
-    
     overflow: auto;
     scroll-behavior: smooth;
+    margin-top: 20px;
 }
 
 .update-details {
@@ -1985,11 +1976,22 @@ body.beneficiary #img-view img {
     padding: 5px;
     margin: auto;
     margin-bottom: 10px;
-}
-
-.update-title {
+    background-color: #7bb701;
+    background-position: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     overflow: auto;
     scroll-behavior: smooth;
+}
+
+.card.body .update-title {
+    display: flex;
+    overflow: auto;
+    scroll-behavior: smooth;
+    font-size: 10px;
 }
 .update-date {
     font-size: 13px;
@@ -2067,7 +2069,7 @@ body.beneficiary .add-modal:hover {
         width: 100%;
     }
     body.beneficiary #drop-img {
-        width: 200px;
+        width: 100%;
         height: 130px;
     }
 
@@ -2112,7 +2114,6 @@ body.beneficiary .add-modal:hover {
     flex-wrap: wrap;
     justify-content: center;
     margin: 20px;
-    font-size: 15px;
 }
 /*
 .card-chart {
@@ -2133,8 +2134,7 @@ body.beneficiary .add-modal:hover {
     max-width: 100%;
     height: 620px;
     padding: 10px;
-    margin: 10px;
-    margin-top: 10px;
+    margin: 10px auto; /* Center the container horizontally */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -2146,13 +2146,16 @@ body.beneficiary .add-modal:hover {
 /* -----------------------------PROGRESS BAR ----------------------*/
 
 .card-progress .progressbar {
-    width: 100%;
     display: flex;
     justify-content: center;
     font-family: pop;
     flex-direction: column;
+    width: auto;
 }
 
+.card-progress .progressbar ul {
+    padding-left: 0;
+}
 .card-progress .head {
     text-align: center;
 }
@@ -2230,10 +2233,7 @@ body.beneficiary .add-modal:hover {
 }
 
 .card-progress ul li .icon {
-    font-size: 35px;
-
-    color: #ff4732;
-
+    font-size: 20px;
     margin: 15px 0;
 }
 
@@ -2256,7 +2256,7 @@ body.beneficiary .add-modal:hover {
 /*CIRCLE CHART */
 /* Progress Div Css  */
 .card-progress ul li .progress {
-    width: 40px;
+    max-width: 40px;
     height: 40px;
     border-radius: 50%;
     border: 2px solid #7bb701;
@@ -2267,9 +2267,7 @@ body.beneficiary .add-modal:hover {
     justify-content: center; /* Center horizontally */
     position: relative;
     cursor: pointer;
-    padding: 10px;
-    
-    
+    padding: 18px;
 }
 
 .card-progress ul li .progress::after {
@@ -2277,10 +2275,10 @@ body.beneficiary .add-modal:hover {
     position: absolute;
     background-color: white;
     right: 50%; /* Center the line to the right half of the circle */
+    bottom: 50%;
     width: 5px;
     height: 55px;
     border-radius: 50%;
-    bottom: 30px;
     transform: translateX(50%); /* Adjust the translateX to center the line */
     z-index: -1;
 }
@@ -2291,8 +2289,16 @@ body.beneficiary .add-modal:hover {
 }
 
 .card-progress ul li .progress .uil {
-    display: none;
-    color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Position the icon absolutely within the circle */
+    top: 50%; /* Move the icon to the vertical center of the circle */
+    left: 50%; /* Move the icon to the horizontal center of the circle */
+    transform: translate(-50%, -50%); /* Center the icon precisely */
+    transition: font-size 0.3s ease; /* Add a smooth transition for font size changes */
+    color: white;
+    
 }
 
 .card-progress ul li .progress p {
@@ -2323,8 +2329,7 @@ body.beneficiary .add-modal:hover {
 }
 
 .card-progress ul li .active .uil {
-    font-size: 20px;
-
+    font-size: 30px;
     display: flex;
 }
 
