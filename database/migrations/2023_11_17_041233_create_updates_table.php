@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('email');
             $table->string('benef_of');
-            $table->string('title');
+            $table->longtext('title');
             $table->string('image');
             $table->timestamps();
         });
