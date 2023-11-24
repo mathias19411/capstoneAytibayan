@@ -47,7 +47,7 @@
             @csrf
           <div class="input-box">
           <label class="label">Full Name:</label>
-          <input type="text" placeholder="" name="fullname" required>
+          <input type="text" placeholder="" name="fullname" value="{{ $userProfileData->first_name }} {{ $userProfileData->middle_name }} {{ $userProfileData->last_name }}" readonly>
         </div>
         <div class="input-box">
           <label class="label" >Personal Email:</label>

@@ -21,7 +21,7 @@
     </div>
 </div>
 <div class="button-container">
-  <button class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
+  <button id="printButton" class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
   <button class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
 </div>
 
@@ -54,6 +54,13 @@
 
 
         <div class="container">
+        <div id="printableContent">
+        <div class="print-header">
+            <img src="\images\APAO-R5.jpg" alt="Albay Provincial Agricultural Office Logo">
+            <h3>Republic of Albay, Province of Albay</h3>
+            <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
+            <h4>AbakaBuhayan Project, "ABAKA MO, PISO MO" CASH INCENTIVE SCHEME</h4>
+            </div>
                 <table class="table">
                     <thead>
                     <tr>
@@ -250,7 +257,8 @@
                             
                         @endforeach
                     </tbody>
-                </table>
+                </table>   
+            </div>
                 <div class="pagination">
                     <button id="prev-page">Previous</button>
                     <div id="page-numbers"></div>

@@ -687,38 +687,38 @@ class ABAKAProjectCoordinatorController extends Controller
         }
     } //end method
     public function ProjCoordinatorUpdateProject(Request $request)
-    {
-        $aid = $request->project_id;
+{
+    $aid = $request->project_id;
 
-        $validatedData = $request->validate([
-            'attachment' => 'image'
-        ]);
+    // Validate the request
+    $validatedData = $request->validate([
+        'title' => 'required|string',
+        'from' => 'required|string',
+        'recipient' => 'required|string',
+        'message' => 'required|string',
+        'attachment' => 'image',
+    ]);
 
-        // Check if the image key exists in the validated data array
-        if (isset($validatedData['attachment'])) {
-            // Get the image file
-            $file = $request->file('attachment');
-    
-            // Generate a unique filename for the image file
-            $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move('Uploads/Updates/', $filename);
-    
-        } else {
-            // Assign an empty string to the filename variable
-            $filename = '';
-        }
-        // Set the image attribute of the event model to the filename
+    // Retrieve the existing project
+    $project = Projects::findOrFail($aid);
+
+    // Handle image upload and attachment update
+    $existingImage = $project->attachment;
+
+    if ($request->hasFile('attachment')) {
+
+        // Upload the new image and update the attachment path
+        $file = $request->file('attachment');
+        $filename = date('YmdHi') . $file->getClientOriginalName();
+        $file->move('Uploads/Updates/', $filename);
         $validatedData['attachment'] = $filename;
-        
-        Projects::findOrFail($aid)->update([
-            'title'=>$request->title,
-            'recipient'=>$request->recipient,
-            'attachment'=>$validatedData['attachment'],
-            'message'=>$request->message,
-        ]);
+    }
 
-        return redirect()->back()->with('success', 'Project is Updated!');
-    } // End Method
+    // Update the project with the updated attachment path and other validated data
+    $project->update($validatedData);
+
+    return redirect()->back()->with('success', 'Project Updated!');
+    }//end method
     public function ProjCoordinatorDeleteProject(Request $request)
     {
         $id = $request->project_id;

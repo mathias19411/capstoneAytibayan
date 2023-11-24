@@ -15,7 +15,7 @@
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <!-- CSS link -->
     <link rel="stylesheet" href="{{ asset('Assets/css/coordinator.css') }}">
-    <link rel="stylesheet" href="{{ asset('Assets/css/print.css') }}">
+    <link rel="stylesheet" href="{{ asset('Assets/css/abaka-print.css') }}" media="print">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/6297197d39.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -949,7 +949,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
+<!-------MEDIA PRINT---------->
+    <script>
+  document.getElementById('printButton').addEventListener('click', function() {
+    var printContents = document.getElementById('printableContent').innerHTML;
+    var originalContents = document.body.innerHTML;
 
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+
+    // Reload the page after printing
+    setTimeout(function() {
+      location.reload();
+    }, 1000); // Adjust the timeout value as needed
+  });
+</script>
 </body>
 
 </html>
