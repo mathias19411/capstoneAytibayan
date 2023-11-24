@@ -342,7 +342,7 @@ $benefAssistanceStatuses = [];
 
         <div class="pagination">
             <button id="prev-page">Previous</button>
-            <div id="page-numbers"></div>
+                <div id="page-numbers"></div>
             <button id="next-page">Next</button>
         </div>
 
