@@ -121,9 +121,46 @@ $benefAssistanceStatuses = [];
         <div class="table-header-left">
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
-                <option value="all">All</option>
-                <option value="unread">Sagpon, Daraga</option>
-                <option value="read">Rawis</option>
+                        <option value="all">All</option>
+                        <option value="Camalig">Camalig</option>
+                        <option value="Daraga">Daraga</option>
+                        <option value="Guinobatan">Guinobatan</option>
+                        <option value="Jovellar">Jovellar</option>
+                        <option value="Legazpi City">Legazpi City</option>
+                        <option value="Libon">Libon</option>
+                        <option value="Ligao">Ligao</option>
+                        <option value="Malilipot">Malilipot</option>
+                        <option value="Malinao">Malinao</option>
+                        <option value="Manito">Manito</option>
+                        <option value="Oas">Oas</option>
+                        <option value="Pioduran">Pioduran</option>
+                        <option value="Sto.Domingo">Sto. Domingo</option>
+                        <option value="Tabaco City">Tabaco City</option>
+                        <option value="Tiwi">Tiwi</option>
+                        <option value="Bacacay">Bacacay</option>
+                        <option value="Camalig">Camalig</option>
+                        <option value="Daraga">Daraga</option>
+                        <option value="Guinobatan">Guinobatan</option>
+                        <option value="Jovellar">Jovellar</option>
+                        <option value="Legazpi City">Legazpi City</option>
+                        <option value="Libon">Libon</option>
+                        <option value="Ligao">Ligao</option>
+                        <option value="Malilipot">Malilipot</option>
+                        <option value="Malinao">Malinao</option>
+                        <option value="Manito">Manito</option>
+                        <option value="Oas">Oas</option>
+                        <option value="Pioduran">Pioduran</option>
+                        <option value="Sto.Domingo">Sto. Domingo</option>
+                        <option value="Tabaco City">Tabaco City</option>
+                        <option value="Tiwi">Tiwi</option>
+            </select>
+            <label for="unread-filter">Status: </label>
+            <select id="unread-filter">
+                        <option value="all">All</option>
+                        <option value="">Started</option>
+                        <option value="">Pending</option>
+                        <option value="">Approved</option>
+                        <option value="">Disbursed</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -331,7 +368,7 @@ $benefAssistanceStatuses = [];
     </div>
 
     <div class="progress-section">
-        <h2>Process</h2>
+        <h3>Process</h3>
         <ul id="progress-list">
             <!-- Steps will be added dynamically here -->
         </ul>

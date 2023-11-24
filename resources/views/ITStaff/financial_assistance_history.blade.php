@@ -111,4 +111,8 @@
     </div>
 </div>
 
+            <div class="container-back">
+                    <a href="{{ route('itstaff.home') }}" class="back">Back</a>
+            </div>
+
 @endsection

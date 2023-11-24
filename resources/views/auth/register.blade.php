@@ -163,10 +163,38 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-md-4">
                     <label for="inputCity" class="form-label">City</label>
                     <select id="inputCity" class="form-select" name="inputCity">
-                        <option value="Legazpi City"selected>Legazpi City</option>
+                    <option value=""selected></option>
+                        <option value="Camalig">Camalig</option>
+                        <option value="Daraga">Daraga</option>
+                        <option value="Guinobatan">Guinobatan</option>
+                        <option value="Jovellar">Jovellar</option>
+                        <option value="Legazpi City">Legazpi City</option>
+                        <option value="Libon">Libon</option>
+                        <option value="Ligao">Ligao</option>
+                        <option value="Malilipot">Malilipot</option>
+                        <option value="Malinao">Malinao</option>
+                        <option value="Manito">Manito</option>
+                        <option value="Oas">Oas</option>
+                        <option value="Pioduran">Pioduran</option>
+                        <option value="Sto.Domingo">Sto. Domingo</option>
                         <option value="Tabaco City">Tabaco City</option>
-                        <option value="Sto.domingo City">Sto.domingo City</option>
-                        <option value="Bacacay City">Bacacay City</option>
+                        <option value="Tiwi">Tiwi</option>
+                        <option value="Bacacay">Bacacay</option>
+                        <option value="Camalig">Camalig</option>
+                        <option value="Daraga">Daraga</option>
+                        <option value="Guinobatan">Guinobatan</option>
+                        <option value="Jovellar">Jovellar</option>
+                        <option value="Legazpi City">Legazpi City</option>
+                        <option value="Libon">Libon</option>
+                        <option value="Ligao">Ligao</option>
+                        <option value="Malilipot">Malilipot</option>
+                        <option value="Malinao">Malinao</option>
+                        <option value="Manito">Manito</option>
+                        <option value="Oas">Oas</option>
+                        <option value="Pioduran">Pioduran</option>
+                        <option value="Sto.Domingo">Sto. Domingo</option>
+                        <option value="Tabaco City">Tabaco City</option>
+                        <option value="Tiwi">Tiwi</option>
                     </select>
                     @error('inputCity')
                         <div class="text-danger">{{ $message }}</div>
@@ -300,10 +328,38 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-md-4">
                     <label for="inputCity" class="form-label">City</label>
                     <select id="inputCity" class="form-select" name="inputCity">
-                        <option value="Legazpi City"selected>Legazpi City</option>
+                        <option value=""selected></option>
+                        <option value="Camalig">Camalig</option>
+                        <option value="Daraga">Daraga</option>
+                        <option value="Guinobatan">Guinobatan</option>
+                        <option value="Jovellar">Jovellar</option>
+                        <option value="Legazpi City">Legazpi City</option>
+                        <option value="Libon">Libon</option>
+                        <option value="Ligao">Ligao</option>
+                        <option value="Malilipot">Malilipot</option>
+                        <option value="Malinao">Malinao</option>
+                        <option value="Manito">Manito</option>
+                        <option value="Oas">Oas</option>
+                        <option value="Pioduran">Pioduran</option>
+                        <option value="Sto.Domingo">Sto. Domingo</option>
                         <option value="Tabaco City">Tabaco City</option>
-                        <option value="Sto.domingo City">Sto.domingo City</option>
-                        <option value="Bacacay City">Bacacay City</option>
+                        <option value="Tiwi">Tiwi</option>
+                        <option value="Bacacay">Bacacay</option>
+                        <option value="Camalig">Camalig</option>
+                        <option value="Daraga">Daraga</option>
+                        <option value="Guinobatan">Guinobatan</option>
+                        <option value="Jovellar">Jovellar</option>
+                        <option value="Legazpi City">Legazpi City</option>
+                        <option value="Libon">Libon</option>
+                        <option value="Ligao">Ligao</option>
+                        <option value="Malilipot">Malilipot</option>
+                        <option value="Malinao">Malinao</option>
+                        <option value="Manito">Manito</option>
+                        <option value="Oas">Oas</option>
+                        <option value="Pioduran">Pioduran</option>
+                        <option value="Sto.Domingo">Sto. Domingo</option>
+                        <option value="Tabaco City">Tabaco City</option>
+                        <option value="Tiwi">Tiwi</option>
                     </select>
                     @error('inputCity')
                         <div class="text-danger">{{ $message }}</div>
@@ -341,6 +397,10 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
 
                 <div class="col-12 register-button">
                     <button type="submit" class="button">Register</button>
+                </div>
+                <div class="col-lg-12 col-md-10" style="text-align: center;">
+                    <h1 class="display-2"></h1>
+                    <a href="{{ route('visitor.home') }}" class="btn btn-info ">Back to Home</a>
                 </div>
             </form>
         @endif

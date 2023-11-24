@@ -12,8 +12,8 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Read</option>
-                <option value="read">Unread</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">

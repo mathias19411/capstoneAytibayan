@@ -2143,6 +2143,8 @@ body.beneficiary .add-modal:hover {
 
 /* -----------------------------PROGRESS BAR ----------------------*/
 
+/* -----------------------------PROGRESS BAR ----------------------*/
+
 .card-progress .progressbar {
     width: 100%;
     display: flex;
@@ -2177,10 +2179,29 @@ body.beneficiary .add-modal:hover {
     margin-top: 3px;
 }
 
+.card-progress .card-content h6 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--colorOrange);
+    margin-bottom: 0;
+    position: relative;
+}
+
+
+
+
+.card-progress .card-content .progress-bar{
+    overflow: auto;
+}
+
+
+
 .card-progress ul {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .card-progress ul li {
@@ -2188,7 +2209,24 @@ body.beneficiary .add-modal:hover {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+.card-progress ul li p {
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Make the paragraph take up the full height of the circle */
+    margin: 0;
+}
+
+.card-progress ul li .text {
+    color: var(--text-color);
+}
+
+.card-progress  ul li{
+    padding: 10px;
+    margin-left: 0;
 }
 
 .card-progress ul li .icon {
@@ -2237,35 +2275,38 @@ body.beneficiary .add-modal:hover {
 
 /*CIRCLE CHART */
 /* Progress Div Css  */
-
 .card-progress ul li .progress {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: 2px solid #7bb701;
-    margin: 0 20px;
-    display: grid;
-    place-items: center;
-    color: #000;
+    background-color: white;
+    margin-right: 10px;
+    display: flex; /* Use flex display to center content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
     position: relative;
     cursor: pointer;
+    padding: 10px;
+    
+    
 }
+
 .card-progress ul li .progress::after {
     content: ""; /* Set content for the pseudo-element */
     position: absolute;
-    background-color: rgba(68, 68, 68, 0.781);
-    right: 30px;
-    width: 3px;
+    background-color: white;
+    right: 50%; /* Center the line to the right half of the circle */
+    width: 5px;
     height: 55px;
+    border-radius: 50%;
     bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(50%); /* Adjust the translateX to center the line */
     z-index: -1;
 }
 
 .card-progress .one::after {
     width: 0;
-
     height: 0;
 }
 
@@ -2307,6 +2348,7 @@ body.beneficiary .add-modal:hover {
     display: flex;
 }
 
+
 @media (max-width: 600px) {
     .head .head_1 {
         font-size: 24px;
@@ -2316,7 +2358,33 @@ body.beneficiary .add-modal:hover {
         font-size: 16px;
     }
 }
+@media (max-width: 1175px) {
+    .card-progress {
+       
+        overflow-y: auto;
+        
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    
+}
 
+@media (max-width: 768px) {
+    .card-progress {
+       
+        overflow: hidden;
+    }
+    
+    
+}
+@media (max-width: 448px) {
+    .card-progress {
+       
+        overflow: auto;
+    }
+    
+}
 .card-project {
     width: 100%;
     height: 200px;
