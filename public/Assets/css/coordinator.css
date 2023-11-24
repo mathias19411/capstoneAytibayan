@@ -2458,3 +2458,7 @@ body.announcement_events_inquiry .message-row {
 .add-project_modal {
     margin-bottom: 15px;
 }
+
+.print-header {
+    display: none;
+  }
