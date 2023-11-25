@@ -112,10 +112,14 @@
                                                 <div class="form-group">
                                                     <label for="edit-recipient">To:</label>
                                                     <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                    <option>{{ $announcements->to }}</option>
-                                                    <option>{{ $programName }}</option>
-                                                    <option>PUBLIC</option>
-                                                    </select>
+                                                    @if($announcements->to === 'PUBLIC')
+                                                        <option>PUBLIC</option>
+                                                        <option>{{ $programName }}</option>
+                                                    @else
+                                                        <option>{{ $announcements->to }}</option>
+                                                        <option>PUBLIC</option>
+                                                    @endif
+                                                </select>
                                                 </div>
                                                 </div>
                                                     <div class="col-md-12 mb-4">

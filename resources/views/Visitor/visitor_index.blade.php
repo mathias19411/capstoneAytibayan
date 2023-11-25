@@ -1,6 +1,7 @@
 @extends('Visitor.visitor_home')
 @section('visitor')
-    <button id="scrollToTopButton">Back to Top</button>
+<button id="scrollToTopButton"><i class="fas fa-arrow-up"></i> </button>
+
 
     <div class="page-content">
         <div class="main-cards">

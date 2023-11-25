@@ -273,7 +273,7 @@ body {
 }
 @media only screen and (max-width: 768px) {
     #scrollToTopButton {
-        left: 90%; /* Adjust as needed */
+        left: 87%; /* Adjust as needed */
         transform: translateX(-90%);
     }
 }
@@ -281,7 +281,7 @@ body {
 /* Media query for screens up to 560px wide */
 @media only screen and (max-width: 560px) {
     #scrollToTopButton {
-        left: 80%; /* Adjust as needed */
+        left: 90%; /* Adjust as needed */
         transform: translateX(-80%);
     }
 }
@@ -2575,7 +2575,7 @@ section.contact #email_icon {
         flex-direction: column !important;
     
     }
-}
+    
 @media (max-width: 768px) {
     
     section.contact .container {
