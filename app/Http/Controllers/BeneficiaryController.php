@@ -135,23 +135,35 @@ class BeneficiaryController extends Controller
         'image' => 'image',
     ]);
 
-    // Retrieve the existing project
-    $project = Updates::findOrFail($id);
-    
-    if ($request->hasFile('image')) {
-
-        // Upload the new image and update the attachment path
+    // Check if the image key exists in the validated data array
+    if (isset($validatedData['image'])) {
+        // Get the image file
         $file = $request->file('image');
+
+        // Generate a unique filename for the image file
         $filename = date('YmdHi') . $file->getClientOriginalName();
+
+        // Move the image file to the 'Uploads/Updates/' directory
         $file->move('Uploads/Updates/', $filename);
-        $validatedData['image'] = $filename;
+    } else {
+        // Assign an empty string to the filename variable
+        $filename = '';
     }
 
-    // Update the project with the updated attachment path and other validated data
-    $project->update($validatedData);
+    // Set the image attribute of the event model to the filename
+    $validatedData['image'] = $filename;
 
-    return redirect()->back()->with('success', 'Update is Changed!');
-    }//end method
+    // Check if validation passes
+    if ($validatedData) {
+        // Update data in the database
+        $update = Updates::findOrFail($id);
+        $update->update($validatedData);
+
+        return redirect()->back()->with('success', 'Update Successful!');
+    } else {
+        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+}//end method
     
 
     public function BeneficiarySchedule()

@@ -701,7 +701,10 @@ class ABAKAProjectCoordinatorController extends Controller
 
     // Retrieve the existing project
     $project = Projects::findOrFail($aid);
-    
+
+    // Handle image upload and attachment update
+    $existingImage = $project->attachment;
+
     if ($request->hasFile('attachment')) {
 
         // Upload the new image and update the attachment path
