@@ -8,7 +8,7 @@
 
 <div class="table-header">
     <div class="table-header-left">
-        <label for="unread-filter">Filter: </label>
+       {{-- <label for="unread-filter">Filter: </label>
         <select id="unread-filter">
             <option value="all">All</option>
             <option value="read">itstaff</option>
@@ -17,7 +17,7 @@
             <option value="lead">lead</option>
             <option value="agripinay">agripinay</option>
             <option value="akbay">akbay</option>
-        </select>
+        </select>--}}
         <label for="items-per-page">Items per page: </label>
         <select id="items-per-page">
             <option value="10">10</option>

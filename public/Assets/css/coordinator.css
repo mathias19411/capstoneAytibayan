@@ -2034,12 +2034,12 @@ body.announcement_events_inquiry td {
 
 /* Add this to your stylesheet */
 body.announcement_events_inquiry tr.unread {
-    background-color: #ffecb3; /* or any other highlighting style */
+   background-color: rgb(164, 182, 164); 
 }
 
 /* Optional: Style for read inquiries */
 body.announcement_events_inquiry tr.read {
-    background-color: #f2f2f2;
+    background-color: #ffff;
 }
 /* Add a transition effect for background color changes 
 body.announcement_events_inquiry tr:hover {

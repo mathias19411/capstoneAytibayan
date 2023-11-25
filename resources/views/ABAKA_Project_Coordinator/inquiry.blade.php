@@ -11,7 +11,7 @@
     </div>
     @if ($unreadCount > 0)
             <div class="alert alert-info">
-                You have {{ $unreadCount }} unread announcements.
+                You have {{ $unreadCount }} unread messages.
             </div>
     @endif
     <div class="table-header">
