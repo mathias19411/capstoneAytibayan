@@ -14,7 +14,7 @@
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <!-- CSS link -->
     <link rel="stylesheet" href="{{ asset('Assets/css/coordinator.css') }}">
-    <link rel="stylesheet" href="{{ asset('Assets/css/print.css') }}">
+    <link rel="stylesheet" href="{{ asset('Assets/css/agripinay-print.css') }}" media="print">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/6297197d39.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -960,6 +960,120 @@
         filterAndPaginate();
     </script>
 
+<!------------FINAL FILTER PO ITO------------->
+<script>
+$(document).ready(function() {
+    $('#unread-filter').change(function() {
+        var filterValue = $(this).val().toLowerCase();
+        if (filterValue === 'all') {
+            $('.table tbody tr').show();
+        } else {
+            $('.table tbody tr').hide();
+            $('.table tbody tr').each(function() {
+                $(this).find('td').each(function() {
+                    if ($(this).text().toLowerCase() === filterValue) {
+                        $(this).closest('tr').show();
+                    }
+                });
+            });
+        }
+    });
+});
+    </script>
+
+<script>
+        //STATUS BENEFICIARY FILTER
+        $(document).ready(function() {
+    $('#status-filter').change(function() {
+        var filterValue = $(this).val().toLowerCase();
+        if (filterValue === 'all') {
+            $('.table tbody tr').show();
+        } else {
+            $('.table tbody tr').hide();
+            $('.table tbody tr').each(function() {
+                var status = $(this).find('td:nth-child(8)').text().toLowerCase();
+                if (status === filterValue) {
+                    $(this).show();
+                }
+            });
+        }
+    });
+
+    $('#search').on('keyup', function() {
+        var searchText = $(this).val().toLowerCase();
+        $('.table tbody tr').each(function() {
+            var rowText = $(this).text().toLowerCase();
+            if (rowText.indexOf(searchText) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    });
+});
+    </script>
+
+<!-------MEDIA PRINT---------->
+<script>
+  document.getElementById('printButton').addEventListener('click', function() {
+    var printContents = document.getElementById('printableContent').innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    var totalBeneficiaries = document.querySelectorAll('#beneficiaries-table tbody tr').length;
+
+    printContents += '<div>Total Beneficiaries: ' + totalBeneficiaries + '</div>';
+
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+
+    // Reload the page after printing
+    setTimeout(function() {
+      location.reload();
+    }, 1000); // Adjust the timeout value as needed
+  });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const exportButton = document.getElementById('exportButton');
+        exportButton.addEventListener('click', exportTable);
+
+        function exportTable() {
+            const table = document.getElementById('beneficiaries-table');
+            const rows = table.querySelectorAll('tbody tr');
+
+            // Create a CSV string
+            let csvContent = "User ID,Beneficiary,Barangay,City,Status,Project,Amount,Hectares,Assistance Status\n";
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const userId = cells[0].textContent.trim();
+                const beneficiary = cells[1].textContent.replace(/\n/g, ' ').trim();
+                const barangay = cells[2].textContent.trim();
+                const city = cells[3].textContent.trim();
+                const status = cells[4].textContent.trim();
+                const project = cells[5].textContent.trim();
+                const amount = cells[6].textContent.trim();
+                const hectares = cells[7].textContent.trim();
+                const assistanceStatus = cells[9].textContent.trim();
+
+                const rowData = `${userId},${beneficiary},${barangay},${city},${status},${project},${amount},${hectares},${assistanceStatus}`;
+                csvContent += rowData + '\n';
+            });
+
+            // Get the current date and time
+            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true };
+            const dateTime = new Date().toLocaleString('en-US', options).replace(/ /g, '_').replace(/:/g, ';');
+            // Create a Blob and download the file with the date and time in the name
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = `${dateTime}.csv`;
+            link.click();
+        }
+    });
+</script>
 
 </body>
 

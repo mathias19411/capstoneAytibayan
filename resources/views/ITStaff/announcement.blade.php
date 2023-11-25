@@ -54,7 +54,7 @@
                     <tbody>
                         @foreach($announcement->reverse() as $announcements)
                         <!--VIEW Announcement-->
-                        <div class="modal fade" id="modal_view{{ $announcements->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_view{{ $announcements->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="#modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -89,7 +89,7 @@
                         </div>
 
                         <!--UPDATE Announcement-->
-                        <div class="modal fade" id="modal_edit{{ $announcements->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_edit{{ $announcements->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  aria-labelledby="#modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -138,7 +138,7 @@
                             </div>
 
                         <!--DELETE Announcement-->
-                        <div class="modal fade" id="modal_delete{{ $announcements->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_delete{{ $announcements->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  aria-labelledby="#modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -259,7 +259,7 @@
     </div>
 
         <!--Store ANNOUNCEMENT-->
-        <div class="modal fade" id="modal_announcement" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+        <div class="modal fade" id="modal_announcement" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

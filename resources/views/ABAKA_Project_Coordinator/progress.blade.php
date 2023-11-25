@@ -108,7 +108,7 @@ $benefAssistanceStatuses = [];
         @endif
 
     </div>
-    <div class="button-container">
+                <div class="button-container">
                     <button class="button_top" data-bs-toggle="modal" data-bs-target="#projectModal">
                         <i class="fa-solid fa-list-check" style="color: #ffffff;"></i> Program Activities
                     </button>
@@ -175,13 +175,6 @@ $benefAssistanceStatuses = [];
                 <i class="fas fa-search search-icon"></i>
             </div>
         </div>
-    </div>
-
-    <!--LOGO -->
-    <div class="header">
-        <h1>Republic of the Philippines</h1>
-        <h2>Province of Albay</h2>
-        <h3>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h3>
     </div>
 
     <div class="container">

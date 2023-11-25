@@ -11,8 +11,9 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Read</option>
-                <option value="read">Unread</option>
+                <option value="PUBLIC">Public</option>
+                <option value="agripinay">Beneficiaries</option>
+                <option value="project coordinator">Project Coordinator</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">

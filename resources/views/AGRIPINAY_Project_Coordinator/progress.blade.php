@@ -162,8 +162,11 @@ $benefCurrentLoanStatuses = [];
 
     </div>
 
-
-
+    <div class="button-container">
+                    <button class="button_top" data-bs-toggle="modal" data-bs-target="#projectModal">
+                        <i class="fa-solid fa-list-check" style="color: #ffffff;"></i> Program Activities
+                    </button>
+                </div>
 
     <div class="table-header">
         <div class="table-header-left">
@@ -190,18 +193,15 @@ $benefCurrentLoanStatuses = [];
         </div>
     </div>
 
-    <!--LOGO -->
-    <div class="header">
-        <h1>Republic of the Philippines</h1>
-        <h2>Province of Albay</h2>
-        <h3>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h3>
-    </div>
-
     <div class="container">
-
-        <table class="table" id="beneficiaries-table">
-
-
+            <div id="printableContent">
+                <div class="print-header">
+                <img src="\images\APAO-R5.jpg" alt="Albay Provincial Agricultural Office Logo">
+                <h3>Republic of Albay, Province of Albay</h3>
+                <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
+                <h4>AbakaBuhayan Project, "ABAKA MO, PISO MO" CASH INCENTIVE SCHEME</h4>    
+                </div>        
+            <table class="table" id="beneficiaries-table">
             <thead>
                 <tr>
                     <th scope="col">User ID</th>
@@ -442,31 +442,19 @@ $benefCurrentLoanStatuses = [];
                 @endforeach
             </tbody>
         </table>
-
-
-
-
-
+    </div>
         <div class="pagination">
             <button id="prev-page">Previous</button>
             <div id="page-numbers"></div>
             <button id="next-page">Next</button>
         </div>
 
-
-
         <div id="pagination-message"></div>
-        <div class="button-container">
-            <button class="button_top buttons-print" onclick="printTable()"> <i class="fa-solid fa-print"
-                    style="color: #ffffff;"></i> Print</button>
-
-        </div>
+            <div class="button-container">
+                <button id="printButton" class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
+                <button id="exportButton" class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
+            </div>
     </div>
-
-
-
-
-
 
 
     <div class="progress-container">
@@ -490,11 +478,6 @@ $benefCurrentLoanStatuses = [];
         <button id="add-step">Add Step</button>
         <button id="reset-steps">Reset Steps</button>
     </div>
-
-
-
-
-
 
     <script src="{{ asset('Assets/js/loanProgress.js') }}"></script>
 

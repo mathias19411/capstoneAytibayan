@@ -1007,10 +1007,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var printContents = document.getElementById('printableContent').innerHTML;
     var originalContents = document.body.innerHTML;
 
-    // Count the total beneficiaries
     var totalBeneficiaries = document.querySelectorAll('#beneficiaries-table tbody tr').length;
 
-    // Append the total to the printContents
     printContents += '<div>Total Beneficiaries: ' + totalBeneficiaries + '</div>';
 
     document.body.innerHTML = printContents;

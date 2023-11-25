@@ -12,9 +12,9 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Public</option>
-                <option value="read">Beneficiaries</option>
-                <option value="read">Project Coordinator</option>
+                <option value="PUBLIC">Public</option>
+                <option value="agripinay">Beneficiaries</option>
+                <option value="project coordinator">Project Coordinator</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -49,7 +49,7 @@
                     <tbody>
                         @foreach($announcement->reverse() as $announcements)
                         <!--VIEW Announcement-->
-                        <div class="modal fade" id="modal_view{{ $announcements->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_view{{ $announcements->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="#modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
