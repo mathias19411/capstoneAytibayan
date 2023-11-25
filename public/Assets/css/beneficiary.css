@@ -2124,20 +2124,8 @@ body.beneficiary .add-modal:hover {
     flex-wrap: wrap;
     justify-content: center;
     margin: 20px;
+    
 }
-/*
-.card-chart {
-    width: 450px;
-    max-width: 100%;
-    height: 174px;
-    padding: 10px;
-    margin: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-}
-*/
 
 .card-progress {
     width: 100%;

@@ -20,11 +20,10 @@
         <p>{{ $abakaInactiveCount }}</p>
     </div>
 </div>
-<div class="button-container">
-  <button id="printButton" class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
-  <button class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
-</div>
 
+  <!--ADD PROJECTS-->
+    <!--PALAGAY NA LANG DITO JEF -->   
+               
   <div class="table-header">
   <div class="table-header-left">
     <label for="status-filter">Status: </label>
@@ -87,9 +86,10 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
+                                            <div class="project_box">
                                         @foreach($updates->reverse() as $update)
-                                            <div class="card mb-3 col-md-3 ">
-                                                <div class="card-body">
+                                            <div class="box">
+                                                <div class="project-info">
                                                 @if ($abakaBeneficiary->email === $update->email)
                                                 <a href="{{ asset('Uploads/Updates/'.$update->image) }}" target="_blank">
                                                     <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
@@ -101,6 +101,7 @@
                                                 @endif
                                             </div>
                                                 @endforeach
+                                            </div>
                                         </div>
                                     
                             

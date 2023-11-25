@@ -58,7 +58,7 @@ else {
 
     @endphp
 
-    <div class="card-container">
+  <div class="card-container">
 
         <!-- Card 1 -->
         <div class="row">
@@ -338,11 +338,10 @@ else {
                                 </ul>
                             </div>
                         @endif
-
                     </div>
                 </div>
             </div>
-
+        
             <!-- Special prject -->
             <div class="col-md-8">
                 <div class="card-project">
@@ -433,13 +432,7 @@ else {
                                         <div class="event-title">Title: {{ $event->title }}</div>
                                         <div class="event-text">{{ $event->message }}</div>
                                         
-                                        <!--
-                                        <div id="img-view">
-                                            
-                                            <img src="/images/image_icon.png" alt="Image Icon">
-                                            <p>No Image Posted</p>
-                                        </div>
-                                        -->
+                                       
                                         <div class="footer">
                                         <div class="time"> Posted: {{$event->created_at->format('Y-m-d h:i A')}}</div>
                                         </div>
