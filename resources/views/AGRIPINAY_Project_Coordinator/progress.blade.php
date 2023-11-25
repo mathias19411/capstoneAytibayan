@@ -199,7 +199,7 @@ $benefCurrentLoanStatuses = [];
                 <img src="\images\APAO-R5.jpg" alt="Albay Provincial Agricultural Office Logo">
                 <h3>Republic of Albay, Province of Albay</h3>
                 <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
-                <h4>AbakaBuhayan Project, "ABAKA MO, PISO MO" CASH INCENTIVE SCHEME</h4>    
+                <h4>AGRI-PINAY PROGRAM STATUS MONITORING</h4>    
                 </div>        
             <table class="table" id="beneficiaries-table">
             <thead>

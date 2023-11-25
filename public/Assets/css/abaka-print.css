@@ -81,4 +81,8 @@
     tr:hover td {
       display: none;
     }
+
+    #beneficiaries-table {
+      margin-top: 20px;
+    }
 }

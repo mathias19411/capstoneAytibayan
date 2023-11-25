@@ -8,7 +8,7 @@
     text-align: left;
     margin-top: 10px;
     margin-left: 10px;
-  }|
+  }
   table {
     width: 100%;
     border-collapse: collapse;
@@ -48,31 +48,43 @@
     display: none;
   }
 
-    th:nth-child(13), 
-    td:nth-child(13) {
-      display: none;
-    }
-    .print-header {
-      display: block;
-      color: black;
-    }
-    .print-header img {
-      width: 80px;
-      height: auto;
-      margin-bottom: 10px;
-    }
-    .print-header h3 {
-      font-size: large;
-    }
-    .print-header h5 {
-      font-size: small;
-    }
-    .print-header h4 {
-      font-size: medium;
-      color: #7bb701;
-      margin-top: 10px;
-    }
+  #beneficiaries-table th:nth-of-type(13),
+  #beneficiaries-table td:nth-of-type(13) {
+    display: none;
+  }
+  
+      .print-header {
+        display: block;
+        color: black;
+        text-align: center; 
+        page-break-before: always; 
+      }
+    
+      .print-header img {
+        width: 80px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+    
+      .print-header h3 {
+        font-size: large;
+      }
+    
+      .print-header h5 {
+        font-size: small;
+      }
+    
+      .print-header h4 {
+        font-size: medium;
+        color: #7bb701;
+        margin-top: 10px;
+      }
+    
     tr:hover td {
       display: none;
+    }
+    
+    #beneficiaries-table {
+      margin-top: 20px;
     }
 }
