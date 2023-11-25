@@ -77,7 +77,7 @@
                         @foreach ($abakaBeneficiaries as $abakaBeneficiary)
 
                             <!--view_beneficiaries-->
-                            <div class="modal fade" id="view_beneficiary_updates{{ $abakaBeneficiary->id }}" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal fade" id="view_beneficiary_updates{{ $abakaBeneficiary->id }}" tabindex="-1"  data-backdrop="false" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -115,7 +115,7 @@
 
 
                             <!-- Add Schedule Modal -->
-                            <div class="modal fade" id="add-schedule-modal{{ $abakaBeneficiary->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="add-schedule-modal{{ $abakaBeneficiary->id }}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">

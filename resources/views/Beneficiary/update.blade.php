@@ -65,7 +65,7 @@ else {
             <div class="row">
                 <!-- Update cards will be dynamically generated here -->
                 @foreach($updates->reverse() as $update)
-                <div class="modal fade" id="editModal{{ $update->id }}" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                <div class="modal fade" id="editModal{{ $update->id }}" tabindex="-1"  data-backdrop="false" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

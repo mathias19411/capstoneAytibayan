@@ -382,7 +382,7 @@ $benefAssistanceStatuses = [];
 
 
 <!--project-->
-<div class="modal fade" id="projectModal" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+<div class="modal fade" id="projectModal" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -396,7 +396,7 @@ $benefAssistanceStatuses = [];
                 <div class= "project_box">
                         @foreach($project->reverse() as $projects)
                         <!--EDIT PROJECT-->
-                        <div class="modal fade" id="modal_editproject{{ $projects->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_editproject{{ $projects->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -450,7 +450,7 @@ $benefAssistanceStatuses = [];
                             </div>
                         </div>
 
-                        <div class="modal fade" id="modal_deleteproject{{ $projects->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_deleteproject{{ $projects->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -519,7 +519,7 @@ $benefAssistanceStatuses = [];
 </div>
 
  <!--ADD PROJECT-->
-                        <div class="modal fade" id="modal_addproject" tabindex="-1" data-backdrop="false" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_addproject" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">

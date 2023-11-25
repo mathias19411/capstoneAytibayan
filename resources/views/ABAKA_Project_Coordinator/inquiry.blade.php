@@ -65,7 +65,7 @@
                         <!--MODAL VIEW-->
                         <form action="{{ route('mark.AsRead' ) }}" method="post">
                             @csrf
-                        <div class="modal fade" id="view_itstaff{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="view_itstaff{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -120,7 +120,7 @@
                         </div>
                         </form>
                         <!--MODAL Reply-->
-                        <div class="modal fade" id="modal_reply{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_reply{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -168,7 +168,7 @@
                         </div>
 
                         <!--MODAL DELETE-->
-                        <div class="modal fade" id="modal_delete{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_delete{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -227,7 +227,7 @@
               </div>
     
                         <!-- Popup for displaying message content and details -->
-                        <div id="message-popup" class="popup" data-backdrop="false" aria-labelledby="#modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)" >
+                        <div id="message-popup" class="popup" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="#modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)" >
                 <div class="popup-content">
                     <span class="popup-close" onclick="closePopup()">&times;</span>
                     <div class="modal-header">

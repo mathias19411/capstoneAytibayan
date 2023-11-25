@@ -2252,6 +2252,12 @@ body.announcement_events_inquiry .message-row {
     height: 300px; 
     position: relative; /* Positioning context for absolute elements */
     overflow: hidden; /* Prevent content overflow */
+    border: 2px solid transparent; 
+    transition: border-color 0.3s ease-in-out; 
+}
+
+.project_box .box:hover {
+    border-color: #7bb701;
 }
 
 .project-info {
@@ -2464,5 +2470,3 @@ body.announcement_events_inquiry .message-row {
 .print-header {
     display: none;
   }
-
- 
