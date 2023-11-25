@@ -70,10 +70,10 @@
         <h1>Schedule for Monitoring</h1>
         @foreach($schedules->reverse() as $schedule)
         @php
-                $daySched = \Carbon\Carbon::parse($schedule->created_at)->format('d');
-                $monthSched = \Carbon\Carbon::parse($schedule->created_at)->format('M');
-                $yearSched= \Carbon\Carbon::parse($schedule->created_at)->format('Y');
-            @endphp
+                $daySched = \Carbon\Carbon::parse($schedule->date)->format('d');
+                $monthSched = \Carbon\Carbon::parse($schedule->date)->format('M');
+                $yearSched= \Carbon\Carbon::parse($schedule->date)->format('Y');
+        @endphp
         <div class="schedule-item">
             <div class="left-content">
 

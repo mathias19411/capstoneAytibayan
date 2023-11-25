@@ -87,10 +87,10 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="project_box">
-                                        @foreach($updates->reverse() as $update)
+                                            @foreach($updates->reverse() as $update)
+                                            @if ($abakaBeneficiary->email === $update->email)
                                             <div class="box">
                                                 <div class="project-info">
-                                                @if ($abakaBeneficiary->email === $update->email)
                                                 <a href="{{ asset('Uploads/Updates/'.$update->image) }}" target="_blank">
                                                     <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
                                                 </a>
@@ -98,9 +98,9 @@
                                                 </div>
                                                     <p class="update-date">Posted: {{ $update->created_at->format('Y-m-d h:i A') }} </p>
                                                     <p class="update-date">Last Edited: {{ $update->updated_at->format('Y-m-d h:i A') }} </p>
-                                                @endif
                                             </div>
-                                                @endforeach
+                                            @endif
+                                            @endforeach
                                             </div>
                                         </div>
                                     
@@ -155,7 +155,7 @@
                                 <div class="modal-header">
                                         <h5 class="modal-title" id="modal-title">View Beneficiary</h5>
                                         <span class="add-value-popup-close"
-                                        onclick="hideAddValuePopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                        onclick="hideAddValuePopup('{{ $abakaBeneficiary->id }}')">&times;</span>
                                 </div>  
                                
                                     <h2>Add Beneficiary</h2>
@@ -192,7 +192,7 @@
                                 <div class="modal-header">
                                         <h5 class="modal-title" id="modal-title">Update Beneficiary</h5>
                                         <span class="update-status-popup-close"
-                                        onclick="hideUpdateStatusPopup({{ $abakaBeneficiary->id }})">&times;</span>
+                                        onclick="hideUpdateStatusPopup('{{ $abakaBeneficiary->id }}')">&times;</span>
                                 </div>  
                                     
                                     <div class="modal-body">
@@ -251,11 +251,12 @@
                                 <input type="hidden" name="benef_email" value="{{ $abakaBeneficiary->email }}" > 
                                 <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates{{ $abakaBeneficiary->id }}"><i class="fa-solid fa-eye fa-2xs"></i></button>
                                     <button class="tooltip-button" data-tooltip="Update"
-                                        onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
+                                        onclick="showUpdateStatusPopup('{{ $abakaBeneficiary->id }}')"><i
                                             class="fa-solid fa-pen-to-square fa-2xs"></i></button>
                                 </td>
                                 <td>{{ $abakaBeneficiary->status->status_name }}</td>
-                            
+                            </tr>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>   
