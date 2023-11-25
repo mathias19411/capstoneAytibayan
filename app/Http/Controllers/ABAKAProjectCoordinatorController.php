@@ -350,16 +350,27 @@ class ABAKAProjectCoordinatorController extends Controller
         $inquiry = inquiries::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
             $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
+        // Count unread announcements
+        $unreadCount = Inquiries::where('is_unread', true)->count();
 
-
-        return view('ABAKA_Project_Coordinator.inquiry', compact('roleName','programName','inquiry', 'userEmail'));
+        return view('ABAKA_Project_Coordinator.inquiry', compact('roleName','programName','inquiry', 'userEmail', 'unreadCount'));
     } // End Method
-    public function ProjectCoordinatorInquiryEdit($id)
+    public function markAsRead(Request $request)
     {
-        $event = inquiries::findOrFail($id);
+        $inquiryId = $request->inquiry_id;
+        // Assuming you have an Eloquent model named Inquiry
+        $inquiry = inquiries::findOrFail($inquiryId);
 
-        return view('ABAKA_Project_Coordinator.event', compact('event'));
-    } // End Method
+        // Check if is_unread is true, then update it to false
+        if ($inquiry->is_unread) {
+            $inquiry->update(['is_unread' => false]);
+    }
+
+    // Additional logic if needed
+
+    return redirect()->back();
+    }//end method
+
 
     public function ProjectCoordinatorInquiryReply(Request $request)
     {
@@ -400,7 +411,7 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorInquiryDelete(Request $request)
     {
-        $id = $request->event_id;
+        $id = $request->inquiry_id;
         // Find the record you want to delete by its primary key
         $recordToDelete = inquiries::find($id);
 

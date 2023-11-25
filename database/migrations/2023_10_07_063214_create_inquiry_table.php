@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->text('message');
             $table->string('contacts')->nullable();
-            $table->boolean('is_read')->default(false); // New column for marking as read
+            $table->boolean('is_unread')->default(true); // New column for marking as read
             $table->timestamps();
         });
     }

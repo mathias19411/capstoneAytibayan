@@ -329,6 +329,7 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:a
     Route::get('/ABAKA_ProjectCoordinator/Inquriy', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('abakaprojectcoordinator.inquiry');
     Route::post('/ABAKA_ProjectCoordinator/Inquriy/reply', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorInquiryReply'])->name('reply.inquirycoordinatorabaka');
     Route::delete('/ABAKA_ProjectCoordinator/Inquriy/delete', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiryDelete'])->name('delete.inquirycoordinatorabaka');
+    Route::post('/ABAKA_ProjectCoordinator/Inquriy/show', [ABAKAProjectCoordinatorController::class, 'markAsRead'])->name('mark.AsRead');
    
     Route::post('/ABAKA_ProjectCoordinator/Add Schedule', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAddSchedule'])->name('add.schedule');
 

@@ -9,6 +9,11 @@
     <div class="title">
         <h1>Inquiry</h1>
     </div>
+    @if ($unreadCount > 0)
+            <div class="alert alert-info">
+                You have {{ $unreadCount }} unread announcements.
+            </div>
+    @endif
     <div class="table-header">
         <div class="table-header-left">
            <!-- <label for="unread-filter">Filter: </label>
@@ -58,12 +63,15 @@
                     <tbody>
                     @foreach($inquiry->reverse() as $inquiry)
                         <!--MODAL VIEW-->
+                        <form action="{{ route('mark.AsRead' ) }}" method="post">
+                            @csrf
                         <div class="modal fade" id="view_itstaff{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="modal-title">Inquiry Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <input type="hidden" name="inquiry_id" value="{{ $inquiry->id }}">
+                                        <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                         <div class="modal-body">
                                             <div class="row">
@@ -103,13 +111,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="close" data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                             </div>
                         </div>
+                        </form>
                         <!--MODAL Reply-->
                         <div class="modal fade" id="modal_reply{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
@@ -122,7 +131,7 @@
                                         <form action="{{ route('reply.inquirycoordinatorabaka') }}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
-                                            <input type="hidden" name="event_id" value="{{ $inquiry->id }}">
+                                            <input type="hidden" name="inquiry_id" value="{{ $inquiry->id }}">
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Title">Recipient Name:</label>
@@ -189,7 +198,7 @@
                                     </div>
                             </div>
                         </div>
-                        <tr class="{{ $inquiry->is_read ? 'read' : 'unread' }}">
+                        <tr class="{{ $inquiry->is_unread ? 'unread' : 'read' }}">
 
                         <td class="column">{{ $inquiry->fullname }}</td>
                         <td class="column">{{ $inquiry->from }}</td>

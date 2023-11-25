@@ -15,7 +15,8 @@ class inquiries extends Model
         'email',
         'contacts',
         'message',
-        'attachment'
+        'attachment',
+        'is_unread'
     ];
     use HasFactory;
 }
