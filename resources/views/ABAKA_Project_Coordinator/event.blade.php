@@ -86,12 +86,9 @@
                             <div class="modal-footer">
                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                             </div>
-<<<<<<< HEAD
                         </div>
                     </div>
                 </div>
-=======
->>>>>>> 281163e6bbc45441859ce7481be8f2962409b1a5
 
                         <!--MODAL UPDATE-->
                         <div class="modal fade" id="modal_edit{{ $events->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
@@ -114,16 +111,6 @@
                                                     </div>
                                                 </div>
                                                     <div class="col-md-6 mb-4">
-<<<<<<< HEAD
-                                                        <div class="form-group">
-                                                            <label for="edit-recipient">To:</label>
-                                                            <select class="form-control" type="text" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                                <option>{{ $events->to }}</option>    
-                                                                <option>{{ $programName }}</option>
-                                                                <option>PUBLIC</option>
-                                                            </select>
-                                                        </div>
-=======
                                                     <div class="form-group">
                                                     <label for="edit-recipient">To:</label>
                                                         <select class="form-control" type="text" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
@@ -136,7 +123,6 @@
                                                                 <option>PUBLIC</option>
                                                             @endif
                                                         </select>
->>>>>>> 281163e6bbc45441859ce7481be8f2962409b1a5
                                                     </div>
                                             </div>
                                                 <div class="col-md-12 mb-4">

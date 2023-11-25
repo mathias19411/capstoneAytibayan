@@ -20,11 +20,10 @@
         <p>{{ $abakaInactiveCount }}</p>
     </div>
 </div>
-<div class="button-container">
-  <button id="printButton" class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
-  <button class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
-</div>
 
+  <!--ADD PROJECTS-->
+    <!--PALAGAY NA LANG DITO JEF -->   
+               
   <div class="table-header">
   <div class="table-header-left">
     <label for="status-filter">Status: </label>

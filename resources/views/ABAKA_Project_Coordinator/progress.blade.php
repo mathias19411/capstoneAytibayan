@@ -108,14 +108,12 @@ $benefAssistanceStatuses = [];
         @endif
 
     </div>
-
-                <!--ADD PROJECTS-->
-                <div class="button-container">
+    <div class="button-container">
                     <button class="button_top" data-bs-toggle="modal" data-bs-target="#projectModal">
                         <i class="fa-solid fa-list-check" style="color: #ffffff;"></i> Program Activities
                     </button>
                 </div>
-                
+
 
     <div class="table-header">
         <div class="table-header-left">
@@ -350,9 +348,8 @@ $benefAssistanceStatuses = [];
 
         <div id="pagination-message"></div>
         <div class="button-container">
-              <button id="printButton" class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
-
-
+            <button id="printButton" class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
+            <button class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
         </div>
     </div>
 
