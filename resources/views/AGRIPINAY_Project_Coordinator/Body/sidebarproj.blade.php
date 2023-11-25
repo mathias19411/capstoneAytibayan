@@ -1,7 +1,9 @@
 <nav>
     <div class="logo-name">
-        <div class="logo-image">
-            <img src="\images\Logo_BinhiNgPagasa.png" alt="">
+    <div class="logo-image">
+            <a href="{{ route('visitor.home') }}">
+                <img src="\images\Logo_Agripinay.png" alt="Logo">
+            </a>
         </div>
 
         <span class="logo_name">AGRIPINAY</span>
@@ -18,39 +20,45 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
     <div class="menu-items">
         <ul class="nav-links">
-            <li>
-                <a href="{{ route('agripinayprojectcoordinator.beneficiaries') }}" class="{{ request()->is('AGRIPINAY_Project_Coordinator/beneficiary') ? 'active' : '' }}">
+        <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.beneficiaries' ? 'active' : '' }}">
+                <a href="{{ route('agripinayprojectcoordinator.beneficiaries') }}">
                     <i class="uil uil-users-alt"></i>
                     <span class="link-name">Beneficiaries</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('agripinayprojectcoordinator.announcement') }}" class="{{ request()->is('AGRIPINAY_Project_Coordinator/announcement') ? 'active' : '' }}">
+            <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.announcement' ? 'active' : '' }}">
+                <a href="{{ route('agripinayprojectcoordinator.announcement') }}" >
                     <i class="uil uil-bell"></i>
                     <span class="link-name">Announcement</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('agripinayprojectcoordinator.event') }}" class="{{ request()->is('AGRIPINAY_Project_Coordinator/event') ? 'active' : '' }}">
+            <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.event' ? 'active' : '' }}">
+                <a href="{{ route('agripinayprojectcoordinator.event') }}" >
                     <i class="uil uil-calendar-alt"></i>
                     <span class="link-name">Event</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('agripinayprojectcoordinator.inquiry') }}" class="{{ request()->is('AGRIPINAY_Project_Coordinator/inquiry') ? 'active' : '' }}">
+            <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.inquiry' ? 'active' : '' }}">
+                <a href="{{ route('agripinayprojectcoordinator.inquiry') }}">
                     <i class="uil uil-question-circle"></i>
                     <span class="link-name">Inquiry</span>
                 </a>
             </li>
 
-            <li>
-                <a href="{{ route('agripinayprojectcoordinator.progress') }}" class="{{ request()->is('AGRIPINAY_Project_Coordinator/progress') ? 'active' : '' }}">
+            <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.progress' ? 'active' : '' }}">
+                <a href="{{ route('agripinayprojectcoordinator.progress') }}">
                     <i class="uil uil-check-circle"></i>
                     <span class="link-name">Progress</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('agripinayprojectcoordinator.registerView') }}" class="">
+            <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.BlacklistView' ? 'active' : '' }}">
+                <a href="{{ route('agripinayprojectCoordinator.BlacklistView') }}">
+                    <i class="uil uil-x"></i>
+                    <span class="link-name">Blacklisted</span>
+                </a>
+            </li>
+            <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.registerView' ? 'active' : '' }}">
+                <a href="{{ route('agripinayprojectcoordinator.registerView') }}" >
                     <i class="uil uil-user-plus"></i>
                     <span class="link-name">Registration</span>
                 </a>

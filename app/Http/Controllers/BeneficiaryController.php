@@ -163,7 +163,7 @@ class BeneficiaryController extends Controller
     } else {
         return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
-}
+}//end method
     
 
     public function BeneficiarySchedule()

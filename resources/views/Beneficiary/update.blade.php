@@ -3,6 +3,30 @@
 @section('content')
 @include('beneficiary.Body.sidebar')
 
+    @php
+        // Access the authenticated user's id
+    $id = Illuminate\Support\Facades\Auth::user()->id;
+
+// Access the specific row data of the user's id
+// When using a model in blade.php, indicate the direct path of the model
+$userProfileData = App\Models\User::find($id);
+
+$authUser = Illuminate\Support\Facades\Auth::user();
+
+$description = App\Models\FinancialAssistanceStatus::find(1)->description;
+
+        $statusName = App\Models\FinancialAssistanceStatus::find(1)->financial_assistance_status_name;
+
+if ($authUser->assistance) {
+    $userAssistanceStatus = auth()->user()->financialAssistanceStatus->financial_assistance_status_name;
+}
+elseif ($authUser->loan){
+    $userAssistanceStatus = auth()->user()->loanstatus->loan_status_name;
+}
+else {
+    $userAssistanceStatus = $statusName;
+}
+    @endphp
     <div class="title">
         <h1>UPDATE</h1>
     </div>
@@ -14,8 +38,8 @@
         <form action="{{ route('send.updates') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="title" class="form-label">Title:</label>
-                <input type="text" id="title" class="form-control" name="title" maxlength="100" required>
+                <label for="title" class="form-label">Caption:</label>
+                <input type="text" id="title" class="form-control" name="title" maxlength="10000000" required>
             </div>
             <div class="mb-3">
                 <input type="email" name="email" value="{{ $userEmail }}" hidden>
@@ -56,7 +80,7 @@
                                     <input type="hidden" id="edit-update-id" name="benef_of" value="{{ $programName }}">
                                     <input type="hidden" id="edit-update-id" name="email" value="{{ $userEmail }}">
                                     <div class="mb-3"> 
-                                        <label for="edit-information" class="form-label">Change Title:</label>
+                                        <label for="edit-information" class="form-label">Edit Caption:</label>
                                         <input id="edit-information" class="form-control" value="{{ $update->title }}" name="title" required>
                                     </div>
                                     <div class="mb-3 image-update">
@@ -79,10 +103,12 @@
                 </div>
                 <div class="card mb-3 col-md-3">
                     <div class="card-body">
-                        <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
-                        <p class="update-title">Title: {{ $update->title }}</p>
+                    <a href="{{ asset('Uploads/Updates/'.$update->image) }}" target="_blank">
+                          <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
+                     </a>
+                        <p class="update-title">{{ $update->title }}</p>
                     </div>
-                    <p class="update-date">Date: {{ $update->created_at }}</p>
+                    <p class="update-date">Date: {{ $update->created_at->format('Y-m-d h:i A') }}</p>
                     <div class="card-footer">
                         <button class="btn btn-pink edit-update" data-bs-toggle="modal" data-bs-target="#editModal{{ $update->id }}" data-update-id="1">
                             <i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>

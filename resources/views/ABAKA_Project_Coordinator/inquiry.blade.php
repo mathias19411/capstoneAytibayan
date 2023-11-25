@@ -106,11 +106,10 @@
                                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
-</div>
+                                        </div>
                                     </div>
                             </div>
-
-
+                        </div>
                         <!--MODAL Reply-->
                         <div class="modal fade" id="modal_reply{{ $inquiry->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
@@ -199,12 +198,9 @@
                         <td class="column">{{ $inquiry->contacts }}</td>
                         <td class="column">{{ $inquiry->created_at->format('Y-m-d')  }}</td>
                         <td class="column">
-                        <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $inquiry->id }}" data-inquiry-id="{{ $inquiry->id }}">
-                        <i class="fa-solid fa-eye fa-2xs"></i>
-                    </button>
-
-                            <button class="tooltip-button" data-tooltip="Reply" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_reply{{ $inquiry->id }}"><i class="fas fa-reply fa-2xs"></i></button>
-                            <button class="tooltip-button" data-tooltip="Delete" class="delete-btn" data-bs-toggle="modal" data-bs-target="#modal_delete{{ $inquiry->id }}"><i class="fa-solid fa-trash fa-2xs"></i></button>
+                        <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $inquiry->id }}"><i class="fa-solid fa-eye fa-2xs"></i></button>
+                        <button class="tooltip-button" data-tooltip="Reply" data-bs-toggle="modal" data-bs-target="#modal_reply{{ $inquiry->id }}"><i class="fas fa-reply fa-2xs"></i></button>    
+                        <button class="tooltip-button" data-tooltip="Delete" data-bs-toggle="modal" data-bs-target="#modal_delete{{ $inquiry->id }}"><i class="fa-solid fa-trash fa-2xs"></i></button>
 
                             </td>
                         </tr>

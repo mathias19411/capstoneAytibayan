@@ -46,7 +46,7 @@
                 <th>Last Name</th>
                 <th>Program</th>
                 <th>Role</th>
-        
+                <th>Actions</th>
             
             </tr>
         </thead>
@@ -59,7 +59,9 @@
                     <td>{{ $user->last_name }}</td>
                     <td>{{ $user->program->program_name }}</td>
                     <td>{{ $user->role->role_name }}</td>
-                
+                    <td>
+                        <button class="tooltip-button" data-tooltip="Restore"><a href="{{ route('itstaff.RestoreUser', $user->id) }}" id="restore"><i class="fa-solid fa-suitcase-medical fa-2xs"></i></a></button>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

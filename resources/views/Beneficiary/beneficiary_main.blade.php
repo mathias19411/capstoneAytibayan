@@ -333,30 +333,33 @@ function displayImageInModal(imageURL) {
         // Set progressEndValue based on the user's assistance_status_name
         switch ("{{ $userAssistanceStatus }}") {
             case "started":
-                progressEndValue = 25;
+                progressEndValue = 26;
                 break;
             case "pending":
-                progressEndValue = 50;
+                progressEndValue = 51;
                 break;
             case "approved":
-                progressEndValue = 75;
+                progressEndValue = 76;
                 break;
             case "disbursed":
-                progressEndValue = 100;
+                progressEndValue = 101;
                 break;
             default:
                 progressEndValue = 0;
         }
 
         let progress = setInterval(() => {
-            progressStartValue++;
+            
 
-            progressValue.textContent = `${progressStartValue}%`
             circularProgress.style.background = `conic-gradient(#f0a60f ${progressStartValue * 3.6}deg, #f2f2f2 0deg)`
+            progressValue.textContent = `${progressStartValue}%`;
+
+            progressStartValue++;
 
             if(progressStartValue == progressEndValue || "{{ $userAssistanceStatus }}" == "unsettled") {
                 clearInterval(progress);
             }
+            
         }, speed);
     </script>
     <!--

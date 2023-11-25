@@ -178,3 +178,5 @@ function deleteAnnouncement(id) {
         var eventviewModal = new bootstrap.Modal(document.querySelector('#eventview'));
         eventviewModal.show();
     });
+
+

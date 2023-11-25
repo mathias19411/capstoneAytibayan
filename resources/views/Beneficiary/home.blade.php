@@ -68,7 +68,7 @@ else {
                     <div class="card-content">
                         @if ($authUser->assistance)
                             <div class="chart" id="progressChart">
-                                <span class="progress-value">0%</span>
+                                <span class="progress-value"></span>
                             </div>
                             <h6>{{ ucwords($authUser->financialAssistanceStatus->financial_assistance_status_name) }}</h6>
 
@@ -196,7 +196,7 @@ else {
                             </div>
                         @elseif ($authUser->loan)
                         <div class="chart" id="progressChart">
-                            <span class="progress-value">0%</span>
+                            <span class="progress-value"></span>
                         </div>
                         <h6>{{ ucwords($authUser->loanstatus->loan_status_name) }}</h6>
 
@@ -325,7 +325,7 @@ else {
 
                         @else
                             <div class="chart" id="progressChart">
-                                <span class="progress-value">0%</span>
+                                <span class="progress-value"></span>
                             </div>
                             <h4>{{ ucwords($statusName) }}</h4>
 

@@ -33,7 +33,7 @@ class FinancialAssistanceStatusUpdate extends Mailable
     public function build()
     {
         return $this
-            ->subject('Financial Assistance Status Update')
+            ->subject('Incoming Financial Assistance Status Update')
             ->view('Emails.financial_assistance_status_update') // Update with your actual email template view
             ->with([
                 'description' => $this->description,
