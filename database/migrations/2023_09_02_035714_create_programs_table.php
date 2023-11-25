@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('contact')->nullable();
             $table->longtext('description')->nullable();
-            $table->longtext('quiry')->nullable();
+            $table->longtext('quiry')->nullable();php
             $table->longtext('requirements')->nullable();
             $table->string('image')->nullable();
             $table->string('background_image')->nullable();
