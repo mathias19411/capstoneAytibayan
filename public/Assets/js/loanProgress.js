@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     // Initialize progress array with default steps
-    let progressData = JSON.parse(localStorage.getItem('progressData')) || [
+    let progressData = JSON.parse(localStorage.getItem('progressLoanData')) || [
         { description: "Description", done: false, date: getCurrentDate() },
         { description: "Description", done: false, date: getCurrentDate() },
         { description: "Description", done: false, date: getCurrentDate() },

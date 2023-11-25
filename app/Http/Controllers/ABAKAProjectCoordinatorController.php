@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\FinancialAssistanceStatusUpdate;
 use App\Mail\ReplyMailable;
 use App\Models\announcement;
+use App\Models\Assistancesteps;
 use App\Models\events;
 use App\Models\File;
 use App\Models\Financialassistance;
@@ -15,19 +16,19 @@ use App\Models\Loan;
 use App\Models\Loanstatus;
 use App\Models\Program;
 use App\Models\progress;
-use App\Models\Role;
-use App\Models\Status;
-use App\Models\User;
-use App\Models\Updates;
-use App\Models\Assistancesteps;
 use App\Models\Projects;
+use App\Models\Role;
+use App\Models\Schedule;
+use App\Models\Status;
+use App\Models\Updates;
+use App\Models\User;
 use App\Notifications\AccountUpdateNotif;
 use App\Notifications\BlacklistNotification;
-use App\Models\Schedule;
 use App\Notifications\FinancialAssistanceStatusRejected;
 use App\Notifications\FinancialAssistanceStatusUpdated;
 use App\Notifications\InactiveStatusNotif;
 use App\Notifications\PasswordUpdateNotif;
+use App\Notifications\RestoreNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -58,7 +59,7 @@ class ABAKAProjectCoordinatorController extends Controller
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
-        })->get();
+        })->where('blacklisted', false)->get();
 
         //total benef count
         $abakaBeneficiariesCount = User::whereHas('role', function ($query) {
@@ -458,7 +459,7 @@ class ABAKAProjectCoordinatorController extends Controller
             $query->where('id', $userProgramId);
         })->whereHas('status', function ($query) {
             $query->where('status_name', 'Active');
-        })->get();
+        })->where('blacklisted', false)->get();
 
 
         // $users = User::whereHas('role', function ($query) {
@@ -878,7 +879,7 @@ class ABAKAProjectCoordinatorController extends Controller
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($programId) {
             $query->where('id', $programId);
-        })->get();
+        })->where('blacklisted', false)->get();
 
         return view('ABAKA_Project_Coordinator.registerView', compact('users', 'roles', 'statuses'));
     } // End Method
@@ -930,7 +931,7 @@ class ABAKAProjectCoordinatorController extends Controller
 
             // Find beneficiaries with the same "program_id"
             $beneficiaries = User::where('role_id', 7)
-                ->where('program_id', $coordinator->program_id)
+                ->where('program_id', $coordinator->program_id)->where('blacklisted', false)
                 ->get();
 
             // Send emails to beneficiaries
@@ -964,34 +965,41 @@ class ABAKAProjectCoordinatorController extends Controller
     }
 
     public function markInquiryAsRead(Inquiries $inquiry)
-{
-    \Log::info('Inquiry ID: ' . $inquiry->id); // Log the ID
+    {
+        \Log::info('Inquiry ID: ' . $inquiry->id); // Log the ID
 
-    try {
-        $inquiry->update(['is_read' => true]);
-        return response()->json(['message' => 'Message marked as read']);
-    } catch (\Exception $e) {
-        // Log the error
-        \Log::error('Error marking message as read: ' . $e->getMessage());
+        try {
+            $inquiry->update(['is_read' => true]);
+            return response()->json(['message' => 'Message marked as read']);
+        } catch (\Exception $e) {
+            // Log the error
+            \Log::error('Error marking message as read: ' . $e->getMessage());
 
-        // Return an error response
-        return response()->json(['error' => 'Internal Server Error'], 500);
+            // Return an error response
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
     }
-}
-    public function ItStaffBlacklistView()
+    public function CoordinatorBlacklistView()
     {
         //Access the authenticated user's id
         $id = AUTH::user()->id;
 
+        //Access the authenticated user's id
+        $programId = AUTH::user()->program_id;
+
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        $users = User::orderBy('id', 'asc')->where('blacklisted', true)->get();
+        $users = User::orderBy('id', 'asc')->whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($programId) {
+            $query->where('id', $programId);
+        })->where('blacklisted', true)->get();
 
-        return view('ITStaff.blacklisted', compact('userProfileData', 'users'));
+        return view('ABAKA_Project_Coordinator.blacklisted', compact('userProfileData', 'users'));
     } // End Method
 
-    public function ItStaffBlacklistUser($id)
+    public function CoordinatorBlacklistUser($id)
     {
         $userId = User::findOrFail($id);
 
@@ -1019,6 +1027,38 @@ class ABAKAProjectCoordinatorController extends Controller
         // }
 
         toastr()->timeOut(10000)->addSuccess('User has been Blacklisted!');
+
+        return redirect()->back();
+    } // End Method
+
+    public function CoordinatorRestoreUser($id)
+    {
+        $userId = User::findOrFail($id);
+
+        $userId->update([
+            'blacklisted' => false,
+        ]);
+
+        //notify via email
+        $userId->notify(new RestoreNotification());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Restored, you may login again!")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
+        toastr()->timeOut(10000)->addSuccess('User has been Restored!');
 
         return redirect()->back();
     } // End Method

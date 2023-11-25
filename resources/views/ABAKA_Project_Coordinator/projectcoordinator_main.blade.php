@@ -25,6 +25,60 @@
 
     @yield('content')
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function(){
+            $(document).on('click', '#blacklist',function(e){
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                                    Swal.fire({
+                                        title: '<span style="color: black;">Are you sure?</span>',
+                                        text: "Add this user to Blacklist?",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#7bb701',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Yes, add to Blacklist!'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.href = link
+                                            Swal.fire(
+                                                'Done',
+                                                'User has been Blacklisted.',
+                                                'success'
+                                            )
+                                        }
+                                    })
+            });
+        });
+
+        $(function(){
+    $(document).on('click', '#restore',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+                            Swal.fire({
+                                title: '<span style="color: black;">Are you sure?</span>',
+                                text: "Remove this user from Blacklist?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#7bb701',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, restore user!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = link
+                                    Swal.fire(
+                                        'Done',
+                                        'User has been restored.',
+                                        'success'
+                                    )
+                                }
+                            })
+    });
+});
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
@@ -280,7 +334,7 @@
     </script>
 
     <script>
-        //IEW MODAL
+        //VIEW MODAL
         $(document).ready(function() {
             $(".view-btn").on("click", function() {
                 // Get the row index from the clicked button's data attribute
@@ -925,8 +979,6 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             const inquiryId = this.getAttribute('data-inquiry-id');
 
-
-
             // Make an AJAX request to mark the message as read
             fetch(`/ABAKA_ProjectCoordinator/inquiry/mark-as-read/${inquiryId}`, {
                 method: 'POST',
@@ -964,6 +1016,27 @@ document.addEventListener('DOMContentLoaded', function () {
       location.reload();
     }, 1000); // Adjust the timeout value as needed
   });
+</script>
+ 
+<!----------STATUS FILTER------------>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const statusFilter = document.getElementById('status-filter');
+  const tableRows = document.querySelectorAll('#beneficiaries-table tbody tr');
+
+  statusFilter.addEventListener('change', function() {
+    const selectedStatus = statusFilter.value;
+
+    tableRows.forEach(row => {
+      const statusCell = row.querySelector('td:nth-child(5)'); // Adjust index based on your table structure
+      if (selectedStatus === 'all' || statusCell.textContent.toLowerCase().includes(selectedStatus)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+});
 </script>
 </body>
 

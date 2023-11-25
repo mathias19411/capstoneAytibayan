@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\FinancialAssistanceStatusUpdate;
+use App\Mail\LoanStatusUpdate;
 use App\Mail\ReplyMailable;
 use App\Models\announcement;
 use App\Models\Assistancesteps;
@@ -31,6 +32,7 @@ use App\Notifications\LoanRepaymentNotif;
 use App\Notifications\LoanStatusUpdated;
 use App\Notifications\PasswordUpdateNotif;
 use App\Notifications\RepaymentSchedule;
+use App\Notifications\RestoreNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +57,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
-        })->get();
+        })->where('blacklisted', false)->get();
 
         //total benef count
         $agripinayBeneficiariesCount = User::whereHas('role', function ($query) {
@@ -305,7 +307,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             $query->where('id', $userProgramId);
         })->whereHas('status', function ($query) {
             $query->where('status_name', 'Active');
-        })->get();
+        })->where('blacklisted', false)->get();
 
 
         // $users = User::whereHas('role', function ($query) {
@@ -323,7 +325,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         $currentLoanStatuses = Currentloanstatus::all();
 
         $filteredCurrentLoanStatuses = $currentLoanStatuses->filter(function ($currentLoanStatus) {
-            return in_array($currentLoanStatus->id, [1, 2]);
+            return in_array($currentLoanStatus->id, [1, 2, 4]);
         });
 
         $loanUnsettledStatus = Loanstatus::where('loan_status_name', 'unsettled')->first();
@@ -338,7 +340,9 @@ class AGRIPINAYProjectCoordinatorController extends Controller
                 foreach ($overdueLoans as $overdueLoan) {
                     // Update the currentloanstatus to "overdue"
                     $overdueLoan->update(['currentloanstatus_id' => 4]);
+                    $overdueLoan->save();
                 }
+                
             }
         }
         
@@ -833,7 +837,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($programId) {
             $query->where('id', $programId);
-        })->get();
+        })->where('blacklisted', false)->get();
 
         return view('AGRIPINAY_Project_Coordinator.registerView', compact('users', 'roles', 'statuses'));
     } // End Method
@@ -886,12 +890,14 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             // Find beneficiaries with the same "program_id"
             $beneficiaries = User::where('role_id', 7)
                 ->where('program_id', $coordinator->program_id)
-                ->get();
+                ->where('blacklisted', false)->whereHas('status', function ($query) {
+                    $query->where('status_name', 'Active');
+                })->get();
 
             // Send emails to beneficiaries
             foreach ($beneficiaries as $beneficiary) {
                 // Send email using the FinancialAssistanceStatusUpdate Mailable
-                Mail::to($beneficiary->email)->send(new FinancialAssistanceStatusUpdate($description));
+                Mail::to($beneficiary->email)->send(new LoanStatusUpdate($description));
 
                 //send via sms
                 // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
@@ -955,7 +961,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         return redirect()->back();
     } // End Method
 
-    public function ItStaffBlacklistView()
+    public function CoordinatorBlacklistView()
     {
         //Access the authenticated user's id
         $id = AUTH::user()->id;
@@ -965,10 +971,10 @@ class AGRIPINAYProjectCoordinatorController extends Controller
 
         $users = User::orderBy('id', 'asc')->where('blacklisted', true)->get();
 
-        return view('ITStaff.blacklisted', compact('userProfileData', 'users'));
+        return view('AGRIPINAY_Project_Coordinator.blacklisted', compact('userProfileData', 'users'));
     } // End Method
 
-    public function ItStaffBlacklistUser($id)
+    public function CoordinatorBlacklistUser($id)
     {
         $userId = User::findOrFail($id);
 
@@ -996,6 +1002,38 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         // }
 
         toastr()->timeOut(10000)->addSuccess('User has been Blacklisted!');
+
+        return redirect()->back();
+    } // End Method
+
+    public function CoordinatorRestoreUser($id)
+    {
+        $userId = User::findOrFail($id);
+
+        $userId->update([
+            'blacklisted' => false,
+        ]);
+
+        //notify via email
+        $userId->notify(new RestoreNotification());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Restored, you may login again!")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
+        toastr()->timeOut(10000)->addSuccess('User has been Restored!');
 
         return redirect()->back();
     } // End Method
