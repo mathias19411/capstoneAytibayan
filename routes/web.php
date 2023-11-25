@@ -124,7 +124,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff'])->group(fu
 }); //End group itstaff middleware
 
 //Project Coordinator BINHI Group Middleware
-Route::middleware(['auth', 'twofactor', 'userroleprotection:binhiprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:binhiprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/ProjectCoordinator/home', [ProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('projectcoordinator.beneficiaries');
 
@@ -154,7 +154,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:binhiprojectcoordina
 }); //End group Project Coordinator middleware
 
 //Project Coordinator AGRIPINAY Group Middleware
-Route::middleware(['auth', 'twofactor', 'userroleprotection:agripinayprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:agripinayprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
 
     //home
@@ -229,7 +229,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:agripinayprojectcoor
 }); //End group Project Coordinator middleware
 
 //Project Coordinator AKBAY Group Middleware
-Route::middleware(['auth', 'twofactor', 'userroleprotection:akbayprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:akbayprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/AKBAY_ProjectCoordinator/home', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('akbayprojectcoordinator.beneficiaries');
 
@@ -259,7 +259,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:akbayprojectcoordina
 }); //End group Project Coordinator middleware
 
 //Project Coordinator LEAD Group Middleware
-Route::middleware(['auth', 'twofactor', 'userroleprotection:leadprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:leadprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
     Route::get('/LEAD_ProjectCoordinator/home', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('leadprojectcoordinator.beneficiaries');
 
@@ -289,7 +289,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:leadprojectcoordinat
 }); //End group Project Coordinator middleware
 
 //Project Coordinator ABAKA Group Middleware
-Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordinator'])->group(function(){
+Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:abakaprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
 
     //Coordinator Home Page
