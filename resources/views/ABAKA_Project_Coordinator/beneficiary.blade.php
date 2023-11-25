@@ -86,9 +86,10 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
+                                            <div class="project_box">
                                         @foreach($updates->reverse() as $update)
-                                            <div class="card mb-3 col-md-3 ">
-                                                <div class="card-body">
+                                            <div class="box">
+                                                <div class="project-info">
                                                 @if ($abakaBeneficiary->email === $update->email)
                                                 <a href="{{ asset('Uploads/Updates/'.$update->image) }}" target="_blank">
                                                     <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
@@ -100,6 +101,7 @@
                                                 @endif
                                             </div>
                                                 @endforeach
+                                            </div>
                                         </div>
                                     
                             

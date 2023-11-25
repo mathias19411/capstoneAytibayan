@@ -2386,16 +2386,15 @@ body.announcement_events_inquiry .message-row {
     overflow: auto;
     scroll-behavior: smooth;
 }
-.card{
-    
-}
+
 .card-body {
-    justify-content: center;
-    align-items: center;
-    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    max-height: 400px; /* Using max-height instead of height for container */
+    width: 100%;
     overflow: auto;
-    scroll-behavior: smooth;
-    text-align: center;
 }
 
 .text-center {
@@ -2404,15 +2403,17 @@ body.announcement_events_inquiry .message-row {
 }
 
 .update-card {
-    width: 150px;
-    max-height: 180px;
-    border: 1px solid #ddd;
+    margin: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    overflow: hidden; /* Ensure the card size is fixed */
-    margin-bottom: 15px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    padding: 5px;
-    margin: auto; /* Center the cards */
+    padding: 10px;
+    background-color: #f2f2f2;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    width: 220px;
+    height: 300px; 
+    position: relative; /* Positioning context for absolute elements */
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .update-card img {
