@@ -1038,6 +1038,45 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+            const exportButton = document.getElementById('exportButton');
+            exportButton.addEventListener('click', exportTable);
+
+            function exportTable() {
+                const table = document.getElementById('beneficiaries-table');
+                const rows = table.querySelectorAll('tbody tr');
+
+                // Create a CSV string
+                let csvContent = "User ID,Beneficiary,Barangay,City,Status,Project,Amount,Hectares,Assistance Status\n";
+
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    const userId = cells[0].textContent.trim();
+                    const beneficiary = cells[1].textContent.replace(/\n/g, ' ').trim();
+                    const barangay = cells[2].textContent.trim();
+                    const city = cells[3].textContent.trim();
+                    const status = cells[4].textContent.trim();
+                    const project = cells[5].textContent.trim();
+                    const amount = cells[6].textContent.trim();
+                    const hectares = cells[7].textContent.trim();
+                    const assistanceStatus = cells[9].textContent.trim();
+
+                    const rowData = `${userId},${beneficiary},${barangay},${city},${status},${project},${amount},${hectares},${assistanceStatus}`;
+                    csvContent += rowData + '\n';
+                });
+
+                // Create a Blob and download the file
+                const blob = new Blob([csvContent], { type: 'text/csv' });
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'table_data.csv';
+                link.click();
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>

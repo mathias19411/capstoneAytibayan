@@ -295,8 +295,7 @@ $benefAssistanceStatuses = [];
 
                     <tr>
                         <td>{{ $abakaBeneficiary->id }}</td>
-                        <td>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }}
-                            {{ $abakaBeneficiary->last_name }}</td>
+                        <td>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</td>
                         <td>{{ $abakaBeneficiary->barangay }}</td>
                         <td>{{ $abakaBeneficiary->city }}</td>
                         <td>{{ $abakaBeneficiary->status->status_name }}</td>
@@ -349,7 +348,7 @@ $benefAssistanceStatuses = [];
         <div id="pagination-message"></div>
         <div class="button-container">
             <button id="printButton" class="button_top"> <i class="fa-solid fa-print" style="color: #ffffff;"></i> Print</button>
-            <button class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
+            <button id="exportButton" class="button_top"> <i class="fa-solid fa-file-arrow-down" style="color: #fafafa;"></i> Export</button>
         </div>
     </div>
 
