@@ -396,7 +396,7 @@ $benefAssistanceStatuses = [];
                 <div class= "project_box">
                         @foreach($project->reverse() as $projects)
                         <!--EDIT PROJECT-->
-                        <div class="modal fade" id="modal_editproject{{ $projects->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_editproject{{ $projects->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -519,7 +519,7 @@ $benefAssistanceStatuses = [];
 </div>
 
  <!--ADD PROJECT-->
-                        <div class="modal fade" id="modal_addproject" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_addproject" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">

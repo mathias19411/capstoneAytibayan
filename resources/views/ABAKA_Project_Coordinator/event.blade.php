@@ -50,7 +50,7 @@
                     <tbody>
                     @foreach($event->reverse() as $events)
                         <!-- MODAL VIEW -->
-                <div class="modal fade" id="view_itstaff{{ $events->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                <div class="modal fade" id="view_itstaff{{ $events->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -91,7 +91,7 @@
                 </div>
 
                         <!--MODAL UPDATE-->
-                        <div class="modal fade" id="modal_edit{{ $events->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_edit{{ $events->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -151,7 +151,7 @@
                             </div>
 
                         <!--MODAL DELETE-->
-                        <div class="modal fade" id="modal_delete{{ $events->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal fade" id="modal_delete{{ $events->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">

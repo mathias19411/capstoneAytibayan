@@ -157,7 +157,7 @@
 
 
     <!--MODAL COORDINATOR-->
-    <div class="modal fade" id="modal_announcement" tabindex="-1" data-backdrop="false"
+    <div class="modal fade" id="modal_announcement" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" 
         aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
         <div class="modal-dialog">
             <div class="modal-content">

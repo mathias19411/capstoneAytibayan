@@ -276,7 +276,7 @@
    <!--Buttons-->
 
 <!--Store Event-->
-<div class="modal fade" id="event_modal" tabindex="-1" data-backdrop="false" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+<div class="modal fade" id="event_modal" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
