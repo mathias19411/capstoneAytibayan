@@ -65,6 +65,18 @@ else {
             <div class="row">
                 <!-- Update cards will be dynamically generated here -->
                 @foreach($updates->reverse() as $update)
+                <div class="card mb-3 col-md-3">
+                    <div class="card-body">
+                        <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
+                        <p class="update-title">Title: {{ $update->title }}</p>
+                    </div>
+                    <p class="update-date">Date: {{ $update->created_at }}</p>
+                    <div class="card-footer">
+                        <button class="btn btn-pink edit-update" data-bs-toggle="modal" data-bs-target="#editModal{{ $update->id }}" data-update-id="1">
+                            <i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>
+                        </button>
+                    </div>
+                </div>
                 <div class="modal fade" id="editModal{{ $update->id }}" tabindex="-1"  data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                     <div class="modal-dialog">
                         <div class="modal-content">
