@@ -1,7 +1,7 @@
-@extends('ITStaff.main')
+@extends('ABAKA_Project_Coordinator.projectcoordinator_main')
 
 @section('content')
-@include('ITStaff.Body.sidebar')
+    @include('ABAKA_Project_Coordinator.Body.sidebarproj')
 <div class="title">
     <h1>Blacklisted Users</h1>
 </div>
@@ -60,7 +60,7 @@
                     <td>{{ $user->program->program_name }}</td>
                     <td>{{ $user->role->role_name }}</td>
                     <td>
-                        <button class="tooltip-button" data-tooltip="Restore"><a href="{{ route('itstaff.RestoreUser', $user->id) }}" id="restore"><i class="fa-solid fa-suitcase-medical fa-2xs"></i></a></button>
+                        <button class="tooltip-button" data-tooltip="Restore"><a href="{{ route('abakaprojectcoordinator.RestoreUser', $user->id) }}" id="restore"><i class="fa-solid fa-suitcase-medical fa-2xs"></i></a></button>
                     </td>
                 </tr>
             @endforeach

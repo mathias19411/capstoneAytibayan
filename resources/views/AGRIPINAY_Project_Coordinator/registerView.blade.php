@@ -167,6 +167,7 @@
                         <button class="tooltip-button" data-tooltip="Edit" class="add-modal" data-bs-toggle="modal"
                         data-bs-target="#modal_edit{{ $user->id }}"><i
                                 class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                        <button class="tooltip-button" data-tooltip="Blacklist"><a href="{{ route('agripinayprojectCoordinator.BlacklistUser', $user->id) }}" id="blacklist"><i class="fa-solid fa-ban fa-2xs"></i></a></button>
                     </td>
                 </tr>
             @endforeach

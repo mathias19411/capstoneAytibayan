@@ -92,6 +92,32 @@ $(function(){
     });
 });
 
+$(function(){
+    $(document).on('click', '#restore',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+                            Swal.fire({
+                                title: '<span style="color: black;">Are you sure?</span>',
+                                text: "Remove this user from Blacklist?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#7bb701',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, restore user!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = link
+                                    Swal.fire(
+                                        'Done',
+                                        'User has been restored.',
+                                        'success'
+                                    )
+                                }
+                            })
+    });
+});
+
 
   
 

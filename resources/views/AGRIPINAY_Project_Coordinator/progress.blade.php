@@ -280,6 +280,7 @@ $benefCurrentLoanStatuses = [];
                             @if ($agripinayBeneficiary->loan)
                                 <p><strong>Project:</strong> <span>{{ $agripinayBeneficiary->loan->project }}</span></p>
                                 <p><strong>Amount:</strong> <span>{{ $agripinayBeneficiary->loan->loan_amount }}</span></p>
+                                <p><strong>Repayment Schedule:</strong> <span>{{ $agripinayBeneficiary->loan->repayment_schedule }}</span></p>
                                 <p><strong>Loan Term 'months':</strong> <span>{{ $agripinayBeneficiary->loan->loan_term_in_months }}</span></p>
                                 <p><strong>Last Updated:</strong>
                                     <span>{{ $agripinayBeneficiary->loan->updated_at }}</span>

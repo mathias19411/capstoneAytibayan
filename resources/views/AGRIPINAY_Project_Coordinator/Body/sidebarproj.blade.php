@@ -51,6 +51,12 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <span class="link-name">Progress</span>
                 </a>
             </li>
+            <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.BlacklistView' ? 'active' : '' }}">
+                <a href="{{ route('agripinayprojectCoordinator.BlacklistView') }}">
+                    <i class="uil uil-x"></i>
+                    <span class="link-name">Blacklisted</span>
+                </a>
+            </li>
             <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.registerView' ? 'active' : '' }}">
                 <a href="{{ route('agripinayprojectcoordinator.registerView') }}" >
                     <i class="uil uil-user-plus"></i>

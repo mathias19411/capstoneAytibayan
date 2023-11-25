@@ -75,10 +75,13 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:itstaff'])->group(fu
     Route::get('/ITStaff/loanTransactions', [ItStaffController::class, 'ItStaffLoanTransactionsView'])->name('itstaff.loanTransactionsView');
 
     //blacklist view
-    Route::get('/ITStaff/blackilist', [ItStaffController::class, 'ItStaffBlacklistView'])->name('itstaff.BlacklistView');
+    Route::get('/ITStaff/blacklist', [ItStaffController::class, 'ItStaffBlacklistView'])->name('itstaff.BlacklistView');
 
     //blacklist a user
-    Route::get('/ITStaff/blackilist/{id}', [ItStaffController::class, 'ItStaffBlacklistUser'])->name('itstaff.BlacklistUser');
+    Route::get('/ITStaff/blacklist/{id}', [ItStaffController::class, 'ItStaffBlacklistUser'])->name('itstaff.BlacklistUser');
+
+    //restore a user
+    Route::get('/ITStaff/restore/{id}', [ItStaffController::class, 'ItStaffRestoreUser'])->name('itstaff.RestoreUser');
 
     Route::get('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncement'])->name('itstaff.announcement');
 
@@ -159,6 +162,15 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:agripinayprojectcoor
 
     //ITStaff Logout
     Route::get('/AGRIPINAY_ProjectCoordinator/logout', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('agripinayprojectCoordinator.logout');
+
+    //blacklist view
+    Route::get('/AGRIPINAY_ProjectCoordinator/blacklist', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('agripinayprojectCoordinator.BlacklistView');
+
+    //blacklist a user
+    Route::get('/AGRIPINAY_ProjectCoordinator/blacklist/{id}', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('agripinayprojectCoordinator.BlacklistUser');
+
+    //restore a user
+    Route::get('/AGRIPINAY_ProjectCoordinator/restore/{id}', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('agripinayprojectCoordinator.RestoreUser');
 
     Route::get('/AGRIPINAY_ProjectCoordinator/inquiry', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('AGRIPINAY_Project_Coordinator.inquiry');
 
@@ -296,6 +308,15 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
     Route::get('/ABAKA_ProjectCoordinator/Announcements/{id}', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorabaka');
     Route::patch('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorabaka');
     Route::delete('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorabaka');
+
+    //blacklist view
+    Route::get('/ABAKA_ProjectCoordinator/blacklist', [ABAKAProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('abakaprojectcoordinator.BlacklistView');
+
+    //blacklist a user
+    Route::get('/ABAKA_ProjectCoordinator/blacklist/{id}', [ABAKAProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('abakaprojectcoordinator.BlacklistUser');
+
+    //restore a user
+    Route::get('/ABAKA_ProjectCoordinator/restore/{id}', [ABAKAProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('abakaprojectcoordinator.RestoreUser');
 
     //Coordinator Events
     Route::get('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('abakaprojectcoordinator.event');

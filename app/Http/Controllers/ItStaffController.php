@@ -14,6 +14,7 @@ use App\Notifications\AccountUpdateNotif;
 use App\Notifications\BlacklistNotification;
 use App\Notifications\InactiveStatusNotif;
 use App\Notifications\PasswordUpdateNotif;
+use App\Notifications\RestoreNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -242,7 +243,7 @@ class ItStaffController extends Controller
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
-        })->get();
+        })->where('blacklisted', false)->get();
 
         // dd($program->coordinators);
 
@@ -770,6 +771,38 @@ class ItStaffController extends Controller
         // }
 
         toastr()->timeOut(10000)->addSuccess('User has been Blacklisted!');
+
+        return redirect()->back();
+    } // End Method
+
+    public function ItStaffRestoreUser($id)
+    {
+        $userId = User::findOrFail($id);
+
+        $userId->update([
+            'blacklisted' => false,
+        ]);
+
+        //notify via email
+        $userId->notify(new RestoreNotification());
+
+        //send via sms
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Restored, you may login again!")
+        // );
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
+
+        toastr()->timeOut(10000)->addSuccess('User has been Restored!');
 
         return redirect()->back();
     } // End Method
