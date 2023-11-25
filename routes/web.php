@@ -368,7 +368,7 @@ Route::middleware(['auth', 'twofactor', 'userroleprotection:abakaprojectcoordina
 }); //End group Project Coordinator middleware
 
 //Beneficiary Group Middleware
-Route::middleware(['auth', 'twofactor', 'userroleprotection:beneficiary'])->group(function(){
+Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:beneficiary'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
 
     //Benef Logout
