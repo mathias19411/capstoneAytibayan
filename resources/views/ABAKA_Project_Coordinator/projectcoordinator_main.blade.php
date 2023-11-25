@@ -1002,10 +1002,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 <!-------MEDIA PRINT---------->
-    <script>
+<script>
   document.getElementById('printButton').addEventListener('click', function() {
     var printContents = document.getElementById('printableContent').innerHTML;
     var originalContents = document.body.innerHTML;
+
+    // Count the total beneficiaries
+    var totalBeneficiaries = document.querySelectorAll('#beneficiaries-table tbody tr').length;
+
+    // Append the total to the printContents
+    printContents += '<div>Total Beneficiaries: ' + totalBeneficiaries + '</div>';
 
     document.body.innerHTML = printContents;
     window.print();
@@ -1017,7 +1023,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 1000); // Adjust the timeout value as needed
   });
 </script>
- 
+
 <!----------STATUS FILTER------------>
 <script>
 document.addEventListener('DOMContentLoaded', function() {

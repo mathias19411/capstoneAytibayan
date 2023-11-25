@@ -4,7 +4,11 @@
   .boxes1 {
     display: none !important;
   }
-
+  #printableContent .total-beneficiaries {
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 10px;
+  }|
   table {
     width: 100%;
     border-collapse: collapse;
