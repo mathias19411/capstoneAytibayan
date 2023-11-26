@@ -114,9 +114,11 @@
                                                         <div class="form-group">
                                                             <label for="edit-recipient">To:</label>
                                                             <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
+                                                            <option>{{ $events->to }}</option>
                                                             @foreach($programs as $program)
                                                             <option>{{ $program->program_name }}</option>
                                                             @endforeach
+                                                            <option>Public</option>
                                                             </select>
                                                         </div>
                                                         </div>
@@ -297,10 +299,10 @@
                                     <div class="form-outline">
                                     <label id="label_">To:</label>
                                         <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                        <option>PUBLIC</option>
                                         @foreach($programs as $program)
                                         <option>{{ $program->program_name }}</option>
                                         @endforeach
+                                        <option>Public</option>
                                         </select>
                                     </div>
                                 </div>

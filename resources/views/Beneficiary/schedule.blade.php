@@ -188,7 +188,7 @@ currMonth = date.getMonth();
 // storing full name of all months in array
 const months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
-const scheduledDates = ["2023-09-22","2023-10-05","2023-11-01", "2023-12-12", "2024-03-28"];
+const scheduledDates = @json($schedule->pluck('date')->toArray());
 
 const renderCalendar = () => {
   let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();

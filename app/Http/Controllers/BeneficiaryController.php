@@ -49,7 +49,14 @@ class BeneficiaryController extends Controller
     public function BenefNotif(){
         auth()->user()->unreadNotifications->markAsRead();
         return redirect()->back();
-    }
+    }//end method
+
+    public function getScheduledDates()
+    {
+        $scheduledDates = Schedule::pluck('date')->toArray();
+
+        return response()->json(['scheduledDates' => $scheduledDates]);
+    }//end method
 
     public function BeneficiaryLogout(Request $request)
     {
