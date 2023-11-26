@@ -260,14 +260,14 @@ class ItStaffController extends Controller
         $programData = Program::findOrFail($programId);
 
         $validatedData = $request->validate([
-            'programnameInput' => ['string', 'max:30'],
+            'programnameInput' => ['string', 'max:40'],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
-            'inputLocation' => ['string', 'max:50'],
+            'inputLocation' => ['string', 'max:100'],
             'inputEmail' => ['string', 'email', 'max:255'],
             'inputContact' => ['string', 'max:10'],
-            'inputInfo' => ['string', 'max:500'],
-            'inputApply' => ['string', 'max:500'],
-            'inputReqs' => ['string', 'max:500'],
+            'inputInfo' => ['string'],
+            'inputApply' => ['string'],
+            'inputReqs' => ['string'],
             // 'programPhoto' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
 
