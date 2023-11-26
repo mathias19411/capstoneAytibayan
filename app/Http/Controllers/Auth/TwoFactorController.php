@@ -76,7 +76,7 @@ class TwoFactorController extends Controller
             {
                 $url = '/ITStaff/home';
             }
-            else if ($user->role->role_name === 'projectcoordinator')
+            else if ($user->role->role_name === 'binhiprojectcoordinator')
             {
                 $url = '/ProjectCoordinator/home';
             }
