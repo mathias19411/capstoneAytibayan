@@ -81,11 +81,11 @@
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modal-title">Beneficiary Updates:  {{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }}
-                                                {{ $abakaBeneficiary->last_name }}</h5>
+                                            <h5 class="modal-title" id="modal-title">Beneficiary:  {{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
+                                        <div class="sched-header">Updates</div>
                                             <div class="project_box">
                                             @foreach($updates->reverse() as $update)
                                             @if ($abakaBeneficiary->email === $update->email)
@@ -103,7 +103,21 @@
                                             @endforeach
                                             </div>
                                         </div>
-                                    
+                                        
+                                        <div class="sched-header">Schedules</div>
+                                            <div class="schedule-container">
+                                                <div class="sched">
+                                                    <p class="sched-date">Date: asas</p>
+                                                    <p class="sched-time">Time: asasas</p>
+                                                    <p class="sched-description">Description: asasassas</p>
+                                                    <button class="edit-button"><i class="fas fa-edit"></i></button>
+                                                    <button class="delete-button"><i class="fas fa-trash-alt"></i></button>
+                                                </div>
+                                           
+
+                                               
+                                             </div>
+                                                                 
                             
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
                                         <div class="modal-footer">

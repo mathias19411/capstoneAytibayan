@@ -2472,4 +2472,31 @@ body.announcement_events_inquiry .message-row {
 .modal-content {
     border-radius: 20px;
 }
+.sched-header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: var(--colorOrange);
+}
+
+
+
+
+.schedule-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sched {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    position: relative;
+    min-width: 200px; /* Optional: Set a minimum width for each schedule box */
+}
+
+.sched-date, .sched-time, .sched-description {
+    margin: 0;
+}
 
