@@ -101,7 +101,7 @@ else {
                         </div>
                     </div>
                 </div>
-                <div class="card mb-3 col-md-3">
+                <div class="card mb-3 col-md-3" id="card-update">
                     <div class="card-body">
                     <a href="{{ asset('Uploads/Updates/'.$update->image) }}" target="_blank">
                           <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">

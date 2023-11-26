@@ -2380,9 +2380,15 @@ body.announcement_events_inquiry tr:hover td {
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensure padding and border don't increase the total width */
+    border-radius: 20px;
+    box-sizing: border-box; border: 2px solid transparent; 
+    transition: border-color 0.3s ease-in-out; 
 }
+
+.card-transaction:hover {
+    border-color: #7bb701;
+}
+
 
 .card-transaction h4 {
     color: #7bb701;
