@@ -33,6 +33,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\WebsiteNotifications;
 
 
 
@@ -131,6 +133,12 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorAnnouncementStore(Request $request)
     {
+        $userProgramId = AUTH::user()->program->id;
+        $abakaBeneficiaries = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->where('blacklisted', false)->get();
         // Validate the request
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -138,6 +146,7 @@ class ABAKAProjectCoordinatorController extends Controller
             'to' => 'required|string',
             'message' => 'required|string',
         ]);
+
 
         // Check if validation passes
         if ($validatedData) 
@@ -303,8 +312,11 @@ class ABAKAProjectCoordinatorController extends Controller
         }
     } // End Method
 
-    public function ProjCoordinatorAddSchedule(Request $request){
+    public function ProjCoordinatorAddSchedule(Request $request, Notification $notification)
+    {
+        $benef_id = $request->benef_id;
 
+        $user = User::findOrFail($benef_id);
         // Validate the request
         $validatedData = $request->validate([
             'from'=> 'required|string',
@@ -326,6 +338,7 @@ class ABAKAProjectCoordinatorController extends Controller
                 'date' => $validatedData['date'],
             ]);
             $schedules->save();
+            Notification::send($user, new WebsiteNotifications('Your Schedule is Set at', $request->date, $request->time));
     
             // If the attachment file is not empty, store it in the database
     
@@ -713,9 +726,6 @@ class ABAKAProjectCoordinatorController extends Controller
 
     // Retrieve the existing project
     $project = Projects::findOrFail($aid);
-
-    // Handle image upload and attachment update
-    $existingImage = $project->attachment;
 
     if ($request->hasFile('attachment')) {
 

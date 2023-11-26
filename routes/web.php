@@ -330,7 +330,9 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:a
     Route::post('/ABAKA_ProjectCoordinator/Inquriy/reply', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorInquiryReply'])->name('reply.inquirycoordinatorabaka');
     Route::delete('/ABAKA_ProjectCoordinator/Inquriy/delete', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiryDelete'])->name('delete.inquirycoordinatorabaka');
     Route::post('/ABAKA_ProjectCoordinator/Inquriy/show', [ABAKAProjectCoordinatorController::class, 'markAsRead'])->name('mark.AsRead');
-   
+    
+
+
     Route::post('/ABAKA_ProjectCoordinator/Add Schedule', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAddSchedule'])->name('add.schedule');
 
     //Coordinator Progress
@@ -377,6 +379,7 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:b
 
     //Benef Home Page
     Route::get('/Beneficiary/home', [BeneficiaryController::class, 'BeneficiaryHome'])->name('beneficiary.home');
+    Route::get('/Beneficiary/notifications', [BeneficiaryController::class, 'BenefNotif'])->name('markAsRead');
     
     //Benef Updates
     Route::get('/Beneficiary/updates', [BeneficiaryController::class, 'BeneficiaryUpdates'])->name('beneficiary.updates');

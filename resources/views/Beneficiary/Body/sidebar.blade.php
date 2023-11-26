@@ -73,20 +73,43 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         <div class="heading">
             <h1>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h1>
         </div>
-        <div class="icons">
-        <div class="notification-icon" id="notification-button">
-                <i class="uil uil-bell"></i>
-                <!-- Notification Dropdown -->
-                <div class="notification-dropdown" id="notification-dropdown">
-                <h2>Notifications</h2>
-                <ul>
-                        <li><a href="#">An announcement was posted!</a></li>
-                        <li><a href="#">An event was added!</a></li>
-                        <li><a href="#">A Progress was Updated!</a></li>
-                        <li><a href="#">Your schedule has been set </a></li>
-                    </ul>
-                </div>
-            </div>
+    <div class="icons">
+    <div class="notification-icon" id="notification-button">
+    <i class="uil uil-bell">
+    @if($userProfileData->unreadNotifications->count())
+    <span class="badge badge-light" style="color: red;">{{ $userProfileData->unreadNotifications ->count() }}</span>
+    @endif
+    </i>
+
+    <!-- Notification Dropdown -->
+    <div class="notification-dropdown" id="notification-dropdown">
+        <h2>Notifications</h2>
+        <li><a style="color:green;" href="{{ route('markAsRead') }}">Mark All as Read</a></li>
+
+        @foreach($userProfileData->unreadNotifications as $notification)
+            <ul>
+                <li style="background-color: lightgray;">
+                    <a href="#">
+                        {{ isset($notification->data['message']) ? $notification->data['message'] . ',' : '' }}
+                        {{ isset($notification->data['date']) ? $notification->data['date'] . ',' : '' }}
+                        {{ isset($notification->data['time']) ? $notification->data['time'] : '' }}
+                    </a>
+                </li>
+            </ul>
+        @endforeach
+        @foreach($userProfileData->readNotifications as $notification)
+            <ul>
+                <li>
+                    <a href="#">
+                        {{ isset($notification->data['message']) ? $notification->data['message'] . ',' : '' }}
+                        {{ isset($notification->data['date']) ? $notification->data['date'] . ',' : '' }}
+                        {{ isset($notification->data['time']) ? $notification->data['time'] : '' }}
+                    </a>
+                </li>
+            </ul>
+        @endforeach
+    </div>
+</div>
             <div class="message-icon">
             <a href="{{ route('beneficiary.inquiry') }}" class= class="{{ Route::currentRouteName() ==  'beneficiary.inquiry' ? 'active' : '' }}">
                     <i class="uil uil-comment-dots"></i>
