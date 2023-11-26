@@ -20,6 +20,11 @@
         <p>{{ $abakaInactiveCount }}</p>
     </div>
 </div>
+                <div class="button-container">
+                    <button class="button_top" data-bs-toggle="modal" data-bs-target="#projectModal">
+                        <i class="fa-solid fa-list-check" style="color: #ffffff;"></i> Program Activities
+                    </button>
+                </div>
 
   <!--ADD PROJECTS-->
     <!--PALAGAY NA LANG DITO JEF -->   
@@ -32,6 +37,7 @@
         <option value="active">Active</option>
         <option value="inactive">Inactive</option>
     </select>
+    
 
         <label for="items-per-page">Items per page: </label>
         <select id="items-per-page">
@@ -105,19 +111,92 @@
                                         </div>
                                         
                                         <div class="sched-header">Schedules</div>
+                                        @foreach($benefSchedules->reverse() as $schedule)
+                                        <!--EDIT Schedule-->
+                                        <div class="modal fade" id="modal_editschedule{{ $schedule->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modal-title">Edit Project</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <form action="{{ route('edit.schedule') }}" method="post" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <div class="modal-body">
+                                                            <div class="project-info-edit">
+                                                                <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
+                                                                <div class="mb-3">
+                                                                    <label for="schedule-description" class="form-label">Description:</label>
+                                                                    <input type="hidden" name="benef_id" value="{{ $abakaBeneficiary->id }}">
+                                                                    <input name="description" type="text" class="form-control" id="schedule-description" value="{{ $schedule->description }}" required>
+                                                                    <input type="hidden" name="from" value="{{ $programName }}">
+                                                                    <input type="hidden" name="recipient_email" value="{{ $abakaBeneficiary->email }}">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="schedule-date" class="form-label">Date:</label>
+                                                                    <input name="date" type="date" class="form-control" id="schedule-date" value="{{ $schedule->date }}" required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="schedule-time" class="form-label">Time:</label>
+                                                                    <input name="time" type="time" class="form-control" id="schedule-time" value="{{ $schedule->time }}" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="add">Save Changes</button>
+                                                        </div>
+
+                                                    </form>
+                                                    </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade" id="modal_deleteschedule{{ $schedule->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modal-title">Event Details</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                        <div class="modal-body">
+                                                        <form method="POST" action="{{ route('delete.schedule') }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <div class="row">
+                                                            <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
+                                                            </div>
+                                                                <div class="col-md-12 mb-4">
+                                                                    <div class="form-outline">
+                                                                    
+                                                                    </div>
+                                                                    @if(session('error'))
+                                                                        <div class="alert alert-danger">
+                                                                            {{ session('error') }}
+                                                                        </div>
+                                                                    @endif
+                                                            <p style="color:red">Are you sure you want to delete this Set Schedule?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="add" id="saveChanges">Delete</button>
+                                                                </div>
+                                                        </form>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                        </div>
                                             <div class="schedule-container">
                                                 <div class="sched">
-                                                    <p class="sched-date">Date: asas</p>
-                                                    <p class="sched-time">Time: asasas</p>
-                                                    <p class="sched-description">Description: asasassas</p>
-                                                    <button class="edit-button"><i class="fas fa-edit"></i></button>
-                                                    <button class="delete-button"><i class="fas fa-trash-alt"></i></button>
+                                                    <p class="sched-date">Date: {{ $schedule->date }}</p>
+                                                    <p class="sched-time">Time: {{ $schedule->time }}</p>
+                                                    <p class="sched-description">Description: {{ $schedule->description }}</p>
+                                                    <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
+                                                    <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
                                                 </div>
-                                           
-
-                                               
                                              </div>
-                                                                 
+                                        @endforeach              
                             
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
                                         <div class="modal-footer">
@@ -327,6 +406,217 @@
             </div>
 
         <div class="popup-status" id="statusPopup"></div>
+        <!--project-->
+<div class="modal fade" id="projectModal" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Projects</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body justify-content-center">
+             <div class= "project_header">
+                <!--
+                <img src="\images\project_background1.png"> -->
+                <div class= "project_box">
+                        @foreach($project->reverse() as $projects)
+                        <!--EDIT PROJECT-->
+                        <div class="modal fade" id="modal_editproject{{ $projects->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Edit Project</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ route('edit.project') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PATCH')
+                                        <div class="modal-body">
+                                            <div class="project-info-edit">
+                                                <input type="hidden" name="project_id" value="{{ $projects->id }}">
+                                                <div class="mb-3">
+                                                    <label for="projectTitle" class="form-label">Title:</label>
+                                                    <input type="text" class="form-control" id="projectTitle" value="{{ $projects->title }}" name="title">
+                                                    <input type="text" class="form-control" id="projectTitle" value="{{ $projects->from }}" name="from">
+                                                </div>
+
+                                                <div class="row mb-3 image-update">
+                                                <div class="col-sm-10">
+                                                    <label for="projectImage" class="col-sm-2 col-form-label">Image:</label>
+                                                        <label id="drop-img">
+                                                            <input name="attachment" type="file" id="input-file" value="{{ $projects->attachment }}" hidden>
+                                                            <div id="img-view">
+                                                                <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}" class="img-fluid" alt="Image Icon">
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="projectVisibility" class="form-label">Edit Visibility:</label>
+                                                    <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="recipient">
+                                                                <option>{{ $projects->recipient }}</option>
+                                                                <option>{{ $programName }}</option>
+                                                                <option>Public</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="projectDescription" class="form-label">Description:</label>
+                                                    <input type="text" class="form-control" id="projectDescription" value="{{ $projects->message }}" name="message">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="add">Save Changes</button>
+                                        </div>
+
+                                    </form>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="modal_deleteproject{{ $projects->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Event Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                        <div class="modal-body">
+                                        <form method="POST" action="{{ route('delete.project') }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="row">
+                                            <input type="hidden" name="project_id" value="{{ $projects->id }}">
+                                            </div>
+                                                <div class="col-md-12 mb-4">
+                                                    <div class="form-outline">
+                                                       
+                                                    </div>
+                                                    @if(session('error'))
+                                                        <div class="alert alert-danger">
+                                                            {{ session('error') }}
+                                                        </div>
+                                                    @endif
+                                            <p style="color:red">Are you sure you want to delete this Project?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="add" id="saveChanges">Delete</button>
+                                                </div>
+                                        </form>
+                                            </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="project-info">
+                                <h5>Title: {{ $projects->title }}</h5>
+                                <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}">
+                                <h2>Visibility: {{ $projects->recipient }}</h2>
+                                <hr class="rounded">
+                                <div class="description">
+                                    <p>Description: {{ $projects->message }}</p>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <button class="edit-btn" title="Edit Project"  data-bs-toggle="modal" data-bs-target="#modal_editproject{{ $projects->id }}" >
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="delete-btn" title="Delete Project" data-bs-toggle="modal" data-bs-target="#modal_deleteproject{{ $projects->id }}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        @endforeach   
+                    </div>
+                </div>
+                </div>
+             <button type="button" class="add-project_modal" data-bs-toggle="modal" data-bs-target="#modal_addproject">Add Project</button>
+    
+            <div class="modal-footer">
+                <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!--ADD PROJECT-->
+                        <div class="modal fade" id="modal_addproject" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Add Project</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ route('add.project') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="modal-body">
+                                                <div class="row">
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="form-outline">
+                                                    <label id="label_">Title</label>
+                                                    <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title" required>   
+                                                    <input class="form-control" type="text" id="Title" value="{{ $programName }}" name="from" hidden>                           
+                                                </div>
+                                                </div>
+
+                                                <div class="col-md-6 mb-4">
+                                                        <div class="form-group">
+                                                            <label for="edit-recipient">To:</label>
+                                                            <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="recipient" required>
+                                                                <option>{{ $programName }}</option>
+                                                                <option>Public</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                <div class="col-md-12 mb-4">
+                                                    <div class="form-outline">
+                                                        <label id="label_">Message:</label>
+                                                            <textarea class="form-control" rows="3" placeholder="Write something..." name="message" required></textarea>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="edit-picture" id="drop-img">
+                                                                <input name="image" type="file" id="edit-picture" style="display:none;" required>
+                                                                <div id="img-view">
+                                                                <span id="error-message" style="color: red;"></span>
+                                                                <img src="/images/image_icon.png">
+                                                                <p> Drag and drop or click here <br> to upload picture</p>
+                                                                </div>
+                                                                </label>
+                                                            </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="add" onclick="validateForm()">Save Changes</button>
+                                                </div>
+                                                </div>
+                                                </form>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
 
 @endsection
 
+<script>
+        function validateForm() {
+            var fileInput = document.getElementById('edit-picture');
+            var errorMessage = document.getElementById('error-message');
+
+            // Check if a file is selected
+            if (fileInput.files.length === 0) {
+                errorMessage.textContent = 'Please fill out this field.';
+            } else {
+                // Reset the error message if a file is selected
+                errorMessage.textContent = '';
+
+                // Process the form or do other actions
+                // Example: document.getElementById('myForm').submit();
+            }
+        }
+    </script>

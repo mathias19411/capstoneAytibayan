@@ -334,6 +334,8 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:a
 
 
     Route::post('/ABAKA_ProjectCoordinator/Add Schedule', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAddSchedule'])->name('add.schedule');
+    Route::patch('/ABAKA_ProjectCoordinator/Edit Schedule', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorScheduleUpdate'])->name('edit.schedule');
+    Route::delete('/ABAKA_ProjectCoordinator/Delete Schedule', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorScheduleDelete'])->name('delete.schedule');
 
     //Coordinator Progress
     Route::get('/ABAKA_ProjectCoordinator/Progress', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('abakaprojectcoordinator.progress');

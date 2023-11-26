@@ -57,6 +57,13 @@ class ABAKAProjectCoordinatorController extends Controller
 
         $updates = Updates::where(function ($query) use ($programName) {
             $query->where('benef_of', $programName);})->get();
+        
+        $public = 'Public';
+        $project = Projects::where(function ($query) use ($programName, $public) {
+                $query->where('recipient', $programName)->orwhere('recipient', $public);})->get();
+        
+        $benefSchedules = Schedule::where(function ($query) use ($programName) {
+                $query->where('from', $programName);})->get();
 
         $abakaBeneficiaries = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
@@ -89,7 +96,7 @@ class ABAKAProjectCoordinatorController extends Controller
             $query->where('status_name', 'Inactive');
         })->count();
 
-        return view('ABAKA_Project_Coordinator.beneficiary', compact('userProfileData', 'abakaBeneficiaries', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'programName', 'updates'));
+        return view('ABAKA_Project_Coordinator.beneficiary', compact('userProfileData', 'abakaBeneficiaries', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'programName', 'updates', 'project', 'benefSchedules'));
     } // End Method
 
     public function ProjectCoordinatorLogout(Request $request)
@@ -348,6 +355,42 @@ class ABAKAProjectCoordinatorController extends Controller
             return redirect()->back()->with('error', 'Validation failed. Please check your input.');
         }
     }// End Method//End Method
+
+    public function ProjCoordinatorScheduleUpdate(Request $request)
+    {
+        $aid = $request->schedule_id;
+
+        $time = $request->time;
+        $ampmTime = date('h:i A', strtotime($time));
+        
+        Schedule::findOrFail($aid)->update([
+            'description'=>$request->description,
+            'time'=>$ampmTime,
+            'date'=>$request->date,
+        ]);
+
+        return redirect()->back()->with('success', 'Schedule is Updated!');
+    } // End Method
+
+    public function ProjCoordinatorScheduleDelete(Request $request)
+    {
+        $id = $request->schedule_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = Schedule::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Schedule is Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
+    } // End Method
 
     public function ProjCoordinatorInquiry()
     {
