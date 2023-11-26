@@ -326,19 +326,30 @@ nav.close ~ .dashboard .top {
     position: absolute;
     top: 100%;
     right: 0;
+    text-align: left;
     width: 300px; /* Adjust the width as needed */
-    background-color: #fff;
+    height: 350px;
+    background-color: white;
     border: 1px solid var(--primary-color);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 100;
-    padding: 10px 0;
+    padding: 10px;
     border-radius: 10px;
+    overflow-y: auto;
+}
+
+#notification-dropdown .markAll {
+    color: green;
+    font-size: 15px;
 }
 
 #notification-dropdown ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin-bottom: 10px;
+    background: white;
+    box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.10);
+    border-radius: 5px;
 }
 
 #notification-dropdown h2 {
@@ -351,6 +362,7 @@ nav.close ~ .dashboard .top {
     border-bottom: 1px solid #ddd;
     font-size: 14px;
 }
+
 #notification-dropdown ul li a {
     color: var(--text-color);
     text-decoration: none;
@@ -368,6 +380,15 @@ nav.close ~ .dashboard .top {
     display: block;
 }
 
+@media screen and (max-width: 768px) {
+    #notification-dropdown {
+        width: 100px;
+        height: 50px;
+    }
+    #notification-dropdown .markAll {
+        font-size: 10px;
+    }
+}
 /* Style the profile dropdown container */
 .profile-dropdown {
     position: relative; /* Ensure it's a positioned element for absolute positioning */
@@ -2956,3 +2977,5 @@ td {
   .modal-content {
     border-radius: 20px;
 }
+
+/*------------------NOTIFICATION----------------------*/

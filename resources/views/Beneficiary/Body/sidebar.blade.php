@@ -84,7 +84,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
     <!-- Notification Dropdown -->
     <div class="notification-dropdown" id="notification-dropdown">
         <h2>Notifications</h2>
-        <li><a style="color:green;" href="{{ route('markAsRead') }}">Mark All as Read</a></li>
+        <li><a style="color:green; font-size:15px" href="{{ route('markAsRead') }}">Mark All as Read</a></li>
 
         @foreach($userProfileData->unreadNotifications as $notification)
             <ul>
