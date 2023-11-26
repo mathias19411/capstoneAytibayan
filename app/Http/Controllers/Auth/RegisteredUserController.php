@@ -36,23 +36,23 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
+        $userRole = AUTH::user()->role->role_name;
 
         // Validate form inputs
         $request->validate([
-            'first_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'last_name' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'inputEmail' => ['required', 'email', 'unique:'.User::class],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'inputEmail' => ['required', 'email'],
             'phone_number' => ['required', 'string', 'max:10'],
             'inputRole' => ['required', Rule::in(Role::pluck('id')->all())],
             'inputProgram' => ['required', Rule::in(Program::pluck('id')->all())],
             'primaryAddress' => ['required', 'string', 'max:255'],
             'inputCity' => ['required', 'string', 'max:255'],
-            'inputProvince' => ['required', 'string', 'max:255'],
-            'inputZip' => ['required', 'string', 'max:255'],
+            'inputProvince' => ['string', 'max:255'],
+            'inputZip' => ['string', 'max:255'],
             'inputStatus' => ['required', Rule::in(Status::pluck('id')->all())],
-            
         ]);
 
         $user = User::create([
@@ -101,6 +101,19 @@ class RegisteredUserController extends Controller
 
         toastr()->timeOut(10000)->addSuccess('A new User has been successfully registered!');
 
-        return redirect()->route('itstaff.registerView');
+        if ($userRole == 'itstaff') {
+            return redirect()->route('itstaff.registerView');
+        } elseif ($userRole == 'binhiprojectcoordinator'){
+            return redirect()->route('projectcoordinator.registerView');
+        } elseif ($userRole == 'abakaprojectcoordinator'){
+            return redirect()->route('abakaprojectcoordinator.registerView');
+        } elseif ($userRole == 'agripinayprojectcoordinator'){
+            return redirect()->route('agripinayprojectcoordinator.registerView');
+        } elseif ($userRole == 'akbayprojectcoordinator'){
+            return redirect()->route('akbayprojectcoordinator.registerView');
+        } elseif ($userRole == 'leadprojectcoordinator'){
+            return redirect()->route('leadprojectcoordinator.registerView');
+        }
+
     }
 }

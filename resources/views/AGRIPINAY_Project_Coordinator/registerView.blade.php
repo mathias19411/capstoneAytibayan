@@ -117,7 +117,7 @@
                                     <br>
                                     <span class="h4 ms-3">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</span>
                                     <br><br>
-                                        <form action="{{ route('abakaprojectcoordinator.registerEditUser') }}" enctype="multipart/form-data" method="post">
+                                        <form action="{{ route('agripinayprojectcoordinator.registerEditUser') }}" enctype="multipart/form-data" method="post">
                                             @csrf
                                         <div class="row">
                                             <input type="hidden" name="id" value="{{ $user->id }}">

@@ -187,9 +187,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 </div>
                 <div class="col-md-4">
                     <label for="inputProvince" class="form-label">Province</label>
-                    <select id="inputProvince" class="form-select" name="inputProvince" disabled>
-                        <option value="Albay" selected>Albay</option>
-                    </select>
+                    <input type="text" class="form-control" id="inputProvince" name="inputProvince" value="Albay" readonly>
                     @error('inputProvince')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -197,7 +195,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-md-2">
                     <label for="inputZip" class="form-label">Zip</label>
                     <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="4500"
-                        required>
+                        required readonly>
                     @error('inputZip')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -274,10 +272,10 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 </div>
                 <div class="col-md-6">
                     <label for="inputRole" class="form-label">Role</label>
-                    <select id="inputRole" class="form-select" name="inputRole" disabled>
+                    <select id="inputRole" class="form-select" name="inputRole" readonly>
                         @foreach ($roles as $role)
                             @if ($role->role_name === 'beneficiary')
-                                <option value="{{ $role->id }}">{{ ucwords($role->role_name) }}</option>
+                                <option value="{{ $role->id }}" selected>{{ ucwords($role->role_name) }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -297,10 +295,10 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
 
                 <div class="col-md-6">
                     <label for="inputProgram" class="form-label">Program</label>
-                    <select id="inputProgram" class="form-select" name="inputProgram" disabled>
+                    <select id="inputProgram" class="form-select" name="inputProgram" readonly>
                         @foreach ($programs as $program)
                             @if ($program->id === $userProgram)
-                                <option value="{{ $program->id }}">{{ ucwords($program->program_name) }}</option>
+                                <option value="{{ $program->id }}" selected>{{ ucwords($program->program_name) }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -337,9 +335,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 </div>
                 <div class="col-md-4">
                     <label for="inputProvince" class="form-label">Province</label>
-                    <select id="inputProvince" class="form-select" name="inputProvince" disabled>
-                        <option value="Albay" selected>Albay</option>
-                    </select>
+                    <input type="text" class="form-control" id="inputProvince" name="inputProvince" value="Albay" readonly>
                     @error('inputProvince')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -347,7 +343,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-md-2">
                     <label for="inputZip" class="form-label">Zip</label>
                     <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="4500"
-                        required>
+                        required value="4500" readonly>
                     @error('inputZip')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
