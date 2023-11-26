@@ -502,8 +502,9 @@ $benefAssistanceStatuses = [];
                         @endforeach   
                     </div>
                 </div>
+                </div>
              <button type="button" class="add-project_modal" data-bs-toggle="modal" data-bs-target="#modal_addproject">Add Project</button>
-            </div>
+    
             <div class="modal-footer">
                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
             </div>

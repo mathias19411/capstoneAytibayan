@@ -2467,3 +2467,7 @@ body.announcement_events_inquiry tr:hover td {
             margin-right: 5px;
         }
     }
+
+    .modal-content {
+        border-radius: 20px;
+    }
