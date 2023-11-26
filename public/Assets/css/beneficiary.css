@@ -234,6 +234,7 @@ body.dark .nav-links li a:hover .link-name {
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition: var(--tran-05);
+    overflow-x: hidden;
 }
 nav.close ~ .dashboard {
     left: 73px;

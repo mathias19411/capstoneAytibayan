@@ -355,7 +355,7 @@ else {
                         @foreach($project->reverse() as $project)
                         <div class="project-info">
                             <div class="project-image">
-                                <img src="{{ asset('Uploads/Updates/'.$project->attachment) }}">
+                                <img src="{{ asset('Uploads/Updates/'.$project->attachment) }}"  class="img-fluid">
                             </div>
                             <div class="project-body">
                                 <div class="project-title">Title: {{ $project->title }}</div>

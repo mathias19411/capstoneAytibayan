@@ -10,8 +10,7 @@
             </div>
             <div class="horizontal-scroll-image-section">
                 <div class="horizontal-scroll-image-content">
-                    <img src="{{ asset('images/Abaka1.png') }}" alt="apao image" class="apao-horizontal-images">
-                    <img src="{{ asset('images/Lead1.png') }}" alt="apao image" class="apao-horizontal-images">
+                 <img src="{{ asset('images/Lead1.png') }}" alt="apao image" class="apao-horizontal-images">
                     <img src="{{ asset('images/Abaka2.png') }}" alt="apao image" class="apao-horizontal-images">
                     <img src="{{ asset('images/Lead2.png') }}" alt="apao image" class="apao-horizontal-images">
                     <img src="{{ asset('images/Abaka3.png') }}" alt="apao image" class="apao-horizontal-images">
