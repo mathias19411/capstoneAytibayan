@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\announcement;
 use App\Models\events;
+use App\Models\Financialassistance;
 use App\Models\Financialassistancehistory;
+use App\Models\Loan;
 use App\Models\Loanhistory;
 use App\Models\Program;
 use App\Models\Role;
@@ -20,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rules\Password;
 
 
 class ItStaffController extends Controller
@@ -652,7 +655,7 @@ class ItStaffController extends Controller
         //Validation
         $request->validate([
             'inputOldPassword' => 'required',
-            'inputNewPassword' => 'required|confirmed' 
+            'inputNewPassword' => ['required', 'confirmed', Password::min(8)->letters()->numbers()->mixedCase()->symbols() ],
         ]);
 
         ///Match the old password
@@ -747,9 +750,36 @@ class ItStaffController extends Controller
     {
         $userId = User::findOrFail($id);
 
-        $userId->update([
-            'blacklisted' => true,
-        ]);
+        if ($userId->assistance) {
+            $asstId = $userId->assistance->id;
+
+            $userAsstId = Financialassistance::findOrFail($asstId);
+
+            $userAsstId->delete();
+
+            $userId->update([
+                'blacklisted' => true,
+            ]);
+
+        }
+        elseif ($userId->loan) {
+            $loanId = $userId->loan->id;
+
+            $userLoanId = Loan::findOrFail($loanId);
+
+            $userLoanId->delete();
+
+            $userId->update([
+                'blacklisted' => true,
+            ]);
+        }
+
+        else {
+            $userId->update([
+                'blacklisted' => true,
+            ]);
+        }
+        
 
         //notify via email
         $userId->notify(new BlacklistNotification());

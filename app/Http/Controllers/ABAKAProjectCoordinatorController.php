@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\WebsiteNotifications;
+use Illuminate\Validation\Rules\Password;
 
 
 
@@ -847,7 +848,7 @@ class ABAKAProjectCoordinatorController extends Controller
         //Validation
         $request->validate([
             'inputOldPassword' => 'required',
-            'inputNewPassword' => 'required|confirmed' 
+            'inputNewPassword' => ['required', 'confirmed', Password::min(8)->letters()->numbers()->mixedCase()->symbols() ], 
         ]);
 
         ///Match the old password
@@ -1024,9 +1025,23 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         $userId = User::findOrFail($id);
 
-        $userId->update([
-            'blacklisted' => true,
-        ]);
+        if ($userId->assistance) {
+            $asstId = $userId->assistance->id;
+
+            $userAsstId = Financialassistance::findOrFail($asstId);
+
+            $userAsstId->delete();
+
+            $userId->update([
+                'blacklisted' => true,
+            ]);
+
+        }
+        else {
+            $userId->update([
+                'blacklisted' => true,
+            ]);
+        }
 
         //notify via email
         $userId->notify(new BlacklistNotification());

@@ -38,6 +38,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rules\Password;
 
 class AGRIPINAYProjectCoordinatorController extends Controller
 {
@@ -784,7 +785,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         //Validation
         $request->validate([
             'inputOldPassword' => 'required',
-            'inputNewPassword' => 'required|confirmed' 
+            'inputNewPassword' => ['required', 'confirmed', Password::min(8)->letters()->numbers()->mixedCase()->symbols() ],
         ]);
 
         ///Match the old password
@@ -924,43 +925,6 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         }
     }
 
-    public function ProjCoordinatorBlacklistUser(Request $request)
-    {
-        $userId = $request->id;
-
-        $userData = User::findOrFail($userId);
-
-        $userData->update([
-            'status_id' =>$request->inputStatus,
-        ]);
-
-        $userData->save();
-
-        //notify on email
-        $userData->notify(new InactiveStatusNotif());
-
-        //send via sms
-        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        // $client = new \Vonage\Client($basic);
-
-        // $response = $client->sms()->send(
-        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been set to " . $userdata->status-status_name ."\n If you're status is INACTIVE, Logging in to the Web Application using your account is forbidden. \n You may contact your program coordinator at the Albay Provincial Agriculture Office or send an Inquiry.")
-        // );
-
-        // $message = $response->current();
-
-        // if ($message->getStatus() == 0) {
-        //     toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
-        // } else {
-        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        // }
-
-
-        toastr()->timeOut(10000)->addSuccess('User data has been updated successfully!');
-        
-        return redirect()->back();
-    } // End Method
-
     public function CoordinatorBlacklistView()
     {
         //Access the authenticated user's id
@@ -978,9 +942,23 @@ class AGRIPINAYProjectCoordinatorController extends Controller
     {
         $userId = User::findOrFail($id);
 
-        $userId->update([
-            'blacklisted' => true,
-        ]);
+        if ($userId->loan) {
+            $loanId = $userId->loan->id;
+
+            $userLoanId = Loan::findOrFail($loanId);
+
+            $userLoanId->delete();
+
+            $userId->update([
+                'blacklisted' => true,
+            ]);
+        }
+        else {
+            $userId->update([
+                'blacklisted' => true,
+            ]);
+        }
+
 
         //notify via email
         $userId->notify(new BlacklistNotification());
