@@ -86,8 +86,8 @@ else {
                                     </div>
                                     <div class="mb-3 image-update">
                                         <label for="picture" class="form-label">Change Picture:</label>
-                                            <label id="drop-img">
-                                                <input name="image" type="file" id="input-file" hidden>
+                                            <label for="edit-picture" id="drop-img">
+                                                <input name="image" type="file" id="edit-picture" hidden>
                                                 <div id="img-view">
                                                     <img src="{{ asset('Uploads/Updates/'.$update->image) }}">
                                                 </div>
@@ -153,3 +153,24 @@ else {
             }
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Handle file input change event
+        $('#edit-picture').change(function () {
+            // Get the selected file
+            var file = this.files[0];
+
+            if (file) {
+                // Create a FileReader to read and display the image
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // Update the image preview
+                    $('#img-view img').attr('src', e.target.result);
+                };
+                // Read the image as Data URL
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
