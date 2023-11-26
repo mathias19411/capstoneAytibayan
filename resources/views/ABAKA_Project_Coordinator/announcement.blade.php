@@ -239,14 +239,14 @@
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                             <label id="label_">Title</label>
-                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">
+                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title" required>
                             <input class="form-control" type="text" id="Title" placeholder="Title.... " name="from" value="{{ $roleName }}" hidden>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                             <label id="label_">To:</label>
-                                <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
+                                <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to" required>
                                     <option value="{{ $programName }}">{{ $programName }}</option>    
                                     <option>PUBLIC</option>
                                  </select>
@@ -255,7 +255,7 @@
                         <div class="col-md-12 mb-4">
                             <div class="form-outline">
                                 <label id="label_">Message:</label>
-                                <textarea class="form-control" rows="3" placeholder="Write something..." name="message"></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Write something..." name="message" required></textarea>
                             </div>
                         </div>
                         </div>

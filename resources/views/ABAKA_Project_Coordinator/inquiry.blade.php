@@ -154,7 +154,7 @@
                                                 <div class="col-md-12 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Message">Body:</label>
-                                                        <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="body"></textarea>
+                                                        <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="body" required></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
