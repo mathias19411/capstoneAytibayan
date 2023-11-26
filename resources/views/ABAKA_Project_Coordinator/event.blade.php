@@ -255,14 +255,14 @@
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                                 <label for="Title">Title</label>
-                                <input class="form-control" type="text" id="Title" placeholder="Title...." name="title">
+                                <input class="form-control" type="text" id="Title" placeholder="Title...." name="title" required>
                                 <input class="form-control" type="text" name="from" value="{{ $roleName }}">
                             </div>
                         </div>
                             <div class="col-md-6 mb-4">
                             <div class="form-outline">
                             <label id="label_">To:</label>
-                                        <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
+                                        <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to" required>
                                         <option>{{ $programName }}</option>
                                         <option>PUBLIC</option>
                                         </select>
@@ -272,13 +272,13 @@
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                                 <label for="Date">Date</label>
-                                <input class="form-control" type="date" id="Date" name="date">
+                                <input class="form-control" type="date" id="Date" name="date" required>
                             </div>
                         </div>
                         <div class="col-md-12 mb-4">
                             <div class="form-outline">
                                 <label for="Message">Message:</label>
-                                <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="message"></textarea>
+                                <textarea class="form-control" rows="3" id="Message" placeholder="Write something..." name="message" required></textarea>
                             </div>
                             <div class="form-outline">
                                 

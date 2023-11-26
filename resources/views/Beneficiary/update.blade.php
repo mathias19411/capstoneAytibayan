@@ -48,14 +48,15 @@ else {
             <div class="mb-3">
                 <label for="picture" class="form-label">Picture:</label>
                 <label for="edit-picture" id="drop-img">
-                <input name="image" type="file" id="edit-picture"  hidden>
+                <input name="image" type="file" id="edit-picture" style="display:none;" required>
                 <div id="img-view">
+                <span id="error-message" style="color: red;"></span>
                 <img src="/images/image_icon.png">
                 <p> Drag and drop or click here <br> to upload picture</p>
                 </div>
                 </label>
             </div>
-            <button type="submit" class="add-modal">Add</button>
+            <button type="submit" class="add-modal" onclick="validateForm()">Add</button>
         </form>
         </div>
         </div>
@@ -134,3 +135,21 @@ else {
 
 
 @endsection
+
+<script>
+        function validateForm() {
+            var fileInput = document.getElementById('edit-picture');
+            var errorMessage = document.getElementById('error-message');
+
+            // Check if a file is selected
+            if (fileInput.files.length === 0) {
+                errorMessage.textContent = 'Please fill out this field.';
+            } else {
+                // Reset the error message if a file is selected
+                errorMessage.textContent = '';
+
+                // Process the form or do other actions
+                // Example: document.getElementById('myForm').submit();
+            }
+        }
+    </script>
