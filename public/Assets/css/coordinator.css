@@ -2366,6 +2366,9 @@ body.announcement_events_inquiry .message-row {
     font-size: 15px;
     margin:0 auto;
 }
+.add-project_modal:hover {
+    background-color: var(--primary-color);
+}
 
 
 .rounded-circle {
@@ -2487,6 +2490,7 @@ body.announcement_events_inquiry .message-row {
     flex-wrap: wrap;
     justify-content: center;
     overflow: auto ;
+    width:100%;
 }
 
 .sched {
@@ -2494,8 +2498,10 @@ body.announcement_events_inquiry .message-row {
     padding: 10px;
     margin: 10px;
     position: relative;
-    min-width: 200px; /* Optional: Set a minimum width for each schedule box */
+    min-width: 150px; /* Adjusted min-width */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
+
 
 .sched-date, .sched-time, .sched-description {
     margin: 0;
