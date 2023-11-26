@@ -89,7 +89,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         @foreach($userProfileData->unreadNotifications as $notification)
             <ul>
                 <li style="background-color: lightgray;">
-                    <a href="#">
+                    <a href="{{ route('schedule.benef') }}">
                         {{ isset($notification->data['message']) ? $notification->data['message'] . ',' : '' }}
                         {{ isset($notification->data['date']) ? $notification->data['date'] . ',' : '' }}
                         {{ isset($notification->data['time']) ? $notification->data['time'] : '' }}

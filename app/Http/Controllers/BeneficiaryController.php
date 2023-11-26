@@ -169,6 +169,8 @@ class BeneficiaryController extends Controller
     public function BeneficiarySchedule()
     {
         $id = AUTH::user()->id;
+        
+        auth()->user()->unreadNotifications->markAsRead();
 
         $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
         $schedules = Schedule::where(function ($query) use ($userEmail) {

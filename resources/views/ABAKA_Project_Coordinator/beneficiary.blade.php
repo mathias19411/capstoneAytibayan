@@ -125,6 +125,7 @@
                                                         @method('PATCH')
                                                         <div class="modal-body">
                                                             <div class="project-info-edit">
+                                                                <input type="hidden" name="benef_id" value="{{ $abakaBeneficiary->id }}">
                                                                 <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
                                                                 <div class="mb-3">
                                                                     <label for="schedule-description" class="form-label">Description:</label>
@@ -578,14 +579,14 @@
                                                         <label id="label_">Message:</label>
                                                             <textarea class="form-control" rows="3" placeholder="Write something..." name="message" required></textarea>
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <label for="edit-picture" id="drop-img">
-                                                                <input name="image" type="file" id="edit-picture" style="display:none;" required>
-                                                                <div id="img-view">
-                                                                <span id="error-message" style="color: red;"></span>
-                                                                <img src="/images/image_icon.png">
-                                                                <p> Drag and drop or click here <br> to upload picture</p>
-                                                                </div>
+                                                            <div class="form-outline">
+                                                                <label id="drop-img">
+                                                                <input name="image" type="file" id="input-file" required hidden>
+                                                                        <div id="img-view">
+                                                                            <span id="error-message" style="color: red;"></span>
+                                                                                <img src="/images/image_icon.png">
+                                                                            <p> Drag and drop or click here <br> to upload picture</p>
+                                                                        </div>
                                                                 </label>
                                                             </div>
                                                 </div>
@@ -605,7 +606,7 @@
 
 <script>
         function validateForm() {
-            var fileInput = document.getElementById('edit-picture');
+            var fileInput = document.getElementById('input-file');
             var errorMessage = document.getElementById('error-message');
 
             // Check if a file is selected
@@ -620,3 +621,4 @@
             }
         }
     </script>
+     <script src="{{ asset('Assets/js/progress.js') }}"></script>

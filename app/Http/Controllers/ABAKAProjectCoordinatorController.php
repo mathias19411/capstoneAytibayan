@@ -360,6 +360,11 @@ class ABAKAProjectCoordinatorController extends Controller
     {
         $aid = $request->schedule_id;
 
+        $benef_id = $request->benef_id;
+
+        $user = User::findOrFail($benef_id);
+        
+
         $time = $request->time;
         $ampmTime = date('h:i A', strtotime($time));
         
@@ -368,6 +373,8 @@ class ABAKAProjectCoordinatorController extends Controller
             'time'=>$ampmTime,
             'date'=>$request->date,
         ]);
+        
+        Notification::send($user, new WebsiteNotifications('Your Schedule has been Updated', $request->date, $request->time));
 
         return redirect()->back()->with('success', 'Schedule is Updated!');
     } // End Method

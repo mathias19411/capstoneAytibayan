@@ -390,6 +390,7 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:b
 
     //Benef Schedule
     Route::get('/Beneficiary/schedule', [BeneficiaryController::class, 'BeneficiarySchedule'])->name('beneficiary.schedule');
+    Route::get('/Beneficiary/schedule/MarkAsRead', [BeneficiaryController::class, 'BeneficiarySchedule'])->name('schedule.benef');
     Route::get('/get-scheduled-dates', [BeneficiaryController::class, 'getScheduledDates']);
    
     //Benef Program Profile

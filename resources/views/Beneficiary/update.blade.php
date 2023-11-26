@@ -87,7 +87,7 @@ else {
                                     <div class="mb-3 image-update">
                                         <label for="picture" class="form-label">Change Picture:</label>
                                             <label id="drop-img">
-                                                <input name="image" type="file" hidden>
+                                                <input name="image" type="file" id="input-file" hidden>
                                                 <div id="img-view">
                                                     <img src="{{ asset('Uploads/Updates/'.$update->image) }}">
                                                 </div>
