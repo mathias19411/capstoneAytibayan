@@ -17,7 +17,7 @@ use App\Models\progress;
 use App\Models\events;
 use App\Models\Updates;
 use App\Models\Role;
-
+use Illuminate\Validation\Rules\Password;
 use App\Notifications\InactiveStatusNotif;
 use App\Notifications\AccountUpdateNotif;
 use App\Notifications\PasswordUpdateNotif;
@@ -325,7 +325,7 @@ class BeneficiaryController extends Controller
         //Validation
         $request->validate([
             'inputOldPassword' => 'required',
-            'inputNewPassword' => 'required|confirmed' 
+            'inputNewPassword' => ['required', 'confirmed', Password::min(8)->letters()->numbers()->mixedCase()->symbols() ], 
         ]);
 
         ///Match the old password
