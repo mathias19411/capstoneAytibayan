@@ -2483,27 +2483,70 @@ body.announcement_events_inquiry .message-row {
 }
 
 
-
-
 .schedule-container {
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
-    justify-content: center;
-    overflow: auto ;
-    width:100%;
+    margin-top: 20px;
+    max-height: 400px; /* Using max-height instead of height for container */
+    width: 100%;
+    overflow: auto;
+}
+.shape {
+    width: 100px;
+    height: 30px;
+    background-color: #7bb701;
+    border-radius: 0 0 50% 50%;
+    margin: auto;
 }
 
-.sched {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
+.sched-card {
     position: relative;
-    min-width: 150px; /* Adjusted min-width */
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    height: calc(100% - 40px); 
+    overflow: auto;
 }
 
+.schedule-container .box {
+    margin: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    width: 220px;
+    height: 300px; 
+    position: relative; /* Positioning context for absolute elements */
+    overflow: hidden; /* Prevent content overflow */
+    border: 2px solid transparent; 
+    transition: border-color 0.3s ease-in-out; 
+}
+
+.project_box .box:hover {
+    border-color: #7bb701;
+}
 
 .sched-date, .sched-time, .sched-description {
     margin: 0;
+}
+
+font-size: 10px;
+    color: var(--primary-color);
+    border-radius: 10px;
+    opacity: 0.8;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    
+@media screen and (max-width: 768px) {
+    .schedule-container {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: visible;
+    }
+
+    .sched-card {
+        flex: 0 0 auto;
+        margin: 10px;
+    }
 }
 
