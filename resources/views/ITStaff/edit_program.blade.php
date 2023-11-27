@@ -11,6 +11,7 @@
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('Assets/css/itstaff.css') }}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="icon" href="\images\APAO logo.png" type="image icon">
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="{{ asset('Assets/css/UserProfile.css') }}">

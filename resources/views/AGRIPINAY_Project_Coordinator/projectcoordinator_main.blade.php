@@ -12,6 +12,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Table -->
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="icon" href="\images\APAO logo.png" type="image icon">
     <!-- CSS link -->
     <link rel="stylesheet" href="{{ asset('Assets/css/coordinator.css') }}">
     <link rel="stylesheet" href="{{ asset('Assets/css/agripinay-print.css') }}" media="print">
