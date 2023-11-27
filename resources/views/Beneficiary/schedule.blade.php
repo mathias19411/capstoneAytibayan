@@ -67,7 +67,7 @@
     </div>
   </div>
   <div class="schedule-descrip">
-    <h1>Schedule for Monitoring</h1>
+    <h1>List of Schedules</h1>
 
     @if($schedules->isEmpty())
         <p>No schedules have been posted yet.</p>
@@ -110,7 +110,7 @@
         </div>
         <div class="label monitoring-label">
           <div class="shape square"></div>
-          Monitoring Dates
+          Scheduled Dates
         </div>
       </div>
     </header>

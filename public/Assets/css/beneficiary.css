@@ -396,6 +396,7 @@ nav.close ~ .dashboard .top {
     font-style: italic; /* Make it italic or adjust as needed */
     margin-top: 10px; /* Add some space above the message */
     text-align: center;
+    font-size: 15px;
 }
 
 
@@ -452,9 +453,7 @@ nav.close ~ .dashboard .top {
     align-items: center; /* Center align the content horizontally */
     margin-bottom: 10px; /* Add spacing between profile info and other items */
 }
-.profile-image {
 
-}
 
 /* Style the profile image */
 .profile-image img {
