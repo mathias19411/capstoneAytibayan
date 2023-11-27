@@ -11,8 +11,9 @@
         <label for="unread-filter">Filter: </label>
         <select id="unread-filter">
             <option value="all">All</option>
-            <option value="binhi">binhingpagasa</option>
-            <option value="abaka">abakamopisomo</option>
+            <option value="binhingpagasa">binhingpagasa</option>
+            <option value="abakamopisomo">abakamopisomo</option>
+            <option value="agripinay">abakamopisomo</option>
         </select>
         <label for="items-per-page">Items per page: </label>
         <select id="items-per-page">
