@@ -33,9 +33,9 @@ class UsersTableSeeder extends Seeder
             ],
             //BINHIProject Coordinator
             [
-                'first_name' => 'Project Coordinator',
-                'middle_name' => 'of',
-                'last_name' => 'Binhi',
+                'first_name' => 'Grace',
+                'middle_name' => 'P.',
+                'last_name' => 'Teaño',
                 'email' => 'projectcoordinator@gmail.com',
                 'password' => Hash::make('coordinator123'),
                 'phone' => '09998887777',
@@ -49,11 +49,11 @@ class UsersTableSeeder extends Seeder
             ],
             //ABAKAProject Coordinator
             [
-                'first_name' => 'Project Coordinator',
-                'middle_name' => 'of',
-                'last_name' => 'Abaka',
+                'first_name' => 'Eve',
+                'middle_name' => 'M.',
+                'last_name' => 'Espinas',
                 'email' => 'bermejomathiasjohnoliver2@gmail.com',
-                'password' => Hash::make('coordinator123'),
+                'password' => Hash::make('abakazcoordinator123'),
                 'phone' => '639923034018',
                 'barangay' => 'Tamaoyan',
                 'city' => 'Legazpi City',
@@ -65,9 +65,9 @@ class UsersTableSeeder extends Seeder
             ],
             //AGRIPINAYProject Coordinator
             [
-                'first_name' => 'Project Coordinator',
-                'middle_name' => 'of',
-                'last_name' => 'AgriPinay',
+                'first_name' => 'Diverlyn',
+                'middle_name' => 'S.',
+                'last_name' => 'Nabors',
                 'email' => 'bermejomathiasjohnoliver4@gmail.com',
                 'password' => Hash::make('coordinator123'),
                 'phone' => '639923034018',
@@ -97,9 +97,9 @@ class UsersTableSeeder extends Seeder
             ],
             //LEADProject Coordinator
             [
-                'first_name' => 'Project Coordinator',
-                'middle_name' => 'of',
-                'last_name' => 'Lead',
+                'first_name' => 'Arminda',
+                'middle_name' => 'A.',
+                'last_name' => 'Padilla',
                 'email' => 'leadprojectcoordinator@gmail.com',
                 'password' => Hash::make('coordinator123'),
                 'phone' => '09998887777',
