@@ -2482,72 +2482,75 @@ body.announcement_events_inquiry .message-row {
     color: var(--colorOrange);
 }
 
-
+/*----------SCHEDULE------------*/
 .schedule-container {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: center; /* Center the cards horizontally */
+    gap: 20px; /* Add gap between cards */
     margin-top: 20px;
-    max-height: 400px; /* Using max-height instead of height for container */
-    width: 100%;
-    overflow: auto;
-}
-.shape {
-    width: 220px;
-    height: 30px;
-    background-color: #7bb701;
-    border-radius: 0 0 50% 50%;
-    margin: auto;
+    padding: 0 10px; /* Add padding to container */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .sched-card {
-    position: relative;
-    height: calc(100% - 40px); 
-    overflow: auto;
-    overflow-x: hidden;
+    flex: 0 0 calc(33.33% - 20px); /* Set width for three cards with spacing */
+    margin-bottom: 20px;
+    max-width: calc(33.33% - 20px); /* Limit width for three cards in a row */
+    box-sizing: border-box;
+    position: relative; /* Create a positioning context */
 }
 
-.schedule-container .box {
+.sched-card .box {
     margin: 10px;
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f2f2f2;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-    width: 220px;
-    height: 300px; 
+    width: 200px;
+    height: 250px;
     position: relative; /* Positioning context for absolute elements */
-    overflow: hidden; /* Prevent content overflow */
-    border: 2px solid transparent; 
-    transition: border-color 0.3s ease-in-out; 
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease-in-out;
 }
 
-.project_box .box:hover {
+.sched-body {
+    padding: 10px;
+    height: calc(100% - 40px); /* Adjusted height for footer */
+    overflow-y: scroll; /* Moved scroll to this element */
+    overflow-x: hidden;
+}
+
+.schedule-container .box:hover {
     border-color: #7bb701;
 }
 
-.sched-date, .sched-time, .sched-description {
+.sched-date,
+.sched-time,
+.sched-description {
     margin: 0;
 }
 
-font-size: 10px;
-    color: var(--primary-color);
-    border-radius: 10px;
-    opacity: 0.8;
-    margin: 0;
-    padding: 0;
-    text-align: right;
+.card-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #f2f2f2; /* Match the card background */
+}
 
+/* Media query for smaller screens */
 @media screen and (max-width: 768px) {
     .schedule-container {
-        width: 100%;
-        justify-content: flex-start;
-        overflow-x: visible;
+        justify-content: flex-start; /* Align cards vertically */
     }
 
     .sched-card {
-        flex: 0 0 auto;
-        margin: 10px;
+        flex: 0 0 calc(100% - 20px); /* Full width for one card per row */
+        max-width: calc(100% - 20px); /* Full width for one card per row */
     }
 }
-

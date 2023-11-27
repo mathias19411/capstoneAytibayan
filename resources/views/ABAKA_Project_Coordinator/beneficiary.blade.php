@@ -3,23 +3,23 @@
 @section('content')
 @include('ABAKA_Project_Coordinator.Body.sidebarproj')
     
-<div class="title">
-        <h1>Beneficiaries</h1>
-</div>
-<div class="boxes1">
-    <div class="box box-5">
-        <h1>Beneficiaries</h1>
-        <p>{{ $abakaBeneficiariesCount }}</p>
-    </div>
-    <div class="box box-5 ">
-        <h1>Active</h1>
-        <p>{{ $abakaActiveCount }}</p>
-    </div>
-    <div class="box box-6">
-        <h1>Inactive</h1>
-        <p>{{ $abakaInactiveCount }}</p>
-    </div>
-</div>
+        <div class="title">
+            <h1>Beneficiaries</h1>
+        </div>
+        <div class="boxes1">
+            <div class="box box-5">
+                <h1>Beneficiaries</h1>
+                <p>{{ $abakaBeneficiariesCount }}</p>
+            </div>
+            <div class="box box-5 ">
+                <h1>Active</h1>
+                <p>{{ $abakaActiveCount }}</p>
+            </div>
+            <div class="box box-6">
+                <h1>Inactive</h1>
+                <p>{{ $abakaInactiveCount }}</p>
+            </div>
+        </div>
                 <div class="button-container">
                     <button class="button_top" data-bs-toggle="modal" data-bs-target="#projectModal">
                         <i class="fa-solid fa-list-check" style="color: #ffffff;"></i> Program Activities
@@ -119,25 +119,30 @@
                                                         <h5 class="modal-title" id="modal-title">View Schedule</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                        <div class="modal-body">
-                                                        @foreach($benefSchedules->reverse() as $schedules)
-                                                            <div class="schedule-container">
+                                                    <div class="modal-body">
+                                                        <div class="schedule-container">
+                                                            @foreach($benefSchedules->reverse() as $schedules)
                                                                 <div class="sched-card">
-                                                                <div class="shape"> </div>
-                                                                    <p class="sched-date">Date: {{ $schedules->date }}</p>
-                                                                    <p class="sched-time">Time: {{ $schedules->time }}</p>
-                                                                    <p class="sched-description">Description: {{ $schedules->description }}</p>
-                                                                    <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
-                                                                    <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
+                                                                    <div class="box">
+                                                                        <div class="sched-body">
+                                                                        <p class="sched-date">Date: {{ $schedules->date }}</p>
+                                                                        <p class="sched-time">Time: {{ $schedules->time }}</p>
+                                                                        <p class="sched-description">Description: {{ $schedules->description }}</p>
+                                                                        </div>
+                                                                        <div class="card-footer">
+                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
+                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        @endforeach
-                                                        <div class="modal-footer">
-                                                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                            @endforeach
                                                         </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         </div>
                                         <!--EDIT Schedule-->
                                         <div class="modal fade" id="modal_editschedule{{ $schedule->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
