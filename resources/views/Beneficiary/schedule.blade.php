@@ -67,30 +67,33 @@
     </div>
   </div>
   <div class="schedule-descrip">
-        <h1>LIST OF SCHEDULES</h1>
+    <h1>Schedule for Monitoring</h1>
+
+    @if($schedules->isEmpty())
+        <p>No schedules have been posted yet.</p>
+    @else
         @foreach($schedules->reverse() as $schedule)
-        @php
+            @php
                 $daySched = \Carbon\Carbon::parse($schedule->date)->format('d');
                 $monthSched = \Carbon\Carbon::parse($schedule->date)->format('M');
-                $yearSched= \Carbon\Carbon::parse($schedule->date)->format('Y');
-        @endphp
-        <div class="schedule-item">
-            <div class="left-content">
-
-                <div class="schedule-description">{{ $schedule->description }} </div>
-                <div class="schedule-time">{{ $schedule->time }}</div>
+                $yearSched = \Carbon\Carbon::parse($schedule->date)->format('Y');
+            @endphp
+            <div class="schedule-item">
+                <div class="left-content">
+                    <div class="schedule-description">{{ $schedule->description }}</div>
+                    <div class="schedule-time">{{ $schedule->time }}</div>
+                </div>
+                <div class="right-content">
+                    <div class="schedule-date-container">
+                        <div class="schedule-date">{{ $daySched }}</div>
+                        <div class="schedule-month">{{ $monthSched }}</div>
+                        <div class="schedule-year">{{ $yearSched }}</div>
+                    </div>
+                </div>
             </div>
-            <div class="right-content">
-            <div class="schedule-date-container">
-            
-            <div class="schedule-date ">{{ $daySched }} </div>
-                <div class="schedule-month">{{ $monthSched }}</div>
-                <div class="schedule-year ">{{ $yearSched }}</div>
-            </div>
-        </div>
-        </div>
         @endforeach
-    </div>
+    @endif
+</div>
     <div class="container">
   <div class="calendar">
     <header>
@@ -188,8 +191,11 @@ currMonth = date.getMonth();
 // storing full name of all months in array
 const months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
-const scheduledDates = @json($schedule->pluck('date')->toArray());
-
+@if(!empty($schedule))
+  const scheduledDates = @json($schedule->pluck('date')->toArray());
+@else
+  const scheduledDates = ["No Set Schedules Yet."];
+@endif
 const renderCalendar = () => {
   let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
   let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
