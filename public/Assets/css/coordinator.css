@@ -2493,7 +2493,7 @@ body.announcement_events_inquiry .message-row {
     overflow: auto;
 }
 .shape {
-    width: 100px;
+    width: 220px;
     height: 30px;
     background-color: #7bb701;
     border-radius: 0 0 50% 50%;
@@ -2504,6 +2504,7 @@ body.announcement_events_inquiry .message-row {
     position: relative;
     height: calc(100% - 40px); 
     overflow: auto;
+    overflow-x: hidden;
 }
 
 .schedule-container .box {
@@ -2536,7 +2537,7 @@ font-size: 10px;
     margin: 0;
     padding: 0;
     text-align: right;
-    
+
 @media screen and (max-width: 768px) {
     .schedule-container {
         width: 100%;
