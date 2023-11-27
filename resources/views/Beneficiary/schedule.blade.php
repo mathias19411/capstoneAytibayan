@@ -67,7 +67,7 @@
     </div>
   </div>
   <div class="schedule-descrip">
-        <h1>Schedule for Monitoring</h1>
+        <h1>LIST OF SCHEDULES</h1>
         @foreach($schedules->reverse() as $schedule)
         @php
                 $daySched = \Carbon\Carbon::parse($schedule->date)->format('d');

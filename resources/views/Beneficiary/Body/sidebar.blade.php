@@ -77,7 +77,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
     <div class="notification-icon" id="notification-button">
     <i class="uil uil-bell">
     @if($userProfileData->unreadNotifications->count())
-    <span class="badge badge-light" style="color: red;">{{ $userProfileData->unreadNotifications ->count() }}</span>
+    <span class="badge badge-light" style="color: red; font-weight: bold;position: absolute; top: -4px; right: 0;">{{ $userProfileData->unreadNotifications ->count() }}</span>
     @endif
     </i>
 
@@ -86,6 +86,8 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         <h2>Notifications</h2>
         <li><a  href="{{ route('markAsRead') }}">Mark All as Read</a></li>
 
+        <div>
+    @if($userProfileData->unreadNotifications->isNotEmpty() || $userProfileData->readNotifications->isNotEmpty())
         @foreach($userProfileData->unreadNotifications as $notification)
             <ul>
                 <li style="background-color: lightgray;">
@@ -97,6 +99,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </li>
             </ul>
         @endforeach
+
         @foreach($userProfileData->readNotifications as $notification)
             <ul>
                 <li>
@@ -108,10 +111,14 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 </li>
             </ul>
         @endforeach
-    </div>
+    @else
+    <p class="no-notifications">No notifications.</p>
+    @endif
+</div>
+</div>
 </div>
             <div class="message-icon">
-            <a href="{{ route('beneficiary.inquiry') }}" class= class="{{ Route::currentRouteName() ==  'beneficiary.inquiry' ? 'active' : '' }}">
+            <a href="{{ route('beneficiary.inquiry') }}" class="{{ Route::currentRouteName() ==  'beneficiary.inquiry' ? 'active' : '' }}">
                     <i class="uil uil-comment-dots"></i>
                 </a>
             </div>

@@ -391,6 +391,12 @@ nav.close ~ .dashboard .top {
 }
 
 
+.no-notifications {
+    color: #555; /* Set the color to your preference */
+    font-style: italic; /* Make it italic or adjust as needed */
+    margin-top: 10px; /* Add some space above the message */
+    text-align: center;
+}
 
 
 /* Style the profile dropdown container */
