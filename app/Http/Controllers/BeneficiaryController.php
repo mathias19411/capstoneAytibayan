@@ -52,11 +52,17 @@ class BeneficiaryController extends Controller
     }//end method
 
     public function getScheduledDates()
-    {
-        $scheduledDates = Schedule::pluck('date')->toArray();
+{
+    $scheduledDates = Schedule::pluck('date')->toArray();
 
+    // Check if $scheduledDates array is empty
+    if (empty($scheduledDates)) {
+        $cheduleDates = ["0000-00-00", "0000-00-00"];
+        return response()->json(['scheduleDates' => $scheduledDates]);
+    } else {
         return response()->json(['scheduledDates' => $scheduledDates]);
-    }//end method
+    }
+}
 
     public function BeneficiaryLogout(Request $request)
     {

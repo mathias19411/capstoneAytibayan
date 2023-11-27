@@ -111,10 +111,13 @@ else {
                 </div>
                 <p class="update-date">Date: {{ $update->created_at->format('Y-m-d h:i A') }}</p>
                 <div class="card-footer">
+                @if($loop->first) <!-- Only show edit button for the latest post -->
                     <button class="btn btn-pink edit-update" data-bs-toggle="modal" data-bs-target="#editModal{{ $update->id }}" data-update-id="{{ $loop->index }}">
                         <i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>
                     </button>
-                </div>
+                @endif
+            </div>
+
             </div>
         @endforeach
             </div>

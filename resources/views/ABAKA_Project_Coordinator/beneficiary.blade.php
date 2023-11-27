@@ -110,8 +110,35 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="sched-header">Schedules</div>
                                         @foreach($benefSchedules->reverse() as $schedule)
+                                        <!--VIEW SCHEDULE-->
+                                        <div class="modal fade" id="view-schedule-modal{{ $abakaBeneficiary->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modal-title">View Schedule</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                        <div class="modal-body">
+                                                        @foreach($benefSchedules->reverse() as $schedules)
+                                                            <div class="schedule-container">
+                                                                <div class="sched-card">
+                                                                <div class="shape"> </div>
+                                                                    <p class="sched-date">Date: {{ $schedules->date }}</p>
+                                                                    <p class="sched-time">Time: {{ $schedules->time }}</p>
+                                                                    <p class="sched-description">Description: {{ $schedules->description }}</p>
+                                                                    <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
+                                                                    <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
                                         <!--EDIT Schedule-->
                                         <div class="modal fade" id="modal_editschedule{{ $schedule->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                                             <div class="modal-dialog">
@@ -188,20 +215,9 @@
                                                     </div>
                                             </div>
                                         </div>
-                                            <div class="schedule-container">
-                                                <div class="box">
-                                                        <div class="sched-card">
-                                                        <div class="shape"> </div>
-                                                            <p class="sched-date">Date: {{ $schedule->date }}</p>
-                                                            <p class="sched-time">Time: {{ $schedule->time }}</p>
-                                                            <p class="sched-description">Description: {{ $schedule->description }}</p>
-                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
-                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
-                                                        </div>
-                                                    </div>         
-                                             </div>
                                         @endforeach              
-                            
+
+                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $abakaBeneficiary->id }}">View Schedule</button>
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
@@ -248,32 +264,6 @@
                                 </div>
                             </div>
 
-                             <!--VIEW SCHEDULE
-                             <div class="modal fade" id="view-schedule-modal" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modal-title">View Schedule</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                        <div class="modal-body">
-                                                            <div class="schedule-container">
-                                                                <div class="sched-card">
-                                                                <div class="shape"> </div>
-                                                                    <p class="sched-date">Date: {{ $schedule->date }}</p>
-                                                                    <p class="sched-time">Time: {{ $schedule->time }}</p>
-                                                                    <p class="sched-description">Description: {{ $schedule->description }}</p>
-                                                                    <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
-                                                                    <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
-                                                                </div>
-                                                            </div>
-                                                        <div class="modal-footer">
-                                                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="add">Save Changes</button>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
                             {{-- Modal View for Add --}}
                             <div id="add-value-popup-{{ $abakaBeneficiary->id }}" class="add-value-popup">
                                 <div class="add-value-popup-content">
