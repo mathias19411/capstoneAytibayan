@@ -11,8 +11,6 @@
         <label for="unread-filter">Filter: </label>
         <select id="unread-filter">
             <option value="all">All</option>
-            <option value="binhi">binhingpagasa</option>
-            <option value="abaka">abakamopisomo</option>
             <option value="lead">lead</option>
             <option value="agripinay">agripinay</option>
             <option value="akbay">akbay</option>

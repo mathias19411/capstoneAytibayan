@@ -309,12 +309,14 @@ progress {
 .img-fluid {
     width: 180px;
     height: 180px;
+    object-fit: cover;
 
 }
 
 .img-fluid-small {
     width: 80px;
     height: 80px;
+    object-fit: cover;
 
 }
 #delete-image {
@@ -1607,6 +1609,7 @@ a.text-white:focus {
 .avatar img {
     width: 100%;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .avatar-sm {
@@ -1667,6 +1670,7 @@ a.text-white:focus {
     transition: all 0.15s ease;
     transform: translate(-50%, -30%);
     border-radius: 0.375rem;
+    object-fit: cover;
 }
 
 .card-profile-image img:hover {

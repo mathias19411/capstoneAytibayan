@@ -54,9 +54,17 @@ class BeneficiaryController extends Controller
     public function getScheduledDates()
     {
         $scheduledDates = Schedule::pluck('date')->toArray();
-
-        return response()->json(['scheduledDates' => $scheduledDates]);
-    }//end method
+    
+        // Check if $scheduledDates array is empty
+        if (empty($scheduledDates)) {
+            // If empty, provide a default date (e.g., "1500-01-01")
+            $scheduledDates = ["1500-01-01"];
+        }
+    
+        // Pass the scheduled dates to the view
+        return view('Beneficiary.schedule', ['scheduledDates' => $scheduledDates]);
+    }
+    
 
     public function BeneficiaryLogout(Request $request)
     {
@@ -89,6 +97,22 @@ class BeneficiaryController extends Controller
         $updates = Updates::where(function ($query) use ($userEmail) {
             $query->where('email', $userEmail);})->get();
         return view('Beneficiary.update', compact('updates', 'userEmail', 'programName', 'roleName'));
+    } // End Method
+    public function BeneficiaryUpdatesDetails()
+    {
+        $id = AUTH::user()->id;
+
+        // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+        $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
+        $updates = Updates::where(function ($query) use ($userEmail) {
+            $query->where('email', $userEmail);})->get();
+        return view('Beneficiary.updatedetails', compact('updates', 'userEmail', 'programName', 'roleName'));
     } // End Method
 
     public function BeneficiaryUpdateStore(Request $request){
@@ -154,6 +178,7 @@ class BeneficiaryController extends Controller
 
         // Upload the new image and update the attachment path
         $file = $request->file('image');
+
         $filename = date('YmdHi') . $file->getClientOriginalName();
         $file->move('Uploads/Updates/', $filename);
         $validatedData['image'] = $filename;
@@ -206,7 +231,7 @@ class BeneficiaryController extends Controller
 
     // Validate the request
     $validatedData = $request->validate([
-        'fullname' => 'required|string|max:255',
+        'fullname' => 'required|string',
         'from'=> 'string',
         'recipient' => 'required|string',
         'programEmail'=> 'string',

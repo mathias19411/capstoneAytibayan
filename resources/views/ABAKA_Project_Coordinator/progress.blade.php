@@ -98,7 +98,7 @@ $benefAssistanceStatuses = [];
             </div>
             <div class="box box-2">
                 <h1>Overall Financial Assistance Statuses</h1>
-                <p>No Projects</p>
+                <p>Not Available</p>
             </div>
             <div class="box box-3">
                 <h1>Steps Progress</h1>

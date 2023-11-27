@@ -195,6 +195,11 @@ nextPageButton.addEventListener('click', function () {
         prevPageButton.disabled = false;
         prevPageButton.classList.remove('disabled');
     }
+     // Disable the "Next" button when there is no more data
+     if (currentPage >= totalPages) {
+        nextPageButton.disabled = true;
+        nextPageButton.classList.add('disabled');
+    }
 });
 
 function updatePaginationMessage() {

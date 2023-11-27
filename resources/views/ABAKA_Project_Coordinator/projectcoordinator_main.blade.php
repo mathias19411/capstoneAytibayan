@@ -521,6 +521,10 @@
                     prevPageButton.disabled = false;
                     prevPageButton.classList.remove('disabled');
                 }
+                if (currentPage >= totalPages) {
+                    nextPageButton.disabled = true;
+                    nextPageButton.classList.add('disabled');
+                }
             });
 
             function updatePaginationMessage() {
@@ -1042,7 +1046,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-<script>
+<script>//export
     document.addEventListener('DOMContentLoaded', function () {
         const exportButton = document.getElementById('exportButton');
         exportButton.addEventListener('click', exportTable);
