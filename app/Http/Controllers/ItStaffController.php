@@ -142,98 +142,98 @@ class ItStaffController extends Controller
         return redirect('/login');
     } // End Method
 
-    public function ItStaffAddProgramView()
-    {
-        // Get the number of project coordiantors
-        $coordinators = User::whereHas('role', function ($query) {
-            $query->whereIn('role_name', ['projectcoordinator']);
-        })->get();
+    // public function ItStaffAddProgramView()
+    // {
+    //     // Get the number of project coordiantors
+    //     $coordinators = User::whereHas('role', function ($query) {
+    //         $query->whereIn('role_name', ['projectcoordinator']);
+    //     })->get();
 
-        return view('ITStaff.addprogram', compact('coordinators'));
-    } // End Method
+    //     return view('ITStaff.addprogram', compact('coordinators'));
+    // } // End Method
 
-    public function ItStaffAddNewProgram(Request $request)
-    {
-        // Validate form inputs
-        $validatedData = $request->validate([
-            'programnameInput' => ['required', 'string', 'max:30', 'unique:programs,program_name'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'inputLocation' => ['required', 'string', 'max:50'],
-            'inputEmail' => ['required', 'string', 'email', 'max:255', 'unique:programs,email'],
-            'inputContact' => ['required', 'string', 'max:12'],
-            'inputInfo' => ['required', 'string', 'max:500'],
-            'inputApply' => ['required', 'string', 'max:500'],
-            'inputReqs' => ['required', 'string', 'max:500'],
-            'programPhoto' => ['required' , 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'programBackgroundPhoto' => ['required' , 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-        ]);
+    // public function ItStaffAddNewProgram(Request $request)
+    // {
+    //     // Validate form inputs
+    //     $validatedData = $request->validate([
+    //         'programnameInput' => ['required', 'string', 'max:30', 'unique:programs,program_name'],
+    //         'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    //         'inputLocation' => ['required', 'string', 'max:50'],
+    //         'inputEmail' => ['required', 'string', 'email', 'max:255', 'unique:programs,email'],
+    //         'inputContact' => ['required', 'string', 'max:12'],
+    //         'inputInfo' => ['required', 'string', 'max:500'],
+    //         'inputApply' => ['required', 'string', 'max:500'],
+    //         'inputReqs' => ['required', 'string', 'max:500'],
+    //         'programPhoto' => ['required' , 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+    //         'programBackgroundPhoto' => ['required' , 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+    //     ]);
 
-        if ($request->file('programPhoto'))
-        {
-            // $imagePath = $request->file('programPhoto')->store('public/Uploads/Program_images');
+    //     if ($request->file('programPhoto'))
+    //     {
+    //         // $imagePath = $request->file('programPhoto')->store('public/Uploads/Program_images');
             
-            // // Remove the 'public/' prefix from the path to store in the database
-            // $validatedData['programPhoto'] = str_replace('public/', '', $imagePath);
+    //         // // Remove the 'public/' prefix from the path to store in the database
+    //         // $validatedData['programPhoto'] = str_replace('public/', '', $imagePath);
 
-            $file = $request->file('programPhoto');
+    //         $file = $request->file('programPhoto');
 
-            @unlink(public_path('Uploads/Program_images/'.$validatedData['programPhoto']));
+    //         @unlink(public_path('Uploads/Program_images/'.$validatedData['programPhoto']));
 
-            $fileName = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('Uploads/Program_images'),$fileName);
-            $validatedData['programPhoto'] = $fileName;
-        }
+    //         $fileName = date('YmdHi').$file->getClientOriginalName();
+    //         $file->move(public_path('Uploads/Program_images'),$fileName);
+    //         $validatedData['programPhoto'] = $fileName;
+    //     }
 
-        if ($request->file('programBackgroundPhoto'))
-        {
-            // $imagePath = $request->file('programPhoto')->store('public/Uploads/Program_images');
+    //     if ($request->file('programBackgroundPhoto'))
+    //     {
+    //         // $imagePath = $request->file('programPhoto')->store('public/Uploads/Program_images');
             
-            // // Remove the 'public/' prefix from the path to store in the database
-            // $validatedData['programPhoto'] = str_replace('public/', '', $imagePath);
+    //         // // Remove the 'public/' prefix from the path to store in the database
+    //         // $validatedData['programPhoto'] = str_replace('public/', '', $imagePath);
 
-            $file = $request->file('programBackgroundPhoto');
+    //         $file = $request->file('programBackgroundPhoto');
 
-            @unlink(public_path('Uploads/Program_images/'.$validatedData['programBackgroundPhoto']));
+    //         @unlink(public_path('Uploads/Program_images/'.$validatedData['programBackgroundPhoto']));
 
-            $fileName = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('Uploads/Program_images'),$fileName);
-            $validatedData['programBackgroundPhoto'] = $fileName;
-        }
+    //         $fileName = date('YmdHi').$file->getClientOriginalName();
+    //         $file->move(public_path('Uploads/Program_images'),$fileName);
+    //         $validatedData['programBackgroundPhoto'] = $fileName;
+    //     }
 
 
-        if ($validatedData)
-        {
-            $hashed = Hash::make($validatedData['password']);
+    //     if ($validatedData)
+    //     {
+    //         $hashed = Hash::make($validatedData['password']);
             
-            // dd($hashed);
+    //         // dd($hashed);
 
-            Program::create([
-                'program_name' => $validatedData['programnameInput'],
-                'location' => $validatedData['inputLocation'],
-                'email' => $validatedData['inputEmail'],
-                'contact' => $validatedData['inputContact'],
-                'description' => $validatedData['inputInfo'],
-                'quiry' => $validatedData['inputApply'],
-                'requirements' => $validatedData['inputReqs'],
-                'image' => $validatedData['programPhoto'],
-                'background_image' => $validatedData['programBackgroundPhoto'],
-                'password' => $hashed,
-            ]);
+    //         Program::create([
+    //             'program_name' => $validatedData['programnameInput'],
+    //             'location' => $validatedData['inputLocation'],
+    //             'email' => $validatedData['inputEmail'],
+    //             'contact' => $validatedData['inputContact'],
+    //             'description' => $validatedData['inputInfo'],
+    //             'quiry' => $validatedData['inputApply'],
+    //             'requirements' => $validatedData['inputReqs'],
+    //             'image' => $validatedData['programPhoto'],
+    //             'background_image' => $validatedData['programBackgroundPhoto'],
+    //             'password' => $hashed,
+    //         ]);
 
-            toastr()->timeOut(10000)->addSuccess('A new Program has been successfully added!');
+    //         toastr()->timeOut(10000)->addSuccess('A new Program has been successfully added!');
 
-            return redirect()->route('itstaff.home');
-        }
-        else
-        {
-            toastr()->timeOut(10000)->addError('Validation failed. Please check your inputs and try again!');
+    //         return redirect()->route('itstaff.home');
+    //     }
+    //     else
+    //     {
+    //         toastr()->timeOut(10000)->addError('Validation failed. Please check your inputs and try again!');
 
-            return redirect()->back();
-        }
-        // event(new Registered($user));
+    //         return redirect()->back();
+    //     }
+    //     // event(new Registered($user));
 
-        // Auth::login($user);
-    } // End Method
+    //     // Auth::login($user);
+    // } // End Method
 
     public function ItStaffEditProgramView($id)
     {
@@ -261,7 +261,6 @@ class ItStaffController extends Controller
 
         $validatedData = $request->validate([
             'programnameInput' => ['string', 'max:40'],
-            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
             'inputLocation' => ['string', 'max:100'],
             'inputEmail' => ['string', 'email', 'max:255'],
             'inputContact' => ['string', 'max:10'],
@@ -273,9 +272,6 @@ class ItStaffController extends Controller
 
         if ($validatedData)
         {
-            $hashed = Hash::make($validatedData['password']);
-            
-            // dd($hashed);
 
             $programData->update([
                 'program_name' => $validatedData['programnameInput'],
@@ -285,7 +281,6 @@ class ItStaffController extends Controller
                 'description' => $validatedData['inputInfo'],
                 'quiry' => $validatedData['inputApply'],
                 'requirements' => $validatedData['inputReqs'],
-                'password' => $hashed,
             ]);
 
             if ($request->file('programPhoto'))

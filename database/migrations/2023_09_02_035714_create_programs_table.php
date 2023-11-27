@@ -22,7 +22,6 @@ return new class extends Migration
             $table->longText('requirements')->nullable();
             $table->string('image')->nullable();
             $table->string('background_image')->nullable();
-            $table->string('password')->nullable();
             $table->timestamps();
         });
     }
