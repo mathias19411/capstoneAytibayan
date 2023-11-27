@@ -385,6 +385,7 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:b
     
     //Benef Updates
     Route::get('/Beneficiary/updates', [BeneficiaryController::class, 'BeneficiaryUpdates'])->name('beneficiary.updates');
+    Route::get('/Beneficiary/updates/details', [BeneficiaryController::class, 'BeneficiaryUpdatesDetails'])->name('updates.details');
     Route::post('/Beneficiary/updates', [BeneficiaryController::class, 'BeneficiaryUpdateStore'])->name('send.updates');
     Route::patch('/Beneficiary/updates/edit', [BeneficiaryController::class, 'BeneficiaryUpdateUpdate'])->name('edit.updates');
 

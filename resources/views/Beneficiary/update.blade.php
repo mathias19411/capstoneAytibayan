@@ -85,9 +85,9 @@ else {
                                         <input id="edit-information" class="form-control" value="{{ $update->title }}" name="title" required>
                                     </div>
                                     <div class="mb-3 image-update">
-                                        <label for="picture" class="form-label">Change Picture:</label>
-                                            <label for="edit-picture" id="drop-img">
-                                                <input name="image" type="file" id="edit-picture" hidden>
+                                        <label for="input-file" class="form-label">Change Picture:</label>
+                                            <label for="input-picture" id="drop-img">
+                                            <input name="image" type="file" id="input-picture" style="display:none;" hidden>
                                                 <div id="img-view">
                                                     <img src="{{ asset('Uploads/Updates/'.$update->image) }}">
                                                 </div>
@@ -103,20 +103,20 @@ else {
                     </div>
                 </div>
                 <div class="card mb-3 col-md-3" id="card-update">
-                    <div class="card-body">
+                <div class="card-body">
                     <a href="{{ asset('Uploads/Updates/'.$update->image) }}" target="_blank">
-                          <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail">
-                     </a>
-                        <p class="update-title">{{ $update->title }}</p>
-                    </div>
-                    <p class="update-date">Date: {{ $update->created_at->format('Y-m-d h:i A') }}</p>
-                    <div class="card-footer">
-                        <button class="btn btn-pink edit-update" data-bs-toggle="modal" data-bs-target="#editModal{{ $update->id }}" data-update-id="1">
-                            <i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>
-                        </button>
-                    </div>
+                        <img src="{{ asset('Uploads/Updates/'.$update->image) }}" alt="Beneficiary's Picture" class="img-thumbnail" data-update-index="{{ $update->id }}">
+                    </a>
+                    <p class="update-title">{{ $update->title }}</p>
                 </div>
-                @endforeach
+                <p class="update-date">Date: {{ $update->created_at->format('Y-m-d h:i A') }}</p>
+                <div class="card-footer">
+                    <button class="btn btn-pink edit-update" data-bs-toggle="modal" data-bs-target="#editModal{{ $update->id }}" data-update-id="{{ $loop->index }}">
+                        <i class="fa-solid fa-pen-to-square fa-lg" style="color: #58c0e2"></i>
+                    </button>
+                </div>
+            </div>
+        @endforeach
             </div>
         </div>
     </div>
@@ -154,10 +154,10 @@ else {
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
+    <script>
     $(document).ready(function () {
         // Handle file input change event
-        $('#edit-picture').change(function () {
+        $('#input-picture').change(function () {
             // Get the selected file
             var file = this.files[0];
 
@@ -166,7 +166,12 @@ else {
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     // Update the image preview
-                    $('#img-view img').attr('src', e.target.result);
+                    var $img = $('#img-view img');
+                    $img.attr('src', e.target.result);
+
+                    // Set the index to 0 for the selected image
+                    var dataIndex = $img.data('update-index');
+                    $img.prop('id', 0);
                 };
                 // Read the image as Data URL
                 reader.readAsDataURL(file);

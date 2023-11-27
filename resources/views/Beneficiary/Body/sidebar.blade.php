@@ -36,7 +36,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             <li class="{{ Route::currentRouteName() ==  'beneficiary.updates' ? 'active' : '' }}">
                 <a href="{{ route('beneficiary.updates') }}" >
                     <i class="uil uil-process"></i>
-                    <span class="link-name">Update</span>
+                    <span class="link-name">Send Updates</span>
                 </a>
             </li>
             <li class="{{ Route::currentRouteName() ==  'beneficiaryprogram.profile' ? 'active' : '' }}">
