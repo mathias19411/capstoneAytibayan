@@ -77,7 +77,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
     <div class="notification-icon" id="notification-button">
     <i class="uil uil-bell">
     @if($userProfileData->unreadNotifications->count())
-    <span class="badge badge-light" style="color: red; font-weight: bold;position: absolute; top: -4px; right: 0;">{{ $userProfileData->unreadNotifications ->count() }}</span>
+    <span class="badge badge-light" style="color: orange; font-weight: bold;position: absolute; top: -4px; right: 0;">{{ $userProfileData->unreadNotifications ->count() }}</span>
     @endif
     </i>
 
