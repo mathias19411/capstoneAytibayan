@@ -149,7 +149,7 @@ class ABAKAProjectCoordinatorController extends Controller
         })->where('blacklisted', false)->get();
         // Validate the request
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string',
             'from'=> 'required|string',
             'to' => 'required|string',
             'message' => 'required|string',
@@ -236,29 +236,12 @@ class ABAKAProjectCoordinatorController extends Controller
 {
     // Validate the request
     $validatedData = $request->validate([
-        'title' => 'required|string|max:255',
+        'title' => 'required|string',
         'from'=> 'string',
         'date' => 'required|date',
         'to' => 'required|string',
         'message' => 'required|string',
-        'image' => 'image'
     ]);
-
-    // Check if the image key exists in the validated data array
-    if (isset($validatedData['image'])) {
-        // Get the image file
-        $file = $request->file('image');
-
-        // Generate a unique filename for the image file
-        $filename = date('YmdHi') . $file->getClientOriginalName();
-
-    } else {
-        // Assign an empty string to the filename variable
-        $filename = '';
-    }
-
-    // Set the image attribute of the event model to the filename
-    $validatedData['image'] = $filename;
 
     //dd($validatedData);
 
@@ -271,7 +254,6 @@ class ABAKAProjectCoordinatorController extends Controller
             'date' => $validatedData['date'],
             'to' => $validatedData['to'],
             'message' => $validatedData['message'],
-            'image' => $validatedData['image'],
         ]);
         $event->save();
 
@@ -293,7 +275,6 @@ class ABAKAProjectCoordinatorController extends Controller
         events::findOrFail($aid)->update([
             'title'=>$request->title,
             'to'=>$request->to,
-            'image'=>$request->image,
             'message'=>$request->message,
         ]);
 

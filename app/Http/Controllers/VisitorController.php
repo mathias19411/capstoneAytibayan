@@ -83,8 +83,6 @@ class VisitorController extends Controller
         ->with('program')
         ->get();
 
-        toastr()->timeOut(10000)->addInfo('Welcome to the Website of APAO Region V!');
-
         return view('Visitor.visitor_index', compact('programs', 'programNames', 'beneficiaryCounts', 'dataLineChart', 'months', 'monthCount', 'beneficiaryCount', 'cities', 'announcement', 'events', 'coordinators'));
     } // End Method
 
@@ -121,7 +119,7 @@ class VisitorController extends Controller
         // 
         // Validate the request
         $validatedData = $request->validate([
-            'fullname' => 'required|string|max:255',
+            'fullname' => 'required|string',
             'from'=> 'string',
             'to' => 'required|string',
             'email' => 'required|email',

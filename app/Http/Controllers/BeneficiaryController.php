@@ -231,7 +231,7 @@ class BeneficiaryController extends Controller
 
     // Validate the request
     $validatedData = $request->validate([
-        'fullname' => 'required|string|max:255',
+        'fullname' => 'required|string',
         'from'=> 'string',
         'recipient' => 'required|string',
         'programEmail'=> 'string',
