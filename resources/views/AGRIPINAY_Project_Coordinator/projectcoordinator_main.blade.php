@@ -1035,7 +1035,8 @@ $(document).ready(function() {
   });
 </script>
 
-<script>
+
+ <script>
     document.addEventListener('DOMContentLoaded', function () {
         const exportButton = document.getElementById('exportButton');
         exportButton.addEventListener('click', exportTable);
@@ -1045,7 +1046,7 @@ $(document).ready(function() {
             const rows = table.querySelectorAll('tbody tr');
 
             // Create a CSV string
-            let csvContent = "User ID,Beneficiary,Barangay,City,Status,Project,Amount,Hectares,Assistance Status\n";
+            let csvContent = "User ID,Beneficiary,Barangay,City,Project,Term 'Months',Repayment Schedule,Date of Maturity,Loan Amount,Balance,Incoming Loan Status,Current Loan Status\n";
 
             rows.forEach(row => {
                 const cells = row.querySelectorAll('td');
@@ -1053,13 +1054,16 @@ $(document).ready(function() {
                 const beneficiary = cells[1].textContent.replace(/\n/g, ' ').trim();
                 const barangay = cells[2].textContent.trim();
                 const city = cells[3].textContent.trim();
-                const status = cells[4].textContent.trim();
-                const project = cells[5].textContent.trim();
-                const amount = cells[6].textContent.trim();
-                const hectares = cells[7].textContent.trim();
-                const assistanceStatus = cells[9].textContent.trim();
+                const project = cells[4].textContent.trim();
+                const termMonths = cells[5].textContent.trim();
+                const repaymentSchedule = cells[6].textContent.trim();
+                const dateOfMaturity = cells[7].textContent.trim();
+                const loanAmount = cells[8].textContent.trim();
+                const balance = cells[9].textContent.trim();
+                const incomingLoanStatus = cells[10].textContent.trim();
+                const currentLoanStatus = cells[11].textContent.trim();
 
-                const rowData = `${userId},${beneficiary},${barangay},${city},${status},${project},${amount},${hectares},${assistanceStatus}`;
+                const rowData = `${userId},${beneficiary},${barangay},${city},${project},${termMonths},${repaymentSchedule},${dateOfMaturity},${loanAmount},${balance},${incomingLoanStatus},${currentLoanStatus}`;
                 csvContent += rowData + '\n';
             });
 
@@ -1070,11 +1074,13 @@ $(document).ready(function() {
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
-            link.download = `${dateTime}.csv`;
+            link.download = `AGRIPINAY (${dateTime}).csv`;
             link.click();
         }
     });
 </script>
+
+
 
 </body>
 
