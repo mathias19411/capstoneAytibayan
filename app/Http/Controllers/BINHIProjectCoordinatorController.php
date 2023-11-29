@@ -2,52 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Financialassistancehistory;
-use App\Models\Projects;
-use App\Models\Schedule;
-use App\Models\Updates;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\WebsiteNotifications;
-
 use App\Mail\FinancialAssistanceStatusUpdate;
-use App\Mail\LoanStatusUpdate;
 use App\Mail\ReplyMailable;
 use App\Models\announcement;
 use App\Models\Assistancesteps;
-use App\Models\Currentloanstatus;
 use App\Models\events;
 use App\Models\File;
 use App\Models\Financialassistance;
+use App\Models\Financialassistancehistory;
 use App\Models\Financialassistancestatus;
 use App\Models\inquiries;
 use App\Models\Loan;
-use App\Models\Loanhistory;
 use App\Models\Loanstatus;
 use App\Models\Program;
 use App\Models\progress;
+use App\Models\Projects;
 use App\Models\Role;
+use App\Models\Schedule;
 use App\Models\Status;
+use App\Models\Updates;
 use App\Models\User;
 use App\Notifications\AccountUpdateNotif;
 use App\Notifications\BlacklistNotification;
-use App\Notifications\CurrentLoanUpdate;
 use App\Notifications\FinancialAssistanceStatusRejected;
 use App\Notifications\FinancialAssistanceStatusUpdated;
 use App\Notifications\InactiveStatusNotif;
-use App\Notifications\LoanRejected;
-use App\Notifications\LoanRepaymentNotif;
-use App\Notifications\LoanStatusUpdated;
 use App\Notifications\PasswordUpdateNotif;
-use App\Notifications\RepaymentSchedule;
 use App\Notifications\RestoreNotification;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\WebsiteNotifications;
 use Illuminate\Validation\Rules\Password;
 
-class AGRIPINAYProjectCoordinatorController extends Controller
+
+
+class BINHIProjectCoordinatorController extends Controller
 {
     public function ProjectCoordinatorHome()
     {
@@ -73,21 +65,21 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         $benefSchedules = Schedule::where(function ($query) use ($programName) {
                 $query->where('from', $programName);})->get();
 
-        $agripinayBeneficiaries = User::whereHas('role', function ($query) {
+        $binhiBeneficiaries = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
         })->where('blacklisted', false)->get();
 
         //total benef count
-        $agripinayBeneficiariesCount = User::whereHas('role', function ($query) {
+        $binhiBeneficiariesCount = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
         })->count();
 
         //total active benef
-        $agripinayActiveCount = User::whereHas('role', function ($query) {
+        $binhiActiveCount = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
@@ -96,7 +88,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         })->count();
 
         //total inactive benef
-        $agripinayInactiveCount = User::whereHas('role', function ($query) {
+        $binhiInactiveCount = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
@@ -104,7 +96,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             $query->where('status_name', 'Inactive');
         })->count();
 
-        return view('AGRIPINAY_Project_Coordinator.beneficiary', compact('userProfileData', 'agripinayBeneficiaries', 'agripinayBeneficiariesCount', 'agripinayActiveCount', 'agripinayInactiveCount', 'programName', 'updates', 'project', 'benefSchedules'));
+        return view('BINHI_Project_Coordinator.beneficiary', compact('userProfileData', 'binhiBeneficiaries', 'binhiBeneficiariesCount', 'binhiActiveCount', 'binhiInactiveCount', 'programName', 'updates', 'project', 'benefSchedules'));
     } // End Method
 
     public function ProjectCoordinatorLogout(Request $request)
@@ -137,20 +129,20 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         $announcement = announcement::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
 
-        return view('AGRIPINAY_Project_Coordinator.announcement', compact('announcement','programName', 'roleName'));
+        return view('BINHI_Project_Coordinator.announcement', compact('announcement','programName', 'roleName'));
     } // End Method
 
     public function ProjectCoordinatorAnnouncementEdit($id)
     {
         $announcement = announcement::findOrFail($id);
 
-        return view('AGRIPINAY_Project_Coordinator.announcement', compact('announcement'));
+        return view('BINHI_Project_Coordinator.announcement', compact('announcement'));
     } // End Method
 
     public function ProjCoordinatorAnnouncementStore(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
-        $agripinayBeneficiaries = User::whereHas('role', function ($query) {
+        $binhiBeneficiaries = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
@@ -230,14 +222,14 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         $event = events::where(function ($query) use ($programName, $public) {
             $query->where('to', $programName)->orWhere('to', $public);})->get();
 
-        return view('AGRIPINAY_Project_Coordinator.event', compact('event','programName', 'roleName'));
+        return view('BINHI_Project_Coordinator.event', compact('event','programName', 'roleName'));
     } // End Method
 
     public function ProjectCoordinatorEventEdit($id)
     {
         $event = events::findOrFail($id);
 
-        return view('AGRIPINAY_Project_Coordinator.event', compact('event'));
+        return view('BINHI_Project_Coordinator.event', compact('event'));
     } // End Method
 
     public function ProjCoordinatorEventStore(Request $request)
@@ -406,7 +398,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         // Count unread announcements
         $unreadCount = Inquiries::where('is_unread', true)->count();
 
-        return view('AGRIPINAY_Project_Coordinator.inquiry', compact('roleName','programName','inquiry', 'userEmail', 'unreadCount'));
+        return view('BINHI_Project_Coordinator.inquiry', compact('roleName','programName','inquiry', 'userEmail', 'unreadCount'));
     } // End Method
     public function markAsRead(Request $request)
     {
@@ -481,6 +473,230 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             return redirect()->back()->with('error', 'Record Not Found!');
         }
     } // End Method
+    
+    public function ProjCoordinatorProgress()
+    {
+        $progress = progress::all();
+
+        $userRole = AUTH::user()->role->role_name;
+
+        $userProgramId = AUTH::user()->program->id;
+
+        //total benef count
+        $binhiBeneficiariesCount = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->count();
+
+        //total active benef
+        $binhiActiveCount = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->whereHas('status', function ($query) {
+            $query->where('status_name', 'Active');
+        })->count();
+
+        //total inactive benef
+        $binhiInactiveCount = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->whereHas('status', function ($query) {
+            $query->where('status_name', 'Inactive');
+        })->count();
+
+        $totalActiveAndInactiveCount = [$binhiActiveCount, $binhiInactiveCount];
+
+        $binhiBeneficiaries = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->whereHas('status', function ($query) {
+            $query->where('status_name', 'Active');
+        })->where('blacklisted', false)->get();
+
+
+        // $users = User::whereHas('role', function ($query) {
+        //     $query->where('role_name', 'beneficiary');
+        // })->whereHas('program', function ($query) use ($programId) {
+        //     $query->where('id', $programId);
+        // })->get();
+        $id = AUTH::user()->id;
+
+        // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = 'Public';
+        $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
+        $project = Projects::where(function ($query) use ($programName, $public) {
+            $query->where('recipient', $programName)->orwhere('recipient', $public);})->get();
+
+        $assistanceStatuses = Financialassistancestatus::all();
+
+        $filteredassistanceStatuses = $assistanceStatuses->filter(function ($assistanceStatus) {
+            return in_array($assistanceStatus->id, [2, 3, 4, 5, 6]);
+        });
+
+        $assistanceUnsettledStatus = Financialassistancestatus::where('financial_assistance_status_name', 'unsettled')->first();
+
+        return view('BINHI_Project_Coordinator.progress', compact('progress', 'binhiBeneficiariesCount', 'binhiActiveCount', 'binhiInactiveCount', 'binhiBeneficiaries', 'filteredassistanceStatuses', 'totalActiveAndInactiveCount', 'assistanceUnsettledStatus', 'project', 'userEmail', 'programName', 'roleName'));
+    } // End Method
+
+    public function ProjCoordinatorProgressAdd(Request $request)
+    {
+        $userId = $request->userId;
+
+        // Validate form inputs
+        $validatedData = $request->validate([
+            'project' => ['required', 'string', 'max:70'],
+            'amount' => ['required', 'numeric'],
+            'hectares' => ['required', 'numeric'],
+        ]);
+
+        if ($validatedData)
+        {
+            Financialassistance::create([
+                'user_id' => $userId,
+                'project' => $validatedData['project'],
+                'amount' => $validatedData['amount'],
+                'number_of_hectares' => $validatedData['hectares'],
+                'financialassistancestatus_id' => 2,
+            ]);
+
+            /** @var \App\Models\User $user **/
+            //Access the authenticated user's id
+            $user = User::findOrFail($userId);
+
+            $user->notify(new FinancialAssistanceStatusUpdated());
+
+            //send via sms
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
+
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $user->financialAssistanceStatus->financial_assistance_status_name. " today at " . $user->assistance->updated_at)
+            // );
+
+            // $message = $response->current();
+
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
+        }
+
+
+        toastr()->timeOut(10000)->addSuccess('A new Beneficiary Project has been added!');
+
+        return redirect()->route('binhiprojectcoordinator.progress');
+    } // End Method
+
+    public function ProjCoordinatorProgressUpdate(Request $request)
+    {
+        $assistanceId = $request->assistanceId;
+
+        $userId = $request->userId;
+
+        $financialAssistanceId = Financialassistance::findOrFail($assistanceId);
+
+        if ($request->inputAssistanceUpdate == 6) {
+
+            $financialAssistanceId->delete();
+
+            /** @var \App\Models\User $user **/
+            //Access the authenticated user's id
+            $user = User::findOrFail($userId);
+
+            $user->notify(new FinancialAssistanceStatusRejected());
+            // Status is "rejected," delete the associated row
+
+            //send via sms
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
+
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
+            // );
+
+            // $message = $response->current();
+
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
+
+        }
+        elseif ($request->inputAssistanceUpdate == 5) {
+            $financialAssistanceId->update([
+                'financialassistancestatus_id' => $request->inputAssistanceUpdate,
+            ]);
+
+            Financialassistancehistory::create([
+                'transaction_type' => 'financial assistance',
+                'user_id' => $userId,
+                'financialassistance_id' => $assistanceId,
+            ]);
+
+            $financialAssistanceId->user->notify(new FinancialAssistanceStatusUpdated());
+
+            //send via sms
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
+
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($financialAssistanceId->user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
+            // );
+
+            // $message = $response->current();
+
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
+        }
+        else
+        {
+            $financialAssistanceId->update([
+                'financialassistancestatus_id' => $request->inputAssistanceUpdate,
+            ]);
+
+            // Send an email notification to the user
+            if (in_array($request->inputAssistanceUpdate, [2, 3, 4])) {
+                // Use the IDs that correspond to "started", "pending," "approved," and "disbursed" status
+                $financialAssistanceId->user->notify(new FinancialAssistanceStatusUpdated());
+
+                //send via sms
+                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+                // $client = new \Vonage\Client($basic);
+
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($financialAssistanceId->user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
+                // );
+
+                // $message = $response->current();
+
+                // if ($message->getStatus() == 0) {
+                //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+                // } else {
+                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+                // }
+            }
+        }
+
+        toastr()->timeOut(10000)->addSuccess('Beneficiary Financial Assistance Status has been updated!');
+
+        return redirect()->route('binhiprojectcoordinator.progress');
+    } // End Method
+
     public function ProjCoordinatorAddProject(Request $request)
     {
         $validatedData = $request->validate([
@@ -576,435 +792,6 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             return redirect()->back()->with('error', 'Record Not Found!');
         }
     } // End Method
-    public function ProjCoordinatorProgress()
-    {
-        $progress = progress::all();
-
-        $userRole = AUTH::user()->role->role_name;
-
-        $userProgramId = AUTH::user()->program->id;
-
-        //total benef count
-        $agripinayBeneficiariesCount = User::whereHas('role', function ($query) {
-            $query->where('role_name', 'beneficiary');
-        })->whereHas('program', function ($query) use ($userProgramId) {
-            $query->where('id', $userProgramId);
-        })->count();
-
-        //total active benef
-        $agripinayActiveCount = User::whereHas('role', function ($query) {
-            $query->where('role_name', 'beneficiary');
-        })->whereHas('program', function ($query) use ($userProgramId) {
-            $query->where('id', $userProgramId);
-        })->whereHas('status', function ($query) {
-            $query->where('status_name', 'Active');
-        })->count();
-
-        //total inactive benef
-        $agripinayInactiveCount = User::whereHas('role', function ($query) {
-            $query->where('role_name', 'beneficiary');
-        })->whereHas('program', function ($query) use ($userProgramId) {
-            $query->where('id', $userProgramId);
-        })->whereHas('status', function ($query) {
-            $query->where('status_name', 'Inactive');
-        })->count();
-
-        $totalActiveAndInactiveCount = [$agripinayActiveCount, $agripinayInactiveCount];
-
-        $agripinayBeneficiaries = User::whereHas('role', function ($query) {
-            $query->where('role_name', 'beneficiary');
-        })->whereHas('program', function ($query) use ($userProgramId) {
-            $query->where('id', $userProgramId);
-        })->whereHas('status', function ($query) {
-            $query->where('status_name', 'Active');
-        })->where('blacklisted', false)->get();
-
-
-        // $users = User::whereHas('role', function ($query) {
-        //     $query->where('role_name', 'beneficiary');
-        // })->whereHas('program', function ($query) use ($programId) {
-        //     $query->where('id', $programId);
-        // })->get();
-
-        $loanStatuses = Loanstatus::all();
-
-        $filteredLoanStatuses = $loanStatuses->filter(function ($loanStatus) {
-            return in_array($loanStatus->id, [2, 3, 4, 5, 6]);
-        });
-
-        $currentLoanStatuses = Currentloanstatus::all();
-
-        $filteredCurrentLoanStatuses = $currentLoanStatuses->filter(function ($currentLoanStatus) {
-            return in_array($currentLoanStatus->id, [1, 2, 4]);
-        });
-
-        $loanUnsettledStatus = Loanstatus::where('loan_status_name', 'unsettled')->first();
-
-        foreach ($agripinayBeneficiaries as $agripinayBeneficiary) {
-            if ($agripinayBeneficiary->loan) {
-                // Find loans where the repayment schedule is in the past
-                $overdueLoans = Loan::whereDate('repayment_schedule', '<', now())
-                ->where('currentloanstatus_id', '!=', 4)
-                ->get();
-    
-                foreach ($overdueLoans as $overdueLoan) {
-                    // Update the currentloanstatus to "overdue"
-                    $overdueLoan->update(['currentloanstatus_id' => 4]);
-                    $overdueLoan->save();
-                }
-                
-            }
-        }
-        
-        
-
-        return view('AGRIPINAY_Project_Coordinator.progress', compact('progress', 'agripinayBeneficiariesCount', 'agripinayActiveCount', 'agripinayInactiveCount', 'agripinayBeneficiaries', 'filteredLoanStatuses', 'filteredCurrentLoanStatuses', 'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
-
-    } // End Method
-
-    public function ProjCoordinatorProgressAdd(Request $request)
-    {
-        $userId = $request->userId;
-
-        // Validate form inputs
-        $validatedData = $request->validate([
-            'project' => ['required', 'string', 'max:70'],
-            'amount' => ['required', 'numeric'],
-            'term' => ['required', 'numeric'],
-            'repaymentSched' => ['required', 'date'],
-            'maturity' => ['required', 'date'],
-        ]);
-
-        if ($validatedData)
-        {
-            Loan::create([
-                'user_id' => $userId,
-                'project' => $validatedData['project'],
-                'loan_amount' => $validatedData['amount'],
-                'loan_term_in_months' => $validatedData['term'],
-                'repayment_schedule' => $validatedData['repaymentSched'],
-                'date_of_maturity' => $validatedData['maturity'],
-                'remaining_loan_balance' => $validatedData['amount'],
-                'loanstatus_id' => 2,
-                'currentloanstatus_id' => 1,
-            ]);
-
-            /** @var \App\Models\User $user **/
-            //Access the authenticated user's id
-            $user = User::findOrFail($userId);
-
-            $user->notify(new LoanStatusUpdated());
-
-            //send via sms
-            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            // $client = new \Vonage\Client($basic);
-
-            // $response = $client->sms()->send(
-            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $user->financialAssistanceStatus->financial_assistance_status_name. " today at " . $user->assistance->updated_at)
-            // );
-
-            // $message = $response->current();
-
-            // if ($message->getStatus() == 0) {
-            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-            // } else {
-            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            // }
-        }
-
-
-        toastr()->timeOut(10000)->addSuccess('A new Beneficiary Project has been added!');
-
-        return redirect()->route('agripinayprojectcoordinator.progress');
-    } // End Method
-
-    public function ProjCoordinatorProgressUpdate(Request $request)
-    {
-        $loanId = $request->loanId;
-
-        $userId = $request->userId;
-
-        $userLoanId = Loan::findOrFail($loanId);
-
-        /** @var \App\Models\User $user **/
-            //Access the authenticated user's id
-            $user = User::findOrFail($userId);
-
-        if ($request->inputLoanUpdate == 6) {
-
-            $userLoanId->delete();
-
-            $user->notify(new LoanRejected());
-            // Status is "rejected," delete the associated row
-
-            //send via sms
-            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            // $client = new \Vonage\Client($basic);
-
-            // $response = $client->sms()->send(
-            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
-            // );
-
-            // $message = $response->current();
-
-            // if ($message->getStatus() == 0) {
-            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-            // } else {
-            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            // }
-
-        }
-        elseif ($request->inputLoanUpdate == 5) {
-            $userLoanId->update([
-                'loanstatus_id' => $request->inputLoanUpdate,
-            ]);
-
-            Loanhistory::create([
-                'transaction_type' => 'loan disbursement',
-                'user_id' => $userId,
-                'loan_id' => $loanId,
-            ]);
-
-            $userLoanId->user->notify(new LoanStatusUpdated());
-
-            //send via sms
-            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            // $client = new \Vonage\Client($basic);
-
-            // $response = $client->sms()->send(
-            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
-            // );
-
-            // $message = $response->current();
-
-            // if ($message->getStatus() == 0) {
-            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-            // } else {
-            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            // }
-        }
-        else
-        {
-            $userLoanId->update([
-                'loanstatus_id' => $request->inputLoanUpdate,
-            ]);
-
-            // Send an email notification to the user
-            if (in_array($request->inputLoanUpdate, [2, 3, 4])) {
-                // Use the IDs that correspond to "pending," "approved," and "disbursed" status
-                $userLoanId->user->notify(new LoanStatusUpdated());
-
-                //send via sms
-                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-                // $client = new \Vonage\Client($basic);
-
-                // $response = $client->sms()->send(
-                //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
-                // );
-
-                // $message = $response->current();
-
-                // if ($message->getStatus() == 0) {
-                //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-                // } else {
-                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-                // }
-            }
-        }
-
-        toastr()->timeOut(10000)->addSuccess('Beneficiary Incoming Loan Status has been updated!');
-
-        return redirect()->route('agripinayprojectcoordinator.progress');
-    } // End Method
-
-    public function ProjCoordinatorCurrentLoanUpdate(Request $request)
-    {
-        $loanId = $request->loanId;
-
-        $userId = $request->userId;
-
-        $userLoanId = Loan::findOrFail($loanId);
-
-        /** @var \App\Models\User $user **/
-            //Access the authenticated user's id
-            $user = User::findOrFail($userId);
-
-        if ($request->inputCurrentLoanUpdate == 3) {
-            $userLoanId->update([
-                'currentloanstatus_id' => $request->inputCurrentLoanUpdate,
-            ]);
-
-            Loanhistory::create([
-                'transaction_type' => 'loan repayment',
-                'user_id' => $userId,
-                'loan_id' => $loanId,
-            ]);
-
-            $userLoanId->user->notify(new CurrentLoanUpdate());
-
-            //send via sms
-            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            // $client = new \Vonage\Client($basic);
-
-            // $response = $client->sms()->send(
-            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
-            // );
-
-            // $message = $response->current();
-
-            // if ($message->getStatus() == 0) {
-            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-            // } else {
-            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            // }
-        }
-        else
-        {
-            $userLoanId->update([
-                'currentloanstatus_id' => $request->inputCurrentLoanUpdate,
-            ]);
-
-            // Send an email notification to the user
-            if (in_array($request->inputCurrentLoanUpdate, [2, 4])) {
-                // Use the IDs that correspond to "pending," "approved," and "disbursed" status
-                $userLoanId->user->notify(new CurrentLoanUpdate());
-
-                //send via sms
-                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-                // $client = new \Vonage\Client($basic);
-
-                // $response = $client->sms()->send(
-                //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
-                // );
-
-                // $message = $response->current();
-
-                // if ($message->getStatus() == 0) {
-                //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-                // } else {
-                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-                // }
-            }
-        }
-
-        toastr()->timeOut(10000)->addSuccess('Beneficiary Current Loan Status has been updated!');
-
-        return redirect()->route('agripinayprojectcoordinator.progress');
-    } // End Method
-
-
-    public function ProjCoordinatorProgressUpdateRepayment(Request $request)
-    {
-        $loanId = $request->loanId;
-
-        $userId = $request->userId;
-
-        $userLoanId = Loan::findOrFail($loanId);
-
-        $validatedData = $request->validate([
-            'inputRepayment' => 'required', 'numeric', 'min:0', 'max:' . $userLoanId->remaining_loan_balance,
-        ]);
-
-        // Subtract the inputRepayment from remaining_loan_balance
-        $newRemainingBalance = $userLoanId->remaining_loan_balance - $validatedData['inputRepayment'];
-
-        // Update the remaining_loan_balance
-        $userLoanId->update([
-            'remaining_loan_balance' => $newRemainingBalance
-        ]);
-
-        /** @var \App\Models\User $user **/
-            //Access the authenticated user's id
-            $user = User::findOrFail($userId);
-
-        if ($userLoanId->remaining_loan_balance == 0) {
-            // If there is no more balance left in loan then update the status of loan as fully paid
-            $userLoanId->update([
-                'currentloanstatus_id' => 3
-            ]);
-
-            Loanhistory::create([
-                'transaction_type' => 'loan repayment',
-                'user_id' => $userId,
-                'loan_id' => $loanId,
-            ]);
-
-            $userLoanId->user->notify(new CurrentLoanUpdate());
-
-            //send via sms
-            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            // $client = new \Vonage\Client($basic);
-
-            // $response = $client->sms()->send(
-            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
-            // );
-
-            // $message = $response->current();
-
-            // if ($message->getStatus() == 0) {
-            //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-            // } else {
-            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            // }
-        }
-
-        $user->notify(new LoanRepaymentNotif());
-        // Status is "rejected," delete the associated row
-
-        //send via sms
-        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        // $client = new \Vonage\Client($basic);
-
-        // $response = $client->sms()->send(
-        //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
-        // );
-
-        // $message = $response->current();
-
-        // if ($message->getStatus() == 0) {
-        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-        // } else {
-        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        // }
-
-        toastr()->timeOut(10000)->addSuccess('Beneficiary loan repayment successful!');
-
-        return redirect()->route('agripinayprojectcoordinator.progress');
-    } // End Method
-
-    public function ProjCoordinatorProgressLoanReminder(Request $request, $userId)
-    {
-        try {
-            $currentTime = now()->format('Y-m-d H:i:s');
-
-                $user = User::findOrFail($userId);
-    
-                $user->notify(new RepaymentSchedule());
-                // Status is "rejected," delete the associated row
-    
-                //send via sms
-                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-                // $client = new \Vonage\Client($basic);
-    
-                // $response = $client->sms()->send(
-                //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
-                // );
-    
-                // $message = $response->current();
-    
-                // if ($message->getStatus() == 0) {
-                //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-                // } else {
-                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-                // }
-    
-            toastr()->timeOut(10000)->addSuccess('Loan Reminder Sent!');
-
-            return response()->json(['message' => 'Loan Reminder Notification sent successfully']);
-        } catch (\Exception $e) {
-        return response()->json(['error' => 'Error sending notification: ' . $e->getMessage()], 500);
-        }
-    } // End Method
 
     public function ProjCoordinatorViewProfile()
     {
@@ -1014,10 +801,8 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        return view('AGRIPINAY_Project_Coordinator.profile', compact('userProfileData'));
+        return view('BINHI_Project_Coordinator.profile', compact('userProfileData'));
     } // End Method
-
-    
 
     public function ProjCoordinatorEditProfile(Request $request)
     {
@@ -1080,7 +865,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        return view('AGRIPINAY_Project_Coordinator.pass', compact('userProfileData'));
+        return view('BINHI_Project_Coordinator.pass', compact('userProfileData'));
     } // End Method
 
     public function ProjCoordinatorEditChangePassword(Request $request)
@@ -1094,7 +879,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         //Validation
         $request->validate([
             'inputOldPassword' => 'required',
-            'inputNewPassword' => ['required', 'confirmed', Password::min(8)->letters()->numbers()->mixedCase()->symbols() ],
+            'inputNewPassword' => ['required', 'confirmed', Password::min(8)->letters()->numbers()->mixedCase()->symbols() ], 
         ]);
 
         ///Match the old password
@@ -1149,7 +934,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             $query->where('id', $programId);
         })->where('blacklisted', false)->get();
 
-        return view('AGRIPINAY_Project_Coordinator.registerView', compact('users', 'roles', 'statuses'));
+        return view('BINHI_Project_Coordinator.registerView', compact('users', 'roles', 'statuses'));
     } // End Method
 
     public function ProjCoordinatorRegisterEditUser(Request $request)
@@ -1199,15 +984,13 @@ class AGRIPINAYProjectCoordinatorController extends Controller
 
             // Find beneficiaries with the same "program_id"
             $beneficiaries = User::where('role_id', 7)
-                ->where('program_id', $coordinator->program_id)
-                ->where('blacklisted', false)->whereHas('status', function ($query) {
-                    $query->where('status_name', 'Active');
-                })->get();
+                ->where('program_id', $coordinator->program_id)->where('blacklisted', false)
+                ->get();
 
             // Send emails to beneficiaries
             foreach ($beneficiaries as $beneficiary) {
                 // Send email using the FinancialAssistanceStatusUpdate Mailable
-                Mail::to($beneficiary->email)->send(new LoanStatusUpdate($description));
+                Mail::to($beneficiary->email)->send(new FinancialAssistanceStatusUpdate($description));
 
                 //send via sms
                 // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
@@ -1234,40 +1017,62 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         }
     }
 
+    public function markInquiryAsRead(Inquiries $inquiry)
+    {
+        \Log::info('Inquiry ID: ' . $inquiry->id); // Log the ID
+
+        try {
+            $inquiry->update(['is_read' => true]);
+            return response()->json(['message' => 'Message marked as read']);
+        } catch (\Exception $e) {
+            // Log the error
+            \Log::error('Error marking message as read: ' . $e->getMessage());
+
+            // Return an error response
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+    }
     public function CoordinatorBlacklistView()
     {
         //Access the authenticated user's id
         $id = AUTH::user()->id;
 
+        //Access the authenticated user's id
+        $programId = AUTH::user()->program_id;
+
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        $users = User::orderBy('id', 'asc')->where('blacklisted', true)->get();
+        $users = User::orderBy('id', 'asc')->whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($programId) {
+            $query->where('id', $programId);
+        })->where('blacklisted', true)->get();
 
-        return view('AGRIPINAY_Project_Coordinator.blacklisted', compact('userProfileData', 'users'));
+        return view('BINHI_Project_Coordinator.blacklisted', compact('userProfileData', 'users'));
     } // End Method
 
     public function CoordinatorBlacklistUser($id)
     {
         $userId = User::findOrFail($id);
 
-        if ($userId->loan) {
-            $loanId = $userId->loan->id;
+        if ($userId->assistance) {
+            $asstId = $userId->assistance->id;
 
-            $userLoanId = Loan::findOrFail($loanId);
+            $userAsstId = Financialassistance::findOrFail($asstId);
 
-            $userLoanId->delete();
+            $userAsstId->delete();
 
             $userId->update([
                 'blacklisted' => true,
             ]);
+
         }
         else {
             $userId->update([
                 'blacklisted' => true,
             ]);
         }
-
 
         //notify via email
         $userId->notify(new BlacklistNotification());
@@ -1325,3 +1130,10 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         return redirect()->back();
     } // End Method
 }
+
+
+    
+
+    
+
+

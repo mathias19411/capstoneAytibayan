@@ -12,8 +12,8 @@
             <label for="unread-filter">Filter: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="unread">Read</option>
-                <option value="read">Unread</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
@@ -123,7 +123,7 @@
     </div>
 </form>
 
-<div class="modal fade" id="myModal" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+<div class="modal fade" id="myModal" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

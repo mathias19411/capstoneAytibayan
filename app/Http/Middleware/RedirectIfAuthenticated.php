@@ -38,9 +38,9 @@ class RedirectIfAuthenticated
                 {
                     $url = '/ITStaff/home';
                 }
-                else if ($roleName === 'projectcoordinator')
+                else if ($roleName === 'binhiprojectcoordinator')
                 {
-                    $url = '/ProjectCoordinator/home';
+                    $url = '/BINHI_ProjectCoordinator/home';
                 }
                 else if ($roleName === 'abakaprojectcoordinator')
                 {
