@@ -9,6 +9,8 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('Assets/css/UserProfile.css') }}">
+    <script src="https://kit.fontawesome.com/6297197d39.js" crossorigin="anonymous"></script>
+
 </head>
 {{-- @php
         //Access the authenticated user's id
@@ -28,8 +30,8 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="col-lg-7 col-md-10">
-                    <h1 class="display-2"></h1>
-                    <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
+                    <h1 class="display-2">Hello {{ $userProfileData->first_name }}!</h1>
+                    <a href="{{ route('binhiprojectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
                 </div>
             </div>
         </div>
@@ -43,7 +45,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/ITStaff_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/Coordinator_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                                             class="img-fluid rounded-circle">
                                     </a>
                                 </div>
@@ -62,7 +64,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         </div>
                                         <div>
                                             <span class="heading">{{ $userProfileData->middle_name }}</span>
-                                            <span class="description">Midldle Name</span>
+                                            <span class="description">Middle Name</span>
                                         </div>
                                         <div>
                                             <span class="heading"> {{ $userProfileData->last_name }}</span>
@@ -90,7 +92,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 
 
                                 <h3>
-                                    {{ $userProfileData->primary_address }}, {{ $userProfileData->city }},
+                                    {{ $userProfileData->barangay }}, {{ $userProfileData->city }},
                                     {{ $userProfileData->province }}, {{ $userProfileData->zip }}<span
                                         class="font-weight-light"></span>
                                 </h3>
@@ -114,10 +116,25 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('itstaff.editchangepassword') }}">
+                            <form method="POST" action="{{ route('binhiprojectcoordinator.editchangepassword') }}">
                                 @csrf
                                 <h6 class="heading-small text-muted mb-4">Change Password</h6>
                                 <div class="pl-lg-4">
+                                <div class="form-group focused">
+                                    <label class="form-control-label" for="inputOldPassword">Old Password</label>
+                                    <div class="input-group">
+                                        <input type="password" name="inputOldPassword"
+                                            class="form-control form-control-alternative @error('inputOldPassword') is-invalid @enderror"
+                                            id="inputOldPassword" placeholder="Old Password" autocomplete="off">
+                                        <span class="eyeicon" id="eyeIconOld" style="display: none;" onclick="togglePasswordVisibility('inputOldPassword', 'eyeIconOld')">
+                                            <i class="fas fa-eye-slash" style="color: #808080;"></i>
+                                        </span>
+                                    </div>
+                                    @error('inputOldPassword')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                    <!--
                                     <div class="form-group focused">
                                         <label class="form-control-label" for="inputOldPassword">Old Password</label>
                                         <input type="password" name="inputOldPassword"
@@ -127,14 +144,19 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                         @error('inputOldPassword')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
-
+                                            <i id="eyeIcon" onclick="togglePasswordVisibility()"  class="fa-solid fa-eye" style="color: black; border: none;"></i> 
                                     </div>
+                                            -->
                                     <div class="form-group focused">
                                         <label class="form-control-label" for="inputNewPassword">New Password</label>
-                                        <input type="password" name="inputNewPassword"
-                                            class="form-control form-control-alternative @error('inputNewPassword') is-invalid
-                                            @enderror"
-                                            id="inputNewPassword" placeholder="New Password" autocomplete="off">
+                                        <div class="input-group">
+                                            <input type="password" name="inputNewPassword"
+                                                class="form-control form-control-alternative @error('inputNewPassword') is-invalid @enderror"
+                                                id="inputNewPassword" placeholder="New Password" autocomplete="off">
+                                            <span class="eyeicon" id="eyeIconNew" style="display: none;" onclick="togglePasswordVisibility('inputNewPassword', 'eyeIconNew')">
+                                                <i class="fas fa-eye-slash" style="color: #808080;"></i>
+                                            </span>
+                                        </div>
                                         @error('inputNewPassword')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -142,10 +164,14 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                                     <div class="form-group focused">
                                         <label class="form-control-label" for="inputConfirmNewPassword">Confirm New
                                             Password</label>
-                                        <input type="password" name="inputNewPassword_confirmation"
-                                            class="form-control form-control-alternative" id="inputConfirmNewPassword"
-                                            placeholder="Confirm New Password" autocomplete="off">
-                                    </div>
+                                            <div class="input-group">
+                                                <input type="password" name="inputNewPassword_confirmation"
+                                                    class="form-control form-control-alternative" id="inputConfirmNewPassword"
+                                                    placeholder="Confirm New Password" autocomplete="off">
+                                                <span class="eyeicon" id="eyeIconConfirmNew" style="display: none;" onclick="togglePasswordVisibility('inputConfirmNewPassword', 'eyeIconConfirmNew')">
+                                                    <i class="fas fa-eye-slash" style="color: #808080;"></i>
+                                                </span>
+                                            </div>
                                 </div>
                                 <hr class="my-4">
                                 <div class="button-container">
@@ -158,6 +184,10 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             </div>
         </div>
     </div>
+
+    
+    <script src="{{ asset('Assets/js/changepass.js') }}"></script>
+
 </body>
 
 </html>

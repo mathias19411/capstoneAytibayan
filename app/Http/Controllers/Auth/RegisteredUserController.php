@@ -104,7 +104,7 @@ class RegisteredUserController extends Controller
         if ($userRole == 'itstaff') {
             return redirect()->route('itstaff.registerView');
         } elseif ($userRole == 'binhiprojectcoordinator'){
-            return redirect()->route('projectcoordinator.registerView');
+            return redirect()->route('BINHI_Project_Coordinator.registerView');
         } elseif ($userRole == 'abakaprojectcoordinator'){
             return redirect()->route('abakaprojectcoordinator.registerView');
         } elseif ($userRole == 'agripinayprojectcoordinator'){

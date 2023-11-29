@@ -367,7 +367,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-lg-12 col-md-10" style="text-align: center;">
                     <h1 class="display-2"></h1>
                     @if ($userRole === 'binhiprojectcoordinator')
-                        <a href="{{ route('projectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
+                        <a href="{{ route('BINHI_Project_Coordinator.beneficiary') }}" class="btn btn-info ">Back to Home</a>
                     @elseif ($userRole === 'abakaprojectcoordinator')
                         <a href="{{ route('abakaprojectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
                     @elseif ($userRole === 'agripinayprojectcoordinator')

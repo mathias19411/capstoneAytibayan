@@ -18,16 +18,15 @@
         <li class="{{ request()->is('visitor.home') ? 'active' : '' }}">
             <a href="{{ route('visitor.home') }}" class="scrollToTopButton">Home</a>
         </li>
-
-            <li class="{{ Route::currentRouteName() == '#aboutSection' ? 'active' : '' }}">
-                <a href='#aboutSection'>About</a>
-            </li>
-            <li class="{{ Route::currentRouteName() == '#programsView' ? 'active' : '' }}">
-                <a class='dropdown-arrow' href='#programsView'>Programs</a>
-            </li>
-            <li class="{{ Route::currentRouteName() == '#contact' ? 'active' : '' }}">
-                <a href='#contact'>Contact Us</a>
-            </li>
+        <li class="{{ Route::currentRouteName() == 'about' ? 'active' : '' }}">
+            <a href='#aboutSection'>About</a>
+        </li>
+        <li class="{{ Route::currentRouteName() == 'programs' ? 'active' : '' }}">
+            <a href='#programsView'>Programs</a>
+        </li>
+        <li class="{{ Route::currentRouteName() == 'contact' ? 'active' : '' }}">
+            <a href='#contact'>Contact Us</a>
+        </li>
             @if (Route::has('login'))
                 @auth
                     @php
@@ -63,52 +62,51 @@
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        // Smooth scrolling for anchor links
-        $(".scrollToTopButton, a[href^='#']").on('click', function(e) {
-            e.preventDefault();
-            var targetSection = $(this).attr('href');
-            $('html, body').animate({
-                scrollTop: targetSection === '#top' ? 0 : $(targetSection).offset().top
-            }, 500);
-        });
+$(document).ready(function() {
+    $("#navbar a[href^='#']").on('click', function(e) {
+        e.preventDefault();
 
-        // Highlight active section in navigation
-        function highlightActiveSection() {
-            var scrollPosition = $(window).scrollTop();
-
-            // Check each section's offset from the top and highlight the corresponding navigation item
-            var highlighted = false;
-            $('section').each(function() {
-                var sectionId = $(this).attr('id');
-                var sectionTop = $(this).offset().top - 50; // Adjusted for better timing
-                var sectionBottom = sectionTop + $(this).outerHeight();
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                    $('li').removeClass('active');
-                    if (sectionId === 'home' || (sectionId === undefined && scrollPosition === 0)) {
-                        $('li:has(a[href="{{ route('visitor.home') }}"])').addClass('active');
-                        highlighted = true;
-                    } else {
-                        $('li:has(a[href="#' + sectionId + '"])').addClass('active');
-                        highlighted = true;
-                    }
-                }
-            });
-
-            // If no section is currently highlighted, highlight the "Home" link
-            if (!highlighted) {
-                $('li').removeClass('active');
-                $('li:has(a[href="{{ route('visitor.home') }}"])').addClass('active');
-            }
-        }
-
-        // Highlight "Home" link on page load
-        highlightActiveSection();
-
-        // Highlight "Home" link when scrolling or resizing
-        $(window).on('scroll resize', function() {
+        var targetSection = $(this).attr('href');
+        $('html, body').animate({
+            scrollTop: targetSection === '#top' ? 0 : $(targetSection).offset().top
+        }, 500, 'swing', function() {
+            // Highlight the active section after scrolling is complete
             highlightActiveSection();
         });
     });
+
+    function highlightActiveSection() {
+    var scrollPosition = $(window).scrollTop();
+
+    // Check each section's offset from the top and highlight the corresponding navigation item
+    var highlighted = false;
+    $('section').each(function() {
+        var sectionId = $(this).attr('id');
+        var sectionTop = $(this).offset().top - 50; // Adjusted for better timing
+        var sectionBottom = sectionTop + $(this).outerHeight();
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            $('#menu ul li').removeClass('active');
+            $('#menu ul li:has(a[href="#' + sectionId + '"])').addClass('active');
+            highlighted = true;
+        }
+    });
+
+    // If no section is currently highlighted, highlight the "Home" link
+    if (!highlighted) {
+        $('#menu ul li').removeClass('active');
+        $('#menu ul li:has(a[href="{{ route('visitor.home') }}"])').addClass('active');
+    }
+}
+
+// Highlight "Home" link on page load
+highlightActiveSection();
+
+// Highlight "Home" link when scrolling or resizing
+$(window).on('scroll resize', function() {
+    highlightActiveSection();
+});
+});
+
+
 </script>

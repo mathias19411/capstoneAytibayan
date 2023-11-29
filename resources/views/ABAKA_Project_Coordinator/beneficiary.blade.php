@@ -124,6 +124,8 @@
                                                             @foreach($benefSchedules->reverse() as $schedules)
                                                                 <div class="sched-card">
                                                                     <div class="box">
+                                                                        <div class="sched-design">
+                                                                        </div>
                                                                         <div class="sched-body">
                                                                         <p class="sched-date">Date: {{ $schedules->date }}</p>
                                                                         <p class="sched-time">Time: {{ $schedules->time }}</p>

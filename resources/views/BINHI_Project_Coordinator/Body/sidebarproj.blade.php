@@ -1,47 +1,65 @@
 <nav>
     <div class="logo-name">
         <div class="logo-image">
-            <img src="\images\Logo_BinhiNgPagasa.png" alt="">
+            <a href="{{ route('visitor.home') }}">
+                <img src="\images\Logo_AbacaMoPisoMo.png" alt="Logo">
+            </a>
         </div>
 
-        <span class="logo_name">BINHI NG PAG-ASA</span>
+        <span class="logo_name">BINHI MO PISO MO</span>
     </div>
+
+    @php
+        //Access the authenticated user's id
+$id = Illuminate\Support\Facades\AUTH::user()->id;
+
+//Access the specific row data of the user's id
+        //when using a model in blade.php, indicate the direct path of the model
+        $userProfileData = App\Models\User::find($id);
+    @endphp
 
     <div class="menu-items">
         <ul class="nav-links">
-            <li>
-                <a href="{{ route('projectcoordinator.beneficiaries') }}" class="{{ request()->is('Project_Coordinator/beneficiary') ? 'active' : '' }}">
-                    <i class="uil uil-users-alt"></i>
-                    <span class="link-name">Beneficiaries</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('projectcoordinator.announcement') }}" class="{{ request()->is('Project_Coordinator/announcement') ? 'active' : '' }}">
+            
+        <li class="{{ Route::currentRouteName() == 'BINHI_Project_Coordinator.beneficiary' ? 'active' : '' }}">
+        <a href="{{ route('BINHI_Project_Coordinator.beneficiary') }}">
+            <i class="uil uil-users-alt"></i>
+            <span class="link-name">Beneficiaries</span>
+        </a>
+    </li>
+    <li class="{{ Route::currentRouteName() == 'binhiprojectcoordinator.announcement' ? 'active' : '' }}">
+                <a href="{{ route('binhiprojectcoordinator.announcement') }}" >
                     <i class="uil uil-bell"></i>
                     <span class="link-name">Announcement</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('projectcoordinator.event') }}" class="{{ request()->is('Project_Coordinator/event') ? 'active' : '' }}">
+            <li class="{{ Route::currentRouteName() == 'binhiprojectcoordinator.event' ? 'active' : '' }}">
+                <a href="{{ route('binhiprojectcoordinator.event') }}" >
                     <i class="uil uil-calendar-alt"></i>
                     <span class="link-name">Event</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('projectcoordinator.inquiry') }}" class="{{ request()->is('Project_Coordinator/inquiry') ? 'active' : '' }}">
+            <li class="{{ Route::currentRouteName() == 'binhiprojectcoordinator.inquiry' ? 'active' : '' }}">
+                <a href="{{ route('binhiprojectcoordinator.inquiry') }}" >
                     <i class="uil uil-question-circle"></i>
                     <span class="link-name">Inquiry</span>
                 </a>
             </li>
 
-            <li>
-                <a href="{{ route('projectcoordinator.progress') }}" class="{{ request()->is('Project_Coordinator/progress') ? 'active' : '' }}">
+            <li class="{{ Route::currentRouteName() == 'binhiprojectcoordinator.progress' ? 'active' : '' }}">
+                <a href="{{ route('binhiprojectcoordinator.progress') }}" >
                     <i class="uil uil-check-circle"></i>
                     <span class="link-name">Progress</span>
                 </a>
             </li>
-            <li>
-                <a href="" class="">
+            <li class="{{ Route::currentRouteName() == 'binhiprojectcoordinator.BlacklistView' ? 'active' : '' }}">
+                <a href="{{ route('binhiprojectcoordinator.BlacklistView') }}">
+                    <i class="uil uil-x"></i>
+                    <span class="link-name">Blacklisted</span>
+                </a>
+            </li>
+            <li class="{{ Route::currentRouteName() == 'binhiprojectcoordinator.registerView' ? 'active' : '' }}">
+                <a href="{{ route('binhiprojectcoordinator.registerView') }}">
                     <i class="uil uil-user-plus"></i>
                     <span class="link-name">Registration</span>
                 </a>
@@ -56,7 +74,7 @@
         <ul class="logout-mode">
 
 
-            <li><a href="{{ route('projectCoordinator.logout') }}">
+            <li><a href="{{ route('binhiprojectCoordinator.logout') }}">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
@@ -73,22 +91,24 @@
         </div>
         <div class="profile-dropdown">
             <a href="#">
-                <i><img src="\images\logo.png" alt=""></i>
+                <i><img src="{{ !empty($userProfileData->photo) ? url('Uploads/Coordinator_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                    class="rounded-circle" alt="User Profile Image"></i>
 
             </a>
             <ul class="sub-menus">
                 <li class="profile-info">
                     <div class="profile-image">
-                        <img src="\images\logo.png" alt="">
+                        <img src="{{ !empty($userProfileData->photo) ? url('Uploads/Coordinator_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                            class="rounded-circle" alt="User Profile Image">
                     </div>
-                    <span class="linkname">Project Coordinator 1</span>
+                    <span class="linkname">{{ $userProfileData->first_name }} {{ $userProfileData->last_name }}</span>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('binhiprojectcoordinator.viewprofile') }}">
                         <i class="uil uil-user"></i> Profile
                     </a>
                 </li>
-                <li><a href="#"><i class="uil uil-lock"></i> Change Password</a></li>
+                <li><a href="{{ route('binhiprojectcoordinator.viewchangepassword') }}"><i class="uil uil-lock"></i> Change Password</a></li>
             </ul>
         </div>
 

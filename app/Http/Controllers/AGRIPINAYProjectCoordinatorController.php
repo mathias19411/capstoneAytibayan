@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Financialassistancehistory;
+use App\Models\Projects;
+use App\Models\Schedule;
+use App\Models\Updates;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\WebsiteNotifications;
+
 use App\Mail\FinancialAssistanceStatusUpdate;
 use App\Mail\LoanStatusUpdate;
 use App\Mail\ReplyMailable;
@@ -54,6 +61,18 @@ class AGRIPINAYProjectCoordinatorController extends Controller
 
         $userProgramId = AUTH::user()->program->id;
 
+        $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
+
+        $updates = Updates::where(function ($query) use ($programName) {
+            $query->where('benef_of', $programName);})->get();
+        
+        $public = 'Public';
+        $project = Projects::where(function ($query) use ($programName, $public) {
+                $query->where('recipient', $programName)->orwhere('recipient', $public);})->get();
+        
+        $benefSchedules = Schedule::where(function ($query) use ($programName) {
+                $query->where('from', $programName);})->get();
+
         $agripinayBeneficiaries = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
@@ -85,7 +104,7 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             $query->where('status_name', 'Inactive');
         })->count();
 
-        return view('AGRIPINAY_Project_Coordinator.beneficiary', compact('userProfileData', 'agripinayBeneficiaries', 'agripinayBeneficiariesCount', 'agripinayActiveCount', 'agripinayInactiveCount'));
+        return view('AGRIPINAY_Project_Coordinator.beneficiary', compact('userProfileData', 'agripinayBeneficiaries', 'agripinayBeneficiariesCount', 'agripinayActiveCount', 'agripinayInactiveCount', 'programName', 'updates', 'project', 'benefSchedules'));
     } // End Method
 
     public function ProjectCoordinatorLogout(Request $request)
@@ -106,12 +125,19 @@ class AGRIPINAYProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorAnnouncement()
     {
-        $binhi = "AGRIPINAY";
-        $public = "PUBLIC";
-        $announcement = announcement::where(function ($query) use ($binhi, $public) {
-            $query->where('to', $binhi)->orWhere('to', $public);})->get();
+        $id = AUTH::user()->id;
 
-        return view('AGRIPINAY_Project_Coordinator.announcement', ['announcement'=>$announcement]);
+       // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = "PUBLIC";
+        $announcement = announcement::where(function ($query) use ($programName, $public) {
+            $query->where('to', $programName)->orWhere('to', $public);})->get();
+
+        return view('AGRIPINAY_Project_Coordinator.announcement', compact('announcement','programName', 'roleName'));
     } // End Method
 
     public function ProjectCoordinatorAnnouncementEdit($id)
@@ -123,24 +149,32 @@ class AGRIPINAYProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorAnnouncementStore(Request $request)
     {
+        $userProgramId = AUTH::user()->program->id;
+        $agripinayBeneficiaries = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->where('blacklisted', false)->get();
         // Validate the request
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'date' => 'required|date',
+            'title' => 'required|string',
+            'from'=> 'required|string',
             'to' => 'required|string',
             'message' => 'required|string',
         ]);
+
 
         // Check if validation passes
         if ($validatedData) 
         {
             // Insert data into the database
-            announcement::insert([
+            $announcement = announcement::create([
                 'title' => $validatedData['title'],
-                'date' => $validatedData['date'],
+                'from'=> $validatedData['from'],
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
+            $announcement->save();
 
             return redirect()->back()->with('success', 'New Announcement Added!');
         } else {
@@ -183,12 +217,20 @@ class AGRIPINAYProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorEvent()
     {
-        $binhi = "AGRIPINAY";
-        $public = "PUBLIC";
-        $event = events::where(function ($query) use ($binhi, $public) {
-            $query->where('to', $binhi)->orWhere('to', $public);})->get();
+        $id = AUTH::user()->id;
 
-        return view('AGRIPINAY_Project_Coordinator.event', ['event'=>$event]);
+       // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = "PUBLIC";
+        $event = events::where(function ($query) use ($programName, $public) {
+            $query->where('to', $programName)->orWhere('to', $public);})->get();
+
+        return view('AGRIPINAY_Project_Coordinator.event', compact('event','programName', 'roleName'));
     } // End Method
 
     public function ProjectCoordinatorEventEdit($id)
@@ -199,33 +241,40 @@ class AGRIPINAYProjectCoordinatorController extends Controller
     } // End Method
 
     public function ProjCoordinatorEventStore(Request $request)
-    {
-        // Validate the request
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'date' => 'required|date',
-            'to' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'message' => 'required|string',
+{
+    // Validate the request
+    $validatedData = $request->validate([
+        'title' => 'required|string',
+        'from'=> 'string',
+        'date' => 'required|date',
+        'to' => 'required|string',
+        'message' => 'required|string',
+    ]);
+
+    //dd($validatedData);
+
+    // Check if validation passes
+    if ($validatedData) {
+        // Insert data into the database
+        $event = events::create([
+            'from' => $validatedData['from'],
+            'title' => $validatedData['title'],
+            'date' => $validatedData['date'],
+            'to' => $validatedData['to'],
+            'message' => $validatedData['message'],
         ]);
+        $event->save();
 
-        // Check if validation passes
-        if ($validatedData) 
-        {
-            // Insert data into the database
-            events::insert([
-                'title' => $validatedData['title'],
-                'date' => $validatedData['date'],
-                'image' => $validatedData['image'],
-                'to' => $validatedData['to'],
-                'message' => $validatedData['message'],
-            ]);
+        // If the attachment file is not empty, store it in the database
 
-            return redirect()->back()->with('success', 'New Event Added!');
-        } else {
-            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        return redirect()->back()->with('success', 'New Event Added!');
+    } else {
+        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
-    } // End Method
+}
+
+
+
 
     public function ProjCoordinatorEventUpdate(Request $request)
     {
@@ -234,7 +283,6 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         events::findOrFail($aid)->update([
             'title'=>$request->title,
             'to'=>$request->to,
-            'image'=>$request->image,
             'message'=>$request->message,
         ]);
 
@@ -261,11 +309,272 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         }
     } // End Method
 
+    public function ProjCoordinatorAddSchedule(Request $request, Notification $notification)
+    {
+        $benef_id = $request->benef_id;
+
+        $user = User::findOrFail($benef_id);
+        // Validate the request
+        $validatedData = $request->validate([
+            'from'=> 'required|string',
+            'recipient_email' => 'required|string',
+            'description' => 'required|string',
+            'date'=> 'required|date',
+            'time' => 'required|string',
+        ]);
+        $time = $validatedData['time'];
+        $ampmTime = date('h:i A', strtotime($time));
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $schedules = Schedule::create([
+                'from'=> $validatedData['from'],
+                'recipient_email'=> $validatedData['recipient_email'],
+                'description'=> $validatedData['description'],
+                'time' => $ampmTime,
+                'date' => $validatedData['date'],
+            ]);
+            $schedules->save();
+            Notification::send($user, new WebsiteNotifications('Your Schedule is Set at', $request->date, $request->time));
+    
+            // If the attachment file is not empty, store it in the database
+    
+            return redirect()->back()->with('success', 'New Schedule Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+    }// End Method//End Method
+
+    public function ProjCoordinatorScheduleUpdate(Request $request)
+    {
+        $aid = $request->schedule_id;
+
+        $benef_id = $request->benef_id;
+
+        $user = User::findOrFail($benef_id);
+        
+
+        $time = $request->time;
+        $ampmTime = date('h:i A', strtotime($time));
+        
+        Schedule::findOrFail($aid)->update([
+            'description'=>$request->description,
+            'time'=>$ampmTime,
+            'date'=>$request->date,
+        ]);
+        
+        Notification::send($user, new WebsiteNotifications('Your Schedule has been Updated', $request->date, $request->time));
+
+        return redirect()->back()->with('success', 'Schedule is Updated!');
+    } // End Method
+
+    public function ProjCoordinatorScheduleDelete(Request $request)
+    {
+        $id = $request->schedule_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = Schedule::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Schedule is Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
+    } // End Method
+
     public function ProjCoordinatorInquiry()
     {
-        $inquiry = inquiries::all();
+        $id = AUTH::user()->id;
 
-        return view('AGRIPINAY_Project_Coordinator.inquiry', ['progress'=>$inquiry]);
+        // Get the programId of the user table
+       $programId = User::where('id', $id)->pluck('program_id');
+       $roleId = User::where('id', $id)->pluck('role_id');
+       $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
+
+       // Get the programname of the program table
+       $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $public = "PUBLIC";
+        $inquiry = inquiries::where(function ($query) use ($programName, $public) {
+            $query->where('to', $programName)->orWhere('to', $public);})->get();
+            $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
+        // Count unread announcements
+        $unreadCount = Inquiries::where('is_unread', true)->count();
+
+        return view('AGRIPINAY_Project_Coordinator.inquiry', compact('roleName','programName','inquiry', 'userEmail', 'unreadCount'));
+    } // End Method
+    public function markAsRead(Request $request)
+    {
+        $inquiryId = $request->inquiry_id;
+        // Assuming you have an Eloquent model named Inquiry
+        $inquiry = inquiries::findOrFail($inquiryId);
+
+        // Check if is_unread is true, then update it to false
+        if ($inquiry->is_unread) {
+            $inquiry->update(['is_unread' => false]);
+    }
+
+    // Additional logic if needed
+
+    return redirect()->back();
+    }//end method
+
+
+    public function ProjectCoordinatorInquiryReply(Request $request)
+    {
+        $validatedData = $request->validate([
+            'recipient_email'=> 'string',
+            'fullname'=> 'string',
+            'subject'=> 'string',
+            'body' => 'string',
+            ]);
+
+        $senderName = $validatedData['subject'];
+
+        // Get the email address of the recipient
+        $recipientEmail = $validatedData['recipient_email'];
+
+        // Get the name of the recipient
+        $recipientName = $validatedData['fullname'];
+
+        // Get the subject of the email
+        $subject = $validatedData['subject'];
+
+        // Get the body of the email
+        $body = $validatedData['body'];
+
+        if($validatedData) {
+                // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailable($subject, $body, $senderName, $recipientName));
+
+                // Redirect back to the previous page
+        return redirect()->back()->with('success', 'Message Sent!');
+    }
+        else {
+            // Handle the case when no file was uploaded.
+            return redirect()->back()->with('error', 'No file uploaded');
+        }
+    }// End of Method
+
+
+    public function ProjCoordinatorInquiryDelete(Request $request)
+    {
+        $id = $request->inquiry_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = inquiries::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Event is Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
+    } // End Method
+    public function ProjCoordinatorAddProject(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from' => 'required|string',
+            'recipient' => 'required|string',
+            'message' => 'required|string',
+            'image' => 'image',
+        ]);
+    
+        // Check if the image key exists in the validated data array
+        if (isset($validatedData['image'])) {
+            // Get the image file
+            $file = $request->file('image');
+    
+            // Generate a unique filename for the image file
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move('Uploads/Updates/', $filename);
+    
+        } else {
+            // Assign an empty string to the filename variable
+            $filename = '';
+        }
+    
+        // Set the image attribute of the event model to the filename
+        $validatedData['image'] = $filename;
+    
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $projects = Projects::create([
+                'title' => $validatedData['title'],
+                'from' => $validatedData['from'],
+                'recipient'=> $validatedData['recipient'],
+                'message'=> $validatedData['message'],
+                'attachment' => $validatedData['image'],
+            ]);
+            $projects->save();
+    
+            // If the attachment file is not empty, store it in the database
+    
+            return redirect()->back()->with('success', 'New Project Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+    } //end method
+    public function ProjCoordinatorUpdateProject(Request $request)
+{
+    $aid = $request->project_id;
+
+    // Validate the request
+    $validatedData = $request->validate([
+        'title' => 'required|string',
+        'from' => 'required|string',
+        'recipient' => 'required|string',
+        'message' => 'required|string',
+        'attachment' => 'image',
+    ]);
+
+    // Retrieve the existing project
+    $project = Projects::findOrFail($aid);
+
+    if ($request->hasFile('attachment')) {
+
+        // Upload the new image and update the attachment path
+        $file = $request->file('attachment');
+        $filename = date('YmdHi') . $file->getClientOriginalName();
+        $file->move('Uploads/Updates/', $filename);
+        $validatedData['attachment'] = $filename;
+    }
+
+    // Update the project with the updated attachment path and other validated data
+    $project->update($validatedData);
+
+    return redirect()->back()->with('success', 'Project Updated!');
+    }//end method
+    public function ProjCoordinatorDeleteProject(Request $request)
+    {
+        $id = $request->project_id;
+        // Find the record you want to delete by its primary key
+        $recordToDelete = Projects::find($id);
+
+        // Check if the record exists
+        if ($recordToDelete) {
+            // Delete the record
+            $recordToDelete->delete();
+
+            // Optionally, you can redirect back to a page or return a response
+            return redirect()->back()->with('success', 'Project Deleted!');
+        } else {
+            // Record not found
+            // You can redirect back with an error message or handle it as needed
+            return redirect()->back()->with('error', 'Record Not Found!');
+        }
     } // End Method
     public function ProjCoordinatorProgress()
     {

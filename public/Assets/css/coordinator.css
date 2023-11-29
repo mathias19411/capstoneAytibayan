@@ -1735,10 +1735,11 @@ body.announcement_events_inquiry .table .inactive {
     color: white;
 }
 
+/*
 .modal-body { 
     margin: 0 auto;
 }
-
+*/
 .modal-backdrop {
     display: none;
 }
@@ -2011,7 +2012,6 @@ body.announcement_events_inquiry .table button:hover::after {
     opacity: 1;
 }
 
-
 body.announcement_events_inquiry td button:nth-child(1) {
     background-color: green;
 }
@@ -2025,8 +2025,6 @@ body.announcement_events_inquiry td button:nth-child(3) {
 body.announcement_events_inquiry tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-
-
 
 body.announcement_events_inquiry td {
     font-size: 13px;
@@ -2486,11 +2484,11 @@ body.announcement_events_inquiry .message-row {
 .schedule-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Center the cards horizontally */
-    gap: 20px; /* Add gap between cards */
+    justify-content: center; 
+    gap: 20px; 
     margin-top: 20px;
-    padding: 0 10px; /* Add padding to container */
-    box-sizing: border-box; /* Include padding in width calculation */
+    padding: 0 10px; 
+    box-sizing: border-box; 
 }
 
 .sched-card {
@@ -2510,16 +2508,23 @@ body.announcement_events_inquiry .message-row {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     width: 200px;
     height: 250px;
-    position: relative; /* Positioning context for absolute elements */
+    position: relative;
     border: 2px solid transparent;
     transition: border-color 0.3s ease-in-out;
 }
 
 .sched-body {
     padding: 10px;
-    height: calc(100% - 40px); /* Adjusted height for footer */
-    overflow-y: scroll; /* Moved scroll to this element */
+    height: calc(100% - 40px); 
+    overflow-y: scroll; 
     overflow-x: hidden;
+}
+
+.sched-design {
+    background-color: #7bb701;
+    border-radius: 0 0 50% 50%;
+    width: auto;
+    height: 20px;
 }
 
 .schedule-container .box:hover {
@@ -2540,17 +2545,16 @@ body.announcement_events_inquiry .message-row {
     padding: 10px;
     display: flex;
     justify-content: space-around;
-    background-color: #f2f2f2; /* Match the card background */
+    background-color: #f2f2f2; 
 }
 
-/* Media query for smaller screens */
 @media screen and (max-width: 768px) {
     .schedule-container {
-        justify-content: flex-start; /* Align cards vertically */
+        justify-content: flex-start; 
     }
 
     .sched-card {
-        flex: 0 0 calc(100% - 20px); /* Full width for one card per row */
-        max-width: calc(100% - 20px); /* Full width for one card per row */
+        flex: 0 0 calc(100% - 20px); 
+        max-width: calc(100% - 20px);
     }
 }

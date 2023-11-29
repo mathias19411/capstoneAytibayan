@@ -40,7 +40,7 @@ class RedirectIfAuthenticated
                 }
                 else if ($roleName === 'binhiprojectcoordinator')
                 {
-                    $url = '/ProjectCoordinator/home';
+                    $url = '/BINHI_ProjectCoordinator/home';
                 }
                 else if ($roleName === 'abakaprojectcoordinator')
                 {
