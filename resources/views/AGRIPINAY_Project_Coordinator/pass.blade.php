@@ -114,7 +114,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('itstaff.editchangepassword') }}">
+                            <form method="POST" action="{{ route('agripinayprojectcoordinator.editchangepassword') }}">
                                 @csrf
                                 <h6 class="heading-small text-muted mb-4">Change Password</h6>
                                 <div class="pl-lg-4">

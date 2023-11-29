@@ -479,7 +479,7 @@ $benefCurrentLoanStatuses = [];
         <button id="reset-steps">Reset Steps</button>
     </div>
 
-    <script src="{{ asset('Assets/js/loanProgress.js') }}"></script>
+    <script src="{{ asset('Assets/js/progressAkbay.js') }}"></script>
 
     {{-- apex charts cdn --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

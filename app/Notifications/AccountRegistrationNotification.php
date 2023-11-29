@@ -42,8 +42,8 @@ class AccountRegistrationNotification extends Notification
                     ->line("Your account for Albay Provincial Agriculture Office has been created.")
                     ->line("You may login with your credentials:")
                     ->line("Email: ". $notifiable->email)
-                    ->line("Password: ApaoAlbay2023")
-                    ->line("You may change your password anytime at the Albay Provincial Agriculture Office Web Application.")
+                    ->line("Default Password: ApaoAlbay2023")
+                    ->line("You may change your default password anytime at the Albay Provincial Agriculture Office Web Application.")
                     ->action('Go to Web App', route('visitor.home'))
                     ->line('For more information, you may login to our web application by clicking the button above.');
     }

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         // Save progressData to localStorage
-        localStorage.setItem('progressData', JSON.stringify(progressData));
+        localStorage.setItem('progressDataBinhi', JSON.stringify(progressData));
 
         // Reset input values and re-render progress
         renderProgress();
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     // Initialize progress array with default steps
-    let progressData = JSON.parse(localStorage.getItem('progressData')) || [
+    let progressData = JSON.parse(localStorage.getItem('progressDataBinhi')) || [
         { description: "Description", done: false, date: getCurrentDate() },
         { description: "Description", done: false, date: getCurrentDate() },
         { description: "Description", done: false, date: getCurrentDate() },
@@ -76,13 +76,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       // Save progressData to localStorage
-        localStorage.setItem('progressData', JSON.stringify(progressData));
+        localStorage.setItem('progressDataBinhi', JSON.stringify(progressData));
     }
 
     //function for email notification
     function notifyBeneficiaries(description) {
       // Make an AJAX request to notify beneficiaries
-      fetch('/ABAKA_ProjectCoordinator/notify-beneficiaries', {
+      fetch('/BINHI_ProjectCoordinator/notify-beneficiaries', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

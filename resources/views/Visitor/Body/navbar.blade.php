@@ -38,7 +38,7 @@
                     @endphp
                     @if ($roleName === 'itstaff')
                         <li><a href="{{ url('/ITStaff/home') }}">Back to Dashboard</a></li>
-                    @elseif($roleName === 'projectcoordinator')
+                    @elseif($roleName === 'binhiprojectcoordinator')
                         <li><a href="{{ url('/BINHI_ProjectCoordinator/home') }}">Back to Dashboard</a></li>
                     @elseif($roleName === 'abakaprojectcoordinator')
                         <li><a href="{{ url('/ABAKA_ProjectCoordinator/home') }}">Back to Dashboard</a></li>

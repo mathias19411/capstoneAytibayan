@@ -365,22 +365,22 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:a
     //Repayment Schedule Reminder
     Route::post('/AKBAY_ProjectCoordinator/ProgressLoanReminder/{userId}', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorProgressLoanReminder'])->name('akbayprojectcoordinator.progressLoanReminder');
 
-    //Agripinay Coordinator View Profile
+    //Akbay Coordinator View Profile
     Route::get('/AKBAY_ProjectCoordinator/viewprofile', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorViewProfile'])->name('akbayprojectcoordinator.viewprofile');
 
-    //Agripinay Coordinator Edit Profile Data
+    //Akbay Coordinator Edit Profile Data
     Route::post('/AKBAY_ProjectCoordinator/editprofile', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEditProfile'])->name('akbayprojectcoordinator.editprofile');
 
-    //Agripinay Coordinator View Change Password
+    //Akbay Coordinator View Change Password
     Route::get('/AKBAY_ProjectCoordinator/viewchangepassword', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorViewChangePassword'])->name('akbayprojectcoordinator.viewchangepassword');
 
-    //Agripinay Coordinator Edit Change Password
+    //Akbay Coordinator Edit Change Password
     Route::post('/AKBAY_ProjectCoordinator/editchangepassword', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEditChangePassword'])->name('akbayprojectcoordinator.editchangepassword');
 
-    //Agripinay Coordinator Register View
+    //Akbay Coordinator Register View
     Route::get('/AKBAY_ProjectCoordinator/registerview', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorRegisterView'])->name('akbayprojectcoordinator.registerView');
 
-    //Agripinay Coordinator Edit user status and role
+    //Akbay Coordinator Edit user status and role
     Route::post('/AKBAY_ProjectCoordinator/registeredituser', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorRegisterEditUser'])->name('akbayprojectcoordinator.registerEditUser');
 
     //Notify all beneficiaries with status

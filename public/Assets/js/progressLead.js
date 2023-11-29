@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         // Save progressData to localStorage
-        localStorage.setItem('progressData', JSON.stringify(progressData));
+        localStorage.setItem('progressDataLead', JSON.stringify(progressData));
 
         // Reset input values and re-render progress
         renderProgress();
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     // Initialize progress array with default steps
-    let progressData = JSON.parse(localStorage.getItem('progressData')) || [
+    let progressData = JSON.parse(localStorage.getItem('progressDataLead')) || [
         { description: "Description", done: false, date: getCurrentDate() },
         { description: "Description", done: false, date: getCurrentDate() },
         { description: "Description", done: false, date: getCurrentDate() },
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       // Save progressData to localStorage
-        localStorage.setItem('progressData', JSON.stringify(progressData));
+        localStorage.setItem('progressDataLead', JSON.stringify(progressData));
     }
 
     //function for email notification

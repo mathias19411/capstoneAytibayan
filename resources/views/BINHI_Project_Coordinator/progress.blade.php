@@ -370,7 +370,7 @@ $benefAssistanceStatuses = [];
 
 
 
-    <script src="{{ asset('Assets/js/progress.js') }}"></script>
+    <script src="{{ asset('Assets/js/progressBinhi.js') }}"></script>
 
     {{-- apex charts cdn --}}
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

@@ -6,7 +6,7 @@
             </a>
         </div>
 
-        <span class="logo_name">BINHI MO PISO MO</span>
+        <span class="logo_name">BINHI NG PAG-ASA</span>
     </div>
 
     @php

@@ -29,7 +29,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             <div class="container-fluid d-flex align-items-center">
                 <div class="col-lg-7 col-md-10">
                     <h1 class="display-2"></h1>
-                    <a href="{{ route('itstaff.home') }}" class="btn btn-info ">Back to Home</a>
+                    <a href="{{ route('leadprojectcoordinator.beneficiaries') }}" class="btn btn-info ">Back to Home</a>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                             </div>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('itstaff.editchangepassword') }}">
+                            <form method="POST" action="{{ route('leadprojectCoordinator.editchangepassword') }}">
                                 @csrf
                                 <h6 class="heading-small text-muted mb-4">Change Password</h6>
                                 <div class="pl-lg-4">
