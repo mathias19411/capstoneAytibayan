@@ -43,7 +43,7 @@ class ProgramsTableSeeder extends Seeder
             [
                 // 'project_coordinator_id' => '11',
                 'program_name' => 'abakamopisomo',
-                'email' => 'abakaprojectcoordinator@gmail.com'
+                'email' => 'diverlynsy@gmail.com'
             ],
         ]);
     }
