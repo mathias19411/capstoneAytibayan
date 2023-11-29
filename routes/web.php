@@ -331,28 +331,90 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:a
 //Project Coordinator LEAD Group Middleware
 Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:leadprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
+
+    //home
     Route::get('/LEAD_ProjectCoordinator/home', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('leadprojectcoordinator.beneficiaries');
 
     //ITStaff Logout
     Route::get('/LEAD_ProjectCoordinator/logout', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('leadprojectCoordinator.logout');
 
+    //blacklist view
+    Route::get('/LEAD_ProjectCoordinator/blacklist', [LEADProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('leadprojectCoordinator.BlacklistView');
+
+    //blacklist a user
+    Route::get('/LEAD_ProjectCoordinator/blacklist/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('leadprojectCoordinator.BlacklistUser');
+
+    //restore a user
+    Route::get('/LEAD_ProjectCoordinator/restore/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('leadprojectCoordinator.RestoreUser');
+
     Route::get('/LEAD_ProjectCoordinator/inquiry', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('LEAD_Project_Coordinator.inquiry');
 
+    //Coordinator Announcements
     Route::get('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('leadprojectcoordinator.announcement');
     Route::post('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorlead');
     Route::get('/LEAD_ProjectCoordinator/Announcements/{id}', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorlead');
     Route::patch('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorlead');
     Route::delete('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorlead');
 
+    //Coordinator Events
     Route::get('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('leadprojectcoordinator.event');
     Route::post('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorlead');
     Route::get('/LEAD_ProjectCoordinator/Events/{id}', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorlead');
     Route::patch('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorlead');
     Route::delete('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorlead');
 
+    //Coordinator Inquiry
     Route::get('/LEAD_ProjectCoordinator/Inquriy', [LEADProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('leadprojectcoordinator.inquiry');
+    Route::post('/LEAD_ProjectCoordinator/Inquriy/reply', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorInquiryReply'])->name('reply.inquirycoordinatorlead');
+    Route::delete('/LEAD_ProjectCoordinator/Inquriy/delete', [LEADProjectCoordinatorController::class, 'ProjCoordinatorInquiryDelete'])->name('delete.inquirycoordinatorlead');
+    Route::post('/LEAD_ProjectCoordinator/Inquriy/show', [LEADProjectCoordinatorController::class, 'markAsRead'])->name('leadmark.AsRead');
+    
 
+
+    Route::post('/LEAD_ProjectCoordinator/Add Schedule', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAddSchedule'])->name('leadadd.schedule');
+    Route::patch('/LEAD_ProjectCoordinator/Edit Schedule', [LEADProjectCoordinatorController::class, 'ProjCoordinatorScheduleUpdate'])->name('leadedit.schedule');
+    Route::delete('/LEAD_ProjectCoordinator/Delete Schedule', [LEADProjectCoordinatorController::class, 'ProjCoordinatorScheduleDelete'])->name('leaddelete.schedule');
+
+    Route::post('/LEAD_Project_Coordinator/Project_Page/Add', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAddProject'])->name('leadadd.project');
+    Route::patch('/LEAD_ProjectCoordinator/Projects', [LEADProjectCoordinatorController::class, 'ProjCoordinatorUpdateProject'])->name('leadedit.project');
+    Route::delete('/LEAD_ProjectCoordinator/Projects', [LEADProjectCoordinatorController::class, 'ProjCoordinatorDeleteProject'])->name('leaddelete.project');
+
+
+    //Coordinator Progress
     Route::get('/LEAD_ProjectCoordinator/Progress', [LEADProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('leadprojectcoordinator.progress');
+
+    Route::post('/LEAD_ProjectCoordinator/ProgressAdd', [LEADProjectCoordinatorController::class, 'ProjCoordinatorProgressAdd'])->name('leadprojectcoordinator.progressAdd');
+
+    Route::post('/LEAD_ProjectCoordinator/ProgressUpdate', [LEADProjectCoordinatorController::class, 'ProjCoordinatorProgressUpdate'])->name('leadprojectcoordinator.progressUpdate');
+
+    Route::post('/LEAD_ProjectCoordinator/CurrentLoanUpdate', [LEADProjectCoordinatorController::class, 'ProjCoordinatorCurrentLoanUpdate'])->name('leadprojectcoordinator.currentLoanUpdate');
+
+    //Repayment
+    Route::post('/LEAD_ProjectCoordinator/ProgressUpdateRepayment', [LEADProjectCoordinatorController::class, 'ProjCoordinatorProgressUpdateRepayment'])->name('leadprojectcoordinator.progressUpdateRepayment');
+
+    //Repayment Schedule Reminder
+    Route::post('/LEAD_ProjectCoordinator/ProgressLoanReminder/{userId}', [LEADProjectCoordinatorController::class, 'ProjCoordinatorProgressLoanReminder'])->name('leadprojectcoordinator.progressLoanReminder');
+
+    //Agripinay Coordinator View Profile
+    Route::get('/LEAD_ProjectCoordinator/viewprofile', [LEADProjectCoordinatorController::class, 'ProjCoordinatorViewProfile'])->name('leadprojectcoordinator.viewprofile');
+
+    //Agripinay Coordinator Edit Profile Data
+    Route::post('/LEAD_ProjectCoordinator/editprofile', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEditProfile'])->name('leadprojectcoordinator.editprofile');
+
+    //Agripinay Coordinator View Change Password
+    Route::get('/LEAD_ProjectCoordinator/viewchangepassword', [LEADProjectCoordinatorController::class, 'ProjCoordinatorViewChangePassword'])->name('leadprojectcoordinator.viewchangepassword');
+
+    //Agripinay Coordinator Edit Change Password
+    Route::post('/LEAD_ProjectCoordinator/editchangepassword', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEditChangePassword'])->name('leadprojectcoordinator.editchangepassword');
+
+    //Agripinay Coordinator Register View
+    Route::get('/LEAD_ProjectCoordinator/registerview', [LEADProjectCoordinatorController::class, 'ProjCoordinatorRegisterView'])->name('leadprojectcoordinator.registerView');
+
+    //Agripinay Coordinator Edit user status and role
+    Route::post('/LEAD_ProjectCoordinator/registeredituser', [LEADProjectCoordinatorController::class, 'ProjCoordinatorRegisterEditUser'])->name('leadprojectcoordinator.registerEditUser');
+
+    //Notify all beneficiaries with status
+    Route::post('/LEAD_ProjectCoordinator/notify-beneficiaries', [LEADProjectCoordinatorController::class, 'notifyBeneficiaries']);
 
     // more routes here for Project Coordinator
 
