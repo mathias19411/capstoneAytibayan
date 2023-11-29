@@ -301,28 +301,90 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:a
 //Project Coordinator AKBAY Group Middleware
 Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:akbayprojectcoordinator'])->group(function(){
     // middleware named userroleprotection will protect routes to be only accessible by the right user role
+
+    //home
     Route::get('/AKBAY_ProjectCoordinator/home', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorHome'])->name('akbayprojectcoordinator.beneficiaries');
 
     //ITStaff Logout
     Route::get('/AKBAY_ProjectCoordinator/logout', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('akbayprojectCoordinator.logout');
 
+    //blacklist view
+    Route::get('/AKBAY_ProjectCoordinator/blacklist', [AKBAYProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('akbayprojectCoordinator.BlacklistView');
+
+    //blacklist a user
+    Route::get('/AKBAY_ProjectCoordinator/blacklist/{id}', [AKBAYProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('akbayprojectCoordinator.BlacklistUser');
+
+    //restore a user
+    Route::get('/AKBAY_ProjectCoordinator/restore/{id}', [AKBAYProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('akbayprojectCoordinator.RestoreUser');
+
     Route::get('/AKBAY_ProjectCoordinator/inquiry', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('AKBAY_Project_Coordinator.inquiry');
 
+    //Coordinator Announcements
     Route::get('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('akbayprojectcoordinator.announcement');
     Route::post('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorakbay');
     Route::get('/AKBAY_ProjectCoordinator/Announcements/{id}', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorakbay');
     Route::patch('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorakbay');
     Route::delete('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorakbay');
 
+    //Coordinator Events
     Route::get('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('akbayprojectcoordinator.event');
     Route::post('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorakbay');
     Route::get('/AKBAY_ProjectCoordinator/Events/{id}', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorakbay');
     Route::patch('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorakbay');
     Route::delete('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorakbay');
 
+    //Coordinator Inquiry
     Route::get('/AKBAY_ProjectCoordinator/Inquriy', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('akbayprojectcoordinator.inquiry');
+    Route::post('/AKBAY_ProjectCoordinator/Inquriy/reply', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorInquiryReply'])->name('reply.inquirycoordinatorakbay');
+    Route::delete('/AKBAY_ProjectCoordinator/Inquriy/delete', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorInquiryDelete'])->name('delete.inquirycoordinatorakbay');
+    Route::post('/AKBAY_ProjectCoordinator/Inquriy/show', [AKBAYProjectCoordinatorController::class, 'markAsRead'])->name('akbaymark.AsRead');
+    
 
+
+    Route::post('/AKBAY_ProjectCoordinator/Add Schedule', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAddSchedule'])->name('akbayadd.schedule');
+    Route::patch('/AKBAY_ProjectCoordinator/Edit Schedule', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorScheduleUpdate'])->name('akbayedit.schedule');
+    Route::delete('/AKBAY_ProjectCoordinator/Delete Schedule', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorScheduleDelete'])->name('akbaydelete.schedule');
+
+    Route::post('/AKBAY_Project_Coordinator/Project_Page/Add', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAddProject'])->name('akbayadd.project');
+    Route::patch('/AKBAY_ProjectCoordinator/Projects', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorUpdateProject'])->name('akbayedit.project');
+    Route::delete('/AKBAY_ProjectCoordinator/Projects', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorDeleteProject'])->name('akbaydelete.project');
+
+
+    //Coordinator Progress
     Route::get('/AKBAY_ProjectCoordinator/Progress', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('akbayprojectcoordinator.progress');
+
+    Route::post('/AKBAY_ProjectCoordinator/ProgressAdd', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorProgressAdd'])->name('akbayprojectcoordinator.progressAdd');
+
+    Route::post('/AKBAY_ProjectCoordinator/ProgressUpdate', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorProgressUpdate'])->name('akbayprojectcoordinator.progressUpdate');
+
+    Route::post('/AKBAY_ProjectCoordinator/CurrentLoanUpdate', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorCurrentLoanUpdate'])->name('akbayprojectcoordinator.currentLoanUpdate');
+
+    //Repayment
+    Route::post('/AKBAY_ProjectCoordinator/ProgressUpdateRepayment', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorProgressUpdateRepayment'])->name('akbayprojectcoordinator.progressUpdateRepayment');
+
+    //Repayment Schedule Reminder
+    Route::post('/AKBAY_ProjectCoordinator/ProgressLoanReminder/{userId}', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorProgressLoanReminder'])->name('akbayprojectcoordinator.progressLoanReminder');
+
+    //Agripinay Coordinator View Profile
+    Route::get('/AKBAY_ProjectCoordinator/viewprofile', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorViewProfile'])->name('akbayprojectcoordinator.viewprofile');
+
+    //Agripinay Coordinator Edit Profile Data
+    Route::post('/AKBAY_ProjectCoordinator/editprofile', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEditProfile'])->name('akbayprojectcoordinator.editprofile');
+
+    //Agripinay Coordinator View Change Password
+    Route::get('/AKBAY_ProjectCoordinator/viewchangepassword', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorViewChangePassword'])->name('akbayprojectcoordinator.viewchangepassword');
+
+    //Agripinay Coordinator Edit Change Password
+    Route::post('/AKBAY_ProjectCoordinator/editchangepassword', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEditChangePassword'])->name('akbayprojectcoordinator.editchangepassword');
+
+    //Agripinay Coordinator Register View
+    Route::get('/AKBAY_ProjectCoordinator/registerview', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorRegisterView'])->name('akbayprojectcoordinator.registerView');
+
+    //Agripinay Coordinator Edit user status and role
+    Route::post('/AKBAY_ProjectCoordinator/registeredituser', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorRegisterEditUser'])->name('akbayprojectcoordinator.registerEditUser');
+
+    //Notify all beneficiaries with status
+    Route::post('/AKBAY_ProjectCoordinator/notify-beneficiaries', [AKBAYProjectCoordinatorController::class, 'notifyBeneficiaries']);
 
     // more routes here for Project Coordinator
 
