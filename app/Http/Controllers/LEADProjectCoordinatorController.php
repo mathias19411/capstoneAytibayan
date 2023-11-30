@@ -670,9 +670,8 @@ class LEADProjectCoordinatorController extends Controller
         $validatedData = $request->validate([
             'project' => ['required', 'string', 'max:70'],
             'amount' => ['required', 'numeric'],
-            'term' => ['required', 'numeric'],
+            'proponent' => ['required', 'string', 'max:100'],
             'repaymentSched' => ['required', 'date'],
-            'maturity' => ['required', 'date'],
         ]);
 
         if ($validatedData)
@@ -681,10 +680,10 @@ class LEADProjectCoordinatorController extends Controller
                 'user_id' => $userId,
                 'project' => $validatedData['project'],
                 'loan_amount' => $validatedData['amount'],
-                'loan_term_in_months' => $validatedData['term'],
+                'proponent' => $validatedData['proponent'],
                 'repayment_schedule' => $validatedData['repaymentSched'],
-                'date_of_maturity' => $validatedData['maturity'],
                 'remaining_loan_balance' => $validatedData['amount'],
+                'amount_replenished' => 0,
                 'loanstatus_id' => 2,
                 'currentloanstatus_id' => 1,
             ]);
@@ -910,6 +909,7 @@ class LEADProjectCoordinatorController extends Controller
 
         // Update the remaining_loan_balance
         $userLoanId->update([
+            'amount_replenished' => $validatedData['inputRepayment'],
             'remaining_loan_balance' => $newRemainingBalance
         ]);
 

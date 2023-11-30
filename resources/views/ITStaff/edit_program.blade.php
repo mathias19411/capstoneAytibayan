@@ -20,7 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
-@extends('ABAKA_Project_Coordinator.projectcoordinator_main')
+@extends('ITStaff.main')
 <body>
     <div class="program-form">
         <form method="POST" id="myForm" action="{{ route('itstaff.updateProgram') }}" enctype="multipart/form-data">
@@ -326,7 +326,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <h5>Contact Number:</h5>
-                                            <p id="modal-message">{{ $user->phone }}</p>
+                                            <p id="modal-message">{{ substr($user->phone, 2) }}</p>
                                         </div>
                                         <div class="col-md-12">
                                             <h5>Address:</h5>

@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <h5>Contact Number:</h5>
-                                        <p id="modal-message">{{ $user->phone }}</p>
+                                        <p id="modal-message">{{ substr($user->phone, 2) }}</p>
                                     </div>
                                     <div class="col-md-12">
                                         <h5>Address:</h5>

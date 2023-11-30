@@ -209,10 +209,12 @@ $benefCurrentLoanStatuses = [];
                     <th scope="col">Barangay</th>
                     <th scope="col">City</th>
                     <th scope="col">Project</th>
-                    <th scope="col">Term 'Months'</th>
-                    <th scope="col">Repayment Schedule</th>
-                    <th scope="col">Date of Maturity</th>
-                    <th scope="col">Loan Amount</th>
+                    <th scope="col">Proponent</th>
+                    <th scope="col">Amount Released</th>
+                    <th scope="col">Amount Disbursed</th>
+                    <th scope="col">Date Started</th>
+                    <th scope="col">Amount Due</th>
+                    <th scope="col">Amount Replenished</th>
                     <th scope="col">Balance</th>
                     <th scope="col">Incoming Loan Status</th>
                     <th scope="col">Current Loan Status</th>
@@ -243,26 +245,27 @@ $benefCurrentLoanStatuses = [];
                                 @error('project')
                                     <span class="alert alert-danger">{{ $message }}</span>
                                 @enderror
+                                <label for="proponent">Proponent</label>
+                                <input type="text" id="proponent" name="proponent" required>
+                                @error('proponent')
+                                    <span class="alert alert-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="amount">Loan Amount:</label>
                                 <input type="number" id="amount" name="amount" required>
                                 @error('amount')
                                     <span class="alert alert-danger">{{ $message }}</span>
                                 @enderror
-                                <label for="term">Loan Term 'months'</label>
-                                <input type="number" id="term" name="term" required>
-                                @error('term')
-                                    <span class="alert alert-danger">{{ $message }}</span>
-                                @enderror
+                            
                                 <label for="repaymentSched">Repayment Schedule</label>
                                 <input type="date" id="repaymentSched" name="repaymentSched" required>
                                 @error('repaymentSched')
                                     <span class="alert alert-danger">{{ $message }}</span>
                                 @enderror
-                                <label for="maturity">Date of maturity</label>
+                                {{-- <label for="maturity">Date of maturity</label>
                                 <input type="date" id="maturity" name="maturity" required>
                                 @error('maturity')
                                     <span class="alert alert-danger">{{ $message }}</span>
-                                @enderror
+                                @enderror --}}
 
                                 <button type="submit" class="add">Save Changes</button>
                             </form>
@@ -345,9 +348,10 @@ $benefCurrentLoanStatuses = [];
                                     {{ $leadBeneficiary->middle_name }} {{ $leadBeneficiary->last_name }}</span></p>
                             @if ($leadBeneficiary->loan)
                                 <p><strong>Project:</strong> <span>{{ $leadBeneficiary->loan->project }}</span></p>
+                                <p><strong>Proponent:</strong> <span>{{ $leadBeneficiary->loan->proponent }}</span></p>
                                 <p><strong>Amount:</strong> <span>{{ $leadBeneficiary->loan->loan_amount }}</span></p>
                                 <p><strong>Remaining Balance:</strong> <span>{{ $leadBeneficiary->loan->remaining_loan_balance }}</span></p>
-                                <p><strong>Loan Term 'months':</strong> <span>{{ $leadBeneficiary->loan->loan_term_in_months }}</span></p>
+                                
                                 <p><strong>Last Updated:</strong>
                                     <span>{{ $leadBeneficiary->loan->updated_at }}</span>
                                 </p>
@@ -383,10 +387,17 @@ $benefCurrentLoanStatuses = [];
                         <td>{{ $leadBeneficiary->city }}</td>
                         @if ($leadBeneficiary->loan)
                             <td>{{ $leadBeneficiary->loan->project }}</td>
-                            <td>{{ $leadBeneficiary->loan->loan_term_in_months }}</td>
-                            <td>{{ $leadBeneficiary->loan->repayment_schedule }}</td>
-                            <td>{{ $leadBeneficiary->loan->date_of_maturity }}</td>
+                            <td>{{ $leadBeneficiary->loan->proponent }}</td>
                             <td>{{ $leadBeneficiary->loan->loan_amount }}</td>
+                            @if ($leadBeneficiary->loanstatus->loan_status_name === 'disbursed')
+                                <td>{{ $leadBeneficiary->loan->loan_amount }}</td>
+                            @else
+                                <td>N/A</td>
+                            @endif
+                            
+                            <td>{{ $leadBeneficiary->loan->created_at }}</td>
+                            <td>{{ $leadBeneficiary->loan->loan_amount }}</td>
+                            <td>{{ $leadBeneficiary->loan->amount_replenished }}</td>
                             <td>{{ $leadBeneficiary->loan->remaining_loan_balance }}</td>
                             <td>{{ $leadBeneficiary->loanstatus->loan_status_name }}</td>
                             <td>{{ $leadBeneficiary->currentloanstatus->current_loan_status_name }}</td>
@@ -417,6 +428,8 @@ $benefCurrentLoanStatuses = [];
                                 @endif
                             </td>
                         @else
+                            <td>N/A</td>
+                            <td>N/A</td>
                             <td>N/A</td>
                             <td>N/A</td>
                             <td>N/A</td>

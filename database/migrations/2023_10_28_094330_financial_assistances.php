@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('project')->nullable();
             $table->float('amount')->nullable();
             $table->integer('number_of_hectares')->nullable();
+            $table->string('organization')->nullable();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('financialassistancestatus_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

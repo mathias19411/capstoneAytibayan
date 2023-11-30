@@ -186,13 +186,13 @@ $benefAssistanceStatuses = [];
             <thead>
                 <tr>
                     <th scope="col">User ID</th>
-                    <th scope="col">Beneficiary</th>
-                    <th scope="col">Barangay</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Project</th>
+                    <th scope="col">Beneficiary Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Contact Number</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Target Project</th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Hectares</th>
+                    <th scope="col">Organization</th>
                     <th scope="col" class="no-print">Action</th>
                     <th scope="col">Assistance Status</th>
 
@@ -226,9 +226,9 @@ $benefAssistanceStatuses = [];
                                 @error('amount')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
-                                <label for="hectares">Number of Hectares:</label>
-                                <input type="number" id="hectares" name="hectares" required min="1" max="5">
-                                @error('hectares')
+                                <label for="organization">Organization:</label>
+                                <input type="text" id="organization" name="organization" required>
+                                @error('organization')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                                 <input type="hidden" name="financialassistancestatus_id" value="2">
@@ -249,7 +249,7 @@ $benefAssistanceStatuses = [];
                             @if ($binhiBeneficiary->assistance)
                                 <p><strong>Project:</strong> <span>{{ $binhiBeneficiary->assistance->project }}</span></p>
                                 <p><strong>Amount:</strong> <span>{{ $binhiBeneficiary->assistance->amount }}</span></p>
-                                <p><strong>Number of Hectares:</strong> <span>{{ $binhiBeneficiary->assistance->number_of_hectares }}</span></p>
+                                <p><strong>Number of Hectares:</strong> <span>{{ $binhiBeneficiary->assistance->organization }}</span></p>
                                 <p><strong>Last Updated:</strong>
                                     <span>{{ $binhiBeneficiary->assistance->updated_at }}</span>
                                 </p>
@@ -284,13 +284,13 @@ $benefAssistanceStatuses = [];
                     <tr>
                         <td>{{ $binhiBeneficiary->id }}</td>
                         <td>{{ $binhiBeneficiary->first_name }} {{ $binhiBeneficiary->middle_name }} {{ $binhiBeneficiary->last_name }}</td>
-                        <td>{{ $binhiBeneficiary->barangay }}</td>
-                        <td>{{ $binhiBeneficiary->city }}</td>
-                        <td>{{ $binhiBeneficiary->status->status_name }}</td>
+                        <td>{{ $binhiBeneficiary->barangay }}, {{ $binhiBeneficiary->city }}</td>
+                        <td>{{ $binhiBeneficiary->phone }}</td>
+                        <td>{{ $binhiBeneficiary->email }}</td>
                         @if ($binhiBeneficiary->assistance)
                             <td>{{ $binhiBeneficiary->assistance->project }}</td>
                             <td>{{ $binhiBeneficiary->assistance->amount }}</td>
-                            <td>{{ $binhiBeneficiary->assistance->number_of_hectares }}</td>
+                            <td>{{ $binhiBeneficiary->assistance->organization }}</td>
                             <td class="no-print">
                                 <button class="tooltip-button" data-tooltip="Add"
                                     onclick="showAddValuePopup({{ $binhiBeneficiary->id }})" disabled

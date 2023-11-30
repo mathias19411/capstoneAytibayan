@@ -85,7 +85,7 @@
                                 </div>
 
                                 <h3>
-                                    {{ $userProfileData->phone }}<span class="font-weight-light"></span>
+                                    {{ substr($userProfileData->phone, 2) }}<span class="font-weight-light"></span>
                                 </h3>
                                 <div class="h5 font-weight-300">
 
@@ -228,7 +228,7 @@
                                                     <input type="number"
                                                         class="form-control form-control-alternative"
                                                         placeholder="Phone" contenteditable="true"
-                                                        value="{{ $userProfileData->phone }}" name="phone">
+                                                        value="{{ substr($userProfileData->phone, 2) }}" name="phone">
                                                 </div>
                                             </div>
                                         </div>

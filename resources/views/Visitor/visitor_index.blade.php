@@ -341,7 +341,7 @@
                                         <div id="c_description">
                                             <div id="c_name">{{ $coordinator->first_name }} {{ $coordinator->middle_name }} {{ $coordinator->last_name }}</div>
                                             <div id="c_program">{{ $coordinator->program->program_name }}</div>
-                                            <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>{{ $coordinator->phone }}</div>
+                                            <div id="phone"><i class="fa fa-phone" id="phone_icon"></i>{{ substr($coordinator->phone, 2) }}</div>
                                             <div id="email"><i class="fa fa-envelope" id="email_icon"></i>{{ $coordinator->email }}</div>
                                         </div>
                                     </div>

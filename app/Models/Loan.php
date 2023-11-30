@@ -12,10 +12,12 @@ class Loan extends Model
     protected $fillable = [
         'id',
         'project',
+        'proponent',
         'loan_amount',
         'loan_term_in_months',
         'repayment_schedule',
         'date_of_maturity',
+        'amount_replenished',
         'remaining_loan_balance',
         'user_id',
         'loanstatus_id',

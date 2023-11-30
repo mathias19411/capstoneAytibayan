@@ -15,6 +15,7 @@ class Financialassistance extends Model
         'project',
         'amount',
         'number_of_hectares',
+        'organization',
         'financialassistancestatus_id',
         'created_at',
         'updated_at',

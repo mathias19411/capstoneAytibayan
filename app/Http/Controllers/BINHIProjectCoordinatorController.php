@@ -556,7 +556,7 @@ class BINHIProjectCoordinatorController extends Controller
         $validatedData = $request->validate([
             'project' => ['required', 'string', 'max:70'],
             'amount' => ['required', 'numeric'],
-            'hectares' => ['required', 'numeric'],
+            'organization' => ['required', 'max:100'],
         ]);
 
         if ($validatedData)
@@ -565,7 +565,7 @@ class BINHIProjectCoordinatorController extends Controller
                 'user_id' => $userId,
                 'project' => $validatedData['project'],
                 'amount' => $validatedData['amount'],
-                'number_of_hectares' => $validatedData['hectares'],
+                'organization' => $validatedData['organization'],
                 'financialassistancestatus_id' => 2,
             ]);
 

@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->string('project')->nullable();
+            $table->string('proponent')->nullable();
             $table->float('loan_amount')->nullable();
             $table->integer('loan_term_in_months')->nullable();
             $table->date('repayment_schedule')->nullable();
             $table->date('date_of_maturity')->nullable();
+            $table->float('amount_replenished')->nullable();
             $table->float('remaining_loan_balance')->nullable();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('loanstatus_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
