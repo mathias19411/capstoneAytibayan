@@ -25,8 +25,8 @@
             <label for="unread-filter">From: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="Public User">Public</option>
-                <option value="Beneficiary">Beneficiary</option>
+                <option value="PUBLIC">Public</option>
+                <option value="Akbay">Beneficiaries</option>
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
