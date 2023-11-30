@@ -5,7 +5,7 @@
                 @if(!empty($programLogo))
                 <img src="{{ asset('Uploads/images/'.$programLogo) }}" alt="Logo">
                 @else
-                <img src="" alt="Logo">
+                <img src="\images\logo.png" alt="Logo">
                 @endif
             </a>
         </div>
