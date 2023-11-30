@@ -63,7 +63,7 @@
                         @enderror
                     </div>
                     
-                    <button type="submit" class="button login-button-item" style="margin-top: 1.5rem;">Email Reset Link</button>
+                    <button type="submit" class="button login-button-item" style="margin-top: 1.5rem;font-size:15px;">Email Reset Link</button>
 
                     {{-- <div class="col-12 login-button">
                         <button type="submit" class="btn btn-primary">Login</button>

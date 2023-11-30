@@ -49,6 +49,7 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('Assets/css/authentication.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     {{-- toastr CSS --}}
     {{-- <link rel="stylesheet" type="text/css"
@@ -84,11 +85,12 @@
                     {{-- Password --}}
                     <div class="col-md-12 input">
                         <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
                         <input type="password" class="form-control" id="password" name="password" required autocomplete="new-password">
-                        <button type="button" id="showPasswordBtn1" class="btn btn-secondary"
-                                onclick="togglePasswordVisibility()">
-                                Show Password
-                            </button>
+                        <button type="button" id="showPasswordBtn1" class="btn btn-secondary" onclick="togglePasswordVisibility()">
+                            <i class="fas fa-eye-slash"></i> <!-- Show Password Icon -->
+                        </button>
+                        </div>
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -98,18 +100,19 @@
                     {{-- Confirm Password --}}
                     <div class="col-md-12 input">
                         <label for="password_confirmation" class="form-label">Confirm Password</label>
+                        <div class="input-group">
                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required autocomplete="new-password">
-                        <button type="button" id="showPasswordBtn2" class="btn btn-secondary"
-                                onclick="togglePasswordVisibilityConfirmed()">
-                                Show Password
-                            </button>
+                        <button type="button" id="showPasswordBtn2" class="btn btn-secondary" onclick="togglePasswordVisibilityConfirmed()">
+                            <i class="fas fa-eye-slash"></i> <!-- Show Password Icon -->
+                        </button>
+                        </div>
                         @error('password_confirmation')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
 
                     </div>
                     
-                    <button type="submit" class="button login-button-item" style="margin-top: 1.5rem;">Reset Password</button>
+                    <button type="submit" class="button log-button-item" style="margin-top: 1.5rem; font-size: 13px;">Reset Password</button>
 
                     {{-- <div class="col-12 login-button">
                         <button type="submit" class="btn btn-primary">Login</button>
@@ -124,33 +127,35 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
 
-    <script>
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("password");
-            var showPasswordBtn = document.getElementById("showPasswordBtn1");
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var showPasswordBtn = document.getElementById("showPasswordBtn1");
 
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                showPasswordBtn.textContent = "Hide Password";
-            } else {
-                passwordInput.type = "password";
-                showPasswordBtn.textContent = "Show Password";
-            }
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            showPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>'; // Show Password Icon
+        } else {
+            passwordInput.type = "password";
+            showPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>'; // Hide Password Icon
         }
+    }
 
-        function togglePasswordVisibilityConfirmed() {
-            var passwordInput = document.getElementById("password_confirmation");
-            var showPasswordBtn = document.getElementById("showPasswordBtn2");
+    function togglePasswordVisibilityConfirmed() {
+        var passwordInput = document.getElementById("password_confirmation");
+        var showPasswordBtn = document.getElementById("showPasswordBtn2");
 
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                showPasswordBtn.textContent = "Hide Password";
-            } else {
-                passwordInput.type = "password";
-                showPasswordBtn.textContent = "Show Password";
-            }
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            showPasswordBtn.innerHTML = '<i class="fas fa-eye"></i>'; // Show Password Icon
+        } else {
+            passwordInput.type = "password";
+            showPasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>'; // Hide Password Icon
         }
-    </script>
+    }
+</script>
+
+
 
 
 </body>
