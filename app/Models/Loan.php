@@ -14,6 +14,7 @@ class Loan extends Model
         'project',
         'proponent',
         'loan_amount',
+        'amount_disbursed',
         'loan_term_in_months',
         'repayment_schedule',
         'date_of_maturity',

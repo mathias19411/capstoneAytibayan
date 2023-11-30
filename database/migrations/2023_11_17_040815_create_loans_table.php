@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('project')->nullable();
             $table->string('proponent')->nullable();
             $table->float('loan_amount')->nullable();
+            $table->float('amount_disbursed')->nullable();
             $table->integer('loan_term_in_months')->nullable();
             $table->date('repayment_schedule')->nullable();
             $table->date('date_of_maturity')->nullable();

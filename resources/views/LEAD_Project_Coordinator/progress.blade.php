@@ -389,12 +389,7 @@ $benefCurrentLoanStatuses = [];
                             <td>{{ $leadBeneficiary->loan->project }}</td>
                             <td>{{ $leadBeneficiary->loan->proponent }}</td>
                             <td>{{ $leadBeneficiary->loan->loan_amount }}</td>
-                            @if ($leadBeneficiary->loanstatus->loan_status_name === 'disbursed')
-                                <td>{{ $leadBeneficiary->loan->loan_amount }}</td>
-                            @else
-                                <td>N/A</td>
-                            @endif
-                            
+                            <td>{{ $leadBeneficiary->loan->amount_disbursed }}</td>
                             <td>{{ $leadBeneficiary->loan->created_at }}</td>
                             <td>{{ $leadBeneficiary->loan->loan_amount }}</td>
                             <td>{{ $leadBeneficiary->loan->amount_replenished }}</td>

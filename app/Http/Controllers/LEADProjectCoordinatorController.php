@@ -681,6 +681,7 @@ class LEADProjectCoordinatorController extends Controller
                 'user_id' => $userId,
                 'project' => $validatedData['project'],
                 'loan_amount' => $validatedData['amount'],
+                'amount_disbursed' => 0,
                 'proponent' => $validatedData['proponent'],
                 'repayment_schedule' => $validatedData['repaymentSched'],
                 'remaining_loan_balance' => $validatedData['amount'],
@@ -755,7 +756,10 @@ class LEADProjectCoordinatorController extends Controller
 
         }
         elseif ($request->inputLoanUpdate == 5) {
+            $disbursedAmount = $userLoanId->loan_amount;
+
             $userLoanId->update([
+                'amount_disbursed' => $disbursedAmount,
                 'loanstatus_id' => $request->inputLoanUpdate,
             ]);
 
