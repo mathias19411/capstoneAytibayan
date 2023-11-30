@@ -2,7 +2,7 @@
     <div class="logo-name">
         <div class="logo-image">
             <a href="{{ route('visitor.home') }}">
-                <img src="\images\Logo_AbacaMoPisoMo.png" alt="Logo">
+                <img src="{{ asset('Uploads/images/'.$programLogo) }}" alt="Logo">
             </a>
         </div>
 

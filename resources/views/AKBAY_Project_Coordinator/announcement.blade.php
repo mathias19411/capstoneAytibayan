@@ -37,6 +37,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>From</th>
                             <th>Title</th>
                             <th>To</th>
                             <th>Message</th>
@@ -47,43 +48,48 @@
                     </thead>
                     <tbody>
                         @foreach($announcement->reverse() as $announcements)
-                        <!--VIEW Announcement-->
-                        <div class="modal fade" id="modal_view{{ $announcements->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_view" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modal-title">Announcement Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                    <div class="modal-body" style="justify-content: left; padding-left:0%; margin-left:10%">
-                                    <div class="row">
-                                    <div class="col">
-                                    <div class="col-md-12">
-                                        <h5>Title:</h5>
-                                        <p id="modal-title">{{ $announcements->title }}</p>
+                        <div class="modal fade" id="modal_view{{ $announcements->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal-title" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal-title">Announcement Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5>Title:</h5>
+                                                <p>{{ $announcements->title }}</p>
+                                            </div>
                                         </div>
                                         <div class="row">
-                                        <div class="col-md-12">
-                                            <h5>To:</h5>
-                                            <p id="modal-recipient">{{ $announcements->to }}</p>
+                                            <div class="col-md-12">
+                                                <h5>To:</h5>
+                                                <p>{{ $announcements->to }}</p>
+                                            </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5>Message:</h5>
+                                                <p>{{ $announcements->message }}</p>
+                                            </div>
                                         </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <h5>Message:</h5>
-                                            <p id="modal-message">{{ $announcements->message }}</p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5>From:</h5>
+                                                <p>{{ $announcements->from }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                     </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                     <!--UPDATE Announcement-->
-                    <div class="modal fade" id="modal_edit{{ $announcements->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                    <div class="modal fade" id="modal_edit{{ $announcements->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="#modal_edit" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -96,6 +102,7 @@
                                         @method('PATCH')
                                             <div class="row">
                                             <input type="hidden" name="announcement_id" value="{{ $announcements->id }}">
+                                            <input type="hidden" name="from" value="{{ $announcements->from }}">
                                                 <div class="col-md-6 mb-4">
                                                 <div class="form-group">
                                                     <label for="edit-title">Title:</label>
@@ -106,9 +113,14 @@
                                                 <div class="form-group">
                                                     <label for="edit-recipient">To:</label>
                                                     <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                                    <option>AKBAY</option>
-                                                    <option>PUBLIC</option>
-                                                    </select>
+                                                    @if($announcements->to === 'PUBLIC')
+                                                        <option>PUBLIC</option>
+                                                        <option>{{ $programName }}</option>
+                                                    @else
+                                                        <option>{{ $announcements->to }}</option>
+                                                        <option>PUBLIC</option>
+                                                    @endif
+                                                </select>
                                                 </div>
                                                 </div>
                                                     <div class="col-md-12 mb-4">
@@ -117,6 +129,7 @@
                                                     <textarea class="form-control" id="edit-message" name="message">{{ $announcements->message }}</textarea>
                                                 </div>
                                                 </div>
+                                            </div>
                                             </div>
                                             <div class="modal-footer">
                                                     <button type="button" class="close" data-bs-dismiss="modal">Close</button>
@@ -129,7 +142,7 @@
                     </div>
 
                     <!--DELETE Announcement-->
-                    <div class="modal fade" id="modal_delete{{ $announcements->id }}" tabindex="-1" data-backdrop="false" aria-labelledby="#modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                    <div class="modal fade" id="modal_delete{{ $announcements->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="#modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -175,11 +188,12 @@
                             </div>
                         </div>
                         <tr>
-                            <td>{{ $announcements->title }}</td>
-                            <td>{{ $announcements->to }}</td>
-                            <td>{{ $announcements->message }}</td>
-                            <td>{{ $announcements->date }}</td>
-                            <td>
+                        <td class="column">{{ $announcements->from }}</td>
+                        <td class="column">{{ $announcements->title }}</td>
+                        <td class="column">{{ $announcements->to }}</td>
+                        <td class="column message-column">{{ $announcements->message }}</td>
+                        <td class="column">{{ $announcements->created_at }}</td>
+                        <td>
                             <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view{{ $announcements->id }}">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
                             </button>
@@ -210,7 +224,7 @@
             </div>
 
    <!--MODAL ANNOUNCEMENT INSERT-->
-<div class="modal fade" id="modal_announcement" tabindex="-1" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+<div class="modal fade" id="modal_announcement" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -225,22 +239,23 @@
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                             <label id="label_">Title</label>
-                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title">
+                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title" required>
+                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="from" value="{{ $programName }}" hidden>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                             <label id="label_">To:</label>
-                                <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to">
-                                    <option>AKBAY</option>    
-                                    <option>Public</option>
+                                <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="to" required>
+                                    <option value="{{ $programName }}">{{ $programName }}</option>    
+                                    <option>PUBLIC</option>
                                  </select>
                             </div>
                         </div>
                         <div class="col-md-12 mb-4">
                             <div class="form-outline">
                                 <label id="label_">Message:</label>
-                                <textarea class="form-control" rows="3" placeholder="Write something..." name="message"></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Write something..." name="message" required></textarea>
                             </div>
                         </div>
                         </div>
@@ -250,8 +265,8 @@
                         </div>
                 </form>
                     </div>
-    </div>
-</div>
-</div>
+                </div>
+            </div>
+            </div>
 
 @endsection
