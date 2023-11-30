@@ -125,9 +125,10 @@ class ABAKAProjectCoordinatorController extends Controller
        $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
-       $public = "PUBLIC";
-        $announcement = announcement::where(function ($query) use ($programName, $public) {
-            $query->where('to', $programName)->orWhere('to', $public);})->get();
+       $programLogo = trim(implode(' ', Program::where('program_name', $programName)->pluck('image')->toArray()));
+        
+       $announcement = announcement::where(function ($query) use ($programName) {
+            $query->where('from', $programName);})->get();
 
         return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName', 'roleName'));
     } // End Method
@@ -218,9 +219,9 @@ class ABAKAProjectCoordinatorController extends Controller
 
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
-       $public = "PUBLIC";
-        $event = events::where(function ($query) use ($programName, $public) {
-            $query->where('to', $programName)->orWhere('to', $public);})->get();
+
+        $event = events::where(function ($query) use ($programName) {
+            $query->where('from', $programName);})->get();
 
         return view('ABAKA_Project_Coordinator.event', compact('event','programName', 'roleName'));
     } // End Method

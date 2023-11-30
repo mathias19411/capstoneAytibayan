@@ -240,7 +240,7 @@
                             <div class="form-outline">
                             <label id="label_">Title</label>
                             <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title" required>
-                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="from" value="{{ $roleName }}" hidden>
+                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="from" value="{{ $programName }}" hidden>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">

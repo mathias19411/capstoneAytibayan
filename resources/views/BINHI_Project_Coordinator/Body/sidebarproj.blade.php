@@ -2,7 +2,11 @@
     <div class="logo-name">
         <div class="logo-image">
             <a href="{{ route('visitor.home') }}">
-                <img src="\images\Logo_AbacaMoPisoMo.png" alt="Logo">
+                @if(!empty($programLogo))
+                <img src="{{ asset('Uploads/images/'.$programLogo) }}" alt="Logo">
+                @else
+                <img src="\images\logo.png" alt="Logo">
+                @endif
             </a>
         </div>
 

@@ -36,6 +36,7 @@ class BeneficiaryController extends Controller
 
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
+       $programLogo = trim(implode(' ', Program::where('program_name', $programName)->pluck('image')->toArray()));
        $announcement = announcement::where(function ($query) use ($programName) {
            $query->where('to', $programName);})->get();
         $events = events::where(function ($query) use ($programName) {
@@ -53,7 +54,11 @@ class BeneficiaryController extends Controller
 
     public function getScheduledDates()
     {
-        $scheduledDates = Schedule::pluck('date')->toArray();
+        $id = AUTH::user()->id;
+
+       // Get the programId of the user table
+       $programEmail = User::where('id', $id)->pluck('email');
+        $scheduledDates = trim(implode(' ', Schedule::where('recipient_email', $programEmail)->pluck('date')->toArray()));
     
         // Check if $scheduledDates array is empty
         if (empty($scheduledDates)) {
