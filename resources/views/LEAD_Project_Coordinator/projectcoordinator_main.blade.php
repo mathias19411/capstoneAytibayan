@@ -1036,7 +1036,7 @@ $(document).ready(function() {
 </script>
 
 
- <script>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         const exportButton = document.getElementById('exportButton');
         exportButton.addEventListener('click', exportTable);
@@ -1046,7 +1046,7 @@ $(document).ready(function() {
             const rows = table.querySelectorAll('tbody tr');
 
             // Create a CSV string
-            let csvContent = "User ID,Beneficiary,Barangay,City,Project,Term 'Months',Repayment Schedule,Date of Maturity,Loan Amount,Balance,Incoming Loan Status,Current Loan Status\n";
+            let csvContent = "User ID,Beneficiary,Barangay,City,Project,Proponent,Loan Amount,Amount Disbursed,Created At,Amount Replenished,Remaining Loan Balance,Loan Status,Current Loan Status\n";
 
             rows.forEach(row => {
                 const cells = row.querySelectorAll('td');
@@ -1055,15 +1055,16 @@ $(document).ready(function() {
                 const barangay = cells[2].textContent.trim();
                 const city = cells[3].textContent.trim();
                 const project = cells[4].textContent.trim();
-                const termMonths = cells[5].textContent.trim();
-                const repaymentSchedule = cells[6].textContent.trim();
-                const dateOfMaturity = cells[7].textContent.trim();
-                const loanAmount = cells[8].textContent.trim();
-                const balance = cells[9].textContent.trim();
-                const incomingLoanStatus = cells[10].textContent.trim();
-                const currentLoanStatus = cells[11].textContent.trim();
+                const proponent = cells[5].textContent.trim();
+                const loanAmount = cells[6].textContent.trim();
+                const amountDisbursed = cells[7].textContent.trim();
+                const createdAt = cells[8].textContent.trim();
+                const amountReplenished = cells[9].textContent.trim();
+                const remainingLoanBalance = cells[10].textContent.trim();
+                const loanStatus = cells[11].textContent.trim();
+                const currentLoanStatus = cells[12].textContent.trim();
 
-                const rowData = `${userId},${beneficiary},${barangay},${city},${project},${termMonths},${repaymentSchedule},${dateOfMaturity},${loanAmount},${balance},${incomingLoanStatus},${currentLoanStatus}`;
+                const rowData = `${userId},${beneficiary},${barangay},${city},${project},${proponent},${loanAmount},${amountDisbursed},${createdAt},${amountReplenished},${remainingLoanBalance},${loanStatus},${currentLoanStatus}`;
                 csvContent += rowData + '\n';
             });
 
@@ -1079,7 +1080,6 @@ $(document).ready(function() {
         }
     });
 </script>
-
 
 
 </body>
