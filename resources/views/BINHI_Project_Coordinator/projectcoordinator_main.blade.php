@@ -1047,31 +1047,30 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-<script>//export
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         const exportButton = document.getElementById('exportButton');
         exportButton.addEventListener('click', exportTable);
 
         function exportTable() {
-            const table = document.getElementById('beneficiaries-table');
+            const table = document.getElementById('binhi-beneficiaries-table');
             const rows = table.querySelectorAll('tbody tr');
 
             // Create a CSV string
-            let csvContent = "User ID,Beneficiary,Barangay,City,Status,Project,Amount,Hectares,Assistance Status\n";
+            let csvContent = "User ID,Beneficiary,Location,Phone,Email,Project,Amount,Organization\n";
 
             rows.forEach(row => {
                 const cells = row.querySelectorAll('td');
                 const userId = cells[0].textContent.trim();
                 const beneficiary = cells[1].textContent.replace(/\n/g, ' ').trim();
-                const barangay = cells[2].textContent.trim();
-                const city = cells[3].textContent.trim();
-                const status = cells[4].textContent.trim();
+                const location = cells[2].textContent.trim();
+                const phone = cells[3].textContent.trim();
+                const email = cells[4].textContent.trim();
                 const project = cells[5].textContent.trim();
                 const amount = cells[6].textContent.trim();
-                const hectares = cells[7].textContent.trim();
-                const assistanceStatus = cells[9].textContent.trim();
+                const organization = cells[7].textContent.trim();
 
-                const rowData = `${userId},${beneficiary},${barangay},${city},${status},${project},${amount},${hectares},${assistanceStatus}`;
+                const rowData = `${userId},${beneficiary},${location},${phone},${email},${project},${amount},${organization}`;
                 csvContent += rowData + '\n';
             });
 
@@ -1082,11 +1081,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const blob = new Blob([csvContent], { type: 'text/csv' });
             const link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
-            link.download = `${dateTime}.csv`;
+            link.download = `BINHI (${dateTime}).csv`;
             link.click();
         }
     });
 </script>
+
 
 
 
