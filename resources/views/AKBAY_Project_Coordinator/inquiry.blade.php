@@ -16,17 +16,11 @@
     @endif
     <div class="table-header">
         <div class="table-header-left">
-           <!-- <label for="unread-filter">Filter: </label>
-            <select id="unread-filter">
-                <option value="all">All</option>
-                <option value="unread">Read</option>
-                <option value="read">Unread</option>
-            </select>-->
             <label for="unread-filter">From: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
                 <option value="PUBLIC">Public</option>
-                <option value="Akbay">Beneficiaries</option>
+                <option value="Akbay">Beneficiaries</option>  
             </select>
             <label for="items-per-page">Items per page: </label>
             <select id="items-per-page">
