@@ -1041,7 +1041,7 @@ $(document).ready(function() {
         exportButton.addEventListener('click', exportTable);
 
         function exportTable() {
-            const table = document.getElementById('akbay-beneficiaries-table');
+            const table = document.getElementById('beneficiaries-table');
             const rows = table.querySelectorAll('tbody tr');
 
             // Create a CSV string

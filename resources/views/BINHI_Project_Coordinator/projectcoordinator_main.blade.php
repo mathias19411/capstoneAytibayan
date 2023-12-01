@@ -1046,18 +1046,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-</script>
-<script>
+</script><script>
     document.addEventListener('DOMContentLoaded', function () {
         const exportButton = document.getElementById('exportButton');
         exportButton.addEventListener('click', exportTable);
 
         function exportTable() {
-            const table = document.getElementById('binhi-beneficiaries-table');
+            const table = document.getElementById('beneficiaries-table');
             const rows = table.querySelectorAll('tbody tr');
 
             // Create a CSV string
-            let csvContent = "User ID,Beneficiary,Location,Phone,Email,Project,Amount,Organization\n";
+            let csvContent = "User ID,Beneficiary,Location,Phone,Email,Project,Amount,Organization,Assistance Status\n";
 
             rows.forEach(row => {
                 const cells = row.querySelectorAll('td');
@@ -1086,7 +1085,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 </script>
-
 
 
 
