@@ -12,6 +12,7 @@ use App\Notifications\WebsiteNotifications;
 use App\Mail\FinancialAssistanceStatusUpdate;
 use App\Mail\LoanStatusUpdate;
 use App\Mail\ReplyMailable;
+use App\Mail\ReplyMailableSchedule;
 use App\Models\announcement;
 use App\Models\Assistancesteps;
 use App\Models\Currentloanstatus;
@@ -325,6 +326,22 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         ]);
         $time = $validatedData['time'];
         $ampmTime = date('h:i A', strtotime($time));
+
+        $senderName = $validatedData['from'];
+
+        // Get the email address of the recipient
+        $recipientEmail = $validatedData['recipient_email'];
+
+        // Get the name of the recipient
+        $recipientName = $request->benef_name;
+
+        // Get the subject of the email
+        $subject = $validatedData['description'];
+
+        // Get the body of the email
+        $body = $validatedData['date'];
+
+        $time = $ampmTime;
         // Check if validation passes
         if ($validatedData) {
             // Insert data into the database
@@ -335,6 +352,8 @@ class AGRIPINAYProjectCoordinatorController extends Controller
                 'time' => $ampmTime,
                 'date' => $validatedData['date'],
             ]);
+            // Reply to the email message with a body and an attachment
+            Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
             $schedules->save();
             Notification::send($user, new WebsiteNotifications('Your Schedule is Set at', $request->date, $request->time));
     

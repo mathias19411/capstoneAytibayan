@@ -250,6 +250,7 @@
                                                 <div class="mb-3">
                                                     <label for="schedule-description" class="form-label">Description:</label>
                                                     <input type="hidden" name="benef_id" value="{{ $binhiBeneficiary->id }}">
+                                                    <input type="hidden" name="benef_name" value="{{ $binhiBeneficiary->first_name }} {{ $binhiBeneficiary->middle_name }} {{ $binhiBeneficiary->last_name }}">
                                                     <input name="description" type="text" class="form-control" id="schedule-description" required>
                                                     <input type="hidden" name="from" value="{{ $programName }}">
                                                     <input type="hidden" name="recipient_email" value="{{ $binhiBeneficiary->email }}">
