@@ -223,8 +223,11 @@
                                             </div>
                                         </div>
                                         @endforeach              
-
+                                        @if(!empty($schedule))
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $abakaBeneficiary->id }}">View Schedule</button>
+                                        @else
+                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" onclick="alert('No Schedule is Posted Yet.')">View Schedule</button>
+                                        @endif
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
@@ -610,14 +613,12 @@
                                                 </div>
                                                 <div class="row mb-3 image-update">
                                                 <div class="col-sm-10">
-                                                    <label for="projectImage" class="col-sm-2 col-form-label">Image:</label>
+                                                    <label class="col-sm-2 col-form-label">Image:</label>
                                                         <label id="drop-img">
                                                         <input name="image" type="file" id="input-file" required hidden>
-                                                            <label for="input-file" id="preview">
                                                             <div id="preview">
                                                                 <img src="" class="img-fluid" alt="Image Icon">
                                                             </div>
-                                                            </label>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -657,7 +658,7 @@
         var fileNames = [];
 
         for (let i = 0; i < files.length; i++) {
-            var file = files[i];
+            var file = files['i'];
             var reader = new FileReader();
 
             reader.onload = function (e) {

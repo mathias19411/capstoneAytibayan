@@ -222,7 +222,11 @@
                                         </div>
                                         @endforeach              
 
-                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $akbayBeneficiary->id }}">View Schedule</button>
+                                        @if(!empty($schedule))
+                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $akbayeneficiary->id }}">View Schedule</button>
+                                        @else
+                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" onclick="alert('No Schedule is Posted Yet.')">View Schedule</button>
+                                        @endif
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $akbayBeneficiary->id }}">Add Schedule</button>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
