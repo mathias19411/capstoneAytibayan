@@ -44,7 +44,6 @@ class RegisteredUserController extends Controller
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'inputEmail' => ['required', 'email'],
             'phone_number' => ['required', 'string', 'max:10'],
             'inputRole' => ['required', Rule::in(Role::pluck('id')->all())],
             'inputProgram' => ['required', Rule::in(Program::pluck('id')->all())],
@@ -53,6 +52,16 @@ class RegisteredUserController extends Controller
             'inputProvince' => ['string', 'max:255'],
             'inputZip' => ['string', 'max:255'],
             'inputStatus' => ['required', Rule::in(Status::pluck('id')->all())],
+        ]);
+        $request->validate([
+            'inputEmail' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->ignore(auth()->id()),
+            ],
+            // Add other validation rules for your form fields
+        ], [
+            'inputEmail.unique' => 'The email address is already in use.',
         ]);
 
         $user = User::create([

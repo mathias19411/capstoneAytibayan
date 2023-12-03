@@ -237,7 +237,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                     @enderror
                 </div>
                 <div class="col-md-4">
-                    <label for="inputMiddleName" class="form-label">Middle Name</label>
+                    <label for="inputMiddleName" class="form-label">Middle Initial</label>
                     <input type="text" class="form-control" id="inputMiddleName" name="middle_name"
                         placeholder="Diwally">
                     @error('middle_name')
