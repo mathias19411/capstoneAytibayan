@@ -256,11 +256,11 @@ $benefCurrentLoanStatuses = [];
                                     <span class="alert alert-danger">{{ $message }}</span>
                                 @enderror
                             
-                                <label for="repaymentSched">Repayment Schedule</label>
+                                {{-- <label for="repaymentSched">Repayment Schedule</label>
                                 <input type="date" id="repaymentSched" name="repaymentSched" required>
                                 @error('repaymentSched')
                                     <span class="alert alert-danger">{{ $message }}</span>
-                                @enderror
+                                @enderror --}}
                                 {{-- <label for="maturity">Date of maturity</label>
                                 <input type="date" id="maturity" name="maturity" required>
                                 @error('maturity')

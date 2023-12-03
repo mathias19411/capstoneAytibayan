@@ -204,7 +204,7 @@ class UsersTableSeeder extends Seeder
                 'province' => 'Albay',
                 'zip' => '4500',
                 'role_id' => '7',
-                'program_id' => '1',
+                'program_id' => '3',
                 'status_id' => '1',
             ],
 

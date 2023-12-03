@@ -496,8 +496,13 @@ class ItStaffController extends Controller
 
     public function ITStaffRegisterView()
     {
+        //get all users
         $users = User::orderBy('id', 'asc')->where('blacklisted', false)->get();
+
+        //get all roles
         $roles = Role::all();
+
+        //get all status
         $statuses = Status::all();
 
         return view('ITStaff.registerView', compact('users', 'roles', 'statuses'));
@@ -520,20 +525,20 @@ class ItStaffController extends Controller
         $userData->notify(new InactiveStatusNotif());
 
         //send via sms
-        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        // $client = new \Vonage\Client($basic);
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
 
-        // $response = $client->sms()->send(
-        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been set to INACTIVE.\n Logging in to the Web Application using your account is now forbidden. \n You may contact your program coordinator at the Albay Provincial Agriculture Office or send an Inquiry.")
-        // );
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been set to INACTIVE.\n Logging in to the Web Application using your account is now forbidden. \n You may contact your program coordinator at the Albay Provincial Agriculture Office or send an Inquiry.")
+        );
 
-        // $message = $response->current();
+        $message = $response->current();
 
-        // if ($message->getStatus() == 0) {
-        //     toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
-        // } else {
-        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        // }
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
 
         
 
@@ -652,20 +657,20 @@ class ItStaffController extends Controller
         $userData->notify(new PasswordUpdateNotif());
 
         //send via sms
-        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        // $client = new \Vonage\Client($basic);
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
 
-        // $response = $client->sms()->send(
-        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account password for Albay Provincial Agriculture Office has been successfully updated!")
-        // );
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account password for Albay Provincial Agriculture Office has been successfully updated!")
+        );
 
-        // $message = $response->current();
+        $message = $response->current();
 
-        // if ($message->getStatus() == 0) {
-        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-        // } else {
-        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        // }
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
 
         toastr()->timeOut(10000)->addSuccess('Your Password has been Updated!');
 
@@ -761,20 +766,20 @@ class ItStaffController extends Controller
         $userId->notify(new BlacklistNotification());
 
         //send via sms
-        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        // $client = new \Vonage\Client($basic);
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
 
-        // $response = $client->sms()->send(
-        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Blacklisted, please contact your Program Project Coordinator for inquiries.")
-        // );
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Blacklisted, please contact your Program Project Coordinator for inquiries.")
+        );
 
-        // $message = $response->current();
+        $message = $response->current();
 
-        // if ($message->getStatus() == 0) {
-        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-        // } else {
-        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        // }
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
 
         toastr()->timeOut(10000)->addSuccess('User has been Blacklisted!');
 
@@ -793,20 +798,20 @@ class ItStaffController extends Controller
         $userId->notify(new RestoreNotification());
 
         //send via sms
-        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        // $client = new \Vonage\Client($basic);
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
 
-        // $response = $client->sms()->send(
-        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Restored, you may login again!")
-        // );
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Restored, you may login again!")
+        );
 
-        // $message = $response->current();
+        $message = $response->current();
 
-        // if ($message->getStatus() == 0) {
-        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-        // } else {
-        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        // }
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
 
         toastr()->timeOut(10000)->addSuccess('User has been Restored!');
 

@@ -400,6 +400,9 @@ Route::middleware(['auth', 'checkuserstatus', 'twofactor', 'userroleprotection:l
     //ITStaff Logout
     Route::get('/LEAD_ProjectCoordinator/logout', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('leadprojectCoordinator.logout');
 
+    //replenish view
+    Route::get('/LEAD_ProjectCoordinator/loanreplenish', [LEADProjectCoordinatorController::class, 'CoordinatorReplenishView'])->name('leadprojectcoordinator.LoanReplenishView');
+
     //blacklist view
     Route::get('/LEAD_ProjectCoordinator/blacklist', [LEADProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('leadprojectCoordinator.BlacklistView');
 

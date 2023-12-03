@@ -81,20 +81,20 @@ class RegisteredUserController extends Controller
         $user->notify(new AccountRegistrationNotification());
 
         //send via sms
-        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        // $client = new \Vonage\Client($basic);
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
 
-        // $response = $client->sms()->send(
-        //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your account for Albay Provincial Agriculture Office has been created. You may login with your credentials:\n Email: ". $user->email. "\n Password: ApaoAlbay2023 \n\n You may change your password anytime at the Albay Provincial Agriculture Office Web Application.")
-        // );
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your account for Albay Provincial Agriculture Office has been created. You may login with your credentials:\n Email: ". $user->email. "\n Password: ApaoAlbay2023 \n\n You may change your password anytime at the Albay Provincial Agriculture Office Web Application.")
+        );
 
-        // $message = $response->current();
+        $message = $response->current();
 
-        // if ($message->getStatus() == 0) {
-        //     toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
-        // } else {
-        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        // }
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('The user\'s credentials has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
 
 
         // Auth::login($user);

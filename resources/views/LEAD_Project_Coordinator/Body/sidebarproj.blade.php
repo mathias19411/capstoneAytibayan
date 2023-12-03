@@ -61,6 +61,12 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <span class="link-name">Blacklisted</span>
                 </a>
             </li>
+            <li class="{{ Route::currentRouteName() == 'leadprojectcoordinator.LoanReplenishView' ? 'active' : '' }}">
+                <a href="{{ route('leadprojectcoordinator.LoanReplenishView') }}">
+                    <i class="uil uil-clock"></i>
+                    <span class="link-name">Loan Replenishes</span>
+                </a>
+            </li>
             <li class="{{ Route::currentRouteName() == 'leadprojectcoordinator.registerView' ? 'active' : '' }}">
                 <a href="{{ route('leadprojectcoordinator.registerView') }}" >
                     <i class="uil uil-user-plus"></i>
