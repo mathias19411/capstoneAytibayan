@@ -111,7 +111,22 @@ class UsersTableSeeder extends Seeder
                 'program_id' => '3',
                 'status_id' => '1',
             ],
-            //abaka Beneficiary 
+            //abaka Beneficiary  
+            [
+                'first_name' => 'Joel',
+                'middle_name' => 'B.',
+                'last_name' => 'Almario',
+                'email' => 'logicabegino@gmail.com',
+                'password' => Hash::make('beneficiary123'),
+                'phone' => '639672076783',
+                'barangay' => 'Pinagbobong',
+                'city' => 'Tabaco',
+                'province' => 'Albay',
+                'zip' => '4511',
+                'role_id' => '7',
+                'program_id' => '5',
+                'status_id' => '1',
+            ], 
             [
                  'first_name' => 'Jocelyn',
                  'middle_name' => 'L.',
@@ -219,6 +234,21 @@ class UsersTableSeeder extends Seeder
                 'status_id' => '1',
             ],
             //agripinay Beneficiary 
+            [
+                'first_name' => 'Jerry',
+                'middle_name' => 'D.',
+                'last_name' => 'Enriquez',
+                'email' => 'orlyencabo08@gmail.com',
+                'password' => Hash::make('beneficiary123'),
+                'phone' => '639618092450',
+                'barangay' => 'Alcala',
+                'city' => 'Daraga',
+                'province' => 'Albay',
+                'zip' => '4501',
+                'role_id' => '7',
+                'program_id' => '4',
+                'status_id' => '1',
+            ], 
             [
                 'first_name' => 'Jose',
                 'middle_name' => 'B.',
@@ -492,6 +522,21 @@ class UsersTableSeeder extends Seeder
                  'status_id' => '1',
             ],
             //binhi Beneficiary 
+            [
+                'first_name' => 'Michelle',
+                'middle_name' => 'T.',
+                'last_name' => 'Vera',
+                'email' => 'jorizaoliva@gmail.com',
+                'password' => Hash::make('beneficiary123'),
+                'phone' => '639772703763',
+                'barangay' => 'Ilawod',
+                'city' => 'Camalig',
+                'province' => 'Albay',
+                'zip' => '4502',
+                'role_id' => '7',
+                'program_id' => '1',
+                'status_id' => '1',
+            ], 
             [
                 'first_name' => 'John',
                 'middle_name' => 'T.',
