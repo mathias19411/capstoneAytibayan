@@ -104,6 +104,7 @@ nav .logo-name .logo_name {
     transition: var(--tran-05);
     white-space: nowrap; /* Prevent text from wrapping to the next line */
     text-size-adjust: auto; /* Let the browser automatically adjust the text size */
+    text-transform: uppercase;
 }
 nav.close .logo_name {
     opacity: 0;
