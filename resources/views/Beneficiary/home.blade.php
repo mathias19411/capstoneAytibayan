@@ -327,12 +327,21 @@ else {
                             <div class="chart" id="progressChart">
                                 <span class="progress-value"></span>
                             </div>
-                            <h4>{{ ucwords($statusName) }}</h4>
+                            @if ($userProfileData->program_id == 1 || $userProfileData->program_id == 5)
+                                <h4>{{ ucwords($statusName) }}</h4>
+                            @elseif($userProfileData->program_id == 2 || $userProfileData->program_id == 3 || $userProfileData->program_id == 4) 
+                                <h4>{{ ucwords($statusNameLoan) }}</h4>
+                            @endif
+                            
 
                             <div class="progressbar">
                                 <ul>
                                     <li>
-                                        <h5>{{ $description }}</h5>
+                                        @if ($userProfileData->program_id == 1 || $userProfileData->program_id == 5)
+                                            <h5>{{ $description }}</h5>
+                                        @elseif($userProfileData->program_id == 2 || $userProfileData->program_id == 3 || $userProfileData->program_id == 4) 
+                                            <h5>{{ $descriptionLoan }}</h5>
+                                        @endif
                                     </li>
 
                                 </ul>

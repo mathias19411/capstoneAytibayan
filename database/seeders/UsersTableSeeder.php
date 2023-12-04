@@ -255,7 +255,7 @@ class UsersTableSeeder extends Seeder
                 'last_name' => 'Reyes',
                 'email' => 'jbreyes@gmail.com',
                 'password' => Hash::make('beneficiary123'),
-                'phone' => '639778901234',
+                'phone' => '639923034018',
                 'barangay' => 'Manumbalay',
                 'city' => 'Manito',
                 'province' => 'Albay',
