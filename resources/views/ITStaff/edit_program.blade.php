@@ -30,14 +30,18 @@
             <input type="hidden" name="id" value="{{ $program->id }}">
 
             <div class="form-row">
-                @if ($program->coordinators)
-                    <div class="input-group">
-                        <label for="name">Project Coordinator:</label>
-                        <input type="text" id="name" placeholder="Project Coordinator"
-                        value="{{ $program->coordinators->first() ? $program->coordinators->first()->first_name . ' ' . $program->coordinators->first()->middle_name . ' ' . $program->coordinators->first()->last_name : 'No Project Coordinator Assigned' }}"
-                            readonly>
-                    </div>
-                @else
+                @foreach ($coordinators as $coordinator)
+                    @if ($coordinator->program_id == $program->id)
+                        <div class="input-group">
+                            <label for="name">Project Coordinator:</label>
+                            <input type="text" id="name" placeholder="Project Coordinator"
+                                value="{{ $coordinator->first_name . ' ' . $coordinator->middle_name . ' ' . $coordinator->last_name }}"
+                                readonly>
+                        </div>
+                    @endif
+                @endforeach
+
+                @if (!$coordinators->contains('program_id', $program->id))
                     <div class="input-group">
                         <label for="name">Project Coordinator:</label>
                         <input type="text" id="name" placeholder="Project Coordinator"
@@ -45,6 +49,7 @@
                             readonly>
                     </div>
                 @endif
+                
                 
                 <div class="input-group">
                     <label for="programnameInput">Name of the Program:</label>
