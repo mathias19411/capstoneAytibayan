@@ -278,14 +278,14 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Middle Name</th>
-                    <th>Last Name</th>
-                    <th>Program</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Program</th>
+                            <th>Email</th>
+                            <th>Phone#</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -343,10 +343,10 @@
 
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->first_name }}</td>
-                        <td>{{ $user->middle_name }}</td>
-                        <td>{{ $user->last_name }}</td>
+                        <td>{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</td>
                         <td>{{ $user->program->program_name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ substr($user->phone, 2) }}</td>
                         <td>{{ $user->role->role_name }}</td>
                         <td>{{ $user->status->status_name }}</td>
                         <td>

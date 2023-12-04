@@ -194,8 +194,8 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 </div>
                 <div class="col-md-2">
                     <label for="inputZip" class="form-label">Zip</label>
-                    <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="4500"
-                        required readonly>
+                    <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="4500" value="4500"
+                        readonly>
                     @error('inputZip')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -345,7 +345,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-md-2">
                     <label for="inputZip" class="form-label">Zip</label>
                     <input type="text" class="form-control" id="inputZip" name="inputZip" placeholder="4500"
-                        required value="" >
+                        value="4500" readonly>
                     @error('inputZip')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror

@@ -43,8 +43,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // seed users table 
-        $this->call(UsersTableSeeder::class);
-        //\App\Models\User::factory(40)->create();
+        $this->call([
+            UsersTableSeeder::class,
+        ]);
+        // $this->call(UsersTableSeeder::class);
+        // \App\Models\User::factory(40)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

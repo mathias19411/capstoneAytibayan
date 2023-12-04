@@ -1,9 +1,9 @@
-@extends('ITStaff.main')
+@extends('LEAD_Project_Coordinator.projectcoordinator_main')
 
 @section('content')
-@include('ITStaff.Body.sidebar')
+    @include('LEAD_Project_Coordinator.Body.sidebarproj')
 <div class="title">
-    <h1>Loan Transactions</h1>
+    <h1>Blacklisted Users</h1>
 </div>
 
 <div class="table-header">
@@ -11,8 +11,11 @@
         <label for="unread-filter">Filter: </label>
         <select id="unread-filter">
             <option value="all">All</option>
+            <option value="read">itstaff</option>
+            <option value="binhi">binhingpagasa</option>
+            <option value="abaka">abakamopisomo</option>
             <option value="lead">lead</option>
-            <option value="agripinay">agripinay</option>
+            <option value="lead">lead</option>
             <option value="akbay">akbay</option>
         </select>
         <label for="items-per-page">Items per page: </label>
@@ -38,44 +41,29 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Transaction Type</th>
                 <th>Beneficiary</th>
-                <th>Program</th>
+                <th>Replenished Amount</th>
                 <th>Project Name</th>
                 <th>Loan Amount</th>
-                <th>Loan Term in Months</th>
-                <th>Maturity Date</th>
-                <th>Incoming Loan Status</th>
-                <th>Current Loan Status</th>
-                <th>Date and Time</th>
+                <th>Date of Replenishment</th>
+        
+            
             </tr>
         </thead>
         <tbody>
-            @foreach ($loanTransactions as $loanTransaction)
+            @foreach ($replenishedAmounts as $replenishedAmount)
                 <tr>
-                    <td>{{ $loanTransaction->id }}</td>
-                    <td>{{ $loanTransaction->transaction_type }}</td>
-                    <td>{{ $loanTransaction->user->first_name }} {{ $loanTransaction->user->middle_name }} {{ $loanTransaction->user->last_name }}</td>
-                    <td>{{ $loanTransaction->program->program_name }}</td>
-                    <td>{{ $loanTransaction->loans->project }}</td>
-                    <td>{{ $loanTransaction->loans->loan_amount }}</td>
-                    @if ($loanTransaction->loans->loan_term_in_months)
-                        <td>{{ $loanTransaction->loans->loan_term_in_months }}</td>
-                    @else
-                        <td>N/A</td>
-                    @endif
-                    @if ($loanTransaction->loans->date_of_maturity)
-                        <td>{{ $loanTransaction->loans->date_of_maturity }}</td>
-                    @else
-                        <td>N/A</td>
-                    @endif
-                    <td>{{ $loanTransaction->loanstatus->loan_status_name }}</td>
-                    <td>{{ $loanTransaction->currentloanstatus->current_loan_status_name }}</td>
-                    <td>{{ $loanTransaction->created_at }}</td>
+                    <td>{{ $replenishedAmount->id }}</td>
+                    <td>{{ $replenishedAmount->user->first_name }} {{ $replenishedAmount->user->middle_name }} {{ $replenishedAmount->user->last_name }}</td>
+                    <td>{{ $replenishedAmount->replenish_amount }}</td>
+                    <td>{{ $replenishedAmount->loans->project }}</td>
+                    <td>{{ $replenishedAmount->loans->loan_amount }}</td>
+                    <td>{{ $replenishedAmount->created_at }}</td>
+                
                 </tr>
             @endforeach
-</tbody>
-</table>
+        </tbody>
+    </table>
 <div class="pagination">
     <button id="prev-page">Previous</button>
     <div id="page-numbers"></div>
@@ -122,9 +110,5 @@
         </div>
     </div>
 </div>
-
-            <div class="container-back">
-                    <a href="{{ route('itstaff.home') }}" class="back">Back</a>
-            </div>
 
 @endsection
