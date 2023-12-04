@@ -39,13 +39,13 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <span class="link-name">Event</span>
                 </a>
             </li>
-            <li>
+            <li class="{{ Route::currentRouteName() ==  'itstaff.TransactionsView' ? 'active' : '' }}">
                 <a href="{{ route('itstaff.TransactionsView') }}">
                     <i class="uil uil-history"></i>
                     <span class="link-name">Transactions</span>
                 </a>
             </li>
-            <li>
+            <li class="{{ Route::currentRouteName() ==  'itstaff.BlacklistView' ? 'active' : '' }}">
                 <a href="{{ route('itstaff.BlacklistView') }}">
                     <i class="uil uil-x"></i>
                     <span class="link-name">Blacklisted</span>
