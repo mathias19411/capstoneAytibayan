@@ -97,6 +97,11 @@ class VisitorController extends Controller
         if (!$program) {
             abort(404); // Program not found
         }
+
+        $coordinators = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['binhiprojectcoordinator', 'abakaprojectcoordinator', 'agripinayprojectcoordinator', 'akbayprojectcoordinator', 'leadprojectcoordinator']);
+        })
+        ->get();
     
         $beneficiaries = User::where('program_id', $id)
             ->whereHas('role', function ($query) {
@@ -111,7 +116,7 @@ class VisitorController extends Controller
 
         // dd($program->coordinators);
 
-        return view('Visitor.category_page', compact('program', 'beneficiaries', 'project'));
+        return view('Visitor.category_page', compact('program', 'beneficiaries', 'project', 'coordinators'));
     } // End Method
 
     public function VisitorInquiryStore(Request $request)
