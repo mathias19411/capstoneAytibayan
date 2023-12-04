@@ -74,6 +74,7 @@
                             <th scope="col">Address</th>
                             <th scope="col">Province</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Phone#</th>
                             <th scope="col">Project</th>
                             <th scope="col">Action</th>
                             <th scope="col">Status</th>
@@ -370,6 +371,7 @@
                                 <td>{{ $binhiBeneficiary->province }}</td>
                                 
                                 <td>{{ $binhiBeneficiary->email }}</td>
+                                <td>{{ substr($binhiBeneficiary->phone, 2) }}</td>
 
                                 <td>N/A</td>
                                 <td class="no-print">

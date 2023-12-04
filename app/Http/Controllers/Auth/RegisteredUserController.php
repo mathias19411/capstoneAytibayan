@@ -59,9 +59,28 @@ class RegisteredUserController extends Controller
                 'email',
                 Rule::unique('users', 'email')->ignore(auth()->id()),
             ],
+            'first_name' => [
+                'required',
+                'string',
+                Rule::unique('users', 'first_name')
+                    ->where(function ($query) {
+                        return $query->where('middle_name', request('middle_name'))
+                            ->where('last_name', request('last_name'))
+                            ->whereNot('id', auth()->id());
+                    }),
+            ],
+            'middle_name' => [
+                'required',
+                'string',
+            ],
+            'last_name' => [
+                'required',
+                'string',
+            ],
             // Add other validation rules for your form fields
         ], [
             'inputEmail.unique' => 'The email address is already in use.',
+            'first_name.unique' => 'This name is already registered.',
         ]);
 
         $user = User::create([
