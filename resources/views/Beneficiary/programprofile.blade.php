@@ -29,7 +29,11 @@
 
 
     <a href="">
-      <img src="\images\Logo_AbacaMoPisoMo.png">
+    @if(!empty($programLogo))
+                <img src="{{ asset('Uploads/images/'.$programLogo) }}" alt="Logo">
+                @else
+                <img src="\images\logo.png" alt="Logo">
+                @endif
     </a>
 
 

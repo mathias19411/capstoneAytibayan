@@ -55,7 +55,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <span class="link-name">Progress</span>
                 </a>
             </li>
-            <li class="{{ Route::currentRouteName() == 'akbayprojectcoordinator.BlacklistView' ? 'active' : '' }}">
+            <li class="{{ Route::currentRouteName() == 'akbayprojectCoordinator.BlacklistView' ? 'active' : '' }}">
                 <a href="{{ route('akbayprojectCoordinator.BlacklistView') }}">
                     <i class="uil uil-x"></i>
                     <span class="link-name">Blacklisted</span>

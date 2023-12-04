@@ -139,7 +139,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                         <img src="{{ !empty($userProfileData->photo) ? url('Uploads/Beneficiary_Images/' . $userProfileData->photo) : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
                             class="rounded-circle" alt="User Profile Image">
                     </div>
-                    <span class="linkname">{{ $userProfileData->first_name }} {{ $userProfileData->middle_name }}{{ $userProfileData->last_name }}</span>
+                    <span class="linkname">{{ $userProfileData->first_name }} {{ $userProfileData->middle_name }} {{ $userProfileData->last_name }}</span>
                 </li>
                 <li>
                     <a href="{{ route('beneficiary.viewprofile') }}">

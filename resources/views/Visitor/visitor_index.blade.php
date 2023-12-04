@@ -14,6 +14,7 @@
                     <img src="{{ asset('images/Abaka2.png') }}" alt="apao image" class="apao-horizontal-images">
                     <img src="{{ asset('images/Lead2.png') }}" alt="apao image" class="apao-horizontal-images">
                     <img src="{{ asset('images/Abaka3.png') }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/agripinay1.jpg) }}" alt="apao image" class="apao-horizontal-images">
                 </div>
 
             </div>
