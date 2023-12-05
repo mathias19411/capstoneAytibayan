@@ -112,6 +112,7 @@
                                         </div>
                                         
                                         @foreach($benefSchedules->reverse() as $schedule)
+                                        @if ($akbayBeneficiary->email === $schedule->recipient_email)
                                         <!--VIEW SCHEDULE-->
                                         <div class="modal fade" id="view-schedule-modal{{ $akbayBeneficiary->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                                             <div class="modal-dialog modal-lg">
@@ -123,8 +124,11 @@
                                                     <div class="modal-body">
                                                         <div class="schedule-container">
                                                             @foreach($benefSchedules->reverse() as $schedules)
+                                                            @if ($akbayBeneficiary->email === $schedules->recipient_email)
                                                                 <div class="sched-card">
                                                                     <div class="box">
+                                                                        <div class="sched-design">
+                                                                        </div>
                                                                         <div class="sched-body">
                                                                         <p class="sched-date">Date: {{ $schedules->date }}</p>
                                                                         <p class="sched-time">Time: {{ $schedules->time }}</p>
@@ -136,6 +140,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                            @endif
                                                             @endforeach
                                                         </div>
                                                         <div class="modal-footer">
@@ -153,7 +158,7 @@
                                                         <h5 class="modal-title" id="modal-title">Edit Project</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <form action="{{ route('akbayedit.schedule') }}" method="post" enctype="multipart/form-data">
+                                                    <form action="{{ route('edit.schedule') }}" method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PATCH')
                                                         <div class="modal-body">
@@ -195,7 +200,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                         <div class="modal-body">
-                                                        <form method="POST" action="{{ route('akbaydelete.schedule') }}">
+                                                        <form method="POST" action="{{ route('delete.schedule') }}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <div class="row">
@@ -221,12 +226,14 @@
                                                     </div>
                                             </div>
                                         </div>
+                                        @endif
                                         @endforeach              
-
                                         @if(!empty($schedule))
-                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $akbayeneficiary->id }}">View Schedule</button>
+                                        @if(!empty($akbayBeneficiary->email === $schedule->recipient_email))
+                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $akbayBeneficiary->id }}">View Schedule</button>
                                         @else
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" onclick="alert('No Schedule is Posted Yet.')">View Schedule</button>
+                                        @endif
                                         @endif
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $akbayBeneficiary->id }}">Add Schedule</button>
                                         <div class="modal-footer">
@@ -245,7 +252,7 @@
                                             <h5 class="modal-title" id="exampleModalLabel">Add Schedule</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form id="add-schedule-form" action="{{ route('akbayadd.schedule') }}" method="post">
+                                        <form id="add-schedule-form" action="{{ route('add.schedule') }}" method="post">
                                             @csrf
                                         <div class="modal-body">
                                                 <div class="mb-3">
@@ -461,7 +468,7 @@
                                         <h5 class="modal-title" id="modal-title">Edit Project</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="{{ route('akbayedit.project') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('edit.project') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('PATCH')
                                         <div class="modal-body">
@@ -516,7 +523,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                         <div class="modal-body">
-                                        <form method="POST" action="{{ route('akbaydelete.project') }}">
+                                        <form method="POST" action="{{ route('delete.project') }}">
                                             @csrf
                                             @method('DELETE')
                                             <div class="row">
@@ -544,7 +551,7 @@
                         </div>
 
                         <div class="box">
-                            <div class="project-info">
+                            <div class="projects">
                                 <h5>Title: {{ $projects->title }}</h5>
                                 <img src="{{ asset('Uploads/Updates/'.$projects->attachment) }}">
                                 <h2>Visibility: {{ $projects->recipient }}</h2>
@@ -568,7 +575,7 @@
                     </div>
                 </div>
                 </div>
-             <button type="button" class="add-project_modal" data-bs-toggle="modal" data-bs-target="#modal_addproject">Add Project</button>
+             <button type="button" class="add-project_modal" data-bs-toggle="modal" data-bs-target="#modal_addproject" data-bs-dismiss="modal">Add Project</button>
     
             <div class="modal-footer">
                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
@@ -577,63 +584,110 @@
     </div>
 </div>
 
- <!--ADD PROJECT-->
-                        <div class="modal fade" id="modal_addproject" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <!-- ADD PROJECT -->
+                        <div class="modal fade" id="modal_addproject" tabindex="-1" data-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="modal-title">Add Project</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="{{ route('akbayadd.project') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('add.project') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-body">
-                                                <div class="row">
+                                            <div class="row">
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
-                                                    <label id="label_">Title</label>
-                                                    <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title" required>   
-                                                    <input class="form-control" type="text" id="Title" value="{{ $programName }}" name="from" hidden>                           
-                                                </div>
+                                                        <label id="label_">Title</label>
+                                                        <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title" required>   
+                                                        <input class="form-control" type="text" id="Title" value="{{ $programName }}" name="from" hidden>                           
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-md-6 mb-4">
-                                                        <div class="form-group">
-                                                            <label for="edit-recipient">To:</label>
-                                                            <select class="form-control" type="email" id="to"  onchange= "changeStatus()" placeholder="Title...." name="recipient" required>
-                                                                <option>{{ $programName }}</option>
-                                                                <option>Public</option>
-                                                            </select>
-                                                        </div>
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <label for="edit-recipient">To:</label>
+                                                        <select class="form-control" id="to" onchange="changeStatus()" placeholder="Title...." name="recipient" required>
+                                                            <option>{{ $programName }}</option>
+                                                            <option>Public</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-md-12 mb-4">
                                                     <div class="form-outline">
                                                         <label id="label_">Message:</label>
-                                                            <textarea class="form-control" rows="3" placeholder="Write something..." name="message" required></textarea>
+                                                        <textarea class="form-control" rows="3" placeholder="Write something..." name="message" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3 image-update">
+                                                <div class="col-sm-10">
+                                                    <label class="col-sm-2 col-form-label">Image:</label>
+                                                        <label id="drop-img">
+                                                        <input name="image" type="file" id="input-file" required hidden>
+                                                            <div id="preview">
+                                                                <img src="" class="img-fluid" alt="Image Icon">
                                                             </div>
-                                                            <div class="form-outline">
-                                                                <label id="drop-img">
-                                                                <input name="image" type="file" id="input-file" required hidden>
-                                                                        <div id="img-view">
-                                                                            <span id="error-message" style="color: red;"></span>
-                                                                                <img src="/images/image_icon.png">
-                                                                            <p> Drag and drop or click here <br> to upload picture</p>
-                                                                        </div>
-                                                                </label>
-                                                            </div>
+                                                        </label>
+                                                    </div>
                                                 </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="add" onclick="validateForm()">Save Changes</button>
-                                                </div>
-                                                </div>
-                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="add" data-bs-dismiss="modal">Save Changes</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+                        </div>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<script>
+    document.querySelectorAll('.box img').forEach(projects =>{
+        projects.onclick = () => {
+            document.querySelector('.row mb-3 image-update').style.display = 'block';
+            document.querySelector('.row mb-3 image-update img').src = projects.getAttribute('src');
+        }
+    });
+</script>
+
+<script>
+    document.getElementById('input-file').addEventListener('change', function (e) {
+        var preview = document.getElementById('preview');
+        var inputFile = document.getElementById('input-file');
+
+        preview.innerHTML = ''; // Clear previous preview
+
+        var files = e.target.files;
+        var fileNames = [];
+
+        for (let i = 0; i < files.length; i++) {
+            var file = files['i'];
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '100%';
+                preview.appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+
+            // Add the file name to the array
+            fileNames.push(file.name);
+        }
+
+        // Set the file input value as a comma-separated string of file names
+        inputFile.value = fileNames.join(', ');
+    });
+</script>
 @endsection
 
 <script>
