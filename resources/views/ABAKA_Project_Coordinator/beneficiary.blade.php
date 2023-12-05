@@ -112,6 +112,7 @@
                                         </div>
                                         
                                         @foreach($benefSchedules->reverse() as $schedule)
+                                        @if ($abakaBeneficiary->email === $schedule->recipient_email)
                                         <!--VIEW SCHEDULE-->
                                         <div class="modal fade" id="view-schedule-modal{{ $abakaBeneficiary->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                                             <div class="modal-dialog modal-lg">
@@ -123,6 +124,7 @@
                                                     <div class="modal-body">
                                                         <div class="schedule-container">
                                                             @foreach($benefSchedules->reverse() as $schedules)
+                                                            @if ($abakaBeneficiary->email === $schedules->recipient_email)
                                                                 <div class="sched-card">
                                                                     <div class="box">
                                                                         <div class="sched-design">
@@ -138,6 +140,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                            @endif
                                                             @endforeach
                                                         </div>
                                                         <div class="modal-footer">
@@ -223,11 +226,14 @@
                                                     </div>
                                             </div>
                                         </div>
+                                        @endif
                                         @endforeach              
                                         @if(!empty($schedule))
+                                        @if(!empty($abakaBeneficiary->email === $schedule->recipient_email))
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $abakaBeneficiary->id }}">View Schedule</button>
                                         @else
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" onclick="alert('No Schedule is Posted Yet.')">View Schedule</button>
+                                        @endif
                                         @endif
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
                                         <div class="modal-footer">
