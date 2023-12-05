@@ -44,7 +44,7 @@ class BeneficiaryController extends Controller
             $project = Projects::where(function ($query) use ($programName) {
                 $query->where('recipient', $programName);})->get();
 
-        return view('Beneficiary.home', compact('announcement', 'programName', 'events', 'project'));    
+        return view('Beneficiary.home', compact('announcement', 'programName', 'events', 'project', 'programLogo'));    
     } // End Method
 
     public function BenefNotif(){

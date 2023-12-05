@@ -56,6 +56,8 @@ class BINHIProjectCoordinatorController extends Controller
 
         $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
 
+        $programLogo = trim(implode(' ', Program::where('program_name', $programName)->pluck('image')->toArray()));
+
         $updates = Updates::where(function ($query) use ($programName) {
             $query->where('benef_of', $programName);})->get();
         
@@ -97,7 +99,7 @@ class BINHIProjectCoordinatorController extends Controller
             $query->where('status_name', 'Inactive');
         })->count();
 
-        return view('BINHI_Project_Coordinator.beneficiary', compact('userProfileData', 'binhiBeneficiaries', 'binhiBeneficiariesCount', 'binhiActiveCount', 'binhiInactiveCount', 'programName', 'updates', 'project', 'benefSchedules'));
+        return view('BINHI_Project_Coordinator.beneficiary', compact('userProfileData', 'binhiBeneficiaries', 'binhiBeneficiariesCount', 'binhiActiveCount', 'binhiInactiveCount', 'programName', 'updates', 'project', 'benefSchedules', 'programLogo'));
     } // End Method
 
     public function ProjectCoordinatorLogout(Request $request)

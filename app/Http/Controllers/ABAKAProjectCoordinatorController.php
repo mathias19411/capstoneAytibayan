@@ -65,6 +65,8 @@ class ABAKAProjectCoordinatorController extends Controller
         
         $benefSchedules = Schedule::where(function ($query) use ($programName) {
                 $query->where('from', $programName);})->get();
+        
+       $programLogo = trim(implode(' ', Program::where('program_name', $programName)->pluck('image')->toArray()));
 
         $abakaBeneficiaries = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
@@ -97,7 +99,7 @@ class ABAKAProjectCoordinatorController extends Controller
             $query->where('status_name', 'Inactive');
         })->count();
 
-        return view('ABAKA_Project_Coordinator.beneficiary', compact('userProfileData', 'abakaBeneficiaries', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'programName', 'updates', 'project', 'benefSchedules'));
+        return view('ABAKA_Project_Coordinator.beneficiary', compact('userProfileData', 'abakaBeneficiaries', 'abakaBeneficiariesCount', 'abakaActiveCount', 'abakaInactiveCount', 'programName', 'updates', 'project', 'benefSchedules', 'programLogo'));
     } // End Method
 
     public function ProjectCoordinatorLogout(Request $request)
@@ -126,7 +128,6 @@ class ABAKAProjectCoordinatorController extends Controller
        $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
-       $programLogo = trim(implode(' ', Program::where('program_name', $programName)->pluck('image')->toArray()));
         
        $announcement = announcement::where(function ($query) use ($programName) {
             $query->where('from', $programName);})->get();
