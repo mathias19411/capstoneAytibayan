@@ -158,7 +158,7 @@
                                                         <h5 class="modal-title" id="modal-title">Edit Project</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <form action="{{ route('edit.schedule') }}" method="post" enctype="multipart/form-data">
+                                                    <form action="{{ route('binhiedit.schedule') }}" method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PATCH')
                                                         <div class="modal-body">
@@ -200,7 +200,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                         <div class="modal-body">
-                                                        <form method="POST" action="{{ route('delete.schedule') }}">
+                                                        <form method="POST" action="{{ route('binhidelete.schedule') }}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <div class="row">
@@ -252,7 +252,7 @@
                                             <h5 class="modal-title" id="exampleModalLabel">Add Schedule</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form id="add-schedule-form" action="{{ route('add.schedule') }}" method="post">
+                                        <form id="add-schedule-form" action="{{ route('binhiadd.schedule') }}" method="post">
                                             @csrf
                                         <div class="modal-body">
                                                 <div class="mb-3">
@@ -468,7 +468,7 @@
                                         <h5 class="modal-title" id="modal-title">Edit Project</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="{{ route('edit.project') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('binhiedit.project') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         @method('PATCH')
                                         <div class="modal-body">
@@ -523,7 +523,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                         <div class="modal-body">
-                                        <form method="POST" action="{{ route('delete.project') }}">
+                                        <form method="POST" action="{{ route('binhidelete.project') }}">
                                             @csrf
                                             @method('DELETE')
                                             <div class="row">
@@ -592,7 +592,7 @@
                                         <h5 class="modal-title" id="modal-title">Add Project</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="{{ route('add.project') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('binhiadd.project') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="row">

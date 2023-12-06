@@ -162,8 +162,6 @@ $benefCurrentLoanStatuses = [];
 
     </div>
 
-  
-
     <div class="table-header">
         <div class="table-header-left">
             <label for="unread-filter">City: </label>

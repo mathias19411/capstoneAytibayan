@@ -111,8 +111,8 @@ class VisitorController extends Controller
             ->groupBy('city')
             ->get();
             $public = 'Public';
-            $project = Projects::where(function ($query) use ($public, $programName) {
-                $query->where('recipient', $public)->where('from', $programName);})->get();
+            $project = Projects::where(function ($query) use ($programName) {
+                $query->where('from', $programName);})->get();
 
         // dd($program->coordinators);
 

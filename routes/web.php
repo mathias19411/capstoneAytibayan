@@ -175,7 +175,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
 
     //Coordinator Progress
     Route::get('/BINHI_ProjectCoordinator/Progress', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorProgress'])->name('binhiprojectcoordinator.progress');
-    Route::post('/Project_Coordinator/Project_Page/Add', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorAddProject'])->name('binhiadd.project');
+    Route::post('/BINHI_Project_Coordinator/Project_Page/Add', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorAddProject'])->name('binhiadd.project');
     Route::patch('/BINHI_ProjectCoordinator/Projects', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorUpdateProject'])->name('binhiedit.project');
     Route::delete('/BINHI_ProjectCoordinator/Projects', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorDeleteProject'])->name('binhidelete.project');
 
