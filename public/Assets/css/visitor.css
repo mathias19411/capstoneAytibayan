@@ -1700,7 +1700,7 @@ section.programs_view {
   }
 #about-image {
     width: 100%; /* Set the width to 100% to make it responsive */
-    height: 500px; /* Set the fixed height to maintain aspect ratio */
+    height: 400px; /* Set the fixed height to maintain aspect ratio */
     object-fit: cover; /* Crop the image to cover the entire container while maintaining aspect ratio */
     margin-top: 20px;
     border-radius: 5px;
@@ -1837,8 +1837,7 @@ section.programs_view {
         .box1 {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
+        
         text-align: center;
         width: 48%;
         height: auto;
@@ -1853,6 +1852,7 @@ section.programs_view {
         .box1 h1 {
         padding: 10px;
         width: 100%;
+        height: 40px;
         border-radius: 10px;
         background-color: #7bb701;
         text-align: center;
@@ -1863,23 +1863,9 @@ section.programs_view {
         font-weight: bold;
         
     }
-
-        .box1 h2 {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%; /* Make it circular */
-        background-color: #7bb701;
-        font-size: 1.5rem;
-        color: #f2f2f2;
-        margin: 5px;
-        line-height: 30px; /* Set the line-height equal to the height to center the text */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    
 
         .box1 p {
-        text-align: center;
         padding: 10px 0;
         font-size: 1rem;
         font-weight: 500;

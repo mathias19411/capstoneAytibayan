@@ -1020,12 +1020,22 @@ $(document).ready(function() {
     var printContents = document.getElementById('printableContent').innerHTML;
     var originalContents = document.body.innerHTML;
 
-    var totalBeneficiaries = document.querySelectorAll('#beneficiaries-table tbody tr').length;
+    // Get all visible rows in the table
+    var visibleRows = document.querySelectorAll('#beneficiaries-table tbody tr:not(.hidden)');
+    
+    // Count the total number of visible beneficiaries
+    var totalBeneficiaries = visibleRows.length;
 
-    printContents += '<div>Total Beneficiaries: ' + totalBeneficiaries + '</div>';
+    // Append the total beneficiaries information to the printed content
+   
 
+    // Replace the body content with the printable content
     document.body.innerHTML = printContents;
+
+    // Print the page
     window.print();
+
+    // Restore the original body content
     document.body.innerHTML = originalContents;
 
     // Reload the page after printing

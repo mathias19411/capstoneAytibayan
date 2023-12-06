@@ -162,11 +162,7 @@ $benefCurrentLoanStatuses = [];
 
     </div>
 
-    <div class="button-container">
-                    <button class="button_top" data-bs-toggle="modal" data-bs-target="#projectModal">
-                        <i class="fa-solid fa-list-check" style="color: #ffffff;"></i> Program Activities
-                    </button>
-                </div>
+  
 
     <div class="table-header">
         <div class="table-header-left">
@@ -484,7 +480,7 @@ $benefCurrentLoanStatuses = [];
     </div>
 
     <div class="progress-section">
-        <h2>Process</h2>
+    <h3>Process</h3>
         <ul id="progress-list">
             <!-- Steps will be added dynamically here -->
         </ul>

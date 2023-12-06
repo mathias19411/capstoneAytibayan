@@ -1627,6 +1627,7 @@ body.announcement_events_inquiry .modal-body {
     padding: 1rem;
     text-align: left;
     flex-wrap: wrap;
+    overflow-x: hidden;
 }
 
 body.announcement_events_inquiry .modal-body .form-control {
@@ -2053,7 +2054,9 @@ body.announcement_events_inquiry tr:hover td {
 .tooltip-button {
     position: relative;
 }
-
+.tooltip-button[data-tooltip="Notify"] {
+    background-color: yellow; /* Set your desired background color */
+}
 .tooltip-button::after {
     content: attr(data-tooltip);
     background-color: #989393;

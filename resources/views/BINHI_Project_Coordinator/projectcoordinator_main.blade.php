@@ -1014,8 +1014,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var totalBeneficiaries = document.querySelectorAll('#beneficiaries-table tbody tr').length;
 
-    printContents += '<div>Total Beneficiaries: ' + totalBeneficiaries + '</div>';
-
     document.body.innerHTML = printContents;
     window.print();
     document.body.innerHTML = originalContents;

@@ -84,7 +84,7 @@
             </div>
             <div class="box1">
                 <h1>How To Apply</h1>
-                <h2>1</h2>
+                
                 <p>{{ $program->quiry }}</p>
                 {{-- <h2>2</h2>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
@@ -95,7 +95,7 @@
             </div>
             <div class="box1">
             <h1>Guidelines & Requirements</h1>
-                <h2>1</h2>
+              
                 <p>{{ $program->requirements }}</p>
                 {{-- <h2>2</h2>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>

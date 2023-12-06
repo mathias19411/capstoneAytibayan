@@ -4,7 +4,7 @@
     <div class="nav-left">
         <div class="nav-title">
             <div class="nav-brand">
-                <a href="#" class="apao-logo">
+                <a href="{{ route('visitor.home') }}"class="apao-logo">
                     <img src="{{ asset('images/APAO-R5.jpg') }}">
                     <span class="nav-item">APAO R-V</span>
                 </a>

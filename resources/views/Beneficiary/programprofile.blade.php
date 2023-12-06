@@ -1,5 +1,54 @@
 
+@php
+        // Access the authenticated user's id
+    $id = Illuminate\Support\Facades\Auth::user()->id;
 
+// Access the specific row data of the user's id
+// When using a model in blade.php, indicate the direct path of the model
+$userProfileData = App\Models\User::find($id);
+
+$authUser = Illuminate\Support\Facades\Auth::user();
+
+$description = App\Models\FinancialAssistanceStatus::find(1)->description;
+
+        $statusName = App\Models\FinancialAssistanceStatus::find(1)->financial_assistance_status_name;
+
+if ($authUser->assistance) {
+    $userAssistanceStatus = auth()->user()->financialAssistanceStatus->financial_assistance_status_name;
+}
+elseif ($authUser->loan){
+    $userAssistanceStatus = auth()->user()->loanstatus->loan_status_name;
+}
+else {
+    $userAssistanceStatus = $statusName;
+}
+
+        
+
+        
+
+        $descriptionStarted = App\Models\FinancialAssistanceStatus::find(2)->description;
+
+        $descriptionPending = App\Models\FinancialAssistanceStatus::find(3)->description;
+
+        $descriptionApproved = App\Models\FinancialAssistanceStatus::find(4)->description;
+
+        $descriptionDisbursed = App\Models\FinancialAssistanceStatus::find(5)->description;
+
+        $descriptionLoan = App\Models\Loanstatus::find(1)->description;
+
+        $statusNameLoan = App\Models\Loanstatus::find(1)->loan_status_name;
+
+        $descriptionStartedLoan = App\Models\Loanstatus::find(2)->description;
+
+        $descriptionPendingLoan = App\Models\Loanstatus::find(3)->description;
+
+        $descriptionApprovedLoan = App\Models\Loanstatus::find(4)->description;
+
+        $descriptionDisbursedLoan = App\Models\Loanstatus::find(5)->description;
+
+
+    @endphp
 <!DOCTYPE html>
 <html>
 
@@ -30,7 +79,7 @@
 
     <a href="">
     @if(!empty($programLogo))
-                <img src="{{ asset('Uploads/images/'.$programLogo) }}" alt="Logo">
+                <img src="{{ asset('Uploads/Program_images/'.$programLogo) }}" alt="Logo">
                 @else
                 <img src="\images\logo.png" alt="Logo">
                 @endif
