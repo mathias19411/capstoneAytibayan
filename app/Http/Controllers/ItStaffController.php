@@ -112,7 +112,7 @@ class ItStaffController extends Controller
 
         //coordinators user count
         $coordinaorsCount = User::whereHas('role', function ($query) {
-            $query->whereIn('role_name', ['projectcoordinator', 'abakaprojectcoordinator', 'agripinayprojectcoordinator', 'akbayprojectcoordinator', 'leadprojectcoordinator']);
+            $query->whereIn('role_name', ['binhiprojectcoordinator', 'abakaprojectcoordinator', 'agripinayprojectcoordinator', 'akbayprojectcoordinator', 'leadprojectcoordinator']);
         })->count();
 
         //beneficiaries user count
@@ -237,10 +237,16 @@ class ItStaffController extends Controller
 
     public function ItStaffEditProgramView($id)
     {
-        //get all coordinators associated with a specific program
-        $program = Program::with('coordinators')->findOrFail($id);
 
         $userProgramId = $id;
+
+        $coordinators = User::whereHas('role', function ($query) {
+            $query->whereIn('role_name', ['binhiprojectcoordinator', 'abakaprojectcoordinator', 'agripinayprojectcoordinator', 'akbayprojectcoordinator', 'leadprojectcoordinator']);
+        })
+        ->get();
+
+        //get all coordinators associated with a specific program
+        $program = Program::with('coordinators')->findOrFail($id);
 
         $users = User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
@@ -250,7 +256,7 @@ class ItStaffController extends Controller
 
         // dd($program->coordinators);
 
-        return view('ITStaff.edit_program', compact('program', 'users'));
+        return view('ITStaff.edit_program', compact('program', 'users', 'coordinators'));
     } // End Method
 
     public function ItStaffUpdateProgram(Request $request)

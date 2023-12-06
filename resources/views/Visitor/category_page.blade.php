@@ -39,10 +39,21 @@
         <h2 id="about-heading"></h2>
         <div id="program-name"> {{ $program->program_name }} </div>
         <div id="program-location"> {{ $program->location }} </div>
-        <div id="program-email"> {{ $program->email }} </div>
+        @foreach ($coordinators as $coordinator)
+            @if ($coordinator->program_id == $program->id)
+                <div id="program-email"> {{ $coordinator->first_name }} {{ $coordinator->middle_name }} {{ $coordinator->last_name }} </div>
+                <div id="program-email"> {{ $coordinator->email }} </div>
+            @endif
+        @endforeach
+
+        @if (!$coordinators->contains('program_id', $program->id))
+            <div id="program-email"><h5>No Project Coordinator Assigned</h5> </div>
+        @endif
+        
         <img id="about-image" src="{{ !empty($program->background_image) ? url('Uploads/Program_images/' . $program->background_image) : url('Uploads/no-image.jpg') }}" alt="Category Image">
 
-        
+
+                
 
         <div id="about-program" class="about-content">
             <h3>About</h3>
@@ -198,7 +209,7 @@
                 size: 5,
             },
             title: {
-                text: 'Beneficiaries Per City',
+                text: 'Beneficiaries Per Municipality',
                 align: 'left'
             },
             grid: {

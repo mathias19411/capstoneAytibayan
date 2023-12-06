@@ -47,13 +47,17 @@
                     
                     <div class="login-buttons">
                         <div class="login-button1">
-                            <a href="{{ route('itstaff.logout') }}" class="back-to-home-button">Back to Home</a>
+                            <a>------------</a>
                         </div>
                     </div>
                     <button type="submit" class="button login-button-item">Verify</button>
 
                 </div>
             </div>
+        </form>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="button login-button-item">Logout</button>
         </form>
     </div>
 

@@ -107,7 +107,7 @@ class LEADProjectCoordinatorController extends Controller
             $query->where('status_name', 'Inactive');
         })->count();
 
-        return view('LEAD_Project_Coordinator.beneficiary', compact('userProfileData', 'leadBeneficiaries', 'leadBeneficiariesCount', 'leadActiveCount', 'leadInactiveCount', 'programName', 'updates', 'project', 'benefSchedules'));
+        return view('LEAD_Project_Coordinator.beneficiary', compact('userProfileData', 'leadBeneficiaries', 'leadBeneficiariesCount', 'leadActiveCount', 'leadInactiveCount', 'programName', 'updates', 'project', 'benefSchedules', 'programLogo'));
     } // End Method
 
     public function ProjectCoordinatorLogout(Request $request)
