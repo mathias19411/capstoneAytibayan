@@ -18,7 +18,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 <img src="\images\logo.png" alt="Logo">
                 @endif
             </a>
-        </div>
+    </div>
 
         <span class="logo_name">{{ $userProfileData->program->program_name }}</span>
     </div>
