@@ -14,7 +14,7 @@
                     <img src="{{ asset('images/Abaka2.png') }}" alt="apao image" class="apao-horizontal-images">
                     <img src="{{ asset('images/Lead2.png') }}" alt="apao image" class="apao-horizontal-images">
                     <img src="{{ asset('images/Abaka3.png') }}" alt="apao image" class="apao-horizontal-images">
-                    <img src="{{ asset('images/agripinay1.jpg) }}" alt="apao image" class="apao-horizontal-images">
+                    <img src="{{ asset('images/agripinay1.jpg') }}" alt="apao image" class="apao-horizontal-images">
                 </div>
 
             </div>
@@ -135,8 +135,8 @@
                             <div class="month">{{ $monthEvent }}</div>
                         </div>
                         <div class="events-card-content">
-                            <div>
-                                <h4>Title: {{ $event->title }}</h4>
+                            <div class= "h4">
+                                <h4>{{ $event->title }}</h4>
                             </div>
                             <h5>{{ $event->message }}</h5>
                             <div>

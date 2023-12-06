@@ -986,7 +986,9 @@ hr.announcement {
     flex: 1; /* Distribute available space evenly among children */
     padding: 0.625rem;
 }
-
+.events-section .events-main .events-card > div h4 {
+    color: var(--colorGreen);
+}
 .events-section .events-main .events-card .events-card-title-date {
     flex: 20;
     text-align: center;
