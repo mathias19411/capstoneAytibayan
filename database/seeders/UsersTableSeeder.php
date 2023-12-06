@@ -116,7 +116,7 @@ class UsersTableSeeder extends Seeder
                 'first_name' => 'Joel',
                 'middle_name' => 'B.',
                 'last_name' => 'Almario',
-                'email' => 'joriza@gmail.com',
+                'email' => 'logicabegino@gmail.com',
                 'password' => Hash::make('beneficiary123'),
                 'phone' => '639923034018',
                 'barangay' => 'Pinagbobong',
