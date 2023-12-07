@@ -34,20 +34,20 @@ class TwoFactorController extends Controller
         $user->notify(new TwoFactorCode());
 
         //send via sms
-        //$basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        //$client = new \Vonage\Client($basic);
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
 
-        //$response = $client->sms()->send(
-            //new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your two-factor code is ". $user->two_factor_code)
-        //);
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your two-factor code is ". $user->two_factor_code)
+        );
 
-        //$message = $response->current();
+        $message = $response->current();
 
-        //if ($message->getStatus() == 0) {
-            //toastr()->timeOut(7500)->addSuccess('The two factor code has been sent via email and SMS!');
-        //} else {
-            //toastr()->timeOut(7500)->addSuccess('The two factor code message failed with status: ' . $message->getStatus());
-        //}
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('The two factor code has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The two factor code message failed with status: ' . $message->getStatus());
+        }
 
         return view('auth.twoFactor');
     }
