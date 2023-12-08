@@ -47,18 +47,24 @@
                     
                     <div class="login-buttons">
                         <div class="login-button1">
-                            <a>------------</a>
                         </div>
                     </div>
+                    
                     <button type="submit" class="button login-button-item">Verify</button>
 
-                </div>
-            </div>
+                
         </form>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="button login-button-item">Logout</button>
+            <div class="login-buttons">
+                        <div class="login-button1">
+                             <button type="submit" class="close" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+           
         </form>
+        </div>
+           
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

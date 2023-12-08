@@ -153,11 +153,11 @@ class AKBAYProjectCoordinatorController extends Controller
     public function ProjCoordinatorAnnouncementStore(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
-        $akbayBeneficiaries = User::whereHas('role', function ($query) {
+        $akbayBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
-        })->where('blacklisted', false)->get();
+        })->where('blacklisted', false)->pluck('email')->toArray()));
         // Validate the request
         $validatedData = $request->validate([
             'title' => 'required|string',
@@ -166,6 +166,13 @@ class AKBAYProjectCoordinatorController extends Controller
             'message' => 'required|string',
         ]);
 
+        $recipientEmail = $akbayBeneficiaries;
+        $subject = $validatedData['title'];
+        $body = $validatedData['message'];
+        $senderName = $validatedData['from'];
+        $recipientName = 'AKBAY Beneficiaries';
+        $time = '';
+        
 
         // Check if validation passes
         if ($validatedData) 
@@ -177,6 +184,8 @@ class AKBAYProjectCoordinatorController extends Controller
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
+            // Reply to the email message with a body and an attachment
+            Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
             $announcement->save();
 
             return redirect()->back()->with('success', 'New Announcement Added!');
@@ -187,6 +196,14 @@ class AKBAYProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorAnnouncementUpdate(Request $request)
     {
+        $userProgramId = AUTH::user()->program->id;
+
+        $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
+        $akbayBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->where('blacklisted', false)->pluck('email')->toArray()));
         $aid = $request->announcement_id;
         
         announcement::findOrFail($aid)->update([
@@ -194,6 +211,15 @@ class AKBAYProjectCoordinatorController extends Controller
             'to'=>$request->to,
             'message'=>$request->message,
         ]);
+        $recipientEmail = $akbayBeneficiaries;
+        $subject = $request->title;
+        $body = $request->message;
+        $senderName = $programName;
+        $recipientName = 'AKBAY Beneficiaries';
+        $time = '';
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
+        
 
         return redirect()->back()->with('success', 'Announcement is Updated!');
     } // End Method
@@ -246,6 +272,12 @@ class AKBAYProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorEventStore(Request $request)
 {
+    $userProgramId = AUTH::user()->program->id;
+    $akbayBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+        $query->where('role_name', 'beneficiary');
+    })->whereHas('program', function ($query) use ($userProgramId) {
+        $query->where('id', $userProgramId);
+    })->where('blacklisted', false)->pluck('email')->toArray()));
     // Validate the request
     $validatedData = $request->validate([
         'title' => 'required|string',
@@ -254,6 +286,12 @@ class AKBAYProjectCoordinatorController extends Controller
         'to' => 'required|string',
         'message' => 'required|string',
     ]);
+    $recipientEmail = $akbayBeneficiaries;
+    $subject = $validatedData['title'];
+    $body = $validatedData['message'];
+    $senderName = $validatedData['from'];
+    $recipientName = 'AKBAY Beneficiaries';
+    $time = $validatedData['date'];
 
     //dd($validatedData);
 
@@ -267,6 +305,8 @@ class AKBAYProjectCoordinatorController extends Controller
             'to' => $validatedData['to'],
             'message' => $validatedData['message'],
         ]);
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
         $event->save();
 
         // If the attachment file is not empty, store it in the database
@@ -283,12 +323,29 @@ class AKBAYProjectCoordinatorController extends Controller
     public function ProjCoordinatorEventUpdate(Request $request)
     {
         $aid = $request->event_id;
+        $userProgramId = AUTH::user()->program->id;
+
+        $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
+        $akbayBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->where('blacklisted', false)->pluck('email')->toArray()));
         
         events::findOrFail($aid)->update([
             'title'=>$request->title,
+            'date'=>$request->date,
             'to'=>$request->to,
             'message'=>$request->message,
         ]);
+        $recipientEmail = $akbayBeneficiaries;
+        $subject = $request->title;
+        $body = $request->message;
+        $senderName = $programName;
+        $recipientName = 'AKBAY Beneficiaries';
+        $time = $request->date;
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
 
         return redirect()->back()->with('success', 'Event is Updated!');
     } // End Method
