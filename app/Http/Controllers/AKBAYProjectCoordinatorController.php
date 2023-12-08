@@ -341,7 +341,7 @@ class AKBAYProjectCoordinatorController extends Controller
         $subject = $validatedData['description'];
 
         // Get the body of the email
-        $body = $validatedData['date'];
+        $body = 'Your schedule has been set at ' .  $validatedData['date'];
 
         $time = $ampmTime;
         // Check if validation passes
@@ -391,6 +391,8 @@ class AKBAYProjectCoordinatorController extends Controller
 
         $user = User::findOrFail($benef_id);
         
+        $senderName = $request->from;
+        $recipientEmail = $request->recipient_email;
 
         $time = $request->time;
         $ampmTime = date('h:i A', strtotime($time));
@@ -400,6 +402,12 @@ class AKBAYProjectCoordinatorController extends Controller
             'time'=>$ampmTime,
             'date'=>$request->date,
         ]);
+        $subject = 'Your schedule has been updated';
+        $body = 'Your new schedule is set at ' . $request->date;
+
+        $recipientName = $request->benef_name;
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $ampmTime));
         
         Notification::send($user, new WebsiteNotifications('Your Schedule has been Updated', $request->date, $request->time));
 
@@ -425,8 +433,26 @@ class AKBAYProjectCoordinatorController extends Controller
     public function ProjCoordinatorScheduleDelete(Request $request)
     {
         $id = $request->schedule_id;
+
+        $benef_id = $request->benef_id;
+
+        $user = User::findOrFail($benef_id);
         // Find the record you want to delete by its primary key
         $recordToDelete = Schedule::find($id);
+        
+        $senderName = $request->from;
+        $recipientEmail = $request->recipient_email;
+
+        $time = $request->time;
+        $ampmTime = date('h:i A', strtotime($time));
+
+        
+        $subject = 'Your schedule is cancelled';
+        $body = 'This schedule is no longer available > ' . $request->date;
+        $recipientName = $request->benef_name;
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $ampmTime));
+
 
         // Check if the record exists
         if ($recordToDelete) {

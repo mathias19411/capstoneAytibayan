@@ -167,6 +167,7 @@
                                                                 <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
                                                                 <div class="mb-3">
                                                                     <label for="schedule-description" class="form-label">Description:</label>
+                                                                    <input type="hidden" name="benef_name" value="{{ $agripinayBeneficiary->first_name }} {{ $agripinayBeneficiary->middle_name }} {{ $agripinayBeneficiary->last_name }}">
                                                                     <input type="hidden" name="benef_id" value="{{ $agripinayBeneficiary->id }}">
                                                                     <input name="description" type="text" class="form-control" id="schedule-description" value="{{ $schedule->description }}" required>
                                                                     <input type="hidden" name="from" value="{{ $programName }}">
@@ -205,6 +206,13 @@
                                                             @method('DELETE')
                                                             <div class="row">
                                                             <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
+                                                                    <input type="hidden" name="benef_name" value="{{ $agripinayBeneficiary->first_name }} {{ $agripinayBeneficiary->middle_name }} {{ $agripinayBeneficiary->last_name }}">
+                                                                    <input type="hidden" name="benef_id" value="{{ $agripinayBeneficiary->id }}">
+                                                                    <input name="description" type="hidden" class="form-control" id="schedule-description" value="{{ $schedule->description }}">
+                                                                    <input type="hidden" name="from" value="{{ $programName }}">
+                                                                    <input type="hidden" name="recipient_email" value="{{ $agripinayBeneficiary->email }}">
+                                                                    <input name="date" type="hidden" class="form-control" id="schedule-date" value="{{ $schedule->date }}">
+                                                                    <input name="time" type="hidden" class="form-control" id="schedule-time" value="{{ $schedule->time }}">
                                                             </div>
                                                                 <div class="col-md-12 mb-4">
                                                                     <div class="form-outline">

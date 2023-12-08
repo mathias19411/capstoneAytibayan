@@ -155,7 +155,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="modal-title">Edit Project</h5>
+                                                        <h5 class="modal-title" id="modal-title">Edit Schedule</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <form action="{{ route('leadedit.schedule') }}" method="post" enctype="multipart/form-data">
@@ -167,6 +167,7 @@
                                                                 <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
                                                                 <div class="mb-3">
                                                                     <label for="schedule-description" class="form-label">Description:</label>
+                                                                    <input type="hidden" name="benef_name" value="{{ $leadBeneficiary->first_name }} {{ $leadBeneficiary->middle_name }} {{ $leadBeneficiary->last_name }}">
                                                                     <input type="hidden" name="benef_id" value="{{ $leadBeneficiary->id }}">
                                                                     <input name="description" type="text" class="form-control" id="schedule-description" value="{{ $schedule->description }}" required>
                                                                     <input type="hidden" name="from" value="{{ $programName }}">
@@ -196,7 +197,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="modal-title">Event Details</h5>
+                                                        <h5 class="modal-title" id="modal-title">Schedule Details</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                         <div class="modal-body">
@@ -205,6 +206,13 @@
                                                             @method('DELETE')
                                                             <div class="row">
                                                             <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
+                                                                    <input type="hidden" name="benef_name" value="{{ $leadBeneficiary->first_name }} {{ $leadBeneficiary->middle_name }} {{ $leadBeneficiary->last_name }}">
+                                                                    <input type="hidden" name="benef_id" value="{{ $leadBeneficiary->id }}">
+                                                                    <input name="description" type="hidden" class="form-control" id="schedule-description" value="{{ $schedule->description }}">
+                                                                    <input type="hidden" name="from" value="{{ $programName }}">
+                                                                    <input type="hidden" name="recipient_email" value="{{ $leadBeneficiary->email }}">
+                                                                    <input name="date" type="hidden" class="form-control" id="schedule-date" value="{{ $schedule->date }}">
+                                                                    <input name="time" type="hidden" class="form-control" id="schedule-time" value="{{ $schedule->time }}">
                                                             </div>
                                                                 <div class="col-md-12 mb-4">
                                                                     <div class="form-outline">
