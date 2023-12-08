@@ -357,7 +357,23 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             // Reply to the email message with a body and an attachment
             Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
             $schedules->save();
-            Notification::send($user, new WebsiteNotifications('Your Schedule is Set at', $request->date, $request->time));
+            Notification::send($user, new WebsiteNotifications('Your Schedule is Set at ', $request->date, $request->time));
+
+            //send via sms
+            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            $client = new \Vonage\Client($basic);
+
+            $response = $client->sms()->send(
+                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule is Set at " . $request->date ." ". $request->time)
+            );
+
+            $message = $response->current();
+
+            if ($message->getStatus() == 0) {
+                toastr()->timeOut(7500)->addSuccess('The Beneficiary schedule has been sent via email and SMS!');
+            } else {
+                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            }
     
             // If the attachment file is not empty, store it in the database
     
@@ -386,6 +402,22 @@ class AGRIPINAYProjectCoordinatorController extends Controller
         ]);
         
         Notification::send($user, new WebsiteNotifications('Your Schedule has been Updated', $request->date, $request->time));
+
+        //send via sms
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
+
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule has been Updated to " . $request->date ." ". $request->time)
+        );
+
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('The Beneficiary schedule has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
 
         return redirect()->back()->with('success', 'Schedule is Updated!');
     } // End Method
