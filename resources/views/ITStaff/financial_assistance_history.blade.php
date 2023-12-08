@@ -56,6 +56,16 @@
                 <td>{{ $assistanceTransaction->program->program_name }}</td>
                 <td>{{ $assistanceTransaction->assistance->project }}</td>
                 <td>{{ $assistanceTransaction->assistance->amount }}</td>
+                @if ($assistanceTransaction->assistance->number_of_hectares)
+                    <td>{{ $assistanceTransaction->assistance->number_of_hectares }}</td>
+                @else
+                    <td>N/A</td>
+                @endif
+                @if ($assistanceTransaction->assistance->organization)
+                    <td>{{ $assistanceTransaction->assistance->organization }}</td>
+                @else
+                    <td>N/A</td>
+                @endif
                 <td>{{ $assistanceTransaction->created_at }}</td>
                 <td>{{ $assistanceTransaction->assistancestatus->financial_assistance_status_name }}</td>
             </tr>

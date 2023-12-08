@@ -116,7 +116,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
 
-                    <input type="hidden" name="password" value="ApaoAlbay2023">
+                    {{-- <input type="hidden" name="password" value="ApaoAlbay2023"> --}}
                 </div>
                 <div class="col-md-6">
                     <label for="inputNumber" class="form-label">Phone Number</label>
@@ -260,7 +260,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
 
-                    <input type="hidden" name="password" value="ApaoAlbay2023">
+                    {{-- <input type="hidden" name="password" value="ApaoAlbay2023"> --}}
                 </div>
                 <div class="col-md-6">
                     <label for="inputNumber" class="form-label">Phone Number</label>

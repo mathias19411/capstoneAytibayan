@@ -332,7 +332,7 @@ class ABAKAProjectCoordinatorController extends Controller
         $subject = $validatedData['description'];
 
         // Get the body of the email
-        $body = 'Your schedule has been set at ' .  $validatedData['date'];
+        $body = 'Your schedule for has been set at ' .  $validatedData['date'];
 
         $time = $ampmTime;
         // Check if validation passes
@@ -355,7 +355,7 @@ class ABAKAProjectCoordinatorController extends Controller
             $client = new \Vonage\Client($basic);
 
             $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule is Set at " . $request->date ." ". $request->time)
+                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule for monitoring is Set at " . $request->date ." ". $request->time)
             );
 
             $message = $response->current();
@@ -407,7 +407,7 @@ class ABAKAProjectCoordinatorController extends Controller
         $client = new \Vonage\Client($basic);
 
         $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule has been Updated to " . $request->date ." ". $request->time)
+            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule for monitoring has been Updated to " . $request->date ." ". $request->time)
         );
 
         $message = $response->current();
@@ -438,12 +438,30 @@ class ABAKAProjectCoordinatorController extends Controller
         $ampmTime = date('h:i A', strtotime($time));
 
         
-        $subject = 'Your schedule is cancelled';
+        $subject = 'Your schedule has been cancelled';
         $body = 'This schedule is no longer available > ' . $request->date;
         $recipientName = $request->benef_name;
         // Reply to the email message with a body and an attachment
         Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $ampmTime));
 
+        Notification::send($user, new WebsiteNotifications('Your Schedule for monitoring has been cancelled!', $request->date, $request->time));
+
+        //send via sms
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
+
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Monitoring Schedule has been cancelled!" . $request->date ." ". $request->time)
+        );
+
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('The Beneficiary schedule has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
+        
 
         // Check if the record exists
         if ($recordToDelete) {

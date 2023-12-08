@@ -38,11 +38,13 @@ class AccountRegistrationNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $passwordWithUniqueValue = "ApaoAlbay2023" . $notifiable->id . "_" . $notifiable->last_name;
+
         return (new MailMessage)
                     ->line("Your account for Albay Provincial Agriculture Office has been created.")
                     ->line("You may login with your credentials:")
                     ->line("Email: ". $notifiable->email)
-                    ->line("Default Password: ApaoAlbay2023")
+                    ->line("Default Password: ". $passwordWithUniqueValue)
                     ->line("You may change your default password anytime at the Albay Provincial Agriculture Office Web Application.")
                     ->action('Go to Web App', route('visitor.home'))
                     ->line('For more information, you may login to our web application by clicking the button above.');
