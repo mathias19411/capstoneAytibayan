@@ -153,11 +153,11 @@ class LEADProjectCoordinatorController extends Controller
     public function ProjCoordinatorAnnouncementStore(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
-        $leadBeneficiaries = User::whereHas('role', function ($query) {
+        $leadBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
-        })->where('blacklisted', false)->get();
+        })->where('blacklisted', false)->pluck('email')->toArray()));
         // Validate the request
         $validatedData = $request->validate([
             'title' => 'required|string',
@@ -166,6 +166,13 @@ class LEADProjectCoordinatorController extends Controller
             'message' => 'required|string',
         ]);
 
+        $recipientEmail = $leadBeneficiaries;
+        $subject = $validatedData['title'];
+        $body = $validatedData['message'];
+        $senderName = $validatedData['from'];
+        $recipientName = 'LEAD Beneficiaries';
+        $time = '';
+        
 
         // Check if validation passes
         if ($validatedData) 
@@ -177,6 +184,8 @@ class LEADProjectCoordinatorController extends Controller
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
+            // Reply to the email message with a body and an attachment
+            Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
             $announcement->save();
 
             return redirect()->back()->with('success', 'New Announcement Added!');
@@ -187,6 +196,14 @@ class LEADProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorAnnouncementUpdate(Request $request)
     {
+        $userProgramId = AUTH::user()->program->id;
+
+        $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
+        $leadBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->where('blacklisted', false)->pluck('email')->toArray()));
         $aid = $request->announcement_id;
         
         announcement::findOrFail($aid)->update([
@@ -194,6 +211,15 @@ class LEADProjectCoordinatorController extends Controller
             'to'=>$request->to,
             'message'=>$request->message,
         ]);
+        $recipientEmail = $leadBeneficiaries;
+        $subject = $request->title;
+        $body = $request->message;
+        $senderName = $programName;
+        $recipientName = 'LEAD Beneficiaries';
+        $time = '';
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
+        
 
         return redirect()->back()->with('success', 'Announcement is Updated!');
     } // End Method
@@ -244,54 +270,84 @@ class LEADProjectCoordinatorController extends Controller
     } // End Method
 
     public function ProjCoordinatorEventStore(Request $request)
-{
-    // Validate the request
-    $validatedData = $request->validate([
-        'title' => 'required|string',
-        'from'=> 'string',
-        'date' => 'required|date',
-        'to' => 'required|string',
-        'message' => 'required|string',
-    ]);
-
-    //dd($validatedData);
-
-    // Check if validation passes
-    if ($validatedData) {
-        // Insert data into the database
-        $event = events::create([
-            'from' => $validatedData['from'],
-            'title' => $validatedData['title'],
-            'date' => $validatedData['date'],
-            'to' => $validatedData['to'],
-            'message' => $validatedData['message'],
-        ]);
-        $event->save();
-
-        // If the attachment file is not empty, store it in the database
-
-        return redirect()->back()->with('success', 'New Event Added!');
-    } else {
-        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
-    }
-}
-
-
-
-
-    public function ProjCoordinatorEventUpdate(Request $request)
     {
-        $aid = $request->event_id;
-        
-        events::findOrFail($aid)->update([
-            'title'=>$request->title,
-            'to'=>$request->to,
-            'message'=>$request->message,
+        $userProgramId = AUTH::user()->program->id;
+        $leadBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->where('blacklisted', false)->pluck('email')->toArray()));
+        // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from'=> 'string',
+            'date' => 'required|date',
+            'to' => 'required|string',
+            'message' => 'required|string',
         ]);
-
-        return redirect()->back()->with('success', 'Event is Updated!');
-    } // End Method
-
+        $recipientEmail = $leadBeneficiaries;
+        $subject = $validatedData['title'];
+        $body = $validatedData['message'];
+        $senderName = $validatedData['from'];
+        $recipientName = 'LEAD Beneficiaries';
+        $time = $validatedData['date'];
+    
+        //dd($validatedData);
+    
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $event = events::create([
+                'from' => $validatedData['from'],
+                'title' => $validatedData['title'],
+                'date' => $validatedData['date'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+            ]);
+            // Reply to the email message with a body and an attachment
+            Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
+            $event->save();
+    
+            // If the attachment file is not empty, store it in the database
+    
+            return redirect()->back()->with('success', 'New Event Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+    }
+    
+    
+    
+    
+        public function ProjCoordinatorEventUpdate(Request $request)
+        {
+            $aid = $request->event_id;
+            $userProgramId = AUTH::user()->program->id;
+    
+            $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
+            $leadBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+                $query->where('role_name', 'beneficiary');
+            })->whereHas('program', function ($query) use ($userProgramId) {
+                $query->where('id', $userProgramId);
+            })->where('blacklisted', false)->pluck('email')->toArray()));
+            
+            events::findOrFail($aid)->update([
+                'title'=>$request->title,
+                'date'=>$request->date,
+                'to'=>$request->to,
+                'message'=>$request->message,
+            ]);
+            $recipientEmail = $leadBeneficiaries;
+            $subject = $request->title;
+            $body = $request->message;
+            $senderName = $programName;
+            $recipientName = 'LEAD Beneficiaries';
+            $time = $request->date;
+            // Reply to the email message with a body and an attachment
+            Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
+    
+            return redirect()->back()->with('success', 'Event is Updated!');
+        } // End Method
     public function ProjCoordinatorEventDelete(Request $request)
     {
         $id = $request->event_id;

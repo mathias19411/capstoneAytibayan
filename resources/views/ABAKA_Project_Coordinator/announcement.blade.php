@@ -241,6 +241,7 @@
                             <label id="label_">Title</label>
                             <input class="form-control" type="text" id="Title" placeholder="Title.... " name="title" required>
                             <input class="form-control" type="text" id="Title" placeholder="Title.... " name="from" value="{{ $programName }}" hidden>
+                            <input class="form-control" type="text" id="Title" placeholder="Title.... " name="email" value="{{ $programEmail }}" hidden>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">

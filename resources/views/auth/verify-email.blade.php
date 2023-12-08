@@ -54,10 +54,6 @@
                 </div>
             </div>
         </form>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="button login-button-item">Logout</button>
-        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

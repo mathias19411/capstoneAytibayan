@@ -124,6 +124,7 @@ class ABAKAProjectCoordinatorController extends Controller
 
        // Get the programId of the user table
        $programId = User::where('id', $id)->pluck('program_id');
+       $programEmail = User::where('id', $id)->pluck('email');
        $roleId = User::where('id', $id)->pluck('role_id');
        $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
        // Get the programname of the program table
@@ -132,7 +133,7 @@ class ABAKAProjectCoordinatorController extends Controller
        $announcement = announcement::where(function ($query) use ($programName) {
             $query->where('from', $programName);})->get();
 
-        return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName', 'roleName'));
+        return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName', 'roleName', 'programEmail'));
     } // End Method
 
     public function ProjectCoordinatorAnnouncementEdit($id)
@@ -145,11 +146,11 @@ class ABAKAProjectCoordinatorController extends Controller
     public function ProjCoordinatorAnnouncementStore(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
-        $abakaBeneficiaries = User::whereHas('role', function ($query) {
+        $abakaBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
-        })->where('blacklisted', false)->get();
+        })->where('blacklisted', false)->pluck('email')->toArray()));
         // Validate the request
         $validatedData = $request->validate([
             'title' => 'required|string',
@@ -158,6 +159,13 @@ class ABAKAProjectCoordinatorController extends Controller
             'message' => 'required|string',
         ]);
 
+        $recipientEmail = $abakaBeneficiaries;
+        $subject = $validatedData['title'];
+        $body = $validatedData['message'];
+        $senderName = $validatedData['from'];
+        $recipientName = 'ABACA Beneficiaries';
+        $time = '';
+        
 
         // Check if validation passes
         if ($validatedData) 
@@ -169,6 +177,8 @@ class ABAKAProjectCoordinatorController extends Controller
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
+            // Reply to the email message with a body and an attachment
+            Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
             $announcement->save();
 
             return redirect()->back()->with('success', 'New Announcement Added!');
@@ -179,6 +189,14 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorAnnouncementUpdate(Request $request)
     {
+        $userProgramId = AUTH::user()->program->id;
+
+        $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
+        $abakaBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->where('blacklisted', false)->pluck('email')->toArray()));
         $aid = $request->announcement_id;
         
         announcement::findOrFail($aid)->update([
@@ -186,6 +204,15 @@ class ABAKAProjectCoordinatorController extends Controller
             'to'=>$request->to,
             'message'=>$request->message,
         ]);
+        $recipientEmail = $abakaBeneficiaries;
+        $subject = $request->title;
+        $body = $request->message;
+        $senderName = $programName;
+        $recipientName = 'ABACA Beneficiaries';
+        $time = '';
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
+        
 
         return redirect()->back()->with('success', 'Announcement is Updated!');
     } // End Method
@@ -237,6 +264,12 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorEventStore(Request $request)
 {
+    $userProgramId = AUTH::user()->program->id;
+    $abakaBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+        $query->where('role_name', 'beneficiary');
+    })->whereHas('program', function ($query) use ($userProgramId) {
+        $query->where('id', $userProgramId);
+    })->where('blacklisted', false)->pluck('email')->toArray()));
     // Validate the request
     $validatedData = $request->validate([
         'title' => 'required|string',
@@ -245,6 +278,12 @@ class ABAKAProjectCoordinatorController extends Controller
         'to' => 'required|string',
         'message' => 'required|string',
     ]);
+    $recipientEmail = $abakaBeneficiaries;
+    $subject = $validatedData['title'];
+    $body = $validatedData['message'];
+    $senderName = $validatedData['from'];
+    $recipientName = 'ABACA Beneficiaries';
+    $time = $validatedData['date'];
 
     //dd($validatedData);
 
@@ -258,6 +297,8 @@ class ABAKAProjectCoordinatorController extends Controller
             'to' => $validatedData['to'],
             'message' => $validatedData['message'],
         ]);
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
         $event->save();
 
         // If the attachment file is not empty, store it in the database
@@ -274,12 +315,29 @@ class ABAKAProjectCoordinatorController extends Controller
     public function ProjCoordinatorEventUpdate(Request $request)
     {
         $aid = $request->event_id;
+        $userProgramId = AUTH::user()->program->id;
+
+        $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
+        $abakaBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($userProgramId) {
+            $query->where('id', $userProgramId);
+        })->where('blacklisted', false)->pluck('email')->toArray()));
         
         events::findOrFail($aid)->update([
             'title'=>$request->title,
+            'date'=>$request->date,
             'to'=>$request->to,
             'message'=>$request->message,
         ]);
+        $recipientEmail = $abakaBeneficiaries;
+        $subject = $request->title;
+        $body = $request->message;
+        $senderName = $programName;
+        $recipientName = 'ABACA Beneficiaries';
+        $time = $request->date;
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
 
         return redirect()->back()->with('success', 'Event is Updated!');
     } // End Method
