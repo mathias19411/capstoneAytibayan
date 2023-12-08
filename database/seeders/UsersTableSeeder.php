@@ -81,9 +81,10 @@ class UsersTableSeeder extends Seeder
             ],
             //AKBAYProject Coordinator
             [
-                'first_name' => 'Project Coordinator',
-                'middle_name' => 'of',
-                'last_name' => 'Akbay',
+                'first_name' => 'Arminda',
+                'middle_name' => 'A.',
+                'last_name' => 'Padilla',
+                
                 'email' => 'bermejomathiasjohnoliver5@gmail.com',
                 'password' => Hash::make('coordinator123'),
                 'phone' => '639923034018',
