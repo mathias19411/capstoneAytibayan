@@ -37,10 +37,11 @@ class BeneficiaryController extends Controller
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
        $programLogo = trim(implode(' ', Program::where('program_name', $programName)->pluck('image')->toArray()));
-       $announcement = announcement::where(function ($query) use ($programName) {
-           $query->where('to', $programName);})->get();
-        $events = events::where(function ($query) use ($programName) {
-            $query->where('to', $programName);})->get();
+       $status = 'Available';
+       $announcement = announcement::where(function ($query) use ($programName, $status) {
+           $query->where('to', $programName)->where('status', $status);})->get();
+        $events = events::where(function ($query) use ($programName, $status) {
+            $query->where('to', $programName)->where('status', $status);})->get();
             $project = Projects::where(function ($query) use ($programName) {
                 $query->where('recipient', $programName);})->get();
 
