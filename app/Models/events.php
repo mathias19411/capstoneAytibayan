@@ -13,6 +13,7 @@ class events extends Model
         'from',
         'to',
         'message',
+        'status'
     ];
 
     public function files()

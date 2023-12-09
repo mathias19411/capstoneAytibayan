@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('from');
             $table->string('to');
             $table->string('message');
+            $table->string('status')->nullable()->default('Available');
             
             $table->timestamps();
         });

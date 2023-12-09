@@ -47,6 +47,7 @@
                             <th>To</th>
                             <th>Message</th>
                             <th>Date</th>
+                            <th>Status</th>
                             <th>Action</th>
 
                         </tr>
@@ -190,6 +191,8 @@
                         <td class="column">{{ $announcements->to }}</td>
                         <td class="column message-column">{{ $announcements->message }}</td>
                         <td class="column">{{ $announcements->created_at }}</td>
+                        <td class="column">{{ $announcements->status }}</td>
+
                         <td>
                             <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_view{{ $announcements->id }}">
                                 <i class="fa-solid fa-eye fa-2xs"></i>
