@@ -131,7 +131,7 @@ class ABAKAProjectCoordinatorController extends Controller
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
         $status = 'Available';
        $announcement = announcement::where(function ($query) use ($programName, $status) {
-            $query->where('from', $programName)->where('status', $status);})->get();
+            $query->where('from', $programName)->orWhere('to', $programName)->where('status', $status);})->get();
 
         return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName', 'roleName', 'programEmail'));
     } // End Method
@@ -253,7 +253,7 @@ class ABAKAProjectCoordinatorController extends Controller
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
         $status = 'Available';
         $event = events::where(function ($query) use ($programName, $status) {
-            $query->where('from', $programName)->where('status', $status);})->get();
+            $query->where('from', $programName)->orWhere('to', $programName)->where('status', $status);})->get();
 
         return view('ABAKA_Project_Coordinator.event', compact('event','programName', 'roleName'));
     } // End Method
@@ -737,20 +737,20 @@ class ABAKAProjectCoordinatorController extends Controller
             $user->notify(new FinancialAssistanceStatusUpdated());
 
             //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $user->financialAssistanceStatus->financial_assistance_status_name. " today at " . $user->assistance->updated_at)
-            );
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $user->financialAssistanceStatus->financial_assistance_status_name. " today at " . $user->assistance->updated_at)
+            // );
 
-            $message = $response->current();
+            // $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
         }
 
 
@@ -836,20 +836,20 @@ class ABAKAProjectCoordinatorController extends Controller
                 $financialAssistanceId->user->notify(new FinancialAssistanceStatusUpdated());
 
                 //send via sms
-                $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-                $client = new \Vonage\Client($basic);
+                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+                // $client = new \Vonage\Client($basic);
 
-                $response = $client->sms()->send(
-                    new \Vonage\SMS\Message\SMS($financialAssistanceId->user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
-                );
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($financialAssistanceId->user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
+                // );
 
-                $message = $response->current();
+                // $message = $response->current();
 
-                if ($message->getStatus() == 0) {
-                    toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-                } else {
-                    toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-                }
+                // if ($message->getStatus() == 0) {
+                //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+                // } else {
+                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+                // }
             }
         }
 
