@@ -642,7 +642,7 @@ body {
     background: var(--colorWhite);
 }
 .top-story-section .stories-main .story-card-content h5 {
-    font-size: 18px;
+    font-size: 17px;
 }
 .top-story-section .stories-main .story-card:hover {
     transition: all 0.5s ease;
