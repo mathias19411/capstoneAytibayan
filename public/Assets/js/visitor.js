@@ -33,6 +33,7 @@ content.addEventListener('scroll', () => {
 //-------------------------------------Bar Chart----------------------------
 var barChartOptions = {
           series: [{
+            name: "Beneficiaries",
           data: beneficiaryCounts
         }],
           chart: {

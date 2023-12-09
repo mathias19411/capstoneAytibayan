@@ -733,7 +733,7 @@ class ItStaffController extends Controller
         return view('ITStaff.blacklisted', compact('userProfileData', 'users'));
     } // End Method
 
-    public function ItStaffBlacklistUser($id)
+    public function ItStaffBlacklistUser(Request $request, $id)
     {
         $userId = User::findOrFail($id);
 
@@ -746,6 +746,7 @@ class ItStaffController extends Controller
 
             $userId->update([
                 'blacklisted' => true,
+                'blacklist_remarks' => $request->remarks,
             ]);
 
         }
@@ -758,12 +759,14 @@ class ItStaffController extends Controller
 
             $userId->update([
                 'blacklisted' => true,
+                'blacklist_remarks' => $request->remarks,
             ]);
         }
 
         else {
             $userId->update([
                 'blacklisted' => true,
+                'blacklist_remarks' => $request->remarks,
             ]);
         }
         
@@ -798,6 +801,7 @@ class ItStaffController extends Controller
 
         $userId->update([
             'blacklisted' => false,
+            'blacklist_remarks' => null,
         ]);
 
         //notify via email

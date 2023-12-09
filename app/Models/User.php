@@ -44,6 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'province',
         'zip',
         'blacklisted',
+        'blacklist_remarks',
         'role_id',
         'program_id',
         'status_id',

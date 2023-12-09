@@ -80,7 +80,7 @@ Route::middleware(['auth', 'verified', 'twofactor', 'userroleprotection:itstaff'
     Route::get('/ITStaff/blacklist', [ItStaffController::class, 'ItStaffBlacklistView'])->name('itstaff.BlacklistView');
 
     //blacklist a user
-    Route::get('/ITStaff/blacklist/{id}', [ItStaffController::class, 'ItStaffBlacklistUser'])->name('itstaff.BlacklistUser');
+    Route::post('/ITStaff/blacklist/{id}', [ItStaffController::class, 'ItStaffBlacklistUser'])->name('itstaff.BlacklistUser');
 
     //restore a user
     Route::get('/ITStaff/restore/{id}', [ItStaffController::class, 'ItStaffRestoreUser'])->name('itstaff.RestoreUser');
@@ -149,7 +149,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/BINHI_ProjectCoordinator/blacklist', [BINHIProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('binhiprojectcoordinator.BlacklistView');
 
     //blacklist a user
-    Route::get('/BINHI_ProjectCoordinator/blacklist/{id}', [BINHIProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('binhiprojectcoordinator.BlacklistUser');
+    Route::post('/BINHI_ProjectCoordinator/blacklist/{id}', [BINHIProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('binhiprojectcoordinator.BlacklistUser');
 
     //restore a user
     Route::get('/BINHI_ProjectCoordinator/restore/{id}', [BINHIProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('binhiprojectcoordinator.RestoreUser');
@@ -222,7 +222,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/AGRIPINAY_ProjectCoordinator/blacklist', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('agripinayprojectCoordinator.BlacklistView');
 
     //blacklist a user
-    Route::get('/AGRIPINAY_ProjectCoordinator/blacklist/{id}', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('agripinayprojectCoordinator.BlacklistUser');
+    Route::post('/AGRIPINAY_ProjectCoordinator/blacklist/{id}', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('agripinayprojectCoordinator.BlacklistUser');
 
     //restore a user
     Route::get('/AGRIPINAY_ProjectCoordinator/restore/{id}', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('agripinayprojectCoordinator.RestoreUser');
@@ -314,7 +314,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/AKBAY_ProjectCoordinator/blacklist', [AKBAYProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('akbayprojectCoordinator.BlacklistView');
 
     //blacklist a user
-    Route::get('/AKBAY_ProjectCoordinator/blacklist/{id}', [AKBAYProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('akbayprojectCoordinator.BlacklistUser');
+    Route::post('/AKBAY_ProjectCoordinator/blacklist/{id}', [AKBAYProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('akbayprojectCoordinator.BlacklistUser');
 
     //restore a user
     Route::get('/AKBAY_ProjectCoordinator/restore/{id}', [AKBAYProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('akbayprojectCoordinator.RestoreUser');
@@ -409,7 +409,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/LEAD_ProjectCoordinator/blacklist', [LEADProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('leadprojectCoordinator.BlacklistView');
 
     //blacklist a user
-    Route::get('/LEAD_ProjectCoordinator/blacklist/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('leadprojectCoordinator.BlacklistUser');
+    Route::post('/LEAD_ProjectCoordinator/blacklist/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('leadprojectCoordinator.BlacklistUser');
 
     //restore a user
     Route::get('/LEAD_ProjectCoordinator/restore/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('leadprojectCoordinator.RestoreUser');
@@ -512,7 +512,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/ABAKA_ProjectCoordinator/blacklist', [ABAKAProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('abakaprojectcoordinator.BlacklistView');
 
     //blacklist a user
-    Route::get('/ABAKA_ProjectCoordinator/blacklist/{id}', [ABAKAProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('abakaprojectcoordinator.BlacklistUser');
+    Route::post('/ABAKA_ProjectCoordinator/blacklist/{id}', [ABAKAProjectCoordinatorController::class, 'CoordinatorBlacklistUser'])->name('abakaprojectcoordinator.BlacklistUser');
 
     //restore a user
     Route::get('/ABAKA_ProjectCoordinator/restore/{id}', [ABAKAProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('abakaprojectcoordinator.RestoreUser');

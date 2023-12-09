@@ -41,11 +41,11 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last Name</th>
+                <th>Beneficiary Name</th>
                 <th>Program</th>
                 <th>Role</th>
+                <th>Status</th>
+                <th>Remarks</th>
                 <th>Actions</th>
             
             </tr>
@@ -59,6 +59,8 @@
                     <td>{{ $user->last_name }}</td>
                     <td>{{ $user->program->program_name }}</td>
                     <td>{{ $user->role->role_name }}</td>
+                    <td>{{ $user->status->status_name }}</td>
+                    <td>{{ $user->blacklist_remarks }}</td>
                     <td>
                         <button class="tooltip-button" data-tooltip="Restore"><a href="{{ route('abakaprojectcoordinator.RestoreUser', $user->id) }}" id="restore"><i class="fa-solid fa-suitcase-medical fa-2xs"></i></a></button>
                     </td>

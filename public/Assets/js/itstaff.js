@@ -69,26 +69,25 @@ numbers.forEach(number => {
 $(function(){
     $(document).on('click', '#blacklist',function(e){
         e.preventDefault();
-        var link = $(this).attr("href");
 
-                            Swal.fire({
-                                title: '<span style="color: black;">Are you sure?</span>',
-                                text: "Add this user to Blacklist?",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#7bb701',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Yes, add to Blacklist!'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.href = link
-                                    Swal.fire(
-                                        'Done',
-                                        'User has been Blacklisted.',
-                                        'success'
-                                    )
-                                }
-                            })
+        Swal.fire({
+            title: '<span style="color: black;">Are you sure?</span>',
+            text: "Add this user to Blacklist?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#7bb701',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Blacklist!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(this).closest('form').submit(); // Trigger form submit
+                Swal.fire(
+                    'Done',
+                    'User has been Blacklisted.',
+                    'success'
+                )
+            }
+        })
     });
 });
 

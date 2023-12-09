@@ -1407,7 +1407,7 @@ class AKBAYProjectCoordinatorController extends Controller
         return view('AKBAY_Project_Coordinator.blacklisted', compact('userProfileData', 'users'));
     } // End Method
 
-    public function CoordinatorBlacklistUser($id)
+    public function CoordinatorBlacklistUser(Request $request, $id)
     {
         $userId = User::findOrFail($id);
 
@@ -1420,11 +1420,13 @@ class AKBAYProjectCoordinatorController extends Controller
 
             $userId->update([
                 'blacklisted' => true,
+                'blacklist_remarks' => $request->remarks,
             ]);
         }
         else {
             $userId->update([
                 'blacklisted' => true,
+                'blacklist_remarks' => $request->remarks,
             ]);
         }
 
@@ -1459,6 +1461,7 @@ class AKBAYProjectCoordinatorController extends Controller
 
         $userId->update([
             'blacklisted' => false,
+            'blacklist_remarks' => null,
         ]);
 
         //notify via email
