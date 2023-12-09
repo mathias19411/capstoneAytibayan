@@ -737,20 +737,20 @@ class ABAKAProjectCoordinatorController extends Controller
             $user->notify(new FinancialAssistanceStatusUpdated());
 
             //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $user->financialAssistanceStatus->financial_assistance_status_name. " today at " . $user->assistance->updated_at)
-            );
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your financial assistance status has been changed to " . $user->financialAssistanceStatus->financial_assistance_status_name. " today at " . $user->assistance->updated_at)
+            // );
 
-            $message = $response->current();
+            // $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
         }
 
 
@@ -836,20 +836,20 @@ class ABAKAProjectCoordinatorController extends Controller
                 $financialAssistanceId->user->notify(new FinancialAssistanceStatusUpdated());
 
                 //send via sms
-                $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-                $client = new \Vonage\Client($basic);
+                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+                // $client = new \Vonage\Client($basic);
 
-                $response = $client->sms()->send(
-                    new \Vonage\SMS\Message\SMS($financialAssistanceId->user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
-                );
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($financialAssistanceId->user->phone, "apao", "Your financial assistance status has been changed to " . $financialAssistanceId->user->financialAssistanceStatus->financial_assistance_status_name)
+                // );
 
-                $message = $response->current();
+                // $message = $response->current();
 
-                if ($message->getStatus() == 0) {
-                    toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-                } else {
-                    toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-                }
+                // if ($message->getStatus() == 0) {
+                //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+                // } else {
+                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+                // }
             }
         }
 
