@@ -3,7 +3,7 @@
 @section('content')
 @include('ITStaff.Body.sidebar')
 <div class="title">
-    <h1>Financial Assitance Transactions</h1>
+    <h1>Cash Incentive Scheme Transactions</h1>
 </div>
 
 <div class="table-header">

@@ -131,7 +131,7 @@ class BINHIProjectCoordinatorController extends Controller
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
         $status = 'Available';
        $announcement = announcement::where(function ($query) use ($programName, $status) {
-            $query->where('from', $programName)->where('status', $status);})->get();
+            $query->where('from', $programName)->orWhere('to', $programName)->where('status', $status);})->get();
 
         return view('BINHI_Project_Coordinator.announcement', compact('announcement','programName', 'roleName', 'programEmail'));
     } // End Method
@@ -253,7 +253,7 @@ class BINHIProjectCoordinatorController extends Controller
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
         $status = 'Available';
         $event = events::where(function ($query) use ($programName, $status) {
-            $query->where('from', $programName)->where('status', $status);})->get();
+            $query->where('from', $programName)->orWhere('to', $programName)->where('status', $status);})->get();
 
         return view('BINHI_Project_Coordinator.event', compact('event','programName', 'roleName'));
     } // End Method
