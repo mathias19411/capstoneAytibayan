@@ -43,6 +43,7 @@
                             <th>To</th>
                             <th>Description</th>
                             <th>Date</th>
+                            <th>Status</th>
                             <th>Action</th>
 
                         </tr>
@@ -210,6 +211,7 @@
                         <td class="column">{{ $events->to }}</td>
                         <td class="column message-column">{{ $events->message }}</td>
                         <td class="column">{{ $events->created_at }}</td>
+                        <td class="column">{{ $events->status }}</td>
                         <td class="column">
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">
                             <i class="fa-solid fa-eye fa-2xs"></i>

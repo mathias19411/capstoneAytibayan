@@ -12,6 +12,7 @@ class announcement extends Model
         'to',
         'from',
         'message',
+        'status'
     ];
     
     use HasFactory;

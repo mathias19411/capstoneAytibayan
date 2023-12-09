@@ -142,8 +142,8 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/BINHI_ProjectCoordinator/Announcements', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('binhiprojectcoordinator.announcement');
     Route::post('/BINHI_ProjectCoordinator/Announcements', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorbinhi');
     Route::get('/BINHI_ProjectCoordinator/Announcements/{id}', [BINHIProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorbinhi');
-    Route::patch('/BINHI_ProjectCoordinator/Announcements', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorbinhi');
-    Route::delete('/BINHI_ProjectCoordinator/Announcements', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorbinhi');
+    Route::patch('/BINHI_ProjectCoordinator/Announcements/Edit', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorbinhi');
+    Route::patch('/BINHI_ProjectCoordinator/Announcements/Delete', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorbinhi');
 
     //blacklist view
     Route::get('/BINHI_ProjectCoordinator/blacklist', [BINHIProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('binhiprojectcoordinator.BlacklistView');
@@ -158,8 +158,8 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/BINHI_ProjectCoordinator/Events', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('binhiprojectcoordinator.event');
     Route::post('/BINHI_ProjectCoordinator/Events', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorbinhi');
     Route::get('/BINHI_ProjectCoordinator/Events/{id}', [BINHIProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorbinhi');
-    Route::patch('/BINHI_ProjectCoordinator/Events', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorbinhi');
-    Route::delete('/BINHI_ProjectCoordinator/Events', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorbinhi');
+    Route::patch('/BINHI_ProjectCoordinator/Events/Edit', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorbinhi');
+    Route::patch('/BINHI_ProjectCoordinator/Events/Delete', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorbinhi');
 
     //Coordinator Inquiry
     Route::get('/BINHI_ProjectCoordinator/Inquriy', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('binhiprojectcoordinator.inquiry');
@@ -233,15 +233,15 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/AGRIPINAY_ProjectCoordinator/Announcements', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('agripinayprojectcoordinator.announcement');
     Route::post('/AGRIPINAY_ProjectCoordinator/Announcements', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatoragripinay');
     Route::get('/AGRIPINAY_ProjectCoordinator/Announcements/{id}', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatoragripinay');
-    Route::patch('/AGRIPINAY_ProjectCoordinator/Announcements', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatoragripinay');
-    Route::delete('/AGRIPINAY_ProjectCoordinator/Announcements', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatoragripinay');
+    Route::patch('/AGRIPINAY_ProjectCoordinator/Announcements/Edit', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatoragripinay');
+    Route::patch('/AGRIPINAY_ProjectCoordinator/Announcements/Delete', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatoragripinay');
 
     //Coordinator Events
     Route::get('/AGRIPINAY_ProjectCoordinator/Events', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('agripinayprojectcoordinator.event');
     Route::post('/AGRIPINAY_ProjectCoordinator/Events', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatoragripinay');
     Route::get('/AGRIPINAY_ProjectCoordinator/Events/{id}', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatoragripinay');
-    Route::patch('/AGRIPINAY_ProjectCoordinator/Events', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatoragripinay');
-    Route::delete('/AGRIPINAY_ProjectCoordinator/Events', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatoragripinay');
+    Route::patch('/AGRIPINAY_ProjectCoordinator/Events/Edit', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatoragripinay');
+    Route::patch('/AGRIPINAY_ProjectCoordinator/Events/Delete', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatoragripinay');
 
     //Coordinator Inquiry
     Route::get('/AGRIPINAY_ProjectCoordinator/Inquriy', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('agripinayprojectcoordinator.inquiry');
@@ -325,15 +325,15 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('akbayprojectcoordinator.announcement');
     Route::post('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorakbay');
     Route::get('/AKBAY_ProjectCoordinator/Announcements/{id}', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorakbay');
-    Route::patch('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorakbay');
-    Route::delete('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorakbay');
+    Route::patch('/AKBAY_ProjectCoordinator/Announcements/Edit', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorakbay');
+    Route::patch('/AKBAY_ProjectCoordinator/Announcements/Delete', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorakbay');
 
     //Coordinator Events
     Route::get('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('akbayprojectcoordinator.event');
     Route::post('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorakbay');
     Route::get('/AKBAY_ProjectCoordinator/Events/{id}', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorakbay');
-    Route::patch('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorakbay');
-    Route::delete('/AKBAY_ProjectCoordinator/Events', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorakbay');
+    Route::patch('/AKBAY_ProjectCoordinator/Events/Edit', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorakbay');
+    Route::patch('/AKBAY_ProjectCoordinator/Events/Delete', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorakbay');
 
     //Coordinator Inquiry
     Route::get('/AKBAY_ProjectCoordinator/Inquriy', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('akbayprojectcoordinator.inquiry');
@@ -420,15 +420,15 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('leadprojectcoordinator.announcement');
     Route::post('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorlead');
     Route::get('/LEAD_ProjectCoordinator/Announcements/{id}', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorlead');
-    Route::patch('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorlead');
-    Route::delete('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorlead');
+    Route::patch('/LEAD_ProjectCoordinator/Announcements/Edit', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorlead');
+    Route::patch('/LEAD_ProjectCoordinator/Announcements/Delete', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorlead');
 
     //Coordinator Events
     Route::get('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('leadprojectcoordinator.event');
     Route::post('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorlead');
     Route::get('/LEAD_ProjectCoordinator/Events/{id}', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorlead');
-    Route::patch('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorlead');
-    Route::delete('/LEAD_ProjectCoordinator/Events', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorlead');
+    Route::patch('/LEAD_ProjectCoordinator/Events/Edit', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorlead');
+    Route::patch('/LEAD_ProjectCoordinator/Events/Delete', [LEADProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorlead');
 
     //Coordinator Inquiry
     Route::get('/LEAD_ProjectCoordinator/Inquriy', [LEADProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('leadprojectcoordinator.inquiry');
@@ -505,8 +505,8 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('abakaprojectcoordinator.announcement');
     Route::post('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementStore'])->name('store.announcementcoordinatorabaka');
     Route::get('/ABAKA_ProjectCoordinator/Announcements/{id}', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorAnnouncementEdit'])->name('edit.announcementcoordinatorabaka');
-    Route::patch('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorabaka');
-    Route::delete('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorabaka');
+    Route::patch('/ABAKA_ProjectCoordinator/Announcements/Edit', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementUpdate'])->name('update.announcementcoordinatorabaka');
+    Route::patch('/ABAKA_ProjectCoordinator/Announcements/Delete', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncementDelete'])->name('delete.announcementcoordinatorabaka');
 
     //blacklist view
     Route::get('/ABAKA_ProjectCoordinator/blacklist', [ABAKAProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('abakaprojectcoordinator.BlacklistView');
@@ -521,8 +521,8 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::get('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('abakaprojectcoordinator.event');
     Route::post('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorabaka');
     Route::get('/ABAKA_ProjectCoordinator/Events/{id}', [ABAKAProjectCoordinatorController::class, 'ProjectCoordinatorEventEdit'])->name('edit.eventcoordinatorabaka');
-    Route::patch('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorabaka');
-    Route::delete('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorabaka');
+    Route::patch('/ABAKA_ProjectCoordinator/Events/Edit', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEventUpdate'])->name('update.eventcoordinatorabaka');
+    Route::patch('/ABAKA_ProjectCoordinator/Events/Delete', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEventDelete'])->name('delete.eventcoordinatorabaka');
 
     //Coordinator Inquiry
     Route::get('/ABAKA_ProjectCoordinator/Inquriy', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorInquiry'])->name('abakaprojectcoordinator.inquiry');
