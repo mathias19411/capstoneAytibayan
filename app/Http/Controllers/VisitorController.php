@@ -72,10 +72,11 @@ class VisitorController extends Controller
             }
         }
         $public = "PUBLIC";
-        $announcement = announcement::where(function ($query) use ($public) {
-            $query->where('to', $public);})->get();
-        $events = events::where(function ($query) use ($public) {
-             $query->where('to', $public);})->get();
+        $status = "Available";
+        $announcement = announcement::where(function ($query) use ($public, $status) {
+            $query->where('to', $public)->where('status', $status);})->get();
+        $events = events::where(function ($query) use ($public, $status) {
+             $query->where('to', $public)->where('status', $status);})->get();
 
         $coordinators = User::whereHas('role', function ($query) {
         $query->whereIn('role_name', ['binhiprojectcoordinator', 'abakaprojectcoordinator', 'agripinayprojectcoordinator', 'akbayprojectcoordinator', 'leadprojectcoordinator']);

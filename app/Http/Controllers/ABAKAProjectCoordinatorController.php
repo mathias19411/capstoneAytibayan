@@ -129,9 +129,9 @@ class ABAKAProjectCoordinatorController extends Controller
        $roleName = trim(implode(' ', Role::where('id', $roleId)->pluck('role_name')->toArray()));
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
-        
-       $announcement = announcement::where(function ($query) use ($programName) {
-            $query->where('from', $programName);})->get();
+        $status = 'Available';
+       $announcement = announcement::where(function ($query) use ($programName, $status) {
+            $query->where('from', $programName)->where('status', $status);})->get();
 
         return view('ABAKA_Project_Coordinator.announcement', compact('announcement','programName', 'roleName', 'programEmail'));
     } // End Method
@@ -219,14 +219,17 @@ class ABAKAProjectCoordinatorController extends Controller
 
     public function ProjCoordinatorAnnouncementDelete(Request $request)
     {
-        $id = $request->delete_id;
+        $id = $request->announcement_id;
         // Find the record you want to delete by its primary key
         $recordToDelete = announcement::find($id);
 
+        $status = 'Cancelled';
         // Check if the record exists
         if ($recordToDelete) {
             // Delete the record
-            $recordToDelete->delete();
+            announcement::findOrFail($id)->update([
+                'status'=>$status,
+            ]);
 
             // Optionally, you can redirect back to a page or return a response
             return redirect()->back()->with('success', 'Announcement is Deleted!');
@@ -248,9 +251,9 @@ class ABAKAProjectCoordinatorController extends Controller
 
        // Get the programname of the program table
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
-
-        $event = events::where(function ($query) use ($programName) {
-            $query->where('from', $programName);})->get();
+        $status = 'Available';
+        $event = events::where(function ($query) use ($programName, $status) {
+            $query->where('from', $programName)->where('status', $status);})->get();
 
         return view('ABAKA_Project_Coordinator.event', compact('event','programName', 'roleName'));
     } // End Method
@@ -348,10 +351,13 @@ class ABAKAProjectCoordinatorController extends Controller
         // Find the record you want to delete by its primary key
         $recordToDelete = events::find($id);
 
+        $status = 'Cancelled';
         // Check if the record exists
         if ($recordToDelete) {
             // Delete the record
-            $recordToDelete->delete();
+            events::findOrFail($id)->update([
+                'status'=>$status,
+            ]);
 
             // Optionally, you can redirect back to a page or return a response
             return redirect()->back()->with('success', 'Event is Deleted!');

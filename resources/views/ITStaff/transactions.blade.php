@@ -9,7 +9,7 @@
 
 <div class="container-transaction">
     <div class="card-transaction">
-        <h4> Financial Assistance </h4>
+        <h4> Cash Incentives</h4>
         <div class="image">
             <img src="\images\assistance.png" alt="Logo">
         </div>
@@ -21,7 +21,7 @@
         </a>
     </div>
     <div class="card-transaction">
-    <h4> Loans </h4>
+    <h4> Loan Assistance </h4>
         <div class="image">
             <img src="\images\loan.png" alt="Logo">
         </div>

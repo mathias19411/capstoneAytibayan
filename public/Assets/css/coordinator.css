@@ -2264,7 +2264,7 @@ body.announcement_events_inquiry .message-row {
 .project-info {
     position: relative;
     height: calc(100% - 40px); 
-    overflow: auto;
+    overflow-x: auto;
 }
 
 .footer {
@@ -2313,7 +2313,14 @@ body.announcement_events_inquiry .message-row {
     font-weight: 400;
     margin: 10px 0;
 }
-
+/* Style the input field specifically */
+#projectDescription {
+    /* Add any specific styles for the input field with ID "projectDescription" */
+    /* For example: */
+    background-color: #f8f8f8;
+    color: #333;
+    /* Add more styles as needed */
+}
  hr.rounded {
     border: 1px solid #7bb701;
     border-radius: 5px;

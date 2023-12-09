@@ -152,26 +152,8 @@
                                         <div class="modal-body">
                                         <form method="POST" action="{{ route('delete.announcementcoordinatorakbay') }}">
                                             @csrf
-                                            @method('DELETE')
-                                        <div class="row">
-                                        <input type="hidden" name="delete_id" value="{{ $announcements->id }}">
-                                        <div class="col">
-                                        <div class="col-md-12">
-                                            <h5>Title:</h5>
-                                            <p id="modal-title">{{ $announcements->title }}</p>
-                                        </div>
-                                            </div>
-                                            <div class="row">
-                                            <div class="col-md-12">
-                                                <h5>To:</h5>
-                                                <p id="modal-recipient">{{ $announcements->to }}</p>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <h5>Message:</h5>
-                                                <p id="modal-message">{{ $announcements->message }}</p>
-                                            </div>
+                                            @method('PATCH')
+                                        <input type="hidden" name="announcement_id" value="{{ $announcements->id }}">
                                             @if(session('error'))
                                                 <div class="alert alert-danger">
                                                     {{ session('error') }}
