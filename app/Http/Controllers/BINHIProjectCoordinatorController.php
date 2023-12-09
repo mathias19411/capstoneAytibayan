@@ -1206,7 +1206,7 @@ class BINHIProjectCoordinatorController extends Controller
         return view('BINHI_Project_Coordinator.blacklisted', compact('userProfileData', 'users'));
     } // End Method
 
-    public function CoordinatorBlacklistUser($id)
+    public function CoordinatorBlacklistUser(Request $request, $id)
     {
         $userId = User::findOrFail($id);
 
@@ -1219,12 +1219,14 @@ class BINHIProjectCoordinatorController extends Controller
 
             $userId->update([
                 'blacklisted' => true,
+                'blacklist_remarks' => $request->remarks,
             ]);
 
         }
         else {
             $userId->update([
                 'blacklisted' => true,
+                'blacklist_remarks' => $request->remarks,
             ]);
         }
 
@@ -1258,6 +1260,7 @@ class BINHIProjectCoordinatorController extends Controller
 
         $userId->update([
             'blacklisted' => false,
+            'blacklist_remarks' => null,
         ]);
 
         //notify via email

@@ -265,6 +265,7 @@
 
         var barChartOptions = {
             series: [{
+            name: "Beneficiaries",
             data: beneficiaryCounts
         }],
             chart: {

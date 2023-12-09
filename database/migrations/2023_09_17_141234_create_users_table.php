@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('province')->nullable();
             $table->string('zip')->nullable();
             $table->boolean('blacklisted')->nullable()->default(false);
+            $table->string('blacklist_remarks')->nullable();
             // $table->enum('role',['itstaff', 'project_coordinator', 'beneficiary'])->default('beneficiary');
             // $table->enum('program',['Binhi_ng_Pag_asa', 'Akbay', 'Lead', 'AgriPinay', 'Abaka_mo_Piso_mo'])->default('Binhi_ng_Pag_asa');
             // $table->enum('status', ['active', 'inactive'])->default('active');
