@@ -394,10 +394,13 @@ class ItStaffController extends Controller
         // Find the record you want to delete by its primary key
         $recordToDelete = announcement::find($id);
 
+        $status = 'Cancelled';
         // Check if the record exists
         if ($recordToDelete) {
             // Delete the record
-            $recordToDelete->delete();
+            announcement::findOrFail($id)->update([
+                'status'=>$status,
+            ]);
 
             // Optionally, you can redirect back to a page or return a response
             return redirect()->back()->with('success', 'Announcement is Deleted!');
@@ -486,10 +489,13 @@ class ItStaffController extends Controller
         // Find the record you want to delete by its primary key
         $recordToDelete = events::find($id);
 
+        $status = 'Cancelled';
         // Check if the record exists
         if ($recordToDelete) {
             // Delete the record
-            $recordToDelete->delete();
+            events::findOrFail($id)->update([
+                'status'=>$status,
+            ]);
 
             // Optionally, you can redirect back to a page or return a response
             return redirect()->back()->with('success', 'Event is Deleted!');
