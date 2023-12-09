@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReplyMailableSchedule;
 use App\Models\announcement;
 use App\Models\events;
 use App\Models\Financialassistance;
@@ -20,6 +21,7 @@ use App\Notifications\RestoreNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rules\Password;
@@ -357,6 +359,19 @@ class ItStaffController extends Controller
             'message' => 'required|string',
         ]);
 
+        $programID = program::where('program_name', $validatedData['to'])->pluck('id');
+        $Beneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($programID) {
+            $query->where('id', $programID);
+        })->where('blacklisted', false)->pluck('email')->toArray()));
+
+        $recipientEmail = $Beneficiaries;
+        $subject = $validatedData['title'];
+        $body = $validatedData['message'];
+        $senderName = $validatedData['from'];
+        $recipientName = $validatedData['to'] . ' Beneficiaries';
+        $time = '';
         // Check if validation passes
         if ($validatedData) 
         {
@@ -367,6 +382,8 @@ class ItStaffController extends Controller
                 'to' => $validatedData['to'],
                 'message' => $validatedData['message'],
             ]);
+            // Reply to the email message with a body and an attachment
+            Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
             $announcement->save();
 
             return redirect()->back()->with('success', 'New Announcement Added!');
@@ -378,12 +395,29 @@ class ItStaffController extends Controller
     public function ITStaffAnnouncementUpdate(Request $request)
     {
         $aid = $request->announcement_id;
+        $programName = $request->to;
+        $programID = program::where('program_name', $programName)->pluck('id');
+        $Beneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($programID) {
+            $query->where('id', $programID);
+        })->where('blacklisted', false)->pluck('email')->toArray()));
+
+        $recipientEmail = $Beneficiaries;
+        $subject = $request->title;
+        $body = $request->message;
+        $senderName = $request->from;
+        $recipientName = $request->to . ' Beneficiaries';
+        $time = '';
         
         announcement::findOrFail($aid)->update([
             'title'=>$request->title,
             'to'=>$request->to,
             'message'=>$request->message,
+            'status'=>'Available',
         ]);
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
 
         return redirect()->back()->with('success', 'Announcement is Updated!');
     } // End Method
@@ -403,7 +437,7 @@ class ItStaffController extends Controller
             ]);
 
             // Optionally, you can redirect back to a page or return a response
-            return redirect()->back()->with('success', 'Announcement is Deleted!');
+            return redirect()->back()->with('success', 'Announcement is Cancelled!');
         } else {
             // Record not found
             // You can redirect back with an error message or handle it as needed
@@ -446,6 +480,19 @@ class ItStaffController extends Controller
         'to' => 'required|string',
         'message' => 'required|string',
     ]);
+    $programID = program::where('program_name', $validatedData['to'])->pluck('id');
+    $Beneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+        $query->where('role_name', 'beneficiary');
+    })->whereHas('program', function ($query) use ($programID) {
+        $query->where('id', $programID);
+    })->where('blacklisted', false)->pluck('email')->toArray()));
+
+    $recipientEmail = $Beneficiaries;
+    $subject = $validatedData['title'];
+    $body = $validatedData['message'];
+    $senderName = $validatedData['from'];
+    $recipientName = $validatedData['to'] . ' Beneficiaries';
+    $time = $validatedData['date'];
 
     //dd($validatedData);
 
@@ -459,6 +506,8 @@ class ItStaffController extends Controller
             'to' => $validatedData['to'],
             'message' => $validatedData['message'],
         ]);
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
         $event->save();
 
         // If the attachment file is not empty, store it in the database
@@ -473,12 +522,29 @@ class ItStaffController extends Controller
     public function ITStaffEventUpdate(Request $request)
     {
         $aid = $request->event_id;
+        $programName = $request->to;
+        $programID = program::where('program_name', $programName)->pluck('id');
+        $Beneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($programID) {
+            $query->where('id', $programID);
+        })->where('blacklisted', false)->pluck('email')->toArray()));
+
+        $recipientEmail = $Beneficiaries;
+        $subject = $request->title;
+        $body = $request->message;
+        $senderName = $request->from;
+        $recipientName = $request->to . ' Beneficiaries';
+        $time = $request->date;
         
         events::findOrFail($aid)->update([
             'title' => $request->title,
             'date' =>$request->date,
             'message' => $request->message,
+            'to' => $request->to,
         ]);
+        // Reply to the email message with a body and an attachment
+        Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
 
         return redirect()->back()->with('success', 'Event is Updated!');
     } // End Method
