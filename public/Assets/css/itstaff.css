@@ -2383,6 +2383,7 @@ body.announcement_events_inquiry tr:hover td {
     border-radius: 20px;
     box-sizing: border-box; border: 2px solid transparent; 
     transition: border-color 0.3s ease-in-out; 
+    margin-top: 50px;
 }
 
 .card-transaction:hover {

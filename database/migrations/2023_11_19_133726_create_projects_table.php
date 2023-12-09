@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('from');
             $table->string('recipient');
-            $table->string('message');
+            $table->longtext('message');
             $table->string('attachment')->nullable();
 
             $table->timestamps();

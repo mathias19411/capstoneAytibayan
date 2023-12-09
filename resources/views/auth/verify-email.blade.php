@@ -36,7 +36,9 @@
                     <h3> Email Verification </h3>
                     <div class="col-md-12 input">
                         <p class="text-muted">
-                            Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
+                            Thanks for signing up! Before getting started, click the button below to receive the email for your email verification. 
+                        
+                        
                         </p>
                     </div>
                     @if (session('status') == 'verification-link-sent')
@@ -49,7 +51,7 @@
                         <div class="login-button1">
                         </div>
                     </div>
-                    <button type="submit" class="button login-button-item">Resend Verification Email</button>
+                    <button type="submit" class="button login-button-item">Send Verification Email</button>
 
                 </div>
             </div>
@@ -72,7 +74,7 @@
 
     @if (session('status') == 'verification-link-sent')
         <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+            {{ __('The verification link has been sent to the email address you provided during registration. Click the button to resend if email is not received') }}
         </div>
     @endif
 
