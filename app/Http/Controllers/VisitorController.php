@@ -72,7 +72,7 @@ class VisitorController extends Controller
             }
         }
         $public = "PUBLIC";
-        $status = 'Availabe';
+        $status = "Available";
         $announcement = announcement::where(function ($query) use ($public, $status) {
             $query->where('to', $public)->where('status', $status);})->get();
         $events = events::where(function ($query) use ($public, $status) {
