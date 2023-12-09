@@ -151,7 +151,7 @@ $benefCurrentLoanStatuses = [];
             </div>
             <div class="box box-2">
                 <h1>Overall Existing Loan Statuses</h1>
-                <p>NNot Available</p>
+                <p>Not Available</p>
             </div>
             <div class="box box-3">
                 <h1>Progress %</h1>
