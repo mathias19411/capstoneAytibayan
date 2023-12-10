@@ -1,7 +1,7 @@
-@extends('LEAD_Project_Coordinator.projectcoordinator_main')
+@extends('AGRIPINAY_Project_Coordinator.projectcoordinator_main')
 
 @section('content')
-    @include('LEAD_Project_Coordinator.Body.sidebarproj')
+    @include('AGRIPINAY_Project_Coordinator.Body.sidebarproj')
 <div class="title">
     <h1>Loan Replenished Amounts</h1>
 </div>

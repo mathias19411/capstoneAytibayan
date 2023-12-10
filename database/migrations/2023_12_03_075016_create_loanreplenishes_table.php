@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('loanreplenishes', function (Blueprint $table) {
             $table->id();
             $table->string('replenish_amount');
+            $table->string('balance');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('loan_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

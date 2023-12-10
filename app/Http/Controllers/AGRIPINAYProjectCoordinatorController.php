@@ -2,32 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Financialassistancehistory;
-use App\Models\Projects;
-use App\Models\Schedule;
-use App\Models\Updates;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\WebsiteNotifications;
-
 use App\Mail\FinancialAssistanceStatusUpdate;
 use App\Mail\LoanStatusUpdate;
 use App\Mail\ReplyMailable;
 use App\Mail\ReplyMailableSchedule;
 use App\Models\announcement;
 use App\Models\Assistancesteps;
+
 use App\Models\Currentloanstatus;
 use App\Models\events;
 use App\Models\File;
 use App\Models\Financialassistance;
+use App\Models\Financialassistancehistory;
 use App\Models\Financialassistancestatus;
 use App\Models\inquiries;
 use App\Models\Loan;
 use App\Models\Loanhistory;
+use App\Models\Loanreplenish;
 use App\Models\Loanstatus;
 use App\Models\Program;
 use App\Models\progress;
+use App\Models\Projects;
 use App\Models\Role;
+use App\Models\Schedule;
 use App\Models\Status;
+use App\Models\Updates;
 use App\Models\User;
 use App\Notifications\AccountUpdateNotif;
 use App\Notifications\BlacklistNotification;
@@ -41,11 +40,13 @@ use App\Notifications\LoanStatusUpdated;
 use App\Notifications\PasswordUpdateNotif;
 use App\Notifications\RepaymentSchedule;
 use App\Notifications\RestoreNotification;
+use App\Notifications\WebsiteNotifications;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rules\Password;
 
 class AGRIPINAYProjectCoordinatorController extends Controller
@@ -859,17 +860,42 @@ public function ProjCoordinatorEventUpdate(Request $request)
 
         $loanStatuses = Loanstatus::all();
 
-        $filteredLoanStatuses = $loanStatuses->filter(function ($loanStatus) {
-            return in_array($loanStatus->id, [2, 3, 4, 5, 6]);
-        });
-
         $currentLoanStatuses = Currentloanstatus::all();
 
-        $filteredCurrentLoanStatuses = $currentLoanStatuses->filter(function ($currentLoanStatus) {
-            return in_array($currentLoanStatus->id, [1, 2, 4]);
-        });
-
         $loanUnsettledStatus = Loanstatus::where('loan_status_name', 'unsettled')->first();
+
+        foreach ($agripinayBeneficiaries as $agripinayBeneficiary) {
+            if ($agripinayBeneficiary->loan) {
+                $currentLoanStatusId = $agripinayBeneficiary->loan->loanstatus_id;
+                $currentCurrentLoanStatusId = $agripinayBeneficiary->loan->currentloanstatus_id;
+        
+                // Find the next status based on the current incoming status
+                $nextLoanStatus = Loanstatus::where('id', '>', $currentLoanStatusId)
+                    ->orderBy('id')
+                    ->first();
+        
+                // Find the next status based on the current status
+                $nextCurrentLoanStatus = Currentloanstatus::where('id', '>', $currentCurrentLoanStatusId)
+                    ->orderBy('id')
+                    ->first();
+        
+                // Check if $nextLoanStatus and $nextCurrentLoanStatus are not null before using their properties
+                $nextLoanStatusId = $nextLoanStatus ? $nextLoanStatus->id : null;
+                $nextCurrentLoanStatusId = $nextCurrentLoanStatus ? $nextCurrentLoanStatus->id : null;
+        
+                $filteredLoanStatuses = $loanStatuses->filter(function ($loanStatus) use ($currentLoanStatusId, $nextLoanStatusId) {
+                    return $loanStatus->id == $currentLoanStatusId || $loanStatus->id == $nextLoanStatusId;
+                });
+        
+                $filteredCurrentLoanStatuses = $currentLoanStatuses->filter(function ($currentloanStatus) use ($currentCurrentLoanStatusId, $nextCurrentLoanStatusId) {
+                    return $currentloanStatus->id == $currentCurrentLoanStatusId || $currentloanStatus->id == $nextCurrentLoanStatusId;
+                });
+        
+                return view('AGRIPINAY_Project_Coordinator.progress', compact('progress', 'agripinayBeneficiariesCount', 'agripinayActiveCount', 'agripinayInactiveCount', 'agripinayBeneficiaries', 'filteredLoanStatuses', 'filteredCurrentLoanStatuses', 'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
+            }
+        }
+
+        
 
         foreach ($agripinayBeneficiaries as $agripinayBeneficiary) {
             if ($agripinayBeneficiary->loan) {
@@ -889,8 +915,55 @@ public function ProjCoordinatorEventUpdate(Request $request)
         
         
 
-        return view('AGRIPINAY_Project_Coordinator.progress', compact('progress', 'agripinayBeneficiariesCount', 'agripinayActiveCount', 'agripinayInactiveCount', 'agripinayBeneficiaries', 'filteredLoanStatuses', 'filteredCurrentLoanStatuses', 'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
+        return view('AGRIPINAY_Project_Coordinator.progress', compact('progress', 'agripinayBeneficiariesCount', 'agripinayActiveCount', 'agripinayInactiveCount', 'agripinayBeneficiaries',  'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
 
+    } // End Method
+
+    //Reject Project
+    public function CoordinatorRejectProject(Request $request, $id)
+    {
+        $userId = User::findOrFail($id);
+
+        if ($userId->loan) {
+            $loanId = $userId->loan->id;
+
+            $userLoanId = Loan::findOrFail($loanId);
+
+            $userLoanId->delete();
+
+            $userId->update([
+                'reject_remarks' => $request->remarks,
+            ]);
+        }
+        else {
+            $userId->update([
+                'reject_remarks' => $request->remarks,
+            ]);
+        }
+
+
+        //notify via email
+        $userId->notify(new LoanRejected());
+
+        //send via sms
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
+
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your incoming loan status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
+        );
+
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
+
+        toastr()->timeOut(10000)->addSuccess('Beneficiary Project has been Rejected!');
+
+        return redirect()->back();
     } // End Method
 
     public function ProjCoordinatorProgressAdd(Request $request)
@@ -961,31 +1034,31 @@ public function ProjCoordinatorEventUpdate(Request $request)
             //Access the authenticated user's id
             $user = User::findOrFail($userId);
 
-        if ($request->inputLoanUpdate == 6) {
+        // if ($request->inputLoanUpdate == 6) {
 
-            $userLoanId->delete();
+        //     $userLoanId->delete();
 
-            $userId->notify(new LoanRejected());
-            // Status is "rejected," delete the associated row
+        //     $userId->notify(new LoanRejected());
+        //     // Status is "rejected," delete the associated row
 
-            //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+        //     //send via sms
+        //     $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        //     $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your incoming loan status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
-            );
+        //     $response = $client->sms()->send(
+        //         new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your incoming loan status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
+        //     );
 
-            $message = $response->current();
+        //     $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+        //     if ($message->getStatus() == 0) {
+        //         toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        //     } else {
+        //         toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        //     }
 
-        }
-        elseif ($request->inputLoanUpdate == 5) {
+        // }
+        if ($request->inputLoanUpdate == 5) {
             $userLoanId->update([
                 'loanstatus_id' => $request->inputLoanUpdate,
             ]);
@@ -1139,8 +1212,21 @@ public function ProjCoordinatorEventUpdate(Request $request)
         // Subtract the inputRepayment from remaining_loan_balance
         $newRemainingBalance = $userLoanId->remaining_loan_balance - $validatedData['inputRepayment'];
 
+        $amountReplenished = $userLoanId->amount_replenished + $validatedData['inputRepayment'];
+
+        if ($validatedData)
+        {
+            Loanreplenish::create([
+                'user_id' => $userId,
+                'loan_id' => $loanId,
+                'replenish_amount' => $validatedData['inputRepayment'],
+                'balance' => $newRemainingBalance,
+            ]);
+        }
+
         // Update the remaining_loan_balance
         $userLoanId->update([
+            'amount_replenished' => $amountReplenished,
             'remaining_loan_balance' => $newRemainingBalance
         ]);
 
@@ -1468,15 +1554,42 @@ public function ProjCoordinatorEventUpdate(Request $request)
         }
     }
 
+    public function CoordinatorReplenishView()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        $programId = AUTH::user()->program_id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        $replenishedAmounts = Loanreplenish::whereHas('user', function ($query) {
+            $query->where('role_id', 7);
+        })->whereHas('user', function ($query) use ($programId) {
+            $query->where('program_id', $programId);
+        })->whereHas('user', function ($query) {
+            $query->where('blacklisted', false);
+        })->get();
+
+        return view('AGRIPINAY_Project_Coordinator.replenishView', compact('userProfileData', 'replenishedAmounts'));
+    } // End Method
+
     public function CoordinatorBlacklistView()
     {
         //Access the authenticated user's id
         $id = AUTH::user()->id;
 
+        $programId = AUTH::user()->program_id;
+
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        $users = User::orderBy('id', 'asc')->where('blacklisted', true)->get();
+        $users = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($programId) {
+            $query->where('id', $programId);
+        })->where('blacklisted', true)->get();
 
         return view('AGRIPINAY_Project_Coordinator.blacklisted', compact('userProfileData', 'users'));
     } // End Method

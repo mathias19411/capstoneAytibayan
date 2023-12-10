@@ -384,6 +384,64 @@ $benefCurrentLoanStatuses = [];
                         </div>
                     </div>
 
+                    {{-- Modal View Reject--}}
+                    <div class="modal fade" id="ModalBlacklist{{ $agripinayBeneficiary->id }}" tabindex="-1" data-backdrop="false"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-title">Reject a Project</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col profile">
+                                            <div class="col-md-12">
+                                                <img class="profile ht-50 wd-50 rounded-circle"
+                                                    src="{{ !empty($agripinayBeneficiary->photo)
+                                                        ? ($agripinayBeneficiary->role->role_name === 'itstaff'
+                                                            ? url('Uploads/ITStaff_Images/' . $agripinayBeneficiary->photo)
+                                                            : (in_array($agripinayBeneficiary->role->role_name, [
+                                                                'projectcoordinator',
+                                                                'abakaprojectcoordinator',
+                                                                'agripinayprojectcoordinator',
+                                                                'akbayprojectcoordinator',
+                                                                'leadprojectcoordinator',
+                                                            ])
+                                                                ? url('Uploads/Coordinator_Images/' . $agripinayBeneficiary->photo)
+                                                                : url('Uploads/Beneficiary_Images/' . $agripinayBeneficiary->photo)))
+                                                        : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                                    alt="profile">
+                                            </div>
+                                            <br>
+                                            <span class="name h4 ms-3">{{ $agripinayBeneficiary->first_name }} {{ $agripinayBeneficiary->middle_name }}
+                                                {{ $agripinayBeneficiary->last_name }}</span>
+                                            <br><br>
+                                        </div>
+                                        <form action="{{ route('akbayprojectCoordinator.RejectProject', $agripinayBeneficiary->id) }}" enctype="multipart/form-data"
+                                        method="post">
+                                        @csrf
+                                        <div class="col-md-12 mb-4">
+                                        <label for="remarks">Remarks:</label>
+                                        <div class="form-outline">
+                                            <textarea name="remarks" id="remarks" rows="5" style="width: 100%; padding:10px"></textarea>
+                                        </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="add">Reject this Project</button>
+                                        </div>
+                                </div>
+                                </form>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div> 
+
                     <tr>
                         <td>{{ $agripinayBeneficiary->id }}</td>
                         <td>{{ $agripinayBeneficiary->first_name }} {{ $agripinayBeneficiary->middle_name }}
@@ -407,7 +465,7 @@ $benefCurrentLoanStatuses = [];
                                 <button class="tooltip-button" data-tooltip="Update"
                                     onclick="showUpdateStatusPopup({{ $agripinayBeneficiary->id }})"><i
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                @if ($agripinayBeneficiary->loan->remaining_loan_balance == 0)
+                                @if ($agripinayBeneficiary->loan->remaining_loan_balance == 0 || $agripinayBeneficiary->loan->loanstatus_id != 5)
                                     <button class="tooltip-button" data-tooltip="Repayment"
                                     onclick="showUpdateRepaymentPopup({{ $agripinayBeneficiary->id }})" disabled
                                     style="opacity: 0.5; cursor: not-allowed;"><i
@@ -416,6 +474,9 @@ $benefCurrentLoanStatuses = [];
                                     onclick="sendRepaymentNotification({{ $agripinayBeneficiary->id }})" disabled
                                     style="opacity: 0.5; cursor: not-allowed;"><i
                                         class="fa-solid fa-bell fa-2xs"></i></button>
+                                        <button class="tooltip-button" data-tooltip="Reject" class="add-modal" data-bs-toggle="modal"
+                data-bs-target="#ModalBlacklist{{ $agripinayBeneficiary->id }}" disabled
+                style="opacity: 0.5; cursor: not-allowed;"><i class="fa-solid fa-ban fa-2xs"></i></button>
                                 @else
                                     <button class="tooltip-button" data-tooltip="Repayment"
                                     onclick="showUpdateRepaymentPopup({{ $agripinayBeneficiary->id }})"><i
@@ -423,6 +484,8 @@ $benefCurrentLoanStatuses = [];
                                     <button class="tooltip-button" data-tooltip="Notify"
                                     onclick="sendRepaymentNotification({{ $agripinayBeneficiary->id }})"><i
                                         class="fa-solid fa-bell fa-2xs"></i></button>
+                                        <button class="tooltip-button" data-tooltip="Reject" class="add-modal" data-bs-toggle="modal"
+                data-bs-target="#ModalBlacklist{{ $agripinayBeneficiary->id }}"><i class="fa-solid fa-ban fa-2xs"></i></button>
                                 @endif
                             </td>
                         @else

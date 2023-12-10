@@ -55,6 +55,13 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                     <span class="link-name">Progress</span>
                 </a>
             </li>
+            <li class="{{ Route::currentRouteName() == 'akbayprojectcoordinator.LoanReplenishView' ? 'active' : '' }}">
+           
+                <a href="{{ route('akbayprojectcoordinator.LoanReplenishView') }}">
+                    <i class="uil uil-clock"></i>
+                    <span class="link-name">Loan Replenishes</span>
+                </a>
+            </li>
             <li class="{{ Route::currentRouteName() == 'akbayprojectCoordinator.BlacklistView' ? 'active' : '' }}">
                 <a href="{{ route('akbayprojectCoordinator.BlacklistView') }}">
                     <i class="uil uil-x"></i>

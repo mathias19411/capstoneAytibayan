@@ -1229,6 +1229,7 @@ public function ProjCoordinatorEventUpdate(Request $request)
                 'user_id' => $userId,
                 'loan_id' => $loanId,
                 'replenish_amount' => $validatedData['inputRepayment'],
+                'balance' => $newRemainingBalance,
             ]);
         }
 
@@ -1564,10 +1565,18 @@ public function ProjCoordinatorEventUpdate(Request $request)
         //Access the authenticated user's id
         $id = AUTH::user()->id;
 
+        $programId = AUTH::user()->program_id;
+
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        $replenishedAmounts = Loanreplenish::all();
+        $replenishedAmounts = Loanreplenish::whereHas('user', function ($query) {
+            $query->where('role_id', 7);
+        })->whereHas('user', function ($query) use ($programId) {
+            $query->where('program_id', $programId);
+        })->whereHas('user', function ($query) {
+            $query->where('blacklisted', false);
+        })->get();
 
         return view('LEAD_Project_Coordinator.replenishView', compact('userProfileData', 'replenishedAmounts'));
     } // End Method
@@ -1577,10 +1586,16 @@ public function ProjCoordinatorEventUpdate(Request $request)
         //Access the authenticated user's id
         $id = AUTH::user()->id;
 
+        $programId = AUTH::user()->program_id;
+
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        $users = User::orderBy('id', 'asc')->where('blacklisted', true)->get();
+        $users = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($programId) {
+            $query->where('id', $programId);
+        })->where('blacklisted', true)->get();
 
         return view('LEAD_Project_Coordinator.blacklisted', compact('userProfileData', 'users'));
     } // End Method
