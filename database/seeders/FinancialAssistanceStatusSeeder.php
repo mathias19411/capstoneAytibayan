@@ -37,11 +37,6 @@ class FinancialAssistanceStatusSeeder extends Seeder
                 'financial_assistance_status_name' => 'disbursed',
                 'description' => 'Your financial assistance has been disbursed'
             ],
-            //rejected
-            [
-                'financial_assistance_status_name' => 'rejected',
-                'description' => 'Your financial assistance request has been rejected'
-            ],
         ]);
     }
 }

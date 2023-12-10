@@ -43,6 +43,7 @@ class LoanRejected extends Notification
 
         return (new MailMessage)
                     ->line('Your loan request has been REJECTED today at '. $currentTime)
+                    ->line('Remarks: '. $notifiable->reject_remarks)
                     ->action('Go to Web App', route('visitor.home'))
                     ->line('For more information, you may login to our web application by clicking the button above.')
                     ->line('You may send an inquiry or contact your program Project Coordinator.');
