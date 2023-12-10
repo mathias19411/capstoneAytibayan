@@ -451,7 +451,28 @@ $benefCurrentLoanStatuses = [];
                 @endforeach
             </tbody>
         </table>
-    </div>
+        <div id="totalBeneficiaries" class="total-beneficiaries">
+            <strong>Total Beneficiaries: <span id="totalCount">0</span></strong>
+        </div>
+        <div class="signature-section">
+                <div class="left-section">
+                    <div class="signature-line">
+                        <span>AgriPinay Coordinator</span>
+                    </div>
+                    <div class="signature-line">
+                        <span>Date</span>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="signature-line">
+                            <span>Provincial Agriculturist</span>
+                    </div>
+                        <div class="signature-line">
+                            <span>Date</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div class="pagination">
             <button id="prev-page">Previous</button>
             <div id="page-numbers"></div>
