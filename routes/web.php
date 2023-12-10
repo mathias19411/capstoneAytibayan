@@ -414,6 +414,9 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     //restore a user
     Route::get('/LEAD_ProjectCoordinator/restore/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('leadprojectCoordinator.RestoreUser');
 
+    //reject a project
+    Route::post('/LEAD_ProjectCoordinator/reject/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('leadprojectcoordinator.RejectProject');
+
     Route::get('/LEAD_ProjectCoordinator/inquiry', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('LEAD_Project_Coordinator.inquiry');
 
     //Coordinator Announcements

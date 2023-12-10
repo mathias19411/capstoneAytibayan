@@ -120,16 +120,16 @@ class TwoFactorController extends Controller
         $user->notify(new TwoFactorCode());
 
         //send via sms
-        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
 
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your two-factor code is ". $user->two_factor_code)
-        );
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your two-factor code is ". $user->two_factor_code)
+        // );
 
-        $message = $response->current();
+        // $message = $response->current();
 
-        toastr()->timeOut(10000)->addInfo('The two factor code has been sent again');
+        // toastr()->timeOut(10000)->addInfo('The two factor code has been sent again');
 
         return redirect()->back();
     }

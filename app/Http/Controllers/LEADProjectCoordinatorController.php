@@ -788,18 +788,51 @@ class LEADProjectCoordinatorController extends Controller
 
         $loanStatuses = Loanstatus::all();
 
-        $filteredLoanStatuses = $loanStatuses->filter(function ($loanStatus) {
-            return in_array($loanStatus->id, [2, 3, 4, 5, 6]);
-        });
-
         $currentLoanStatuses = Currentloanstatus::all();
-
-        $filteredCurrentLoanStatuses = $currentLoanStatuses->filter(function ($currentLoanStatus) {
-            return in_array($currentLoanStatus->id, [1, 2, 4]);
-        });
 
         $loanUnsettledStatus = Loanstatus::where('loan_status_name', 'unsettled')->first();
 
+
+        foreach ($leadBeneficiaries as $leadBeneficiary) {
+            if ($leadBeneficiary->loan) {
+                $currentLoanStatusId = $leadBeneficiary->loan->loanstatus_id;
+                $currentCurrentLoanStatusId = $leadBeneficiary->loan->currentloanstatus_id;
+        
+                // Find the next status based on the current incoming status
+                $nextLoanStatus = Loanstatus::where('id', '>', $currentLoanStatusId)
+                    ->orderBy('id')
+                    ->first();
+        
+                // Find the next status based on the current status
+                $nextCurrentLoanStatus = Currentloanstatus::where('id', '>', $currentCurrentLoanStatusId)
+                    ->orderBy('id')
+                    ->first();
+        
+                // Check if $nextLoanStatus and $nextCurrentLoanStatus are not null before using their properties
+                $nextLoanStatusId = $nextLoanStatus ? $nextLoanStatus->id : null;
+                $nextCurrentLoanStatusId = $nextCurrentLoanStatus ? $nextCurrentLoanStatus->id : null;
+        
+                $filteredLoanStatuses = $loanStatuses->filter(function ($loanStatus) use ($currentLoanStatusId, $nextLoanStatusId) {
+                    return $loanStatus->id == $currentLoanStatusId || $loanStatus->id == $nextLoanStatusId;
+                });
+        
+                $filteredCurrentLoanStatuses = $currentLoanStatuses->filter(function ($currentloanStatus) use ($currentCurrentLoanStatusId, $nextCurrentLoanStatusId) {
+                    return $currentloanStatus->id == $currentCurrentLoanStatusId || $currentloanStatus->id == $nextCurrentLoanStatusId;
+                });
+        
+                return view('LEAD_Project_Coordinator.progress', compact('progress', 'leadBeneficiariesCount', 'leadActiveCount', 'leadInactiveCount', 'leadBeneficiaries', 'filteredLoanStatuses', 'filteredCurrentLoanStatuses', 'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
+            }
+        }
+        
+        // $filteredLoanStatuses = $loanStatuses->filter(function ($loanStatus) {
+        //     return in_array($loanStatus->id, [3, 4, 5, 6]);
+        // });
+
+        // $filteredCurrentLoanStatuses = $currentLoanStatuses->filter(function ($currentLoanStatus) {
+        //     return in_array($currentLoanStatus->id, [1, 2, 4]);
+        // });
+
+        
         foreach ($leadBeneficiaries as $leadBeneficiary) {
             if ($leadBeneficiary->loan) {
                 // Find loans where the repayment schedule is in the past
@@ -818,8 +851,55 @@ class LEADProjectCoordinatorController extends Controller
         
         
 
-        return view('LEAD_Project_Coordinator.progress', compact('progress', 'leadBeneficiariesCount', 'leadActiveCount', 'leadInactiveCount', 'leadBeneficiaries', 'filteredLoanStatuses', 'filteredCurrentLoanStatuses', 'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
+        return view('LEAD_Project_Coordinator.progress', compact('progress', 'leadBeneficiariesCount', 'leadActiveCount', 'leadInactiveCount', 'leadBeneficiaries', 'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
 
+    } // End Method
+
+    //Reject Project
+    public function CoordinatorRejectProject(Request $request, $id)
+    {
+        $userId = User::findOrFail($id);
+
+        if ($userId->loan) {
+            $loanId = $userId->loan->id;
+
+            $userLoanId = Loan::findOrFail($loanId);
+
+            $userLoanId->delete();
+
+            $userId->update([
+                'reject_remarks' => $request->remarks,
+            ]);
+        }
+        else {
+            $userId->update([
+                'reject_remarks' => $request->remarks,
+            ]);
+        }
+
+
+        //notify via email
+        $userId->notify(new LoanRejected());
+
+        //send via sms
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
+
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your incoming loan status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
+        );
+
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
+
+        toastr()->timeOut(10000)->addSuccess('Beneficiary Project has been Rejected!');
+
+        return redirect()->back();
     } // End Method
 
     public function ProjCoordinatorProgressAdd(Request $request)
@@ -876,6 +956,8 @@ class LEADProjectCoordinatorController extends Controller
         return redirect()->route('leadprojectcoordinator.progress');
     } // End Method
 
+
+
     public function ProjCoordinatorProgressUpdate(Request $request)
     {
         $loanId = $request->loanId;
@@ -888,31 +970,31 @@ class LEADProjectCoordinatorController extends Controller
             //Access the authenticated user's id
             $user = User::findOrFail($userId);
 
-        if ($request->inputLoanUpdate == 6) {
+        // if ($request->inputLoanUpdate == 6) {
 
-            $userLoanId->delete();
+        //     $userLoanId->delete();
 
-            $user->notify(new LoanRejected());
+        //     $user->notify(new LoanRejected());
             // Status is "rejected," delete the associated row
 
             //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your incoming loan status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
-            );
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your incoming loan status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
+            // );
 
-            $message = $response->current();
+            // $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
 
-        }
-        elseif ($request->inputLoanUpdate == 5) {
+        // }
+        if ($request->inputLoanUpdate == 5) {
             $disbursedAmount = $userLoanId->loan_amount;
 
             $userLoanId->update([
