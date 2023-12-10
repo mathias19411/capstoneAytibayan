@@ -192,12 +192,11 @@
                                     method="post">
                                     @csrf
                                     <div class="col-md-12 mb-4">
+                                        <label for="remarks">Remarks:</label>
                                         <div class="form-outline">
-                                            <label id="remarks">Remarks:</label>
-                                            <textarea name="remarks" id="remarks" rows="5"></textarea>
+                                            <textarea name="remarks" id="remarks" rows="5" style="width: 100%; padding:10px"></textarea>
                                         </div>
                                     </div>
-                                </div>
                                     <div class="modal-footer">
                                         <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                         <button type="submit" class="add">Blacklist this User</button>
