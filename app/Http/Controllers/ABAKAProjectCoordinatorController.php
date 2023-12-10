@@ -146,6 +146,8 @@ class ABAKAProjectCoordinatorController extends Controller
     public function ProjCoordinatorAnnouncementStore(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
+        $to = $request->to;
+        if($to !== 'PUBLIC'){
         $abakaBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
@@ -165,7 +167,6 @@ class ABAKAProjectCoordinatorController extends Controller
         $senderName = $validatedData['from'];
         $recipientName = 'ABACA Beneficiaries';
         $time = '';
-        
 
         // Check if validation passes
         if ($validatedData) 
@@ -185,20 +186,49 @@ class ABAKAProjectCoordinatorController extends Controller
         } else {
             return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
+        }else{
+            // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from'=> 'required|string',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            $announcement = announcement::create([
+                'title' => $validatedData['title'],
+                'from'=> $validatedData['from'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+            ]);
+            $announcement->save();
+
+            return redirect()->back()->with('success', 'New Announcement Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+
+        }
     } // End Method
 
     public function ProjCoordinatorAnnouncementUpdate(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
+        $aid = $request->announcement_id;
 
+        $to = $request->to;
+        if($to !== 'PUBLIC'){
         $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
         $abakaBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
         })->where('blacklisted', false)->pluck('email')->toArray()));
-        $aid = $request->announcement_id;
-        
+
         announcement::findOrFail($aid)->update([
             'title'=>$request->title,
             'to'=>$request->to,
@@ -208,13 +238,21 @@ class ABAKAProjectCoordinatorController extends Controller
         $subject = $request->title;
         $body = $request->message;
         $senderName = $programName;
-        $recipientName = 'ABACA Beneficiaries';
+        $recipientName = $programName . ' Beneficiaries';
         $time = '';
         // Reply to the email message with a body and an attachment
         Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
         
 
         return redirect()->back()->with('success', 'Announcement is Updated!');
+        }else{
+            announcement::findOrFail($aid)->update([
+                'title'=>$request->title,
+                'to'=>$request->to,
+                'message'=>$request->message,
+            ]);
+            return redirect()->back()->with('success', 'Announcement is Updated!');
+        }
     } // End Method
 
     public function ProjCoordinatorAnnouncementDelete(Request $request)
@@ -265,9 +303,11 @@ class ABAKAProjectCoordinatorController extends Controller
         return view('ABAKA_Project_Coordinator.event', compact('event'));
     } // End Method
 
-    public function ProjCoordinatorEventStore(Request $request)
+public function ProjCoordinatorEventStore(Request $request)
 {
+    $to = $request->to;
     $userProgramId = AUTH::user()->program->id;
+    if($to !== 'PUBLIC'){
     $abakaBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
         $query->where('role_name', 'beneficiary');
     })->whereHas('program', function ($query) use ($userProgramId) {
@@ -287,9 +327,6 @@ class ABAKAProjectCoordinatorController extends Controller
     $senderName = $validatedData['from'];
     $recipientName = 'ABACA Beneficiaries';
     $time = $validatedData['date'];
-
-    //dd($validatedData);
-
     // Check if validation passes
     if ($validatedData) {
         // Insert data into the database
@@ -307,26 +344,52 @@ class ABAKAProjectCoordinatorController extends Controller
         // If the attachment file is not empty, store it in the database
 
         return redirect()->back()->with('success', 'New Event Added!');
-    } else {
-        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
-    }
-}
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+        }else{
+            // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from'=> 'string',
+            'date' => 'required|date',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $event = events::create([
+                'from' => $validatedData['from'],
+                'title' => $validatedData['title'],
+                'date' => $validatedData['date'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+        ]);
+        $event->save();
 
+        // If the attachment file is not empty, store it in the database
 
+        return redirect()->back()->with('success', 'New Event Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
 
-
-    public function ProjCoordinatorEventUpdate(Request $request)
-    {
+        }
+}//End Method
+public function ProjCoordinatorEventUpdate(Request $request)
+{
         $aid = $request->event_id;
         $userProgramId = AUTH::user()->program->id;
-
+        $to = $request->to;
+        if($to !== 'PUBLIC'){
         $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
         $abakaBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
         })->where('blacklisted', false)->pluck('email')->toArray()));
-        
+
         events::findOrFail($aid)->update([
             'title'=>$request->title,
             'date'=>$request->date,
@@ -343,7 +406,16 @@ class ABAKAProjectCoordinatorController extends Controller
         Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
 
         return redirect()->back()->with('success', 'Event is Updated!');
-    } // End Method
+        }else{
+            events::findOrFail($aid)->update([
+                'title'=>$request->title,
+                'date'=>$request->date,
+                'to'=>$request->to,
+                'message'=>$request->message,
+            ]);
+            return redirect()->back()->with('success', 'Event is Updated!');
+        }
+} // End Method
 
     public function ProjCoordinatorEventDelete(Request $request)
     {

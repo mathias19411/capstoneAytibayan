@@ -1078,9 +1078,25 @@ $(document).ready(function() {
         }
     });
 </script>
+<script>
+function calculateTotalBeneficiaries() {
+    const table = document.getElementById('beneficiaries-table');
+    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    let totalBeneficiaries = 0;
+
+    for (let i = 0; i < rows.length; i++) {
+        if (rows[i].style.display !== 'none') {
+            totalBeneficiaries++;
+        }
+    }
+
+    document.getElementById('totalCount').textContent = totalBeneficiaries;
+}
 
 
+calculateTotalBeneficiaries();
 
+    </script>
 
 </body>
 

@@ -154,6 +154,9 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     //restore a user
     Route::get('/BINHI_ProjectCoordinator/restore/{id}', [BINHIProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('binhiprojectcoordinator.RestoreUser');
 
+    //reject a project
+    Route::post('/BINHI_ProjectCoordinator/reject/{id}', [BINHIProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('binhiprojectcoordinator.RejectProject');
+
     //Coordinator Events
     Route::get('/BINHI_ProjectCoordinator/Events', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('binhiprojectcoordinator.event');
     Route::post('/BINHI_ProjectCoordinator/Events', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorEventStore'])->name('store.eventcoordinatorbinhi');
@@ -218,6 +221,9 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     //ITStaff Logout
     Route::get('/AGRIPINAY_ProjectCoordinator/logout', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('agripinayprojectCoordinator.logout');
 
+    //replenish view
+    Route::get('/AGRIPINAY_ProjectCoordinator/loanreplenish', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorReplenishView'])->name('agripinayprojectCoordinator.LoanReplenishView');
+
     //blacklist view
     Route::get('/AGRIPINAY_ProjectCoordinator/blacklist', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('agripinayprojectCoordinator.BlacklistView');
 
@@ -226,6 +232,9 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
 
     //restore a user
     Route::get('/AGRIPINAY_ProjectCoordinator/restore/{id}', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('agripinayprojectCoordinator.RestoreUser');
+
+    //reject a project
+    Route::post('/AGRIPINAY_ProjectCoordinator/reject/{id}', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('agripinayprojectCoordinator.RejectProject');
 
     Route::get('/AGRIPINAY_ProjectCoordinator/inquiry', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('AGRIPINAY_Project_Coordinator.inquiry');
 
@@ -310,6 +319,9 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     //Coordinator Logout
     Route::get('/AKBAY_ProjectCoordinator/logout', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorLogout'])->name('akbayprojectCoordinator.logout');
 
+    //replenish view
+    Route::get('/AKBAY_ProjectCoordinator/loanreplenish', [AKBAYProjectCoordinatorController::class, 'CoordinatorReplenishView'])->name('akbayprojectcoordinator.LoanReplenishView');
+
     //blacklist view
     Route::get('/AKBAY_ProjectCoordinator/blacklist', [AKBAYProjectCoordinatorController::class, 'CoordinatorBlacklistView'])->name('akbayprojectCoordinator.BlacklistView');
 
@@ -318,6 +330,9 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
 
     //restore a user
     Route::get('/AKBAY_ProjectCoordinator/restore/{id}', [AKBAYProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('akbayprojectCoordinator.RestoreUser');
+
+    //reject a project
+    Route::post('/AKBAY_ProjectCoordinator/reject/{id}', [AKBAYProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('akbayprojectCoordinator.RejectProject');
 
     Route::get('/AKBAY_ProjectCoordinator/inquiry', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('AKBAY_Project_Coordinator.inquiry');
 
@@ -413,6 +428,9 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
 
     //restore a user
     Route::get('/LEAD_ProjectCoordinator/restore/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('leadprojectCoordinator.RestoreUser');
+
+    //reject a project
+    Route::post('/LEAD_ProjectCoordinator/reject/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('leadprojectcoordinator.RejectProject');
 
     Route::get('/LEAD_ProjectCoordinator/inquiry', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('LEAD_Project_Coordinator.inquiry');
 
@@ -516,6 +534,8 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
 
     //restore a user
     Route::get('/ABAKA_ProjectCoordinator/restore/{id}', [ABAKAProjectCoordinatorController::class, 'CoordinatorRestoreUser'])->name('abakaprojectcoordinator.RestoreUser');
+
+    Route::post('/ABAKA_ProjectCoordinator/reject/{id}', [ABAKAProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('abakaprojectcoordinator.RejectProject');
 
     //Coordinator Events
     Route::get('/ABAKA_ProjectCoordinator/Events', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('abakaprojectcoordinator.event');

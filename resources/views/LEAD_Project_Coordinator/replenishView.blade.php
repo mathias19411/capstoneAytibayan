@@ -3,7 +3,7 @@
 @section('content')
     @include('LEAD_Project_Coordinator.Body.sidebarproj')
 <div class="title">
-    <h1>Blacklisted Users</h1>
+    <h1>Loan Replenished Amounts</h1>
 </div>
 
 <div class="table-header">
@@ -45,6 +45,7 @@
                 <th>Replenished Amount</th>
                 <th>Project Name</th>
                 <th>Loan Amount</th>
+                <th>Balance</th>
                 <th>Date of Replenishment</th>
         
             
@@ -58,6 +59,7 @@
                     <td>{{ $replenishedAmount->replenish_amount }}</td>
                     <td>{{ $replenishedAmount->loans->project }}</td>
                     <td>{{ $replenishedAmount->loans->loan_amount }}</td>
+                    <td>{{ $replenishedAmount->balance }}
                     <td>{{ $replenishedAmount->created_at }}</td>
                 
                 </tr>

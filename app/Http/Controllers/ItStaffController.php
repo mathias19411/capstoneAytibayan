@@ -351,6 +351,8 @@ class ItStaffController extends Controller
 
     public function ITStaffAnnouncementStore(Request $request)
     {
+        $to = $request->to;
+        if($to!=='Public'){
         // Validate the request
         $validatedData = $request->validate([
             'from'=> 'string',
@@ -390,12 +392,39 @@ class ItStaffController extends Controller
         } else {
             return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
+    }else{
+        // Validate the request
+        $validatedData = $request->validate([
+            'from'=> 'string',
+            'title' => 'required|string',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            $announcement = announcement::create([
+                'from'=> $validatedData['from'],
+                'title' => $validatedData['title'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+            ]);
+            $announcement->save();
+
+            return redirect()->back()->with('success', 'New Announcement Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+    }
     } // End Method
 
     public function ITStaffAnnouncementUpdate(Request $request)
     {
         $aid = $request->announcement_id;
         $programName = $request->to;
+        if($programName !== 'Public'){
         $programID = program::where('program_name', $programName)->pluck('id');
         $Beneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
@@ -409,7 +438,6 @@ class ItStaffController extends Controller
         $senderName = $request->from;
         $recipientName = $request->to . ' Beneficiaries';
         $time = '';
-        
         announcement::findOrFail($aid)->update([
             'title'=>$request->title,
             'to'=>$request->to,
@@ -420,6 +448,16 @@ class ItStaffController extends Controller
         Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
 
         return redirect()->back()->with('success', 'Announcement is Updated!');
+        }else{
+            announcement::findOrFail($aid)->update([
+                'title'=>$request->title,
+                'to'=>$request->to,
+                'message'=>$request->message,
+                'status'=>'Available',
+            ]);
+            return redirect()->back()->with('success', 'Announcement is Updated!');
+
+        }
     } // End Method
 
     public function ITStaffAnnouncementDelete(Request $request)
@@ -443,7 +481,7 @@ class ItStaffController extends Controller
             // You can redirect back with an error message or handle it as needed
             return redirect()->back()->with('error', 'Record Not Found!');
         }
-    }
+    }//End
     
     public function ITStaffEvent()
     {
@@ -472,6 +510,8 @@ class ItStaffController extends Controller
     
     public function ITStaffEventStore(Request $request)
     {
+        $to = $request->to;
+        if($to !== 'Public'){
         // Validate the request
     $validatedData = $request->validate([
         'title' => 'required|string',
@@ -494,8 +534,6 @@ class ItStaffController extends Controller
     $recipientName = $validatedData['to'] . ' Beneficiaries';
     $time = $validatedData['date'];
 
-    //dd($validatedData);
-
     // Check if validation passes
     if ($validatedData) {
         // Insert data into the database
@@ -516,13 +554,42 @@ class ItStaffController extends Controller
     } else {
         return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
+        }else{
+            // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from'=> 'string',
+            'date' => 'required|date',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $event = events::create([
+                'from' => $validatedData['from'],
+                'title' => $validatedData['title'],
+                'date' => $validatedData['date'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+            ]);
+            $event->save();
+    
+            // If the attachment file is not empty, store it in the database
+    
+            return redirect()->back()->with('success', 'New Event Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
 
+        }
     } // End Method
 
     public function ITStaffEventUpdate(Request $request)
     {
         $aid = $request->event_id;
         $programName = $request->to;
+        if($programName !== 'Public'){
         $programID = program::where('program_name', $programName)->pluck('id');
         $Beneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
@@ -536,7 +603,6 @@ class ItStaffController extends Controller
         $senderName = $request->from;
         $recipientName = $request->to . ' Beneficiaries';
         $time = $request->date;
-        
         events::findOrFail($aid)->update([
             'title' => $request->title,
             'date' =>$request->date,
@@ -547,6 +613,17 @@ class ItStaffController extends Controller
         Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
 
         return redirect()->back()->with('success', 'Event is Updated!');
+        }else{
+            events::findOrFail($aid)->update([
+                'title' => $request->title,
+                'date' =>$request->date,
+                'message' => $request->message,
+                'to' => $request->to,
+            ]);
+    
+            return redirect()->back()->with('success', 'Event is Updated!');
+
+        }
     } // End Method
 
     public function ITStaffEventDelete(Request $request)

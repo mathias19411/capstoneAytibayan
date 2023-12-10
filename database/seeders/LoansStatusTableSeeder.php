@@ -37,11 +37,6 @@ class LoansStatusTableSeeder extends Seeder
                 'loan_status_name' => 'disbursed',
                 'description' => 'Your loan request has been disbursed'
             ],
-            //rejected
-            [
-                'loan_status_name' => 'rejected',
-                'description' => 'Your loan request has been rejected'
-            ],
         ]);
     }
 }

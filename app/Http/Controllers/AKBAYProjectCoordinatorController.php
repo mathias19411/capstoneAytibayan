@@ -2,32 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Financialassistancehistory;
-use App\Models\Projects;
-use App\Models\Schedule;
-use App\Models\Updates;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\WebsiteNotifications;
-
 use App\Mail\FinancialAssistanceStatusUpdate;
 use App\Mail\LoanStatusUpdate;
 use App\Mail\ReplyMailable;
 use App\Mail\ReplyMailableSchedule;
 use App\Models\announcement;
 use App\Models\Assistancesteps;
+
 use App\Models\Currentloanstatus;
 use App\Models\events;
 use App\Models\File;
 use App\Models\Financialassistance;
+use App\Models\Financialassistancehistory;
 use App\Models\Financialassistancestatus;
 use App\Models\inquiries;
 use App\Models\Loan;
 use App\Models\Loanhistory;
+use App\Models\Loanreplenish;
 use App\Models\Loanstatus;
 use App\Models\Program;
 use App\Models\progress;
+use App\Models\Projects;
 use App\Models\Role;
+use App\Models\Schedule;
 use App\Models\Status;
+use App\Models\Updates;
 use App\Models\User;
 use App\Notifications\AccountUpdateNotif;
 use App\Notifications\BlacklistNotification;
@@ -41,11 +40,13 @@ use App\Notifications\LoanStatusUpdated;
 use App\Notifications\PasswordUpdateNotif;
 use App\Notifications\RepaymentSchedule;
 use App\Notifications\RestoreNotification;
+use App\Notifications\WebsiteNotifications;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rules\Password;
 
 class AKBAYProjectCoordinatorController extends Controller
@@ -154,6 +155,8 @@ class AKBAYProjectCoordinatorController extends Controller
     public function ProjCoordinatorAnnouncementStore(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
+        $to = $request->to;
+        if($to !== 'PUBLIC'){
         $akbayBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
@@ -171,9 +174,8 @@ class AKBAYProjectCoordinatorController extends Controller
         $subject = $validatedData['title'];
         $body = $validatedData['message'];
         $senderName = $validatedData['from'];
-        $recipientName = 'AKBAY Beneficiaries';
+        $recipientName = 'ABACA Beneficiaries';
         $time = '';
-        
 
         // Check if validation passes
         if ($validatedData) 
@@ -193,20 +195,49 @@ class AKBAYProjectCoordinatorController extends Controller
         } else {
             return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
+        }else{
+            // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from'=> 'required|string',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            $announcement = announcement::create([
+                'title' => $validatedData['title'],
+                'from'=> $validatedData['from'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+            ]);
+            $announcement->save();
+
+            return redirect()->back()->with('success', 'New Announcement Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+
+        }
     } // End Method
 
     public function ProjCoordinatorAnnouncementUpdate(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
+        $aid = $request->announcement_id;
 
+        $to = $request->to;
+        if($to !== 'PUBLIC'){
         $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
         $akbayBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
         })->where('blacklisted', false)->pluck('email')->toArray()));
-        $aid = $request->announcement_id;
-        
+
         announcement::findOrFail($aid)->update([
             'title'=>$request->title,
             'to'=>$request->to,
@@ -216,13 +247,21 @@ class AKBAYProjectCoordinatorController extends Controller
         $subject = $request->title;
         $body = $request->message;
         $senderName = $programName;
-        $recipientName = 'AKBAY Beneficiaries';
+        $recipientName = $programName . ' Beneficiaries';
         $time = '';
         // Reply to the email message with a body and an attachment
         Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
         
 
         return redirect()->back()->with('success', 'Announcement is Updated!');
+        }else{
+            announcement::findOrFail($aid)->update([
+                'title'=>$request->title,
+                'to'=>$request->to,
+                'message'=>$request->message,
+            ]);
+            return redirect()->back()->with('success', 'Announcement is Updated!');
+        }
     } // End Method
 
     public function ProjCoordinatorAnnouncementDelete(Request $request)
@@ -273,9 +312,11 @@ class AKBAYProjectCoordinatorController extends Controller
         return view('AKBAY_Project_Coordinator.event', compact('event'));
     } // End Method
 
-    public function ProjCoordinatorEventStore(Request $request)
+public function ProjCoordinatorEventStore(Request $request)
 {
+    $to = $request->to;
     $userProgramId = AUTH::user()->program->id;
+    if($to !== 'PUBLIC'){
     $akbayBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
         $query->where('role_name', 'beneficiary');
     })->whereHas('program', function ($query) use ($userProgramId) {
@@ -293,11 +334,8 @@ class AKBAYProjectCoordinatorController extends Controller
     $subject = $validatedData['title'];
     $body = $validatedData['message'];
     $senderName = $validatedData['from'];
-    $recipientName = 'AKBAY Beneficiaries';
+    $recipientName = 'ABACA Beneficiaries';
     $time = $validatedData['date'];
-
-    //dd($validatedData);
-
     // Check if validation passes
     if ($validatedData) {
         // Insert data into the database
@@ -315,26 +353,52 @@ class AKBAYProjectCoordinatorController extends Controller
         // If the attachment file is not empty, store it in the database
 
         return redirect()->back()->with('success', 'New Event Added!');
-    } else {
-        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
-    }
-}
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+        }else{
+            // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from'=> 'string',
+            'date' => 'required|date',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $event = events::create([
+                'from' => $validatedData['from'],
+                'title' => $validatedData['title'],
+                'date' => $validatedData['date'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+        ]);
+        $event->save();
 
+        // If the attachment file is not empty, store it in the database
 
+        return redirect()->back()->with('success', 'New Event Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
 
-
-    public function ProjCoordinatorEventUpdate(Request $request)
-    {
+        }
+}//End Method
+public function ProjCoordinatorEventUpdate(Request $request)
+{
         $aid = $request->event_id;
         $userProgramId = AUTH::user()->program->id;
-
+        $to = $request->to;
+        if($to !== 'PUBLIC'){
         $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
         $akbayBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
         })->where('blacklisted', false)->pluck('email')->toArray()));
-        
+
         events::findOrFail($aid)->update([
             'title'=>$request->title,
             'date'=>$request->date,
@@ -345,13 +409,22 @@ class AKBAYProjectCoordinatorController extends Controller
         $subject = $request->title;
         $body = $request->message;
         $senderName = $programName;
-        $recipientName = 'AKBAY Beneficiaries';
+        $recipientName = 'ABACA Beneficiaries';
         $time = $request->date;
         // Reply to the email message with a body and an attachment
         Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
 
         return redirect()->back()->with('success', 'Event is Updated!');
-    } // End Method
+        }else{
+            events::findOrFail($aid)->update([
+                'title'=>$request->title,
+                'date'=>$request->date,
+                'to'=>$request->to,
+                'message'=>$request->message,
+            ]);
+            return redirect()->back()->with('success', 'Event is Updated!');
+        }
+} // End Method
 
     public function ProjCoordinatorEventDelete(Request $request)
     {
@@ -375,7 +448,6 @@ class AKBAYProjectCoordinatorController extends Controller
             return redirect()->back()->with('error', 'Record Not Found!');
         }
     } // End Method
-
     public function ProjCoordinatorAddSchedule(Request $request, Notification $notification)
     {
         $benef_id = $request->benef_id;
@@ -788,17 +860,42 @@ class AKBAYProjectCoordinatorController extends Controller
 
         $loanStatuses = Loanstatus::all();
 
-        $filteredLoanStatuses = $loanStatuses->filter(function ($loanStatus) {
-            return in_array($loanStatus->id, [2, 3, 4, 5, 6]);
-        });
-
         $currentLoanStatuses = Currentloanstatus::all();
 
-        $filteredCurrentLoanStatuses = $currentLoanStatuses->filter(function ($currentLoanStatus) {
-            return in_array($currentLoanStatus->id, [1, 2, 4]);
-        });
-
         $loanUnsettledStatus = Loanstatus::where('loan_status_name', 'unsettled')->first();
+
+        foreach ($akbayBeneficiaries as $akbayBeneficiary) {
+            if ($akbayBeneficiary->loan) {
+                $currentLoanStatusId = $akbayBeneficiary->loan->loanstatus_id;
+                $currentCurrentLoanStatusId = $akbayBeneficiary->loan->currentloanstatus_id;
+        
+                // Find the next status based on the current incoming status
+                $nextLoanStatus = Loanstatus::where('id', '>', $currentLoanStatusId)
+                    ->orderBy('id')
+                    ->first();
+        
+                // Find the next status based on the current status
+                $nextCurrentLoanStatus = Currentloanstatus::where('id', '>', $currentCurrentLoanStatusId)
+                    ->orderBy('id')
+                    ->first();
+        
+                // Check if $nextLoanStatus and $nextCurrentLoanStatus are not null before using their properties
+                $nextLoanStatusId = $nextLoanStatus ? $nextLoanStatus->id : null;
+                $nextCurrentLoanStatusId = $nextCurrentLoanStatus ? $nextCurrentLoanStatus->id : null;
+        
+                $filteredLoanStatuses = $loanStatuses->filter(function ($loanStatus) use ($currentLoanStatusId, $nextLoanStatusId) {
+                    return $loanStatus->id == $currentLoanStatusId || $loanStatus->id == $nextLoanStatusId;
+                });
+        
+                $filteredCurrentLoanStatuses = $currentLoanStatuses->filter(function ($currentloanStatus) use ($currentCurrentLoanStatusId, $nextCurrentLoanStatusId) {
+                    return $currentloanStatus->id == $currentCurrentLoanStatusId || $currentloanStatus->id == $nextCurrentLoanStatusId;
+                });
+        
+                return view('AKBAY_Project_Coordinator.progress', compact('progress', 'akbayBeneficiariesCount', 'akbayActiveCount', 'akbayInactiveCount', 'akbayBeneficiaries', 'filteredLoanStatuses', 'filteredCurrentLoanStatuses', 'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
+            }
+        }
+
+        
 
         foreach ($akbayBeneficiaries as $akbayBeneficiary) {
             if ($akbayBeneficiary->loan) {
@@ -818,8 +915,54 @@ class AKBAYProjectCoordinatorController extends Controller
         
         
 
-        return view('AKBAY_Project_Coordinator.progress', compact('progress', 'akbayBeneficiariesCount', 'akbayActiveCount', 'akbayInactiveCount', 'akbayBeneficiaries', 'filteredLoanStatuses', 'filteredCurrentLoanStatuses', 'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
+        return view('AKBAY_Project_Coordinator.progress', compact('progress', 'akbayBeneficiariesCount', 'akbayActiveCount', 'akbayInactiveCount', 'akbayBeneficiaries', 'totalActiveAndInactiveCount', 'loanUnsettledStatus'));
 
+    } // End Method
+
+    public function CoordinatorRejectProject(Request $request, $id)
+    {
+        $userId = User::findOrFail($id);
+
+        if ($userId->loan) {
+            $loanId = $userId->loan->id;
+
+            $userLoanId = Loan::findOrFail($loanId);
+
+            $userLoanId->delete();
+
+            $userId->update([
+                'reject_remarks' => $request->remarks,
+            ]);
+        }
+        else {
+            $userId->update([
+                'reject_remarks' => $request->remarks,
+            ]);
+        }
+
+
+        //notify via email
+        $userId->notify(new LoanRejected());
+
+        //send via sms
+        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        $client = new \Vonage\Client($basic);
+
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your incoming loan status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
+        );
+
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        } else {
+            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        }
+
+        toastr()->timeOut(10000)->addSuccess('Beneficiary Project has been Rejected!');
+
+        return redirect()->back();
     } // End Method
 
     public function ProjCoordinatorProgressAdd(Request $request)
@@ -890,31 +1033,31 @@ class AKBAYProjectCoordinatorController extends Controller
             //Access the authenticated user's id
             $user = User::findOrFail($userId);
 
-        if ($request->inputLoanUpdate == 6) {
+        // if ($request->inputLoanUpdate == 6) {
 
-            $userLoanId->delete();
+        //     $userLoanId->delete();
 
-            $user->notify(new LoanRejected());
-            // Status is "rejected," delete the associated row
+        //     $user->notify(new LoanRejected());
+        //     // Status is "rejected," delete the associated row
 
-            //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+        //     //send via sms
+        //     $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        //     $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your loan request has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
-            );
+        //     $response = $client->sms()->send(
+        //         new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your loan request has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
+        //     );
 
-            $message = $response->current();
+        //     $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('Notification been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+        //     if ($message->getStatus() == 0) {
+        //         toastr()->timeOut(7500)->addSuccess('Notification been sent via email and SMS!');
+        //     } else {
+        //         toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        //     }
 
-        }
-        elseif ($request->inputLoanUpdate == 5) {
+        // }
+        if ($request->inputLoanUpdate == 5) {
             $userLoanId->update([
                 'loanstatus_id' => $request->inputLoanUpdate,
             ]);
@@ -1068,8 +1211,21 @@ class AKBAYProjectCoordinatorController extends Controller
         // Subtract the inputRepayment from remaining_loan_balance
         $newRemainingBalance = $userLoanId->remaining_loan_balance - $validatedData['inputRepayment'];
 
+        $amountReplenished = $userLoanId->amount_replenished + $validatedData['inputRepayment'];
+
+        if ($validatedData)
+        {
+            Loanreplenish::create([
+                'user_id' => $userId,
+                'loan_id' => $loanId,
+                'replenish_amount' => $validatedData['inputRepayment'],
+                'balance' => $newRemainingBalance,
+            ]);
+        }
+
         // Update the remaining_loan_balance
         $userLoanId->update([
+            'amount_replenished' => $amountReplenished,
             'remaining_loan_balance' => $newRemainingBalance
         ]);
 
@@ -1394,15 +1550,42 @@ class AKBAYProjectCoordinatorController extends Controller
         }
     }
 
+    public function CoordinatorReplenishView()
+    {
+        //Access the authenticated user's id
+        $id = AUTH::user()->id;
+
+        $programId = AUTH::user()->program_id;
+
+        //Access the specific row data of the user's id
+        $userProfileData = User::find($id);
+
+        $replenishedAmounts = Loanreplenish::whereHas('user', function ($query) {
+            $query->where('role_id', 7);
+        })->whereHas('user', function ($query) use ($programId) {
+            $query->where('program_id', $programId);
+        })->whereHas('user', function ($query) {
+            $query->where('blacklisted', false);
+        })->get();
+
+        return view('AKBAY_Project_Coordinator.replenishView', compact('userProfileData', 'replenishedAmounts'));
+    } // End Method
+
     public function CoordinatorBlacklistView()
     {
         //Access the authenticated user's id
         $id = AUTH::user()->id;
 
+        $programId = AUTH::user()->program_id;
+
         //Access the specific row data of the user's id
         $userProfileData = User::find($id);
 
-        $users = User::orderBy('id', 'asc')->where('blacklisted', true)->get();
+        $users = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'beneficiary');
+        })->whereHas('program', function ($query) use ($programId) {
+            $query->where('id', $programId);
+        })->where('blacklisted', true)->get();
 
         return view('AKBAY_Project_Coordinator.blacklisted', compact('userProfileData', 'users'));
     } // End Method

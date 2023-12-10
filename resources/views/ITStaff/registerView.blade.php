@@ -239,7 +239,6 @@
                                                 <textarea name="remarks" id="remarks" rows="5"></textarea>
                                             </div>
                                         </div>
-                                    </div>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                             <button type="submit" class="add">Blacklist this User</button>

@@ -159,8 +159,8 @@ $benefCurrentLoanStatuses = [];
                 <p></p>
             </div>
         @endif
+                </div>
 
-    </div>
 
     <div class="table-header">
         <div class="table-header-left">
@@ -201,14 +201,14 @@ $benefCurrentLoanStatuses = [];
         </div>
     </div>
 
-    <div class="container">
-            <div id="printableContent">
+    <div class="container">  
+    <div id="printableContent">
                 <div class="print-header">
                 <img src="\images\APAO-R5.jpg" alt="Albay Provincial Agricultural Office Logo">
                 <h3>Republic of Albay, Province of Albay</h3>
                 <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
-                <h4>AGRI-PINAY PROGRAM STATUS MONITORING</h4>    
-                </div>        
+                <h4>PROVINCIAL LEAD PROGRAM STATUS REPORT FOR LIVELIHOOD PROJECTS</h4>    
+                </div>      
             <table class="table" id="beneficiaries-table">
             <thead>
                 <tr>
@@ -229,6 +229,7 @@ $benefCurrentLoanStatuses = [];
                     <th scope="col" class="no-print">Action</th>
 
                 </tr>
+                
             </thead>
             <tbody>
                 @foreach ($leadBeneficiaries as $leadBeneficiary)
@@ -298,26 +299,45 @@ $benefCurrentLoanStatuses = [];
                                 </p>
                             @endif
 
-                            <form action="{{ route('leadprojectcoordinator.progressUpdate') }}"
-                                enctype="multipart/form-data" method="post">
+                            <form action="{{ route('leadprojectcoordinator.progressUpdate') }}" enctype="multipart/form-data" method="post">
                                 @csrf
-
+                            
                                 <input type="hidden" name="userId" value="{{ $leadBeneficiary->id }}">
-
+                            
                                 @if ($leadBeneficiary->loan)
-                                    <input type="hidden" name="loanId"
-                                        value="{{ $leadBeneficiary->loan->id }}">
-
+                                    <input type="hidden" name="loanId" value="{{ $leadBeneficiary->loan->id }}">
+                            
                                     <label for="update-status-dropdown">Incoming Loan Status:</label>
                                     <select id="update-status-dropdown" name="inputLoanUpdate">
+                                        @php
+                                            $currentLoanStatusId = $leadBeneficiary->loan->loanstatus_id;
+                                            $nextLoanStatusId = null;
+                                            $foundCurrentStatus = false;
+                                        @endphp
+                            
                                         @foreach ($filteredLoanStatuses as $filteredLoanStatus)
-                                            <option value="{{ $filteredLoanStatus->id }}"
-                                                @if ($filteredLoanStatus->id == $leadBeneficiary->loan->loanstatus_id) selected @endif>
-                                                {{ $filteredLoanStatus->loan_status_name }}</option>
+                                            @php
+                                                if ($foundCurrentStatus) {
+                                                    $nextLoanStatusId = $filteredLoanStatus->id;
+                                                    break;
+                                                }
+                            
+                                                $isSelected = ($filteredLoanStatus->id == $currentLoanStatusId);
+                                                $foundCurrentStatus = $isSelected;
+                            
+                                            @endphp
+                            
+                                            <option value="{{ $filteredLoanStatus->id }}" {{ $isSelected ? 'selected' : '' }} {{ $isSelected ? 'disabled' : '' }}>
+                                                {{ $filteredLoanStatus->loan_status_name }}
+                                            </option>
                                         @endforeach
+                            
+                                        @if ($nextLoanStatusId !== null)
+                                            <option value="{{ $nextLoanStatusId }}">{{ App\Models\Loanstatus::find($nextLoanStatusId)->loan_status_name }}</option>
+                                        @endif
                                     </select>
                                 @endif
-
+                            
                                 <button type="submit" class="add">Save Changes</button>
                             </form>
 
@@ -387,6 +407,64 @@ $benefCurrentLoanStatuses = [];
                         </div>
                     </div>
 
+                    {{-- Modal View Reject--}}
+                    <div class="modal fade" id="ModalBlacklist{{ $leadBeneficiary->id }}" tabindex="-1" data-backdrop="false"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-title">Reject a Project</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col profile">
+                                            <div class="col-md-12">
+                                                <img class="profile ht-50 wd-50 rounded-circle"
+                                                    src="{{ !empty($leadBeneficiary->photo)
+                                                        ? ($leadBeneficiary->role->role_name === 'itstaff'
+                                                            ? url('Uploads/ITStaff_Images/' . $leadBeneficiary->photo)
+                                                            : (in_array($leadBeneficiary->role->role_name, [
+                                                                'projectcoordinator',
+                                                                'abakaprojectcoordinator',
+                                                                'agripinayprojectcoordinator',
+                                                                'akbayprojectcoordinator',
+                                                                'leadprojectcoordinator',
+                                                            ])
+                                                                ? url('Uploads/Coordinator_Images/' . $leadBeneficiary->photo)
+                                                                : url('Uploads/Beneficiary_Images/' . $leadBeneficiary->photo)))
+                                                        : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                                    alt="profile">
+                                            </div>
+                                            <br>
+                                            <span class="name h4 ms-3">{{ $leadBeneficiary->first_name }} {{ $leadBeneficiary->middle_name }}
+                                                {{ $leadBeneficiary->last_name }}</span>
+                                            <br><br>
+                                        </div>
+                                        <form action="{{ route('leadprojectcoordinator.RejectProject', $leadBeneficiary->id) }}" enctype="multipart/form-data"
+                                        method="post">
+                                        @csrf
+                                        <div class="col-md-12 mb-4">
+                                        <label for="remarks">Remarks:</label>
+                                        <div class="form-outline">
+                                            <textarea name="remarks" id="remarks" rows="5" style="width: 100%; padding:10px"></textarea>
+                                        </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="add">Reject this Project</button>
+                                        </div>
+                                </div>
+                                </form>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>    
+
                     <tr>
                         <td>{{ $leadBeneficiary->id }}</td>
                         <td>{{ $leadBeneficiary->first_name }} {{ $leadBeneficiary->middle_name }}
@@ -412,7 +490,7 @@ $benefCurrentLoanStatuses = [];
                                 <button class="tooltip-button" data-tooltip="Update"
                                     onclick="showUpdateStatusPopup({{ $leadBeneficiary->id }})"><i
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                @if ($leadBeneficiary->loan->remaining_loan_balance == 0)
+                                @if ($leadBeneficiary->loan->remaining_loan_balance == 0 || $leadBeneficiary->loan->loanstatus_id != 5)
                                     <button class="tooltip-button" data-tooltip="Repayment"
                                     onclick="showUpdateRepaymentPopup({{ $leadBeneficiary->id }})" disabled
                                     style="opacity: 0.5; cursor: not-allowed;"><i
@@ -421,6 +499,9 @@ $benefCurrentLoanStatuses = [];
                                     onclick="sendRepaymentNotification({{ $leadBeneficiary->id }})" disabled
                                     style="opacity: 0.5; cursor: not-allowed;"><i
                                         class="fa-solid fa-bell fa-2xs"></i></button>
+                                        <button class="tooltip-button" data-tooltip="Reject" class="add-modal" data-bs-toggle="modal"
+                data-bs-target="#ModalBlacklist{{ $leadBeneficiary->id }}" disabled
+                style="opacity: 0.5; cursor: not-allowed;"><i class="fa-solid fa-ban fa-2xs"></i></button>
                                 @else
                                     <button class="tooltip-button" data-tooltip="Repayment"
                                     onclick="showUpdateRepaymentPopup({{ $leadBeneficiary->id }})"><i
@@ -428,6 +509,8 @@ $benefCurrentLoanStatuses = [];
                                     <button class="tooltip-button" data-tooltip="Notify"
                                     onclick="sendRepaymentNotification({{ $leadBeneficiary->id }})"><i
                                         class="fa-solid fa-bell fa-2xs"></i></button>
+                                        <button class="tooltip-button" data-tooltip="Reject" class="add-modal" data-bs-toggle="modal"
+                data-bs-target="#ModalBlacklist{{ $leadBeneficiary->id }}"><i class="fa-solid fa-ban fa-2xs"></i></button>
                                 @endif
                             </td>
                         @else
@@ -458,7 +541,29 @@ $benefCurrentLoanStatuses = [];
                 @endforeach
             </tbody>
         </table>
-    </div>
+
+        <div id="totalBeneficiaries" class="total-beneficiaries">
+            <strong>Total Beneficiaries: <span id="totalCount">0</span></strong>
+        </div>
+        <div class="signature-section">
+                <div class="left-section">
+                    <div class="signature-line">
+                        <span>LEAD Coordinator</span>
+                    </div>
+                    <div class="signature-line">
+                        <span>Date</span>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="signature-line">
+                            <span>Provincial Agriculturist</span>
+                    </div>
+                        <div class="signature-line">
+                            <span>Date</span>
+                        </div>
+                    </div>
+                </div>
+</div>
         <div class="pagination">
             <button id="prev-page">Previous</button>
             <div id="page-numbers"></div>

@@ -208,7 +208,7 @@ $benefCurrentLoanStatuses = [];
                 <img src="\images\APAO-R5.jpg" alt="Albay Provincial Agricultural Office Logo">
                 <h3>Republic of Albay, Province of Albay</h3>
                 <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
-                <h4>AGRI-PINAY PROGRAM STATUS MONITORING</h4>    
+                <h4>AKBAY PROGRAM STATUS MONITORING</h4>    
                 </div>        
             <table class="table" id="beneficiaries-table">
             <thead>
@@ -303,16 +303,36 @@ $benefCurrentLoanStatuses = [];
                                 <input type="hidden" name="userId" value="{{ $akbayBeneficiary->id }}">
 
                                 @if ($akbayBeneficiary->loan)
-                                    <input type="hidden" name="loanId"
-                                        value="{{ $akbayBeneficiary->loan->id }}">
-
+                                    <input type="hidden" name="loanId" value="{{ $akbayBeneficiary->loan->id }}">
+                            
                                     <label for="update-status-dropdown">Incoming Loan Status:</label>
                                     <select id="update-status-dropdown" name="inputLoanUpdate">
+                                        @php
+                                            $currentLoanStatusId = $akbayBeneficiary->loan->loanstatus_id;
+                                            $nextLoanStatusId = null;
+                                            $foundCurrentStatus = false;
+                                        @endphp
+                            
                                         @foreach ($filteredLoanStatuses as $filteredLoanStatus)
-                                            <option value="{{ $filteredLoanStatus->id }}"
-                                                @if ($filteredLoanStatus->id == $akbayBeneficiary->loan->loanstatus_id) selected @endif>
-                                                {{ $filteredLoanStatus->loan_status_name }}</option>
+                                            @php
+                                                if ($foundCurrentStatus) {
+                                                    $nextLoanStatusId = $filteredLoanStatus->id;
+                                                    break;
+                                                }
+                            
+                                                $isSelected = ($filteredLoanStatus->id == $currentLoanStatusId);
+                                                $foundCurrentStatus = $isSelected;
+                            
+                                            @endphp
+                            
+                                            <option value="{{ $filteredLoanStatus->id }}" {{ $isSelected ? 'selected' : '' }} {{ $isSelected ? 'disabled' : '' }}>
+                                                {{ $filteredLoanStatus->loan_status_name }}
+                                            </option>
                                         @endforeach
+                            
+                                        @if ($nextLoanStatusId !== null)
+                                            <option value="{{ $nextLoanStatusId }}">{{ App\Models\Loanstatus::find($nextLoanStatusId)->loan_status_name }}</option>
+                                        @endif
                                     </select>
                                 @endif
 
@@ -384,6 +404,64 @@ $benefCurrentLoanStatuses = [];
                         </div>
                     </div>
 
+                    {{-- Modal View Reject--}}
+                    <div class="modal fade" id="ModalBlacklist{{ $akbayBeneficiary->id }}" tabindex="-1" data-backdrop="false"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-title">Reject a Project</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col profile">
+                                            <div class="col-md-12">
+                                                <img class="profile ht-50 wd-50 rounded-circle"
+                                                    src="{{ !empty($akbayBeneficiary->photo)
+                                                        ? ($akbayBeneficiary->role->role_name === 'itstaff'
+                                                            ? url('Uploads/ITStaff_Images/' . $akbayBeneficiary->photo)
+                                                            : (in_array($akbayBeneficiary->role->role_name, [
+                                                                'projectcoordinator',
+                                                                'abakaprojectcoordinator',
+                                                                'agripinayprojectcoordinator',
+                                                                'akbayprojectcoordinator',
+                                                                'leadprojectcoordinator',
+                                                            ])
+                                                                ? url('Uploads/Coordinator_Images/' . $akbayBeneficiary->photo)
+                                                                : url('Uploads/Beneficiary_Images/' . $akbayBeneficiary->photo)))
+                                                        : url('Uploads/user-icon-png-person-user-profile-icon-20.png') }}"
+                                                    alt="profile">
+                                            </div>
+                                            <br>
+                                            <span class="name h4 ms-3">{{ $akbayBeneficiary->first_name }} {{ $akbayBeneficiary->middle_name }}
+                                                {{ $akbayBeneficiary->last_name }}</span>
+                                            <br><br>
+                                        </div>
+                                        <form action="{{ route('akbayprojectCoordinator.RejectProject', $akbayBeneficiary->id) }}" enctype="multipart/form-data"
+                                        method="post">
+                                        @csrf
+                                        <div class="col-md-12 mb-4">
+                                        <label for="remarks">Remarks:</label>
+                                        <div class="form-outline">
+                                            <textarea name="remarks" id="remarks" rows="5" style="width: 100%; padding:10px"></textarea>
+                                        </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="add">Reject this Project</button>
+                                        </div>
+                                </div>
+                                </form>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div> 
+
                     <tr>
                         <td>{{ $akbayBeneficiary->id }}</td>
                         <td>{{ $akbayBeneficiary->first_name }} {{ $akbayBeneficiary->middle_name }}
@@ -404,10 +482,11 @@ $benefCurrentLoanStatuses = [];
                                     onclick="showAddValuePopup({{ $akbayBeneficiary->id }})" disabled
                                     style="opacity: 0.5; cursor: not-allowed;"><i
                                         class="fa-solid fa-plus fa-2xs"></i></button>
-                                <button class="tooltip-button" data-tooltip="Update"
-                                    onclick="showUpdateStatusPopup({{ $akbayBeneficiary->id }})"><i
-                                        class="fa-solid fa-pen-to-square fa-2xs"></i></button>
-                                @if ($akbayBeneficiary->loan->remaining_loan_balance == 0)
+                                        <button class="tooltip-button" data-tooltip="Update"
+                                        onclick="showUpdateStatusPopup({{ $akbayBeneficiary->id }})"><i
+                                            class="fa-solid fa-pen-to-square fa-2xs"></i></button>
+                                @if ($akbayBeneficiary->loan->remaining_loan_balance == 0 || $akbayBeneficiary->loan->loanstatus_id != 5)
+                                
                                     <button class="tooltip-button" data-tooltip="Repayment"
                                     onclick="showUpdateRepaymentPopup({{ $akbayBeneficiary->id }})" disabled
                                     style="opacity: 0.5; cursor: not-allowed;"><i
@@ -416,6 +495,9 @@ $benefCurrentLoanStatuses = [];
                                     onclick="sendRepaymentNotification({{ $akbayBeneficiary->id }})" disabled
                                     style="opacity: 0.5; cursor: not-allowed;"><i
                                         class="fa-solid fa-bell fa-2xs"></i></button>
+                                        <button class="tooltip-button" data-tooltip="Reject" class="add-modal" data-bs-toggle="modal"
+                data-bs-target="#ModalBlacklist{{ $akbayBeneficiary->id }}" disabled
+                style="opacity: 0.5; cursor: not-allowed;"><i class="fa-solid fa-ban fa-2xs"></i></button>
                                 @else
                                     <button class="tooltip-button" data-tooltip="Repayment"
                                     onclick="showUpdateRepaymentPopup({{ $akbayBeneficiary->id }})"><i
@@ -423,6 +505,8 @@ $benefCurrentLoanStatuses = [];
                                     <button class="tooltip-button" data-tooltip="Notify"
                                     onclick="sendRepaymentNotification({{ $akbayBeneficiary->id }})"><i
                                         class="fa-solid fa-bell fa-2xs"></i></button>
+                                        <button class="tooltip-button" data-tooltip="Reject" class="add-modal" data-bs-toggle="modal"
+                data-bs-target="#ModalBlacklist{{ $akbayBeneficiary->id }}"><i class="fa-solid fa-ban fa-2xs"></i></button>
                                 @endif
                             </td>
                         @else
@@ -451,7 +535,28 @@ $benefCurrentLoanStatuses = [];
                 @endforeach
             </tbody>
         </table>
-    </div>
+        <div id="totalBeneficiaries" class="total-beneficiaries">
+            <strong>Total Beneficiaries: <span id="totalCount">0</span></strong>
+        </div>
+        <div class="signature-section">
+                <div class="left-section">
+                    <div class="signature-line">
+                        <span>AKBAY Coordinator</span>
+                    </div>
+                    <div class="signature-line">
+                        <span>Date</span>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="signature-line">
+                            <span>Provincial Agriculturist</span>
+                    </div>
+                        <div class="signature-line">
+                            <span>Date</span>
+                        </div>
+                    </div>
+                </div>
+</div>
         <div class="pagination">
             <button id="prev-page">Previous</button>
             <div id="page-numbers"></div>

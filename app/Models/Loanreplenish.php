@@ -12,6 +12,7 @@ class Loanreplenish extends Model
     protected $fillable = [
         'id',
         'replenish_amount',
+        'balance',
         'user_id',
         'loan_id',
         'created_at',

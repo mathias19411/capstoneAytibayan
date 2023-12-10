@@ -1,9 +1,9 @@
-@extends('ITStaff.main')
+@extends('AGRIPINAY_Project_Coordinator.projectcoordinator_main')
 
 @section('content')
-@include('ITStaff.Body.sidebar')
+    @include('AGRIPINAY_Project_Coordinator.Body.sidebarproj')
 <div class="title">
-    <h1>Cash Incentive Scheme Transactions</h1>
+    <h1>Loan Replenished Amounts</h1>
 </div>
 
 <div class="table-header">
@@ -11,9 +11,12 @@
         <label for="unread-filter">Filter: </label>
         <select id="unread-filter">
             <option value="all">All</option>
-            <option value="binhingpagasa">binhingpagasa</option>
-            <option value="abakamopisomo">abakamopisomo</option>
-            <option value="agripinay">abakamopisomo</option>
+            <option value="read">itstaff</option>
+            <option value="binhi">binhingpagasa</option>
+            <option value="abaka">abakamopisomo</option>
+            <option value="lead">lead</option>
+            <option value="lead">lead</option>
+            <option value="akbay">akbay</option>
         </select>
         <label for="items-per-page">Items per page: </label>
         <select id="items-per-page">
@@ -38,37 +41,28 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Transaction Type</th>
                 <th>Beneficiary</th>
-                <th>Program</th>
+                <th>Replenished Amount</th>
                 <th>Project Name</th>
-                <th>Financial Assistance Amount</th>
-                <th>Date and Time</th>
-                <th>Status</th>
+                <th>Loan Amount</th>
+                <th>Balance</th>
+                <th>Date of Replenishment</th>
+        
+            
             </tr>
         </thead>
         <tbody>
-            @foreach ($assistanceTransactions as $assistanceTransaction)
-            <tr>
-                <td>{{ $assistanceTransaction->id }}</td>
-                <td>{{ $assistanceTransaction->transaction_type }}</td>
-                <td>{{ $assistanceTransaction->user->first_name }} {{ $assistanceTransaction->user->middle_name }} {{ $assistanceTransaction->user->last_name }}</td>
-                <td>{{ $assistanceTransaction->program->program_name }}</td>
-                <td>{{ $assistanceTransaction->assistance->project }}</td>
-                <td>{{ $assistanceTransaction->assistance->amount }}</td>
-                @if ($assistanceTransaction->assistance->number_of_hectares)
-                    <td>{{ $assistanceTransaction->assistance->number_of_hectares }}</td>
-                @else
-                    <td>N/A</td>
-                @endif
-                @if ($assistanceTransaction->assistance->organization)
-                    <td>{{ $assistanceTransaction->assistance->organization }}</td>
-                @else
-                    <td>N/A</td>
-                @endif
-                <td>{{ $assistanceTransaction->created_at }}</td>
-                <td>{{ $assistanceTransaction->assistancestatus->financial_assistance_status_name }}</td>
-            </tr>
+            @foreach ($replenishedAmounts as $replenishedAmount)
+                <tr>
+                    <td>{{ $replenishedAmount->id }}</td>
+                    <td>{{ $replenishedAmount->user->first_name }} {{ $replenishedAmount->user->middle_name }} {{ $replenishedAmount->user->last_name }}</td>
+                    <td>{{ $replenishedAmount->replenish_amount }}</td>
+                    <td>{{ $replenishedAmount->loans->project }}</td>
+                    <td>{{ $replenishedAmount->loans->loan_amount }}</td>
+                    <td>{{ $replenishedAmount->balance }}
+                    <td>{{ $replenishedAmount->created_at }}</td>
+                
+                </tr>
             @endforeach
         </tbody>
     </table>
@@ -118,9 +112,5 @@
         </div>
     </div>
 </div>
-
-            <div class="container-back">
-                    <a href="{{ route('itstaff.TransactionsView') }}" class="back">Back</a>
-            </div>
 
 @endsection

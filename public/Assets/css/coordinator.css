@@ -2568,3 +2568,9 @@ body.announcement_events_inquiry .message-row {
         max-width: calc(100% - 20px);
     }
 }
+
+/* Hide by default */
+.signature-section {
+    display: none; 
+}
+
