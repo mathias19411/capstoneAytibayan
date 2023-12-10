@@ -91,9 +91,9 @@ Route::middleware(['auth', 'verified', 'twofactor', 'userroleprotection:itstaff'
 
     Route::get('/ITStaff/announcement/{id}', [ItStaffController::class, 'ITStaffAnnouncementEdit'])->name('edit.announcement');
 
-    Route::patch('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncementUpdate'])->name('update.announcement');
+    Route::patch('/ITStaff/announcement/Edit', [ItStaffController::class, 'ITStaffAnnouncementUpdate'])->name('update.announcement');
 
-    Route::delete('/ITStaff/announcement', [ItStaffController::class, 'ITStaffAnnouncementDelete'])->name('delete.announcement');
+    Route::patch('/ITStaff/announcement/Cancel', [ItStaffController::class, 'ITStaffAnnouncementDelete'])->name('delete.announcement');
     
     
     Route::get('/ITStaff/event', [ItStaffController::class, 'ITStaffEvent'])->name('itstaff.event');
@@ -102,8 +102,8 @@ Route::middleware(['auth', 'verified', 'twofactor', 'userroleprotection:itstaff'
 
     Route::get('/ITStaff/event/{id}', [ItStaffController::class, 'ITStaffEventEdit'])->name('edit.event');
     
-    Route::patch('/ITStaff/event', [ItStaffController::class, 'ITStaffEventUpdate'])->name('update.event');
-    Route::delete('/ITStaff/event', [ItStaffController::class, 'ITStaffEventDelete'])->name('delete.event');
+    Route::patch('/ITStaff/event/Edit', [ItStaffController::class, 'ITStaffEventUpdate'])->name('update.event');
+    Route::patch('/ITStaff/event/Cancel', [ItStaffController::class, 'ITStaffEventDelete'])->name('delete.event');
 
     //IT Staff View Profile
     Route::get('/ITStaff/viewprofile', [ItStaffController::class, 'ITStaffViewProfile'])->name('itstaff.viewprofile');

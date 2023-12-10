@@ -200,7 +200,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modal-title">Blacklist a User</h5>
+                                    <h5 class="modal-title" id="modal-title">Blacklist User</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -239,7 +239,6 @@
                                                 <textarea name="remarks" id="remarks" rows="5"></textarea>
                                             </div>
                                         </div>
-                                    </div>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                             <button type="submit" class="add">Blacklist this User</button>

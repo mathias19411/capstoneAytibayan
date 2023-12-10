@@ -125,7 +125,6 @@ class LEADProjectCoordinatorController extends Controller
 
         return redirect('/login');
     } // End Method
-
     public function ProjCoordinatorAnnouncement()
     {
         $id = AUTH::user()->id;
@@ -139,7 +138,7 @@ class LEADProjectCoordinatorController extends Controller
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
         $status = 'Available';
        $announcement = announcement::where(function ($query) use ($programName, $status) {
-            $query->where('from', $programName)->where('status', $status);})->get();
+            $query->where('from', $programName)->orWhere('to', $programName)->where('status', $status);})->get();
 
         return view('LEAD_Project_Coordinator.announcement', compact('announcement','programName', 'roleName', 'programEmail'));
     } // End Method
@@ -154,6 +153,8 @@ class LEADProjectCoordinatorController extends Controller
     public function ProjCoordinatorAnnouncementStore(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
+        $to = $request->to;
+        if($to !== 'PUBLIC'){
         $leadBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
@@ -171,9 +172,8 @@ class LEADProjectCoordinatorController extends Controller
         $subject = $validatedData['title'];
         $body = $validatedData['message'];
         $senderName = $validatedData['from'];
-        $recipientName = 'LEAD Beneficiaries';
+        $recipientName = 'ABACA Beneficiaries';
         $time = '';
-        
 
         // Check if validation passes
         if ($validatedData) 
@@ -193,20 +193,49 @@ class LEADProjectCoordinatorController extends Controller
         } else {
             return redirect()->back()->with('error', 'Validation failed. Please check your input.');
     }
+        }else{
+            // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from'=> 'required|string',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        // Check if validation passes
+        if ($validatedData) 
+        {
+            // Insert data into the database
+            $announcement = announcement::create([
+                'title' => $validatedData['title'],
+                'from'=> $validatedData['from'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+            ]);
+            $announcement->save();
+
+            return redirect()->back()->with('success', 'New Announcement Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+    }
+
+        }
     } // End Method
 
     public function ProjCoordinatorAnnouncementUpdate(Request $request)
     {
         $userProgramId = AUTH::user()->program->id;
+        $aid = $request->announcement_id;
 
+        $to = $request->to;
+        if($to !== 'PUBLIC'){
         $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
         $leadBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
         })->where('blacklisted', false)->pluck('email')->toArray()));
-        $aid = $request->announcement_id;
-        
+
         announcement::findOrFail($aid)->update([
             'title'=>$request->title,
             'to'=>$request->to,
@@ -216,13 +245,21 @@ class LEADProjectCoordinatorController extends Controller
         $subject = $request->title;
         $body = $request->message;
         $senderName = $programName;
-        $recipientName = 'LEAD Beneficiaries';
+        $recipientName = $programName . ' Beneficiaries';
         $time = '';
         // Reply to the email message with a body and an attachment
         Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
         
 
         return redirect()->back()->with('success', 'Announcement is Updated!');
+        }else{
+            announcement::findOrFail($aid)->update([
+                'title'=>$request->title,
+                'to'=>$request->to,
+                'message'=>$request->message,
+            ]);
+            return redirect()->back()->with('success', 'Announcement is Updated!');
+        }
     } // End Method
 
     public function ProjCoordinatorAnnouncementDelete(Request $request)
@@ -261,7 +298,7 @@ class LEADProjectCoordinatorController extends Controller
        $programName = trim(implode(' ', Program::where('id', $programId)->pluck('program_name')->toArray()));
         $status = 'Available';
         $event = events::where(function ($query) use ($programName, $status) {
-            $query->where('from', $programName)->where('status', $status);})->get();
+            $query->where('from', $programName)->orWhere('to', $programName)->where('status', $status);})->get();
 
         return view('LEAD_Project_Coordinator.event', compact('event','programName', 'roleName'));
     } // End Method
@@ -273,9 +310,11 @@ class LEADProjectCoordinatorController extends Controller
         return view('LEAD_Project_Coordinator.event', compact('event'));
     } // End Method
 
-    public function ProjCoordinatorEventStore(Request $request)
+public function ProjCoordinatorEventStore(Request $request)
 {
+    $to = $request->to;
     $userProgramId = AUTH::user()->program->id;
+    if($to !== 'PUBLIC'){
     $leadBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
         $query->where('role_name', 'beneficiary');
     })->whereHas('program', function ($query) use ($userProgramId) {
@@ -293,11 +332,8 @@ class LEADProjectCoordinatorController extends Controller
     $subject = $validatedData['title'];
     $body = $validatedData['message'];
     $senderName = $validatedData['from'];
-    $recipientName = 'LEAD Beneficiaries';
+    $recipientName = 'ABACA Beneficiaries';
     $time = $validatedData['date'];
-
-    //dd($validatedData);
-
     // Check if validation passes
     if ($validatedData) {
         // Insert data into the database
@@ -315,26 +351,52 @@ class LEADProjectCoordinatorController extends Controller
         // If the attachment file is not empty, store it in the database
 
         return redirect()->back()->with('success', 'New Event Added!');
-    } else {
-        return redirect()->back()->with('error', 'Validation failed. Please check your input.');
-    }
-}
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
+        }else{
+            // Validate the request
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'from'=> 'string',
+            'date' => 'required|date',
+            'to' => 'required|string',
+            'message' => 'required|string',
+        ]);
+        // Check if validation passes
+        if ($validatedData) {
+            // Insert data into the database
+            $event = events::create([
+                'from' => $validatedData['from'],
+                'title' => $validatedData['title'],
+                'date' => $validatedData['date'],
+                'to' => $validatedData['to'],
+                'message' => $validatedData['message'],
+        ]);
+        $event->save();
 
+        // If the attachment file is not empty, store it in the database
 
+        return redirect()->back()->with('success', 'New Event Added!');
+        } else {
+            return redirect()->back()->with('error', 'Validation failed. Please check your input.');
+        }
 
-
-    public function ProjCoordinatorEventUpdate(Request $request)
-    {
+        }
+}//End Method
+public function ProjCoordinatorEventUpdate(Request $request)
+{
         $aid = $request->event_id;
         $userProgramId = AUTH::user()->program->id;
-
+        $to = $request->to;
+        if($to !== 'PUBLIC'){
         $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
         $leadBeneficiaries = trim(implode(',', User::whereHas('role', function ($query) {
             $query->where('role_name', 'beneficiary');
         })->whereHas('program', function ($query) use ($userProgramId) {
             $query->where('id', $userProgramId);
         })->where('blacklisted', false)->pluck('email')->toArray()));
-        
+
         events::findOrFail($aid)->update([
             'title'=>$request->title,
             'date'=>$request->date,
@@ -345,13 +407,22 @@ class LEADProjectCoordinatorController extends Controller
         $subject = $request->title;
         $body = $request->message;
         $senderName = $programName;
-        $recipientName = 'LEAD Beneficiaries';
+        $recipientName = 'ABACA Beneficiaries';
         $time = $request->date;
         // Reply to the email message with a body and an attachment
         Mail::to($recipientEmail)->send(new ReplyMailableSchedule($subject, $body, $senderName, $recipientName, $time));
 
         return redirect()->back()->with('success', 'Event is Updated!');
-    } // End Method
+        }else{
+            events::findOrFail($aid)->update([
+                'title'=>$request->title,
+                'date'=>$request->date,
+                'to'=>$request->to,
+                'message'=>$request->message,
+            ]);
+            return redirect()->back()->with('success', 'Event is Updated!');
+        }
+} // End Method
 
     public function ProjCoordinatorEventDelete(Request $request)
     {
@@ -375,7 +446,6 @@ class LEADProjectCoordinatorController extends Controller
             return redirect()->back()->with('error', 'Record Not Found!');
         }
     } // End Method
-
     public function ProjCoordinatorAddSchedule(Request $request, Notification $notification)
     {
         $benef_id = $request->benef_id;
@@ -933,13 +1003,13 @@ class LEADProjectCoordinatorController extends Controller
 
             $user->notify(new LoanStatusUpdated());
 
-            //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+            // //send via sms
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your incoming loan status has been changed to " . $user->loanstatus->loan_status_name . " today at " . $user->loan->updated_at)
-            );
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your incoming loan status has been changed to " . $user->loanstatus->loan_status_name . " today at " . $user->loan->updated_at)
+            // );
 
             $message = $response->current();
 

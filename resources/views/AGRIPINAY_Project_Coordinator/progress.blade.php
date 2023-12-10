@@ -151,7 +151,7 @@ $benefCurrentLoanStatuses = [];
             </div>
             <div class="box box-2">
                 <h1>Overall Existing Loan Statuses</h1>
-                <p>NNot Available</p>
+                <p>Not Available</p>
             </div>
             <div class="box box-3">
                 <h1>Progress %</h1>
@@ -451,7 +451,28 @@ $benefCurrentLoanStatuses = [];
                 @endforeach
             </tbody>
         </table>
-    </div>
+        <div id="totalBeneficiaries" class="total-beneficiaries">
+            <strong>Total Beneficiaries: <span id="totalCount">0</span></strong>
+        </div>
+        <div class="signature-section">
+                <div class="left-section">
+                    <div class="signature-line">
+                        <span>AgriPinay Coordinator</span>
+                    </div>
+                    <div class="signature-line">
+                        <span>Date</span>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="signature-line">
+                            <span>Provincial Agriculturist</span>
+                    </div>
+                        <div class="signature-line">
+                            <span>Date</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div class="pagination">
             <button id="prev-page">Previous</button>
             <div id="page-numbers"></div>

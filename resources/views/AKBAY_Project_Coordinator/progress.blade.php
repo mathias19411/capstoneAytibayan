@@ -208,7 +208,7 @@ $benefCurrentLoanStatuses = [];
                 <img src="\images\APAO-R5.jpg" alt="Albay Provincial Agricultural Office Logo">
                 <h3>Republic of Albay, Province of Albay</h3>
                 <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
-                <h4>AGRI-PINAY PROGRAM STATUS MONITORING</h4>    
+                <h4>AKBAY PROGRAM STATUS MONITORING</h4>    
                 </div>        
             <table class="table" id="beneficiaries-table">
             <thead>
@@ -451,7 +451,28 @@ $benefCurrentLoanStatuses = [];
                 @endforeach
             </tbody>
         </table>
-    </div>
+        <div id="totalBeneficiaries" class="total-beneficiaries">
+            <strong>Total Beneficiaries: <span id="totalCount">0</span></strong>
+        </div>
+        <div class="signature-section">
+                <div class="left-section">
+                    <div class="signature-line">
+                        <span>AKBAY Coordinator</span>
+                    </div>
+                    <div class="signature-line">
+                        <span>Date</span>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="signature-line">
+                            <span>Provincial Agriculturist</span>
+                    </div>
+                        <div class="signature-line">
+                            <span>Date</span>
+                        </div>
+                    </div>
+                </div>
+</div>
         <div class="pagination">
             <button id="prev-page">Previous</button>
             <div id="page-numbers"></div>

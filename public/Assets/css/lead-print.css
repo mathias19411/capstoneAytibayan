@@ -22,6 +22,7 @@
     padding: 6px;
   }
 
+ 
   body {
     font-family: Arial, sans-serif;
     font-size: 12px;
@@ -86,4 +87,35 @@
     #beneficiaries-table {
       margin-top: 20px;
     }
+    
+.signature-section {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  float: right;
+}
+
+.left-section,
+.right-section {
+  flex: 1;
+  align-items: center;
+}
+
+.signature-line {
+  border-top: 1px solid #000; 
+  margin-top: 20px;
+  margin: 15px;
+  width: 200px; 
+}
+
+.signature-line span {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+#printableTotal {
+  display: table-row-group;
+}
 }
