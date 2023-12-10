@@ -60,7 +60,7 @@
                     <td>{{ $replenishedAmount->loans->project }}</td>
                     <td>{{ $replenishedAmount->loans->loan_amount }}</td>
                     <td>{{ $replenishedAmount->balance }}
-                    <td>{{ $replenishedAmount->created_at }}</td>
+                    <td>{{ $replenishedAmount->created_at->format('Y-m-d h:i A') }}</td>
                 
                 </tr>
             @endforeach
