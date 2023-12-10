@@ -447,12 +447,12 @@ $benefCurrentLoanStatuses = [];
                                         method="post">
                                         @csrf
                                         <div class="col-md-12 mb-4">
-                                            <div class="form-outline">
-                                                <label id="remarks">Remarks:</label>
-                                                <textarea name="remarks" id="remarks" rows="5"></textarea>
-                                            </div>
+                                        <label for="remarks">Remarks:</label>
+                                        <div class="form-outline">
+                                            <textarea name="remarks" id="remarks" rows="5" style="width: 100%; padding:10px"></textarea>
                                         </div>
-                                    </div>
+                                        </div>
+
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
                                             <button type="submit" class="add">Reject this Project</button>
