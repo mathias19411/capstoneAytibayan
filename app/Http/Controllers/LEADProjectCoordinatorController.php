@@ -1004,12 +1004,12 @@ public function ProjCoordinatorEventUpdate(Request $request)
             $user->notify(new LoanStatusUpdated());
 
             // //send via sms
-            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            // $client = new \Vonage\Client($basic);
+            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            $client = new \Vonage\Client($basic);
 
-            // $response = $client->sms()->send(
-            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your incoming loan status has been changed to " . $user->loanstatus->loan_status_name . " today at " . $user->loan->updated_at)
-            // );
+            $response = $client->sms()->send(
+                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your incoming loan status has been changed to " . $user->loanstatus->loan_status_name . " today at " . $user->loan->updated_at)
+            );
 
             $message = $response->current();
 
