@@ -172,7 +172,7 @@
                         <td class="column">{{ $announcements->title }}</td>
                         <td class="column">{{ $announcements->to }}</td>
                         <td class="column message-column">{{ $announcements->message }}</td>
-                        <td class="column">{{ $announcements->created_at }}</td>
+                        <td class="column">{{ $announcements->created_at->format('Y-m-d h:i A') }}</td>
                         <td class="column">{{ $announcements->status }}</td>
 
                         <td>

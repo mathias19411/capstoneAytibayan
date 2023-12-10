@@ -205,7 +205,7 @@
                         <td class="column message-column">{{ $inquiry->message }}</td>
                         <td class="column">{{ $inquiry->email }}</td>
                         <td class="column">{{ $inquiry->contacts }}</td>
-                        <td class="column">{{ $inquiry->created_at->format('Y-m-d')  }}</td>
+                        <td class="column">{{ $inquiry->created_at->format('Y-m-d h:i A')  }}</td>
                         <td class="column">
                         <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $inquiry->id }}"><i class="fa-solid fa-eye fa-2xs"></i></button>
                         <button class="tooltip-button" data-tooltip="Reply" data-bs-toggle="modal" data-bs-target="#modal_reply{{ $inquiry->id }}"><i class="fas fa-reply fa-2xs"></i></button>    

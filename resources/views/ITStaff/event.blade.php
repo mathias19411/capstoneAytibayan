@@ -186,7 +186,7 @@
                         <td class="column">{{ $events->title }}</td>
                         <td class="column">{{ $events->to }}</td>
                         <td class="column message-column">{{ $events->message }}</td>
-                        <td class="column">{{ $events->created_at }}</td>
+                        <td class="column">{{ $events->created_at->format('Y-m-d h:i A') }}</td>
                         <td class="column">{{ $events->status }}</td>
                         <td class="column">
                             <button class="tooltip-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view_itstaff{{ $events->id }}">

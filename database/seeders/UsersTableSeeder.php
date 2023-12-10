@@ -356,9 +356,9 @@ class UsersTableSeeder extends Seeder
                 'status_id' => '1',
             ],
             [
-                'first_name' => 'Grey',
+                'first_name' => 'Catalina',
                 'middle_name' => 'B.',
-                'last_name' => 'Santos',
+                'last_name' => 'Raguin',
                 'email' => 'olivajoriza@gmail.com',
                 'password' => Hash::make('beneficiary123'),
                 'phone' => '639923034018',
