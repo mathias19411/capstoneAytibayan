@@ -495,20 +495,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
             Notification::send($user, new WebsiteNotifications('Your Schedule is Set at ', $request->date, $request->time));
 
             //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule for monitoring is Set at " . $request->date ." ". $request->time)
-            );
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule for monitoring is Set at " . $request->date ." ". $request->time)
+            // );
 
-            $message = $response->current();
+            // $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('The Beneficiary schedule has been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('The Beneficiary schedule has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
     
             // If the attachment file is not empty, store it in the database
     

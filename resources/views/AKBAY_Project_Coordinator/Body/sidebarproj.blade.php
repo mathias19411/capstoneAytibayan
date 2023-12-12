@@ -20,6 +20,9 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 //Access the specific row data of the user's id
         //when using a model in blade.php, indicate the direct path of the model
         $userProfileData = App\Models\User::find($id);
+        // Count unread announcements
+        use App\Models\inquiries;
+        $unreadCount = Inquiries::where('is_unread', true)->count();
     @endphp
 
     <div class="menu-items">
@@ -44,7 +47,10 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             </li>
             <li class="{{ Route::currentRouteName() == 'akbayprojectcoordinator.inquiry' ? 'active' : '' }}">
                 <a href="{{ route('akbayprojectcoordinator.inquiry') }}">
-                    <i class="uil uil-question-circle"></i>
+                    <i class="uil uil-question-circle">
+                    @if ($unreadCount > 0)
+                    <span class="badge badge-light" style="color: orange; font-weight: bold;position: absolute; top: -1px; right: 0; padding-right:70%">{{ $unreadCount }}</span>
+                    @endif</i>
                     <span class="link-name">Inquiry</span>
                 </a>
             </li>
@@ -95,7 +101,10 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 </nav>
 <div class="dashboard">
     <div class="top">
-        <i class="uil uil-bars sidebar-toggle"></i>
+        <i class="uil uil-bars sidebar-toggle">
+                    @if ($unreadCount > 0)
+                    <span class="badge badge-light" style="color: orange; font-weight: bold;position: absolute; top: 10px; right: 0; padding-right:96.5%">!</span>
+                    @endif</i>
         <div class="heading">
             <h1>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h1>
         </div>
