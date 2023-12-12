@@ -46,16 +46,16 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
             <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.event' ? 'active' : '' }}">
                 <a href="{{ route('agripinayprojectcoordinator.event') }}" >
                     <i class="uil uil-calendar-alt">
-                    @if ($unreadCount > 0)
-                    <span class="badge badge-light" style="color: orange; font-weight: bold;position: absolute; top: -1px; right: 0; padding-right:70%">{{ $unreadCount }}</span>
-                    @endif
                     </i>
                     <span class="link-name">Event</span>
                 </a>
             </li>
             <li class="{{ Route::currentRouteName() == 'agripinayprojectcoordinator.inquiry' ? 'active' : '' }}">
                 <a href="{{ route('agripinayprojectcoordinator.inquiry') }}">
-                    <i class="uil uil-question-circle"></i>
+                    <i class="uil uil-question-circle">
+                    @if ($unreadCount > 0)
+                    <span class="badge badge-light" style="color: orange; font-weight: bold;position: absolute; top: -1px; right: 0; padding-right:70%">{{ $unreadCount }}</span>
+                    @endif</i>
                     <span class="link-name">Inquiry</span>
                 </a>
             </li>

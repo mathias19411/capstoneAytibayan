@@ -636,8 +636,7 @@ public function ProjCoordinatorEventUpdate(Request $request)
             $query->where('to', $programName)->orWhere('to', $public);})->get();
             $userEmail = trim(implode(' ', User::where('id', $id)->pluck('email')->toArray()));
         // Count unread announcements
-        $unreadCount = Inquiries::where('is_unread', true)->count();
-
+        $unreadCount = Inquiries::where('is_unread', true)->where('to', $programName)->count();
         return view('AKBAY_Project_Coordinator.inquiry', compact('roleName','programName','inquiry', 'userEmail', 'unreadCount'));
     } // End Method
     public function markAsRead(Request $request)
