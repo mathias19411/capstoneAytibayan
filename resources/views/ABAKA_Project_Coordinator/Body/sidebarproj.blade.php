@@ -22,7 +22,11 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         $userProfileData = App\Models\User::find($id);
         // Count unread announcements
         use App\Models\inquiries;
-        $unreadCount = Inquiries::where('is_unread', true)->count();
+        use App\Models\Program;
+        use Illuminate\Support\Facades\Auth;
+        $userProgramId = AUTH::user()->program->id;
+        $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
+        $unreadCount = Inquiries::where('is_unread', true)->where('to', $programName)->count();
     @endphp
 
     <div class="menu-items">
