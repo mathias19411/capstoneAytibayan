@@ -825,14 +825,14 @@ body {
 .announcements-card-date-time h5 {
     font-size: 16px;
     width: 100%;
-    font-weight: 400;
+    font-weight: 500;
     text-align: left;
 }
 
 .announcements-card-date-time h6 {
-    font-size: 13px;
+    font-size: 11px;
     width: 100%;
-    font-weight: lighter;
+    font-weight: 400;
     text-align: right;
 }
 
@@ -1044,7 +1044,7 @@ hr.announcement {
 }
 
 .events-section .events-main .events-card .events-card-content h5{
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .card > span {
@@ -1837,7 +1837,7 @@ section.programs_view {
         .box1 {
         display: flex;
         flex-wrap: wrap;
-        
+        white-space: pre-line;
         text-align: center;
         width: 48%;
         height: auto;
@@ -1864,7 +1864,6 @@ section.programs_view {
         
     }
     
-
         .box1 p {
         padding: 10px 0;
         font-size: 1rem;
@@ -1872,8 +1871,13 @@ section.programs_view {
         color: #000000;
         margin: 0;
         line-height: 1;
+        margin-bottom: 10px;
+        line-height: 1.2;
     }
-
+    .highlight {
+        color: var(--colorOrange); /* Change the color to your preferred highlight color */
+        font-weight: bold; /* Optional: Make the highlighted text bold */
+    }
 
 #right-container {
     display: flex;

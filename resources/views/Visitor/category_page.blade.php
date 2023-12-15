@@ -85,7 +85,7 @@
             <div class="box1">
                 <h1>How To Apply</h1>
                 
-                <p>{{ $program->quiry }}</p>
+                <p>{!! preg_replace('/(\d+\.\s)/', '<span class="highlight">$1</span>', $program->quiry) !!}</p>
                 {{-- <h2>2</h2>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                 <h2>3</h2>
@@ -96,7 +96,7 @@
             <div class="box1">
             <h1>Guidelines & Requirements</h1>
               
-                <p>{{ $program->requirements }}</p>
+            <p>{!! preg_replace('/(\d+\.\s)/', '<span class="highlight">$1</span>', $program->requirements) !!}</p>
                 {{-- <h2>2</h2>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                 <h2>3</h2>
