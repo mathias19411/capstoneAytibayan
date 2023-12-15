@@ -126,6 +126,15 @@ class AKBAYProjectCoordinatorController extends Controller
 
         return redirect('/login');
     } // End Method
+    public function UpdateMarkAsRead(Request $request){
+        
+        $benef_email = $request->benef_email;
+        // Assuming you have an Eloquent model named Updates
+        Updates::where(function ($query) use ($benef_email) {
+            $query->where('email', $benef_email);})->update(['is_viewed' => true]);
+
+    return redirect()->back();
+    }//end method
 
     public function ProjCoordinatorAnnouncement()
     {

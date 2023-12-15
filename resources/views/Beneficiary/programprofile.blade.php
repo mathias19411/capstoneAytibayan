@@ -9,9 +9,9 @@ $userProfileData = App\Models\User::find($id);
 
 $authUser = Illuminate\Support\Facades\Auth::user();
 
-$description = App\Models\FinancialAssistanceStatus::find(1)->description;
+$description = App\Models\Financialassistancestatus::find(1)->description;
 
-        $statusName = App\Models\FinancialAssistanceStatus::find(1)->financial_assistance_status_name;
+        $statusName = App\Models\Financialassistancestatus::find(1)->financial_assistance_status_name;
 
 if ($authUser->assistance) {
     $userAssistanceStatus = auth()->user()->financialAssistanceStatus->financial_assistance_status_name;
@@ -27,13 +27,13 @@ else {
 
         
 
-        $descriptionStarted = App\Models\FinancialAssistanceStatus::find(2)->description;
+        $descriptionStarted = App\Models\Financialassistancestatus::find(2)->description;
 
-        $descriptionPending = App\Models\FinancialAssistanceStatus::find(3)->description;
+        $descriptionPending = App\Models\Financialassistancestatus::find(3)->description;
 
-        $descriptionApproved = App\Models\FinancialAssistanceStatus::find(4)->description;
+        $descriptionApproved = App\Models\Financialassistancestatus::find(4)->description;
 
-        $descriptionDisbursed = App\Models\FinancialAssistanceStatus::find(5)->description;
+        $descriptionDisbursed = App\Models\Financialassistancestatus::find(5)->description;
 
         $descriptionLoan = App\Models\Loanstatus::find(1)->description;
 
@@ -68,7 +68,7 @@ else {
 
 </head>
 <body class="programprofile">
-@include('beneficiary.Body.sidebar')
+@include('Beneficiary.Body.sidebar')
   <div class="title">
         <h1>program profile</h1>
     </div>

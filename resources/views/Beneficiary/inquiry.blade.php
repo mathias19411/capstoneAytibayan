@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body class="inquiry">
-@include('beneficiary.Body.sidebar')
+@include('Beneficiary.Body.sidebar')
   <div class="title">
           <h1>inquiry</h1>
     </div>

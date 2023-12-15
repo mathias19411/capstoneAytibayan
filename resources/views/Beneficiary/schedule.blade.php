@@ -20,7 +20,7 @@
 
 <body class="schedule">
 
-@include('beneficiary.Body.sidebar')
+@include('Beneficiary.Body.sidebar')
 <div class="title">
         <h1>schedule</h1>
     </div>

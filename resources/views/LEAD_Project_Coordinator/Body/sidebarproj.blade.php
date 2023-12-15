@@ -23,17 +23,25 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
         // Count unread announcements
         use App\Models\inquiries;
         use App\Models\Program;
+        use App\Models\Updates;
         use Illuminate\Support\Facades\Auth;
         $userProgramId = AUTH::user()->program->id;
         $programName = trim(implode(' ', Program::where('id', $userProgramId)->pluck('program_name')->toArray()));
         $unreadCount = Inquiries::where('is_unread', true)->where('to', $programName)->count();
+        $unviewedCount = Updates::where('is_viewed', false)->where('benef_of', $programName)->count();
     @endphp
 
     <div class="menu-items">
         <ul class="nav-links">
         <li class="{{ Route::currentRouteName() == 'leadprojectcoordinator.beneficiaries' ? 'active' : '' }}">
                 <a href="{{ route('leadprojectcoordinator.beneficiaries') }}">
-                    <i class="uil uil-users-alt"></i>
+                    <i class="uil uil-users-alt">
+                    @if ($unviewedCount > 0)
+                    <span class="badge badge-light" style="color: orange; font-weight: bold;position: absolute; top: -1px; right: 0; padding-right:75%"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                        </svg>
+                    </span>
+                    @endif</i>
                     <span class="link-name">Beneficiaries</span>
                 </a>
             </li>
@@ -53,7 +61,10 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
                 <a href="{{ route('leadprojectcoordinator.inquiry') }}">
                     <i class="uil uil-question-circle">
                     @if ($unreadCount > 0)
-                    <span class="badge badge-light" style="color: orange; font-weight: bold;position: absolute; top: -1px; right: 0; padding-right:70%">{{ $unreadCount }}</span>
+                    <span class="badge badge-light" style="color: orange; font-weight: bold;position: absolute; top: -1px; right: 0; padding-right: 62%"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                        </svg>
+                    </span>
                     @endif</i>
                     <span class="link-name">Inquiry</span>
                 </a>
@@ -107,10 +118,7 @@ $id = Illuminate\Support\Facades\AUTH::user()->id;
 </nav>
 <div class="dashboard">
     <div class="top">
-        <i class="uil uil-bars sidebar-toggle">
-                    @if ($unreadCount > 0)
-                    <span class="badge badge-light" style="color: orange; font-weight: bold;position: absolute; top: 10px; right: 0; padding-right:96.5%">!</span>
-                    @endif</i>
+        <i class="uil uil-bars sidebar-toggle"></i>
         <div class="heading">
             <h1>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h1>
         </div>

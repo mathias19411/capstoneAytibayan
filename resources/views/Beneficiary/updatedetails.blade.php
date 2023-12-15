@@ -1,7 +1,7 @@
 @extends('Beneficiary.beneficiary_main')
 
 @section('content')
-@include('beneficiary.Body.sidebar')
+@include('Beneficiary.Body.sidebar')
 
     @php
         // Access the authenticated user's id
@@ -13,9 +13,9 @@ $userProfileData = App\Models\User::find($id);
 
 $authUser = Illuminate\Support\Facades\Auth::user();
 
-$description = App\Models\FinancialAssistanceStatus::find(1)->description;
+$description = App\Models\Financialassistancestatus::find(1)->description;
 
-        $statusName = App\Models\FinancialAssistanceStatus::find(1)->financial_assistance_status_name;
+        $statusName = App\Models\Financialassistancestatus::find(1)->financial_assistance_status_name;
 
 if ($authUser->assistance) {
     $userAssistanceStatus = auth()->user()->financialAssistanceStatus->financial_assistance_status_name;

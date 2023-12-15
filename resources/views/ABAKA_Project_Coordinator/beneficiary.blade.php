@@ -244,9 +244,14 @@
                                         @endif
                                         @endif
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
+                                        <form action="{{ route('abakaread.update') }}" method="post">
+                                            @csrf
+                                            @method('patch')
                                         <div class="modal-footer">
-                                            <button type="button" class="close" data-bs-dismiss="modal">Close</button>
+                                            <input type="hidden" name="benef_email" value="{{ $abakaBeneficiary->email }}">
+                                            <button type="submit" class="close" data-bs-dismiss="modal">Close</button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -391,7 +396,22 @@
                                 <td>N/A</td>
                                 <td class="no-print">
                                 <input type="hidden" name="benef_email" value="{{ $abakaBeneficiary->email }}" > 
-                                <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates{{ $abakaBeneficiary->id }}"><i class="fa-solid fa-eye fa-2xs"></i></button>
+                                <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view_beneficiary_updates{{ $abakaBeneficiary->id }}">
+                                    <i class="fa-solid fa-eye fa-2xs">
+                                        @foreach($updates as $update)
+                                            @if($abakaBeneficiary->email === $update->email)
+                                                @if (!$update->is_viewed)
+                                                    <span class="badge badge-light" style="color: orange; font-weight: bold; position: absolute; top: -8px; left: 0; font-size:15px"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                                        <circle cx="8" cy="8" r="8"/>
+                                                        </svg>
+                                                    </span>
+                                                @else
+                                                    <span class="badge badge-light" style="color: orange; font-weight: bold; position: absolute; top: -12px; left: 0; font-size:15px"></span>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </i>
+                                </button>
                                     {{--<button class="tooltip-button" data-tooltip="Update"
                                         onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
                                             class="fa-solid fa-pen-to-square fa-2xs"></i></button> --}}

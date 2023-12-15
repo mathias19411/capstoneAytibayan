@@ -12,6 +12,7 @@ class Updates extends Model
         'title',
         'benef_of',
         'image',
+        'is_viewed'
     ];
 
     use HasFactory;

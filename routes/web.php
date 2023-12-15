@@ -156,6 +156,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
 
     //reject a project
     Route::post('/BINHI_ProjectCoordinator/reject/{id}', [BINHIProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('binhiprojectcoordinator.RejectProject');
+    Route::patch('/BINHI_ProjectCoordinator/ProgressUpdate/MarkAsRead', [BINHIProjectCoordinatorController::class, 'UpdateMarkAsRead'])->name('binhiread.update');
 
     //Coordinator Events
     Route::get('/BINHI_ProjectCoordinator/Events', [BINHIProjectCoordinatorController::class, 'ProjCoordinatorEvent'])->name('binhiprojectcoordinator.event');
@@ -237,6 +238,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::post('/AGRIPINAY_ProjectCoordinator/reject/{id}', [AGRIPINAYProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('agripinayprojectCoordinator.RejectProject');
 
     Route::get('/AGRIPINAY_ProjectCoordinator/inquiry', [AGRIPINAYProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('AGRIPINAY_Project_Coordinator.inquiry');
+    Route::patch('/AGRIPINAY_ProjectCoordinator/ProgressUpdate/MarkAsRead', [AGRIPINAYProjectCoordinatorController::class, 'UpdateMarkAsRead'])->name('agripinayread.update');
 
     //Coordinator Announcements
     Route::get('/AGRIPINAY_ProjectCoordinator/Announcements', [AGRIPINAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('agripinayprojectcoordinator.announcement');
@@ -335,6 +337,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::post('/AKBAY_ProjectCoordinator/reject/{id}', [AKBAYProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('akbayprojectCoordinator.RejectProject');
 
     Route::get('/AKBAY_ProjectCoordinator/inquiry', [AKBAYProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('AKBAY_Project_Coordinator.inquiry');
+    Route::patch('/AKBAY_ProjectCoordinator/ProgressUpdate/MarkAsRead', [AKBAYProjectCoordinatorController::class, 'UpdateMarkAsRead'])->name('akbayread.update');
 
     //Coordinator Announcements
     Route::get('/AKBAY_ProjectCoordinator/Announcements', [AKBAYProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('akbayprojectcoordinator.announcement');
@@ -433,6 +436,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
     Route::post('/LEAD_ProjectCoordinator/reject/{id}', [LEADProjectCoordinatorController::class, 'CoordinatorRejectProject'])->name('leadprojectcoordinator.RejectProject');
 
     Route::get('/LEAD_ProjectCoordinator/inquiry', [LEADProjectCoordinatorController::class, 'ProjectCoordinatorDashboard'])->name('LEAD_Project_Coordinator.inquiry');
+    Route::patch('/LEAD_ProjectCoordinator/ProgressUpdate/MarkAsRead', [LEADProjectCoordinatorController::class, 'UpdateMarkAsRead'])->name('leadread.update');
 
     //Coordinator Announcements
     Route::get('/LEAD_ProjectCoordinator/Announcements', [LEADProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('leadprojectcoordinator.announcement');
@@ -518,6 +522,7 @@ Route::middleware(['auth', 'verified', 'checkuserstatus', 'twofactor', 'userrole
 
    // Route::get('/ABAKA_ProjectCoordinator/inquiry/check-read-status/{inquiryId}', [ABAKAProjectCoordinatorController::class, 'checkReadStatus'])
     //->name('ABAKA_Project_Coordinator.inquiry.checkReadStatus');
+    Route::patch('/ABAKA_ProjectCoordinator/ProgressUpdate/MarkAsRead', [ABAKAProjectCoordinatorController::class, 'UpdateMarkAsRead'])->name('abakaread.update');
 
     //Coordinator Announcements
     Route::get('/ABAKA_ProjectCoordinator/Announcements', [ABAKAProjectCoordinatorController::class, 'ProjCoordinatorAnnouncement'])->name('abakaprojectcoordinator.announcement');

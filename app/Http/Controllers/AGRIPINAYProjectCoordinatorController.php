@@ -108,8 +108,19 @@ class AGRIPINAYProjectCoordinatorController extends Controller
             $query->where('status_name', 'Inactive');
         })->count();
 
-        return view('AGRIPINAY_Project_Coordinator.beneficiary', compact('userProfileData', 'agripinayBeneficiaries', 'agripinayBeneficiariesCount', 'agripinayActiveCount', 'agripinayInactiveCount', 'programName', 'updates', 'project', 'benefSchedules', 'programLogo'));
+        $unreadCount = Updates::where('is_viewed', false)->where('benef_of', $programName)->count();
+        return view('AGRIPINAY_Project_Coordinator.beneficiary', compact('userProfileData', 'agripinayBeneficiaries', 'agripinayBeneficiariesCount', 'agripinayActiveCount', 'agripinayInactiveCount', 'programName', 'updates', 'project', 'benefSchedules', 'programLogo', 'unreadCount'));
     } // End Method
+
+    public function UpdateMarkAsRead(Request $request){
+        
+        $benef_email = $request->benef_email;
+        // Assuming you have an Eloquent model named Updates
+        Updates::where(function ($query) use ($benef_email) {
+            $query->where('email', $benef_email);})->update(['is_viewed' => true]);
+
+    return redirect()->back();
+    }//end method
 
     public function ProjectCoordinatorLogout(Request $request)
     {
