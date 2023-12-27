@@ -25,8 +25,24 @@
 <body class="announcement_events_inquiry">
 
     @yield('content')
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var date = new Date();
+            var tdate = date.getDate();
+            var month = date.getMonth() + 1;
+            if (tdate < 10) {
+                tdate = '0' + tdate;
+            }
+            if (month < 10) {
+                month = '0' + month;
+            }
+            var year = date.getUTCFullYear();
+            var minDate = year + "-" + month + "-" + tdate;
+            console.log(minDate);
+            document.getElementById("schedule-date").setAttribute('min', minDate);
+        });
+    </script>
     <script>
         $(function(){
             $(document).on('click', '#blacklist',function(e){
@@ -679,7 +695,7 @@
         addScheduleButton.addEventListener("click", function() {
             // Clear the form fields in the Add Schedule Modal
             document.getElementById("schedule-description").value = "";
-            document.getElementById("schedule-date").value = "";
+            //document.getElementById("schedule-date").value = "";
             document.getElementById("schedule-time").value = "";
 
             // Show the Add Schedule Modal

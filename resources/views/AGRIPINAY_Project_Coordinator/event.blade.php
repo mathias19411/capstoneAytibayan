@@ -128,7 +128,7 @@
                                                 <div class="col-md-12 mb-4">
                                                     <div class="form-outline">
                                                         <label for="Date">Date:</label>
-                                                        <input class="form-control" type="date" id="Date" name="date" value="{{ $events->date }}">
+                                                        <input class="form-control" type="date" id="schedule-date" name="date" value="{{ $events->date }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mb-4">
@@ -248,7 +248,7 @@
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                                 <label for="Date">Date</label>
-                                <input class="form-control" type="date" id="Date" name="date" required>
+                                <input class="form-control" type="date" id="schedule-date" name="date" required>
                             </div>
                         </div>
                         <div class="col-md-12 mb-4">

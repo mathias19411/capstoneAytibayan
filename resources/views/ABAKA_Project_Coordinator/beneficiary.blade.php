@@ -152,7 +152,7 @@
                                         </div>
                                         <!--EDIT Schedule-->
                                         <div class="modal fade" id="modal_editschedule{{ $schedule->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-                                            <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="modal-title">Edit Project</h5>
@@ -185,7 +185,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="add">Save Changes</button>
+                                                        <button type="submit" class="add">Save Changes</button>
                                                         </div>
 
                                                     </form>
@@ -194,7 +194,7 @@
                                         </div>
 
                                         <div class="modal fade" id="modal_deleteschedule{{ $schedule->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
-                                            <div class="modal-dialog">
+                                        <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="modal-title">Event Details</h5>
@@ -243,7 +243,7 @@
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" onclick="alert('No Schedule is Posted Yet.')">View Schedule</button>
                                         @endif
                                         @endif
-                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
+                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}" data-bs-dismiss="modal">Add Schedule</button>
                                         <form action="{{ route('abakaread.update') }}" method="post">
                                             @csrf
                                             @method('patch')
@@ -278,7 +278,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="schedule-date" class="form-label">Date:</label>
-                                                    <input name="date" type="date" class="form-control" id="schedule-date" required>
+                                                    <input name="date" type="date" class="form-control" id="schedule-date" min="2023-12-27" required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="schedule-time" class="form-label">Time:</label>
@@ -288,12 +288,14 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="add" id="save-schedule-button">Save</button>
+                                            <button type="submit" class="add" id="save-schedule-button" data-bs-dismiss="modal">Save</button>
                                         </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+
+
 
                             {{-- Modal View for Add --}}
                             <div id="add-value-popup-{{ $abakaBeneficiary->id }}" class="add-value-popup">
