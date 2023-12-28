@@ -1,5 +1,5 @@
 <header id="header">
-    <div class="header-title">
+   <div class="header-title">
         <h1>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h1>
         <p>The Albay Provincial Agricultural Office (APAO) stands as a cornerstone of agricultural development in the 
             picturesque province of Albay. Committed to fostering a developed countryside and sustainable production 

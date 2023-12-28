@@ -418,7 +418,10 @@
                                         onclick="showUpdateStatusPopup({{ $agripinayBeneficiary->id }})"><i
                                             class="fa-solid fa-pen-to-square fa-2xs"></i></button> --}}
                                 </td>
-                                <td>{{ $agripinayBeneficiary->status->status_name }}</td>
+                                <td style="color: {{ $agripinayBeneficiary->status->status_name === 'Active' ? 'green' : 'red' }}; ; padding: 5px; border-radius: 5px;">
+                                    {{ $agripinayBeneficiary->status->status_name }}
+                                </td>
+
                             </tr>
                         </div>
                         @endforeach

@@ -165,12 +165,21 @@ button:hover {
 }
 
 .button-container button {
-    padding: 10px 20px;
-    font-size: 16px;
+   
     color: #fff;
     background-color: var(--primary-color); /* Adjust the background color as needed */
+    cursor: pointer; 
     border: none;
+   
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     border-radius: 5px;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 20px;
+    margin-right: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -778,12 +787,21 @@ textarea.form-control {
 }
 
 .btn-info {
-  color: #fff;
-  border-color: var(--box1-color);
-  background-color: var(--box1-color);
-  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-  text-decoration: none;
-  padding: 5px;
+    color: #fff;
+    border-color: var(--box1-color);
+    background-color: var(--box1-color);
+     cursor: pointer; 
+    border: none;
+    color: white;
+    padding: 3px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 12px;
+    margin: auto;
+    margin-top: 0;
+    margin-right: 10px;
 }
 
 .btn-info:hover {

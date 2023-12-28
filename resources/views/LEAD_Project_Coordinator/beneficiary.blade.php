@@ -413,7 +413,8 @@
                                         onclick="showUpdateStatusPopup({{ $leadBeneficiary->id }})"><i
                                             class="fa-solid fa-pen-to-square fa-2xs"></i></button> --}}
                                 </td>
-                                <td>{{ $leadBeneficiary->status->status_name }}</td>
+                                <td<td style="color: {{ $leadBeneficiary->status->status_name === 'Active' ? 'green' : 'red' }}; ; padding: 5px; border-radius: 5px;">
+                                    {{ $leadBeneficiary->status->status_name }}</td>
                             </tr>
                         </div>
                         @endforeach

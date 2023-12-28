@@ -62,7 +62,7 @@ body {
     color: var(--colorBlack);
     position: sticky;
     top: 0;
-    height: 5rem;
+    height: 4rem;
     padding-left: 1.125rem;
     padding-right: 1.125rem;
     border-radius: 15px;
@@ -70,7 +70,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 2rem;
+    margin-top: 0;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     z-index: 997;
 }
@@ -207,6 +207,7 @@ body {
 @media screen and (max-width: 992px) {
     #menu {
         position: relative;
+        height: 5rem;
     }
     #menu .nav-right ul {
         background: var(--colorWhite);
@@ -294,19 +295,14 @@ body {
 
 /* -------------------------Header------------------------------------ */
 #header {
-    background: #ffffff;
+
     color: var(--colorBlack);
     border-radius: 15px;
     padding: 2rem;
-    margin: 2rem 0 2rem 0;
+    margin: 1rem 0 0 0;
     text-align: center;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
-    background-color: rgba(
-        255,
-        255,
-        255,
-        0.3
-    ); /* Semi-transparent white color */
+   
+ /* Semi-transparent white color */
     backdrop-filter: blur(10px); /* Apply a blur effect */
 }
 
@@ -397,27 +393,35 @@ body {
 /* ---------------------------------- */
 .page-content {
     max-height: 100%;
-    max-width: 100%;
+    max-width: 95%;
     overflow: auto;
     padding: 1.1rem 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; 
+    margin-bottom: 0 !important;
+    
 }
 
 .main-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     grid-template-rows:.1fr repeat(3, .5fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+    margin-bottom: 0 !important;
 }
 
 .image-section {
-    grid-area:1 / 1 / 2 / 4; ;
+    grid-area:1 / 1 / 2 / 10; ;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     position: relative; /* Needed for absolute positioning of the image */
     /* width: 41.063rem;
     height: 26.25rem; */
-    height: 25rem;
+    height: 20rem;
+    margin-top: 0;
 }
 
 .image-section .apao-big-image {
@@ -431,7 +435,7 @@ body {
 }
 
 .horizontal-scroll-image-section {
-    grid-area:  3 / 1 / 4 / 4;
+    grid-area:  2 / 1 / 4 / 10;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     background-color: rgba(
@@ -444,7 +448,7 @@ body {
     display: flex; /* Display images in a row */
     white-space: nowrap; /* Prevent images from wrapping to the next line */
     /* width: 41.063rem;*/
-    height: 240px; 
+    height: 200px; 
     padding: 20px;
     overflow: hidden;
 }
@@ -456,7 +460,7 @@ body {
 
 .horizontal-scroll-image-section .apao-horizontal-images {
     width: 300px;
-    height: 200px;
+    height: 150px;
     object-fit: cover; /* Preserve aspect ratio while filling the container */
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
@@ -481,7 +485,7 @@ body {
 }
 
 .beneficiay-chart-section {
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 3 / 1 / 4 / 3;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     background-color: rgba(
@@ -492,12 +496,13 @@ body {
     ); /* Semi-transparent white color */
     backdrop-filter: blur(10px); /* Apply a blur effect */
     /* width: 24.188rem;*/
-    height: 28.875rem; 
+    height: 25rem; 
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Pushes child to the bottom while keeping space between items */
     align-items: center;
+    margin-top: 45px;
 }
 
 .beneficiay-chart-section .beneficiay-chart-section-charts-card {
@@ -513,17 +518,17 @@ body {
     .beneficiay-chart-section-charts-card
     .chart-title
     h4 {
-    background: var(--colorGreen);
+    font-size: 20px;
     text-align: center;
-    padding: 1rem;
+    padding: 10px;
     border-radius: 15px;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
-    color: var(--colorWhite);
+
+    color: var(--colorGreen);
     width: 100%;
 }
 
 .beneficiay-chart-section1 {
-    grid-area:2 / 3 / 3 / 4 ;
+    grid-area:3 / 8 / 4 / 10 ;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     background-color: rgba(
@@ -535,12 +540,13 @@ body {
     backdrop-filter: blur(10px); /* Apply a blur effect */
     /* width: 24.188rem;
     height: 20.875rem; */
-    height: 28.875rem;
+    height: 25rem;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Pushes child to the bottom while keeping space between items */
     align-items: center;
+    margin-top: 45px;
 }
 
 .beneficiay-chart-section1 .beneficiay-chart-section-charts-card {
@@ -556,18 +562,18 @@ body {
     .beneficiay-chart-section-charts-card
     .chart-title
     h4 {
-    background: var(--colorGreen);
+     font-size: 20px;
     text-align: center;
-    padding: 1rem;
+    padding: 10px;
     border-radius: 15px;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
-    color: var(--colorWhite);
+
+    color: var(--colorGreen);
     width: 100%;
 }
 
 .top-story-section {
 
-    grid-area: 4 / 2 / 5 / 3;
+    grid-area: 4 / 1 / 5 / 7;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     padding: 1.5rem;
@@ -678,7 +684,7 @@ body {
 }
 
 .description-section {
-    grid-area:2 / 2 / 3 / 3;
+    grid-area:3 / 3 / 4 / 8;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
     background-color: rgba(
@@ -690,15 +696,16 @@ body {
     backdrop-filter: blur(10px); /* Apply a blur effect */
     /* width: 41.063rem;
     height: 15.5rem; */
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
+    margin-top: 45px;
 }
 
 .announcements-section {
-    grid-area:4 / 1 / 5 / 2;
+    grid-area:4 / 7 / 5 / 10;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: rgba(
         255,
         255,
@@ -708,7 +715,7 @@ body {
     backdrop-filter: blur(10px); /* Apply a blur effect */
     /* width: 24.188rem;
     height: 37rem; */
-    height: 39.625rem; 
+    height:19rem; 
     position: relative; /* Needed for absolutely positioned scrollbar */
     display: flex;
     flex-direction: column;
@@ -880,10 +887,10 @@ hr.announcement {
 }
 
 .events-section {
-    grid-area: 4 / 3 / 5 / 4 ;
+    grid-area: 4 / 7 / 5 / 10;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: rgba(
         255,
         255,
@@ -893,12 +900,13 @@ hr.announcement {
     backdrop-filter: blur(10px); /* Apply a blur effect */
     /* width: 24.188rem;
     height: 37rem; */
-    height: 39.625rem; 
+    height: 19rem; 
     position: relative; /* Needed for absolutely positioned scrollbar */
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Pushes child to the top */
     align-items: center;
+    margin-top:20.5rem;
    
 }
 
@@ -1089,7 +1097,7 @@ hr.announcement {
     justify-content: center;
     font-size: 1.375rem;
     font-weight: 600;
-    chart-title
+    
 }
 
 
@@ -1099,7 +1107,7 @@ hr.announcement {
     background: #ffffff;
     color: var(--colorBlack);
     border-radius: 15px;
-    padding: 2rem;
+    padding: 1rem;
     margin: 2rem 0 0 0;
     text-align: center;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
@@ -1107,11 +1115,20 @@ hr.announcement {
     align-items: center;
     justify-content: space-between;
     z-index: 997;
+    font-size: 1rem;
 }
 
 /*------------------- Media Queries -----------------------*/
 /*  Desktops, large screens */
 @media screen and (max-width: 1200px) {
+    .events-section {
+        margin-top: 0;
+        height: 39.625rem
+    }
+
+    .announcements-section {
+        height: 39.625rem
+    }
 }
 
 /*  Small screens, laptops */
@@ -1369,7 +1386,7 @@ section.programs_view {
     margin: 20px;
   }
 
-  section.programs_view .title h1 {
+ .title h1 {
     text-align: center;
     font-size: 1.3rem;
     margin-top: 20px;
@@ -1654,6 +1671,8 @@ section.programs_view {
     align-items: center; /* Vertically center the items */
     flex-wrap: wrap;
     padding: 20px;
+    margin: 0;
+    padding: 0;
 
   }
 
@@ -1692,6 +1711,7 @@ section.programs_view {
     margin-top: 10px;
     font-size: 1rem;
     font-weight: bold;
+    text-align: center;
   }
   
   #program-email {
@@ -1699,7 +1719,7 @@ section.programs_view {
     font-size: 1rem;
   }
 #about-image {
-    width: 100%; /* Set the width to 100% to make it responsive */
+    width:95%; /* Set the width to 100% to make it responsive */
     height: 400px; /* Set the fixed height to maintain aspect ratio */
     object-fit: cover; /* Crop the image to cover the entire container while maintaining aspect ratio */
     margin-top: 20px;
@@ -1721,7 +1741,7 @@ section.programs_view {
 
 .about-content h3 {
     width: 100px;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     padding: 10px 10px;
     font-weight: bold;
     background-color: #7bb701;
@@ -1732,6 +1752,7 @@ section.programs_view {
     margin: 0 auto; /* Center the h3 element horizontally */
 }
 .about-content p {
+    margin-top: 10px;
     line-height: 1.6;
     margin-bottom: 10px;
 }
@@ -1779,7 +1800,11 @@ section.programs_view {
 
 
 #main-container {
+    width: 95%;
     display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
 }
 
     #left-container {
@@ -1813,7 +1838,7 @@ section.programs_view {
         .box h1 {
         padding-top: 30px;
         text-align: center;
-        font-size: 1.50rem;
+        font-size: 1.3rem;
         color: #171716;
         margin: 0;
         line-height: 1;
@@ -1856,7 +1881,7 @@ section.programs_view {
         border-radius: 10px;
         background-color: #7bb701;
         text-align: center;
-        font-size: 1.23rem;
+        font-size: 1.2rem;
         color: #f2f2f2;
         margin: 0;
         line-height: 1;
@@ -2001,12 +2026,19 @@ section.programs_view {
     }
     
     #send_ {
-        margin: auto;
+        font-size: .85rem;
+        margin-top: 15px;
+        padding: 10px 20px;
         background-color: #f0a60f;
-        color: white;
+        color: #f2f2f2;
+        border: none;
+        cursor: pointer;
         border-radius: 20px;
-        padding: auto;
-        text-align: center;
+    }
+    #send_:hover {
+        
+        background-color: var(--colorGreen);
+        
     }
     @media (max-width: 1200px) {
       
@@ -2080,6 +2112,7 @@ section.programs_view {
 
 section.about {
     font-family: 'Poppins', sans-serif;
+    
 }
 
 section.about .container {
@@ -2089,7 +2122,10 @@ section.about .container {
     align-items: center;
     padding: 10px;
     overflow-x: auto;
-    max-width: 100%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; 
 }
 
 .slides {
@@ -2157,10 +2193,9 @@ section.about .container {
   
   section.about .main h2 {
       font-size: 1.3rem;
-      margin-top: 10rem;
-      font-weight: bold;
-      color:#FFFFFF;
-      background-color: #7BB701;
+      margin-top: 5rem;
+
+      color:var(--colorGreen);
       border-radius: 4rem;
       display: block;
       width: 10rem;
@@ -2194,11 +2229,11 @@ section.about .box_about {
   section.about .line {
       height: 3px;
       width: 200px;
-      background-color: #7BB701;
+      background-color: var(--colorOrange);
       border-radius: 5rem;
       background-position: center;
       margin: auto;
-      margin-top: 1rem;
+      margin-top: 5px;
       margin-bottom: 1rem;
   }
   
@@ -2276,7 +2311,7 @@ section.about .box_about {
 
     section.about .main h2 {
         font-size: 1.2rem; /* Adjust the font size for responsiveness */
-        margin-top: 5rem; /* Adjust the margin for responsiveness */
+        margin-top: 1rem; /* Adjust the margin for responsiveness */
     }
 }
 
@@ -2290,10 +2325,11 @@ section.about .box_about {
 
   section.contact {
     margin-bottom: 10px;
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
  
   }
   
@@ -2550,14 +2586,18 @@ section.contact #email_icon {
       padding-bottom: 10px;
   }
   section.contact #send_ {
-      margin: auto; 
-      background-color: #f0a60f; 
-      color: white; 
-      border-radius: 20px; 
-      padding: auto; 
-      text-align: center;
+    font-size: .85rem;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #f0a60f;
+    color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
   }
-
+  section.contact #send_:hover {
+    background-color: var(--colorGreen);
+  }
   @media (max-width: 1104px) {
 
     section.contact .container {

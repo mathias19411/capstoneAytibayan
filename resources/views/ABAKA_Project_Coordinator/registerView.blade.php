@@ -215,7 +215,7 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ substr($user->phone, 2) }}</td>
                         <td>{{ $user->role->role_name }}</td>
-                        <td>{{ $user->status->status_name }}</td>
+                        <td style="color: {{$user->status->status_name === 'Active' ? 'green' : 'red' }}; ; padding: 5px; border-radius: 5px;">{{ $user->status->status_name }}</td>
                         <td>
                             <button class="tooltip-button" data-tooltip="View" class="add-modal" data-bs-toggle="modal"
                             data-bs-target="#itStaffRegister{{ $user->id }}">

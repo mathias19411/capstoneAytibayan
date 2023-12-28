@@ -2103,7 +2103,7 @@ body.beneficiary .form-update h3 {
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 15px;
-    margin: 0 auto;
+    
 }
 body.beneficiary .add-modal:hover {
     background-color: #7bb701;

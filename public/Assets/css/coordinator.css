@@ -869,7 +869,10 @@ body {
 
   }
   
-  
+  .hidden {
+    display: none;
+}
+
   .edit-button {
     background-color: orange;
     color: white;
@@ -889,19 +892,33 @@ body {
   
   #add-step {
     background-color: var(--primary-color); 
-    color: white; 
-    padding: 5px 15px; 
-    border: none; 
-    border-radius: 10px; 
     cursor: pointer; 
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 20px;
+    margin-right: 10px;
   }
   #reset-steps {
     background-color: var(--colorOrange); 
-    color: white; 
-    padding: 5px 15px; 
-    border: none; 
-    border-radius: 10px; 
     cursor: pointer; 
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 20px;
+    margin-right: 10px;
   }
   #add-step:hover,
     #reset-steps:hover {

@@ -33,6 +33,15 @@
                     </div>
                     <div id="line-chart"></div>
                 </div>
+            </div> <div class="description-section">
+                <p>In the province of Albay, located in Bicol Region Philippines, the Albay Provincial Agricultural Office 
+                    (APAO) is the office assigned in implementing sustainable livelihood programs and is responsible for 
+                    promoting agricultural development in Albay. There are currently five different SLPs operating in its 
+                    office; the Abaka Mo Piso Mo Cash Incentive Scheme, Binhi ng Pag-asa Program, AgriPinay, Livelihood
+                     Enhancement Agricultural Development (LEAD) Program, and the Agrikultura: Kaagapay ng Bayang Pinoy 
+                     (AkBay) program. Each program requires APAO to gather data in marginalized communities, especially 
+                     farmers in which it includes their demographic profile. 
+                </p>
             </div>
             <div class="top-story-section">
                 <div class="top-story-title">
@@ -69,16 +78,7 @@
                         class="read-more-button">Read More ></a>
                 </div>
             </div>
-            <div class="description-section">
-                <p>In the province of Albay, located in Bicol Region Philippines, the Albay Provincial Agricultural Office 
-                    (APAO) is the office assigned in implementing sustainable livelihood programs and is responsible for 
-                    promoting agricultural development in Albay. There are currently five different SLPs operating in its 
-                    office; the Abaka Mo Piso Mo Cash Incentive Scheme, Binhi ng Pag-asa Program, AgriPinay, Livelihood
-                     Enhancement Agricultural Development (LEAD) Program, and the Agrikultura: Kaagapay ng Bayang Pinoy 
-                     (AkBay) program. Each program requires APAO to gather data in marginalized communities, especially 
-                     farmers in which it includes their demographic profile. 
-                </p>
-            </div>
+           
       
     <div class="announcements-section">
     <div class="announcements-title">
@@ -155,7 +155,9 @@
     </div>
 
     <section class="about" id="aboutSection">
-
+    <div class="title">
+            <h1>ABOUT</h1>
+        </div>
         <!--background slides!-->
         <div class="slides">
             <div class="slide slide1">
@@ -277,10 +279,12 @@
             }
         </script>
     </section>
-
+    <div class="title">
+            <h1>CONTACT US</h1>
+    </div>
     <!------------------ CONTACT ---------------------->
     <section class="contact" id="contact">
-    
+   
         <div class="row">
             <div class="col location" id="title" style="margin-left: 10px; margin-top: 10px;">
                 <h4><b>Location</b></h4>

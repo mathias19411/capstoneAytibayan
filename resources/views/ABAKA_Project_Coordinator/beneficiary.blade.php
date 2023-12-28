@@ -418,7 +418,8 @@
                                         onclick="showUpdateStatusPopup({{ $abakaBeneficiary->id }})"><i
                                             class="fa-solid fa-pen-to-square fa-2xs"></i></button> --}}
                                 </td>
-                                <td>{{ $abakaBeneficiary->status->status_name }}</td>
+                                <td style="color: {{ $$abakaBeneficiary->status->status_name === 'Active' ? 'green' : 'red' }}; ; padding: 5px; border-radius: 5px;"
+                                >{{ $abakaBeneficiary->status->status_name }}</td>
                             </tr>
                         </div>
                         @endforeach
