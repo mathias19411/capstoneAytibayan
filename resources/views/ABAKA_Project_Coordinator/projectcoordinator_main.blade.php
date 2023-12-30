@@ -25,7 +25,119 @@
 <body class="announcement_events_inquiry">
 
     @yield('content')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+            <style>
+                #loadingScreen {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.8);
+                justify-content: center;
+                align-items: center;
+                }
+
+                #loadingText {
+                font-size: 24px;
+                }
+                #loadingScreen1 {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.8);
+                justify-content: center;
+                align-items: center;
+                }
+
+                #loadingText1 {
+                font-size: 24px;
+                }
+                #loadingScreen2 {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.8);
+                justify-content: center;
+                align-items: center;
+                }
+
+                #loadingText2 {
+                font-size: 24px;
+                }
+            </style>
+            <div id="loadingScreen">
+                <p id="loadingText">Saving...</p>
+            </div>
+            <div id="loadingScreen1">
+                <p id="loadingText1">Updating...</p>
+            </div>
+            <div id="loadingScreen2">
+                <p id="loadingText2">Deleting...</p>
+            </div>
+            <script>
+            function bttn() {
+                var button = document.getElementById('submitbtn');
+                var loadingScreen = document.getElementById('loadingScreen');
+                
+                // Display loading screen
+                loadingScreen.style.display = 'flex';
+
+                // Simulate some time-consuming task (you can replace this with your actual logic)
+                setTimeout(function() {
+                // Hide loading screen after task completion
+                loadingScreen.style.display = 'none';
+
+                // Perform any other actions here
+
+                // Disable the button if needed
+                button.disabled = true;
+                }, 5000); // Replace 2000 with the actual time your task takes in milliseconds
+            }
+            function updatebtn(){
+                var button = document.getElementById('submitbtn');
+                var loadingScreen = document.getElementById('loadingScreen1');
+                
+                // Display loading screen
+                loadingScreen.style.display = 'flex';
+
+                // Simulate some time-consuming task (you can replace this with your actual logic)
+                setTimeout(function() {
+                // Hide loading screen after task completion
+                loadingScreen.style.display = 'none';
+
+                // Perform any other actions here
+
+                // Disable the button if needed
+                button.disabled = true;
+                }, 5000); // Replace 2000 with the actual time your task takes in milliseconds
+            }
+            function deletebtn(){
+                var button = document.getElementById('submitbtn');
+                var loadingScreen = document.getElementById('loadingScreen2');
+                
+                // Display loading screen
+                loadingScreen.style.display = 'flex';
+
+                // Simulate some time-consuming task (you can replace this with your actual logic)
+                setTimeout(function() {
+                // Hide loading screen after task completion
+                loadingScreen.style.display = 'none';
+
+                // Perform any other actions here
+
+                // Disable the button if needed
+                button.disabled = true;
+                }, 5000); // Replace 2000 with the actual time your task takes in milliseconds
+            }
+            </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var date = new Date();

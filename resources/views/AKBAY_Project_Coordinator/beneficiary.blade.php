@@ -71,7 +71,8 @@
                     <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Address</th>
+                            <th scope="col">Barangay</th>
+                            <th scope="col">City</th>
                             <th scope="col">Province</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone#</th>
@@ -387,7 +388,8 @@
                                 <td>{{ $akbayBeneficiary->id }}</td>
                                 <td>{{ $akbayBeneficiary->first_name }} {{ $akbayBeneficiary->middle_name }}
                                     {{ $akbayBeneficiary->last_name }}</td>
-                                <td>{{ $akbayBeneficiary->barangay }} {{ $akbayBeneficiary->city }}</td>
+                                <td>{{ $akbayBeneficiary->barangay }}</td>
+                                <td>{{ $akbayBeneficiary->city }}</td>
                                 <td>{{ $akbayBeneficiary->province }}</td>
                                 
                                 <td>{{ $akbayBeneficiary->email }}</td>

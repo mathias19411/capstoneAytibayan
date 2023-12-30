@@ -133,7 +133,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                     <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="add" id="saveChanges">Save Changes</button>
+                                                    <button type="submit" class="add" id="submitbtn" data-bs-dismiss="modal" onclick="updatebtn()">Save Changes</button>
                                             </div>
                                     </form>
                                     </div>
@@ -169,7 +169,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                     <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="add" id="saveChanges">Save Changes</button>
+                                                    <button type="submit" class="add" id="submitbtn" data-bs-dismiss="modal" onclick="deletebtn()">Save Changes</button>
                                             </div>
                                     </form>
                                     </div>
@@ -251,12 +251,13 @@
                         </div>
                         <div class="modal-footer">
                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="add">Save</button>
+                                <button type="submit" class="add" id="submitbtn" data-bs-dismiss="modal" onclick="bttn()">Save</button>
                         </div>
                 </form>
                     </div>
                 </div>
             </div>
             </div>
+
 
 @endsection

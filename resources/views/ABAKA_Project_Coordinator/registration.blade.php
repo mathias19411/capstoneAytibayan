@@ -39,7 +39,7 @@
                     <tr>
                             <th>ID</th>
                             <th>First Name</th>
-                            <th>Middle Name</th>
+                            <th>Middle Initial</th>
                             <th>Last Name</th>
                             <th>Contact Number</th>
                             <th>Email</th>

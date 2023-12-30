@@ -71,7 +71,8 @@
                     <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Address</th>
+                            <th scope="col">Barangay</th>
+                            <th scope="col">City</th>
                             <th scope="col">Province</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone#</th>
@@ -135,8 +136,8 @@
                                                                         <p class="sched-description">Description: {{ $schedules->description }}</p>
                                                                         </div>
                                                                         <div class="card-footer">
-                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
-                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
+                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}" data-bs-dismiss="modal"><i class="fas fa-edit"></i></button>
+                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}" data-bs-dismiss="modal"><i class="fas fa-trash-alt"></i></button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -155,7 +156,7 @@
                                         <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="modal-title">Edit Project</h5>
+                                                        <h5 class="modal-title" id="modal-title">Edit Schedule</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <form action="{{ route('edit.schedule') }}" method="post" enctype="multipart/form-data">
@@ -185,7 +186,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="add">Save Changes</button>
+                                                        <button type="submit" class="add" data-bs-dismiss="modal fade">Save Changes</button>
                                                         </div>
 
                                                     </form>
@@ -227,7 +228,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="add" id="saveChanges">Delete</button>
+                                                                <button type="submit" class="add" id="saveChanges" data-bs-dismiss="modal fade">Delete</button>
                                                                 </div>
                                                         </form>
                                                             </div>
@@ -239,8 +240,6 @@
                                         @if(!empty($schedule))
                                         @if(!empty($abakaBeneficiary->email === $schedule->recipient_email))
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $abakaBeneficiary->id }}">View Schedule</button>
-                                        @else
-                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" onclick="alert('No Schedule is Posted Yet.')">View Schedule</button>
                                         @endif
                                         @endif
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}" data-bs-dismiss="modal">Add Schedule</button>
@@ -288,7 +287,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="add" id="save-schedule-button" data-bs-dismiss="modal">Save</button>
+                                            <button type="submit" class="add" id="save-schedule-button" data-bs-dismiss="modal fade">Save</button>
                                         </div>
                                         </form>
                                     </div>
@@ -389,7 +388,8 @@
                                 <td>{{ $abakaBeneficiary->id }}</td>
                                 <td>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }}
                                     {{ $abakaBeneficiary->last_name }}</td>
-                                <td>{{ $abakaBeneficiary->barangay }} {{ $abakaBeneficiary->city }}</td>
+                                <td>{{ $abakaBeneficiary->barangay }}</td>
+                                <td>{{ $abakaBeneficiary->city }}</td>
                                 <td>{{ $abakaBeneficiary->province }}</td>
                                 
                                 <td>{{ $abakaBeneficiary->email }}</td>
