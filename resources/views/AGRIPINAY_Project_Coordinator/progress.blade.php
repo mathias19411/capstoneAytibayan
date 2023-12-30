@@ -236,7 +236,7 @@ $benefCurrentLoanStatuses = [];
                         <div class="add-value-popup-content">
                             <span class="add-value-popup-close"
                                 onclick="hideAddValuePopup({{ $agripinayBeneficiary->id }})">&times;</span>
-                            <h2>Add Beneficiary</h2>
+                            <h2 class="style: color">Add Beneficiary</h2>
                             <form action="{{ route('agripinayprojectcoordinator.progressAdd') }}" enctype="multipart/form-data"
                                 method="post">
                                 @csrf
@@ -349,7 +349,7 @@ $benefCurrentLoanStatuses = [];
                         <div class="update-repayment-popup-content">
                             <span class="update-status-popup-close"
                                 onclick="hideUpdateRepaymentPopup({{ $agripinayBeneficiary->id }})">&times;</span>
-                            <h2>Beneficiary Progress Details</h2>
+                            <h2>Repayment Details</h2>
                             <p><strong>Beneficiary Name:</strong> <span>{{ $agripinayBeneficiary->first_name }}
                                     {{ $agripinayBeneficiary->middle_name }} {{ $agripinayBeneficiary->last_name }}</span></p>
                             @if ($agripinayBeneficiary->loan)

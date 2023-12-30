@@ -2005,7 +2005,6 @@ body.announcement_events_inquiry h2 {
     font-size: 1.3rem;
     font-weight: bold;
     text-align: center;
-    color: #ffffff;
 }
 body.announcement_events_inquiry .table button {
 
@@ -2591,3 +2590,6 @@ body.announcement_events_inquiry .message-row {
     display: none; 
 }
 
+h2 {
+    color: #7bb701;
+}

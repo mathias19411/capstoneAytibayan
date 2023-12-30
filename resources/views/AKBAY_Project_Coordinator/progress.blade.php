@@ -369,7 +369,7 @@ $benefCurrentLoanStatuses = [];
                         <div class="update-repayment-popup-content">
                             <span class="update-status-popup-close"
                                 onclick="hideUpdateRepaymentPopup({{ $akbayBeneficiary->id }})">&times;</span>
-                            <h2>Beneficiary Progress Details</h2>
+                            <h2>Repayment Details</h2>
                             <p><strong>Beneficiary Name:</strong> <span>{{ $akbayBeneficiary->first_name }}
                                     {{ $akbayBeneficiary->middle_name }} {{ $akbayBeneficiary->last_name }}</span></p>
                             @if ($akbayBeneficiary->loan)

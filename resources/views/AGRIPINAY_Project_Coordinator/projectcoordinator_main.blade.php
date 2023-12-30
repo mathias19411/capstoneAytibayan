@@ -1125,7 +1125,22 @@ function calculateTotalBeneficiaries() {
 calculateTotalBeneficiaries();
 
     </script>
+<script>
+let currentModal;
 
+// Show the modals
+$('.modal').on('show.bs.modal', function (e) {
+    if (currentModal) {
+        currentModal.modal('hide');
+    }
+    currentModal = $(this);
+});
+
+// Hide the modals
+$('.modal').on('hidden.bs.modal', function (e) {
+    currentModal = undefined;
+});
+</script>
 </body>
 
 </html>
