@@ -114,7 +114,7 @@ class UsersTableSeeder extends Seeder
             //abaka Beneficiary  
             [
                 'first_name' => 'Joel',
-                'middle_name' => 'B.',
+                'middle_name' => 'B',
                 'last_name' => 'Almario',
                 'email' => 'logicabegino@gmail.com',
                 'password' => Hash::make('beneficiary123'),
@@ -129,7 +129,7 @@ class UsersTableSeeder extends Seeder
             ], 
             [
                  'first_name' => 'Jocelyn',
-                 'middle_name' => 'L.',
+                 'middle_name' => 'L',
                  'last_name' => 'Reyes',
                  'email' => 'jreyes@gmail.com',
                  'password' => Hash::make('beneficiary123'),
@@ -144,7 +144,7 @@ class UsersTableSeeder extends Seeder
             ], 
             [
                  'first_name' => 'Teresita',
-                 'middle_name' => 'B.',
+                 'middle_name' => 'B',
                  'last_name' => 'Cruz',
                  'email' => 'tbcruz@gmail.com',
                  'password' => Hash::make('beneficiary123'),
@@ -159,7 +159,7 @@ class UsersTableSeeder extends Seeder
              ], 
              [
                   'first_name' => 'Mark',
-                  'middle_name' => 'C.',
+                  'middle_name' => 'C',
                   'last_name' => 'Bautista',
                   'email' => 'mcbautista@gmail.com',
                   'password' => Hash::make('beneficiary123'),
@@ -174,7 +174,7 @@ class UsersTableSeeder extends Seeder
               ], 
               [
                    'first_name' => 'Myrna',
-                   'middle_name' => 'B.',
+                   'middle_name' => 'B',
                    'last_name' => 'Rosario',
                    'email' => 'mbrosario@gmail.com',
                    'password' => Hash::make('beneficiary123'),
@@ -189,7 +189,7 @@ class UsersTableSeeder extends Seeder
                ], 
                [
                     'first_name' => 'Eduardo',
-                    'middle_name' => 'E.',
+                    'middle_name' => 'E',
                     'last_name' => 'Martinez',
                     'email' => 'eemartinez@gmail.com',
                     'password' => Hash::make('beneficiary123'),
@@ -204,7 +204,7 @@ class UsersTableSeeder extends Seeder
                 ], 
                 [
                     'first_name' => 'Arlene',
-                    'middle_name' => 'C.',
+                    'middle_name' => 'C',
                     'last_name' => 'Cruz',
                     'email' => 'accruz@gmail.com',
                     'password' => Hash::make('beneficiary123'),
@@ -235,7 +235,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'first_name' => 'Mathias John Oliver',
-                'middle_name' => 'Bagato',
+                'middle_name' => 'B',
                 'last_name' => 'Bermejo',
                 'email' => 'danielluisserafica11@gmail.com',
                 'password' => Hash::make('itstaff123'),

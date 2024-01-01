@@ -87,7 +87,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-md-4">
                     <label for="inputFirstName" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="inputFirstName" name="first_name"
-                        placeholder="Firstname" required>
+                        placeholder="Firstname" required oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);">
                     @error('first_name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -95,15 +95,16 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-md-4">
                     <label for="inputMiddleName" class="form-label">Middle Initial</label>
                     <input type="text" class="form-control" id="inputMiddleName" name="middle_name"
-                        placeholder="M.I.">
+                        placeholder="Middle Initial" maxlength="1" oninput="this.value = this.value.slice(0, 1).toUpperCase()">
                     @error('middle_name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <div class="col-md-4">
                     <label for="inputLastName" class="form-label">Last Name</label>
                     <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Lastname"
-                        required>
+                        required oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);">
                     @error('last_name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -231,7 +232,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-md-4">
                     <label for="inputFirstName" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="inputFirstName" name="first_name"
-                        placeholder="John Sammi" required>
+                        placeholder="Firstname" required oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);">
                     @error('first_name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -239,15 +240,16 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                 <div class="col-md-4">
                     <label for="inputMiddleName" class="form-label">Middle Initial</label>
                     <input type="text" class="form-control" id="inputMiddleName" name="middle_name"
-                        placeholder="Diwally">
+                        placeholder="Middle Initial" maxlength="1" oninput="this.value = this.value.slice(0, 1).toUpperCase()">
                     @error('middle_name')
-                        <div class="text-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}.</div>
                     @enderror
                 </div>
+
                 <div class="col-md-4">
                     <label for="inputLastName" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Beatosai"
-                        required>
+                    <input type="text" class="form-control" id="inputLastName" name="last_name" placeholder="Lastname"
+                        required oninput="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);">
                     @error('last_name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror

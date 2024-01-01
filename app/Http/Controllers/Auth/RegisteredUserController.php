@@ -72,6 +72,7 @@ class RegisteredUserController extends Controller
             'middle_name' => [
                 'required',
                 'string',
+                'max:1',
             ],
             'last_name' => [
                 'required',
