@@ -2593,3 +2593,14 @@ body.announcement_events_inquiry .message-row {
 h2 {
     color: #7bb701;
 }
+
+#toggleButtontable {
+    color: #7bb701;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    margin: auto;
+    border: none;
+}

@@ -1097,26 +1097,25 @@ $(document).ready(function() {
     });
 </script>
 
+
 <script>
-function calculateTotalBeneficiaries() {
-    const table = document.getElementById('beneficiaries-table');
-    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    let totalBeneficiaries = 0;
+function toggleTable() {
+    var shortTable = document.getElementById("shortTable");
+    var beneficiariesTable = document.getElementById("beneficiaries-table");
+    var toggleButton = document.getElementById("toggleButtontable");
 
-    for (let i = 0; i < rows.length; i++) {
-        if (rows[i].style.display !== 'none') {
-            totalBeneficiaries++;
-        }
+    if (beneficiariesTable.style.display === "none" || beneficiariesTable.style.display === "") {
+        beneficiariesTable.style.display = "table";
+        shortTable.style.display = "none";
+        toggleButton.innerHTML = '<i class="fa-solid fa-minus fa-beat-fade"></i>'; 
+    } else {
+        beneficiariesTable.style.display = "none"; 
+        shortTable.style.display = "table"; 
+        toggleButton.innerHTML = '<i class="fa-solid fa-plus fa-beat-fade"></i>'; 
     }
-
-    document.getElementById('totalCount').textContent = totalBeneficiaries;
 }
 
-// This code should be placed where the filtering is done.
-// Call the function after the filtering process.
-calculateTotalBeneficiaries();
-
-    </script>
+</script>
 </body>
 
 </html>

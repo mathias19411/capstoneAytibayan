@@ -82,6 +82,10 @@
       display: none;
     }
 
+    #toggleButtontable {
+      display: none;
+    }
+
     #beneficiaries-table {
       margin-top: 20px;
     }
