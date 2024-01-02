@@ -31,13 +31,26 @@
                
   <div class="table-header">
   <div class="table-header-left">
-    <label for="status-filter">Status: </label>
-    <select id="status-filter">
-        <option value="all">All</option>
-        <option value="active">Active</option>
-        <option value="inactive">Inactive</option>
-    </select>
-    
+  <label for="unread-filter">City: </label>
+            <select id="unread-filter">
+                <option value="all">All</option>
+                <option value="Camalig">Camalig</option>
+                        <option value="Daraga">Daraga</option>
+                        <option value="Guinobatan">Guinobatan</option>
+                        <option value="Jovellar">Jovellar</option>
+                        <option value="Legazpi">Legazpi City</option>
+                        <option value="Libon">Libon</option>
+                        <option value="Ligao">Ligao</option>
+                        <option value="Malilipot">Malilipot</option>
+                        <option value="Malinao">Malinao</option>
+                        <option value="Manito">Manito</option>
+                        <option value="Oas">Oas</option>
+                        <option value="Pioduran">Pioduran</option>
+                        <option value="Sto.Domingo">Sto. Domingo</option>
+                        <option value="Tabaco">Tabaco City</option>
+                        <option value="Tiwi">Tiwi</option>
+                        <option value="Bacacay">Bacacay</option>
+            </select>
 
         <label for="items-per-page">Items per page: </label>
         <select id="items-per-page">

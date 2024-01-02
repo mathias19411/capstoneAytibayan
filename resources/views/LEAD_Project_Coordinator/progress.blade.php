@@ -180,7 +180,7 @@ $benefCurrentLoanStatuses = [];
                         <option value="Oas">Oas</option>
                         <option value="Pioduran">Pioduran</option>
                         <option value="Sto.Domingo">Sto. Domingo</option>
-                        <option value="Tabaco City">Tabaco City</option>
+                        <option value="Tabaco">Tabaco City</option>
                         <option value="Tiwi">Tiwi</option>
                         <option value="Bacacay">Bacacay</option>
             </select>
