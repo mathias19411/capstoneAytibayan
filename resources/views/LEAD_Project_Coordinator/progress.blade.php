@@ -164,14 +164,14 @@ $benefCurrentLoanStatuses = [];
 
     <div class="table-header">
         <div class="table-header-left">
-            <label for="unread-filter">Filter: </label>
+            <label for="unread-filter">City: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
                 <option value="Camalig">Camalig</option>
                         <option value="Daraga">Daraga</option>
                         <option value="Guinobatan">Guinobatan</option>
                         <option value="Jovellar">Jovellar</option>
-                        <option value="Legazpi City">Legazpi City</option>
+                        <option value="Legazpi">Legazpi City</option>
                         <option value="Libon">Libon</option>
                         <option value="Ligao">Ligao</option>
                         <option value="Malilipot">Malilipot</option>
