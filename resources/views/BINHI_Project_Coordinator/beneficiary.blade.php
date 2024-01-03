@@ -429,7 +429,7 @@
                                         onclick="showUpdateStatusPopup({{ $binhiBeneficiary->id }})"><i
                                             class="fa-solid fa-pen-to-square fa-2xs"></i></button> --}}
                                 </td>
-                                <td<td style="color: {{ $binhiBeneficiary->status->status_name === 'Active' ? 'green' : 'red' }}; ; padding: 5px; border-radius: 5px;">
+                                <td style="color: {{ $binhiBeneficiary->status->status_name === 'Active' ? 'green' : 'red' }}; ; padding: 5px; border-radius: 5px;">
                                     {{ $binhiBeneficiary->status->status_name }}</td>
                             </tr>
                         </div>

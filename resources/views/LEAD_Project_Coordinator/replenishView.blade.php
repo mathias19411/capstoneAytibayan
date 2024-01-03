@@ -56,10 +56,10 @@
                 <tr>
                     <td>{{ $replenishedAmount->id }}</td>
                     <td>{{ $replenishedAmount->user->first_name }} {{ $replenishedAmount->user->middle_name }} {{ $replenishedAmount->user->last_name }}</td>
-                    <td>{{ $replenishedAmount->replenish_amount }}</td>
+                    <td>₱ {{ $replenishedAmount->replenish_amount }}</td>
                     <td>{{ $replenishedAmount->loans->project }}</td>
-                    <td>{{ $replenishedAmount->loans->loan_amount }}</td>
-                    <td>{{ $replenishedAmount->balance }}
+                    <td>₱ {{ $replenishedAmount->loans->loan_amount }}</td>
+                    <td>₱ {{ $replenishedAmount->balance }}
                     <td>{{ $replenishedAmount->created_at->format('Y-m-d h:i A') }}</td>
                 
                 </tr>

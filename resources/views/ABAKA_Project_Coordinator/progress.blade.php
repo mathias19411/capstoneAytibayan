@@ -222,7 +222,7 @@ $benefAssistanceStatuses = [];
                                 @error('project')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
-                                <label for="amount">Amount:</label>
+                                <label for="amount">Amount ₱:</label>
                                 <input type="number" id="amount" name="amount" required>
                                 @error('amount')
                                     <span class="text-danger">{{ $message }}</span>
@@ -249,7 +249,7 @@ $benefAssistanceStatuses = [];
                                     {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</span></p>
                             @if ($abakaBeneficiary->assistance)
                                 <p><strong>Project:</strong> <span>{{ $abakaBeneficiary->assistance->project }}</span></p>
-                                <p><strong>Amount:</strong> <span>{{ $abakaBeneficiary->assistance->amount }}</span></p>
+                                <p><strong>Amount:</strong> <span>₱ {{ $abakaBeneficiary->assistance->amount }}</span></p>
                                 <p><strong>Number of Hectares:</strong> <span>{{ $abakaBeneficiary->assistance->number_of_hectares }}</span></p>
                                 <p><strong>Last Updated:</strong>
                                     <span>{{ $abakaBeneficiary->assistance->updated_at }}</span>
@@ -290,7 +290,7 @@ $benefAssistanceStatuses = [];
                         <td>{{ $abakaBeneficiary->status->status_name }}</td>
                         @if ($abakaBeneficiary->assistance)
                             <td>{{ $abakaBeneficiary->assistance->project }}</td>
-                            <td>{{ $abakaBeneficiary->assistance->amount }}</td>
+                            <td>₱ {{ $abakaBeneficiary->assistance->amount }}</td>
                             <td>{{ $abakaBeneficiary->assistance->number_of_hectares }}</td>
                             <td class="no-print">
                                 <button class="tooltip-button" data-tooltip="Add"
@@ -302,7 +302,12 @@ $benefAssistanceStatuses = [];
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
 
                             </td>
-                            <td>{{ $abakaBeneficiary->financialAssistanceStatus->financial_assistance_status_name }}</td>
+                            @if ($abakaBeneficiary->financialAssistanceStatus->financial_assistance_status_name == 'disbursed')
+                                <td style="color: lightgreen;">{{ $abakaBeneficiary->financialAssistanceStatus->financial_assistance_status_name }}</td>
+                            @else
+                                <td style="color: orange;">{{ $abakaBeneficiary->financialAssistanceStatus->financial_assistance_status_name }}</td>
+                            @endif
+                            
                         @else
                             <td>N/A</td>
                             <td>N/A</td>
@@ -316,7 +321,7 @@ $benefAssistanceStatuses = [];
                                     style="opacity: 0.5; cursor: not-allowed;"><i
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
 
-                            <td>{{ $assistanceUnsettledStatus->financial_assistance_status_name }}</td>
+                            <td style="color: red;">{{ $assistanceUnsettledStatus->financial_assistance_status_name }}</td>
                         @endif
                 @endforeach
             </tbody>

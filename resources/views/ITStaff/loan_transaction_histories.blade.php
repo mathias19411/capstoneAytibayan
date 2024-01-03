@@ -58,7 +58,7 @@
                     <td>{{ $loanTransaction->user->first_name }} {{ $loanTransaction->user->middle_name }} {{ $loanTransaction->user->last_name }}</td>
                     <td>{{ $loanTransaction->program->program_name }}</td>
                     <td>{{ $loanTransaction->loans->project }}</td>
-                    <td>{{ $loanTransaction->loans->loan_amount }}</td>
+                    <td>₱ {{ $loanTransaction->loans->loan_amount }}</td>
                     @if ($loanTransaction->loans->loan_term_in_months)
                         <td>{{ $loanTransaction->loans->loan_term_in_months }}</td>
                     @else

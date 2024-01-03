@@ -282,7 +282,7 @@ $benefCurrentLoanStatuses = [];
                                 @error('proponent')
                                     <span class="alert alert-danger">{{ $message }}</span>
                                 @enderror
-                                <label for="amount">Loan Amount:</label>
+                                <label for="amount">Loan Amount ₱:</label>
                                 <input type="number" id="amount" name="amount" required>
                                 @error('amount')
                                     <span class="alert alert-danger">{{ $message }}</span>
@@ -314,7 +314,7 @@ $benefCurrentLoanStatuses = [];
                                     {{ $leadBeneficiary->middle_name }} {{ $leadBeneficiary->last_name }}</span></p>
                             @if ($leadBeneficiary->loan)
                                 <p><strong>Project:</strong> <span>{{ $leadBeneficiary->loan->project }}</span></p>
-                                <p><strong>Amount:</strong> <span>{{ $leadBeneficiary->loan->loan_amount }}</span></p>
+                                <p><strong>Amount:</strong> <span>₱ {{ $leadBeneficiary->loan->loan_amount }}</span></p>
                                 <p><strong>Repayment Schedule:</strong> <span>{{ $leadBeneficiary->loan->repayment_schedule }}</span></p>
                                 <p><strong>Loan Term 'months':</strong> <span>{{ $leadBeneficiary->loan->loan_term_in_months }}</span></p>
                                 <p><strong>Last Updated:</strong>
@@ -400,8 +400,8 @@ $benefCurrentLoanStatuses = [];
                             @if ($leadBeneficiary->loan)
                                 <p><strong>Project:</strong> <span>{{ $leadBeneficiary->loan->project }}</span></p>
                                 <p><strong>Proponent:</strong> <span>{{ $leadBeneficiary->loan->proponent }}</span></p>
-                                <p><strong>Amount:</strong> <span>{{ $leadBeneficiary->loan->loan_amount }}</span></p>
-                                <p><strong>Remaining Balance:</strong> <span>{{ $leadBeneficiary->loan->remaining_loan_balance }}</span></p>
+                                <p><strong>Amount:</strong> <span>₱ {{ $leadBeneficiary->loan->loan_amount }}</span></p>
+                                <p><strong>Remaining Balance:</strong> <span>₱ {{ $leadBeneficiary->loan->remaining_loan_balance }}</span></p>
                                 
                                 <p><strong>Last Updated:</strong>
                                     <span>{{ $leadBeneficiary->loan->updated_at }}</span>
@@ -500,11 +500,21 @@ $benefCurrentLoanStatuses = [];
                             <td>{{ $leadBeneficiary->loan->loan_amount }}</td>
                             <td>{{ $leadBeneficiary->loan->amount_disbursed }}</td>
                             <td>{{ $leadBeneficiary->loan->created_at }}</td>
-                            <td>{{ $leadBeneficiary->loan->loan_amount }}</td>
-                            <td>{{ $leadBeneficiary->loan->amount_replenished }}</td>
-                            <td>{{ $leadBeneficiary->loan->remaining_loan_balance }}</td>
-                            <td>{{ $leadBeneficiary->loanstatus->loan_status_name }}</td>
-                            <td>{{ $leadBeneficiary->currentloanstatus->current_loan_status_name }}</td>
+                            <td>₱ {{ $leadBeneficiary->loan->loan_amount }}</td>
+                            <td>₱ {{ $leadBeneficiary->loan->amount_replenished }}</td>
+                            <td>₱ {{ $leadBeneficiary->loan->remaining_loan_balance }}</td>
+                            @if ($leadBeneficiary->loanstatus->loan_status_name == 'disbursed')
+                                <td style="color: lightgreen;">{{ $leadBeneficiary->loanstatus->loan_status_name }}</td> 
+                            @else
+                                <td style="color: orange;">{{ $leadBeneficiary->loanstatus->loan_status_name }}</td>
+                            @endif
+                            @if ($leadBeneficiary->currentloanstatus->current_loan_status_name == 'active')
+                                <td style="color: orange;">{{ $leadBeneficiary->currentloanstatus->current_loan_status_name }}</td>
+                            @elseif ($leadBeneficiary->currentloanstatus->current_loan_status_name == 'paid')
+                                <td style="color: lightgreen;">{{ $leadBeneficiary->currentloanstatus->current_loan_status_name }}</td>
+                            @else
+                                <td style="color: red;">{{ $leadBeneficiary->currentloanstatus->current_loan_status_name }}</td>   
+                            @endif
                             <td class="no-print">
                                 <button class="tooltip-button" data-tooltip="Add"
                                     onclick="showAddValuePopup({{ $leadBeneficiary->id }})" disabled

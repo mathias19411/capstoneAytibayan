@@ -273,7 +273,7 @@ $benefCurrentLoanStatuses = [];
                                 @error('project')
                                     <span class="alert alert-danger">{{ $message }}</span>
                                 @enderror
-                                <label for="amount">Loan Amount:</label>
+                                <label for="amount">Loan Amount ₱:</label>
                                 <input type="number" id="amount" name="amount" required>
                                 @error('amount')
                                     <span class="alert alert-danger">{{ $message }}</span>
@@ -309,7 +309,7 @@ $benefCurrentLoanStatuses = [];
                                     {{ $akbayBeneficiary->middle_name }} {{ $akbayBeneficiary->last_name }}</span></p>
                             @if ($akbayBeneficiary->loan)
                                 <p><strong>Project:</strong> <span>{{ $akbayBeneficiary->loan->project }}</span></p>
-                                <p><strong>Amount:</strong> <span>{{ $akbayBeneficiary->loan->loan_amount }}</span></p>
+                                <p><strong>Amount:</strong> <span>₱ {{ $akbayBeneficiary->loan->loan_amount }}</span></p>
                                 <p><strong>Repayment Schedule:</strong> <span>{{ $akbayBeneficiary->loan->repayment_schedule }}</span></p>
                                 <p><strong>Loan Term 'months':</strong> <span>{{ $akbayBeneficiary->loan->loan_term_in_months }}</span></p>
                                 <p><strong>Last Updated:</strong>
@@ -395,8 +395,8 @@ $benefCurrentLoanStatuses = [];
                                     {{ $akbayBeneficiary->middle_name }} {{ $akbayBeneficiary->last_name }}</span></p>
                             @if ($akbayBeneficiary->loan)
                                 <p><strong>Project:</strong> <span>{{ $akbayBeneficiary->loan->project }}</span></p>
-                                <p><strong>Amount:</strong> <span>{{ $akbayBeneficiary->loan->loan_amount }}</span></p>
-                                <p><strong>Remaining Balance:</strong> <span>{{ $akbayBeneficiary->loan->remaining_loan_balance }}</span></p>
+                                <p><strong>Amount:</strong> <span>₱ {{ $akbayBeneficiary->loan->loan_amount }}</span></p>
+                                <p><strong>Remaining Balance:</strong> <span>₱ {{ $akbayBeneficiary->loan->remaining_loan_balance }}</span></p>
                                 <p><strong>Loan Term 'months':</strong> <span>{{ $akbayBeneficiary->loan->loan_term_in_months }}</span></p>
                                 <p><strong>Last Updated:</strong>
                                     <span>{{ $akbayBeneficiary->loan->updated_at }}</span>
@@ -494,10 +494,21 @@ $benefCurrentLoanStatuses = [];
                             <td>{{ $akbayBeneficiary->loan->loan_term_in_months }}</td>
                             <td>{{ $akbayBeneficiary->loan->repayment_schedule }}</td>
                             <td>{{ $akbayBeneficiary->loan->date_of_maturity }}</td>
-                            <td>{{ $akbayBeneficiary->loan->loan_amount }}</td>
-                            <td>{{ $akbayBeneficiary->loan->remaining_loan_balance }}</td>
-                            <td>{{ $akbayBeneficiary->loanstatus->loan_status_name }}</td>
-                            <td>{{ $akbayBeneficiary->currentloanstatus->current_loan_status_name }}</td>
+                            <td>₱ {{ $akbayBeneficiary->loan->loan_amount }}</td>
+                            <td>₱ {{ $akbayBeneficiary->loan->remaining_loan_balance }}</td>
+                            @if ($akbayBeneficiary->loanstatus->loan_status_name == 'disbursed')
+                                <td style="color: lightgreen;">{{ $akbayBeneficiary->loanstatus->loan_status_name }}</td>
+                            @else
+                                <td style="color: orange;">{{ $akbayBeneficiary->loanstatus->loan_status_name }}</td>
+                            @endif
+                            @if ($akbayBeneficiary->currentloanstatus->current_loan_status_name == 'active')
+                                <td style="color: orange;">{{ $akbayBeneficiary->currentloanstatus->current_loan_status_name }}</td>
+                            @elseif ($akbayBeneficiary->currentloanstatus->current_loan_status_name == 'paid')
+                                <td style="color: lightgreen;">{{ $akbayBeneficiary->currentloanstatus->current_loan_status_name }}</td>
+                            @else
+                                <td style="color: red;">{{ $akbayBeneficiary->currentloanstatus->current_loan_status_name }}</td>   
+                            @endif
+                            
                             <td class="no-print">
                                 <button class="tooltip-button" data-tooltip="Add"
                                     onclick="showAddValuePopup({{ $akbayBeneficiary->id }})" disabled
@@ -537,7 +548,7 @@ $benefCurrentLoanStatuses = [];
                             <td>N/A</td>
                             <td>N/A</td>
                             <td>N/A</td>
-                            <td>{{ $loanUnsettledStatus->loan_status_name }}</td>
+                            <td style="color: red;">{{ $loanUnsettledStatus->loan_status_name }}</td>
                             <td>N/A</td>
                             <td class="no-print">
                                 <button class="tooltip-button" data-tooltip="Add"

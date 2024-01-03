@@ -558,20 +558,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
         Notification::send($user, new WebsiteNotifications('Your Schedule has been Updated', $request->date, $request->time));
 
         //send via sms
-        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
 
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule for monitoring has been Updated to " . $request->date ." ". $request->time)
-        );
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Schedule for monitoring has been Updated to " . $request->date ." ". $request->time)
+        // );
 
-        $message = $response->current();
+        // $message = $response->current();
 
-        if ($message->getStatus() == 0) {
-            toastr()->timeOut(7500)->addSuccess('The Beneficiary schedule has been sent via email and SMS!');
-        } else {
-            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        }
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The Beneficiary schedule has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         return redirect()->back()->with('success', 'Schedule is Updated!');
     } // End Method
@@ -602,20 +602,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
         Notification::send($user, new WebsiteNotifications('Your Schedule for monitoring has been cancelled!', $request->date, $request->time));
 
         //send via sms
-        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
 
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Monitoring Schedule has been cancelled!" . $request->date ." ". $request->time)
-        );
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your Monitoring Schedule has been cancelled!" . $request->date ." ". $request->time)
+        // );
 
-        $message = $response->current();
+        // $message = $response->current();
 
-        if ($message->getStatus() == 0) {
-            toastr()->timeOut(7500)->addSuccess('The Beneficiary schedule has been sent via email and SMS!');
-        } else {
-            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        }
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('The Beneficiary schedule has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         // Check if the record exists
         if ($recordToDelete) {
@@ -956,20 +956,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
         $userId->notify(new LoanRejected());
 
         //send via sms
-        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
 
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your incoming loan status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
-        );
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your incoming loan status has been REJECTED. \n You may send an inquiry or contact your program Project Coordinator.")
+        // );
 
-        $message = $response->current();
+        // $message = $response->current();
 
-        if ($message->getStatus() == 0) {
-            toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-        } else {
-            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        }
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         toastr()->timeOut(10000)->addSuccess('Beneficiary Project has been Rejected!');
 
@@ -1010,20 +1010,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
             $user->notify(new LoanStatusUpdated());
 
             //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your incoming loan status has been changed to " . $user->loanstatus->loan_status_name . " today at " . $user->loan->updated_at)
-            );
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your incoming loan status has been changed to " . $user->loanstatus->loan_status_name . " today at " . $user->loan->updated_at)
+            // );
 
-            $message = $response->current();
+            // $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
         }
 
 
@@ -1082,20 +1082,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
             $userLoanId->user->notify(new LoanStatusUpdated());
 
             //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($userLoanId->user->phone, "apao", "Your incoming loan status has been changed to " . $userLoanId->user->loanstatus->loan_status_name)
-            );
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($userLoanId->user->phone, "apao", "Your incoming loan status has been changed to " . $userLoanId->user->loanstatus->loan_status_name)
+            // );
 
-            $message = $response->current();
+            // $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
         }
         else
         {
@@ -1109,20 +1109,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
                 $userLoanId->user->notify(new LoanStatusUpdated());
 
                 //send via sms
-                $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-                $client = new \Vonage\Client($basic);
+                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+                // $client = new \Vonage\Client($basic);
 
-                $response = $client->sms()->send(
-                    new \Vonage\SMS\Message\SMS($userLoanId->user->phone, "apao", "Your incoming loan status has been changed to " . $userLoanId->user->loanstatus->loan_status_name)
-                );
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($userLoanId->user->phone, "apao", "Your incoming loan status has been changed to " . $userLoanId->user->loanstatus->loan_status_name)
+                // );
 
-                $message = $response->current();
+                // $message = $response->current();
 
-                if ($message->getStatus() == 0) {
-                    toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-                } else {
-                    toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-                }
+                // if ($message->getStatus() == 0) {
+                //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+                // } else {
+                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+                // }
             }
         }
 
@@ -1157,20 +1157,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
             $userLoanId->user->notify(new CurrentLoanUpdate());
 
             //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($userLoanId->user->phone, "apao", "Your current loan status has been changed to " . $userLoanId->user->loanstatus->loan_status_name)
-            );
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($userLoanId->user->phone, "apao", "Your current loan status has been changed to " . $userLoanId->user->loanstatus->loan_status_name)
+            // );
 
-            $message = $response->current();
+            // $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
         }
         else
         {
@@ -1184,20 +1184,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
                 $userLoanId->user->notify(new CurrentLoanUpdate());
 
                 //send via sms
-                $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-                $client = new \Vonage\Client($basic);
+                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+                // $client = new \Vonage\Client($basic);
 
-                $response = $client->sms()->send(
-                    new \Vonage\SMS\Message\SMS($userLoanId->user->phone, "apao", "Your current loan status has been changed to " . $userLoanId->user->loanstatus->loan_status_name)
-                );
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($userLoanId->user->phone, "apao", "Your current loan status has been changed to " . $userLoanId->user->loanstatus->loan_status_name)
+                // );
 
-                $message = $response->current();
+                // $message = $response->current();
 
-                if ($message->getStatus() == 0) {
-                    toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-                } else {
-                    toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-                }
+                // if ($message->getStatus() == 0) {
+                //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+                // } else {
+                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+                // }
             }
         }
 
@@ -1259,40 +1259,40 @@ public function ProjCoordinatorEventUpdate(Request $request)
             $userLoanId->user->notify(new CurrentLoanUpdate());
 
             //send via sms
-            $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-            $client = new \Vonage\Client($basic);
+            // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+            // $client = new \Vonage\Client($basic);
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your current loan status has been changed to " . $userLoanId->user->currentloanstatus->current_loan_status_name)
-            );
+            // $response = $client->sms()->send(
+            //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your current loan status has been changed to " . $userLoanId->user->currentloanstatus->current_loan_status_name)
+            // );
 
-            $message = $response->current();
+            // $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-            } else {
-                toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-            }
+            // if ($message->getStatus() == 0) {
+            //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+            // } else {
+            //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+            // }
         }
 
         $user->notify(new LoanRepaymentNotif());
         // Status is "rejected," delete the associated row
 
         //send via sms
-        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
 
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your loan repayment was successful. \n You-re remaining balance is." . $user->loan->remaining_loan_balance )
-        );
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your loan repayment was successful. \n You-re remaining balance is." . $user->loan->remaining_loan_balance )
+        // );
 
-        $message = $response->current();
+        // $message = $response->current();
 
-        if ($message->getStatus() == 0) {
-            toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-        } else {
-            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        }
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         toastr()->timeOut(10000)->addSuccess('Beneficiary loan repayment successful!');
 
@@ -1310,20 +1310,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
                 // Status is "rejected," delete the associated row
     
                 //send via sms
-                $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-                $client = new \Vonage\Client($basic);
+                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+                // $client = new \Vonage\Client($basic);
     
-                $response = $client->sms()->send(
-                    new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your current loan repayment schedule is on. ". $user->loan->repayment_schedule)
-                );
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($user->phone, "apao", "Your current loan repayment schedule is on. ". $user->loan->repayment_schedule)
+                // );
     
-                $message = $response->current();
+                // $message = $response->current();
     
-                if ($message->getStatus() == 0) {
-                    toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-                } else {
-                    toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-                }
+                // if ($message->getStatus() == 0) {
+                //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+                // } else {
+                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+                // }
     
             toastr()->timeOut(10000)->addSuccess('Loan Reminder Sent!');
 
@@ -1442,20 +1442,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
         $userData->notify(new PasswordUpdateNotif());
 
         //send via sms
-        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
 
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account password for Albay Provincial Agriculture Office has been successfully updated!")
-        );
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account password for Albay Provincial Agriculture Office has been successfully updated!")
+        // );
 
-        $message = $response->current();
+        // $message = $response->current();
 
-        if ($message->getStatus() == 0) {
-            toastr()->timeOut(7500)->addSuccess('Notification sent via email and SMS!');
-        } else {
-            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        }
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         toastr()->timeOut(10000)->addSuccess('Your Password has been Updated!');
 
@@ -1498,20 +1498,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
         $userData->notify(new InactiveStatusNotif());
 
         //send via sms
-        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
 
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been set to " . $userData->status->status_name ."\n If you're status is INACTIVE, Logging in to the Web Application using your account is forbidden. \n You may contact your program coordinator at the Albay Provincial Agriculture Office or send an Inquiry.")
-        );
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userData->phone, "apao", "Your account for Albay Provincial Agriculture Office has been set to " . $userData->status->status_name ."\n If you're status is INACTIVE, Logging in to the Web Application using your account is forbidden. \n You may contact your program coordinator at the Albay Provincial Agriculture Office or send an Inquiry.")
+        // );
 
-        $message = $response->current();
+        // $message = $response->current();
 
-        if ($message->getStatus() == 0) {
-            toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
-        } else {
-            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        }
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
 
         toastr()->timeOut(10000)->addSuccess('User data has been updated successfully!');
@@ -1540,20 +1540,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
                 Mail::to($beneficiary->email)->send(new LoanStatusUpdate($description));
 
                 //send via sms
-                $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-                $client = new \Vonage\Client($basic);
+                // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+                // $client = new \Vonage\Client($basic);
 
-                $response = $client->sms()->send(
-                    new \Vonage\SMS\Message\SMS($beneficiary->phone, "apao", "Incoming Loan Status Update\n\n" . $description)
-                );
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($beneficiary->phone, "apao", "Incoming Loan Status Update\n\n" . $description)
+                // );
 
-                $message = $response->current();
+                // $message = $response->current();
 
-                if ($message->getStatus() == 0) {
-                    toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
-                } else {
-                    toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-                }
+                // if ($message->getStatus() == 0) {
+                //     toastr()->timeOut(7500)->addSuccess('Message has been sent via email and SMS!');
+                // } else {
+                //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+                // }
             }
 
             toastr()->timeOut(10000)->addSuccess('Tracking step notification has been sent to all program beneficiaries successfully!');
@@ -1632,20 +1632,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
         $userId->notify(new BlacklistNotification());
 
         //send via sms
-        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
 
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Blacklisted, please contact your Program Project Coordinator for inquiries.")
-        );
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Blacklisted, please contact your Program Project Coordinator for inquiries.")
+        // );
 
-        $message = $response->current();
+        // $message = $response->current();
 
-        if ($message->getStatus() == 0) {
-            toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-        } else {
-            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        }
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         toastr()->timeOut(10000)->addSuccess('User has been Blacklisted!');
 
@@ -1665,20 +1665,20 @@ public function ProjCoordinatorEventUpdate(Request $request)
         $userId->notify(new RestoreNotification());
 
         //send via sms
-        $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic("fd2194d6", "JlrdWbcttBX5OdVs");
+        // $client = new \Vonage\Client($basic);
 
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Restored, you may login again!")
-        );
+        // $response = $client->sms()->send(
+        //     new \Vonage\SMS\Message\SMS($userId->phone, "apao", "Your account for Albay Provincial Agriculture Office has been Restored, you may login again!")
+        // );
 
-        $message = $response->current();
+        // $message = $response->current();
 
-        if ($message->getStatus() == 0) {
-            toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
-        } else {
-            toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
-        }
+        // if ($message->getStatus() == 0) {
+        //     toastr()->timeOut(7500)->addSuccess('Notification has been sent via email and SMS!');
+        // } else {
+        //     toastr()->timeOut(7500)->addSuccess('The message failed with status: ' . $message->getStatus());
+        // }
 
         toastr()->timeOut(10000)->addSuccess('User has been Restored!');
 

@@ -55,7 +55,7 @@
                 <td>{{ $assistanceTransaction->user->first_name }} {{ $assistanceTransaction->user->middle_name }} {{ $assistanceTransaction->user->last_name }}</td>
                 <td>{{ $assistanceTransaction->program->program_name }}</td>
                 <td>{{ $assistanceTransaction->assistance->project }}</td>
-                <td>{{ $assistanceTransaction->assistance->amount }}</td>
+                <td>₱ {{ $assistanceTransaction->assistance->amount }}</td>
                 @if ($assistanceTransaction->assistance->number_of_hectares)
                     <td>{{ $assistanceTransaction->assistance->number_of_hectares }}</td>
                 @else
