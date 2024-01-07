@@ -156,6 +156,7 @@ class BeneficiaryController extends Controller
                 'benef_of'=> $validatedData['benef_of'],
                 'title'=> $validatedData['title'],
                 'image' => $validatedData['image'],
+                'is_viewed' => false,
             ]);
             $updates->save();
     

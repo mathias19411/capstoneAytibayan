@@ -138,8 +138,13 @@
                 }, 5000); // Replace 2000 with the actual time your task takes in milliseconds
             }
             </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get all elements with the class 'modal'
+        var modals = document.querySelectorAll('.modal');
+
+        // Loop through each modal and set the minimum date
+        modals.forEach(function(modal) {
             var date = new Date();
             var tdate = date.getDate();
             var month = date.getMonth() + 1;
@@ -151,10 +156,15 @@
             }
             var year = date.getUTCFullYear();
             var minDate = year + "-" + month + "-" + tdate;
-            console.log(minDate);
-            document.getElementById("schedule-date").setAttribute('min', minDate);
+
+            // Use modal.querySelector to find elements within the modal
+            var scheduleDateInput = modal.querySelector('#schedule-date');
+            if (scheduleDateInput) {
+                scheduleDateInput.setAttribute('min', minDate);
+            }
         });
-    </script>
+    });
+</script>
     <script>
         $(function(){
             $(document).on('click', '#blacklist',function(e){

@@ -2,6 +2,7 @@
 
 @section('content')
 @include('ABAKA_Project_Coordinator.Body.sidebarproj')
+
     
         <div class="title">
             <h1>Beneficiaries</h1>
@@ -34,11 +35,12 @@
   <label for="unread-filter">City: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="Camalig">Camalig</option>
+                        <option value="Bacacay">Bacacay</option>
+                        <option value="Camalig">Camalig</option>
                         <option value="Daraga">Daraga</option>
                         <option value="Guinobatan">Guinobatan</option>
                         <option value="Jovellar">Jovellar</option>
-                        <option value="Legazpi">Legazpi City</option>
+                        <option value="Legazpi City">Legazpi City</option>
                         <option value="Libon">Libon</option>
                         <option value="Ligao">Ligao</option>
                         <option value="Malilipot">Malilipot</option>
@@ -46,10 +48,10 @@
                         <option value="Manito">Manito</option>
                         <option value="Oas">Oas</option>
                         <option value="Pioduran">Pioduran</option>
+                        <option value="Rapu-rapu">Rapu-rapu</option>
                         <option value="Sto.Domingo">Sto. Domingo</option>
-                        <option value="Tabaco">Tabaco City</option>
+                        <option value="Tabaco City">Tabaco City</option>
                         <option value="Tiwi">Tiwi</option>
-                        <option value="Bacacay">Bacacay</option>
             </select>
         <label for="items-per-page">Items per page: </label>
         <select id="items-per-page">
@@ -127,7 +129,7 @@
                                         @foreach($benefSchedules->reverse() as $schedule)
                                         @if ($abakaBeneficiary->email === $schedule->recipient_email)
                                         <!--VIEW SCHEDULE-->
-                                        <div class="modal fade" id="view-schedule-modal{{ $abakaBeneficiary->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static"  data-bs-backdrop="static" aria-labelledby="event_modal" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
+                                        <div class="modal fade" id="view-schedule-modal{{ $abakaBeneficiary->id }}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -148,8 +150,8 @@
                                                                         <p class="sched-description">Description: {{ $schedules->description }}</p>
                                                                         </div>
                                                                         <div class="card-footer">
-                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}" data-bs-dismiss="modal"><i class="fas fa-edit"></i></button>
-                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}" data-bs-dismiss="modal"><i class="fas fa-trash-alt"></i></button>
+                                                                        <button class="add-project_modal edit-schedule-btn" data-tooltip="View" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
+                                                                        <button class="add-project_modal delete-schedule-btn" data-tooltip="View" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -198,19 +200,19 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="add" data-bs-dismiss="modal fade">Save Changes</button>
+                                                        <button type="submit" class="add" data-bs-dismiss="modal">Save Changes</button>
                                                         </div>
 
                                                     </form>
                                                     </div>
                                             </div>
                                         </div>
-
+                                        <!-- Delete -->
                                         <div class="modal fade" id="modal_deleteschedule{{ $schedule->id }}" tabindex="-1" data-backdrop="false" data-bs-backdrop="static" aria-labelledby="modal_delete" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                                         <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="modal-title">Event Details</h5>
+                                                        <h5 class="modal-title" id="modal-title">Schedule Details</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                         <div class="modal-body">
@@ -240,7 +242,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="add" id="saveChanges" data-bs-dismiss="modal fade">Delete</button>
+                                                                <button type="submit" class="add" id="saveChanges" data-bs-dismiss="modal">Delete</button>
                                                                 </div>
                                                         </form>
                                                             </div>
@@ -251,10 +253,10 @@
                                         @endforeach              
                                         @if(!empty($schedule))
                                         @if(!empty($abakaBeneficiary->email === $schedule->recipient_email))
-                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $abakaBeneficiary->id }}">View Schedule</button>
+                                        <button class="add-project_modal view-schedule-button" data-tooltip="View" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $abakaBeneficiary->id }}">View Schedule</button>
                                         @endif
                                         @endif
-                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}" data-bs-dismiss="modal">Add Schedule</button>
+                                        <button class="add-project_modal add-schedule-button" data-tooltip="View" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $abakaBeneficiary->id }}">Add Schedule</button>
                                         <form action="{{ route('abakaread.update') }}" method="post">
                                             @csrf
                                             @method('patch')
@@ -289,7 +291,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="schedule-date" class="form-label">Date:</label>
-                                                    <input name="date" type="date" class="form-control" id="schedule-date" min="2023-12-27" required>
+                                                    <input name="date" type="date" class="form-control" id="schedule-date" required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="schedule-time" class="form-label">Time:</label>
@@ -299,7 +301,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="add" id="save-schedule-button" data-bs-dismiss="modal fade">Save</button>
+                                            <button type="submit" class="add" id="save-schedule-button" data-bs-dismiss="modal">Save</button>
                                         </div>
                                         </form>
                                     </div>
@@ -750,3 +752,54 @@
         }
     </script>
      <script src="{{ asset('Assets/js/progress.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- Add more modals as needed -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var viewScheduleButtons = document.querySelectorAll('.view-schedule-button');
+        var addScheduleButtons = document.querySelectorAll('.add-schedule-button');
+        var editScheduleButtons = document.querySelectorAll('.edit-schedule-btn');
+        var deleteScheduleButtons = document.querySelectorAll('.delete-schedule-btn');
+
+        function handleButtonClick(button) {
+            // Get the current modal element
+            var currentModalElement = document.querySelector('.modal.show');
+            
+            // If there is a currently displayed modal, hide it
+            if (currentModalElement) {
+                var currentModal = new bootstrap.Modal(currentModalElement);
+                currentModal.hide();
+            }
+
+            // Show the target modal
+            var targetModalId = button.getAttribute('data-bs-target');
+            var targetModal = new bootstrap.Modal(document.getElementById(targetModalId));
+            targetModal.show();
+        }
+
+        viewScheduleButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                handleButtonClick(button);
+            });
+        });
+
+        addScheduleButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                handleButtonClick(button);
+            });
+        });
+
+        editScheduleButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                handleButtonClick(button);
+            });
+        });
+
+        deleteScheduleButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                handleButtonClick(button);
+            });
+        });
+    });
+</script>
+
