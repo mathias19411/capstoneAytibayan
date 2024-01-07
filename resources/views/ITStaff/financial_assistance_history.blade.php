@@ -48,7 +48,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($assistanceTransactions as $assistanceTransaction)
+            @foreach ($assistanceTransactions->reverse() as $assistanceTransaction)
             <tr>
                 <td>{{ $assistanceTransaction->id }}</td>
                 <td>{{ $assistanceTransaction->transaction_type }}</td>

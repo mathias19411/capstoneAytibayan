@@ -51,7 +51,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($loanTransactions as $loanTransaction)
+            @foreach ($loanTransactions->reverse() as $loanTransaction)
                 <tr>
                     <td>{{ $loanTransaction->id }}</td>
                     <td>{{ $loanTransaction->transaction_type }}</td>
