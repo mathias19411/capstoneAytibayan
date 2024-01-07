@@ -165,25 +165,8 @@ $benefAssistanceStatuses = [];
             <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
             <h4>AbakaBuhayan Project, "ABAKA MO, PISO MO" CASH INCENTIVE SCHEME</h4>
             </div>
-            <table class="table" id="shortTable">
-                <thead>
-                <tr>
-                <th scope="col">User ID</th>
-                    <th scope="col">Beneficiary</th>
-                    <th scope="col">Barangay</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Project</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Hectares</th>
-                    <th scope="col" class="no-print">Action</th>
-                    <th scope="col">Assistance Status</th>
-
-                </tr>
-            </thead>
-                </table>
-
-            <table class="table" id="beneficiaries-table" style="display: none;">
+          
+            <table class="table" id="beneficiaries-table">
             <thead>
                 <tr>
                     <th scope="col">User ID</th>
@@ -283,7 +266,9 @@ $benefAssistanceStatuses = [];
                     </div>
 
                     <tr>
-                        <td>{{ $abakaBeneficiary->id }}</td>
+                        <td class="user-id-column">
+                        <span class="expand-row-icon">&#43;</span>
+                        {{ $abakaBeneficiary->id }}</td>
                         <td>{{ $abakaBeneficiary->first_name }} {{ $abakaBeneficiary->middle_name }} {{ $abakaBeneficiary->last_name }}</td>
                         <td>{{ $abakaBeneficiary->barangay }}</td>
                         <td>{{ $abakaBeneficiary->city }}</td>
@@ -326,9 +311,7 @@ $benefAssistanceStatuses = [];
                 @endforeach
             </tbody>
         </table>
-        <button id="toggleButtontable" onclick="toggleTable()">
-            <i class="fa-solid fa-plus fa-beat-fade"></i>
-        </button>
+      
         <div class="signature-section">
                 <div class="left-section">
                     <div class="signature-line">

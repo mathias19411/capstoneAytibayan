@@ -273,7 +273,7 @@
 
 
                             <!-- Add Schedule Modal -->
-                            <div class="modal fade" id="add-schedule-modal{{ $binhiBeneficiary->id }}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="add-schedule-modal{{ $binhiBeneficiary->id }}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.5)">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">

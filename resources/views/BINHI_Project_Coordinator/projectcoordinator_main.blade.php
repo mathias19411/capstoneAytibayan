@@ -1119,6 +1119,20 @@ function toggleTable() {
 }
 
 </script>
+
+<!-- EXPANDING IN MOBILE  -->
+<script>
+$(document).ready(function() {
+    $('.expand-row-icon').on('click', function() {
+        $(this).closest('tr').toggleClass('show-details');
+
+        $(this).text(function(_, text) {
+            return text === '+' ? '-' : '+';
+        });
+    });
+});
+
+    </script>
 </body>
 
 </html>

@@ -210,28 +210,8 @@ $benefCurrentLoanStatuses = [];
                 <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
                 <h4>AKBAY PROGRAM STATUS MONITORING</h4>    
                 </div>
-                <table class="table" id="shortTable">
-                <thead>
-                <tr>
-                    <th scope="col">User ID</th>
-                    <th scope="col">Beneficiary</th>
-                    <th scope="col">Barangay</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Project</th>
-                    <th scope="col">Term 'Months'</th>
-                    <th scope="col">Repayment Schedule</th>
-                    <th scope="col">Date of Maturity</th>
-                    <th scope="col">Loan Amount</th>
-                    <th scope="col">Balance</th>
-                    <th scope="col">Incoming Loan Status</th>
-                    <th scope="col">Current Loan Status</th>
-                    <th scope="col" class="no-print">Action</th>
-
-                </tr>
-            </thead>
-                </table>
-
-            <table class="table" id="beneficiaries-table" style="display: none;">
+            
+            <table class="table" id="beneficiaries-table">
             <thead>
                 <tr>
                     <th scope="col">User ID</th>
@@ -484,7 +464,9 @@ $benefCurrentLoanStatuses = [];
                         </div> 
 
                     <tr>
-                        <td>{{ $akbayBeneficiary->id }}</td>
+                          <td class="user-id-column">
+                        <span class="expand-row-icon">&#43;</span>
+                        {{ $binhiBeneficiary->id }}</td>
                         <td>{{ $akbayBeneficiary->first_name }} {{ $akbayBeneficiary->middle_name }}
                             {{ $akbayBeneficiary->last_name }}</td>
                         <td>{{ $akbayBeneficiary->barangay }}</td>
@@ -567,10 +549,6 @@ $benefCurrentLoanStatuses = [];
                 @endforeach
             </tbody>
         </table>
-
-        <button id="toggleButtontable" onclick="toggleTable()">
-            <i class="fa-solid fa-plus fa-beat-fade"></i>
-        </button>
 
         <div class="signature-section">
                 <div class="left-section">

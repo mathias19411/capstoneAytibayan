@@ -209,30 +209,8 @@ $benefCurrentLoanStatuses = [];
                 <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
                 <h4>PROVINCIAL LEAD PROGRAM STATUS REPORT FOR LIVELIHOOD PROJECTS</h4>    
                 </div>      
-                <table class="table" id="shortTable">
-                <thead>
-                <tr>
-                <th scope="col">User ID</th>
-                    <th scope="col">Beneficiary</th>
-                    <th scope="col">Barangay</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Project</th>
-                    <th scope="col">Proponent</th>
-                    <th scope="col">Amount Released</th>
-                    <th scope="col">Amount Disbursed</th>
-                    <th scope="col">Date Started</th>
-                    <th scope="col">Amount Due</th>
-                    <th scope="col">Amount Replenished</th>
-                    <th scope="col">Balance</th>
-                    <th scope="col">Incoming Loan Status</th>
-                    <th scope="col">Current Loan Status</th>
-                    <th scope="col" class="no-print">Action</th>
 
-                </tr>
-            </thead>
-                </table>
-
-            <table class="table" id="beneficiaries-table" style="display: none;">
+            <table class="table" id="beneficiaries-table">
             <thead>
                 <tr>
                     <th scope="col">User ID</th>
@@ -489,7 +467,9 @@ $benefCurrentLoanStatuses = [];
                         </div>    
 
                     <tr>
-                        <td>{{ $leadBeneficiary->id }}</td>
+                        <td class="user-id-column">
+                        <span class="expand-row-icon">&#43;</span>
+                        {{ $binhiBeneficiary->id }}</td>
                         <td>{{ $leadBeneficiary->first_name }} {{ $leadBeneficiary->middle_name }}
                             {{ $leadBeneficiary->last_name }}</td>
                         <td>{{ $leadBeneficiary->barangay }}</td>
@@ -575,9 +555,6 @@ $benefCurrentLoanStatuses = [];
             </tbody>
         </table>
 
-        <button id="toggleButtontable" onclick="toggleTable()">
-            <i class="fa-solid fa-plus fa-beat-fade"></i>
-        </button>
         <div class="signature-section">
                 <div class="left-section">
                     <div class="signature-line">

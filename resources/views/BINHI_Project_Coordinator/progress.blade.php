@@ -166,7 +166,8 @@ $benefAssistanceStatuses = [];
             <h5>ALBAY PROVINCIAL AGRICULTURAL OFFICE</h5>
             <h4>AbakaBuhayan Project, "BINHI MO, PISO MO" CASH INCENTIVE SCHEME</h4>
             </div>
-            <table class="table" id="shortTable">
+            
+            <!-- <table class="table" id="shortTable">
                 <thead>
                 <tr>
                 <th scope="col">User ID</th>
@@ -183,11 +184,12 @@ $benefAssistanceStatuses = [];
 
                 </tr>
             </thead>
-                </table>
+                </table> -->
 
-            <table class="table" id="beneficiaries-table" style="display: none;">
+            <table class="table" id="beneficiaries-table">
             <thead>
                 <tr>
+                <th scope="col"></th>
                     <th scope="col">User ID</th>
                     <th scope="col">Beneficiary Name</th>
                     <th scope="col">Barangay</th>
@@ -207,7 +209,7 @@ $benefAssistanceStatuses = [];
                     {{-- Modal View for Add --}}
                     <div id="add-value-popup-{{ $binhiBeneficiary->id }}" class="add-value-popup">
                         <div class="add-value-popup-content">
-                            <span class="add-value-popup-close"
+                            <span class="add-value-popup-close">
                                 onclick="hideAddValuePopup({{ $binhiBeneficiary->id }})">&times;</span>
                             <h2>Add Beneficiary</h2>
                             <form action="{{ route('binhiprojectcoordinator.progressAdd') }}" enctype="multipart/form-data"
@@ -225,7 +227,7 @@ $benefAssistanceStatuses = [];
                                 @error('project')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
-                                <label for="amount">Amount ₱:</label>
+                                <label for="amount">Amount:</label>
                                 <input type="number" id="amount" name="amount" required>
                                 @error('amount')
                                     <span class="text-danger">{{ $message }}</span>
@@ -252,7 +254,7 @@ $benefAssistanceStatuses = [];
                                     {{ $binhiBeneficiary->middle_name }} {{ $binhiBeneficiary->last_name }}</span></p>
                             @if ($binhiBeneficiary->assistance)
                                 <p><strong>Project:</strong> <span>{{ $binhiBeneficiary->assistance->project }}</span></p>
-                                <p><strong>Amount:</strong> <span>₱ {{ $binhiBeneficiary->assistance->amount }}</span></p>
+                                <p><strong>Amount:</strong> <span>{{ $binhiBeneficiary->assistance->amount }}</span></p>
                                 <p><strong>Number of Hectares:</strong> <span>{{ $binhiBeneficiary->assistance->organization }}</span></p>
                                 <p><strong>Last Updated:</strong>
                                     <span>{{ $binhiBeneficiary->assistance->updated_at }}</span>
@@ -286,7 +288,9 @@ $benefAssistanceStatuses = [];
                     </div>
 
                     <tr>
-                        <td>{{ $binhiBeneficiary->id }}</td>
+                        <td class="user-id-column">
+                        <span class="expand-row-icon">&#43;</span>
+                        {{ $binhiBeneficiary->id }}</td>
                         <td>{{ $binhiBeneficiary->first_name }} {{ $binhiBeneficiary->middle_name }} {{ $binhiBeneficiary->last_name }}</td>
                         <td>{{ $binhiBeneficiary->barangay }}</td>
                         <td>{{ $binhiBeneficiary->city }}</td>
@@ -294,7 +298,7 @@ $benefAssistanceStatuses = [];
                         <td>{{ $binhiBeneficiary->email }}</td>
                         @if ($binhiBeneficiary->assistance)
                             <td>{{ $binhiBeneficiary->assistance->project }}</td>
-                            <td>₱ {{ $binhiBeneficiary->assistance->amount }}</td>
+                            <td>{{ $binhiBeneficiary->assistance->amount }}</td>
                             <td>{{ $binhiBeneficiary->assistance->organization }}</td>
                             <td class="no-print">
                                 <button class="tooltip-button" data-tooltip="Add"
@@ -306,12 +310,7 @@ $benefAssistanceStatuses = [];
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
 
                             </td>
-                            @if ($binhiBeneficiary->financialAssistanceStatus->financial_assistance_status_name == 'disbursed')
-                                <td style="color: lightgreen;">{{ $binhiBeneficiary->financialAssistanceStatus->financial_assistance_status_name }}</td>
-                            @else
-                                <td style="color: orange;">{{ $binhiBeneficiary->financialAssistanceStatus->financial_assistance_status_name }}</td>
-                            @endif
-                            
+                            <td>{{ $binhiBeneficiary->financialAssistanceStatus->financial_assistance_status_name }}</td>
                         @else
                             <td>N/A</td>
                             <td>N/A</td>
@@ -325,14 +324,14 @@ $benefAssistanceStatuses = [];
                                     style="opacity: 0.5; cursor: not-allowed;"><i
                                         class="fa-solid fa-pen-to-square fa-2xs"></i></button>
 
-                            <td style="color: red;">{{ $assistanceUnsettledStatus->financial_assistance_status_name }}</td>
+                            <td>{{ $assistanceUnsettledStatus->financial_assistance_status_name }}</td>
                         @endif
                 @endforeach
             </tbody>
         </table>
-        <button id="toggleButtontable" onclick="toggleTable()">
+        <!-- <button id="toggleButtontable" onclick="toggleTable()">
             <i class="fa-solid fa-plus fa-beat-fade"></i>
-        </button>
+        </button> -->
         <div class="signature-section">
                 <div class="left-section">
                     <div class="signature-line">

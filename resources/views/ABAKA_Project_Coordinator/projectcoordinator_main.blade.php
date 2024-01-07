@@ -1216,24 +1216,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 </script>
 
+<!-- EXPANDING IN MOBILE  -->
 <script>
-function toggleTable() {
-    var shortTable = document.getElementById("shortTable");
-    var beneficiariesTable = document.getElementById("beneficiaries-table");
-    var toggleButton = document.getElementById("toggleButtontable");
+$(document).ready(function() {
+    $('.expand-row-icon').on('click', function() {
+        $(this).closest('tr').toggleClass('show-details');
 
-    if (beneficiariesTable.style.display === "none" || beneficiariesTable.style.display === "") {
-        beneficiariesTable.style.display = "table";
-        shortTable.style.display = "none";
-        toggleButton.innerHTML = '<i class="fa-solid fa-minus fa-beat-fade"></i>'; 
-    } else {
-        beneficiariesTable.style.display = "none"; 
-        shortTable.style.display = "table"; 
-        toggleButton.innerHTML = '<i class="fa-solid fa-plus fa-beat-fade"></i>'; 
-    }
-}
+        $(this).text(function(_, text) {
+            return text === '+' ? '-' : '+';
+        });
+    });
+});
 
-</script>
+    </script>
 </body>
 
 </html>
