@@ -165,6 +165,7 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                     <label for="inputCity" class="form-label">City</label>
                     <select id="inputCity" class="form-select" name="inputCity">
                     <option value=""selected></option>
+                        <option value="Bacacay">Bacacay</option>
                         <option value="Camalig">Camalig</option>
                         <option value="Daraga">Daraga</option>
                         <option value="Guinobatan">Guinobatan</option>
@@ -180,7 +181,6 @@ $userProgram = Illuminate\Support\Facades\AUTH::user()->program->id;
                         <option value="Sto.Domingo">Sto. Domingo</option>
                         <option value="Tabaco City">Tabaco City</option>
                         <option value="Tiwi">Tiwi</option>
-                        <option value="Bacacay">Bacacay</option>
                     </select>
                     @error('inputCity')
                         <div class="text-danger">{{ $message }}</div>

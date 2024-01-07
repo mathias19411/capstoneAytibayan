@@ -18,7 +18,7 @@ return new class extends Migration
             $table->longtext('title');
             $table->string('image');
             $table->timestamps();
-            $table->boolean('is_viewed')->nullable()->default(false);
+            $table->boolean('is_viewed')->default(false);
         });
     }
 

@@ -34,11 +34,12 @@
   <label for="unread-filter">City: </label>
             <select id="unread-filter">
                 <option value="all">All</option>
-                <option value="Camalig">Camalig</option>
+                        <option value="Bacacay">Bacacay</option>
+                        <option value="Camalig">Camalig</option>
                         <option value="Daraga">Daraga</option>
                         <option value="Guinobatan">Guinobatan</option>
                         <option value="Jovellar">Jovellar</option>
-                        <option value="Legazpi">Legazpi City</option>
+                        <option value="Legazpi City">Legazpi City</option>
                         <option value="Libon">Libon</option>
                         <option value="Ligao">Ligao</option>
                         <option value="Malilipot">Malilipot</option>
@@ -46,10 +47,10 @@
                         <option value="Manito">Manito</option>
                         <option value="Oas">Oas</option>
                         <option value="Pioduran">Pioduran</option>
+                        <option value="Rapu-rapu">Rapu-rapu</option>
                         <option value="Sto.Domingo">Sto. Domingo</option>
-                        <option value="Tabaco">Tabaco City</option>
+                        <option value="Tabaco City">Tabaco City</option>
                         <option value="Tiwi">Tiwi</option>
-                        <option value="Bacacay">Bacacay</option>
             </select>
     
 
@@ -150,8 +151,8 @@
                                                                         <p class="sched-description">Description: {{ $schedules->description }}</p>
                                                                         </div>
                                                                         <div class="card-footer">
-                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
-                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
+                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal_editschedule{{ $schedule->id }}"><i class="fas fa-edit"></i></button>
+                                                                            <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal_deleteschedule{{ $schedule->id }}"><i class="fas fa-trash-alt"></i></button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -200,7 +201,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="add">Save Changes</button>
+                                                                    <button type="submit" class="add" data-bs-dismiss="modal">Save Changes</button>
                                                         </div>
 
                                                     </form>
@@ -242,7 +243,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                 <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="add" id="saveChanges">Delete</button>
+                                                                <button type="submit" class="add" id="saveChanges" data-bs-dismiss="modal">Delete</button>
                                                                 </div>
                                                         </form>
                                                             </div>
@@ -253,9 +254,9 @@
                                         @endforeach              
                                         @if(!empty($schedule))
                                         @if(!empty($akbayBeneficiary->email === $schedule->recipient_email))
-                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $akbayBeneficiary->id }}">View Schedule</button>
+                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#view-schedule-modal{{ $akbayBeneficiary->id }}">View Schedule</button>
                                         @else
-                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" onclick="alert('No Schedule is Posted Yet.')">View Schedule</button>
+                                        <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-dismiss="modal" data-bs-toggle="modal" onclick="alert('No Schedule is Posted Yet.')">View Schedule</button>
                                         @endif
                                         @endif
                                         <button class="add-project_modal" data-tooltip="View" class="add-modal" data-bs-toggle="modal" data-bs-target="#add-schedule-modal{{ $akbayBeneficiary->id }}">Add Schedule</button>
@@ -303,7 +304,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="close" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="add" id="save-schedule-button">Save</button>
+                                            <button type="submit" class="add" id="save-schedule-button" data-bs-dismiss="modal">Save</button>
                                         </div>
                                         </form>
                                     </div>
